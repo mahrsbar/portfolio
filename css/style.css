@@ -1,0 +1,233 @@
+body {
+  font-weight: normal;
+  font-style: normal;
+  font-family: "Roboto", serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333333;
+  background: #fff;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 100px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.name {
+  text-align: center;
+}
+
+.description{
+  width:70%;
+  margin:auto;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0rem;
+  color: black;
+  border-bottom: 3px solid transparent;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav li {
+  padding-left: 1rem;
+}
+
+nav a:hover {
+  border-bottom: 3px solid black;
+}
+
+nav a.active {
+  border-bottom: 3px solid black;
+}
+
+.remove_style:hover{
+  border-bottom: none;
+}
+
+
+nav a:visited {
+  color: transparent;
+}
+
+.header {
+  text-align: center;
+  padding-top:40px;
+  padding-bottom:150px;
+}
+
+@media only screen and (max-width: 600px) {
+  nav {
+    flex-direction: column;
+  }
+  nav ul {
+    flex-direction: column;
+    padding-top: 0.5rem;
+  }
+  nav li {
+    padding: 0.5rem 0;
+  }
+}
+
+/* Cards */
+.cards {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 20px;
+}
+article {
+  --img-scale: 1.001;
+  --title-color: black;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: none;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+}
+
+article a::after {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0;
+  cursor: pointer;
+  content: "";
+}
+
+article h2 {
+  margin: 0 0 18px 0;
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+  color: var(--title-color);
+  transition: color 0.3s ease-out;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+article img {
+  max-width: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+}
+
+.card-body {
+  padding: 24px;
+  font-size: 16px;
+}
+
+.amplify {
+  pointer-events: none;
+}
+
+article a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #28666e;
+}
+
+article a:focus {
+  outline: 1px dotted #28666e;
+}
+
+article a .icon {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+  margin-left: 5px;
+  transform: translateX(var(--link-icon-translate));
+  opacity: var(--link-icon-opacity);
+  transition: all 0.3s;
+}
+
+article:has(:hover, :focus) {
+  --img-scale: 1.1;
+  --title-color: #28666e;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+/*Remnant Page*/
+.project_header {
+  background-color: #e6e6fa;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  margin-bottom: 50px;
+}
+
+.project_img {
+  text-align: center;
+}
+
+.project_title {
+  font-size: 2.6rem;
+}
+
+.project_subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: grey;
+}
+
+.paragraph_list {
+  list-style-type: "→"
+}
+
+.paragraph_list li {
+  padding: 5px;
+}
+
+.images {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.row {
+  display: flex;
+  column-gap: 20px;
+}
+
+.column {
+  flex: 50%;
+}
+
+.version_outer{
+  background-color:#f9efe6;
+  padding-top:10px;
+  text-align: center;
+
+  
+}
+
+.image_text{
+  text-align: right;
+  padding:10px;
+}
+
+.rebranded{
+  background-color: #c2b7aa26;
+  padding:20px;
+  text-align: center;
+
+}
