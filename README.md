@@ -1,1 +1,1 @@
-### This is my portfolio. It is a work in progress. 
+### My personal website and portfolio. 
