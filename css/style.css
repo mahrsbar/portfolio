@@ -132,9 +132,7 @@ article img {
   font-size: 16px;
 }
 
-.amplify {
-  pointer-events: none;
-}
+
 
 article a {
   display: inline-flex;
