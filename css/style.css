@@ -229,3 +229,11 @@ article:has(:hover, :focus) {
   text-align: center;
 
 }
+
+.images-amplify{
+display:flex;
+flex-wrap:wrap;
+justify-content: center;
+align-items:center;
+padding:30px;
+}
