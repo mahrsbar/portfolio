@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProgramEquity — Mahrs Aslam</title>
+    <meta
+      name="description"
+      content="Leading development of Amplify, an open-source civic engagement platform used by advocacy non-profits."
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Fraunces:opsz,wght,SOFT,WONK@144,600,100,0;144,600,100,1&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap"
+    />
+    <link rel="stylesheet" href="css/style.css?v=20261016u" />
+    <script>
+      try {
+        var t = localStorage.getItem("mahrs-theme");
+        if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+    <style>
+      .shot { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-1); }
+      .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="index.html" aria-label="Mahrs Aslam, home">
+          <span class="wordmark">mahrs<span class="dot">.</span></span>
+        </a>
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a href="index.html#work" data-section="/work/">Work</a></li>
+            <!-- Writing hidden for now: <li><a href="writing/index.html" data-section="/writing/">Writing</a></li> -->
+            <li><a href="about.html">About</a></li>
+            <!-- Ask hidden for now: <li><a href="ask.html">Ask</a></li> -->
+            <li><a href="images/Mahrs_Aslam_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li>
+              <button class="theme-toggle" type="button" aria-label="Switch theme">
+                <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="wrap case-hero">
+        <p class="eyebrow">Earlier work · Open source · 2021–2022</p>
+        <h1>ProgramEquity: building Amplify to increase civic engagement</h1>
+        <p class="lead">
+          Amplify is an open-source platform that helps advocacy non-profits turn supporters into
+          action: find your representatives, understand the issue, send the letter. I led development
+          as technical lead on a distributed volunteer team.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Role</dt><dd>Full-stack developer and technical lead</dd></div>
+          <div><dt>Stack</dt><dd>Vue, Vuex, Node, Google Civic API, Auth0, GitHub Codespaces</dd></div>
+          <div><dt>Outcome</dt><dd>50% more contributors after moving onboarding to Codespaces</dd></div>
+        </dl>
+      </section>
+
+      <section class="wrap">
+        <img class="shot" src="images/AmplifyMockup.jpeg" alt="Amplify app mockups" />
+      </section>
+
+      <section class="wrap section">
+        <div class="prose">
+          <h2>What I did</h2>
+          <ul>
+            <li><strong>Led a large open-source codebase</strong> used by advocacy organisations, and made contributing easy: a one-click Codespaces environment grew the contributor base by half.</li>
+            <li><strong>Built the front end in Vue</strong> with reusable components and Vuex state, integrating several external APIs to surface voter and representative information.</li>
+            <li><strong>Built and deployed the Node back end</strong>, including the Google Civic API integration for representative lookup and Auth0 for secure sign-in.</li>
+            <li><strong>Mentored junior developers</strong> in Vue best practices through pairing and code review.</li>
+          </ul>
+
+          <h2>Screens</h2>
+          <div class="shots">
+            <img class="shot" src="images/Amplify1.png" alt="Amplify screen 1" loading="lazy" />
+            <img class="shot" src="images/Amplify2.png" alt="Amplify screen 2" loading="lazy" />
+            <img class="shot" src="images/Amplify3.png" alt="Amplify screen 3" loading="lazy" />
+            <img class="shot" src="images/Amplify4.png" alt="Amplify screen 4" loading="lazy" />
+            <img class="shot" src="images/Amplify5.png" alt="Amplify screen 5" loading="lazy" />
+            <img class="shot" src="images/Amplify6.png" alt="Amplify screen 6" loading="lazy" />
+            <img class="shot" src="images/Amplify7.png" alt="Amplify screen 7" loading="lazy" />
+            <img class="shot" src="images/Amplify8.png" alt="Amplify screen 8" loading="lazy" />
+          </div>
+        </div>
+
+        <nav class="case-nav" aria-label="More work">
+          <a href="remnant.html"><small>Previous</small><b>Remnant Labs</b></a>
+          <a href="index.html#work"><small>Back</small><b>All work</b></a>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>Amplify is open source; screens shown are from the public project.</span>
+      </div>
+    </footer>
+    <script src="js/main.js?v=20260907"></script>
+    <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
+  </body>
+</html>
