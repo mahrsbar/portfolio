@@ -15,7 +15,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026a" />
+    <link rel="stylesheet" href="../css/style.css?v=20261026b" />
     <link rel="stylesheet" href="../css/accents.css?v=20261026a" />
     <script>
       try {
@@ -82,9 +82,6 @@
       </section>
 
       <section class="wrap">
-        <div class="case-cover">
-          <img class="shot" src="../images/smash/post-list.jpg" alt="The SMASH post list: posts and reposts with avatars, like and dislike counts, and Repost and Report buttons" />
-        </div>
         <aside class="stack">
           <div class="kicker">Built with<b>Tools and methods</b></div>
           <div>
@@ -131,19 +128,6 @@
           <h2>Software qualities, then tests to match</h2>
           <p>I wrote ten qualities before the team wrote much code, each with a concrete meaning for this product: correctness (a profile can be created and changed, posts can be viewed, liked, disliked, created, reported), robustness (validation for login, registration, post length, and profile changes, plus auto-logout), efficiency (few steps for the important tasks), usability (AJAX refresh, quick response, a consistent theme, familiar actions), portability (responsive, all browsers except Internet Explorer), scalability, input validation, documentation, maintainability, and user friendliness.</p>
           <p>The test plan mirrored the list: correctness tests per use case, robustness tests with deliberately bad input, and performance tests with multiple users interacting with the same post at once to check for data collisions. None were found.</p>
-          <div class="figure wide">
-            <div class="two-up">
-              <div><img class="shot" src="../images/smash/register-validation.jpg" alt="Registration form with a validation message above every empty field" loading="lazy" /><span class="label">Every empty field says what it needs</span></div>
-              <div><img class="shot" src="../images/smash/post-length.jpg" alt="Create a post form showing 251 characters entered in red and a message that posts can't be longer than 250 characters" loading="lazy" /><span class="label">The counter turns red at 251 and the post won't submit</span></div>
-            </div>
-          </div>
-          <div class="figure wide">
-            <div class="two-up">
-              <div><img class="shot" src="../images/smash/c61.jpg" alt="Sign-in form with validation messages for blank email and password" loading="lazy" /><span class="label">Login validation</span></div>
-              <div><img class="shot" src="../images/smash/long-post.jpg" alt="Post list with a very long single-word post used for robustness testing" loading="lazy" /><span class="label">Robustness test: a 250-character single word, before the wrap fix</span></div>
-            </div>
-            <figcaption>Robustness screenshots from the report. The long single-word post is the kind of input that finds layout bugs before users do.</figcaption>
-          </div>
 
           <h2>What it taught me</h2>
           <ul>
@@ -164,7 +148,6 @@
     <footer class="footer">
       <div class="wrap">
         <span>© <span data-year>2026</span> Mahrs Aslam.</span>
-        <span>University coursework, University of Regina. Team members credited in the original report.</span>
       </div>
     </footer>
     <script src="../js/main.js?v=20261026a"></script>

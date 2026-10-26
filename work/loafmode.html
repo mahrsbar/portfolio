@@ -15,7 +15,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026a" />
+    <link rel="stylesheet" href="../css/style.css?v=20261026b" />
     <link rel="stylesheet" href="../css/accents.css?v=20261026a" />
     <script>
       try {
@@ -51,7 +51,7 @@
       @media (max-width: 640px) {
         .thennow { grid-template-columns: minmax(0, 1fr); }
         .feature { grid-template-columns: minmax(0, 1fr); }
-        .feature-media { max-width: 240px; }
+        .feature-media { max-width: 240px; margin-inline: auto; }
       }
       .lesson { margin: 2.5rem 0; padding: 1.75rem 1.75rem 1.6rem; border-radius: var(--radius-l); background: var(--c-soft); border-left: 4px solid var(--c); }
       .lesson-k { display: block; margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
@@ -62,7 +62,7 @@
       .story-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
       .story figcaption { margin: 0; }
       .story p { margin: 0.2rem 0 0.75rem; color: var(--ink-2); }
-      @media (max-width: 560px) { .story { grid-template-columns: minmax(0, 1fr); } .story-frame { max-width: 260px; } }
+      @media (max-width: 560px) { .story { grid-template-columns: minmax(0, 1fr); } .story-frame { max-width: 260px; margin-inline: auto; } }
     </style>
   </head>
   <body>
@@ -310,7 +310,6 @@
     <footer class="footer">
       <div class="wrap">
         <span>© <span data-year>2026</span> Mahrs Aslam.</span>
-        <span>LoafMode is my personal project.</span>
       </div>
     </footer>
     <script>
