@@ -1,0 +1,13 @@
+# Private university documents used as source material; never publish
+CSDocsUofA/
+
+# Design drafts, the style comparison page, the homepage backup and the homepage
+# build sources (duck scene + session notes); kept locally, never published
+prototypes/
+
+# macOS
+.DS_Store
+
+# Local tooling
+.claude/
+.tmp-shots/

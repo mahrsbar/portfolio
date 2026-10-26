@@ -9,23 +9,23 @@
   /* Two families carry the site: one grotesque for display and text, one
      mono for labels. Fraunces survives in exactly one place — the wordmark —
      so it is requested as a single instance, not a variable range. */
-  --font-display: "Familjen Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: "Familjen Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-mono: "Spline Sans Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --font-mark: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-display: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mark: "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
   /* One ground carries the page. --bg is the near-white everything sits on,
      --bg-elev is the raised surface (cards, the theme toggle) and reads as
      raised by being lighter AND carrying a --line border, --bg-sunk is the
      recessed one (nav pills, insets). Three steps, tight range, no fourth. */
-  --bg: #f7f4ef;
-  --bg-elev: #fffdfa;
-  --bg-sunk: #ede8e0;
-  --ink: #1a1714;
-  --ink-2: #4a453f;
-  --ink-3: #6b655d;
-  --line: #e5dfd5;
-  --line-strong: #bdb5a8;
+  --bg: #f3f3f1;
+  --bg-elev: #fafaf8;
+  --bg-sunk: #eaeae7;
+  --ink: #121212;
+  --ink-2: #3c3c3a;
+  --ink-3: #636360;
+  --line: #e0e0dc;
+  --line-strong: #bebeb9;
 
   /* brand hues */
   --coral: #0f4ecd;
@@ -45,10 +45,10 @@
   --violet-text: #cc0052;
   --pink-text: #6d4fbd;
 
-  --accent: var(--coral);
+  --accent: #121212;
   --accent-ink: #ffffff;
   --accent-soft: var(--coral-soft);
-  --link: var(--coral-deep);
+  --link: #121212;
   --accent-2: var(--violet);
   --accent-2-soft: var(--violet-soft);
   --ok: #007743;
@@ -56,8 +56,8 @@
 
   --wire: #dde1e4;
   --wire-2: #b6bcc1;
-  --wire-bg: #efebe4;
-  --wire-frame: #f9f7f3;
+  --wire-bg: #eaeae7;
+  --wire-frame: #fafaf8;
 
   --shadow-1: none;
   --shadow-2: none;
@@ -88,14 +88,14 @@
 }
 
 :root[data-theme="dark"] {
-  --bg: #15171a;
-  --bg-elev: #1e2125;
-  --bg-sunk: #0e0f11;
-  --ink: #eef0f2;
-  --ink-2: #b0b6bc;
-  --ink-3: #8d949b;
-  --line: #2a2e33;
-  --line-strong: #3a3f45;
+  --bg: #101114;
+  --bg-elev: #18191d;
+  --bg-sunk: #0b0c0e;
+  --ink: #ecebe8;
+  --ink-2: #bab9b5;
+  --ink-3: #93928e;
+  --line: #27282d;
+  --line-strong: #3d3e44;
 
   --coral: #427cf1;
   --coral-deep: #427cf1;
@@ -120,14 +120,16 @@
   --coral-on: #15171a;
   --pink-on: #15171a;
   --accent-ink: #15171a;
-  --link: var(--coral-deep);
+  --link: #ecebe8;
+    --accent: #ecebe8;
+    --accent-ink: #101114;
   --ok: #00a05a;
   --warn: #ffd400;
 
   --wire: #2c3036;
   --wire-2: #3d434a;
-  --wire-bg: #191c1f;
-  --wire-frame: #24282d;
+  --wire-bg: #18191d;
+  --wire-frame: #1e1f23;
 
   --shadow-1: none;
   --shadow-2: none;
@@ -139,14 +141,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #15171a;
-    --bg-elev: #1e2125;
-    --bg-sunk: #0e0f11;
-    --ink: #eef0f2;
-    --ink-2: #b0b6bc;
-    --ink-3: #8d949b;
-    --line: #2a2e33;
-    --line-strong: #3a3f45;
+    --bg: #101114;
+    --bg-elev: #18191d;
+    --bg-sunk: #0b0c0e;
+    --ink: #ecebe8;
+    --ink-2: #bab9b5;
+    --ink-3: #93928e;
+    --line: #27282d;
+    --line-strong: #3d3e44;
     --coral: #427cf1;
     --coral-deep: #427cf1;
     --coral-soft: #101d37;
@@ -169,13 +171,15 @@
     --coral-on: #15171a;
     --pink-on: #15171a;
     --accent-ink: #15171a;
-    --link: var(--coral-deep);
+    --link: #ecebe8;
+    --accent: #ecebe8;
+    --accent-ink: #101114;
     --ok: #00a05a;
     --warn: #ffd400;
     --wire: #2c3036;
     --wire-2: #3d434a;
-    --wire-bg: #191c1f;
-    --wire-frame: #24282d;
+    --wire-bg: #18191d;
+    --wire-frame: #1e1f23;
     --shadow-1: none;
     --shadow-2: none;
     color-scheme: dark;
@@ -444,7 +448,7 @@ pre code {
    only place the brand coral appears in the nav. */
 .brand .wordmark {
   font-family: var(--font-mark);
-  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  font-variation-settings: normal;
   font-weight: 600;
   font-size: 1.24rem;
   letter-spacing: -0.025em;
@@ -2180,7 +2184,7 @@ pre code {
   max-width: 22ch;
   margin: 0.6rem 0 0;
   font-family: var(--font-mark);
-  font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 0;
+  font-variation-settings: normal;
   font-weight: 600;
   font-size: clamp(2.1rem, 4.6vw, 3.5rem);
   line-height: 1.05;
@@ -2454,7 +2458,7 @@ pre code {
   /* WONK 0, unlike the wordmark: the wonky axis gives Fraunces its splayed 'f'
      and 'r', which is a nice signature at 20px and a distraction at 60. Same
      family either way, so no extra font is loaded. */
-  font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 0;
+  font-variation-settings: normal;
   font-weight: 600;
   font-size: clamp(2.3rem, 5.4vw, 4.1rem);
   line-height: 1.03;
@@ -4653,3 +4657,15 @@ main .chapter .num, main .tn-k, main .plugin-n, main .lesson-k, main .psych-k, m
 /* Two-up wireframes: the single-wire auto margin made each one shrink to a sliver. */
 .case-cover .two-up .wire { width: 100%; max-width: none; margin-inline: 0; }
 
+
+/* OneComply mockups: old guide page, step rail with outstanding counts (shared by the case study and the homepage card). */
+.mkset .guide { margin: 0; padding: 0.9rem 1rem 0.9rem 2.1rem; height: 300px; overflow: hidden; display: grid; gap: 0.26rem; align-content: start; font-size: 0.72rem; color: var(--ink-2); position: relative; }
+.mkset .guide li { padding-left: 0.2rem; }
+.mkset .guide li.tick > span { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.2rem 0.45rem; border: 1px dashed var(--line-strong); border-radius: 6px; color: var(--ink); }
+.mkset .guide li.tick .box { width: 11px; height: 11px; border: 1.5px solid var(--ink-3); border-radius: 3px; flex: none; }
+.mkset .guide li.more { list-style: none; color: var(--ink-3); font-style: italic; }
+.mkset .steps-rail { width: 100%; }
+.mkset .steps-rail span { font-size: 0.72rem; padding: 0.4rem 0.5rem; }
+.mkset .rail span em.count { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #d93f3f; color: #fff; font-size: 0.64rem; font-weight: 700; display: inline-grid; place-items: center; }
+.mkset .six-body { grid-template-columns: 52% 1fr; }
+@media (max-width: 760px) { .mkset .guide { height: auto; } }

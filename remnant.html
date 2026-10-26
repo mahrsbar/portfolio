@@ -13,9 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Fraunces:opsz,wght,SOFT,WONK@144,600,100,0;144,600,100,1&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261016u" />
+    <link rel="stylesheet" href="css/style.css?v=20261021a" />
+    <link rel="stylesheet" href="css/accents.css?v=20261021k" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -23,7 +24,32 @@
       } catch (e) {}
     </script>
     <style>
-      .shot { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-1); }
+      .shot { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-1); }
+      /* pill tabs, the same component as the design-system page */
+      .type-tablist { display: inline-flex; gap: 0.25rem; padding: 0.25rem; border-radius: 999px; background: var(--bg-sunk); }
+      .type-tablist button { padding: 0.4rem 0.9rem; border: 0; border-radius: 999px; background: transparent; color: var(--ink-2); font: inherit; font-size: 0.85rem; cursor: pointer; }
+      .type-tablist button[aria-selected="true"] { background: var(--bg-elev); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); font-weight: 600; }
+      .type-tablist button:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+      @media (max-width: 560px) { .type-tablist button { padding: 0.4rem 0.6rem; } }
+
+      /* character cards: one stage, tabs to switch, a full-screen button */
+      /* wider than the text column: the full content width, since the pens were made for a whole window */
+      .cards-demo { width: min(100vw - 2 * var(--gutter), var(--max)); max-width: none; margin: 1.5rem 0 2rem; }
+      .demo-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      a.demo-full { text-decoration: none; }
+      .demo-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; }
+      .demo-full { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.45rem 0.85rem; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--bg-elev); color: var(--ink); font: inherit; font-size: 0.85rem; cursor: pointer; }
+      .demo-full svg { width: 16px; height: 16px; }
+      .demo-full:hover { border-color: var(--ink-3); }
+      .demo-full:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+      .demo-stage iframe { display: block; width: 100%; height: clamp(640px, 86vh, 880px); border: 1px solid var(--line); border-radius: var(--radius); background: #111; }
+      .panel-cap { margin: 0.6rem 0 0; font-size: 0.85rem; color: var(--ink-3); }
+      @media (max-width: 700px) { .demo-stage iframe { height: min(80vh, 640px); } }
+      /* full screen: the stage fills the screen and the caption hides */
+      .demo-stage:fullscreen { background: #111; }
+      .demo-stage:fullscreen .type-panel:not([hidden]) { height: 100%; }
+      .demo-stage:fullscreen iframe { width: 100%; height: 100%; aspect-ratio: auto; border: 0; border-radius: 0; }
+      .demo-stage:fullscreen .panel-cap { display: none; }
       .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 2rem 0; }
       .shots figure { margin: 0; }
       .shots figcaption { margin-top: 0.5rem; font-size: 0.85rem; color: var(--ink-3); }
@@ -57,23 +83,27 @@
     </header>
 
     <main id="main">
-      <section class="wrap case-hero">
-        <p class="eyebrow">Earlier work · Brand and web · 2022</p>
+      <section class="wrap case-intro">
+        <p class="eyebrow">Earlier work · Brand and web · 2022–2023</p>
         <h1>Remnant Labs: redesigning a game studio's web presence</h1>
-        <p class="lead">
+        <p class="intro-sum">
           Remnant Labs is a fantasy-anime universe with multiple interoperable titles. As lead front-end
           developer I ran the complete overhaul of the studio's website, from audience research and brand
           voice through wireframes, hi-fi prototypes, and the Vue front end that shipped.
         </p>
-        <dl class="case-meta">
+        <ul class="highlights">
+          <li><b>Web traffic up 125%</b><span>After launch</span></li>
+          <li><b>Lead front end</b><span>Research, brand voice, design and the Vue build</span></li>
+          <li><b>3 interactive character cards</b><span>Prototyped on CodePen</span></li>
+        </ul>
+        <dl class="meta-line">
           <div><dt>Role</dt><dd>Lead front-end developer; research, design, and build</dd></div>
           <div><dt>Stack</dt><dd>Figma, Vue, Firebase, GSAP</dd></div>
-          <div><dt>Outcome</dt><dd>Web traffic up 125% after launch</dd></div>
         </dl>
       </section>
 
       <section class="wrap">
-        <img class="shot" src="images/RemnantDesktop.png" alt="Remnant Labs redesigned homepage on desktop" />
+        <img class="shot" src="images/covers/remnant.svg" width="1600" height="1000" alt="The redesigned Remnant Labs homepage: the city artwork fills the screen, with the trailer, the studio name and a small transparent navigation on top" />
       </section>
 
       <section class="wrap section">
@@ -104,12 +134,41 @@
 
           <h2>Implementation</h2>
           <h3>Character card components</h3>
-          <p>Character cards are central to the game, so I built three interactive versions to explore how avatars and descriptions could be presented.</p>
-          <div class="shots">
-            <figure><img class="shot" src="images/Version1.png" alt="Character card version one" loading="lazy" /><figcaption><a href="https://codepen.io/mahrsbar/full/jOYPReJ" target="_blank" rel="noopener">Version one on CodePen</a></figcaption></figure>
-            <figure><img class="shot" src="images/Version2.png" alt="Character card version two" loading="lazy" /><figcaption><a href="https://codepen.io/mahrsbar/full/GRyoOXR" target="_blank" rel="noopener">Version two on CodePen</a></figcaption></figure>
-            <figure><img class="shot" src="images/Version3.png" alt="Character card version three" loading="lazy" /><figcaption><a href="https://codepen.io/mahrsbar/full/ExojdqE" target="_blank" rel="noopener">Version three on CodePen</a></figcaption></figure>
-          </div>
+          <p>Character cards are central to the game, so I built three interactive versions to explore how avatars and descriptions could be presented. All three run below.</p>
+          <!-- One stage, three versions: each is a local page built from its CodePen, loaded only when its tab is picked -->
+          <figure class="figure type-tabs cards-demo">
+            <div class="demo-bar">
+              <div class="type-tablist" role="tablist" aria-label="Character card versions">
+                <button type="button" role="tab" id="tab-v1" aria-controls="panel-v1" aria-selected="true">Version one</button>
+                <button type="button" role="tab" id="tab-v2" aria-controls="panel-v2" aria-selected="false" tabindex="-1">Version two</button>
+                <button type="button" role="tab" id="tab-v3" aria-controls="panel-v3" aria-selected="false" tabindex="-1">Version three</button>
+              </div>
+              <div class="demo-actions">
+                <a class="demo-full demo-pen" href="https://codepen.io/mahrsbar/pen/jOYPReJ" target="_blank" rel="noopener">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 8.5v7L12 22l10-6.5v-7L12 2zM12 22v-6.5M22 8.5l-10 7-10-7M2 15.5l10-7 10 7M12 2v6.5"/></svg>
+                  <span>Open on CodePen <span aria-hidden="true">↗</span></span>
+                </a>
+                <button type="button" class="demo-full" aria-label="Show the character cards full screen">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+                  <span>Full screen</span>
+                </button>
+              </div>
+            </div>
+            <div class="demo-stage">
+              <div class="type-panel" role="tabpanel" id="panel-v1" aria-labelledby="tab-v1" data-pen="https://codepen.io/mahrsbar/pen/jOYPReJ">
+                <iframe src="images/remnant/cards/v1.html" data-src="images/remnant/cards/v1.html" loading="lazy" title="Character cards, version one: a slider of animated character cards with the art behind them"></iframe>
+                <p class="panel-cap">A card slider: animated character art, with the scene behind it changing to match. Use the arrows. <a href="https://codepen.io/mahrsbar/pen/jOYPReJ" target="_blank" rel="noopener">Open on CodePen ↗</a></p>
+              </div>
+              <div class="type-panel" role="tabpanel" id="panel-v2" aria-labelledby="tab-v2" data-pen="https://codepen.io/mahrsbar/pen/GRyoOXR" hidden>
+                <iframe data-src="images/remnant/cards/v2.html" title="Character cards, version two: info cards that swap characters"></iframe>
+                <p class="panel-cap">Info cards: portrait, name and story on one card; Next swaps the character. Based on a design by Catalin V. <a href="https://codepen.io/mahrsbar/pen/GRyoOXR" target="_blank" rel="noopener">Open on CodePen ↗</a></p>
+              </div>
+              <div class="type-panel" role="tabpanel" id="panel-v3" aria-labelledby="tab-v3" data-pen="https://codepen.io/mahrsbar/pen/ExojdqE" hidden>
+                <iframe data-src="images/remnant/cards/v3.html" title="Character cards, version three: a full-bleed slider with a pop-out character"></iframe>
+                <p class="panel-cap">A pop-out slider: full-bleed art with the character stepping out of the frame. Use the arrows or the dots. <a href="https://codepen.io/mahrsbar/pen/ExojdqE" target="_blank" rel="noopener">Open on CodePen ↗</a></p>
+              </div>
+            </div>
+          </figure>
 
           <h2>Results</h2>
           <p>Engagement and conversion rose after launch. Simplified navigation, the new games page, and matching the site to the game's own art made it feel like part of the game. Web traffic went up 125%.</p>
@@ -132,6 +191,51 @@
         <span>Remnant Labs work shown with permission; this was a public website.</span>
       </div>
     </footer>
+    <script>
+      // Accessible tabs (arrow keys move between tabs), as on the design-system page.
+      // Version one loads lazily with the page; the others load the first time their tab is shown.
+      document.querySelectorAll(".type-tablist").forEach(function (list) {
+        var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+        function select(tab) {
+          tabs.forEach(function (t) {
+            var on = t === tab;
+            var panel = document.getElementById(t.getAttribute("aria-controls"));
+            t.setAttribute("aria-selected", on ? "true" : "false");
+            t.tabIndex = on ? 0 : -1;
+            panel.hidden = !on;
+            var frame = panel.querySelector("iframe[data-src]");
+            if (on && frame && !frame.getAttribute("src")) frame.src = frame.dataset.src;
+            var pen = on && panel.dataset.pen && list.closest(".cards-demo").querySelector(".demo-pen");
+            if (pen) pen.href = panel.dataset.pen;
+          });
+        }
+        list.addEventListener("click", function (e) {
+          var t = e.target.closest('[role="tab"]');
+          if (t) select(t);
+        });
+        list.addEventListener("keydown", function (e) {
+          var i = tabs.indexOf(document.activeElement);
+          if (i < 0) return;
+          var n = e.key === "ArrowRight" ? i + 1 : e.key === "ArrowLeft" ? i - 1 : e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1 : null;
+          if (n === null) return;
+          e.preventDefault();
+          var t = tabs[(n + tabs.length) % tabs.length];
+          select(t);
+          t.focus();
+        });
+      });
+
+      // Full screen: the whole stage, so tabs aren't needed; Esc returns. Falls back to opening the version in a new tab.
+      document.querySelectorAll(".cards-demo").forEach(function (demo) {
+        var btn = demo.querySelector("button.demo-full"), stage = demo.querySelector(".demo-stage");
+        btn.addEventListener("click", function () {
+          var frame = stage.querySelector(".type-panel:not([hidden]) iframe");
+          if (stage.requestFullscreen) stage.requestFullscreen().catch(function () { window.open(frame.dataset.src, "_blank", "noopener"); });
+          else if (stage.webkitRequestFullscreen) stage.webkitRequestFullscreen();
+          else window.open(frame.dataset.src, "_blank", "noopener");
+        });
+      });
+    </script>
     <script src="js/main.js?v=20260907"></script>
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
   </body>
