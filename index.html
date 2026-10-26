@@ -23,9 +23,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Fraunces:opsz,wght,SOFT,WONK@144,600,100,0;144,600,100,1&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261016u" />
+    <link rel="stylesheet" href="css/style.css?v=20261021a" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -47,6 +47,272 @@
         "sameAs": ["https://github.com/mahrsbar"]
       }
     </script>
+    <link rel="stylesheet" href="css/accents.css?v=20261021k" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500;700;800&amp;display=swap" />
+    <style>
+      /* hero: the duck scene stands on a floor that runs the full width of the page.
+         --floor-h is set from the scene's real width by script; this is the fallback. */
+      :root { --wall: #DFE7EC; }
+      :root[data-theme="dark"] { --wall: #171B22; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) { --wall: #171B22; }
+      }
+      /* the wall fades in from the page, and the floor IS the page, so the room flows
+         straight into the next section; only a hand-drawn floor line remains */
+      .duck-room {
+        position: relative;
+        --floor-h: 80px;
+        background: linear-gradient(to bottom, var(--bg) 0%, var(--wall) 45%, var(--wall) 100%);
+        border-bottom: 0;
+      }
+      .duck-room::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        height: var(--floor-h);
+        background: var(--bg);
+      }
+      .duck-room::before {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        left: 0; right: 0;
+        bottom: calc(var(--floor-h) - 5px);
+        height: 10px;
+        /* softer than the drawing's outlines, and fading out toward the intro text */
+        --floor-ink: color-mix(in srgb, var(--edge, #1E1A17) 70%, transparent);
+        background: linear-gradient(to right, transparent 0%, var(--floor-ink) 50%, var(--floor-ink) 100%);
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='10'%3E%3Cpath d='M0 5 C40 3.6 80 6.4 120 5 S200 3.6 240 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x center / 240px 10px;
+                mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='10'%3E%3Cpath d='M0 5 C40 3.6 80 6.4 120 5 S200 3.6 240 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x center / 240px 10px;
+      }
+      /* phones: the room spans the width, so fade gently at both edges instead */
+      @media (max-width: 860px) {
+        .duck-room::before { background: linear-gradient(to right, transparent 0%, var(--floor-ink) 18%, var(--floor-ink) 82%, transparent 100%); }
+      }
+      .duck-room .split-inner { position: relative; z-index: 2; padding-bottom: 0; }
+      .duck-room .hero-figure { align-self: end; }
+      @media (min-width: 861px) {
+        .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(340px, 46vw, 620px); }
+        .duck-room .hero-copy { padding-bottom: calc(var(--floor-h) + 1.5rem); }
+      }
+      /* role and degrees: two small icon lines under the tagline */
+      .hero-facts {
+        display: grid;
+        gap: 0.45rem;
+        margin: 1.1rem 0 0;
+        padding: 0;
+        list-style: none;
+        font-size: 0.98rem;
+        color: var(--ink-2);
+      }
+      .hero-facts li { display: flex; align-items: center; gap: 0.6rem; }
+      .hero-facts svg { flex: none; width: 18px; height: 18px; color: var(--ink-3); }
+      /* the name always stays on one line */
+      .duck-room .hero-copy h1 { white-space: nowrap; font-size: clamp(2.4rem, 5vw, 4rem); }
+      .split-fig.duck-fig .split-fig-anim {
+        display: block;
+        aspect-ratio: 800 / 596;
+        pointer-events: auto;
+        color-scheme: normal;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .split-fig.duck-fig .split-fig-anim { display: block; }
+      }
+      /* dark mode: the lights are off, so the lamp warms the wall behind the room */
+      .split-fig.duck-fig { position: relative; }
+      .split-fig.duck-fig .split-fig-anim { position: relative; z-index: 1; }
+      .split-fig.duck-fig::before {
+        content: "";
+        position: absolute;
+        inset: -12% -18% 0 -12%;
+        pointer-events: none;
+        background: radial-gradient(ellipse 42% 48% at 82% 44%, rgba(255, 214, 120, 0.13), rgba(255, 214, 120, 0.04) 55%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.6s ease;
+      }
+      :root[data-theme="dark"] .split-fig.duck-fig::before { opacity: 1; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .split-fig.duck-fig::before { opacity: 1; }
+      }
+      @media (max-width: 860px) {
+        .hero-figure .split-fig.duck-fig { display: block; max-width: 520px; margin: 0 auto; }
+      }
+
+      /* OneComply's full-width card shows only the "after" mockup, centred */
+      [data-observe="OneComply"] .pcard-mock-ba { grid-template-columns: 1fr; padding: 4.5% 18% 0; }
+      [data-observe="OneComply"] .pcard-mock-ba .pcard-mock-col:first-child,
+      [data-observe="OneComply"] .pcard-mock-ba .ba-tag { display: none; }
+
+      /* earlier work: three cards in one row on wide screens */
+      @media (min-width: 900px) {
+        [data-observe="Earlier work"] .projects { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      }
+
+      /* session notes */
+      .sn {
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        background: var(--bg-elev);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-l);
+      }
+      .sn-head { display: flex; justify-content: space-between; gap: 1.5rem; align-items: center; }
+      .sn-head h2 { margin: 0.35rem 0 0; }
+      .sn-lead { margin: 0.6rem 0 0; color: var(--ink-2); text-wrap: balance; }
+      .sn-k {
+        margin: 0 0 0.75rem;
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+      }
+      .sn-head .sn-k { margin: 0; }
+
+      /* the duck from the hero, bobbing and writing */
+      .sn-duck { flex: none; width: clamp(96px, 15vw, 150px); height: auto; overflow: visible; }
+      .snd-bob { transform-box: fill-box; transform-origin: 50% 100%; animation: snd-bob 2.4s ease-in-out infinite; }
+      .snd-eye { transform-box: fill-box; transform-origin: 50% 50%; animation: snd-blink 4.6s infinite; }
+      .snd-pen { transform-box: fill-box; transform-origin: 0% 100%; }
+      .snd-lines path { stroke-dasharray: 1; stroke-dashoffset: 0; }
+      .sn.writing .snd-pen { animation: snd-jot .28s ease-in-out infinite alternate; }
+      .sn.writing .snd-lines path { animation: snd-write 3s ease-out both; }
+      .sn.writing .snd-lines path:nth-child(2) { animation-delay: .6s; }
+      .sn.writing .snd-lines path:nth-child(3) { animation-delay: 1.2s; }
+      .sn.writing .snd-lines path:nth-child(4) { animation-delay: 1.8s; }
+      @keyframes snd-bob   { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+      @keyframes snd-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+      @keyframes snd-jot   { from { transform: rotate(-7deg) translateX(-2px); } to { transform: rotate(7deg) translateX(2px); } }
+      @keyframes snd-write { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+      /* two columns: numbers + attention on the left, the duck's notepad on the right */
+      .sn-body {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: clamp(1.5rem, 4vw, 2.5rem);
+        margin-top: 2rem;
+        align-items: start;
+      }
+      .sn-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.75rem; }
+      .sn-stats > div { padding: 0.85rem 1rem; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); }
+      .sn-stats b { display: block; font-family: var(--font-mono); font-size: 1.5rem; font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+      .sn-stats span { font-size: 0.82rem; color: var(--ink-3); }
+      /* a project name, not a number: smaller, in the body font */
+      .sn-stats .sn-longest b { font-family: var(--font-sans); font-size: 1.05rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; padding: 0.2rem 0 0.15rem; }
+
+      .sn-chart {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr) max-content;
+        align-items: center;
+        gap: 0.7rem 1rem;
+        font-size: 0.92rem;
+      }
+      .sn-row { display: contents; }
+      .sn-row .val { font-family: var(--font-mono); font-size: 0.78rem; font-variant-numeric: tabular-nums; color: var(--ink-3); text-align: right; }
+      .sn-track { display: block; height: 12px; border-radius: 999px; background: var(--bg-sunk); overflow: hidden; }
+      .sn-fill { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--line-strong); transition: width 0.9s var(--ease); }
+      .sn-row.top .name { font-weight: 600; }
+      .sn-row.top .sn-fill { background: var(--scribble, #FFC93C); }
+
+      /* the duck's notepad: handwritten lines that appear one by one */
+      .sn-pad {
+        position: relative;
+        padding: 1.4rem 1.25rem 1.1rem;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+      }
+      .sn-pad::before {
+        content: "";
+        position: absolute;
+        top: -7px; left: 50%;
+        width: 56px; height: 14px;
+        transform: translateX(-50%);
+        background: #B9B3C9;
+        border: 1.5px solid var(--edge, #1E1A17);
+        border-radius: 4px;
+      }
+      .sn-list { margin: 0; padding: 0; list-style: none; counter-reset: note; }
+      .sn-list li {
+        position: relative;
+        padding: 0.2rem 0 0.2rem 1.6rem;
+        font-family: "Shantell Sans", ui-rounded, sans-serif;
+        font-size: 0.98rem;
+        line-height: 1.6;
+        min-height: 32px;
+        color: var(--ink);
+      }
+      .sn-list li::before {
+        counter-increment: note;
+        content: counter(note) ".";
+        position: absolute;
+        left: 0;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--ink-3);
+        top: 0.45rem;
+      }
+      .sn.in .sn-list li { animation: sn-note .45s var(--ease) both; animation-delay: calc(var(--i, 0) * 0.45s + 0.3s); }
+      @keyframes sn-note { from { opacity: 0; transform: translateY(6px); } }
+      .sn-fine { margin: 1rem 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--ink-3); }
+
+      .sn-plan { margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+      .sn-plan-line { margin: 0; font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; }
+      .sn-plan .hero-actions { margin-top: 1.25rem; }
+      .sn-nowrap { white-space: nowrap; }
+
+      @media (max-width: 820px) {
+        .sn-body { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 600px) {
+        /* duck above the heading, so the text gets the full width */
+        .sn-head { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+        .sn-duck { order: -1; width: 88px; }
+        .sn-stats { grid-template-columns: 1fr 1fr; }
+        .sn-stats > div:last-child { grid-column: span 2; }
+        .sn-chart { gap: 0.55rem 0.65rem; font-size: 0.85rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .sn-fill { transition: none; }
+        .snd-bob, .snd-eye, .sn.writing .snd-pen, .sn.writing .snd-lines path, .sn.in .sn-list li { animation: none; }
+      }
+
+      /* diploma zoom: the wall diploma, lifted off the wall */
+      .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+      .diploma-zoom {
+        width: min(640px, calc(100vw - 40px));
+        padding: 0;
+        border: 0;
+        background: transparent;
+        overflow: visible;
+      }
+      .diploma-zoom::backdrop { background: rgba(30, 26, 23, 0.55); backdrop-filter: blur(4px); }
+      .diploma-zoom[open] .dz-art { animation: dz-lift 0.45s cubic-bezier(.3, 1.4, .5, 1) both; }
+      @keyframes dz-lift  { from { transform: scale(0.35) rotate(-6deg) translateY(-40px); opacity: 0; } to { transform: rotate(-1deg); } }
+      .dz-art { transform: rotate(-1deg); filter: drop-shadow(6px 6px 0 #1E1A17); }
+      .dz-art svg { display: block; width: 100%; height: auto; }
+      .dz-x {
+        position: absolute;
+        top: -18px; right: -14px;
+        width: 46px; height: 46px;
+        display: grid; place-items: center;
+        padding: 0 0 3px;
+        font: 700 28px/1 "Shantell Sans", ui-rounded, sans-serif;
+        color: #1E1A17;
+        background: #FFF9EC;
+        border: 3px solid #1E1A17;
+        border-radius: 50%;
+        box-shadow: 3px 3px 0 #1E1A17;
+        cursor: pointer;
+        transition: transform 0.15s;
+      }
+      .dz-x:hover { transform: rotate(90deg); }
+      .dz-x:focus-visible { outline: 3px solid #2F8F83; outline-offset: 3px; }
+      @media (prefers-reduced-motion: reduce) {
+        .diploma-zoom[open] .dz-art { animation: none; }
+        .dz-x { transition: none; }
+      }
+    </style>
   </head>
 
   <body>
@@ -59,7 +325,7 @@
         </a>
         <nav aria-label="Primary">
           <ul class="nav-links">
-            <li><a href="index.html#work" data-section="/work/">Work</a></li>
+            <li><a href="#work" data-section="/work/">Work</a></li>
             <!-- Writing hidden for now: <li><a href="writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="ask.html">Ask</a></li> -->
@@ -78,26 +344,20 @@
 
     <main id="main">
       <!-- ============ HERO ============ -->
-      <section class="split-band">
+      <section class="split-band duck-room" data-observe="Intro" data-prose="the intro">
         <div class="split-inner">
           <div class="hero-grid">
 
             <div class="hero-copy">
               <h1>Mahrs Aslam</h1>
-              <p class="band-role">UX Engineer &middot; Vancouver, BC</p>
-              <ul class="hero-links" id="contact" aria-label="Contact">
-                <li>
-                  <a href="mailto:mahrs.aslam@gmail.com">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 8l8 5 8-5"/></svg>
-                    <span>Email</span>
-                  </a>
-                </li>
-                <li><a href="https://github.com/mahrsbar" target="_blank" rel="noopener"><svg class="brand" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a></li>
-                <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener"><svg class="brand" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 4.892v6.249zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a></li>
-              </ul>
+              
               <p class="claim">
-        Every interface is a theory about how people think.<br /> I happen to have studied the theory and written the code that tests it.
+        Every interface is a theory about how people think. I happen to have studied the theory and written the code that tests it.
               </p>
+              <ul class="hero-facts">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg><span>UX Engineer in Vancouver, BC</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.2c1.6 1.5 3.5 2.3 5.5 2.3s3.9-.8 5.5-2.3V11"/><path d="M21.5 9v5"/></svg><span>B.A. Psychology, B.Sc. Computer Science</span></li>
+              </ul>
               <div class="hero-actions">
                 <a class="btn btn-primary" href="#work">
                   See the work
@@ -110,28 +370,12 @@
             <div class="hero-figure">
               <!-- The animation is decorative and non-interactive; the static SVG
                    stays as the reduced-motion fallback. -->
-              <figure class="split-fig">
-                <iframe class="split-fig-anim" src="images/brain-maze-animation.html" width="520" height="545"
-                        title="A brain-shaped maze being solved by a computer mouse whose cord traces the path"
-                        tabindex="-1" loading="eager"></iframe>
-                <img class="split-fig-still" src="images/brain-maze.svg" width="520" height="545" loading="lazy" decoding="async"
-                     alt="A brain-shaped maze with one solved path running out into a computer mouse cord" />
+              <figure class="split-fig duck-fig">
+                <!-- Interactive: tap the dev to start a session, squeeze the duck. It reports
+                     both to this page so the session notes at the bottom can mention them. -->
+                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261026" width="800" height="596"
+                        title="A developer on a therapist's couch talking to a rubber duck in glasses. Interactive." loading="eager"></iframe>
               </figure>
-
-              <!-- The two degrees caption the artwork: the brain is the psychology
-                   half, the solved maze the computer-science half. -->
-              <dl class="hero-creds">
-                <div>
-                  <dt class="disc-label">psychology</dt>
-                  <dd>B.A. University of Alberta</dd>
-                  <dd class="yr">2013 &ndash; 2016</dd>
-                </div>
-                <div>
-                  <dt class="disc-label">computer <span>science</span></dt>
-                  <dd>B.Sc. University of Regina</dd>
-                  <dd class="yr">2017 &ndash; 2019</dd>
-                </div>
-              </dl>
             </div>
 
           </div>
@@ -149,7 +393,7 @@
 
           <div class="projects reveal">
 
-            <article class="pcard pcard-flagship hue-violet">
+            <article class="pcard pcard-flagship hue-violet" data-observe="Design system" data-prose="the design system">
               <!-- Layered cover: the Chip component set in Figma behind, the same Chip
                    running in Storybook in front. -->
               <a class="pcard-media pcard-stack" href="work/design-system.html" tabindex="-1" aria-hidden="true">
@@ -169,7 +413,7 @@
               </div>
             </article>
 
-            <article class="pcard pcard-flagship hue-mustard">
+            <article class="pcard pcard-flagship hue-mustard" data-observe="LoafMode" data-prose="LoafMode">
               <div class="pcard-media-wrap">
                 <a class="pcard-media pcard-media-center pcard-media-2x1" href="work/loafmode.html" tabindex="-1" aria-hidden="true">
                   <img src="images/loafmode/card.webp" width="2000" height="1000" alt="" loading="lazy" />
@@ -187,28 +431,26 @@
             </article>
 
 
-            <article class="pcard hue-mustard mkset">
+            <article class="pcard pcard-flagship hue-mustard mkset" data-observe="OneComply" data-prose="the OneComply forms">
               <!-- Cover is a recreated mockup (company work): no real product, branding or data. -->
               <a class="pcard-media pcard-mock pcard-mock-ba" href="work/onecomply.html" tabindex="-1" aria-hidden="true">
                 <span class="pcard-mock-col">
                   <span class="ba-tag">Before</span>
                   <span class="mk">
-                    <span class="mk-top"><i></i><i></i><i></i><b>Licence application</b></span>
-                    <span class="endless">
-                      <span class="endless-side">
-                        <span>Applicant details</span><span>Business entity</span><span>Ownership</span><span>Key personnel</span>
-                        <span>Addresses, past 10 years</span><span>Employment history</span><span>Financial interests</span>
-                        <span>Criminal history</span><span>Litigation</span><span>…</span>
-                        <em class="more">27 more sections</em>
-                      </span>
-                      <span class="endless-main">
-                        <span class="mk-k">Ownership</span>
-                        <span class="field"><span class="bar"></span><span class="box"></span></span>
-                        <span class="field"><span class="bar"></span><span class="box"></span></span>
-                        <span class="field"><span class="bar"></span><span class="box"></span></span>
-                        <span class="field"><span class="bar"></span><span class="box"></span></span>
-                      </span>
-                    </span>
+                    <span class="mk-top"><i></i><i></i><i></i><b>Your application</b></span>
+                    <ol class="guide">
+                      <li>Read the welcome note and instructions</li>
+                      <li>Complete the disclosure sections, in any order</li>
+                      <li>Complete the jurisdiction's extra sections</li>
+                      <li class="tick"><span><span class="box"></span>Yes, I have attached all required documents</span></li>
+                      <li>Generate the application PDF</li>
+                      <li>Download it</li>
+                      <li>Book fingerprints and mail them in</li>
+                      <li>Get it notarised and upload the copy</li>
+                      <li>Print it and mail it to the regulator</li>
+                      <li>Mark it as submitted</li>
+                      <li>Create the licence record yourself</li>
+                    </ol>
                   </span>
                 </span>
                 <span class="pcard-mock-col">
@@ -216,13 +458,14 @@
                   <span class="mk">
                     <span class="mk-top"><i></i><i></i><i></i><b>Licence application</b></span>
                     <span class="six">
-                      <span class="stepper">
-                        <span class="done">Start</span><span class="now">Fill in</span><span>Documents</span><span>Fingerprints</span><span>Review</span><span>Submit</span>
-                      </span>
                       <span class="six-body">
-                        <span class="rail">
-                          <span>Applicant details <em>✓</em></span><span>Business entity <em>✓</em></span><span class="now">Ownership</span>
-                          <span>Key personnel</span><span>Addresses</span>
+                        <span class="rail steps-rail">
+                          <span class="now">Fill in your information <em class="count">9</em></span>
+                          <span>Attach documents <em class="count">1</em></span>
+                          <span>Get fingerprints <em class="count">2</em></span>
+                          <span>Review and finalise</span>
+                          <span>Sign</span>
+                          <span>Submit</span>
                         </span>
                         <span class="ring-wrap">
                           <span class="ring" style="--p: 40"><b>12 of 30<br />sections</b></span>
@@ -236,7 +479,42 @@
               <div class="pcard-body">
                 <p class="pcard-kicker">Product design</p>
                 <h3><a href="work/onecomply.html">Nobody finishes a form they can't see the end of. So I cut one into six steps.</a></h3>
-                <p>A licence application rebuilt around visible progress, and a queue of feature requests turned into one flexible task manager.</p>
+                <p>An eleven-step licence application rebuilt as six steps with visible progress, plus the tools managers use to assign and track it.</p>
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ ALSO ============ -->
+      <section class="section" data-observe="Earlier work" data-prose="the earlier work">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <h2>Earlier work.</h2>
+            </div>
+          </div>
+          <div class="projects reveal">
+            <article class="pcard hue-coral">
+              <a class="pcard-media" href="remnant.html" tabindex="-1" aria-hidden="true">
+                <img src="images/covers/remnant.svg" width="1600" height="1000" alt="" loading="lazy" />
+              </a>
+              <div class="pcard-body">
+                <p class="pcard-kicker">Lead front-end · 2022–23</p>
+                <h3><a href="remnant.html">Remnant Labs: a game studio's website, rebuilt from brand voice to Vue</a></h3>
+                <p>Audience research, wireframes and hi-fi prototypes, then the front end that shipped.</p>
+              </div>
+            </article>
+            <article class="pcard hue-teal">
+              <a class="pcard-media" href="amplify.html" tabindex="-1" aria-hidden="true">
+                <img src="images/covers/amplify.svg" width="1600" height="1000" alt="" loading="lazy" />
+              </a>
+              <div class="pcard-body">
+                <p class="pcard-kicker">Technical lead · Open source · 2021–22</p>
+                <h3><a href="amplify.html">ProgramEquity: turning supporters into letters their representatives read</a></h3>
+                <p>Led a distributed volunteer team building Amplify for advocacy non-profits.</p>
               </div>
             </article>
 
@@ -256,41 +534,6 @@
                     <li><a href="work/smash-forum.html">SMASH forum</a> <span>a community forum and its components</span></li>
                   </ul>
                 </details>
-              </div>
-            </article>
-
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ============ ALSO ============ -->
-      <section class="section">
-        <div class="wrap">
-          <div class="section-head reveal">
-            <div>
-              <h2>Earlier work.</h2>
-            </div>
-          </div>
-          <div class="projects reveal">
-            <article class="pcard hue-coral">
-              <a class="pcard-media" href="remnant.html" tabindex="-1" aria-hidden="true">
-                <img src="images/covers/remnant.webp" width="1600" height="1000" alt="" loading="lazy" />
-              </a>
-              <div class="pcard-body">
-                <p class="pcard-kicker">Lead front-end · 2022</p>
-                <h3><a href="remnant.html">Remnant Labs: a game studio's website, rebuilt from brand voice to Vue</a></h3>
-                <p>Audience research, wireframes and hi-fi prototypes, then the front end that shipped.</p>
-              </div>
-            </article>
-            <article class="pcard hue-teal">
-              <a class="pcard-media" href="amplify.html" tabindex="-1" aria-hidden="true">
-                <img src="images/covers/amplify.webp" width="1600" height="1000" alt="" loading="lazy" />
-              </a>
-              <div class="pcard-body">
-                <p class="pcard-kicker">Technical lead · Open source · 2021–22</p>
-                <h3><a href="amplify.html">ProgramEquity: turning supporters into letters their representatives read</a></h3>
-                <p>Led a distributed volunteer team building Amplify for advocacy non-profits.</p>
               </div>
             </article>
           </div>
@@ -337,6 +580,87 @@
       </section>
       -->
 
+      <!-- ============ SESSION NOTES ============
+           The duck took quiet notes while the visitor browsed. Everything is computed
+           in this tab and discarded when it closes. -->
+      <section id="session-notes" class="section" data-observe="Session notes" data-prose="these notes">
+        <div class="wrap">
+          <div class="sn" aria-live="polite">
+            <header class="sn-head">
+              <div>
+                <p class="sn-k">Session notes</p>
+                <h2>That's our time for today.</h2>
+                <p class="sn-lead">While you browsed, the duck took a few quiet notes. Here's what it saw.</p>
+              </div>
+              <svg class="sn-duck" viewBox="500 138 210 222" role="img" aria-label="The duck from the hero, glasses on, writing on its clipboard">
+                <g class="snd-bob">
+                  <path d="M590 316 L586 340 C578 342 576 350 584 350 L604 350 C610 350 608 342 600 340 L598 316 Z M626 316 L624 340 C616 342 614 350 622 350 L642 350 C648 350 646 342 638 340 L634 316 Z" fill="#FF8A1F" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round"/>
+                  <path d="M670 270 C690 262 700 244 696 232 C708 248 704 276 684 290 Z" fill="#FFC93C" stroke="#1E1A17" stroke-width="3.5" stroke-linejoin="round"/>
+                  <ellipse cx="615" cy="288" rx="68" ry="42" fill="#FFC93C" stroke="#1E1A17" stroke-width="3.5"/>
+                  <g class="snd-head">
+                    <path d="M588 172 C582 160 588 150 597 155 C600 145 613 145 613 156 C613 164 606 170 600 174 Z" fill="#FFC93C" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round"/>
+                    <circle cx="585" cy="212" r="46" fill="#FFC93C" stroke="#1E1A17" stroke-width="3.5"/>
+                    <path d="M546 214 C532 208 518 214 518 224 C522 234 540 236 552 230 Z" fill="#FF8A1F" stroke="#1E1A17" stroke-width="3.5" stroke-linejoin="round"/>
+                    <path d="M522 225 C530 229 542 229 550 225" fill="none" stroke="#1E1A17" stroke-width="2.5" stroke-linecap="round"/>
+                    <ellipse cx="598" cy="232" rx="11" ry="6.5" fill="#FF8FA3" opacity=".75"/>
+                    <circle cx="569" cy="204" r="16" fill="#fff" fill-opacity=".22"/>
+                    <g class="snd-eye"><circle cx="569" cy="204" r="8.5" fill="#1E1A17"/><circle cx="572" cy="200" r="3" fill="#fff"/><circle cx="566" cy="208" r="1.5" fill="#fff"/></g>
+                    <circle cx="569" cy="204" r="16" fill="none" stroke="#1E1A17" stroke-width="3"/>
+                    <path d="M585 201 L620 194" stroke="#1E1A17" stroke-width="3" stroke-linecap="round"/>
+                  </g>
+                  <rect x="556" y="250" width="58" height="68" rx="5" fill="#C98A4B" stroke="#1E1A17" stroke-width="3.5"/>
+                  <rect x="563" y="259" width="44" height="53" rx="2" fill="#FFF9EC"/>
+                  <rect x="575" y="245" width="20" height="9" rx="3" fill="#B9B3C9" stroke="#1E1A17" stroke-width="2.5"/>
+                  <g class="snd-lines" fill="none" stroke="#1E1A17" stroke-width="2.5" stroke-linecap="round">
+                    <path pathLength="1" d="M568 270 c5 -3 9 3 14 0 s9 -3 14 0"/>
+                    <path pathLength="1" d="M568 280 c4 -3 8 3 12 0 s8 -3 12 0 s6 -2 8 0"/>
+                    <path pathLength="1" d="M568 290 c5 -3 9 3 14 0 s7 -2 10 0"/>
+                    <path pathLength="1" d="M568 300 c4 -3 8 3 12 0"/>
+                  </g>
+                  <g class="snd-pen"><path d="M604 304 L636 280" stroke="#1E1A17" stroke-width="5" stroke-linecap="round"/><path d="M604 304 L636 280" stroke="#E8553D" stroke-width="2.5" stroke-linecap="round"/></g>
+                  <path d="M622 284 C636 266 666 268 670 288 C670 302 650 308 634 302 C626 298 620 292 622 284 Z" fill="#F0A91B" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round"/>
+                </g>
+              </svg>
+            </header>
+
+            <div class="sn-body">
+              <div class="sn-data">
+                <div class="sn-stats">
+                  <div><b id="sn-time">0:00</b><span>time on page</span></div>
+                  <div><b id="sn-projects">0 of 3</b><span>projects you paused on</span></div>
+                  <div class="sn-longest"><b id="sn-longest">–</b><span>your longest look</span></div>
+                </div>
+                <h3 class="sn-k">Where your attention went</h3>
+                <div class="sn-chart" id="sn-chart" role="table" aria-label="Seconds spent on each project"></div>
+              </div>
+
+              <div class="sn-pad">
+                <h3 class="sn-k">The duck's notes</h3>
+                <ol class="sn-list" id="sn-obs"></ol>
+                <p class="sn-fine">Limitations: sample size of one. You didn't know the duck was taking notes (sorry). Nothing was stored or sent, and it's gone when you close this tab.</p>
+              </div>
+            </div>
+
+            <div class="sn-plan" id="contact">
+              <p class="sn-k">Next session</p>
+              <p class="sn-plan-line">Let's book a <span class="sn-nowrap">follow-up.</span></p>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="mailto:mahrs.aslam@gmail.com">Email</a>
+                <a class="btn btn-ghost" href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="btn btn-ghost" href="images/Mahrs_Aslam_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Diploma zoom: opened by clicking a diploma on the hero wall. The art is drawn by script. -->
+      <dialog class="diploma-zoom" id="diploma-zoom" aria-labelledby="dz-title">
+        <h2 class="visually-hidden" id="dz-title"></h2>
+        <div class="dz-art" id="dz-art"></div>
+        <form method="dialog"><button class="dz-x" aria-label="Close">&times;</button></form>
+      </dialog>
+
     </main>
 
     <footer class="footer">
@@ -348,5 +672,251 @@
     <script src="js/main.js?v=20260907"></script>
 
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
+    <script>
+      // Hero floor: the embedded scene's floor line sits 62 of its 800 viewBox units above its bottom.
+      (function () {
+        var room = document.querySelector(".duck-room");
+        var scene = room && room.querySelector(".duck-fig iframe");
+        if (!scene) return;
+        var fit = function () { room.style.setProperty("--floor-h", (scene.clientWidth * 62 / 800) + "px"); };
+        fit();
+        if ("ResizeObserver" in window) new ResizeObserver(fit).observe(scene);
+        else addEventListener("resize", fit);
+      })();
+
+      // Session notes: the duck quietly notes which part of the page is being read.
+      // In memory only. Nothing is stored or sent, and it all ends with the tab.
+      (function () {
+        var TICK = 250, SETTLE = 0.75; // seconds a section must hold the reading line before it counts
+        var held = 0, heldKey = "";
+        var parts = [].slice.call(document.querySelectorAll("[data-observe]"));
+        var projects = parts.filter(function (p) { return p.tagName === "ARTICLE"; });
+        var notes = document.getElementById("session-notes");
+        var dwell = new Map(parts.map(function (p) { return [p, 0]; }));
+        var order = [];
+        var current = null, seconds = 0, notesAt = null;
+        var talks = 0, squeezes = 0;
+
+        var name = function (p) { return p.getAttribute("data-observe"); };
+        var prose = function (p) { return p.getAttribute("data-prose") || name(p); };
+        var fmt = function (s) { return Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0"); };
+
+        // the hero duck scene reports what happens in it
+        var DEGREES = {
+          psych: {
+            uni: "University of Alberta", degree: "Bachelor of Arts", field: "in Psychology", years: "2013 – 2016"
+          },
+          cs: {
+            uni: "University of Regina", degree: "Bachelor of Science", field: "in Computer Science", years: "2017 – 2019"
+          }
+        };
+        var zoom = document.getElementById("diploma-zoom");
+        if (zoom) zoom.addEventListener("click", function (e) { if (e.target === zoom) zoom.close(); });
+
+        // Same hand-drawn language as the scene: ink outlines, wood frame, ribbon, rosette.
+        function diplomaSVG(d) {
+          var ink = "#1E1A17", hand = "Shantell Sans, ui-rounded, sans-serif";
+          var pts = [];
+          for (var i = 0; i < 32; i++) {
+            var r = i % 2 ? 31 : 37, a = Math.PI * i / 16;
+            pts.push((470 + r * Math.cos(a)).toFixed(1) + "," + (306 + r * Math.sin(a)).toFixed(1));
+          }
+          var t = function (x, y, size, weight, fill, text, extra) {
+            return '<text x="' + x + '" y="' + y + '" text-anchor="middle" font-family="' + hand + '" font-size="' + size +
+              '" font-weight="' + weight + '" fill="' + fill + '"' + (extra || "") + ">" + text + "</text>";
+          };
+          return '<svg viewBox="0 0 600 420" aria-hidden="true">' +
+            // frame + grain
+            '<rect x="3" y="3" width="594" height="414" rx="14" fill="#C98A4B" stroke="' + ink + '" stroke-width="5"/>' +
+            '<path d="M24 14 q90 6 180 0 t180 0 t180 0 M24 406 q90 -6 180 0 t180 0 t180 0 M13 40 q-4 80 0 160 t0 170 M587 40 q4 80 0 160 t0 170" fill="none" stroke="#E0A867" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>' +
+            '<rect x="22" y="22" width="556" height="376" rx="6" fill="#B57638" stroke="' + ink + '" stroke-width="3"/>' +
+            // paper
+            '<rect x="34" y="34" width="532" height="352" rx="3" fill="#FFF9EC" stroke="' + ink + '" stroke-width="3"/>' +
+            '<rect x="48" y="48" width="504" height="324" rx="2" fill="none" stroke="#D8C9A8" stroke-width="2" stroke-dasharray="7 6"/>' +
+            // ribbon banner
+            '<path d="M66 74 H122 V118 H66 L82 96 Z" fill="#3F63A8" stroke="' + ink + '" stroke-width="3" stroke-linejoin="round"/>' +
+            '<path d="M534 74 H478 V118 H534 L518 96 Z" fill="#3F63A8" stroke="' + ink + '" stroke-width="3" stroke-linejoin="round"/>' +
+            '<rect x="104" y="62" width="392" height="48" rx="5" fill="#5A86C6" stroke="' + ink + '" stroke-width="3.5"/>' +
+            t(300, 94, 21, 800, "#FFF9EC", d.uni.toUpperCase(), ' letter-spacing="1.5"') +
+            // words
+            t(300, 146, 15, 500, "#7A6A58", "this is to certify that") +
+            t(300, 184, 32, 800, ink, "Mahrs Aslam") +
+            '<path d="M200 194 q100 8 200 0" fill="none" stroke="#FFC93C" stroke-width="5" stroke-linecap="round" opacity=".8"/>' +
+            t(300, 222, 15, 500, "#7A6A58", "has earned the degree of") +
+            t(300, 262, 30, 800, ink, d.degree) +
+            t(300, 292, 21, 700, "#D9472F", d.field) +
+            t(300, 330, 15, 700, "#7A6A58", d.years, ' letter-spacing="2"') +
+            // signature
+            '<path d="M86 326 c10 -16 18 6 28 -6 s14 12 24 -2 s10 8 24 -2" fill="none" stroke="' + ink + '" stroke-width="2.5" stroke-linecap="round"/>' +
+            '<path d="M80 340 H190" stroke="#B9B3A6" stroke-width="2" stroke-linecap="round"/>' +
+            // rosette seal with ribbon tails and a tiny duck
+            '<path d="M454 330 L440 376 L456 368 L464 382 L474 336 Z M486 330 L500 376 L484 368 L476 382 L466 336 Z" fill="#D9472F" stroke="' + ink + '" stroke-width="2.5" stroke-linejoin="round"/>' +
+            '<polygon points="' + pts.join(" ") + '" fill="#E9B23A" stroke="' + ink + '" stroke-width="2.5" stroke-linejoin="round"/>' +
+            '<circle cx="470" cy="306" r="22" fill="#F6CE5C" stroke="' + ink + '" stroke-width="2"/>' +
+            '<ellipse cx="474" cy="314" rx="12" ry="7" fill="#FFC93C" stroke="' + ink + '" stroke-width="2"/>' +
+            '<circle cx="465" cy="302" r="8" fill="#FFC93C" stroke="' + ink + '" stroke-width="2"/>' +
+            '<path d="M457 303 l-7 2 l7 3 Z" fill="#FF8A1F" stroke="' + ink + '" stroke-width="1.5" stroke-linejoin="round"/>' +
+            '<circle cx="463" cy="300" r="1.6" fill="' + ink + '"/>' +
+            "</svg>";
+        }
+
+        addEventListener("message", function (e) {
+          if (e.origin !== location.origin || !e.data || e.data.source !== "duck-scene") return;
+          var a = e.data.action;
+          if (a === "session") talks++;
+          if (a === "squeeze") squeezes++;
+          if (a === "lamp") {
+            var toggle = document.querySelector(".theme-toggle");
+            if (toggle) toggle.click();
+          }
+          if (a === "diploma" && zoom && DEGREES[e.data.detail]) {
+            var d = DEGREES[e.data.detail];
+            document.getElementById("dz-title").textContent = d.degree + " " + d.field + ", " + d.uni + ", " + d.years;
+            document.getElementById("dz-art").innerHTML = diplomaSVG(d);
+            zoom.showModal();
+          }
+        });
+
+        // every part crossing the reading line gets the time (side-by-side cards share it)
+        setInterval(function () {
+          if (document.hidden) return;
+          seconds += TICK / 1000;
+          var line = innerHeight * 0.4;
+          var here = parts.filter(function (p) {
+            var r = p.getBoundingClientRect();
+            return r.top <= line && r.bottom > line;
+          });
+          var key = here.map(name).join("|");
+          held = key === heldKey ? held + TICK / 1000 : 0;
+          heldKey = key;
+          if (held >= SETTLE) {
+            // credit the settle time too, once, the moment the reader stops
+            var add = held === SETTLE ? SETTLE + TICK / 1000 : TICK / 1000;
+            here.forEach(function (p) { dwell.set(p, dwell.get(p) + add); });
+            if (here[0] && here[0] !== current) { current = here[0]; order.push(current); }
+          }
+          if (notesAt === null && here.indexOf(notes) > -1) notesAt = seconds;
+        }, TICK);
+
+        // the chart shows only the work: projects + earlier work (the intro gets its own note)
+        var intro = parts.filter(function (p) { return name(p) === "Intro"; })[0];
+        var charted = parts.filter(function (p) { return p !== notes && p !== intro; });
+        var card = notes.querySelector(".sn");
+        var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var chart = document.getElementById("sn-chart");
+        var rows = new Map();
+        charted.forEach(function (p, i) {
+          var row = document.createElement("div");
+          row.className = "sn-row";
+          row.setAttribute("role", "row");
+          row.innerHTML = '<span class="name" role="rowheader"></span><span class="sn-track" role="cell"><span class="sn-fill"></span></span><span class="val" role="cell">0s</span>';
+          row.querySelector(".name").textContent = name(p);
+          row.querySelector(".sn-fill").style.transitionDelay = (i * 0.12) + "s";
+          chart.appendChild(row);
+          rows.set(p, row);
+        });
+
+        function observations() {
+          var out = [];
+          if (intro && dwell.get(intro) >= 3) {
+            out.push("You spent " + Math.round(dwell.get(intro)) + "s with the duck and the bug before scrolling. Understandable.");
+          }
+          var top = charted.reduce(function (a, b) { return dwell.get(b) > dwell.get(a) ? b : a; });
+          if (Math.round(dwell.get(top)) >= 1) out.push("Most of your attention went to " + prose(top) + ".");
+          else out.push("You didn't linger on any one project. A quick first look.");
+
+          var idx = function (p) { return parts.indexOf(p); };
+          var back = order.find(function (p, i) {
+            return p !== notes && order.slice(0, i).some(function (q, j) {
+              return q === p && order.slice(j + 1, i).some(function (r) { return idx(r) > idx(p); });
+            });
+          });
+          if (back) out.push("You came back to " + prose(back) + " after reading further. Something there resonated.");
+
+          var skimmed = projects.filter(function (p) { return Math.round(dwell.get(p)) < 1; });
+          if (skimmed.length === 1) out.push("You moved quickly past " + prose(skimmed[0]) + ". Fair.");
+
+          if (talks) out.push("You started " + talks + (talks === 1 ? " session" : " sessions") + " with the bug. It feels heard.");
+          if (squeezes) out.push("You squeezed the duck " + (squeezes === 1 ? "once" : squeezes === 2 ? "twice" : squeezes + " times") + ". It doesn't mind.");
+          if (!talks && !squeezes) out.push("You didn't tap the duck. Very professional.");
+
+          var theme = document.documentElement.getAttribute("data-theme");
+          var dark = theme ? theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+          out.push(dark ? "Lighting preference: dark mode. Nocturnal." : "Lighting preference: light mode. Brave.");
+
+          if (notesAt !== null && notesAt >= 60) out.push("You stuck around for over a minute. The duck is flattered.");
+          return out;
+        }
+
+        // numbers count up the first time the notes appear
+        function countUp(el, to, show) {
+          if (reduced) { el.textContent = show(to); return; }
+          var start = performance.now(), dur = 900;
+          (function step(now) {
+            var t = Math.min(1, (now - start) / dur), eased = 1 - Math.pow(1 - t, 3);
+            el.textContent = show(to * eased);
+            if (t < 1) requestAnimationFrame(step);
+          })(start);
+        }
+
+        function render(first) {
+          var secs = function (p) { return Math.round(dwell.get(p)); };
+          var max = Math.max.apply(null, charted.map(secs).concat(1));
+          var top = charted.reduce(function (a, b) { return secs(b) > secs(a) ? b : a; });
+          rows.forEach(function (row, p) {
+            var v = secs(p);
+            row.querySelector(".sn-fill").style.width = (v / max * 100) + "%";
+            row.querySelector(".val").textContent = v + "s";
+            row.classList.toggle("top", p === top && v >= 1);
+          });
+
+          var looked = projects.filter(function (p) { return secs(p) >= 1; }).length;
+          var time = document.getElementById("sn-time"), proj = document.getElementById("sn-projects");
+          document.getElementById("sn-longest").textContent =
+            secs(top) >= 1 ? name(top) + " · " + secs(top) + "s" : "–";
+          var showProj = function (v) { return Math.round(v) + " of " + projects.length; };
+          if (first) {
+            countUp(time, seconds, fmt);
+            countUp(proj, looked, showProj);
+          } else {
+            time.textContent = fmt(seconds);
+            proj.textContent = showProj(looked);
+          }
+
+          // the notes: keep lines that haven't changed, so only new ones animate in
+          var list = document.getElementById("sn-obs");
+          var lines = observations();
+          var items = [].slice.call(list.children);
+          lines.forEach(function (text, i) {
+            var li = items[i];
+            if (li && li.textContent === text) return;
+            var fresh = document.createElement("li");
+            fresh.textContent = text;
+            fresh.style.setProperty("--i", first ? i : 0);
+            if (li) list.replaceChild(fresh, li); else list.appendChild(fresh);
+          });
+          while (list.children.length > lines.length) list.lastElementChild.remove();
+        }
+
+        // refresh only while the notes are on screen; the first time, the duck writes
+        var shown = false, last = 0, revealed = false;
+        setInterval(function () {
+          var r = notes.getBoundingClientRect();
+          var visible = r.top < innerHeight && r.bottom > 0;
+          var now = performance.now();
+          if (visible && !revealed) {
+            revealed = true;
+            card.classList.add("in", "writing");
+            setTimeout(function () { card.classList.remove("writing"); }, 3800);
+            render(true);
+            last = now;
+          } else if (visible && now - last > 2000) {
+            render(false);
+            last = now;
+          }
+          shown = visible;
+        }, TICK);
+      })();
+    </script>
   </body>
 </html>

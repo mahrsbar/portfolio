@@ -321,17 +321,19 @@ want to stop doomscrolling?</div>
   var bars=[].slice.call(prog.children);
   function fit(){var emb=document.body.classList.contains('embed');var bh=emb?0:document.getElementById('bar').offsetHeight+8;var s=emb?Math.max(innerWidth/1080,innerHeight/1920):Math.min(innerWidth/1080,(innerHeight-bh)/1920);stage.style.transform='scale('+s+')';stage.style.margin=(-(1920-1920*s)/2+bh/2)+'px '+(-(1080-1080*s)/2)+'px'}
   function fmt(m){return m<60?m+' min':Math.floor(m/60)+' hr '+(m%60)+' min'}
-  // Screen time races from 5 min to 3 hr 12 min, speeding up; then the feed stops as Mochi pops up.
+  // Screen time races from 5 min to 8 hr 24 min, speeding up; then the feed stops as Mochi pops up.
+// The clock starts on the first animation frame (and progress never goes below 0), so a story
+// that loads off-screen can't produce negative progress, which squared to impossible hours.
   function runCounter(f){
-    var c=f.querySelector('.counter'),from=5,to=504,t0=performance.now(),len=1500;
+    var c=f.querySelector('.counter'),from=5,to=504,t0=null,len=1500;
     f.classList.remove('stopped');cancelAnimationFrame(raf);clearTimeout(stopT);
     function draw(m){c.textContent=fmt(m);c.classList.toggle('alot',m>=120)}
     if(matchMedia('(prefers-reduced-motion:reduce)').matches){draw(to);f.classList.add('stopped');return}
-    function step(now){var p=Math.min((now-t0)/len,1);draw(Math.round(from+(to-from)*p*p));if(p<1){SFX.tick(p);raf=requestAnimationFrame(step)}}
+    function step(now){if(t0===null)t0=now;var p=Math.max(0,Math.min((now-t0)/len,1));draw(Math.round(from+(to-from)*p*p));if(p<1){SFX.tick(p);raf=requestAnimationFrame(step)}}
     raf=requestAnimationFrame(step);
     stopT=setTimeout(function(){f.classList.add('stopped')},1650);
   }
-  // Back down: from 3 hr 12 min to 45 min, easing out, turning green.
+  // Back down: from 8 hr 24 min to 45 min, easing out, turning green.
   function runDown(f){
     var c=f.querySelector('.counter'),from=504,to=45,t0=performance.now(),len=1300,delay=0;
     cancelAnimationFrame(raf);

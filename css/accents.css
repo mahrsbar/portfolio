@@ -1,0 +1,190 @@
+/* ==========================================================
+   Accents borrowed from the homepage illustration (Oct 2026):
+   ink outlines with a hard offset shadow, hand-drawn underlines.
+   Kept separate from style.css so the two can evolve independently.
+   ========================================================== */
+:root {
+  --edge: #1E1A17;
+  --edge-shadow: #1E1A17;
+  --scribble: #FFC93C;
+}
+:root[data-theme="dark"] {
+  --edge: #565964;
+  --edge-shadow: #565964;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --edge: #565964;
+    --edge-shadow: #565964;
+  }
+}
+
+/* project cards: ink outline + sticker shadow, lift toward the top-left on hover */
+.pcard {
+  border: 1.5px solid var(--edge);
+  box-shadow: 3px 3px 0 var(--edge-shadow);
+}
+.pcard:hover,
+.pcard:focus-within {
+  transform: translate(-2px, -2px);
+  border-color: var(--edge);
+  box-shadow: 5px 5px 0 var(--edge-shadow);
+}
+
+/* the whole card is clickable: the title's link stretches over the card,
+   while links inside it (App Store badge, the HCI project list) stay on top */
+.pcard h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+.pcard .pcard-more,
+.pcard .app-badge:not(.app-badge-over) { position: relative; z-index: 2; }
+.pcard .app-badge-over { z-index: 2; } /* already absolutely positioned over the image */
+.pcard h3 a:focus-visible { outline: none; }
+.pcard:has(h3 a:focus-visible) { outline: 3px solid var(--link, #121212); outline-offset: 4px; }
+
+/* buttons share the same small hard shadow */
+.btn-primary,
+.btn-ghost {
+  box-shadow: 2px 2px 0 var(--edge-shadow);
+}
+.btn-ghost { border: 1.5px solid var(--edge); }
+.btn-primary:hover,
+.btn-ghost:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--edge-shadow);
+}
+
+/* section headings get one continuous hand-drawn swoosh, in duck yellow:
+   a single stroke stretched to the heading's width (no repeating tiles, so no seams) */
+.section-head h2 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 12px;
+}
+.section-head h2::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -6px;
+  bottom: 0;
+  height: 12px;
+  background: var(--scribble);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8.5 C40 5.5 90 4 140 4.5 C165 4.8 185 5.5 197 6.5 L196 8.5 C170 7.6 140 7.4 100 7.8 C60 8.2 30 9.4 4 10.5 Z'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8.5 C40 5.5 90 4 140 4.5 C165 4.8 185 5.5 197 6.5 L196 8.5 C170 7.6 140 7.4 100 7.8 C60 8.2 30 9.4 4 10.5 Z'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+}
+
+/* the session-notes card at the end of the homepage matches the cards */
+.sn {
+  border: 1.5px solid var(--edge);
+  box-shadow: 4px 4px 0 var(--edge-shadow);
+}
+
+/* dark mode: screenshots of light-mode UI are dimmed a touch so they don't glare */
+:root[data-theme="dark"] .pcard-media img { filter: brightness(0.86); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pcard-media img { filter: brightness(0.86); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pcard:hover, .pcard:focus-within,
+  .btn-primary:hover, .btn-ghost:hover { transform: none; }
+}
+
+/* ==========================================================
+   Case-study opening: one template for every project.
+   Eyebrow · headline · one intro · three facts (hairline strip) ·
+   role + stack line · the main visual underneath at content width.
+   ========================================================== */
+.case-intro h1 {
+  max-width: 20ch;
+  font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+.case-intro .intro-sum {
+  max-width: 60ch;
+  margin-top: 1rem;
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  line-height: 1.6;
+}
+
+/* three facts: a borderless strip divided by hairlines */
+.case-intro .highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  max-width: none;
+  margin-top: 1.75rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.case-intro .highlights li,
+.case-intro .highlights li:has(.hl-link) {
+  display: block;
+  padding: 1rem 1.25rem;
+  border: 0;
+  border-left: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+}
+.case-intro .highlights li:first-child { padding-left: 0; border-left: 0; }
+.case-intro .highlights li:has(.hl-link):hover { border-color: var(--line); }
+.case-intro .highlights b {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: clamp(1.1rem, 1.7vw, 1.3rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  white-space: normal;
+}
+.case-intro .highlights span {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+/* a fact that's also a link (LoafMode's App Store listing) looks the same, underlines on hover */
+.case-intro .hl-link { display: block; padding: 0; border-radius: 0; color: inherit; text-decoration: none; }
+.case-intro .hl-link:hover { background: none; }
+.case-intro .hl-link:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.case-intro .highlights b .hl-arrow { display: inline; margin: 0 0 0 0.2em; font-size: 0.85em; color: var(--c-text, var(--ink-3)); }
+
+/* role + stack: an aligned two-column list in the body font (no mono labels) */
+.case-intro .meta-line {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.35rem 1.25rem;
+  margin-top: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.case-intro .meta-line div { display: contents; }
+.case-intro .meta-line dt {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.case-intro .meta-line dd { margin: 0; color: var(--ink-2); }
+
+/* the main visual sits underneath; LoafMode's three phones stay a sensible size */
+.case-intro .intro-phones { max-width: 760px; margin: 2.25rem auto 0; }
+
+@media (max-width: 700px) {
+  .case-intro .highlights { grid-template-columns: 1fr; border-bottom: 0; }
+  .case-intro .highlights li,
+  .case-intro .highlights li:has(.hl-link) { padding: 0.75rem 0; border-left: 0; border-bottom: 1px solid var(--line); }
+}
+/* phones: the badge sits in the flow there, so it needs position: relative to stay above the card link */
+@media (max-width: 760px) {
+  .pcard .app-badge-over { position: relative; }
+}

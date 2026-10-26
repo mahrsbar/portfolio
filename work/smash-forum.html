@@ -13,9 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Fraunces:opsz,wght,SOFT,WONK@144,600,100,0;144,600,100,1&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261016u" />
+    <link rel="stylesheet" href="../css/style.css?v=20261021a" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261021k" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -54,20 +55,24 @@
     </header>
 
     <main id="main" class="hue-mustard">
-      <section class="wrap case-hero">
+      <section class="wrap case-intro">
         <p class="eyebrow">Earlier work · University software project · 2018</p>
         <h1>SMASH: a forum app with moderation built in</h1>
-        <p class="lead">
+        <p class="intro-sum">
           A five-person team, one semester, and a brief for a social platform where people create, view,
           and vote on posts. We shipped a PHP and MySQL forum with reposts, reports, and an admin flow that
           can delete a post, ignore a report, or ban the user. My part was the thinking around the code:
           the problem definition, use cases, software qualities, technical documentation, and the report itself.
         </p>
-        <dl class="case-meta">
-          <div class="chips"><dt>Role</dt><dd>Problem definition</dd><dd>use-case descriptions</dd><dd>software qualities</dd><dd>technical documentation</dd><dd>report design and editing</dd></div>
+        <ul class="highlights">
+          <li><b>5 people, one semester</b><span>Software development course</span></li>
+          <li><b>Moderation built in</b><span>Report, delete, ignore or ban</span></li>
+          <li><b>10 software qualities</b><span>Defined and tested against</span></li>
+        </ul>
+        <dl class="meta-line">
+          <div><dt>Role</dt><dd>Problem definition, use-case descriptions, software qualities, technical documentation, report design and editing</dd></div>
           <div><dt>Team</dt><dd>Five students, University of Regina software development course</dd></div>
           <div><dt>Stack</dt><dd>PHP, MySQL, JavaScript with AJAX, HTML and CSS; three-tier architecture; deployed on the department's Unix host</dd></div>
-          <div class="chips"><dt>Tools</dt><dd>Visual Paradigm Online</dd><dd>Creately</dd><dd data-logo="eclipseide">Eclipse</dd><dd>Atom</dd><dd>PuTTY</dd><dd>WinSCP</dd></div>
         </dl>
         <div class="tldr" aria-label="Summary">
           <div><div class="k"><span class="tldr-icon warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg></span>Problem</div><p>Build a small social platform that stays usable when people misbehave.</p></div>
