@@ -48,7 +48,7 @@
       .plugins { display: grid; gap: 1.25rem; margin: 1.75rem 0 0; }
       .plugin { padding: 1.25rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
       .plugin-head { margin-bottom: 1rem; }
-      .plugin-n { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .plugin-n { display: block; font-size: 0.85rem; font-weight: 500; word-spacing: 0.08em; color: var(--ink-3); }
       .plugin-head h3 { margin: 0.2rem 0 0.35rem; font-size: 1.15rem; }
       .plugin-head p { margin: 0; font-size: 0.92rem; color: var(--ink-2); }
       .plugin-head .plugin-why { margin-top: 0.6rem; padding-left: 0.75rem; border-left: 2px solid var(--line-strong); font-size: 0.85rem; color: var(--ink-3); }
@@ -63,11 +63,18 @@
       .ba-tag.ba-after { background: var(--teal-soft); color: var(--teal-text); }
       .ba-code { margin: 0; font-size: 0.72rem; line-height: 1.55; }
       @media (max-width: 640px) { .after-pair { grid-template-columns: minmax(0, 1fr); } }
-      .type-tablist.steps { display: flex; flex-wrap: wrap; align-items: center; gap: 0.15rem; border-radius: 999px; }
-      .type-tablist.steps button { display: inline-flex; align-items: center; gap: 0.4rem; }
-      .step-n { display: inline-grid; place-items: center; width: 1.2rem; height: 1.2rem; border-radius: 50%; background: var(--line); font-size: 0.7rem; font-weight: 600; color: var(--ink-2); }
-      .type-tablist.steps button[aria-selected="true"] .step-n { background: var(--c); color: #fff; }
-      .step-arrow { color: var(--ink-3); font-size: 0.8rem; }
+      /* Before / Run / After: a progress stepper. Three equal columns, each
+         with a thin bar on top; the current step's bar is dark, steps already
+         passed are mid-grey, and later ones stay light. */
+      .type-tablist.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; width: 100%; padding: 0; margin-bottom: 1rem; border-radius: 0; background: none; }
+      .type-tablist.steps button { display: flex; align-items: baseline; gap: 0.45rem; padding: 0.65rem 0 0.15rem; border-top: 2px solid var(--line); border-radius: 0; background: none; box-shadow: none; color: var(--ink-3); font-size: 0.9rem; font-weight: 500; text-align: left; transition: color 0.2s var(--ease), border-color 0.2s var(--ease); }
+      .type-tablist.steps button:hover { color: var(--ink-2); border-top-color: var(--line-strong); }
+      .type-tablist.steps button:has(~ button[aria-selected="true"]) { border-top-color: var(--ink-3); }
+      .type-tablist.steps button[aria-selected="true"] { border-top-color: var(--ink); background: none; box-shadow: none; color: var(--ink); font-weight: 600; }
+      .type-tablist.steps button:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; border-radius: 2px; }
+      .step-n { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+      .step-n::before { content: "0"; }
+      .step-arrow { display: none; }
       .step-panel img { max-height: 560px; width: auto; max-width: 100%; margin-inline: auto; }
       .step-panel .ba img, .step-panel .after-pair img { max-height: none; width: 100%; }
       .step-panel .ba-code { font-size: 0.8rem; max-width: 30rem; margin-inline: auto; }
