@@ -19,16 +19,16 @@
   }
 }
 
-/* project cards: ink outline + sticker shadow, lift toward the top-left on hover */
+/* project cards: a hairline border; on hover they lift a little onto a soft shadow */
 .pcard {
-  border: 1.5px solid var(--edge);
-  box-shadow: 3px 3px 0 var(--edge-shadow);
+  border: 1px solid var(--line);
+  box-shadow: none;
 }
 .pcard:hover,
 .pcard:focus-within {
-  transform: translate(-2px, -2px);
-  border-color: var(--edge);
-  box-shadow: 5px 5px 0 var(--edge-shadow);
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  box-shadow: 0 10px 28px rgba(20, 18, 16, 0.07);
 }
 
 /* the whole card is clickable: the title's link stretches over the card,
@@ -46,41 +46,17 @@
 .pcard h3 a:focus-visible { outline: none; }
 .pcard:has(h3 a:focus-visible) { outline: 3px solid var(--link, #121212); outline-offset: 4px; }
 
-/* buttons share the same small hard shadow */
+/* buttons: flat, a hairline on the secondary one */
 .btn-primary,
-.btn-ghost {
-  box-shadow: 2px 2px 0 var(--edge-shadow);
-}
-.btn-ghost { border: 1.5px solid var(--edge); }
+.btn-ghost { box-shadow: none; }
+.btn-ghost { border: 1px solid var(--line-strong); }
 .btn-primary:hover,
-.btn-ghost:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--edge-shadow);
-}
-
-/* section headings get one continuous hand-drawn swoosh, in duck yellow:
-   a single stroke stretched to the heading's width (no repeating tiles, so no seams) */
-.section-head h2 {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 12px;
-}
-.section-head h2::after {
-  content: "";
-  position: absolute;
-  left: -2px;
-  right: -6px;
-  bottom: 0;
-  height: 12px;
-  background: var(--scribble);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8.5 C40 5.5 90 4 140 4.5 C165 4.8 185 5.5 197 6.5 L196 8.5 C170 7.6 140 7.4 100 7.8 C60 8.2 30 9.4 4 10.5 Z'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 8.5 C40 5.5 90 4 140 4.5 C165 4.8 185 5.5 197 6.5 L196 8.5 C170 7.6 140 7.4 100 7.8 C60 8.2 30 9.4 4 10.5 Z'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
-}
+.btn-ghost:hover { transform: translateY(-1px); box-shadow: none; }
 
 /* the session-notes card at the end of the homepage matches the cards */
 .sn {
-  border: 1.5px solid var(--edge);
-  box-shadow: 4px 4px 0 var(--edge-shadow);
+  border: 1px solid var(--line);
+  box-shadow: none;
 }
 
 /* dark mode: screenshots of light-mode UI are dimmed a touch so they don't glare */
@@ -194,9 +170,9 @@
    until the next tap), so the lift is replaced by a small press */
 @media (hover: none) {
   .pcard:hover,
-  .pcard:focus-within { transform: none; box-shadow: 3px 3px 0 var(--edge-shadow); }
+  .pcard:focus-within { transform: none; border-color: var(--line); box-shadow: none; }
   .pcard:hover .pcard-media img,
   .pcard:hover .pcard-stack .win-front,
   .pcard:hover .pcard-mock .mk { transform: none; }
-  .pcard:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--edge-shadow); }
+  .pcard:active { transform: scale(0.99); border-color: var(--line-strong); }
 }
