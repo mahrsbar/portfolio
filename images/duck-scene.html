@@ -890,7 +890,7 @@
   const nudge = document.createElement('span');
   nudge.className = 'nudge end waiting'; // fades in after the duck's opening question
   nudge.setAttribute('aria-hidden', 'true');
-  nudge.textContent = 'tap me! ↘';
+  nudge.textContent = 'tap me! ↘\uFE0E';
   bubbles.appendChild(nudge);
   const placeNudge = () => Object.assign(nudge.style, pct([208, 128]));
   placeNudge();

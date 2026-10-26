@@ -15,8 +15,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261021a" />
-    <link rel="stylesheet" href="css/accents.css?v=20261021k" />
+    <link rel="stylesheet" href="css/style.css?v=20261026a" />
+    <link rel="stylesheet" href="css/accents.css?v=20261026a" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -44,7 +44,15 @@
       .demo-full:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
       .demo-stage iframe { display: block; width: 100%; height: clamp(640px, 86vh, 880px); border: 1px solid var(--line); border-radius: var(--radius); background: #111; }
       .panel-cap { margin: 0.6rem 0 0; font-size: 0.85rem; color: var(--ink-3); }
-      @media (max-width: 700px) { .demo-stage iframe { height: min(80vh, 640px); } }
+      /* phones: the pens were built for a desktop window and fall apart at this
+         width, so each version shows a desktop screenshot instead of running */
+      .demo-poster, .phone-note { display: none; }
+      @media (max-width: 700px) {
+        .demo-stage iframe, button.demo-full { display: none; }
+        .demo-poster { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); background: #111; }
+        .phone-note { display: block; margin: 0.75rem 0 0; font-size: 0.85rem; color: var(--ink-3); }
+        .cards-demo .panel-cap .try { display: none; }
+      }
       /* full screen: the stage fills the screen and the caption hides */
       .demo-stage:fullscreen { background: #111; }
       .demo-stage:fullscreen .type-panel:not([hidden]) { height: 100%; }
@@ -146,7 +154,7 @@
               <div class="demo-actions">
                 <a class="demo-full demo-pen" href="https://codepen.io/mahrsbar/pen/jOYPReJ" target="_blank" rel="noopener">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 2 8.5v7L12 22l10-6.5v-7L12 2zM12 22v-6.5M22 8.5l-10 7-10-7M2 15.5l10-7 10 7M12 2v6.5"/></svg>
-                  <span>Open on CodePen <span aria-hidden="true">↗</span></span>
+                  <span>Open on CodePen <span aria-hidden="true">↗&#xFE0E;</span></span>
                 </a>
                 <button type="button" class="demo-full" aria-label="Show the character cards full screen">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
@@ -156,18 +164,22 @@
             </div>
             <div class="demo-stage">
               <div class="type-panel" role="tabpanel" id="panel-v1" aria-labelledby="tab-v1" data-pen="https://codepen.io/mahrsbar/pen/jOYPReJ">
-                <iframe src="images/remnant/cards/v1.html" data-src="images/remnant/cards/v1.html" loading="lazy" title="Character cards, version one: a slider of animated character cards with the art behind them"></iframe>
-                <p class="panel-cap">A card slider: animated character art, with the scene behind it changing to match. Use the arrows. <a href="https://codepen.io/mahrsbar/pen/jOYPReJ" target="_blank" rel="noopener">Open on CodePen ↗</a></p>
+                <iframe data-src="images/remnant/cards/v1.html" loading="lazy" title="Character cards, version one: a slider of animated character cards with the art behind them"></iframe>
+                <img class="demo-poster" src="images/remnant/cards/v1.webp" width="1280" height="800" loading="lazy" alt="Version one on a desktop screen: three framed character cards in a row, Yunuen in the centre card with her name and story below" />
+                <p class="panel-cap">A card slider: animated character art, with the scene behind it changing to match. <span class="try">Use the arrows.</span> <a href="https://codepen.io/mahrsbar/pen/jOYPReJ" target="_blank" rel="noopener">Open on CodePen ↗&#xFE0E;</a></p>
               </div>
               <div class="type-panel" role="tabpanel" id="panel-v2" aria-labelledby="tab-v2" data-pen="https://codepen.io/mahrsbar/pen/GRyoOXR" hidden>
                 <iframe data-src="images/remnant/cards/v2.html" title="Character cards, version two: info cards that swap characters"></iframe>
-                <p class="panel-cap">Info cards: portrait, name and story on one card; Next swaps the character. Based on a design by Catalin V. <a href="https://codepen.io/mahrsbar/pen/GRyoOXR" target="_blank" rel="noopener">Open on CodePen ↗</a></p>
+                <img class="demo-poster" src="images/remnant/cards/v2.webp" width="1280" height="800" loading="lazy" alt="Version two on a desktop screen: Aliya stepping out of a dark info card, with her name, story and a Next button" />
+                <p class="panel-cap">Info cards: portrait, name and story on one card. <span class="try">Next swaps the character.</span> Based on a design by Catalin V. <a href="https://codepen.io/mahrsbar/pen/GRyoOXR" target="_blank" rel="noopener">Open on CodePen ↗&#xFE0E;</a></p>
               </div>
               <div class="type-panel" role="tabpanel" id="panel-v3" aria-labelledby="tab-v3" data-pen="https://codepen.io/mahrsbar/pen/ExojdqE" hidden>
                 <iframe data-src="images/remnant/cards/v3.html" title="Character cards, version three: a full-bleed slider with a pop-out character"></iframe>
-                <p class="panel-cap">A pop-out slider: full-bleed art with the character stepping out of the frame. Use the arrows or the dots. <a href="https://codepen.io/mahrsbar/pen/ExojdqE" target="_blank" rel="noopener">Open on CodePen ↗</a></p>
+                <img class="demo-poster" src="images/remnant/cards/v3.webp" width="1272" height="792" loading="lazy" alt="Version three on a desktop screen: Stephane floating in full-bleed blue art, with his name, story, arrows and dots" />
+                <p class="panel-cap">A pop-out slider: full-bleed art with the character stepping out of the frame. <span class="try">Use the arrows or the dots.</span> <a href="https://codepen.io/mahrsbar/pen/ExojdqE" target="_blank" rel="noopener">Open on CodePen ↗&#xFE0E;</a></p>
               </div>
             </div>
+            <p class="phone-note">These are screenshots. Open this page on a larger screen, or on CodePen, to try them.</p>
           </figure>
 
           <h2>Results</h2>
@@ -193,7 +205,18 @@
     </footer>
     <script>
       // Accessible tabs (arrow keys move between tabs), as on the design-system page.
-      // Version one loads lazily with the page; the others load the first time their tab is shown.
+      // Each version loads the first time its tab is shown, and only on screens wide
+      // enough to run it; phones see the screenshot instead.
+      var wide = window.matchMedia("(min-width: 701px)");
+      function loadFrame(panel) {
+        var frame = panel && panel.querySelector("iframe[data-src]");
+        if (wide.matches && frame && !frame.getAttribute("src")) frame.src = frame.dataset.src;
+      }
+      function loadShown() {
+        document.querySelectorAll(".cards-demo .type-panel:not([hidden])").forEach(loadFrame);
+      }
+      loadShown();
+      if (wide.addEventListener) wide.addEventListener("change", loadShown);
       document.querySelectorAll(".type-tablist").forEach(function (list) {
         var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
         function select(tab) {
@@ -203,8 +226,7 @@
             t.setAttribute("aria-selected", on ? "true" : "false");
             t.tabIndex = on ? 0 : -1;
             panel.hidden = !on;
-            var frame = panel.querySelector("iframe[data-src]");
-            if (on && frame && !frame.getAttribute("src")) frame.src = frame.dataset.src;
+            if (on) loadFrame(panel);
             var pen = on && panel.dataset.pen && list.closest(".cards-demo").querySelector(".demo-pen");
             if (pen) pen.href = panel.dataset.pen;
           });
@@ -236,7 +258,7 @@
         });
       });
     </script>
-    <script src="js/main.js?v=20260907"></script>
+    <script src="js/main.js?v=20261026a"></script>
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
   </body>
 </html>
