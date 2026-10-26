@@ -52,6 +52,73 @@
     });
   }
 
+  /* ---- Phone menu ----
+     The theme toggle moves out of the link list into its own group beside
+     a menu button; on phones the CSS turns the link list into a dropdown. */
+  function menu() {
+    var header = document.querySelector("header.nav");
+    var nav = header && header.querySelector("nav");
+    var toggle = header && header.querySelector(".theme-toggle");
+    if (!nav || !toggle) return;
+
+    var tools = document.createElement("div");
+    tools.className = "nav-tools";
+    var li = toggle.closest("li");
+    tools.appendChild(toggle);
+    if (li) li.remove();
+
+    var list = nav.querySelector(".nav-links");
+    if (!list.id) list.id = "nav-links";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "nav-menu-btn";
+    btn.setAttribute("aria-label", "Menu");
+    btn.setAttribute("aria-expanded", "false");
+    btn.setAttribute("aria-controls", list.id);
+    btn.innerHTML =
+      '<svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>' +
+      '<svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+    tools.appendChild(btn);
+    nav.parentNode.appendChild(tools);
+    header.classList.add("has-menu");
+
+    function setOpen(open) {
+      header.classList.toggle("open", open);
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    }
+    btn.addEventListener("click", function () {
+      setOpen(!header.classList.contains("open"));
+    });
+    list.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setOpen(false);
+    });
+    document.addEventListener("click", function (e) {
+      if (!header.contains(e.target)) setOpen(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && header.classList.contains("open")) {
+        setOpen(false);
+        btn.focus();
+      }
+    });
+  }
+
+  /* ---- Tables that stack on phones ----
+     Wide comparison tables become one card per row; each cell gets its
+     column heading as a label. */
+  function stackTables() {
+    document.querySelectorAll("table.compare").forEach(function (table) {
+      var heads = table.querySelectorAll("thead th");
+      if (heads.length < 3) return;
+      table.classList.add("stack-sm");
+      table.querySelectorAll("tbody tr").forEach(function (tr) {
+        Array.prototype.forEach.call(tr.children, function (cell, i) {
+          if (heads[i]) cell.setAttribute("data-label", heads[i].textContent.trim());
+        });
+      });
+    });
+  }
+
   /* ---- Reveal on scroll ---- */
   function reveal() {
     var els = document.querySelectorAll(".reveal");
@@ -186,6 +253,8 @@
   document.addEventListener("DOMContentLoaded", function () {
     bindToggle();
     markNav();
+    menu();
+    stackTables();
     reveal();
     copyEmail();
     year();

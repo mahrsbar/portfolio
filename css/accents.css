@@ -186,5 +186,17 @@
 }
 /* phones: the badge sits in the flow there, so it needs position: relative to stay above the card link */
 @media (max-width: 760px) {
-  .pcard .app-badge-over { position: relative; }
+  /* and the cover offsets reset, or they'd shift it down over the title */
+  .pcard .app-badge-over { position: relative; top: auto; left: auto; }
+}
+
+/* touch screens: a tap shouldn't leave the card lifted (iOS keeps :hover
+   until the next tap), so the lift is replaced by a small press */
+@media (hover: none) {
+  .pcard:hover,
+  .pcard:focus-within { transform: none; box-shadow: 3px 3px 0 var(--edge-shadow); }
+  .pcard:hover .pcard-media img,
+  .pcard:hover .pcard-stack .win-front,
+  .pcard:hover .pcard-mock .mk { transform: none; }
+  .pcard:active { transform: translate(1px, 1px); box-shadow: 2px 2px 0 var(--edge-shadow); }
 }

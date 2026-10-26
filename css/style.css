@@ -527,7 +527,7 @@ pre code {
 
 /* External links (the résumé PDF) get a small arrow so it's clear they leave. */
 .nav-links a[target="_blank"]::before {
-  content: "↗";
+  content: "↗\FE0E"; /* text presentation, so iOS doesn't swap in the emoji */
   order: 1;
   margin-left: 0.2em;
   font-size: 0.75em;
@@ -4669,3 +4669,103 @@ main .chapter .num, main .tn-k, main .plugin-n, main .lesson-k, main .psych-k, m
 .mkset .rail span em.count { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #d93f3f; color: #fff; font-size: 0.64rem; font-weight: 700; display: inline-grid; place-items: center; }
 .mkset .six-body { grid-template-columns: 52% 1fr; }
 @media (max-width: 760px) { .mkset .guide { height: auto; } }
+
+/* ==========================================================
+   Phones (Oct 2026)
+   ========================================================== */
+/* main.js moves the theme toggle into .nav-tools and adds a menu button,
+   so on phones the wordmark, theme and menu share one row and the links
+   drop down from it. Without JS the links still wrap under the wordmark. */
+.nav.has-menu nav { margin-left: auto; }
+.nav .nav-tools { display: flex; align-items: center; gap: 0.5rem; margin-left: -0.75rem; }
+.nav-menu-btn { display: none; }
+
+@media (max-width: 560px) {
+  .nav.has-menu .wrap {
+    flex-wrap: nowrap;
+    height: 58px;
+    padding: 0;
+  }
+  .nav.has-menu .brand .wordmark { font-size: 1.2rem; }
+  .nav.has-menu .nav-tools { margin-left: auto; }
+  .nav.has-menu .theme-toggle,
+  .nav.has-menu .nav-menu-btn { width: 40px; height: 40px; }
+  .nav.has-menu .nav-menu-btn {
+    display: inline-grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--bg-elev);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .nav-menu-btn svg { width: 18px; height: 18px; }
+  .nav-menu-btn .x { display: none; }
+  .nav.open .nav-menu-btn .bars { display: none; }
+  .nav.open .nav-menu-btn .x { display: block; }
+
+  .nav.has-menu nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  }
+  .nav.open nav { display: block; }
+  .nav.has-menu .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0;
+    padding: 0.25rem var(--gutter) 0.75rem;
+  }
+  .nav.has-menu .nav-links li + li { border-top: 1px solid var(--line); }
+  .nav.has-menu .nav-links a {
+    display: flex;
+    padding: 0.95rem 0;
+    font-size: 1.1rem;
+    border-radius: 0;
+  }
+}
+
+/* Comparison tables with three or more columns become one card per row
+   on phones, so nothing scrolls sideways. main.js copies each column
+   heading onto its cells as data-label. */
+@media (max-width: 640px) {
+  .table-scroll:has(.compare.stack-sm) { overflow: visible; }
+  .compare.stack-sm thead { display: none; }
+  .compare.stack-sm,
+  .compare.stack-sm tbody,
+  .compare.stack-sm tr,
+  .compare.stack-sm td { display: block; width: auto; }
+  .compare.stack-sm tr { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .compare.stack-sm tr:first-child { border-top: 1px solid var(--line); }
+  .compare.stack-sm td { padding: 0; border: 0; }
+  .compare.stack-sm td:first-child { font-size: 1.02rem; font-weight: 600; }
+  .compare.stack-sm td + td { margin-top: 0.7rem; }
+  .compare.stack-sm td[data-label]:not(:first-child)::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 0.15rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+}
+
+/* Phones: a bit more air between sections and around card text. */
+@media (max-width: 560px) {
+  .section { padding-block: 2.75rem; }
+  .pcard-body { padding: 1.25rem 1.2rem 1.4rem; }
+  .pcard.pcard-flagship h3 { font-size: 1.3rem; }
+  .pcard-body > p:not(.pcard-kicker) { font-size: 0.95rem; }
+}
+
+/* Touch screens: no grey tap box on links, and no hover lift that sticks
+   after a tap; a pressed card sinks slightly instead. */
+a, button { -webkit-tap-highlight-color: transparent; }
