@@ -13,9 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Fraunces:opsz,wght,SOFT,WONK@144,600,100,0;144,600,100,1&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261016u" />
+    <link rel="stylesheet" href="../css/style.css?v=20261021a" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261021k" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -39,6 +40,182 @@
       @media (max-width: 640px) {
         .mkset .ba { grid-template-columns: minmax(0, 1fr); }
       }
+          /* Walkthrough */
+      .wt-wrap { margin-top: 1.25rem; }
+      .mkset .wt-body { display: grid; grid-template-columns: 230px minmax(0, 1fr); min-height: 430px; }
+      .mkset .wt-rail { display: grid; align-content: start; gap: 0.15rem; padding: 0.75rem; border-right: 1px solid var(--line); background: var(--bg-elev); }
+      .mkset .wt-rail button { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; padding: 0.55rem 0.7rem; border: 0; border-radius: 8px; background: transparent; color: var(--ink-2); font: inherit; font-size: 0.85rem; text-align: left; cursor: pointer; }
+      .mkset .wt-rail button:hover { background: var(--bg-sunk); color: var(--ink); }
+      .mkset .wt-rail button[aria-selected="true"] { background: var(--mustard-soft); color: var(--ink); font-weight: 600; }
+      .mkset .wt-rail button:focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }
+      .mkset .wt-rail .count, .mkset .tree .count { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #d93f3f; color: #fff; font-size: 0.66rem; font-style: normal; font-weight: 700; display: inline-grid; place-items: center; }
+      .mkset .wt-panels { padding: 1.25rem 1.5rem; min-width: 0; }
+      .mkset .wt-screen { display: grid; gap: 0.6rem; align-content: start; font-size: 0.8rem; color: var(--ink-2); max-width: 520px; }
+      .mkset .wt-h { font-size: 1rem; color: var(--ink); margin-bottom: 0.2rem; }
+      .mkset .sel, .mkset .f > span:last-child, .mkset .drop, .mkset .file { display: block; padding: 0.55rem 0.7rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--bg-elev); color: var(--ink); }
+      .mkset .sel { position: relative; padding-top: 1.35rem; }
+      .mkset .sel small { position: absolute; top: 0.35rem; left: 0.7rem; font-size: 0.65rem; color: var(--ink-3); }
+      .mkset .sel::after { content: "▾"; position: absolute; right: 0.7rem; top: 50%; transform: translateY(-50%); color: var(--ink-3); }
+      .mkset .f { display: grid; gap: 0.25rem; }
+      .mkset .f small, .mkset .slot small { font-size: 0.7rem; color: var(--ink-3); }
+      .mkset .f > span:last-child { min-height: 2.1rem; }
+      .mkset .date { color: var(--ink-3) !important; }
+      .mkset .wt-link { color: var(--ink); text-decoration: underline; font-size: 0.75rem; }
+      .mkset .wt-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .mkset .b { display: inline-block; padding: 0.45rem 0.85rem; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+      .mkset .b.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
+      .mkset .b.ok { background: #1f7a4d; color: #fff; }
+      .mkset .b.sm { padding: 0.3rem 0.7rem; font-size: 0.7rem; }
+      .mkset .wt-split { grid-template-columns: minmax(0, 1fr) 170px; gap: 1.25rem; max-width: none; }
+      .mkset .wt-split > div:first-child { display: grid; gap: 0.6rem; align-content: start; }
+      .mkset .wt-prog { display: grid; grid-template-columns: auto 1fr; column-gap: 0.6rem; align-items: center; }
+      .mkset .wt-prog .ring { grid-row: span 2; }
+      .mkset .wt-prog b { color: var(--ink); font-size: 0.95rem; }
+      .mkset .wt-prog small { color: var(--ink-3); }
+      .mkset .ring.sm { width: 40px; height: 40px; }
+      .mkset .ring.sm::before { width: 28px; height: 28px; }
+      .mkset .note { padding: 0.5rem 0.7rem; border-radius: 8px; background: var(--bg-sunk); font-size: 0.72rem; color: var(--ink-3); }
+      .mkset .tree { display: grid; gap: 0.2rem; align-content: start; padding: 0.6rem; border: 1px solid var(--line); border-radius: 10px; font-size: 0.72rem; }
+      .mkset .tree small { padding: 0.35rem 0.5rem; border: 1px solid var(--line); border-radius: 6px; color: var(--ink-3); margin-bottom: 0.3rem; }
+      .mkset .tree b { margin-top: 0.35rem; color: var(--ink); font-size: 0.72rem; }
+      .mkset .tree span { display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.5rem; border-radius: 6px; }
+      .mkset .tree span.now { background: var(--mustard-soft); color: var(--ink); }
+      .mkset .tree span.bad { color: #b42318; }
+      .mkset .tree span.done { color: #1f7a4d; }
+      .mkset .slot { display: grid; gap: 0.25rem; }
+      .mkset .drop { border-style: dashed; text-align: center; color: var(--ink-2); padding: 0.8rem; }
+      .mkset .drop i, .mkset .help i, .mkset .gen i, .mkset .next i { display: block; font-style: normal; font-size: 0.7rem; color: var(--ink-3); margin-top: 0.2rem; }
+      .mkset .drop.small { padding: 0.5rem; }
+      .mkset .file { display: flex; justify-content: space-between; }
+      .mkset .file i { font-style: normal; color: var(--ink-3); }
+      .mkset .help { padding: 0.6rem 0.75rem; border-radius: 8px; background: var(--bg-sunk); color: var(--ink); }
+      .mkset .err { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border: 1px solid #f0b4ae; border-left: 3px solid #d93f3f; border-radius: 8px; color: var(--ink); }
+      .mkset .gen { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.4rem; padding-top: 0.75rem; border-top: 1px solid var(--line); }
+      .mkset .gen > span:first-child { flex: 1 1 220px; }
+      .mkset .check { display: flex; align-items: center; gap: 0.45rem; }
+      .mkset .box { display: inline-block; width: 12px; height: 12px; border: 1.5px solid var(--ink-3); border-radius: 3px; flex: none; }
+      .mkset .box.on { background: var(--ink); border-color: var(--ink); }
+      .mkset .next { padding: 0.75rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-elev); color: var(--ink); }
+      .mkset .next b { display: block; margin-bottom: 0.2rem; }
+      .mkset .next i { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem; }
+      .wt-cap { margin: 1.25rem 0 0; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-2); max-width: 60ch; }
+      .wt-after { padding-top: 0.5rem; }
+      /* Overview dashboard */
+      .mkset .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.9rem; }
+      .mkset .w { display: grid; gap: 0.45rem; align-content: start; padding: 0.75rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-elev); font-size: 0.75rem; color: var(--ink-2); }
+      .mkset .w > b { display: flex; justify-content: space-between; color: var(--ink); font-size: 0.8rem; }
+      .mkset .w > b i { font-style: normal; color: var(--ink-3); }
+      .mkset .w > span { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+      .mkset .w .tabs { justify-content: flex-start; gap: 0.6rem; border-bottom: 1px solid var(--line); padding-bottom: 0.3rem; }
+      .mkset .w .tabs u { text-decoration: none; color: var(--ink-3); font-size: 0.7rem; }
+      .mkset .w .tabs u.on { color: var(--ink); font-weight: 600; box-shadow: 0 2px 0 var(--ink); }
+      .mkset .w .late { font-style: normal; color: #b42318; font-size: 0.7rem; }
+      .mkset .w.nudge { background: var(--mustard-soft); border-color: transparent; }
+      .mkset .w.nudge .b { justify-self: start; }
+      .mkset em.chip { font-style: normal; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); font-size: 0.66rem; white-space: nowrap; }
+      .mkset em.chip.grey { background: var(--bg-sunk); color: var(--ink-3); }
+      .mkset em.chip.warn { background: var(--mustard-soft); color: var(--mustard-text); }
+      /* Navigation before / after */
+      .mkset .navwrap { display: grid; grid-template-columns: 58% 1fr; height: 260px; }
+      .mkset .navold { overflow: hidden; display: grid; align-content: start; gap: 0.15rem; padding: 0.7rem; background: #1f2433; position: relative; }
+      .mkset .navcontent { display: grid; align-content: start; gap: 0.6rem; padding: 1rem; }
+      .mkset .navcontent .bar { height: 10px; border-radius: 4px; background: var(--bg-sunk); }
+      .mkset .navcontent .bar.w60 { width: 60%; height: 14px; }
+      .mkset .navcontent .bar.w80 { width: 80%; }
+      .mkset .navold span { color: #c9cfdc; font-size: 0.7rem; padding: 0.15rem 0.4rem; }
+      .mkset .navold::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 60px; background: linear-gradient(transparent, #1f2433); }
+      .mkset .navnew { display: grid; grid-template-columns: 74px 1fr; height: 260px; }
+      .mkset .nrail { display: grid; align-content: start; gap: 0.3rem; padding: 0.6rem 0.4rem; background: #1f2433; }
+      .mkset .nrail span { color: #c9cfdc; font-size: 0.62rem; text-align: center; padding: 0.45rem 0.2rem; border-radius: 8px; }
+      .mkset .nrail span.on { background: rgba(255,255,255,0.14); color: #fff; }
+      .mkset .npanel { display: grid; align-content: start; gap: 0.15rem; padding: 0.7rem; font-size: 0.72rem; }
+      .mkset .npanel small { margin-top: 0.4rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+      .mkset .npanel span { padding: 0.25rem 0.5rem; border-radius: 6px; }
+      .mkset .npanel span.on { background: var(--bg-sunk); color: var(--ink); font-weight: 600; }
+      /* Licence record */
+      .mkset .lic-body { display: grid; gap: 0.9rem; padding: 1rem; font-size: 0.75rem; }
+      .mkset .life { display: flex; justify-content: space-between; position: relative; padding: 0 0.5rem; }
+      .mkset .life::before { content: ""; position: absolute; left: 1rem; right: 1rem; top: 6px; height: 2px; background: var(--line-strong); }
+      .mkset .life .d { position: relative; display: grid; justify-items: center; gap: 0.35rem; padding-top: 0; color: var(--ink-3); font-size: 0.68rem; }
+      .mkset .life .d::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--bg-elev); border: 2px solid var(--line-strong); }
+      .mkset .life .d.on { color: var(--ink); font-weight: 600; }
+      .mkset .life .d.on::before { background: #1f7a4d; border-color: #1f7a4d; }
+      .mkset .hist { width: 100%; border-collapse: collapse; }
+      .mkset .hist th { text-align: left; font-weight: 500; color: var(--ink-3); font-size: 0.68rem; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line); }
+      .mkset .hist td { padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--line); color: var(--ink); }
+      .mkset .hist tr.cur td { background: var(--bg-elev); }
+      .mkset .toggle { display: flex; align-items: center; gap: 0.5rem; color: var(--ink-2); }
+      .mkset .sw { width: 28px; height: 16px; border-radius: 999px; background: var(--line-strong); position: relative; }
+      .mkset .sw.on { background: #1f7a4d; }
+      .mkset .sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: #fff; }
+      .mkset .sw.on::after { left: 14px; }
+      .mkset .dash, .mkset .lic { margin-top: 1.25rem; }
+      @media (max-width: 760px) {
+        .mkset .wt-body { grid-template-columns: minmax(0, 1fr); }
+        .mkset .wt-rail { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+        .mkset .wt-split, .mkset .dash-grid { grid-template-columns: minmax(0, 1fr); }
+        .mkset .wt-panels { padding: 1rem; }
+        .mkset .err { flex-direction: column; align-items: flex-start; }
+        .mkset .hist { font-size: 0.68rem; }
+      }
+          /* 11 → 6 map */
+      .map { margin: 0; padding: 1.25rem 1.4rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
+      .map-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 1rem; }
+      .map-head b { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); }
+      .map-head span { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--ink-3); }
+      .mc-key { display: inline-block; width: 12px; height: 12px; border-radius: 4px; background: var(--bg-sunk); border: 1px solid var(--line-strong); margin-left: 0.6rem; }
+      .mc-key.auto { background: #e3f4ea; border-color: #8fcaa7; }
+      .map-cols, .map-row { display: grid; grid-template-columns: minmax(0, 1.25fr) 2rem minmax(0, 1fr); gap: 0.75rem; align-items: center; }
+      .map-cols { padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+      .map-row { padding: 0.6rem 0; border-bottom: 1px solid var(--line); }
+      .map-row:last-child { border-bottom: 0; padding-bottom: 0; }
+      .map-old { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+      .mc { display: inline-flex; align-items: baseline; gap: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 8px; background: var(--bg-sunk); color: var(--ink-2); font-size: 0.8rem; line-height: 1.3; }
+      .mc b { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3); font-weight: 500; }
+      .mc.auto { background: #e3f4ea; color: #155c39; text-decoration: line-through; text-decoration-color: rgba(21,92,57,.45); }
+      .mc.auto b { color: #155c39; }
+      .map-arrow { color: var(--ink-3); text-align: center; }
+      .map-new { display: grid; gap: 0.1rem; padding: 0.5rem 0.75rem; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--bg); }
+      .map-new b { color: var(--ink); font-size: 0.92rem; }
+      .map-new small { color: var(--ink-3); font-size: 0.76rem; line-height: 1.35; }
+      .map-auto .map-new { border-color: #8fcaa7; background: #e3f4ea; }
+      .map-auto .map-new b, .map-auto .map-new small { color: #155c39; }
+      :root[data-theme="dark"] .mc.auto, :root[data-theme="dark"] .map-auto .map-new, :root[data-theme="dark"] .mc-key.auto { background: #12301f; border-color: #2c6b46; color: #9fe0b8; }
+      :root[data-theme="dark"] .mc.auto b, :root[data-theme="dark"] .map-auto .map-new b, :root[data-theme="dark"] .map-auto .map-new small { color: #9fe0b8; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .mc.auto, :root:not([data-theme="light"]) .map-auto .map-new, :root:not([data-theme="light"]) .mc-key.auto { background: #12301f; border-color: #2c6b46; color: #9fe0b8; }
+        :root:not([data-theme="light"]) .mc.auto b, :root:not([data-theme="light"]) .map-auto .map-new b, :root:not([data-theme="light"]) .map-auto .map-new small { color: #9fe0b8; }
+      }
+      @media (max-width: 760px) {
+        .map { padding: 1rem; }
+        .map-cols { display: none; }
+        .map-row { grid-template-columns: minmax(0, 1fr); gap: 0.4rem; }
+        .map-arrow { text-align: left; transform: rotate(90deg); width: 1rem; }
+      }
+          .map-svg { display: block; width: 100%; height: auto; overflow: visible; }
+      .map-svg .mcol { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; fill: var(--ink-3); }
+      .map-svg .mnode rect { fill: var(--bg-sunk); }
+      .map-svg .mn { font-family: var(--font-mono); font-size: 11px; fill: var(--ink-3); }
+      .map-svg .mt { font-size: 14px; fill: var(--ink-2); }
+      .map-svg .mnode.auto rect { fill: #e3f4ea; }
+      .map-svg .mnode.auto .mt, .map-svg .mnode.auto .mn { fill: #155c39; text-decoration: line-through; }
+      .map-svg .mstep rect { fill: var(--bg); stroke: var(--line-strong); }
+      .map-svg .mstep.auto rect { fill: #e3f4ea; stroke: #8fcaa7; }
+      .map-svg .ms { font-size: 15px; font-weight: 600; fill: var(--ink); }
+      .map-svg .md { font-size: 12px; fill: var(--ink-3); }
+      .map-svg .mstep.auto .ms, .map-svg .mstep.auto .md { fill: #155c39; }
+      .map-svg .mline { fill: none; stroke: var(--line-strong); stroke-width: 1.5; }
+      .map-svg .mline.auto { stroke: #3f9a68; stroke-dasharray: 5 4; }
+      .map-svg .mh { fill: var(--line-strong); }
+      .map-svg .mha { fill: #3f9a68; }
+      .map-list { display: none; }
+      :root[data-theme="dark"] .map-svg .mnode.auto rect, :root[data-theme="dark"] .map-svg .mstep.auto rect { fill: #12301f; stroke: #2c6b46; }
+      :root[data-theme="dark"] .map-svg .mnode.auto text, :root[data-theme="dark"] .map-svg .mstep.auto text { fill: #9fe0b8; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .map-svg .mnode.auto rect, :root:not([data-theme="light"]) .map-svg .mstep.auto rect { fill: #12301f; stroke: #2c6b46; }
+        :root:not([data-theme="light"]) .map-svg .mnode.auto text, :root:not([data-theme="light"]) .map-svg .mstep.auto text { fill: #9fe0b8; }
+      }
+      @media (max-width: 760px) { .map-svg { display: none; } .map-list { display: block; } }
     </style>
   </head>
   <body>
@@ -72,13 +249,13 @@
         <p class="eyebrow">Product design + front end · 2023–2025</p>
         <h1>Nobody finishes a form they can't see the end of. So I cut one into six steps.</h1>
         <p class="intro-sum">
-          On a licensing-compliance platform, applying for a licence meant one enormous form with a sidebar that
-          scrolled forever. I redesigned it as six steps with visible progress, and turned a queue of feature requests
-          into one flexible task manager.
+          On a licensing-compliance platform, applying for a licence was an eleven-step guide page that ended with
+          printing, notarising, mailing and creating your own licence record. I redesigned it as six steps with
+          visible progress, and gave the managers who assign those applications one place to track them.
         </p>
         <ul class="highlights">
-          <li><b>1 form → 6 steps</b><span>Each one finishable on its own</span></li>
-          <li><b>Shipped</b><span>Application flow and task manager</span></li>
+          <li><b>11 steps → 6</b><span>Each one finishable on its own</span></li>
+          <li><b>Shipped</b><span>Application flow and manager tools</span></li>
           <li><b>~70 tickets</b><span>Designed over two years, some built myself</span></li>
         </ul>
         <dl class="meta-line">
@@ -87,53 +264,86 @@
       </section>
 
       <section class="wrap intro-visual">
-        <div class="ba">
-          <div>
-            <span class="ba-tag">Before</span>
-            <div class="mk" aria-label="Mockup of the old application: one long form beside a sidebar of section names that keeps scrolling">
-              <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Licence application</b></div>
-              <div class="endless" aria-hidden="true">
-                <div class="endless-side">
-                  <span>Applicant details</span><span>Business entity</span><span>Ownership</span><span>Key personnel</span>
-                  <span>Addresses, past 10 years</span><span>Employment history</span><span>Financial interests</span>
-                  <span>Criminal history</span><span>Litigation</span><span>Licences held elsewhere</span><span>Tax compliance</span>
-                  <span>Bank references</span><span>…</span>
-                  <em class="more">27 more sections</em>
-                </div>
-                <div class="endless-main">
-                  <span class="mk-k">Ownership</span>
-                  <div class="field"><span class="bar"></span><span class="box"></span></div>
-                  <div class="field"><span class="bar"></span><span class="box"></span></div>
-                  <div class="field"><span class="bar"></span><span class="box"></span></div>
-                  <div class="field"><span class="bar"></span><span class="box"></span></div>
-                  <div class="field"><span class="bar"></span><span class="box"></span></div>
-                </div>
-              </div>
+        <figure class="map" aria-labelledby="map-title">
+          <figcaption class="map-head">
+            <b id="map-title">Where did the 11 steps go?</b>
+            <span><i class="mc-key"></i>Old chore <i class="mc-key auto"></i>Now done by the product</span>
+          </figcaption>
+          <svg class="map-svg" viewBox="0 0 1000 558" role="img" aria-labelledby="map-title map-desc">
+          <desc id="map-desc">Eleven old chores on the left, each connected by a curved arrow to the step of the new flow that absorbed it. Generating the PDF and creating the licence record are now done by the product.</desc>
+          <defs><marker id="mh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="mh"/></marker>
+          <marker id="mha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="mha"/></marker></defs>
+          <text x="0" y="24" class="mcol">BEFORE: 11 CHORES ON ONE GUIDE PAGE</text><text x="640" y="24" class="mcol">AFTER: 6 STEPS, PLUS ONE DONE FOR YOU</text>
+          <path d="M360 73.0 C500 73.0 500 85.0 634 85.0" class="mline" marker-end="url(#mh)"/>
+          <path d="M360 119.0 C500 119.0 500 85.0 634 85.0" class="mline" marker-end="url(#mh)"/>
+          <path d="M360 165.0 C500 165.0 500 85.0 634 85.0" class="mline" marker-end="url(#mh)"/>
+          <path d="M360 211.0 C500 211.0 500 157.7 634 157.7" class="mline" marker-end="url(#mh)"/>
+          <path d="M360 257.0 C500 257.0 500 303.0 634 303.0" class="mline auto" marker-end="url(#mha)"/>
+          <path d="M360 303.0 C500 303.0 500 303.0 634 303.0" class="mline" marker-end="url(#mh)"/>
+          <path d="M360 349.0 C500 349.0 500 230.3 634 230.3" class="mline" marker-end="url(#mh)"/>
+          <path d="M360 395.0 C500 395.0 500 375.7 634 375.7" class="mline" marker-end="url(#mh)"/>
+          <path d="M360 441.0 C500 441.0 500 448.3 634 448.3" class="mline" marker-end="url(#mh)"/>
+          <path d="M360 487.0 C500 487.0 500 448.3 634 448.3" class="mline" marker-end="url(#mh)"/>
+          <path d="M360 533.0 C500 533.0 500 521.0 634 521.0" class="mline auto" marker-end="url(#mha)"/>
+          <g class="mnode"><rect x="0" y="56" width="360" height="34" rx="8"/><text x="14" y="78" class="mn">1</text><text x="38" y="78" class="mt">Read the welcome note and instructions</text></g>
+          <g class="mnode"><rect x="0" y="102" width="360" height="34" rx="8"/><text x="14" y="124" class="mn">2</text><text x="38" y="124" class="mt">Complete disclosure sections, in any order</text></g>
+          <g class="mnode"><rect x="0" y="148" width="360" height="34" rx="8"/><text x="14" y="170" class="mn">3</text><text x="38" y="170" class="mt">Complete the jurisdiction's extra sections</text></g>
+          <g class="mnode"><rect x="0" y="194" width="360" height="34" rx="8"/><text x="14" y="216" class="mn">4</text><text x="38" y="216" class="mt">Tick “Yes, I have attached all documents”</text></g>
+          <g class="mnode auto"><rect x="0" y="240" width="360" height="34" rx="8"/><text x="14" y="262" class="mn">5</text><text x="38" y="262" class="mt">Generate the application PDF</text></g>
+          <g class="mnode"><rect x="0" y="286" width="360" height="34" rx="8"/><text x="14" y="308" class="mn">6</text><text x="38" y="308" class="mt">Download it</text></g>
+          <g class="mnode"><rect x="0" y="332" width="360" height="34" rx="8"/><text x="14" y="354" class="mn">7</text><text x="38" y="354" class="mt">Book fingerprints and mail them in</text></g>
+          <g class="mnode"><rect x="0" y="378" width="360" height="34" rx="8"/><text x="14" y="400" class="mn">8</text><text x="38" y="400" class="mt">Get it notarised and upload the copy</text></g>
+          <g class="mnode"><rect x="0" y="424" width="360" height="34" rx="8"/><text x="14" y="446" class="mn">9</text><text x="38" y="446" class="mt">Print it and mail it to the regulator</text></g>
+          <g class="mnode"><rect x="0" y="470" width="360" height="34" rx="8"/><text x="14" y="492" class="mn">10</text><text x="38" y="492" class="mt">Mark it as submitted</text></g>
+          <g class="mnode auto"><rect x="0" y="516" width="360" height="34" rx="8"/><text x="14" y="538" class="mn">11</text><text x="38" y="538" class="mt">Create the licence record yourself</text></g>
+          <g class="mstep"><rect x="640" y="56.0" width="360" height="58" rx="10"/><text x="656" y="80.0" class="ms">Fill in your information</text><text x="656" y="100.0" class="md">A guided path with a count of what’s left</text></g>
+          <g class="mstep"><rect x="640" y="128.7" width="360" height="58" rx="10"/><text x="656" y="152.7" class="ms">Attach documents</text><text x="656" y="172.7" class="md">One slot per required document</text></g>
+          <g class="mstep"><rect x="640" y="201.3" width="360" height="58" rx="10"/><text x="656" y="225.3" class="ms">Get fingerprints</text><text x="656" y="245.3" class="md">Its own step, guidance and a date</text></g>
+          <g class="mstep"><rect x="640" y="274.0" width="360" height="58" rx="10"/><text x="656" y="298.0" class="ms">Review and finalise</text><text x="656" y="318.0" class="md">One-click fixes; the PDF is made for you</text></g>
+          <g class="mstep"><rect x="640" y="346.7" width="360" height="58" rx="10"/><text x="656" y="370.7" class="ms">Sign</text><text x="656" y="390.7" class="md">A home for signed and notarised copies</text></g>
+          <g class="mstep"><rect x="640" y="419.3" width="360" height="58" rx="10"/><text x="656" y="443.3" class="ms">Submit</text><text x="656" y="463.3" class="md">Mark complete and notify your manager</text></g>
+          <g class="mstep auto"><rect x="640" y="492.0" width="360" height="58" rx="10"/><text x="656" y="516.0" class="ms">Done for you</text><text x="656" y="536.0" class="md">Pending licence record created automatically</text></g>
+          </svg>
+          <div class="map-list">
+          <div class="map-cols" aria-hidden="true"><span>Before: 11 chores on one guide page</span><span></span><span>After: 6 steps, plus one done for you</span></div>
+            <div class="map-row">
+              <div class="map-old"><span class="mc"><b>1</b>Read the welcome note and instructions</span><span class="mc"><b>2</b>Complete disclosure sections, in any order</span><span class="mc"><b>3</b>Complete the jurisdiction's extra sections</span></div>
+              <span class="map-arrow" aria-hidden="true">→</span>
+              <div class="map-new"><b>Fill in your information</b><small>One guided path, with a count of what’s left</small></div>
             </div>
-          </div>
-          <div>
-            <span class="ba-tag after">After</span>
-            <div class="mk" aria-label="Mockup of the new application: six steps across the top, a rail of sections with their status, and a ring showing 12 of 30 sections complete">
-              <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Licence application</b></div>
-              <div class="six" aria-hidden="true">
-                <div class="stepper">
-                  <span class="done">Start</span><span class="now">Fill in</span><span>Documents</span><span>Fingerprints</span><span>Review</span><span>Submit</span>
-                </div>
-                <div class="six-body">
-                  <div class="rail">
-                    <span>Applicant details <em>✓</em></span><span>Business entity <em>✓</em></span><span class="now">Ownership</span>
-                    <span>Key personnel</span><span>Addresses</span><span>Employment</span>
-                  </div>
-                  <div class="ring-wrap">
-                    <div class="ring" style="--p: 40"><b>12 of 30<br />sections</b></div>
-                    <small>Saved as you go</small>
-                  </div>
-                </div>
-              </div>
+            <div class="map-row">
+              <div class="map-old"><span class="mc"><b>4</b>Tick “Yes, I have attached all documents”</span></div>
+              <span class="map-arrow" aria-hidden="true">→</span>
+              <div class="map-new"><b>Attach documents</b><small>One slot per required document</small></div>
             </div>
-          </div>
+            <div class="map-row">
+              <div class="map-old"><span class="mc"><b>7</b>Book fingerprints and mail them in</span></div>
+              <span class="map-arrow" aria-hidden="true">→</span>
+              <div class="map-new"><b>Get fingerprints</b><small>Its own step, guidance and a date to record</small></div>
+            </div>
+            <div class="map-row">
+              <div class="map-old"><span class="mc auto"><b>5</b>Generate the application PDF</span><span class="mc"><b>6</b>Download it</span></div>
+              <span class="map-arrow" aria-hidden="true">→</span>
+              <div class="map-new"><b>Review and finalise</b><small>Errors with one-click fixes; the PDF is generated for you</small></div>
+            </div>
+            <div class="map-row">
+              <div class="map-old"><span class="mc"><b>8</b>Get it notarised and upload the copy</span></div>
+              <span class="map-arrow" aria-hidden="true">→</span>
+              <div class="map-new"><b>Sign</b><small>A home for signed and notarised copies</small></div>
+            </div>
+            <div class="map-row">
+              <div class="map-old"><span class="mc"><b>9</b>Print it and mail it to the regulator</span><span class="mc"><b>10</b>Mark it as submitted</span></div>
+              <span class="map-arrow" aria-hidden="true">→</span>
+              <div class="map-new"><b>Submit</b><small>A real end: mark complete and notify your manager</small></div>
+            </div>
+            <div class="map-row map-auto">
+              <div class="map-old"><span class="mc auto"><b>11</b>Create the licence record yourself</span></div>
+              <span class="map-arrow" aria-hidden="true">→</span>
+              <div class="map-new"><b>Done for you</b><small>The pending licence record is created automatically</small></div>
+            </div>
         </div>
-        <p class="mock-note">Recreated mockups: real layout, no product, branding or data.</p>
+        </figure>
+        <p class="mock-note">The old guide page's eleven chores, and the step of the new flow that absorbed each one.</p>
       </section>
 
       <section class="wrap section">
@@ -142,82 +352,293 @@
 
           <h2>The problem</h2>
           <p>
-            Licensing in regulated industries means long applications, notarised documents, fingerprints and renewals,
-            with different people each doing one specific thing at one specific time. Applying meant filling one huge
-            disclosure form, navigated by a sidebar of dozens of sections that scrolled forever, then working out
-            fingerprints, the notary and submission on your own.
+            Licensing in regulated industries means long applications, notarised documents, fingerprints and renewals.
+            The people filling them in were often seasonal staff, assigned a form by a manager or left to complete it on
+            their own. The old flow was one long guide page, and my notes from the time sum up what went wrong: no
+            validation, no sense of what was complete, and a platform that was "too open", where nothing was required.
+          </p>
+          <ul>
+            <li><strong>No visible end.</strong> Sections could be done in any order, with nothing showing what was left.</li>
+            <li><strong>An honour system.</strong> Documents were confirmed with a single tick box: "Yes, I have attached all required documents."</li>
+            <li><strong>No submit button.</strong> Submission happened outside the product, so people weren't sure when they were finished.</li>
+            <li><strong>Instructions in three places:</strong> a cover letter on the PDF, a welcome note and some accordions.</li>
+          </ul>
+          <p>
+            And much of the process isn't software at all: wet-ink signatures, notaries, fingerprints taken at an
+            appointment and mailed in, regulators with their own portals, and renewals that work differently in every
+            jurisdiction. The redesign had to guide people through the paper parts too.
           </p>
 
           <div class="chapter">
-            <span class="num">The redesign</span>
+            <span class="num">The application flow</span>
             <h2>Six steps, each one you can finish</h2>
-            <p>Over eighteen months I rebuilt the flow around what people actually had to do, in order:</p>
-            <ol>
-              <li><strong>Start:</strong> pick the jurisdiction first, and preview the blank form before committing.</li>
-              <li><strong>Fill in:</strong> sections in a rail with their status, and a completion ring.</li>
-              <li><strong>Documents:</strong> reuse files already on record instead of uploading them again.</li>
-              <li><strong>Fingerprints:</strong> a real-world appointment gets its own step and its own help.</li>
-              <li><strong>Review:</strong> every warning has a button that jumps straight to the fix.</li>
-              <li><strong>Sign and submit:</strong> submitting creates the pending licence record automatically, so nothing is typed twice.</li>
-            </ol>
-            <div class="mk" aria-label="Mockup of the review step: three warnings, each with a Fix button">
-              <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Review</b></div>
-              <div class="review" aria-hidden="true">
-                <span class="mk-k">3 things to fix before you submit</span>
-                <div class="warn"><span>Key personnel: one person has no date of birth</span><b>Fix</b></div>
-                <div class="warn"><span>Addresses: a gap between two addresses</span><b>Fix</b></div>
-                <div class="warn"><span>Documents: proof of address is missing</span><b>Fix</b></div>
-              </div>
-            </div>
-            <p class="mock-note">Recreated mockup of the review step, with invented warnings.</p>
-            <aside class="psych" aria-label="Psychology note">
-              <span class="psych-k">Psych note</span>
-              <h3>The goal-gradient effect</h3>
-              <p>
-                People speed up as a goal gets closer, as long as they can see how close it is. Coffee-card customers
-                buy faster as the card fills, and a card with two free stamps beats a shorter card with none.
-              </p>
-              <p>
-                The completion ring, the section statuses and a warnings list that counts down to zero all lean on the
-                same effect. Without visible progress, people give up on long forms partway through.
-              </p>
-              <small>Hull, 1932; Kivetz, Urminsky &amp; Zheng, 2006</small>
-            </aside>
+            <p>
+              Over eighteen months I rebuilt the flow around what people actually had to do, in order. A rail of steps
+              stays on screen with a count of what's left in each, so the end is always visible. Click through it:
+            </p>
           </div>
+        </div>
+        </div>
+      </section>
+
+      <section class="wrap wt-wrap">
+        <div class="mk wt">
+          <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Licence application</b></div>
+          <div class="wt-body">
+            <div class="wt-rail" role="tablist" aria-label="Application steps" aria-orientation="vertical">
+              <button type="button" role="tab" id="wt-t0" aria-controls="wt-p0" aria-selected="true">Start</button>
+              <button type="button" role="tab" id="wt-t1" aria-controls="wt-p1" aria-selected="false" tabindex="-1">Fill in your information <em class="count">9</em></button>
+              <button type="button" role="tab" id="wt-t2" aria-controls="wt-p2" aria-selected="false" tabindex="-1">Attach documents <em class="count">1</em></button>
+              <button type="button" role="tab" id="wt-t3" aria-controls="wt-p3" aria-selected="false" tabindex="-1">Get fingerprints <em class="count">2</em></button>
+              <button type="button" role="tab" id="wt-t4" aria-controls="wt-p4" aria-selected="false" tabindex="-1">Review and finalise</button>
+              <button type="button" role="tab" id="wt-t5" aria-controls="wt-p5" aria-selected="false" tabindex="-1">Sign</button>
+              <button type="button" role="tab" id="wt-t6" aria-controls="wt-p6" aria-selected="false" tabindex="-1">Submit</button>
+            </div>
+            <div class="wt-panels">
+
+              <div class="wt-panel" role="tabpanel" id="wt-p0" aria-labelledby="wt-t0">
+                <div class="wt-screen" aria-hidden="true">
+                  <b class="wt-h">To get started, select the following</b>
+                  <span class="sel"><small>Licensing agency</small>State Licensing Agency</span>
+                  <span class="sel"><small>Licence type</small>Key person licence</span>
+                  <span class="sel"><small>Business entity</small>Acme Inc.</span>
+                  <span class="sel"><small>Application</small>Personal disclosure form</span>
+                  <span class="wt-link">What if I don't see the application name?</span>
+                  <span class="wt-actions"><span class="b ghost">Preview the blank form</span><span class="b">Continue</span></span>
+                </div>
+                <p class="wt-cap"><strong>Start.</strong> Four cascading choices, each narrowing the next, because the jurisdiction decides which questions even appear. You can preview the blank form before committing to it.</p>
+              </div>
+
+              <div class="wt-panel" role="tabpanel" id="wt-p1" aria-labelledby="wt-t1" hidden>
+                <div class="wt-screen wt-split" aria-hidden="true">
+                  <div>
+                    <span class="wt-prog"><span class="ring sm" style="--p: 40"></span><b>Fill in your information</b><small>12 / 30 sections complete</small></span>
+                    <span class="f"><small>Full name</small><span></span></span>
+                    <span class="f"><small>Phone number</small><span></span></span>
+                    <span class="f"><small>Date and place of birth</small><span></span></span>
+                    <span class="wt-actions"><span class="b ok">Mark as complete</span></span>
+                    <span class="wt-actions"><span class="b ghost">‹ Previous section</span><span class="b">Continue to Passport ›</span></span>
+                    <span class="note">Notes · Add flag</span>
+                  </div>
+                  <div class="tree">
+                    <small>Search sections</small>
+                    <b>Personal information</b>
+                    <span class="now">Personal details</span>
+                    <span class="bad">Passport <em class="count">1</em></span>
+                    <span class="done">Citizenship ✓</span>
+                    <span>Education</span>
+                    <span>Residential history</span>
+                    <b>Relatives</b>
+                    <b>Additional sections</b>
+                  </div>
+                </div>
+                <p class="wt-cap"><strong>Fill in.</strong> A searchable section tree shows what's done, what's flagged and what has errors. Each section ends with "Mark as complete" and a button that names the next section, and anyone can leave a note or flag for a manager.</p>
+              </div>
+
+              <div class="wt-panel" role="tabpanel" id="wt-p2" aria-labelledby="wt-t2" hidden>
+                <div class="wt-screen" aria-hidden="true">
+                  <b class="wt-h">Attach required documents</b>
+                  <span class="slot"><small>Photograph *</small><span class="file">Photograph.jpeg <i>3 MB</i></span></span>
+                  <span class="slot"><small>Proof of address *</small><span class="drop">Drag and drop or browse files · max 2 GB<i>You can also select from your documents</i></span></span>
+                  <span class="slot"><small>Additional documents</small><span class="drop small">Optional</span></span>
+                  <span class="wt-actions"><span class="b">Continue</span></span>
+                </div>
+                <p class="wt-cap"><strong>Attach documents.</strong> The honour-system tick box became one slot per required document. You can upload or reuse a file already on record, and uploads live inside the section they belong to, so the fields that go with each document get filled in too.</p>
+              </div>
+
+              <div class="wt-panel" role="tabpanel" id="wt-p3" aria-labelledby="wt-t3" hidden>
+                <div class="wt-screen" aria-hidden="true">
+                  <b class="wt-h">Get fingerprints</b>
+                  <span class="help">Help with fingerprints ▾<i>Book an appointment with a fingerprinting provider. Some regulators need the card mailed in.</i></span>
+                  <span class="f"><small>Date you were fingerprinted</small><span class="date">Pick a date</span></span>
+                  <span class="f"><small>Record number (optional)</small><span></span></span>
+                  <span class="wt-actions"><span class="b ok">Mark as complete</span><span class="b">Continue</span></span>
+                </div>
+                <p class="wt-cap"><strong>Get fingerprints.</strong> A real-world appointment gets its own step, its own guidance and a place to record that it happened, instead of an info box people skipped.</p>
+              </div>
+
+              <div class="wt-panel" role="tabpanel" id="wt-p4" aria-labelledby="wt-t4" hidden>
+                <div class="wt-screen" aria-hidden="true">
+                  <b class="wt-h">Review and finalise</b>
+                  <span class="err">You have 9 sections remaining under Fill in your information.<span class="b sm">Complete remaining sections</span></span>
+                  <span class="err">It looks like you haven't entered your fingerprint details yet.<span class="b sm">Enter fingerprint details</span></span>
+                  <span class="err">You are missing 2 required documents.<span class="b sm">Attach missing documents</span></span>
+                  <span class="gen"><span>If you make updates, generate a new PDF so you have the latest version.<i>Last generated on 12 March</i></span><span class="b ghost">Preview</span><span class="b">Generate PDF</span></span>
+                </div>
+                <p class="wt-cap"><strong>Review and finalise.</strong> Every problem is written in plain language with a button that goes straight to the fix. When none are left: "We can't find any errors on your application. You're ready to generate it."</p>
+              </div>
+
+              <div class="wt-panel" role="tabpanel" id="wt-p5" aria-labelledby="wt-t5" hidden>
+                <div class="wt-screen" aria-hidden="true">
+                  <b class="wt-h">Sign your application</b>
+                  <span class="help">Some jurisdictions need a wet-ink signature or a notary. If yours does, attach the signed copy below.</span>
+                  <span class="slot"><small>Signed application (if required)</small><span class="drop">Attach signed application</span></span>
+                  <span class="slot"><small>Notarised copy (if required)</small><span class="drop">Attach notarised application</span></span>
+                  <span class="f"><small>Notary appointment date</small><span class="date">Pick a date</span></span>
+                </div>
+                <p class="wt-cap"><strong>Sign.</strong> Signatures and notaries happen away from the screen, so the step explains when they're needed and gives the paper copies a home.</p>
+              </div>
+
+              <div class="wt-panel" role="tabpanel" id="wt-p6" aria-labelledby="wt-t6" hidden>
+                <div class="wt-screen" aria-hidden="true">
+                  <b class="wt-h">Submit</b>
+                  <span class="help">Submission methods vary by jurisdiction. Follow the instructions in your application.</span>
+                  <span class="f"><small>Submission date</small><span class="date">12 March</span></span>
+                  <span class="wt-actions"><span class="b ok">✓ Mark application as complete</span></span>
+                  <span class="check"><span class="box on"></span>Tell my manager it's ready for review</span>
+                  <span class="next"><b>Next step</b>We've created a pending licence record for you. Upload your licence there once you receive it.<i><span class="box"></span>Don't create a pending licence record</i></span>
+                </div>
+                <p class="wt-cap"><strong>Submit.</strong> The product finally has an end: mark it complete, notify your manager, and the pending licence record is created for you, with an opt-out, instead of being a last chore people forgot.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <p class="mock-note">Recreated mockup with invented data. Click the steps, or use the arrow keys.</p>
+      </section>
+
+      <section class="wrap section wt-after">
+        <div class="case-body">
+        <div class="prose">
+
+          <aside class="psych" aria-label="Psychology note">
+            <span class="psych-k">Psych note</span>
+            <h3>The goal-gradient effect</h3>
+            <p>
+              People speed up as a goal gets closer, as long as they can see how close it is. Coffee-card customers
+              buy faster as the card fills, and a card with two free stamps beats a shorter card with none.
+            </p>
+            <p>
+              The counts in the rail, the section ring and a review list that counts down to zero all lean on the same
+              effect. Without visible progress, people give up on long forms partway through.
+            </p>
+            <small>Hull, 1932; Kivetz, Urminsky &amp; Zheng, 2006</small>
+          </aside>
 
           <div class="chapter">
-            <span class="num">The task manager</span>
-            <h2>Twelve requests for twelve columns was one request</h2>
+            <span class="num">The home page</span>
+            <h2>An overview that knows where you are</h2>
             <p>
-              The task manager had become the centre of the app, and every client wanted something different: a notary
-              date, a fingerprint step, a start-date column, linked licences. Instead of adding each field, I reframed
-              the queue as one problem, a fixed task model versus the many ways clients actually work, and let them
-              define their own fields and statuses.
+              There was no landing page that answered "what do I need to do?". I designed one around three moments:
+              a brand-new user, someone with an application in progress, and someone who's been granted a licence.
+              It's built from widgets people can resize, remove and add back, and every empty state says what will
+              appear there.
             </p>
-            <div class="mk" aria-label="Mockup of the task table: columns for task, owner, due date, status and two client-defined fields, with one row being edited inline and an overdue date in red">
-              <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Tasks</b></div>
+          </div>
+          <div class="mk dash" aria-label="Mockup of the overview: widgets for active applications, tasks with an overdue tab, licences needing attention, and a reminder to check your information">
+            <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Overview</b></div>
+            <div class="dash-grid" aria-hidden="true">
+              <div class="w"><b>Active applications <i>⋯</i></b><span>State A application <em class="chip">In progress</em></span><span>State B renewal <em class="chip grey">Not started</em></span></div>
+              <div class="w"><b>Tasks <i>⋯</i></b><span class="tabs"><u>Upcoming</u><u class="on">Overdue (3)</u><u>Completed</u></span><span>Upload proof of address <em class="late">2 days late</em></span><span>Book fingerprints <em class="late">Overdue</em></span></div>
+              <div class="w"><b>Licences <i>⋯</i></b><span class="tabs"><u class="on">Expires soon</u><u>Needs renewal</u><u>Pending</u></span><span>Key person licence <em class="chip warn">Expires in 21 days</em></span></div>
+              <div class="w nudge"><b>Notes <i>⋯</i></b><span>It's been 6 months. Is your information up to date?</span><span class="b sm ghost">Review my details</span></div>
+            </div>
+          </div>
+          <p class="mock-note">Recreated mockup with invented data.</p>
+
+          <div class="chapter">
+            <span class="num">Navigation</span>
+            <h2>Thirty links became three places</h2>
+            <p>
+              The sidebar grew from 2023 to 2024 until it held around thirty links: licensing, reports, organisation
+              settings, imports and a person switcher, all in one column. I split the product into three areas,
+              Licensing, Disclosure and Settings, on a slim rail, with a lighter panel of grouped links for whichever
+              area you're in.
+            </p>
+          </div>
+          <div class="ba">
+            <div>
+              <span class="ba-tag">Before</span>
+              <div class="mk" aria-label="Mockup of the old navigation: one dark sidebar with around thirty links">
+                <div class="navwrap" aria-hidden="true"><div class="navold">
+                  <span>Dashboard</span><span>Application manager</span><span>Calendar</span><span>Task manager</span><span>Licences</span><span>Businesses</span><span>Contracts</span><span>Customers</span><span>Products</span><span>Product tracking</span><span>Vendors</span><span>Reports</span><span>Positions</span><span>Import</span><span>Digital submission</span><span>Documents</span><span>…</span>
+                </div><div class="navcontent"><span class="bar w60"></span><span class="bar"></span><span class="bar"></span><span class="bar w80"></span></div></div>
+              </div>
+            </div>
+            <div>
+              <span class="ba-tag after">After</span>
+              <div class="mk" aria-label="Mockup of the new navigation: a slim rail with Licensing, Disclosure and Settings, and a panel of grouped links">
+                <div class="navnew" aria-hidden="true">
+                  <div class="nrail"><span class="on">Licensing</span><span>Disclosure</span><span>Settings</span></div>
+                  <div class="npanel"><small>General</small><span class="on">Overview</span><span>Licences</span><span>Tasks</span><small>Reports</small><span>Expiring licences</span><small>Organisation</small><span>Businesses</span><span>People</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="mock-note">Recreated mockups.</p>
+
+          <div class="chapter">
+            <span class="num">The model underneath</span>
+            <h2>Licences first, applications second</h2>
+            <p>
+              The old product was organised around applications, but people think in licences. One licence can need
+              several applications, and one application can produce several licences. So submitting now creates the
+              pending licence record automatically, and the licence record itself got a full rethink: a status
+              history instead of one overwritten field, a "renewal in progress" switch that pauses reminders, and an
+              explicit "no expiry date" option that warns you there'll be no notifications.
+            </p>
+          </div>
+          <div class="mk lic" aria-label="Mockup of the licence record: a lifecycle line from started to granted, and a status history table with one current row">
+            <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Licence record</b></div>
+            <div class="lic-body" aria-hidden="true">
+              <div class="life"><span class="d">Started</span><span class="d">Submitted</span><span class="d">Resubmitted</span><span class="d on">Granted</span></div>
+              <table class="hist">
+                <thead><tr><th>Status</th><th>From</th><th>Expiry</th><th>Reason</th><th>Current</th></tr></thead>
+                <tbody>
+                  <tr class="cur"><td><em class="chip">Granted</em></td><td>12 Mar 2024</td><td>30 Jun 2026</td><td>—</td><td>✓</td></tr>
+                  <tr><td><em class="chip grey">Pending</em></td><td>2 Jan 2024</td><td>—</td><td>Awaiting decision</td><td></td></tr>
+                </tbody>
+              </table>
+              <span class="toggle"><span class="sw on"></span>Renewal in progress · reminders paused</span>
+            </div>
+          </div>
+          <p class="mock-note">Recreated mockup with invented dates.</p>
+          <p>
+            I planned the work in phases so each one shipped on its own: navigation first, then this application flow,
+            then assignments for managers, an application manager organised by licence, and finally application
+            packages built from each regulator's requirements.
+          </p>
+
+          <div class="chapter">
+            <span class="num">The manager's side</span>
+            <h2>Assigning applications, and tracking them</h2>
+            <p>
+              Most applicants didn't start on their own: a licensing manager assigned them. I designed that hand-off as
+              one step: pick who the application is for, choose the application, and optionally create a task and email
+              the applicants from a template, all in the same dialog. Each assignment then shows up in the task table,
+              where the manager tracks every applicant's progress through the steps above.
+            </p>
+            <p>
+              Every client tracked that progress differently: one needed a notary date, another a fingerprint status,
+              another linked licences, and each request arrived as a new column. Instead of adding them one by one, I
+              designed a field builder in settings. Default fields can be switched on or off, and clients add their own
+              as text, date, number, status or person.
+            </p>
+            <div class="mk" aria-label="Mockup of the manager's table: one row per assigned application, with applicant, due date, status and two fields the client added, one row being edited inline and an overdue date in red">
+              <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Assigned applications</b></div>
               <div class="mk-scroll" aria-hidden="true">
                 <table class="tasks">
-                  <thead><tr><th>Task</th><th>Owner</th><th>Due</th><th>Status</th><th class="custom">Notary date</th><th class="custom">Fingerprints</th></tr></thead>
+                  <thead><tr><th>Application</th><th>Applicant</th><th>Due</th><th>Status</th><th class="custom">Notary date</th><th class="custom">Fingerprints</th></tr></thead>
                   <tbody>
                     <tr><td>Renewal: State A</td><td>A. Patel</td><td class="late">Overdue</td><td><span class="chip">In progress</span></td><td>—</td><td>Booked</td></tr>
-                    <tr class="editing"><td>New application: State B</td><td>J. Chen</td><td>Next week</td><td><span class="chip">Waiting</span></td><td><span class="edit">Pick a date</span></td><td>Not started</td></tr>
-                    <tr><td>Key personnel update</td><td>R. Diaz</td><td>This month</td><td><span class="chip">Done</span></td><td>Signed</td><td>—</td></tr>
+                    <tr class="editing"><td>Personal disclosure: State B</td><td>J. Chen</td><td>Next week</td><td><span class="chip">Waiting</span></td><td><span class="edit">Pick a date</span></td><td>Not started</td></tr>
+                    <tr><td>Key person licence: State C</td><td>R. Diaz</td><td>This month</td><td><span class="chip">Done</span></td><td>Signed</td><td>—</td></tr>
                   </tbody>
                 </table>
               </div>
               <div class="tasks-foot" aria-hidden="true"><span>✦ Fields this client added themselves</span><b>Manage fields</b></div>
             </div>
-            <p class="mock-note">Recreated mockup with invented tasks and names.</p>
+            <p class="mock-note">Recreated mockup with invented applications and names.</p>
             <p>
-              Columns could be pinned, reordered or hidden; cells edit in place; and the first screen groups what's
-              overdue and due this week, so it answers “what now?”. I built the beta fixes myself, along with the
-              guided tour that introduced the new table, and tracked every tour step so we knew whether people finished it.
+              Columns can be pinned, reordered or hidden, cells edit in place, and the first screen groups what's
+              overdue and due this week, so a manager's first question, "who's stuck?", has an answer. I built the beta
+              fixes myself, along with the guided tour that introduced the new table, and tracked every tour step so we
+              knew whether people finished it.
             </p>
             <aside class="lesson" aria-label="The lesson">
               <span class="lesson-k">The lesson</span>
               <p class="lesson-big">A queue of feature requests is often one missing setting.</p>
-              <p>Turning twelve column requests into custom fields stopped the queue growing, and gave every client the table they'd been asking for.</p>
+              <p>Turning a run of column requests into custom fields stopped the queue growing, and gave every client the tracking they'd been asking for.</p>
             </aside>
           </div>
 
@@ -225,7 +646,8 @@
           <ul>
             <li><strong>Show people the end.</strong> Visible progress is what gets a long task finished.</li>
             <li><strong>Order questions by what they unlock.</strong> The jurisdiction came first because it decides which questions even appear.</li>
-            <li><strong>Every new feature needs an introduction.</strong> The tour and banners were as much a part of shipping as the code.</li>
+            <li><strong>Design the offline parts too.</strong> Notaries, signatures and fingerprints happen away from the screen, so they need steps, guidance and a place to record them.</li>
+            <li><strong>Write the rule before the screen.</strong> The access model and the licence lifecycle were diagrams and sentences before they were UI.</li>
           </ul>
 
         </div>
@@ -241,5 +663,35 @@
     </footer>
     <script src="../js/main.js?v=20260907"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
+    <script>
+      // Walkthrough tabs: click or use arrow keys (up/down, left/right) to move between steps.
+      (function () {
+        var list = document.querySelector(".wt-rail");
+        if (!list) return;
+        var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+        function select(tab, focus) {
+          tabs.forEach(function (t) {
+            var on = t === tab;
+            t.setAttribute("aria-selected", on ? "true" : "false");
+            t.tabIndex = on ? 0 : -1;
+            document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+          });
+          if (focus) tab.focus();
+        }
+        list.addEventListener("click", function (e) {
+          var t = e.target.closest('[role="tab"]');
+          if (t) select(t);
+        });
+        list.addEventListener("keydown", function (e) {
+          var i = tabs.indexOf(document.activeElement);
+          if (i < 0) return;
+          var n = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key];
+          if (e.key === "Home") n = -i; if (e.key === "End") n = tabs.length - 1 - i;
+          if (n === undefined) return;
+          e.preventDefault();
+          select(tabs[(i + n + tabs.length) % tabs.length], true);
+        });
+      })();
+    </script>
   </body>
 </html>

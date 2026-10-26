@@ -13,9 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Fraunces:opsz,wght,SOFT,WONK@144,600,100,0;144,600,100,1&family=Spline+Sans+Mono:ital,wght@0,300..700;1,300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261016u" />
+    <link rel="stylesheet" href="css/style.css?v=20261021a" />
+    <link rel="stylesheet" href="css/accents.css?v=20261021k" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -23,7 +24,8 @@
       } catch (e) {}
     </script>
     <style>
-      .shot { border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-1); }
+      .shot { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow-1); }
+      .mock-note { margin: 0.6rem 0 0; font-size: 0.8rem; color: var(--ink-3); }
       .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 2rem 0; }
     </style>
   </head>
@@ -55,23 +57,28 @@
     </header>
 
     <main id="main">
-      <section class="wrap case-hero">
+      <section class="wrap case-intro">
         <p class="eyebrow">Earlier work · Open source · 2021–2022</p>
         <h1>ProgramEquity: building Amplify to increase civic engagement</h1>
-        <p class="lead">
+        <p class="intro-sum">
           Amplify is an open-source platform that helps advocacy non-profits turn supporters into
           action: find your representatives, understand the issue, send the letter. I led development
           as technical lead on a distributed volunteer team.
         </p>
-        <dl class="case-meta">
+        <ul class="highlights">
+          <li><b>50% more contributors</b><span>After moving onboarding to Codespaces</span></li>
+          <li><b>Technical lead</b><span>Distributed volunteer team</span></li>
+          <li><b>Node back end</b><span>Google Civic API lookup and Auth0 sign-in</span></li>
+        </ul>
+        <dl class="meta-line">
           <div><dt>Role</dt><dd>Full-stack developer and technical lead</dd></div>
           <div><dt>Stack</dt><dd>Vue, Vuex, Node, Google Civic API, Auth0, GitHub Codespaces</dd></div>
-          <div><dt>Outcome</dt><dd>50% more contributors after moving onboarding to Codespaces</dd></div>
         </dl>
       </section>
 
       <section class="wrap">
-        <img class="shot" src="images/AmplifyMockup.jpeg" alt="Amplify app mockups" />
+        <img class="shot" src="images/covers/amplify.svg" width="1600" height="1000" alt="Amplify's letter flow: find your representatives on the left, then review the letter, sign your name and send it on the right" />
+        <p class="mock-note">Recreated mockup of the letter flow.</p>
       </section>
 
       <section class="wrap section">
@@ -86,14 +93,14 @@
 
           <h2>Screens</h2>
           <div class="shots">
-            <img class="shot" src="images/Amplify1.png" alt="Amplify screen 1" loading="lazy" />
-            <img class="shot" src="images/Amplify2.png" alt="Amplify screen 2" loading="lazy" />
-            <img class="shot" src="images/Amplify3.png" alt="Amplify screen 3" loading="lazy" />
-            <img class="shot" src="images/Amplify4.png" alt="Amplify screen 4" loading="lazy" />
-            <img class="shot" src="images/Amplify5.png" alt="Amplify screen 5" loading="lazy" />
-            <img class="shot" src="images/Amplify6.png" alt="Amplify screen 6" loading="lazy" />
-            <img class="shot" src="images/Amplify7.png" alt="Amplify screen 7" loading="lazy" />
-            <img class="shot" src="images/Amplify8.png" alt="Amplify screen 8" loading="lazy" />
+            <img class="shot" src="images/Amplify1.png" alt="Figma cover: ProgramEquity Amplify" loading="lazy" />
+            <img class="shot" src="images/Amplify2.png" alt="The Figma welcome page explaining how the file is organised and how to contribute" loading="lazy" />
+            <img class="shot" src="images/Amplify3.png" alt="Advocacy page for the Clean Futures Act: enter your address, then find, select and write to your representative" loading="lazy" />
+            <img class="shot" src="images/Amplify4.png" alt="Representative selection with the letter preview and a log-in-to-send button" loading="lazy" />
+            <img class="shot" src="images/Amplify5.png" alt="The three-step accordion: review the letter, sign your name, send the letter" loading="lazy" />
+            <img class="shot" src="images/Amplify6.png" alt="Step one open: the letter with a field for your own story" loading="lazy" />
+            <img class="shot" src="images/Amplify7.png" alt="Step two open: name and address form" loading="lazy" />
+            <img class="shot" src="images/Amplify8.png" alt="Step three open: the campaign's postage fund and a donate-and-send button" loading="lazy" />
           </div>
         </div>
 
