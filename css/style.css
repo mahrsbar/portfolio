@@ -2409,7 +2409,7 @@ pre code {
 
 @media (max-width: 860px) {
   .case-intro-split { grid-template-columns: minmax(0, 1fr); }
-  .intro-phones-stagger { max-width: 520px; }
+  .intro-phones-stagger { max-width: 520px; margin-inline: auto; }
   .case-intro-split .highlights li { display: block; }
   .case-intro-split .highlights b { white-space: normal; }
 }
@@ -4769,3 +4769,38 @@ main .chapter .num, main .tn-k, main .plugin-n, main .lesson-k, main .psych-k, m
 /* Touch screens: no grey tap box on links, and no hover lift that sticks
    after a tap; a pressed card sinks slightly instead. */
 a, button { -webkit-tap-highlight-color: transparent; }
+
+/* Phones, type and rhythm (Oct 2026): a little more side margin, 16px body
+   text, lighter headings with clearer steps between them, and fewer divider
+   lines. Prefixed with `html` so it also wins over accents.css. */
+@media (max-width: 560px) {
+  :root { --gutter: 24px; }
+
+  html body { font-size: 1rem; line-height: 1.65; }
+  html .prose p,
+  html .prose li { font-size: 1rem; line-height: 1.65; }
+  html .prose p { margin-bottom: 1.15em; }
+
+  html h1,
+  html .case-intro h1,
+  html .case-hero h1 { font-size: 1.75rem; line-height: 1.15; letter-spacing: -0.02em; }
+  html .duck-room .hero-copy h1 { font-size: 2.4rem; }
+  html .prose h2 { margin-top: 2.75rem; font-size: 1.4rem; line-height: 1.2; letter-spacing: -0.015em; }
+  html .prose h3 { font-size: 1.1rem; line-height: 1.3; }
+
+  html .case-intro .intro-sum,
+  html .lead { font-size: 1rem; line-height: 1.6; }
+
+  /* the three facts: one rule above, no dividers between them */
+  html .case-intro .highlights {
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+    padding-top: 1.1rem;
+    border-bottom: 0;
+  }
+  html .case-intro .highlights li,
+  html .case-intro .highlights li:has(.hl-link) { padding: 0; border: 0; }
+  html .case-intro .highlights b { font-size: 1rem; }
+  html .case-intro .highlights span { font-size: 0.82rem; margin-top: 0.1rem; }
+  html .case-intro .meta-line { margin-top: 1.25rem; font-size: 0.88rem; }
+}

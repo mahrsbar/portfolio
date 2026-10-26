@@ -15,7 +15,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026a" />
+    <link rel="stylesheet" href="../css/style.css?v=20261026b" />
     <link rel="stylesheet" href="../css/accents.css?v=20261026a" />
     <script>
       try {
@@ -158,64 +158,6 @@
         .mkset .err { flex-direction: column; align-items: flex-start; }
         .mkset .hist { font-size: 0.68rem; }
       }
-          /* 11 → 6 map */
-      .map { margin: 0; padding: 1.25rem 1.4rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
-      .map-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.5rem 1rem; margin-bottom: 1rem; }
-      .map-head b { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); }
-      .map-head span { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--ink-3); }
-      .mc-key { display: inline-block; width: 12px; height: 12px; border-radius: 4px; background: var(--bg-sunk); border: 1px solid var(--line-strong); margin-left: 0.6rem; }
-      .mc-key.auto { background: #e3f4ea; border-color: #8fcaa7; }
-      .map-cols, .map-row { display: grid; grid-template-columns: minmax(0, 1.25fr) 2rem minmax(0, 1fr); gap: 0.75rem; align-items: center; }
-      .map-cols { padding-bottom: 0.5rem; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
-      .map-row { padding: 0.6rem 0; border-bottom: 1px solid var(--line); }
-      .map-row:last-child { border-bottom: 0; padding-bottom: 0; }
-      .map-old { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-      .mc { display: inline-flex; align-items: baseline; gap: 0.4rem; padding: 0.3rem 0.6rem; border-radius: 8px; background: var(--bg-sunk); color: var(--ink-2); font-size: 0.8rem; line-height: 1.3; }
-      .mc b { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-3); font-weight: 500; }
-      .mc.auto { background: #e3f4ea; color: #155c39; text-decoration: line-through; text-decoration-color: rgba(21,92,57,.45); }
-      .mc.auto b { color: #155c39; }
-      .map-arrow { color: var(--ink-3); text-align: center; }
-      .map-new { display: grid; gap: 0.1rem; padding: 0.5rem 0.75rem; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--bg); }
-      .map-new b { color: var(--ink); font-size: 0.92rem; }
-      .map-new small { color: var(--ink-3); font-size: 0.76rem; line-height: 1.35; }
-      .map-auto .map-new { border-color: #8fcaa7; background: #e3f4ea; }
-      .map-auto .map-new b, .map-auto .map-new small { color: #155c39; }
-      :root[data-theme="dark"] .mc.auto, :root[data-theme="dark"] .map-auto .map-new, :root[data-theme="dark"] .mc-key.auto { background: #12301f; border-color: #2c6b46; color: #9fe0b8; }
-      :root[data-theme="dark"] .mc.auto b, :root[data-theme="dark"] .map-auto .map-new b, :root[data-theme="dark"] .map-auto .map-new small { color: #9fe0b8; }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .mc.auto, :root:not([data-theme="light"]) .map-auto .map-new, :root:not([data-theme="light"]) .mc-key.auto { background: #12301f; border-color: #2c6b46; color: #9fe0b8; }
-        :root:not([data-theme="light"]) .mc.auto b, :root:not([data-theme="light"]) .map-auto .map-new b, :root:not([data-theme="light"]) .map-auto .map-new small { color: #9fe0b8; }
-      }
-      @media (max-width: 760px) {
-        .map { padding: 1rem; }
-        .map-cols { display: none; }
-        .map-row { grid-template-columns: minmax(0, 1fr); gap: 0.4rem; }
-        .map-arrow { text-align: left; transform: rotate(90deg); width: 1rem; }
-      }
-          .map-svg { display: block; width: 100%; height: auto; overflow: visible; }
-      .map-svg .mcol { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; fill: var(--ink-3); }
-      .map-svg .mnode rect { fill: var(--bg-sunk); }
-      .map-svg .mn { font-family: var(--font-mono); font-size: 11px; fill: var(--ink-3); }
-      .map-svg .mt { font-size: 14px; fill: var(--ink-2); }
-      .map-svg .mnode.auto rect { fill: #e3f4ea; }
-      .map-svg .mnode.auto .mt, .map-svg .mnode.auto .mn { fill: #155c39; text-decoration: line-through; }
-      .map-svg .mstep rect { fill: var(--bg); stroke: var(--line-strong); }
-      .map-svg .mstep.auto rect { fill: #e3f4ea; stroke: #8fcaa7; }
-      .map-svg .ms { font-size: 15px; font-weight: 600; fill: var(--ink); }
-      .map-svg .md { font-size: 12px; fill: var(--ink-3); }
-      .map-svg .mstep.auto .ms, .map-svg .mstep.auto .md { fill: #155c39; }
-      .map-svg .mline { fill: none; stroke: var(--line-strong); stroke-width: 1.5; }
-      .map-svg .mline.auto { stroke: #3f9a68; stroke-dasharray: 5 4; }
-      .map-svg .mh { fill: var(--line-strong); }
-      .map-svg .mha { fill: #3f9a68; }
-      .map-list { display: none; }
-      :root[data-theme="dark"] .map-svg .mnode.auto rect, :root[data-theme="dark"] .map-svg .mstep.auto rect { fill: #12301f; stroke: #2c6b46; }
-      :root[data-theme="dark"] .map-svg .mnode.auto text, :root[data-theme="dark"] .map-svg .mstep.auto text { fill: #9fe0b8; }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) .map-svg .mnode.auto rect, :root:not([data-theme="light"]) .map-svg .mstep.auto rect { fill: #12301f; stroke: #2c6b46; }
-        :root:not([data-theme="light"]) .map-svg .mnode.auto text, :root:not([data-theme="light"]) .map-svg .mstep.auto text { fill: #9fe0b8; }
-      }
-      @media (max-width: 760px) { .map-svg { display: none; } .map-list { display: block; } }
     </style>
   </head>
   <body>
@@ -261,89 +203,6 @@
         <dl class="meta-line">
           <div><dt>Role</dt><dd>Product designer and front-end developer on a small team</dd></div>
         </dl>
-      </section>
-
-      <section class="wrap intro-visual">
-        <figure class="map" aria-labelledby="map-title">
-          <figcaption class="map-head">
-            <b id="map-title">Where did the 11 steps go?</b>
-            <span><i class="mc-key"></i>Old chore <i class="mc-key auto"></i>Now done by the product</span>
-          </figcaption>
-          <svg class="map-svg" viewBox="0 0 1000 558" role="img" aria-labelledby="map-title map-desc">
-          <desc id="map-desc">Eleven old chores on the left, each connected by a curved arrow to the step of the new flow that absorbed it. Generating the PDF and creating the licence record are now done by the product.</desc>
-          <defs><marker id="mh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="mh"/></marker>
-          <marker id="mha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="mha"/></marker></defs>
-          <text x="0" y="24" class="mcol">BEFORE: 11 CHORES ON ONE GUIDE PAGE</text><text x="640" y="24" class="mcol">AFTER: 6 STEPS, PLUS ONE DONE FOR YOU</text>
-          <path d="M360 73.0 C500 73.0 500 85.0 634 85.0" class="mline" marker-end="url(#mh)"/>
-          <path d="M360 119.0 C500 119.0 500 85.0 634 85.0" class="mline" marker-end="url(#mh)"/>
-          <path d="M360 165.0 C500 165.0 500 85.0 634 85.0" class="mline" marker-end="url(#mh)"/>
-          <path d="M360 211.0 C500 211.0 500 157.7 634 157.7" class="mline" marker-end="url(#mh)"/>
-          <path d="M360 257.0 C500 257.0 500 303.0 634 303.0" class="mline auto" marker-end="url(#mha)"/>
-          <path d="M360 303.0 C500 303.0 500 303.0 634 303.0" class="mline" marker-end="url(#mh)"/>
-          <path d="M360 349.0 C500 349.0 500 230.3 634 230.3" class="mline" marker-end="url(#mh)"/>
-          <path d="M360 395.0 C500 395.0 500 375.7 634 375.7" class="mline" marker-end="url(#mh)"/>
-          <path d="M360 441.0 C500 441.0 500 448.3 634 448.3" class="mline" marker-end="url(#mh)"/>
-          <path d="M360 487.0 C500 487.0 500 448.3 634 448.3" class="mline" marker-end="url(#mh)"/>
-          <path d="M360 533.0 C500 533.0 500 521.0 634 521.0" class="mline auto" marker-end="url(#mha)"/>
-          <g class="mnode"><rect x="0" y="56" width="360" height="34" rx="8"/><text x="14" y="78" class="mn">1</text><text x="38" y="78" class="mt">Read the welcome note and instructions</text></g>
-          <g class="mnode"><rect x="0" y="102" width="360" height="34" rx="8"/><text x="14" y="124" class="mn">2</text><text x="38" y="124" class="mt">Complete disclosure sections, in any order</text></g>
-          <g class="mnode"><rect x="0" y="148" width="360" height="34" rx="8"/><text x="14" y="170" class="mn">3</text><text x="38" y="170" class="mt">Complete the jurisdiction's extra sections</text></g>
-          <g class="mnode"><rect x="0" y="194" width="360" height="34" rx="8"/><text x="14" y="216" class="mn">4</text><text x="38" y="216" class="mt">Tick “Yes, I have attached all documents”</text></g>
-          <g class="mnode auto"><rect x="0" y="240" width="360" height="34" rx="8"/><text x="14" y="262" class="mn">5</text><text x="38" y="262" class="mt">Generate the application PDF</text></g>
-          <g class="mnode"><rect x="0" y="286" width="360" height="34" rx="8"/><text x="14" y="308" class="mn">6</text><text x="38" y="308" class="mt">Download it</text></g>
-          <g class="mnode"><rect x="0" y="332" width="360" height="34" rx="8"/><text x="14" y="354" class="mn">7</text><text x="38" y="354" class="mt">Book fingerprints and mail them in</text></g>
-          <g class="mnode"><rect x="0" y="378" width="360" height="34" rx="8"/><text x="14" y="400" class="mn">8</text><text x="38" y="400" class="mt">Get it notarised and upload the copy</text></g>
-          <g class="mnode"><rect x="0" y="424" width="360" height="34" rx="8"/><text x="14" y="446" class="mn">9</text><text x="38" y="446" class="mt">Print it and mail it to the regulator</text></g>
-          <g class="mnode"><rect x="0" y="470" width="360" height="34" rx="8"/><text x="14" y="492" class="mn">10</text><text x="38" y="492" class="mt">Mark it as submitted</text></g>
-          <g class="mnode auto"><rect x="0" y="516" width="360" height="34" rx="8"/><text x="14" y="538" class="mn">11</text><text x="38" y="538" class="mt">Create the licence record yourself</text></g>
-          <g class="mstep"><rect x="640" y="56.0" width="360" height="58" rx="10"/><text x="656" y="80.0" class="ms">Fill in your information</text><text x="656" y="100.0" class="md">A guided path with a count of what’s left</text></g>
-          <g class="mstep"><rect x="640" y="128.7" width="360" height="58" rx="10"/><text x="656" y="152.7" class="ms">Attach documents</text><text x="656" y="172.7" class="md">One slot per required document</text></g>
-          <g class="mstep"><rect x="640" y="201.3" width="360" height="58" rx="10"/><text x="656" y="225.3" class="ms">Get fingerprints</text><text x="656" y="245.3" class="md">Its own step, guidance and a date</text></g>
-          <g class="mstep"><rect x="640" y="274.0" width="360" height="58" rx="10"/><text x="656" y="298.0" class="ms">Review and finalise</text><text x="656" y="318.0" class="md">One-click fixes; the PDF is made for you</text></g>
-          <g class="mstep"><rect x="640" y="346.7" width="360" height="58" rx="10"/><text x="656" y="370.7" class="ms">Sign</text><text x="656" y="390.7" class="md">A home for signed and notarised copies</text></g>
-          <g class="mstep"><rect x="640" y="419.3" width="360" height="58" rx="10"/><text x="656" y="443.3" class="ms">Submit</text><text x="656" y="463.3" class="md">Mark complete and notify your manager</text></g>
-          <g class="mstep auto"><rect x="640" y="492.0" width="360" height="58" rx="10"/><text x="656" y="516.0" class="ms">Done for you</text><text x="656" y="536.0" class="md">Pending licence record created automatically</text></g>
-          </svg>
-          <div class="map-list">
-          <div class="map-cols" aria-hidden="true"><span>Before: 11 chores on one guide page</span><span></span><span>After: 6 steps, plus one done for you</span></div>
-            <div class="map-row">
-              <div class="map-old"><span class="mc"><b>1</b>Read the welcome note and instructions</span><span class="mc"><b>2</b>Complete disclosure sections, in any order</span><span class="mc"><b>3</b>Complete the jurisdiction's extra sections</span></div>
-              <span class="map-arrow" aria-hidden="true">→</span>
-              <div class="map-new"><b>Fill in your information</b><small>One guided path, with a count of what’s left</small></div>
-            </div>
-            <div class="map-row">
-              <div class="map-old"><span class="mc"><b>4</b>Tick “Yes, I have attached all documents”</span></div>
-              <span class="map-arrow" aria-hidden="true">→</span>
-              <div class="map-new"><b>Attach documents</b><small>One slot per required document</small></div>
-            </div>
-            <div class="map-row">
-              <div class="map-old"><span class="mc"><b>7</b>Book fingerprints and mail them in</span></div>
-              <span class="map-arrow" aria-hidden="true">→</span>
-              <div class="map-new"><b>Get fingerprints</b><small>Its own step, guidance and a date to record</small></div>
-            </div>
-            <div class="map-row">
-              <div class="map-old"><span class="mc auto"><b>5</b>Generate the application PDF</span><span class="mc"><b>6</b>Download it</span></div>
-              <span class="map-arrow" aria-hidden="true">→</span>
-              <div class="map-new"><b>Review and finalise</b><small>Errors with one-click fixes; the PDF is generated for you</small></div>
-            </div>
-            <div class="map-row">
-              <div class="map-old"><span class="mc"><b>8</b>Get it notarised and upload the copy</span></div>
-              <span class="map-arrow" aria-hidden="true">→</span>
-              <div class="map-new"><b>Sign</b><small>A home for signed and notarised copies</small></div>
-            </div>
-            <div class="map-row">
-              <div class="map-old"><span class="mc"><b>9</b>Print it and mail it to the regulator</span><span class="mc"><b>10</b>Mark it as submitted</span></div>
-              <span class="map-arrow" aria-hidden="true">→</span>
-              <div class="map-new"><b>Submit</b><small>A real end: mark complete and notify your manager</small></div>
-            </div>
-            <div class="map-row map-auto">
-              <div class="map-old"><span class="mc auto"><b>11</b>Create the licence record yourself</span></div>
-              <span class="map-arrow" aria-hidden="true">→</span>
-              <div class="map-new"><b>Done for you</b><small>The pending licence record is created automatically</small></div>
-            </div>
-        </div>
-        </figure>
-        <p class="mock-note">The old guide page's eleven chores, and the step of the new flow that absorbed each one.</p>
       </section>
 
       <section class="wrap section">
