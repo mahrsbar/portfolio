@@ -4817,3 +4817,40 @@ a, button { -webkit-tap-highlight-color: transparent; }
   html .case-intro .highlights span { font-size: 0.82rem; margin-top: 0.1rem; }
   html .case-intro .meta-line { margin-top: 1.25rem; font-size: 0.88rem; }
 }
+
+/* Small labels in the body font (Oct 2026): the spaced-out mono capitals
+   above titles and on cards read as shouting, and wrapped badly on phones. */
+.eyebrow,
+.pcard-kicker {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-3);
+}
+.eyebrow { display: block; font-size: 0.9rem; word-spacing: 0.08em; }
+.eyebrow::before { display: none; }
+.pcard-kicker { font-size: 0.85rem; }
+
+@media (max-width: 560px) {
+  /* Problem / What I did / Outcome: one quiet box with three rows instead
+     of three tall cards with icon circles */
+  html .tldr {
+    gap: 0;
+    padding: 0.2rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-l);
+    background: var(--bg-elev);
+  }
+  html .tldr > div { padding: 0.95rem 0; border: 0; border-radius: 0; background: none; }
+  html .tldr > div + div { border-top: 1px solid var(--line); }
+  html .tldr-icon { display: none; }
+  html .tldr .k { gap: 0; margin-bottom: 0.25rem; font-size: 0.95rem; }
+  html .tldr p { font-size: 0.9rem; }
+
+  /* smaller buttons and header controls */
+  html .btn { padding: 0.65rem 1rem; font-size: 0.9rem; }
+  html .nav.has-menu .theme-toggle,
+  html .nav.has-menu .nav-menu-btn { width: 36px; height: 36px; }
+  html .nav-menu-btn svg { width: 16px; height: 16px; }
+}
