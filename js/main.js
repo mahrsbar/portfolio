@@ -259,6 +259,13 @@
     });
   }
 
+  /* ---- Section links: jump, then drop the #hash so a refresh starts where you are, not at the section ---- */
+  function clearHash() {
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  }
+  window.addEventListener("hashchange", clearHash);
+  window.addEventListener("load", clearHash);
+
   document.addEventListener("DOMContentLoaded", function () {
     bindToggle();
     markNav();
