@@ -25,7 +25,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261026f" />
+    <link rel="stylesheet" href="css/style.css?v=20261026g" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -162,27 +162,24 @@
 
       /* session notes */
       .sn {
-        padding: clamp(1.5rem, 4vw, 2.5rem);
+        padding: clamp(1.25rem, 3vw, 2rem);
         background: var(--bg-elev);
         border: 1px solid var(--line);
         border-radius: var(--radius-l);
       }
       .sn-head { display: flex; justify-content: space-between; gap: 1.5rem; align-items: center; }
-      .sn-head h2 { margin: 0.35rem 0 0; }
+      .sn-head h2 { margin: 0.25rem 0 0; font-size: clamp(1.5rem, 2.6vw, 2rem); }
       .sn-lead { margin: 0.6rem 0 0; color: var(--ink-2); text-wrap: balance; }
       .sn-k {
-        margin: 0 0 0.75rem;
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
+        margin: 0 0 0.6rem;
+        font-size: 0.88rem;
         font-weight: 500;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
         color: var(--ink-3);
       }
       .sn-head .sn-k { margin: 0; }
 
       /* the duck from the hero, bobbing and writing */
-      .sn-duck { flex: none; width: clamp(96px, 15vw, 150px); height: auto; overflow: visible; }
+      .sn-duck { flex: none; width: clamp(60px, 8vw, 92px); height: auto; overflow: visible; }
       .snd-bob { transform-box: fill-box; transform-origin: 50% 100%; animation: snd-bob 2.4s ease-in-out infinite; }
       .snd-eye { transform-box: fill-box; transform-origin: 50% 50%; animation: snd-blink 4.6s infinite; }
       .snd-pen { transform-box: fill-box; transform-origin: 0% 100%; }
@@ -197,39 +194,24 @@
       @keyframes snd-jot   { from { transform: rotate(-7deg) translateX(-2px); } to { transform: rotate(7deg) translateX(2px); } }
       @keyframes snd-write { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
-      /* two columns: numbers + attention on the left, the duck's notepad on the right */
+      /* two columns: three numbers as a short list on the left, the duck's notepad on the right */
       .sn-body {
         display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-        gap: clamp(1.5rem, 4vw, 2.5rem);
-        margin-top: 2rem;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: clamp(1.25rem, 3vw, 2rem);
+        margin-top: 1.5rem;
         align-items: start;
       }
-      .sn-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.75rem; }
-      .sn-stats > div { padding: 0.85rem 1rem; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); }
-      .sn-stats b { display: block; font-family: var(--font-mono); font-size: 1.5rem; font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
-      .sn-stats span { font-size: 0.82rem; color: var(--ink-3); }
-      /* a project name, not a number: smaller, in the body font */
-      .sn-stats .sn-longest b { font-family: var(--font-sans); font-size: 1.05rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; padding: 0.2rem 0 0.15rem; }
-
-      .sn-chart {
-        display: grid;
-        grid-template-columns: max-content minmax(0, 1fr) max-content;
-        align-items: center;
-        gap: 0.7rem 1rem;
-        font-size: 0.92rem;
-      }
-      .sn-row { display: contents; }
-      .sn-row .val { font-family: var(--font-mono); font-size: 0.78rem; font-variant-numeric: tabular-nums; color: var(--ink-3); text-align: right; }
-      .sn-track { display: block; height: 12px; border-radius: 999px; background: var(--bg-sunk); overflow: hidden; }
-      .sn-fill { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--line-strong); transition: width 0.9s var(--ease); }
-      .sn-row.top .name { font-weight: 600; }
-      .sn-row.top .sn-fill { background: var(--scribble, #FFC93C); }
+      .sn-stats { display: grid; margin: 0; }
+      .sn-stats > div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+      .sn-stats > div:first-child { border-top: 1px solid var(--line); }
+      .sn-stats b { order: 2; font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+      .sn-stats span { order: 1; font-size: 0.88rem; color: var(--ink-3); }
 
       /* the duck's notepad: handwritten lines that appear one by one */
       .sn-pad {
         position: relative;
-        padding: 1.4rem 1.25rem 1.1rem;
+        padding: 1.2rem 1.15rem 1rem;
         background: var(--bg);
         border: 1px solid var(--line);
         border-radius: var(--radius);
@@ -249,9 +231,8 @@
         position: relative;
         padding: 0.2rem 0 0.2rem 1.6rem;
         font-family: "Shantell Sans", ui-rounded, sans-serif;
-        font-size: 0.98rem;
-        line-height: 1.6;
-        min-height: 32px;
+        font-size: 0.95rem;
+        line-height: 1.5;
         color: var(--ink);
       }
       .sn-list li::before {
@@ -262,14 +243,14 @@
         font-family: var(--font-mono);
         font-size: 0.78rem;
         color: var(--ink-3);
-        top: 0.45rem;
+        top: 0.4rem;
       }
       .sn.in .sn-list li { animation: sn-note .45s var(--ease) both; animation-delay: calc(var(--i, 0) * 0.45s + 0.3s); }
       @keyframes sn-note { from { opacity: 0; transform: translateY(6px); } }
-      .sn-fine { margin: 1rem 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--ink-3); }
+      .sn-fine { margin: 0.75rem 0 0; font-size: 0.8rem; line-height: 1.5; color: var(--ink-3); }
 
-      .sn-plan { margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-      .sn-plan-line { margin: 0; font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; }
+      .sn-plan { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+      .sn-plan-line { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; }
       .sn-plan .hero-actions { margin-top: 1.25rem; }
       .sn-nowrap { white-space: nowrap; }
 
@@ -277,15 +258,15 @@
         .sn-body { grid-template-columns: 1fr; }
       }
       @media (max-width: 600px) {
-        /* duck above the heading, so the text gets the full width */
-        .sn-head { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-        .sn-duck { order: -1; width: 88px; }
-        .sn-stats { grid-template-columns: 1fr 1fr; }
-        .sn-stats > div:last-child { grid-column: span 2; }
-        .sn-chart { gap: 0.55rem 0.65rem; font-size: 0.85rem; }
+        /* the duck sits beside the label and heading; the intro line runs full width under both */
+        .sn-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; align-items: start; }
+        .sn-head > div { display: contents; }
+        .sn-head .sn-k { grid-column: 1; grid-row: 1; }
+        .sn-head h2 { grid-column: 1; grid-row: 2; }
+        .sn-lead { grid-column: 1 / -1; grid-row: 3; }
+        .sn-duck { grid-column: 2; grid-row: 1 / 3; align-self: center; width: 52px; }
       }
       @media (prefers-reduced-motion: reduce) {
-        .sn-fill { transition: none; }
         .snd-bob, .snd-eye, .sn.writing .snd-pen, .sn.writing .snd-lines path, .sn.in .sn-list li { animation: none; }
       }
 
@@ -385,7 +366,7 @@
               <figure class="split-fig duck-fig">
                 <!-- Interactive: tap the dev to start a session, squeeze the duck. It reports
                      both to this page so the session notes at the bottom can mention them. -->
-                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261026b" width="800" height="596"
+                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261026e" width="800" height="596"
                         title="A developer on a therapist's couch talking to a rubber duck in glasses. Interactive." loading="eager"></iframe>
               </figure>
             </div>
@@ -421,7 +402,7 @@
               <div class="pcard-body">
                 <p class="pcard-kicker"><b>Design system</b></p>
                 <h3><a href="work/design-system.html">AI built our component library in days. It didn't work.</a></h3>
-                <p>Our component library looked perfect and only worked in Storybook. I cleaned up Figma with AI-built plugins and rebuilt the library with 72% less code.</p>
+                <p>Our component library looked perfect and only worked in Storybook. I cleaned up Figma with AI-built plugins and rebuilt it theme-first: 66 MUI components now take their look from design tokens.</p>
               </div>
             </article>
 
@@ -642,8 +623,6 @@
                   <div><b id="sn-projects">0 of 3</b><span>projects you paused on</span></div>
                   <div class="sn-longest"><b id="sn-longest">–</b><span>your longest look</span></div>
                 </div>
-                <h3 class="sn-k">Where your attention went</h3>
-                <div class="sn-chart" id="sn-chart" role="table" aria-label="Seconds spent on each project"></div>
               </div>
 
               <div class="sn-pad">
@@ -810,23 +789,11 @@
           if (notesAt === null && here.indexOf(notes) > -1) notesAt = seconds;
         }, TICK);
 
-        // the chart shows only the work: projects + earlier work (the intro gets its own note)
+        // the notes compare only the work: projects + earlier work (the intro gets its own note)
         var intro = parts.filter(function (p) { return name(p) === "Intro"; })[0];
         var charted = parts.filter(function (p) { return p !== notes && p !== intro; });
         var card = notes.querySelector(".sn");
         var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var chart = document.getElementById("sn-chart");
-        var rows = new Map();
-        charted.forEach(function (p, i) {
-          var row = document.createElement("div");
-          row.className = "sn-row";
-          row.setAttribute("role", "row");
-          row.innerHTML = '<span class="name" role="rowheader"></span><span class="sn-track" role="cell"><span class="sn-fill"></span></span><span class="val" role="cell">0s</span>';
-          row.querySelector(".name").textContent = name(p);
-          row.querySelector(".sn-fill").style.transitionDelay = (i * 0.12) + "s";
-          chart.appendChild(row);
-          rows.set(p, row);
-        });
 
         function observations() {
           var out = [];
@@ -873,15 +840,7 @@
 
         function render(first) {
           var secs = function (p) { return Math.round(dwell.get(p)); };
-          var max = Math.max.apply(null, charted.map(secs).concat(1));
           var top = charted.reduce(function (a, b) { return secs(b) > secs(a) ? b : a; });
-          rows.forEach(function (row, p) {
-            var v = secs(p);
-            row.querySelector(".sn-fill").style.width = (v / max * 100) + "%";
-            row.querySelector(".val").textContent = v + "s";
-            row.classList.toggle("top", p === top && v >= 1);
-          });
-
           var looked = projects.filter(function (p) { return secs(p) >= 1; }).length;
           var time = document.getElementById("sn-time"), proj = document.getElementById("sn-projects");
           document.getElementById("sn-longest").textContent =

@@ -232,6 +232,9 @@
   }
 
   .motion-toggle:hover, .motion-toggle:focus-visible { opacity: 1; transform: translateY(-1px); }
+  /* hidden until a keyboard user tabs to it, like a skip link; reduced-motion
+     visitors start paused anyway */
+  .motion-toggle:not(:focus-visible) { opacity: 0; pointer-events: none; }
   .motion-toggle:focus-visible { outline: 3px solid var(--chair); outline-offset: 2px; }
   .motion-toggle svg { width: 10px; height: 10px; fill: currentColor; }
   .motion-toggle .i-play, .paused .motion-toggle .i-pause { display: none; }

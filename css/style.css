@@ -695,7 +695,8 @@ pre code {
 }
 
 .split-inner {
-  max-width: min(1180px, 100%);
+  /* the same content width as .wrap, so hero text lines up with the logo and the sections below */
+  max-width: calc(var(--max) + 2 * var(--gutter));
   margin: 0 auto;
   padding: clamp(2.5rem, 6vw, 4.5rem) var(--gutter);
 }
