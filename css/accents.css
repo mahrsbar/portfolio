@@ -20,7 +20,7 @@
 }
 
 /* project cards: a 1.5px dark grey outline, no shadow; hover just lifts a little */
-:root { --card-edge: #7D7A76; }
+:root { --card-edge: #A8A5A0; }
 :root[data-theme="dark"] { --card-edge: #5A5C63; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { --card-edge: #5A5C63; }
