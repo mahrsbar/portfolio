@@ -208,46 +208,30 @@
       .sn-stats b { order: 2; font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
       .sn-stats span { order: 1; font-size: 0.88rem; color: var(--ink-3); }
 
-      /* the duck's notepad: handwritten lines that appear one by one */
-      .sn-pad {
-        position: relative;
-        padding: 1rem 1rem 0.85rem;
-        background: var(--bg);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-      }
-      .sn-pad::before {
-        content: "";
-        position: absolute;
-        top: -7px; left: 50%;
-        width: 56px; height: 14px;
-        transform: translateX(-50%);
-        background: #B9B3C9;
-        border: 1.5px solid var(--edge, #1E1A17);
-        border-radius: 4px;
-      }
+      /* the duck's notes: the same hairline rows and body font as the numbers beside them */
       .sn-list { margin: 0; padding: 0; list-style: none; counter-reset: note; }
       .sn-list li {
-        position: relative;
-        padding: 0.1rem 0 0.1rem 1.4rem;
-        font-family: "Shantell Sans", ui-rounded, sans-serif;
-        font-size: 0.86rem;
+        display: flex;
+        gap: 0.75rem;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.92rem;
         line-height: 1.45;
         color: var(--ink);
       }
+      .sn-list li:first-child { border-top: 1px solid var(--line); }
       .sn-list li::before {
         counter-increment: note;
-        content: counter(note) ".";
-        position: absolute;
-        left: 0;
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
+        content: counter(note);
+        flex: none;
+        min-width: 1ch;
+        font-size: 0.88rem;
+        font-variant-numeric: tabular-nums;
         color: var(--ink-3);
-        top: 0.3rem;
       }
       .sn.in .sn-list li { animation: sn-note .45s var(--ease) both; animation-delay: calc(var(--i, 0) * 0.45s + 0.3s); }
       @keyframes sn-note { from { opacity: 0; transform: translateY(6px); } }
-      .sn-fine { margin: 0.6rem 0 0; font-size: 0.75rem; line-height: 1.45; color: var(--ink-3); }
+      .sn-fine { margin: 0.75rem 0 0; font-size: 0.8rem; line-height: 1.5; color: var(--ink-3); }
 
       .sn-plan { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
       .sn-plan-line { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; }
@@ -626,8 +610,7 @@
               </div>
 
               <div class="sn-pad">
-                <h3 class="sn-k">The duck's notes</h3>
-                <ol class="sn-list" id="sn-obs"></ol>
+                <ol class="sn-list" id="sn-obs" aria-label="The duck's notes"></ol>
                 <p class="sn-fine">Limitations: sample size of one. You didn't know the duck was taking notes (sorry). Nothing was stored or sent, and it's gone when you close this tab.</p>
               </div>
             </div>
