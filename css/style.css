@@ -427,8 +427,13 @@ pre code {
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
   background: color-mix(in srgb, var(--bg) 80%, transparent);
-  border-bottom: 1px solid var(--line);
+  /* no divider at the top of the page; main.js adds .scrolled once content
+     passes under the bar, so it still has an edge then */
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s var(--ease);
 }
+
+.nav.scrolled { border-bottom-color: var(--line); }
 
 .nav .wrap {
   display: flex;
@@ -525,13 +530,26 @@ pre code {
   outline-offset: 2px;
 }
 
-/* External links (the résumé PDF) get a small arrow so it's clear they leave. */
+/* External links (the résumé PDF, LinkedIn) get a small line arrow so it's
+   clear they leave. Drawn as an SVG mask, not a glyph, so every browser and
+   font renders the same icon in the link's own colour. */
 .nav-links a[target="_blank"]::before {
-  content: "↗\FE0E"; /* text presentation, so iOS doesn't swap in the emoji */
+  content: "";
   order: 1;
-  margin-left: 0.2em;
-  font-size: 0.75em;
-  color: var(--ink-3);
+  align-self: center;
+  width: 0.62em;
+  height: 0.62em;
+  margin-left: 0.3em;
+  background: currentColor;
+  opacity: 0.55;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9 9 3M4.5 3H9v4.5'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 9 9 3M4.5 3H9v4.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.nav-links a[target="_blank"]:hover::before {
+  opacity: 0.9;
+  transform: translate(1px, -1px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -682,7 +700,8 @@ pre code {
 }
 
 .split-inner {
-  max-width: min(1180px, 100%);
+  /* the same content width as .wrap, so hero text lines up with the logo and the sections below */
+  max-width: calc(var(--max) + 2 * var(--gutter));
   margin: 0 auto;
   padding: clamp(2.5rem, 6vw, 4.5rem) var(--gutter);
 }
@@ -4804,3 +4823,61 @@ a, button { -webkit-tap-highlight-color: transparent; }
   html .case-intro .highlights span { font-size: 0.82rem; margin-top: 0.1rem; }
   html .case-intro .meta-line { margin-top: 1.25rem; font-size: 0.88rem; }
 }
+
+/* Small labels in the body font (Oct 2026): the spaced-out mono capitals
+   above titles and on cards read as shouting, and wrapped badly on phones. */
+.eyebrow,
+.pcard-kicker {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-3);
+}
+.eyebrow { display: block; font-size: 0.9rem; word-spacing: 0.08em; }
+.eyebrow::before { display: none; }
+.pcard-kicker { font-size: 0.85rem; }
+
+@media (max-width: 560px) {
+  /* Problem / What I did / Outcome: one quiet box with three rows instead
+     of three tall cards with icon circles */
+  html .tldr {
+    gap: 0;
+    padding: 0.2rem 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-l);
+    background: var(--bg-elev);
+  }
+  html .tldr > div { padding: 0.95rem 0; border: 0; border-radius: 0; background: none; }
+  html .tldr > div + div { border-top: 1px solid var(--line); }
+  html .tldr-icon { display: none; }
+  html .tldr .k { gap: 0; margin-bottom: 0.25rem; font-size: 0.95rem; }
+  html .tldr p { font-size: 0.9rem; }
+
+  /* smaller buttons and header controls */
+  html .btn { padding: 0.65rem 1rem; font-size: 0.9rem; }
+  html .nav.has-menu .theme-toggle,
+  html .nav.has-menu .nav-menu-btn { width: 36px; height: 36px; }
+  html .nav-menu-btn svg { width: 16px; height: 16px; }
+}
+
+/* Big home cards (Oct 2026): label, title and description stack in reading
+   order instead of title-left / text-right, and titles are a step smaller. */
+@media (min-width: 761px) {
+  html .pcard.pcard-flagship .pcard-body { display: flex; flex-direction: column; align-items: stretch; }
+  html .pcard.pcard-flagship .pcard-body > p:not(.pcard-kicker) { margin: 0.6rem 0 0; max-width: 62ch; font-size: 1rem; }
+}
+html .pcard.pcard-flagship h3 { font-size: clamp(1.25rem, 1.9vw, 1.55rem); max-width: none; }
+html .pcard h3 { line-height: 1.2; }
+html .case-intro h1 { font-size: clamp(1.75rem, 3vw, 2.4rem); max-width: 24ch; }
+/* when no cover image sits between the intro and the body, don't stack two paddings */
+.case-intro + .section { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
+.case-intro + .section .prose > h2:first-child { margin-top: 0; }
+
+/* Inline code never splits mid-token ("space-12" broke at the hyphen). */
+:not(pre) > code { white-space: nowrap; }
+
+/* Card labels name the product in bold, so a short hook title still says what it is. */
+.pcard-kicker { font-size: 0.9rem; color: var(--ink-3); }
+.pcard-kicker b { font-weight: 600; color: var(--ink); }
+.eyebrow b { font-weight: 600; color: var(--ink-2); }

@@ -16,7 +16,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026b" />
+    <link rel="stylesheet" href="../css/style.css?v=20261026h" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -38,7 +38,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -53,8 +53,8 @@
 
     <main id="main" class="hue-coral">
       <section class="wrap case-hero">
-        <p class="eyebrow">Case study · Interaction design · 2025–2026</p>
-        <h1>Geohash search and a map that stops lying about "no results"</h1>
+        <p class="eyebrow"><b>Transaction map</b> · Interaction design</p>
+        <h1>A map that stopped lying about “no results”</h1>
         <p class="lead">
           Two chapters on the same map. First, designing a way for analysts to search by geohash, a
           string that encodes a location at variable precision. Second, auditing the live map with
@@ -63,7 +63,6 @@
         <dl class="case-meta">
           <div class="chips"><dt>Role</dt><dd>Interaction designer</dd><dd>research and triage lead</dd></div>
           <div><dt>Surface</dt><dd>Transaction map inside a fraud-investigation back office</dd></div>
-          <div class="chips"><dt>Methods</dt><dd>Requirements design</dd><dd>user feedback rounds</dd><dd>session-replay audit</dd><dd>severity triage</dd></div>
           <div><dt>Status</dt><dd>Geohash search shipped through three phases; map revamp in progress</dd></div>
         </dl>
         <div class="tldr" aria-label="Summary">
@@ -89,7 +88,7 @@
         </div>
         <span class="confidential">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 6v6l4 2"/></svg>
-          Try it: a geohash is a rectangle named by a string. Each character you add splits the rectangle into 32. Click a cell or type in the box; the map and the string are the same query, which is the rule the real feature was designed on.
+          Try it: a geohash is a rectangle named by a string, and each character you add splits it into 32. Click a cell or type in the box.
         </span>
         <aside class="stack">
           <div class="kicker">Built with<b>Tools and models</b></div>
@@ -98,7 +97,6 @@
             <ul>
             <li><strong>Figma</strong> for the geohash interaction design, the heatmap iterations, and the tagged-boundary flow.</li>
             <li><strong>LogRocket</strong> replays paired with console warnings to tie 'no results' complaints to cancelled aggregation requests.</li>
-            <li><strong>Jira</strong> triage: every audit row got a severity, an affected version, a source, and either a ticket or an explicit decision.</li>
             </ul>
           </div>
         </aside>
@@ -108,25 +106,25 @@
         <div class="case-body">
         <div class="prose">
           <h2>Chapter one: searching by geohash</h2>
-          <p>Analysts needed to ask the map "what happened <em>here</em>" where "here" was a geohash: a short string whose length is its precision. Four characters is a region; ten is a doorstep. The design problem was how to make an abstract encoding feel like a place you can explore.</p>
+          <p>Analysts needed to ask the map "what happened <em>here</em>" where "here" was a geohash: a short string whose length is its precision. Four characters is a region; ten is a doorstep. The design problem was making an abstract code feel like a place you can explore.</p>
 
           <h3>MVP requirements I set</h3>
           <ul>
             <li>One geohash at a time. Show its area on the map and the sub-cells inside it, but not the cell characters, which are noise at a glance.</li>
             <li>Hover a cell for a metadata tooltip.</li>
-            <li><strong>Click a cell to refine.</strong> Clicking updates the string in the search bar and refreshes results, so the map and the text field are two views of one query.</li>
+            <li><strong>Click a cell to refine.</strong> The string in the search bar updates and the results refresh.</li>
             <li>Edit the string directly, add or remove characters, and the map follows. Minimum four characters, maximum ten.</li>
           </ul>
-          <p>Explicitly out of scope for the MVP, but written down: saving geohashes as polygons, extrapolating geohashes from a drawn polygon, and showing neighbours. Scoping those out early kept the first release small enough to ship and learn from.</p>
+          <p>Out of scope for the MVP, but written down: saving geohashes as polygons, deriving geohashes from a drawn polygon, and showing neighbours. That kept the first release small enough to ship.</p>
 
           <h3>Phases two and three</h3>
-          <p>User feedback drove the follow-ups. The most requested was a way back: once you've clicked into a finer cell, return to the original precision without retyping. Then a heatmap view, iterated on feedback, with an open problem noted for later: at zoomed-out levels many small geohashes are hard to distinguish.</p>
+          <p>User feedback drove the follow-ups. The most requested was a way back to the original precision after clicking into finer cells, without retyping. Then a heatmap view, with one problem left open: zoomed out, many small geohashes are hard to tell apart.</p>
           <div class="callout">
-            <p>The interaction principle that held everything together: the map and the search string are the same query. Change one, the other updates. Users never had to learn which was "real".</p>
+            <p>The map and the search string are the same query: change one and the other updates.</p>
           </div>
 
           <h2>Chapter two: auditing the live map</h2>
-          <p>A year later the map had grown a new version, more filters, and a steady stream of "it says no results but there's data" complaints. I audited it with session replays and customer feedback and wrote up every observed failure with a description, severity, which version it affected, and its source.</p>
+          <p>A year later the map had a new version, more filters and a steady stream of "it says no results but there's data" complaints. I audited it with session replays and customer feedback, logging every failure with its severity, affected version and source.</p>
 
           <h3>The pattern behind the complaints</h3>
           <p>Most of the high-severity issues had one root: <strong>rapid pan and zoom cancelled in-flight requests</strong>, the app didn't retry, and the UI rendered the cancellation as "No results found". Data existed at that viewport. Pins came back only after zooming out, refreshing, or reapplying filters. In a meaningful share of sessions with active map interaction, the map lied.</p>
@@ -158,7 +156,7 @@
           <p>Each row became either a ticket linked from the audit, a "UI update in progress" note, or an explicit "not a bug, but reconsider" decision. Engineering fixed the request-cancellation handling first; the design rules shaped the interface work that followed.</p>
 
           <h2>Also on this map</h2>
-          <p>Alongside the audit I designed the flow for tagging boundaries on the map (marking an area as a named zone and using it later) and added product-analytics events to the boundary and case-management cards so the next audit has quantitative data from day one.</p>
+          <p>Alongside the audit I designed the flow for tagging map boundaries (marking an area as a named zone to reuse later), and added analytics events to the boundary and case-management cards so the next audit starts with real numbers.</p>
 
           <h2>What I learned</h2>
           <ul>
@@ -170,7 +168,7 @@
         </div>
 
         <nav class="case-nav" aria-label="More case studies">
-          <a href="onecomply.html"><small>Next</small><b>OneComply</b></a>
+          <a href="onecomply.html"><small>Next</small><b>Licence applications</b></a>
         </nav>
       </section>
     </main>
@@ -180,7 +178,7 @@
         <span>© <span data-year>2026</span> Mahrs Aslam.</span>
       </div>
     </footer>
-    <script src="../js/main.js?v=20261026a"></script>
+    <script src="../js/main.js?v=20261026c"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
     <script src="../js/geohash.js?v=20260907"></script>
   </body>

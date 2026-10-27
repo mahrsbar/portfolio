@@ -25,7 +25,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261026b" />
+    <link rel="stylesheet" href="css/style.css?v=20261026h" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -47,25 +47,20 @@
         "sameAs": ["https://github.com/mahrsbar"]
       }
     </script>
-    <link rel="stylesheet" href="css/accents.css?v=20261026a" />
+    <link rel="stylesheet" href="css/accents.css?v=20261026g" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500;700;800&amp;display=swap" />
     <style>
       /* hero: the duck scene stands on a floor that runs the full width of the page.
          --floor-h is set from the scene's real width by script; this is the fallback. */
-      :root { --wall: #DFE7EC; }
-      :root[data-theme="dark"] { --wall: #171B22; }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) { --wall: #171B22; }
-      }
-      /* the wall fades in from the page, and the floor IS the page, so the room flows
-         straight into the next section; only a hand-drawn floor line remains */
+      /* the room sits on the page itself, so it flows straight into the next
+         section; only a hand-drawn floor line remains */
       .duck-room {
         position: relative;
         /* the lamp glow reaches past the scene's right edge; without this,
            iOS lets the whole page scroll sideways to it */
         overflow: hidden;
         --floor-h: 80px;
-        background: linear-gradient(to bottom, var(--bg) 0%, var(--wall) 45%, var(--wall) 100%);
+        background: var(--bg);
         border-bottom: 0;
       }
       .duck-room::after {
@@ -83,7 +78,7 @@
         bottom: calc(var(--floor-h) - 5px);
         height: 10px;
         /* softer than the drawing's outlines, and fading out toward the intro text */
-        --floor-ink: color-mix(in srgb, var(--edge, #1E1A17) 70%, transparent);
+        --floor-ink: color-mix(in srgb, var(--edge, #1E1A17) 30%, transparent); /* light enough to recede under the hero */
         background: linear-gradient(to right, transparent 0%, var(--floor-ink) 50%, var(--floor-ink) 100%);
         -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='10'%3E%3Cpath d='M0 5 C40 3.6 80 6.4 120 5 S200 3.6 240 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x center / 240px 10px;
                 mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='10'%3E%3Cpath d='M0 5 C40 3.6 80 6.4 120 5 S200 3.6 240 5' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x center / 240px 10px;
@@ -95,7 +90,7 @@
       .duck-room .split-inner { position: relative; z-index: 2; padding-bottom: 0; }
       .duck-room .hero-figure { align-self: end; }
       @media (min-width: 861px) {
-        .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(340px, 46vw, 620px); }
+        .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(320px, 40vw, 540px); }
         .duck-room .hero-copy { padding-bottom: calc(var(--floor-h) + 1.5rem); }
       }
       /* role and degrees: two small icon lines under the tagline */
@@ -138,7 +133,10 @@
         :root:not([data-theme="light"]) .split-fig.duck-fig::before { opacity: 1; }
       }
       @media (max-width: 860px) {
-        .hero-figure .split-fig.duck-fig { display: block; max-width: 520px; margin: 0 auto; }
+        .hero-figure .split-fig.duck-fig { display: block; max-width: 460px; margin: 0 auto; }
+      }
+      @media (max-width: 560px) {
+        .hero-figure .split-fig.duck-fig { max-width: 88%; }
       }
 
       /* LoafMode's banner has its headline at the left edge, so keep it 2:1 on
@@ -147,10 +145,10 @@
         .pcard.pcard-flagship .pcard-media-2x1 { aspect-ratio: 2 / 1; }
       }
 
-      /* OneComply's full-width card shows only the "after" mockup, centred */
-      [data-observe="OneComply"] .pcard-mock-ba { grid-template-columns: 1fr; padding: 4.5% 18% 0; }
-      [data-observe="OneComply"] .pcard-mock-ba .pcard-mock-col:first-child,
-      [data-observe="OneComply"] .pcard-mock-ba .ba-tag { display: none; }
+      /* The licence-application card shows only the "after" mockup, centred */
+      [data-observe="Licence applications"] .pcard-mock-ba { grid-template-columns: 1fr; padding: 4.5% 18% 0; }
+      [data-observe="Licence applications"] .pcard-mock-ba .pcard-mock-col:first-child,
+      [data-observe="Licence applications"] .pcard-mock-ba .ba-tag { display: none; }
 
       /* earlier work: three cards in one row on wide screens */
       @media (min-width: 900px) {
@@ -159,27 +157,22 @@
 
       /* session notes */
       .sn {
-        padding: clamp(1.5rem, 4vw, 2.5rem);
+        padding: clamp(1.25rem, 3vw, 2rem);
         background: var(--bg-elev);
-        border: 1px solid var(--line);
-        border-radius: var(--radius-l);
+        border-radius: var(--radius-l); /* outline and shadow come from accents.css, shared with the project cards */
       }
       .sn-head { display: flex; justify-content: space-between; gap: 1.5rem; align-items: center; }
-      .sn-head h2 { margin: 0.35rem 0 0; }
-      .sn-lead { margin: 0.6rem 0 0; color: var(--ink-2); text-wrap: balance; }
+      .sn-head h2 { margin: 0.25rem 0 0; font-size: clamp(1.5rem, 2.6vw, 2rem); }
       .sn-k {
-        margin: 0 0 0.75rem;
-        font-family: var(--font-mono);
-        font-size: 0.72rem;
+        margin: 0 0 0.6rem;
+        font-size: 0.88rem;
         font-weight: 500;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
         color: var(--ink-3);
       }
       .sn-head .sn-k { margin: 0; }
 
       /* the duck from the hero, bobbing and writing */
-      .sn-duck { flex: none; width: clamp(96px, 15vw, 150px); height: auto; overflow: visible; }
+      .sn-duck { flex: none; width: clamp(60px, 8vw, 92px); height: auto; overflow: visible; }
       .snd-bob { transform-box: fill-box; transform-origin: 50% 100%; animation: snd-bob 2.4s ease-in-out infinite; }
       .snd-eye { transform-box: fill-box; transform-origin: 50% 50%; animation: snd-blink 4.6s infinite; }
       .snd-pen { transform-box: fill-box; transform-origin: 0% 100%; }
@@ -194,79 +187,47 @@
       @keyframes snd-jot   { from { transform: rotate(-7deg) translateX(-2px); } to { transform: rotate(7deg) translateX(2px); } }
       @keyframes snd-write { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
 
-      /* two columns: numbers + attention on the left, the duck's notepad on the right */
+      /* two columns: three numbers as a short list on the left, the duck's notepad on the right */
       .sn-body {
         display: grid;
-        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-        gap: clamp(1.5rem, 4vw, 2.5rem);
-        margin-top: 2rem;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: 1.5rem clamp(2rem, 5vw, 3.5rem);
+        margin-top: 1.5rem;
         align-items: start;
       }
-      .sn-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin-bottom: 1.75rem; }
-      .sn-stats > div { padding: 0.85rem 1rem; background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius); }
-      .sn-stats b { display: block; font-family: var(--font-mono); font-size: 1.5rem; font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
-      .sn-stats span { font-size: 0.82rem; color: var(--ink-3); }
-      /* a project name, not a number: smaller, in the body font */
-      .sn-stats .sn-longest b { font-family: var(--font-sans); font-size: 1.05rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; padding: 0.2rem 0 0.15rem; }
+      .sn-stats { display: grid; margin: 0; }
+      .sn-stats > div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); }
+      .sn-stats > div:first-child { border-top: 1px solid var(--line); }
+      .sn-stats b { order: 2; font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
+      .sn-stats span { order: 1; font-size: 0.88rem; color: var(--ink-3); }
 
-      .sn-chart {
-        display: grid;
-        grid-template-columns: max-content minmax(0, 1fr) max-content;
-        align-items: center;
-        gap: 0.7rem 1rem;
-        font-size: 0.92rem;
-      }
-      .sn-row { display: contents; }
-      .sn-row .val { font-family: var(--font-mono); font-size: 0.78rem; font-variant-numeric: tabular-nums; color: var(--ink-3); text-align: right; }
-      .sn-track { display: block; height: 12px; border-radius: 999px; background: var(--bg-sunk); overflow: hidden; }
-      .sn-fill { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--line-strong); transition: width 0.9s var(--ease); }
-      .sn-row.top .name { font-weight: 600; }
-      .sn-row.top .sn-fill { background: var(--scribble, #FFC93C); }
-
-      /* the duck's notepad: handwritten lines that appear one by one */
-      .sn-pad {
-        position: relative;
-        padding: 1.4rem 1.25rem 1.1rem;
-        background: var(--bg);
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-      }
-      .sn-pad::before {
-        content: "";
-        position: absolute;
-        top: -7px; left: 50%;
-        width: 56px; height: 14px;
-        transform: translateX(-50%);
-        background: #B9B3C9;
-        border: 1.5px solid var(--edge, #1E1A17);
-        border-radius: 4px;
-      }
+      /* the duck's notes: the same hairline rows and body font as the numbers beside them */
       .sn-list { margin: 0; padding: 0; list-style: none; counter-reset: note; }
       .sn-list li {
-        position: relative;
-        padding: 0.2rem 0 0.2rem 1.6rem;
-        font-family: "Shantell Sans", ui-rounded, sans-serif;
-        font-size: 0.98rem;
-        line-height: 1.6;
-        min-height: 32px;
+        display: flex;
+        gap: 0.75rem;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 0.92rem;
+        line-height: 1.45;
         color: var(--ink);
       }
+      .sn-list li:first-child { border-top: 1px solid var(--line); }
       .sn-list li::before {
         counter-increment: note;
-        content: counter(note) ".";
-        position: absolute;
-        left: 0;
-        font-family: var(--font-mono);
-        font-size: 0.78rem;
+        content: counter(note);
+        flex: none;
+        min-width: 1ch;
+        font-size: 0.88rem;
+        font-variant-numeric: tabular-nums;
         color: var(--ink-3);
-        top: 0.45rem;
       }
       .sn.in .sn-list li { animation: sn-note .45s var(--ease) both; animation-delay: calc(var(--i, 0) * 0.45s + 0.3s); }
       @keyframes sn-note { from { opacity: 0; transform: translateY(6px); } }
-      .sn-fine { margin: 1rem 0 0; font-size: 0.82rem; line-height: 1.5; color: var(--ink-3); }
+      .sn-fine { margin: 0.75rem 0 0; font-size: 0.8rem; line-height: 1.5; color: var(--ink-3); }
 
-      .sn-plan { margin-top: 2.25rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-      .sn-plan-line { margin: 0; font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; }
+      .sn-plan { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+      .sn-plan-line { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; }
       .sn-plan .hero-actions { margin-top: 1.25rem; }
       .sn-nowrap { white-space: nowrap; }
 
@@ -274,15 +235,10 @@
         .sn-body { grid-template-columns: 1fr; }
       }
       @media (max-width: 600px) {
-        /* duck above the heading, so the text gets the full width */
-        .sn-head { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-        .sn-duck { order: -1; width: 88px; }
-        .sn-stats { grid-template-columns: 1fr 1fr; }
-        .sn-stats > div:last-child { grid-column: span 2; }
-        .sn-chart { gap: 0.55rem 0.65rem; font-size: 0.85rem; }
+        .sn-head { gap: 1rem; }
+        .sn-duck { width: 52px; }
       }
       @media (prefers-reduced-motion: reduce) {
-        .sn-fill { transition: none; }
         .snd-bob, .snd-eye, .sn.writing .snd-pen, .sn.writing .snd-lines path, .sn.in .sn-list li { animation: none; }
       }
 
@@ -338,7 +294,7 @@
             <!-- Writing hidden for now: <li><a href="writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="ask.html">Ask</a></li> -->
-            <li><a href="images/Mahrs_Aslam_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -382,7 +338,7 @@
               <figure class="split-fig duck-fig">
                 <!-- Interactive: tap the dev to start a session, squeeze the duck. It reports
                      both to this page so the session notes at the bottom can mention them. -->
-                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261026b" width="800" height="596"
+                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261026i" width="800" height="596"
                         title="A developer on a therapist's couch talking to a rubber duck in glasses. Interactive." loading="eager"></iframe>
               </figure>
             </div>
@@ -396,7 +352,7 @@
         <div class="wrap">
           <div class="section-head reveal">
             <div>
-              <h2>My work.</h2>
+              <h2>My work</h2>
             </div>
           </div>
 
@@ -416,9 +372,9 @@
                 </span>
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker">Design system</p>
-                <h3><a href="work/design-system.html">AI built our component library in days. It looked perfect, and it didn't work.</a></h3>
-                <p>How I cleaned up Figma with AI-built plugins, found out why the generated library only worked in Storybook, and rebuilt it with 72% less code.</p>
+                <p class="pcard-kicker"><b>Design system</b></p>
+                <h3><a href="work/design-system.html">AI built our component library in days. It didn't work.</a></h3>
+                <p>Our component library looked perfect and only worked in Storybook. I cleaned up Figma with AI-built plugins and rebuilt it theme-first. It's now used by 4 products.</p>
               </div>
             </article>
 
@@ -433,14 +389,14 @@
                 </a>
               </div>
               <div class="pcard-body">
-                <p class="pcard-kicker">iOS app</p>
-                <h3><a href="work/loafmode.html">Screen-time apps gamify the habit they claim to fix. So I built one with Claude Code that doesn't.</a></h3>
-                <p>A calm iPhone app for scrolling less, where every feature comes from behaviour research instead of streaks and points.</p>
+                <p class="pcard-kicker"><b>LoafMode</b> · iOS app</p>
+                <h3><a href="work/loafmode.html">A screen-time app without streaks</a></h3>
+                <p>A calm iPhone app for scrolling less, built on behaviour research instead of points and guilt. Made with Claude Code.</p>
               </div>
             </article>
 
 
-            <article class="pcard pcard-flagship hue-mustard mkset" data-observe="OneComply" data-prose="the OneComply forms">
+            <article class="pcard pcard-flagship hue-mustard mkset" data-observe="Licence applications" data-prose="the licence application forms">
               <!-- Cover is a recreated mockup (company work): no real product, branding or data. -->
               <a class="pcard-media pcard-mock pcard-mock-ba" href="work/onecomply.html" tabindex="-1" aria-hidden="true">
                 <span class="pcard-mock-col">
@@ -486,9 +442,9 @@
                 </span>
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker">Product design</p>
-                <h3><a href="work/onecomply.html">Nobody finishes a form they can't see the end of. So I cut one into six steps.</a></h3>
-                <p>An eleven-step licence application rebuilt as six steps with visible progress, plus the tools managers use to assign and track it.</p>
+                <p class="pcard-kicker"><b>Licensing platform</b> · Product design</p>
+                <h3><a href="work/onecomply.html">Eleven steps down to six</a></h3>
+                <p>A licence application people actually finish, with visible progress and tools for the managers who assign it.</p>
               </div>
             </article>
 
@@ -502,7 +458,7 @@
         <div class="wrap">
           <div class="section-head reveal">
             <div>
-              <h2>Earlier work.</h2>
+              <h2>Earlier work</h2>
             </div>
           </div>
           <div class="projects reveal">
@@ -511,9 +467,9 @@
                 <img src="images/covers/remnant.svg" width="1600" height="1000" alt="" loading="lazy" />
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker">Lead front-end · 2022–23</p>
-                <h3><a href="remnant.html">Remnant Labs: a game studio's website, rebuilt from brand voice to Vue</a></h3>
-                <p>Audience research, wireframes and hi-fi prototypes, then the front end that shipped.</p>
+                <p class="pcard-kicker"><b>Remnant Labs</b> · Lead front end</p>
+                <h3><a href="remnant.html">A game studio's website, rebuilt</a></h3>
+                <p>Research, prototypes and the Vue front end for a game studio. Traffic up 125%.</p>
               </div>
             </article>
             <article class="pcard hue-teal">
@@ -521,9 +477,9 @@
                 <img src="images/covers/amplify.svg" width="1600" height="1000" alt="" loading="lazy" />
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker">Technical lead · Open source · 2021–22</p>
-                <h3><a href="amplify.html">ProgramEquity: turning supporters into letters their representatives read</a></h3>
-                <p>Led a distributed volunteer team building Amplify for advocacy non-profits.</p>
+                <p class="pcard-kicker"><b>ProgramEquity</b> · Technical lead</p>
+                <h3><a href="amplify.html">Helping supporters write to their representatives</a></h3>
+                <p>Led a volunteer team building Amplify, an open-source advocacy tool.</p>
               </div>
             </article>
 
@@ -532,9 +488,9 @@
                 <img src="images/covers/craigslist.webp" width="1600" height="1000" alt="" loading="lazy" />
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker">HCI</p>
-                <h3><a href="work/craigslist-redesign.html">HCI coursework: three interfaces, researched and prototyped</a></h3>
-                <p>Where the habits behind the rest of this work came from.</p>
+                <p class="pcard-kicker"><b>University of Regina</b> · HCI coursework</p>
+                <h3><a href="work/craigslist-redesign.html">Three interfaces, researched and prototyped</a></h3>
+                <p>Research, scored requirements and paper prototypes, before any code.</p>
                 <details class="pcard-more">
                   <summary>Three projects</summary>
                   <ul>
@@ -555,7 +511,7 @@
           <div class="section-head reveal">
             <div>
               <p class="eyebrow">Writing</p>
-              <h2>Notes from the pipeline.</h2>
+              <h2>Notes from the pipeline</h2>
             </div>
             <a class="btn btn-ghost" href="writing/index.html">All posts</a>
           </div>
@@ -599,7 +555,6 @@
               <div>
                 <p class="sn-k">Session notes</p>
                 <h2>That's our time for today.</h2>
-                <p class="sn-lead">While you browsed, the duck took a few quiet notes. Here's what it saw.</p>
               </div>
               <svg class="sn-duck" viewBox="500 138 210 222" role="img" aria-label="The duck from the hero, glasses on, writing on its clipboard">
                 <g class="snd-bob">
@@ -634,13 +589,12 @@
 
             <div class="sn-body">
               <div class="sn-data">
+                <h3 class="sn-k">Your visit</h3>
                 <div class="sn-stats">
                   <div><b id="sn-time">0:00</b><span>time on page</span></div>
                   <div><b id="sn-projects">0 of 3</b><span>projects you paused on</span></div>
                   <div class="sn-longest"><b id="sn-longest">–</b><span>your longest look</span></div>
                 </div>
-                <h3 class="sn-k">Where your attention went</h3>
-                <div class="sn-chart" id="sn-chart" role="table" aria-label="Seconds spent on each project"></div>
               </div>
 
               <div class="sn-pad">
@@ -656,7 +610,7 @@
               <div class="hero-actions">
                 <a class="btn btn-primary" href="mailto:mahrs.aslam@gmail.com">Email</a>
                 <a class="btn btn-ghost" href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="btn btn-ghost" href="images/Mahrs_Aslam_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+                <a class="btn btn-ghost" href="images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a>
               </div>
             </div>
           </div>
@@ -678,7 +632,7 @@
       </div>
     </footer>
 
-    <script src="js/main.js?v=20261026a"></script>
+    <script src="js/main.js?v=20261026c"></script>
 
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
     <script>
@@ -807,23 +761,11 @@
           if (notesAt === null && here.indexOf(notes) > -1) notesAt = seconds;
         }, TICK);
 
-        // the chart shows only the work: projects + earlier work (the intro gets its own note)
+        // the notes compare only the work: projects + earlier work (the intro gets its own note)
         var intro = parts.filter(function (p) { return name(p) === "Intro"; })[0];
         var charted = parts.filter(function (p) { return p !== notes && p !== intro; });
         var card = notes.querySelector(".sn");
         var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-        var chart = document.getElementById("sn-chart");
-        var rows = new Map();
-        charted.forEach(function (p, i) {
-          var row = document.createElement("div");
-          row.className = "sn-row";
-          row.setAttribute("role", "row");
-          row.innerHTML = '<span class="name" role="rowheader"></span><span class="sn-track" role="cell"><span class="sn-fill"></span></span><span class="val" role="cell">0s</span>';
-          row.querySelector(".name").textContent = name(p);
-          row.querySelector(".sn-fill").style.transitionDelay = (i * 0.12) + "s";
-          chart.appendChild(row);
-          rows.set(p, row);
-        });
 
         function observations() {
           var out = [];
@@ -870,15 +812,7 @@
 
         function render(first) {
           var secs = function (p) { return Math.round(dwell.get(p)); };
-          var max = Math.max.apply(null, charted.map(secs).concat(1));
           var top = charted.reduce(function (a, b) { return secs(b) > secs(a) ? b : a; });
-          rows.forEach(function (row, p) {
-            var v = secs(p);
-            row.querySelector(".sn-fill").style.width = (v / max * 100) + "%";
-            row.querySelector(".val").textContent = v + "s";
-            row.classList.toggle("top", p === top && v >= 1);
-          });
-
           var looked = projects.filter(function (p) { return secs(p) >= 1; }).length;
           var time = document.getElementById("sn-time"), proj = document.getElementById("sn-projects");
           document.getElementById("sn-longest").textContent =

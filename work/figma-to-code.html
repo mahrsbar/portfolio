@@ -16,7 +16,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026b" />
+    <link rel="stylesheet" href="../css/style.css?v=20261026h" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -38,7 +38,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -53,8 +53,8 @@
 
     <main id="main" class="hue-violet">
       <section class="wrap case-hero">
-        <p class="eyebrow">Deep dive · Part of the <a href="design-system.html">Hub design system</a> flagship</p>
-        <h1>Figma to Code: pixel-faithful handoff bundles for an AI agent</h1>
+        <p class="eyebrow">Deep dive · Part of the <a href="design-system.html">design system</a> project</p>
+        <h1>Figma to Code: handoff bundles for AI agents</h1>
         <p class="lead">
           Most design-to-code plugins try to write the code. This one stopped doing that. It exports a
           frame as structured context, a ground-truth image, the real asset bytes, and a prompt that
@@ -69,7 +69,7 @@
         <div class="tldr" aria-label="Summary">
           <div><div class="k"><span class="tldr-icon warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg></span>Problem</div><p>AI agents implementing Figma frames approximated colours, swapped icons, and declared 'close enough'.</p></div>
           <div><div class="k"><span class="tldr-icon act" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l3 3"/></svg></span>What I did</div><p>Pivoted the plugin from emitting code to emitting context: spec.json, a ground-truth PNG, real assets, and a prompt naming every field path.</p></div>
-          <div><div class="k"><span class="tldr-icon win" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18 10l-4.3 1.4L12 16l-1.7-4.6L6 10l4.3-1.4z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>Outcome</div><p><strong>Agents stop guessing. The failure modes I watched became the prompt's 'shortcuts that fail' list.</strong></p></div>
+          <div><div class="k"><span class="tldr-icon win" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18 10l-4.3 1.4L12 16l-1.7-4.6L6 10l4.3-1.4z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>Outcome</div><p><strong>Design to code went from days to about 10 minutes, and agents stopped guessing at colours, icons and fonts.</strong></p></div>
         </div>
       </section>
 
@@ -109,9 +109,9 @@
           <div>
             <ul class="chips"><li>Claude Code (built with)</li><li>Claude (consumer)</li><li>Figma Plugin API</li><li>Preact · Vite · Vitest</li><li>SVGO</li><li>No network access</li></ul>
             <ul>
-            <li><strong>Claude Code built it, from a brief written for Claude Code.</strong> The project's spec is literally a Claude instructions file: six pipeline stages, an IR type, an asset-pipeline section, an edge-case list, and a testing strategy. I wrote that document first, then worked through it with the agent stage by stage. The pivot away from a code emitter happened mid-build, in conversation.</li>
-            <li><strong>Claude is the consumer.</strong> The zip bundle and its handoff prompt are designed to be dropped into Claude Code or a Claude project. The prompt's "shortcuts that fail" list is a record of real Claude sessions where I watched each shortcut happen.</li>
-            <li><strong>Preact, Vite, Vitest, SVGO.</strong> Preact keeps the plugin UI bundle tiny; Vitest covers the code-generation layer stage by stage; a bundled SVGO build runs offline because the manifest allows no network.</li>
+            <li><strong>Claude Code built it, from a brief written for Claude Code.</strong> I wrote the spec first as a Claude instructions file (six pipeline stages, an IR type, the asset pipeline, edge cases, a test plan), then worked through it with the agent stage by stage.</li>
+            <li><strong>Claude is the consumer.</strong> The zip bundle and its handoff prompt are made to drop into Claude Code or a Claude project.</li>
+            <li><strong>Preact, Vite, Vitest, SVGO.</strong> Preact keeps the UI tiny, Vitest covers each stage, and SVGO is bundled to run offline.</li>
             <li><strong>Figma Plugin API</strong> with dynamic-page document access, async node export, and the image-transform matrix for crops.</li>
             </ul>
           </div>
@@ -122,7 +122,7 @@
         <div class="case-body">
         <div class="prose">
           <h2>Where every other plugin breaks</h2>
-          <p>I had been using AI editors with Figma's MCP server to implement components, and the results were good when the agent had real context and bad when it didn't. The failure modes were consistent: approximated colours, hand-rolled icons that "looked similar", fonts silently replaced, images cropped wrong, and the agent declaring "close enough" after one pass.</p>
+          <p>I'd been using AI editors with Figma's MCP server to build components, and the results were good when the agent had real context and bad when it didn't. The failures were consistent: approximated colours, hand-drawn icons that "looked similar", fonts silently swapped, images cropped wrong, and "close enough" after one pass.</p>
           <p>None of those are code-generation problems. They are <strong>context</strong> problems. The agent wasn't being given the exact values, the real assets, or a way to check itself.</p>
 
           <div class="psych">
@@ -130,14 +130,13 @@
             <div>
               <div class="kicker">Psych note</div>
               <h3>Change blindness</h3>
-              <p>Show someone two nearly identical photos with a brief blank flicker between them and they can fail, for a long time, to notice a large object appearing or vanishing. Attention doesn't automatically compare scenes; it has to be pointed at a specific location. Side-by-side comparison, it turns out, is one of the worst ways to spot a difference.</p>
-              <p>That is exactly the failure mode of "does my render match the design?" A designer eyeballing two screenshots misses a 4px padding drift, and an agent declaring "close enough" is doing the same thing. The plugin's overlay scrub and pixel-diff view exist to defeat change blindness: put the two images in the same place and highlight the pixels that differ, so attention doesn't have to search.</p>
+              <p>People miss big differences between two images shown side by side; attention has to be pointed at the spot. So the plugin overlays the render on the design and highlights the pixels that differ.</p>
               <span class="src">Rensink, R. A., O'Regan, J. K., &amp; Clark, J. J. (1997). To see or not to see: The need for attention to perceive changes in scenes. Psychological Science, 8(5), 368–373. · Simons &amp; Levin (1997).</span>
             </div>
           </div>
 
           <h2>The pivot: emit a spec, not code</h2>
-          <p>The first architecture plan was a six-stage pipeline ending in a code emitter for React and Tailwind. Partway through building it I realised the emitter was the weakest link. Any code I generated would encode my layout heuristics, and the agent would then have to reverse-engineer intent from my output. So I cut the emitter and made the plugin produce what the agent actually needed:</p>
+          <p>The first plan was a six-stage pipeline ending in a React and Tailwind code emitter. Partway through, I realised the emitter was the weakest link: any code I generated would bake in my layout guesses, and the agent would have to reverse-engineer intent from it. So I cut it and made the plugin produce what the agent actually needed:</p>
           <div class="pipeline">
             <div class="node"><b>spec.json</b><small>Clean tree: layout, fills, strokes, effects, text runs, variant state</small></div>
             <div class="node"><b>frame.png</b><small>2× render. Visual ground truth for verification, not measurement</small></div>
@@ -145,13 +144,13 @@
             <div class="node hi"><b>handoff.md</b><small>The prompt: field paths, failure modes to avoid, an iteration loop</small></div>
           </div>
           <div class="callout">
-            <p>The plugin's job became extracting structure and intent into an LLM-shaped format. Field names match design vocabulary, defaults and zero values are skipped, assets are referenced by ID, and every node carries its exact size and position. No Tailwind, no inline CSS, just raw values the agent can map however the target codebase needs.</p>
+            <p>Raw values in design vocabulary, with exact size and position on every node. The agent maps them to whatever the codebase needs.</p>
           </div>
 
           <h2>The asset pipeline is a first-class stage</h2>
-          <p>Assets are the number one source of visual mismatch, so the walker classifies every node into an asset category and each category has its own export strategy.</p>
+          <p>Assets cause more visual mismatches than anything else, so every node is sorted into an asset category with its own export strategy.</p>
           <ul>
-            <li><strong>Image fills.</strong> Read the scale mode (fill, fit, crop, tile) and decode Figma's 2×3 image transform into CSS object-fit and object-position. When the math gets hairy (rotated or skewed crops), rasterise the node flat instead of emitting fragile CSS. Pixel-perfect means knowing when to rasterise.</li>
+            <li><strong>Image fills.</strong> Read the scale mode (fill, fit, crop, tile) and decode Figma's 2×3 image transform into CSS object-fit and object-position. For rotated or skewed crops, rasterise the node instead of emitting fragile CSS.</li>
             <li><strong>Vectors.</strong> Export as SVG, validate that Figma hasn't embedded a raster fallback, normalise to a viewBox, replace single-colour fills with <code>currentColor</code> for icons, and run a conservative SVGO pass that never strips viewBox, IDs, or transformed groups.</li>
             <li><strong>Icons vs. illustrations.</strong> A heuristic on size, colour count, and layer naming decides whether something is an icon (inline, themeable, aria-hidden) or an illustration (single SVG, with a PNG alternative if it gets large).</li>
             <li><strong>Fonts.</strong> Every font is classified as Google, system, or custom. Custom fonts are flagged with a fallback stack so the agent knows to add an <code>@font-face</code> rather than swap the family.</li>
@@ -185,18 +184,18 @@
           </div>
 
           <h2>The plugin UI as a quality gate</h2>
-          <p>The Preact UI exists to let you see the match before you export. Side-by-side, overlay with an opacity scrub, and a pixel-diff view with a match percentage and clustered mismatch regions. An asset inspector bar reports images, vectors, and fonts as healthy or flagged, so if something looks wrong you know <em>what</em> went wrong before you look at the diff.</p>
+          <p>The UI lets you check the match before you export: side-by-side, an overlay with an opacity slider, and a pixel diff with a match percentage. An asset bar flags any image, vector or font that's off, so you know <em>what</em> went wrong before you look at the diff.</p>
 
           <h2>Design decisions I'd defend</h2>
           <ul>
-            <li><strong>No network access.</strong> The manifest allows no domains. The bundle is a zip the user drops into their own agent. Nothing about a design leaves the machine.</li>
+            <li><strong>No network access.</strong> The manifest allows no domains, and the bundle is a zip you drop into your own agent. Nothing leaves the machine.</li>
             <li><strong>Hidden layers stay in as commented stubs.</strong> The agent should know something was there.</li>
             <li><strong>Images are not inlined in the spec.</strong> They'd blow past the agent's context. SVG paths are inlined because they're small and the agent needs them verbatim.</li>
             <li><strong>Deterministic naming from layer names.</strong> Figma layer names are the designer's intent signal, so they become the section annotations in the output.</li>
           </ul>
 
           <h2>What I learned</h2>
-          <p>Generating code is the easy part and the wrong part. Generating <em>context</em>, and being explicit about how the reader should use it, produced better code than any emitter I could have written. This is the same lesson as Figma Export SB from the other direction: design the input, and the AI's output takes care of itself.</p>
+          <p>Generating code is the easy part and the wrong part. Generating <em>context</em>, with clear instructions for using it, produced better code than any emitter I could have written. Design the input, and the AI's output takes care of itself.</p>
         </div>
         </div>
       </section>
@@ -207,7 +206,7 @@
         <span>© <span data-year>2026</span> Mahrs Aslam.</span>
       </div>
     </footer>
-    <script src="../js/main.js?v=20261026a"></script>
+    <script src="../js/main.js?v=20261026c"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

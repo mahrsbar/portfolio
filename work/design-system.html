@@ -6,7 +6,7 @@
     <title>AI built our component library in days. It didn't work. — Mahrs Aslam</title>
     <meta
       name="description"
-      content="How I took a design system that only existed in Figma to a React + MUI component library: cleaning the source, a generated first version that turned out hollow, and a theme-first rebuild with 72% less component code."
+      content="How I took a design system that only existed in Figma to a React + MUI component library: cleaning the source, a generated first version that turned out hollow, and a theme-first rebuild that styles 66 MUI components from design tokens."
     />
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,8 +15,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026b" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261026a" />
+    <link rel="stylesheet" href="../css/style.css?v=20261026h" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261026g" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -48,7 +48,7 @@
       .plugins { display: grid; gap: 1.25rem; margin: 1.75rem 0 0; }
       .plugin { padding: 1.25rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
       .plugin-head { margin-bottom: 1rem; }
-      .plugin-n { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .plugin-n { display: block; font-size: 0.85rem; font-weight: 500; word-spacing: 0.08em; color: var(--ink-3); }
       .plugin-head h3 { margin: 0.2rem 0 0.35rem; font-size: 1.15rem; }
       .plugin-head p { margin: 0; font-size: 0.92rem; color: var(--ink-2); }
       .plugin-head .plugin-why { margin-top: 0.6rem; padding-left: 0.75rem; border-left: 2px solid var(--line-strong); font-size: 0.85rem; color: var(--ink-3); }
@@ -63,11 +63,20 @@
       .ba-tag.ba-after { background: var(--teal-soft); color: var(--teal-text); }
       .ba-code { margin: 0; font-size: 0.72rem; line-height: 1.55; }
       @media (max-width: 640px) { .after-pair { grid-template-columns: minmax(0, 1fr); } }
-      .type-tablist.steps { display: flex; flex-wrap: wrap; align-items: center; gap: 0.15rem; border-radius: 999px; }
-      .type-tablist.steps button { display: inline-flex; align-items: center; gap: 0.4rem; }
-      .step-n { display: inline-grid; place-items: center; width: 1.2rem; height: 1.2rem; border-radius: 50%; background: var(--line); font-size: 0.7rem; font-weight: 600; color: var(--ink-2); }
-      .type-tablist.steps button[aria-selected="true"] .step-n { background: var(--c); color: #fff; }
-      .step-arrow { color: var(--ink-3); font-size: 0.8rem; }
+      /* Before / Run / After: an Apple-style segmented control. Equal segments in
+         a grey track; a white thumb (the track's ::before) slides under the
+         selected step, positioned from aria-selected so the tab script needs no
+         changes. --n is the number of steps. */
+      .type-tablist.steps { --n: 3; position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); width: 100%; max-width: 360px; gap: 0; padding: 2px; margin-bottom: 1rem; border-radius: 9px; background: color-mix(in srgb, var(--ink) 7%, transparent); }
+      .type-tablist.steps:not(:has(> button:nth-of-type(3))) { --n: 2; max-width: 260px; }
+      .type-tablist.steps::before { content: ""; position: absolute; top: 2px; bottom: 2px; left: 2px; width: calc((100% - 4px) / var(--n)); border-radius: 7px; background: var(--bg-elev); box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12), 0 3px 1px rgba(0, 0, 0, 0.04); transition: transform 0.3s cubic-bezier(0.3, 0.7, 0.3, 1); }
+      .type-tablist.steps:has(> button:nth-of-type(2)[aria-selected="true"])::before { transform: translateX(100%); }
+      .type-tablist.steps:has(> button:nth-of-type(3)[aria-selected="true"])::before { transform: translateX(200%); }
+      .type-tablist.steps button { position: relative; z-index: 1; height: 32px; padding: 0 0.5rem; border-radius: 7px; background: none; box-shadow: none; color: var(--ink-2); font-size: 0.875rem; font-weight: 500; }
+      .type-tablist.steps button[aria-selected="true"] { background: none; box-shadow: none; color: var(--ink); font-weight: 600; }
+      .type-tablist.steps button:focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }
+      .step-n, .step-arrow { display: none; }
+      @media (prefers-reduced-motion: reduce) { .type-tablist.steps::before { transition: none; } }
       .step-panel img { max-height: 560px; width: auto; max-width: 100%; margin-inline: auto; }
       .step-panel .ba img, .step-panel .after-pair img { max-height: none; width: 100%; }
       .step-panel .ba-code { font-size: 0.8rem; max-width: 30rem; margin-inline: auto; }
@@ -90,7 +99,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -105,15 +114,15 @@
 
     <main id="main" class="hue-violet">
       <section class="wrap case-intro">
-        <p class="eyebrow">Design system · React + MUI · 2025–2026</p>
-        <h1>AI built our component library in days. It looked perfect, and it didn't work.</h1>
+        <p class="eyebrow"><b>Design system</b></p>
+        <h1>AI built our component library in days. It didn't work.</h1>
         <p class="intro-sum">
-          Our design system only existed in Figma. I cleaned it up with Figma plugins I built with AI, had an agent generate the component library in a few days, found out why it only worked in Storybook, and rebuilt it on a theme-first architecture with 72% less code.
+          Our design system only existed in Figma. I cleaned it up with Figma plugins I built with AI, had an agent generate the component library in a few days, found out why it only worked in Storybook, and rebuilt it theme-first, so 66 MUI components take their look straight from design tokens.
         </p>
         <ul class="highlights">
-          <li><b>72% less code</b><span>5,420 → 1,518 lines across 32 components</span></li>
-          <li><b>33 components in days</b><span>Generated by an agent, then rebuilt</span></li>
-          <li><b>Figma → React + MUI</b><span>From a Figma-only system to a working library</span></li>
+          <li><b>Used by 4 products</b><span>One React and MUI library</span></li>
+          <li><b>66 components themed</b><span>MUI's own, styled from design tokens</span></li>
+          <li><b>Days → about 10 min</b><span>Design to code with the AI-agent pipeline</span></li>
         </ul>
         <dl class="meta-line">
           <div><dt>Role</dt><dd>Design-system lead: Figma plugins, the generation pipeline and the component architecture</dd></div>
@@ -137,26 +146,23 @@
 
           <h2>The problem</h2>
           <p>
-            The design system looked finished in Figma, but it was a picture of a system. Designers used
-            it to hand screens over, and the coded library underneath had no foundation to build on: the MUI
-            theme set a font and nothing else, with no design tokens and not one component styled through it.
-            Every component carried its own hard-coded CSS instead: the Button alone was 370 lines, its
-            sizes, paddings and font sizes written out as pixel values no other component could reuse, so
+            The design system looked finished in Figma, but it was a picture of a system. The coded library
+            underneath had no foundation: the MUI theme set a font and nothing else, with no design tokens.
+            Every component carried its own hard-coded CSS instead (the Button alone was 370 lines), so
             changing a colour or a spacing value meant hunting it down component by component.
           </p>
           <p>
-            And the Figma file couldn't have fed a better library anyway: dozens of near-duplicate text styles, colours
-            painted on instead of linked to variables, and spacing that existed only as numbers on a canvas.
+            The Figma file couldn't have fed a better library anyway: dozens of near-duplicate text styles,
+            colours painted on instead of linked to variables, and spacing that existed only as numbers.
           </p>
 
           <div class="chapter">
             <span class="num">Step 1</span>
             <h2>Clean up Figma, without doing it by hand</h2>
             <p>
-              Code generated from a messy file is just messy code, so the file had to be fixed first. By hand, that
-              meant opening every component on every page and re-pointing each text style and value one at a time:
-              1,516 properties on just two component sets. So I built two Figma plugins with Claude Code to do
-              it for me, split by what they touch: one for type, one for everything else.
+              Code generated from a messy file is just messy code, so the file came first. By hand, that meant
+              re-pointing every text style and value one at a time: 1,516 properties on just two component sets.
+              So I built two Figma plugins with Claude Code instead: one for type, one for everything else.
             </p>
 
             <div class="plugins">
@@ -354,8 +360,6 @@ export const Switch = MuiSwitch;</code></pre>
             <aside class="lesson" aria-label="The lesson">
               <span class="lesson-k">The lesson</span>
               <p class="lesson-big">AI builds exactly what you ask for. I asked for Storybook, so I got Storybook.</p>
-              <p>420 tests passed without rendering a single component, because they only searched the code. Version two
-              asked for what a product needs: real renders, real props, real screens.</p>
             </aside>
           </div>
 
@@ -363,16 +367,13 @@ export const Switch = MuiSwitch;</code></pre>
             <span class="num">Step 3</span>
             <h2>Version two: a contract, then an architecture</h2>
             <p>
-              So version two started by changing what “done” meant. Before fixing
-              anything, I audited all of it: a QA report per component (38 of them)
-              that traced every failure back to one of seven root causes. Then I rewrote the rules the agent works
-              from. The biggest change was one rule: <strong>a component extends its MUI base instead of
-              copying the Figma picture</strong>. The other rules were there to stop the agent guessing: take the MUI
-              API from MUI's own documentation server, never from memory; map every Figma pixel to the exact
-              token, and stop if the tokens are out of date; measure the rendered component against Figma
-              before calling it done. Every real bug from version one became a rule, and the important ones
-              became tests that render each component and fail the build when a rule is broken: a hard-coded
-              colour, a raw MUI import where one of our components exists, a stateless component holding state.
+              So version two started by changing what “done” meant. I audited everything first: a QA report
+              per component (38 of them), tracing every failure to one of seven root causes. Then I rewrote the
+              agent's rules. The biggest change: <strong>a component extends its MUI base instead of copying the
+              Figma picture</strong>. The rest stop it guessing: take the MUI API from MUI's documentation server,
+              never from memory; map every Figma value to the exact token; measure the render against Figma before
+              calling it done. The important rules became tests that render each component and fail the build on a
+              hard-coded colour, a raw MUI import where we have a component, or a stateless component holding state.
             </p>
             <p>
               That fixed the components. Then I realised we didn't need most of them.
@@ -416,24 +417,22 @@ export const Switch = MuiSwitch;</code></pre>
             </figure>
 
             <p>
-              The reason is rework. Every custom wrapper is an API product teams have to migrate to and we
-              have to keep in step with every MUI release. With the design in the theme, a team can keep
-              importing straight from MUI and still get the design-system look, so adopting it is a theme
-              swap, not a rewrite. Composition is reserved for what MUI doesn't have; as the guide
-              puts it, composition is the trap.
+              The reason is rework. Every custom wrapper is an API teams have to migrate to and we have to keep
+              in step with MUI. With the design in the theme, teams keep importing straight from MUI and still get
+              the look, so adopting it is a theme swap, not a rewrite. Composition is only for what MUI doesn't
+              have; as the guide puts it, composition is the trap.
             </p>
             <p>
-              Across the same 32 components, the code went from 5,420 lines to 1,518. Breadcrumbs went from
-              289 lines to 20. Three custom group components were deleted outright, because MUI's form
+              Breadcrumbs went from 289 lines to 20. Three custom group components were deleted outright, because MUI's form
               controls already did their job.
             </p>
           </div>
 
           <h2>The outcome</h2>
           <div class="stats">
-            <div class="stat"><b>72%</b><span>less component code: 5,420 lines down to 1,518</span></div>
-            <div class="stat"><b>41</b><span>components, from 33 hollow ones</span></div>
+            <div class="stat"><b>4</b><span>products built on the library</span></div>
             <div class="stat"><b>66</b><span>MUI components styled from design tokens in the theme</span></div>
+            <div class="stat"><b>9</b><span>new components built from the guide since May</span></div>
             <div class="stat"><b>240</b><span>Storybook stories, with tests that actually render</span></div>
           </div>
           <p>
@@ -489,7 +488,7 @@ export const Switch = MuiSwitch;</code></pre>
         });
       });
     </script>
-    <script src="../js/main.js?v=20261026a"></script>
+    <script src="../js/main.js?v=20261026c"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>
