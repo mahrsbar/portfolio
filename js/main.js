@@ -176,7 +176,7 @@
   function readingTime() {
     var prose = document.querySelector(".prose");
     var eyebrow = document.querySelector(".case-hero .eyebrow, .post-hero .eyebrow");
-    if (!prose || !eyebrow) return;
+    if (!prose || !eyebrow || eyebrow.hasAttribute("data-no-read-time")) return;
     /* Count only what a reader sees by default: collapsed <details>
        documents are optional reading and would triple the estimate. */
     var clone = prose.cloneNode(true);
