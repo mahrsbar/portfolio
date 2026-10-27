@@ -4890,3 +4890,7 @@ html .case-intro h1 { font-size: clamp(1.75rem, 3vw, 2.4rem); max-width: 24ch; }
   :root:not([data-theme="light"]) .pcard > :first-child,
   :root:not([data-theme="light"]) .pcard .pcard-media { background: #1D1E23; }
 }
+
+/* The Figma screenshot has a few light pixels in its top-left corner; nudge it
+   past the window edge so they're hidden. */
+.pcard-stack .win-back img { margin: -3px 0 0 -3px; width: calc(100% + 3px); }
