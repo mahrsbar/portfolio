@@ -4867,3 +4867,11 @@ html .case-intro h1 { font-size: clamp(1.75rem, 3vw, 2.4rem); max-width: 24ch; }
 /* when no cover image sits between the intro and the body, don't stack two paddings */
 .case-intro + .section { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
 .case-intro + .section .prose > h2:first-child { margin-top: 0; }
+
+/* Inline code never splits mid-token ("space-12" broke at the hyphen). */
+:not(pre) > code { white-space: nowrap; }
+
+/* Card labels name the product in bold, so a short hook title still says what it is. */
+.pcard-kicker { font-size: 0.9rem; color: var(--ink-3); }
+.pcard-kicker b { font-weight: 600; color: var(--ink); }
+.eyebrow b { font-weight: 600; color: var(--ink-2); }
