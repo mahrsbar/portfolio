@@ -25,7 +25,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261026d" />
+    <link rel="stylesheet" href="css/style.css?v=20261026e" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -47,7 +47,7 @@
         "sameAs": ["https://github.com/mahrsbar"]
       }
     </script>
-    <link rel="stylesheet" href="css/accents.css?v=20261026b" />
+    <link rel="stylesheet" href="css/accents.css?v=20261026c" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500;700;800&amp;display=swap" />
     <style>
       /* hero: the duck scene stands on a floor that runs the full width of the page.
@@ -95,7 +95,7 @@
       .duck-room .split-inner { position: relative; z-index: 2; padding-bottom: 0; }
       .duck-room .hero-figure { align-self: end; }
       @media (min-width: 861px) {
-        .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(340px, 46vw, 620px); }
+        .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(320px, 40vw, 540px); }
         .duck-room .hero-copy { padding-bottom: calc(var(--floor-h) + 1.5rem); }
       }
       /* role and degrees: two small icon lines under the tagline */
@@ -138,7 +138,10 @@
         :root:not([data-theme="light"]) .split-fig.duck-fig::before { opacity: 1; }
       }
       @media (max-width: 860px) {
-        .hero-figure .split-fig.duck-fig { display: block; max-width: 520px; margin: 0 auto; }
+        .hero-figure .split-fig.duck-fig { display: block; max-width: 460px; margin: 0 auto; }
+      }
+      @media (max-width: 560px) {
+        .hero-figure .split-fig.duck-fig { max-width: 88%; }
       }
 
       /* LoafMode's banner has its headline at the left edge, so keep it 2:1 on
@@ -417,8 +420,8 @@
               </a>
               <div class="pcard-body">
                 <p class="pcard-kicker">Design system</p>
-                <h3><a href="work/design-system.html">AI built our component library in days. It looked perfect, and it didn't work.</a></h3>
-                <p>How I cleaned up Figma with AI-built plugins, found out why the generated library only worked in Storybook, and rebuilt it with 72% less code.</p>
+                <h3><a href="work/design-system.html">AI built it in days. It didn't work.</a></h3>
+                <p>Our component library looked perfect and only worked in Storybook. I cleaned up Figma with AI-built plugins and rebuilt the library with 72% less code.</p>
               </div>
             </article>
 
@@ -434,8 +437,8 @@
               </div>
               <div class="pcard-body">
                 <p class="pcard-kicker">iOS app</p>
-                <h3><a href="work/loafmode.html">Screen-time apps gamify the habit they claim to fix. So I built one with Claude Code that doesn't.</a></h3>
-                <p>A calm iPhone app for scrolling less, where every feature comes from behaviour research instead of streaks and points.</p>
+                <h3><a href="work/loafmode.html">A screen-time app without streaks</a></h3>
+                <p>A calm iPhone app for scrolling less, built on behaviour research instead of points and guilt. Made with Claude Code.</p>
               </div>
             </article>
 
@@ -487,8 +490,8 @@
               </a>
               <div class="pcard-body">
                 <p class="pcard-kicker">Product design</p>
-                <h3><a href="work/onecomply.html">Nobody finishes a form they can't see the end of. So I cut one into six steps.</a></h3>
-                <p>An eleven-step licence application rebuilt as six steps with visible progress, plus the tools managers use to assign and track it.</p>
+                <h3><a href="work/onecomply.html">Eleven steps down to six</a></h3>
+                <p>A licence application people actually finish, with visible progress and tools for the managers who assign it.</p>
               </div>
             </article>
 
@@ -512,8 +515,8 @@
               </a>
               <div class="pcard-body">
                 <p class="pcard-kicker">Lead front-end · 2022–23</p>
-                <h3><a href="remnant.html">Remnant Labs: a game studio's website, rebuilt from brand voice to Vue</a></h3>
-                <p>Audience research, wireframes and hi-fi prototypes, then the front end that shipped.</p>
+                <h3><a href="remnant.html">Remnant Labs website</a></h3>
+                <p>Research, prototypes and the Vue front end for a game studio. Traffic up 125%.</p>
               </div>
             </article>
             <article class="pcard hue-teal">
@@ -522,8 +525,8 @@
               </a>
               <div class="pcard-body">
                 <p class="pcard-kicker">Technical lead · Open source · 2021–22</p>
-                <h3><a href="amplify.html">ProgramEquity: turning supporters into letters their representatives read</a></h3>
-                <p>Led a distributed volunteer team building Amplify for advocacy non-profits.</p>
+                <h3><a href="amplify.html">Amplify for ProgramEquity</a></h3>
+                <p>Led a volunteer team building an open-source tool that turns supporters into letters to their representatives.</p>
               </div>
             </article>
 
@@ -533,8 +536,8 @@
               </a>
               <div class="pcard-body">
                 <p class="pcard-kicker">HCI</p>
-                <h3><a href="work/craigslist-redesign.html">HCI coursework: three interfaces, researched and prototyped</a></h3>
-                <p>Where the habits behind the rest of this work came from.</p>
+                <h3><a href="work/craigslist-redesign.html">University HCI projects</a></h3>
+                <p>Three interfaces, researched and prototyped.</p>
                 <details class="pcard-more">
                   <summary>Three projects</summary>
                   <ul>

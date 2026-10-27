@@ -16,7 +16,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026d" />
+    <link rel="stylesheet" href="../css/style.css?v=20261026e" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -54,7 +54,7 @@
     <main id="main" class="hue-violet">
       <section class="wrap case-hero">
         <p class="eyebrow">Deep dive · Part of the <a href="design-system.html">Hub design system</a> flagship</p>
-        <h1>Figma to Code: pixel-faithful handoff bundles for an AI agent</h1>
+        <h1>Figma to Code: handoff bundles for AI agents</h1>
         <p class="lead">
           Most design-to-code plugins try to write the code. This one stopped doing that. It exports a
           frame as structured context, a ground-truth image, the real asset bytes, and a prompt that
@@ -130,8 +130,7 @@
             <div>
               <div class="kicker">Psych note</div>
               <h3>Change blindness</h3>
-              <p>Show someone two nearly identical photos with a brief flicker between them and they can take a long time to notice a large object appearing or vanishing. Attention doesn't compare scenes on its own; it has to be pointed at a spot. Side-by-side is one of the worst ways to find a difference.</p>
-              <p>That's exactly the trap in "does my render match the design?" A designer eyeballing two screenshots misses a 4px padding drift, and an agent saying "close enough" does the same. The plugin's overlay and pixel-diff views put both images in one place and highlight what differs, so attention doesn't have to search.</p>
+              <p>People miss big differences between two images shown side by side; attention has to be pointed at the spot. So the plugin overlays the render on the design and highlights the pixels that differ.</p>
               <span class="src">Rensink, R. A., O'Regan, J. K., &amp; Clark, J. J. (1997). To see or not to see: The need for attention to perceive changes in scenes. Psychological Science, 8(5), 368–373. · Simons &amp; Levin (1997).</span>
             </div>
           </div>
@@ -145,7 +144,7 @@
             <div class="node hi"><b>handoff.md</b><small>The prompt: field paths, failure modes to avoid, an iteration loop</small></div>
           </div>
           <div class="callout">
-            <p>The plugin's job became extracting structure and intent in a format an LLM reads well: design vocabulary for field names, no defaults or zero values, assets by ID, and exact size and position on every node. No Tailwind or inline CSS, just raw values the agent maps to whatever the codebase needs.</p>
+            <p>Raw values in design vocabulary, with exact size and position on every node. The agent maps them to whatever the codebase needs.</p>
           </div>
 
           <h2>The asset pipeline is a first-class stage</h2>

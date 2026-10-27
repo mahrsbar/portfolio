@@ -4854,3 +4854,16 @@ a, button { -webkit-tap-highlight-color: transparent; }
   html .nav.has-menu .nav-menu-btn { width: 36px; height: 36px; }
   html .nav-menu-btn svg { width: 16px; height: 16px; }
 }
+
+/* Big home cards (Oct 2026): label, title and description stack in reading
+   order instead of title-left / text-right, and titles are a step smaller. */
+@media (min-width: 761px) {
+  html .pcard.pcard-flagship .pcard-body { display: flex; flex-direction: column; align-items: stretch; }
+  html .pcard.pcard-flagship .pcard-body > p:not(.pcard-kicker) { margin: 0.6rem 0 0; max-width: 62ch; font-size: 1rem; }
+}
+html .pcard.pcard-flagship h3 { font-size: clamp(1.25rem, 1.9vw, 1.55rem); max-width: none; }
+html .pcard h3 { line-height: 1.2; }
+html .case-intro h1 { font-size: clamp(1.75rem, 3vw, 2.4rem); max-width: 24ch; }
+/* when no cover image sits between the intro and the body, don't stack two paddings */
+.case-intro + .section { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
+.case-intro + .section .prose > h2:first-child { margin-top: 0; }

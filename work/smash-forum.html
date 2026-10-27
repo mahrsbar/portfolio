@@ -15,8 +15,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026d" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261026b" />
+    <link rel="stylesheet" href="../css/style.css?v=20261026e" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261026c" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -57,7 +57,7 @@
     <main id="main" class="hue-mustard">
       <section class="wrap case-intro">
         <p class="eyebrow">Earlier work · University software project · 2018</p>
-        <h1>SMASH: a forum app with moderation built in</h1>
+        <h1>SMASH: a forum with moderation built in</h1>
         <p class="intro-sum">
           A five-person team had one semester to build a social platform for posting and voting. We shipped
           a PHP and MySQL forum whose admin can delete a post, ignore a report or ban the user. My part was
@@ -109,17 +109,6 @@
           <div class="figure wide">
             <img class="shot" src="../images/smash/components.jpg" alt="Component diagram: Login, Register, Post List, Post, Repost, Vote, Report, User Detail, Check Reports, Report Options, Block User, Manage Blocks" loading="lazy" />
             <figcaption>The component map. The right-hand column is the moderation path: user detail, check reports, report options, block and manage blocks.</figcaption>
-          </div>
-
-          <div class="psych">
-            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a7 7 0 0 0-4 12.7V18a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.3A7 7 0 0 0 12 3z"/><path d="M10 22h4"/></svg></span>
-            <div>
-              <div class="kicker">Psych note</div>
-              <h3>Poka-yoke, or mistake-proofing</h3>
-              <p>Shigeo Shingo's idea from manufacturing: don't rely on people to avoid errors; shape the process so the error can't happen, or is caught the instant it does. Slips are inevitable, so the design's job is to make them cheap.</p>
-              <p>The forum's small details are all poka-yoke. The counter turns red at 251 and the button won't submit. Every empty field says what it needs. A ban removes the post in the same action, so the admin can't forget the second step.</p>
-              <span class="src">Shingo, S. (1986). Zero Quality Control: Source Inspection and the Poka-yoke System. · Norman, D. A. (1983). Design rules based on analyses of human error. Communications of the ACM, 26(4), 254–258.</span>
-            </div>
           </div>
 
           <h2>Software qualities, then tests to match</h2>
