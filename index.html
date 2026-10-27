@@ -211,7 +211,7 @@
       /* the duck's notepad: handwritten lines that appear one by one */
       .sn-pad {
         position: relative;
-        padding: 1.2rem 1.15rem 1rem;
+        padding: 1rem 1rem 0.85rem;
         background: var(--bg);
         border: 1px solid var(--line);
         border-radius: var(--radius);
@@ -229,10 +229,10 @@
       .sn-list { margin: 0; padding: 0; list-style: none; counter-reset: note; }
       .sn-list li {
         position: relative;
-        padding: 0.2rem 0 0.2rem 1.6rem;
+        padding: 0.1rem 0 0.1rem 1.4rem;
         font-family: "Shantell Sans", ui-rounded, sans-serif;
-        font-size: 0.95rem;
-        line-height: 1.5;
+        font-size: 0.86rem;
+        line-height: 1.45;
         color: var(--ink);
       }
       .sn-list li::before {
@@ -241,13 +241,13 @@
         position: absolute;
         left: 0;
         font-family: var(--font-mono);
-        font-size: 0.78rem;
+        font-size: 0.72rem;
         color: var(--ink-3);
-        top: 0.4rem;
+        top: 0.3rem;
       }
       .sn.in .sn-list li { animation: sn-note .45s var(--ease) both; animation-delay: calc(var(--i, 0) * 0.45s + 0.3s); }
       @keyframes sn-note { from { opacity: 0; transform: translateY(6px); } }
-      .sn-fine { margin: 0.75rem 0 0; font-size: 0.8rem; line-height: 1.5; color: var(--ink-3); }
+      .sn-fine { margin: 0.6rem 0 0; font-size: 0.75rem; line-height: 1.45; color: var(--ink-3); }
 
       .sn-plan { margin-top: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
       .sn-plan-line { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.05; }
