@@ -4891,6 +4891,12 @@ html .case-intro h1 { font-size: clamp(1.75rem, 3vw, 2.4rem); max-width: 24ch; }
   :root:not([data-theme="light"]) .pcard .pcard-media { background: #1D1E23; }
 }
 
+/*Dark under the title bar so the rounded corners don't show a white fringe. */
+.pcard-stack .win-back { background: linear-gradient(2C2C2C_1 0 26px, #fff 26px); }
+.win-bar-dark { background: 2C2C2C_1; border-bottom-color: rgba(255, 255, 255, 0.06); }
+.win-bar-dark i { background: rgba(255, 255, 255, 0.22); }
+.win-bar-dark b { color: rgba(255, 255, 255, 0.75); }
+
 /* The Figma screenshot has a few light pixels in its top-left corner; nudge it
    past the window edge so they're hidden. */
-.pcard-stack .win-back img { margin: -3px 0 0 -3px; width: calc(100% + 3px); }
+.pcard-stack .win-back img { margin: 0px 0 0 0px; width: calc(100% + 3px); }

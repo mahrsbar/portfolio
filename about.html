@@ -53,44 +53,30 @@
     <main id="main">
       <section class="wrap case-hero">
         <p class="eyebrow" data-no-read-time>About</p>
-        <h1>I design and build for how people actually behave.</h1>
+         <h1>I design and build for how people actually behave.</h1>
         <p class="lead">
-          I'm a UX Engineer in Vancouver with 7 years of building software, currently at GeoComply. I start
-          with user research to find out how people actually work, shape what the product should become,
-          and build it in React and TypeScript, down to the design system it runs on.
+          I'm a UX engineer in Vancouver with 7 years of building software, trained in psychology before
+          computer science. At GeoComply I work on fraud-investigation tools: I find out how analysts
+          actually work, shape what the product should become, and build it.
         </p>
       </section>
 
-      <section class="wrap section" style="border-top:0; padding-top:0">
+       <section class="wrap section" style="border-top:0; padding-top:0">
         <div class="about-grid">
           <div class="prose">
-            <h2 style="margin-top:0">The short version</h2>
-            <p>I studied psychology first, then computer science. Before I wrote any production code I'd spent years on attention, memory, decision-making and how people behave when a system surprises them. So when I learned to build software, I already knew who I was building it for.</p>
-            <p>I've been a front-end and full-stack developer, a technical lead, and now a UX engineer. In every role I've worked on both the design and the code. I like understanding the problem, building the fix, then making a tool so the next one is easier.</p>
-
-            <h2>What the psychology background actually changes</h2>
+            <h2 style="margin-top:0">How I work</h2>
             <ul>
-              <li><strong>I start with behaviour data.</strong> Session replays, support-channel history, shadowing. I want to know what people do before I ask them what they want.</li>
-              <li><strong>I design for what goes wrong.</strong> A dead-end error becomes a support ticket, and an unclear state sends people in circles. The <a href="work/onecomply.html">licence application redesign</a> was mostly about making the next step visible.</li>
-              <li><strong>I keep cognitive load in the budget.</strong> Fewer navigation choices, one organising element per page, empty states that are never confused with loading states.</li>
-              <li><strong>I treat AI as a user too.</strong> An LLM reading a JSON file has the same problem as a new teammate: ambiguity costs it. Getting the input right has mattered more than anything else I've done with AI.</li>
+              <li><strong>Research decides what gets built.</strong> I start with what people do, not what they say: session replays, support tickets, shadowing, analyst interviews. That's how a four-tool investigation workflow became one user page, and how a ranked audit of 21 map failures set engineering's fix order.</li>
+              <li><strong>Then I build it.</strong> I prototype the real thing instead of handing off a spec, and I ship it in React and TypeScript.</li>
+              <li><strong>Then I make the next one faster.</strong> I took our <a href="work/design-system.html">design system</a> from Figma-only to a React library used by four products, with Figma plugins and an agent pipeline that cut design-to-code from days to about ten minutes.</li>
             </ul>
 
-            <h2>Human factors, formally</h2>
-            <p>Most of the psychology I use comes from human factors: Rasmussen's skills-rules-knowledge model of where operators fail, ecological interface design (make constraints obvious so attention goes to the real problem), signal detection theory (why a false "no results" is worse than a slow one) and universal design. Each case study here applies one such principle to a real decision.</p>
+            <h2>AI, in the product and in the workflow</h2>
+            <p>I designed and built an investigation assistant (React, Cloudflare Workers, Claude API) that turns an analyst's question into filters. Analysts answer for every decision they make, so the assistant shows its work as filters they can see and edit, not an answer they have to trust. It's now a major prospect's reference demo, and two of its patterns are on the product roadmap.</p>
+            <p>Day to day I build with Claude Code and Cursor, with Figma and MUI connected so the agent reads the real design and docs instead of guessing. What to build, anything that touches customer data, and whether it's right stay with me. Every mistake an agent makes becomes a rule or a test.</p>
 
-            <h2>How I use AI</h2>
-            <p>AI does a lot of my building now. Most of my job is deciding what to ask it for, and checking what comes back.</p>
-            <ul>
-              <li><strong>What I've shipped with it:</strong> <a href="work/loafmode.html">LoafMode</a>, live on the App Store, art included. An AI investigation assistant (React, Cloudflare Workers, Claude API) that turns analysts' questions into editable filters. Four Figma plugins and an AI-agent pipeline that cut design-to-code from days to about 10 minutes. And a <a href="work/design-system.html">component library rebuild</a>, after the first AI-generated version looked right and didn't work, now used by 4 products.</li>
-              <li><strong>Tools:</strong> Claude Code for my own projects, and Cursor with a shared rules file for the team's library. Figma MCP so the agent sees the real frame, MUI MCP so it reads the docs instead of guessing. Figma Make and Claude Design for prototypes, Claude Projects for research notes.</li>
-              <li><strong>What stays mine:</strong> deciding what to build, anything that touches credentials or customer data, and the call on whether a screen actually matches the design.</li>
-              <li><strong>How I check its work:</strong> tests that assert exact values, visual diffs against Figma with a threshold, and a running list of every mistake the agent made, each turned into a rule or a test so it doesn't happen twice.</li>
-            </ul>
-            <p>Models I've shipped with, from git: Sonnet 4.5, Opus 4.6, 4.7 and 4.8, Opus 5, Fable 5.</p>
-
-            <h2>What I'm working on now</h2>
-            <p>A Figma-to-code pipeline an AI agent can run without someone translating in between, and turning scattered investigation tools into one experience with room for AI features.</p>
+            <h2>Why the psychology matters</h2>
+            <p>It's why I look at behaviour before opinions, and it gives me names for what goes wrong: cognitive load, automation bias, a false "no results" that's worse than a slow one. Most of my design decisions come down to making the next step obvious and the system's state impossible to misread.</p>
           </div>
 
           <aside>
