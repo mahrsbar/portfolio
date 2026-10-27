@@ -82,7 +82,7 @@
       q: "Are you available, and how do I reach you?",
       blocks: [
         { p: "Easiest is email — <a href=\"mailto:mahrs.aslam@gmail.com\">mahrs.aslam@gmail.com</a>. I'm also on <a href=\"https://github.com/mahrsbar\" target=\"_blank\" rel=\"noopener\">GitHub</a> and <a href=\"https://www.linkedin.com/in/mahrs-aslam\" target=\"_blank\" rel=\"noopener\">LinkedIn</a>." },
-        { card: { href: "images/Mahrs_Aslam_Resume.pdf", kind: "PDF", title: "Résumé", desc: "One page." } },
+        { card: { href: "images/Mahrs_Aslam_Resume.pdf?v=2026", kind: "PDF", title: "Résumé", desc: "One page." } },
         { p: "If you'd rather just read something first, the design system case study is the one I'd send." }
       ],
       next: ["best", "wrong"]

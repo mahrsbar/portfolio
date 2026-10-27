@@ -19,10 +19,12 @@
   }
 }
 
-/* project cards: outlined in the illustration's own ink colour, at about the weight
-   its lines render on screen, so the cards read as part of the same drawing.
-   No shadow; hover just lifts a little. */
-:root { --card-edge: color-mix(in srgb, var(--edge) 85%, var(--bg)); }
+/* project cards: a 1.5px dark grey outline, no shadow; hover just lifts a little */
+:root { --card-edge: #4A4846; }
+:root[data-theme="dark"] { --card-edge: #5A5C63; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --card-edge: #5A5C63; }
+}
 .pcard,
 .sn {
   border: 1.5px solid var(--card-edge);
@@ -35,32 +37,6 @@
   box-shadow: none;
 }
 
-/* Project cards: the outline is drawn on a layer above the card and run through
-   an SVG displacement filter (defined in index.html), so only the line wobbles
-   and the content stays crisp. The card stops clipping so the line can wobble
-   past its edge; the image block on top does the corner clipping instead. */
-.pcard {
-  border-color: transparent;
-  overflow: visible;
-}
-.pcard:hover,
-.pcard:focus-within { border-color: transparent; }
-.pcard > :first-child {
-  overflow: hidden;
-  border-radius: calc(var(--radius-l) - 1.5px) calc(var(--radius-l) - 1.5px) 0 0;
-}
-.pcard::before {
-  content: "";
-  position: absolute;
-  inset: -1.5px;
-  z-index: 3;
-  border: 1.5px solid var(--card-edge);
-  border-radius: var(--radius-l);
-  pointer-events: none;
-  filter: url(#hand-drawn-a);
-}
-.pcard:nth-of-type(3n + 2)::before { filter: url(#hand-drawn-b); }
-.pcard:nth-of-type(3n)::before { filter: url(#hand-drawn-c); }
 
 /* the whole card is clickable: the title's link stretches over the card,
    while links inside it (App Store badge, the HCI project list) stay on top */
@@ -196,7 +172,7 @@
    until the next tap), so the lift is replaced by a small press */
 @media (hover: none) {
   .pcard:hover,
-  .pcard:focus-within { transform: none; border-color: transparent; box-shadow: none; }
+  .pcard:focus-within { transform: none; border-color: var(--card-edge); box-shadow: none; }
   .pcard:hover .pcard-media img,
   .pcard:hover .pcard-stack .win-front,
   .pcard:hover .pcard-mock .mk { transform: none; }

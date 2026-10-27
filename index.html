@@ -47,7 +47,7 @@
         "sameAs": ["https://github.com/mahrsbar"]
       }
     </script>
-    <link rel="stylesheet" href="css/accents.css?v=20261026f" />
+    <link rel="stylesheet" href="css/accents.css?v=20261026g" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500;700;800&amp;display=swap" />
     <style>
       /* hero: the duck scene stands on a floor that runs the full width of the page.
@@ -281,22 +281,6 @@
   </head>
 
   <body>
-    <!-- Hand-drawn card outlines: a gentle displacement makes each card's border
-         wobble like the duck scene's ink. Three seeds, so neighbouring cards differ. -->
-    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-      <filter id="hand-drawn-a" x="-2%" y="-2%" width="104%" height="104%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="1" seed="3" result="n"/>
-        <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-      <filter id="hand-drawn-b" x="-2%" y="-2%" width="104%" height="104%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="1" seed="11" result="n"/>
-        <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-      <filter id="hand-drawn-c" x="-2%" y="-2%" width="104%" height="104%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="1" seed="27" result="n"/>
-        <feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-    </svg>
     <a class="skip" href="#main">Skip to content</a>
 
     <header class="nav">
@@ -310,7 +294,7 @@
             <!-- Writing hidden for now: <li><a href="writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="ask.html">Ask</a></li> -->
-            <li><a href="images/Mahrs_Aslam_Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -626,7 +610,7 @@
               <div class="hero-actions">
                 <a class="btn btn-primary" href="mailto:mahrs.aslam@gmail.com">Email</a>
                 <a class="btn btn-ghost" href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="btn btn-ghost" href="images/Mahrs_Aslam_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+                <a class="btn btn-ghost" href="images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a>
               </div>
             </div>
           </div>

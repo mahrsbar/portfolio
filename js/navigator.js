@@ -65,7 +65,7 @@
     { t: "About", u: "about.html", k: "page", y: "",
       b: "Psychology, then computer science, then building the fix.",
       g: ["about","who","bio","background","psychology","psych","education","story","you","yourself"] },
-    { t: "Résumé (PDF)", u: "images/Mahrs_Aslam_Resume.pdf", k: "file", y: "",
+    { t: "Résumé (PDF)", u: "images/Mahrs_Aslam_Resume.pdf?v=2026", k: "file", y: "",
       b: "One page.",
       g: ["resume","résumé","cv","hire","hiring","experience","work history","pdf","download"] },
     { t: "Contact", u: "index.html#contact", k: "section", y: "",
