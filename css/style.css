@@ -427,8 +427,13 @@ pre code {
   backdrop-filter: saturate(160%) blur(14px);
   -webkit-backdrop-filter: saturate(160%) blur(14px);
   background: color-mix(in srgb, var(--bg) 80%, transparent);
-  border-bottom: 1px solid var(--line);
+  /* no divider at the top of the page; main.js adds .scrolled once content
+     passes under the bar, so it still has an edge then */
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s var(--ease);
 }
+
+.nav.scrolled { border-bottom-color: var(--line); }
 
 .nav .wrap {
   display: flex;

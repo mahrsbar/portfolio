@@ -103,6 +103,15 @@
     });
   }
 
+  /* ---- Nav divider only once the page has scrolled ---- */
+  function navEdge() {
+    var header = document.querySelector("header.nav");
+    if (!header) return;
+    function update() { header.classList.toggle("scrolled", window.scrollY > 4); }
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+
   /* ---- Tables that stack on phones ----
      Wide comparison tables become one card per row; each cell gets its
      column heading as a label. */
@@ -254,6 +263,7 @@
     bindToggle();
     markNav();
     menu();
+    navEdge();
     stackTables();
     reveal();
     copyEmail();

@@ -25,7 +25,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261026g" />
+    <link rel="stylesheet" href="css/style.css?v=20261026h" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -52,20 +52,15 @@
     <style>
       /* hero: the duck scene stands on a floor that runs the full width of the page.
          --floor-h is set from the scene's real width by script; this is the fallback. */
-      :root { --wall: #DFE7EC; }
-      :root[data-theme="dark"] { --wall: #171B22; }
-      @media (prefers-color-scheme: dark) {
-        :root:not([data-theme="light"]) { --wall: #171B22; }
-      }
-      /* the wall fades in from the page, and the floor IS the page, so the room flows
-         straight into the next section; only a hand-drawn floor line remains */
+      /* the room sits on the page itself, so it flows straight into the next
+         section; only a hand-drawn floor line remains */
       .duck-room {
         position: relative;
         /* the lamp glow reaches past the scene's right edge; without this,
            iOS lets the whole page scroll sideways to it */
         overflow: hidden;
         --floor-h: 80px;
-        background: linear-gradient(to bottom, var(--bg) 0%, var(--wall) 45%, var(--wall) 100%);
+        background: var(--bg);
         border-bottom: 0;
       }
       .duck-room::after {
@@ -344,7 +339,7 @@
               <figure class="split-fig duck-fig">
                 <!-- Interactive: tap the dev to start a session, squeeze the duck. It reports
                      both to this page so the session notes at the bottom can mention them. -->
-                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261026e" width="800" height="596"
+                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261026h" width="800" height="596"
                         title="A developer on a therapist's couch talking to a rubber duck in glasses. Interactive." loading="eager"></iframe>
               </figure>
             </div>
@@ -638,7 +633,7 @@
       </div>
     </footer>
 
-    <script src="js/main.js?v=20261026b"></script>
+    <script src="js/main.js?v=20261026c"></script>
 
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
     <script>
