@@ -146,26 +146,23 @@
 
           <h2>The problem</h2>
           <p>
-            The design system looked finished in Figma, but it was a picture of a system. Designers used
-            it to hand screens over, and the coded library underneath had no foundation to build on: the MUI
-            theme set a font and nothing else, with no design tokens and not one component styled through it.
-            Every component carried its own hard-coded CSS instead: the Button alone was 370 lines, its
-            sizes, paddings and font sizes written out as pixel values no other component could reuse, so
+            The design system looked finished in Figma, but it was a picture of a system. The coded library
+            underneath had no foundation: the MUI theme set a font and nothing else, with no design tokens.
+            Every component carried its own hard-coded CSS instead (the Button alone was 370 lines), so
             changing a colour or a spacing value meant hunting it down component by component.
           </p>
           <p>
-            And the Figma file couldn't have fed a better library anyway: dozens of near-duplicate text styles, colours
-            painted on instead of linked to variables, and spacing that existed only as numbers on a canvas.
+            The Figma file couldn't have fed a better library anyway: dozens of near-duplicate text styles,
+            colours painted on instead of linked to variables, and spacing that existed only as numbers.
           </p>
 
           <div class="chapter">
             <span class="num">Step 1</span>
             <h2>Clean up Figma, without doing it by hand</h2>
             <p>
-              Code generated from a messy file is just messy code, so the file had to be fixed first. By hand, that
-              meant opening every component on every page and re-pointing each text style and value one at a time:
-              1,516 properties on just two component sets. So I built two Figma plugins with Claude Code to do
-              it for me, split by what they touch: one for type, one for everything else.
+              Code generated from a messy file is just messy code, so the file came first. By hand, that meant
+              re-pointing every text style and value one at a time: 1,516 properties on just two component sets.
+              So I built two Figma plugins with Claude Code instead: one for type, one for everything else.
             </p>
 
             <div class="plugins">
@@ -363,8 +360,7 @@ export const Switch = MuiSwitch;</code></pre>
             <aside class="lesson" aria-label="The lesson">
               <span class="lesson-k">The lesson</span>
               <p class="lesson-big">AI builds exactly what you ask for. I asked for Storybook, so I got Storybook.</p>
-              <p>420 tests passed without rendering a single component, because they only searched the code. Version two
-              asked for what a product needs: real renders, real props, real screens.</p>
+              <p>Version two asked for what a product needs: real renders, real props, real screens.</p>
             </aside>
           </div>
 
@@ -372,16 +368,13 @@ export const Switch = MuiSwitch;</code></pre>
             <span class="num">Step 3</span>
             <h2>Version two: a contract, then an architecture</h2>
             <p>
-              So version two started by changing what “done” meant. Before fixing
-              anything, I audited all of it: a QA report per component (38 of them)
-              that traced every failure back to one of seven root causes. Then I rewrote the rules the agent works
-              from. The biggest change was one rule: <strong>a component extends its MUI base instead of
-              copying the Figma picture</strong>. The other rules were there to stop the agent guessing: take the MUI
-              API from MUI's own documentation server, never from memory; map every Figma pixel to the exact
-              token, and stop if the tokens are out of date; measure the rendered component against Figma
-              before calling it done. Every real bug from version one became a rule, and the important ones
-              became tests that render each component and fail the build when a rule is broken: a hard-coded
-              colour, a raw MUI import where one of our components exists, a stateless component holding state.
+              So version two started by changing what “done” meant. I audited everything first: a QA report
+              per component (38 of them), tracing every failure to one of seven root causes. Then I rewrote the
+              agent's rules. The biggest change: <strong>a component extends its MUI base instead of copying the
+              Figma picture</strong>. The rest stop it guessing: take the MUI API from MUI's documentation server,
+              never from memory; map every Figma value to the exact token; measure the render against Figma before
+              calling it done. The important rules became tests that render each component and fail the build on a
+              hard-coded colour, a raw MUI import where we have a component, or a stateless component holding state.
             </p>
             <p>
               That fixed the components. Then I realised we didn't need most of them.
@@ -425,15 +418,13 @@ export const Switch = MuiSwitch;</code></pre>
             </figure>
 
             <p>
-              The reason is rework. Every custom wrapper is an API product teams have to migrate to and we
-              have to keep in step with every MUI release. With the design in the theme, a team can keep
-              importing straight from MUI and still get the design-system look, so adopting it is a theme
-              swap, not a rewrite. Composition is reserved for what MUI doesn't have; as the guide
-              puts it, composition is the trap.
+              The reason is rework. Every custom wrapper is an API teams have to migrate to and we have to keep
+              in step with MUI. With the design in the theme, teams keep importing straight from MUI and still get
+              the look, so adopting it is a theme swap, not a rewrite. Composition is only for what MUI doesn't
+              have; as the guide puts it, composition is the trap.
             </p>
             <p>
-              Across the same 32 components, the code went from 5,420 lines to 1,518. Breadcrumbs went from
-              289 lines to 20. Three custom group components were deleted outright, because MUI's form
+              Breadcrumbs went from 289 lines to 20. Three custom group components were deleted outright, because MUI's form
               controls already did their job.
             </p>
           </div>

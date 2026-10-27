@@ -56,10 +56,9 @@
         <p class="eyebrow">Earlier work · University software project · 2019</p>
         <h1>Regina's Recreational Rentables: a local marketplace built to be trusted</h1>
         <p class="intro-sum">
-          A sports-equipment rental site for Regina, built by a three-person team over a semester.
-          Owners list gear, renters search and filter, an admin approves every listing, and a
-          subscribe button emails you the moment something you wanted becomes available. My first
-          project where the design decisions mattered as much as the code.
+          A sports-equipment rental site for Regina, built by three of us in a semester. Owners list
+          gear, renters search and filter, an admin approves every listing, and a subscribe button
+          emails you the moment something you want becomes available.
         </p>
         <ul class="highlights">
           <li><b>3 people, one semester</b><span>Software engineering course</span></li>
@@ -68,13 +67,12 @@
         </ul>
         <dl class="meta-line">
           <div><dt>Role</dt><dd>Problem definition, feasibility study, front end, search and filter, acceptance testing, demo</dd></div>
-          <div><dt>Team</dt><dd>Three students, University of Regina software engineering course</dd></div>
           <div><dt>Stack</dt><dd>Django (Model-View-Template), PostgreSQL, Bootstrap, deployed on DigitalOcean with Nginx and Gunicorn</dd></div>
         </dl>
         <div class="tldr" aria-label="Summary">
-          <div><div class="k"><span class="tldr-icon warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg></span>Problem</div><p>Regina had no way to rent sports gear between neighbours; a three-person team had one semester.</p></div>
-          <div><div class="k"><span class="tldr-icon act" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l3 3"/></svg></span>What I did</div><p>Led the feasibility study and front end; designed search, filters, and the subscribe flow; ran acceptance testing.</p></div>
-          <div><div class="k"><span class="tldr-icon win" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18 10l-4.3 1.4L12 16l-1.7-4.6L6 10l4.3-1.4z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>Outcome</div><p><strong>A working Django site with admin approval, observer-pattern availability emails, and a competitive table that drove every decision.</strong></p></div>
+          <div><div class="k"><span class="tldr-icon warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg></span>Problem</div><p>Regina had no way to rent sports gear between neighbours.</p></div>
+          <div><div class="k"><span class="tldr-icon act" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l3 3"/></svg></span>What I did</div><p>Led the feasibility study and front end; designed search, filters and the subscribe flow; ran acceptance testing.</p></div>
+          <div><div class="k"><span class="tldr-icon win" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18 10l-4.3 1.4L12 16l-1.7-4.6L6 10l4.3-1.4z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>Outcome</div><p><strong>A working Django site with admin approval and availability emails, shaped decision by decision by the competitive study.</strong></p></div>
         </div>
       </section>
 
@@ -122,7 +120,7 @@
           <div>
             <ul class="chips"><li>Django · Python</li><li>PostgreSQL</li><li>Bootstrap</li><li>DigitalOcean · Nginx · Gunicorn</li><li>StarUML · Visual Paradigm</li><li>PageSpeed · Pingdom</li></ul>
             <ul>
-            <li><strong>Django</strong> Model-View-Template with sub-apps for listings and accounts so three people could work in parallel.</li>
+            <li><strong>Django</strong> Model-View-Template, with sub-apps for listings and accounts.</li>
             <li><strong>PostgreSQL</strong> via Django migrations; <strong>pgAdmin</strong> for inspection.</li>
             <li><strong>Bootstrap, jQuery, Lightbox, Owl Carousel</strong> on the front end; <strong>Nginx + Gunicorn</strong> on an Ubuntu droplet.</li>
             <li><strong>StarUML and Visual Paradigm</strong> for use-case, class, activity, and deployment diagrams; <strong>Google PageSpeed</strong> for the time-efficiency tests.</li>
@@ -135,11 +133,11 @@
         <div class="case-body">
         <div class="prose">
           <h2>The problem</h2>
-          <p>Regina had no service for renting sports equipment between neighbours. The brief was a website where owners could list gear with photos, prices, and availability, and renters could browse, filter, and get in touch. Three user types: anyone can browse, registered users can list and contact, and an admin approves every listing before it goes live.</p>
-          <p>We chose a local scope deliberately. A city-sized marketplace can promise things a global one can't: every listing is nearby, payment can happen in person, and a human approves what appears on the site.</p>
+          <p>The brief: owners list gear with photos, prices and availability; renters browse, filter and get in touch. Anyone can browse, registered users can list and contact, and an admin approves every listing before it goes live.</p>
+          <p>Staying local was deliberate. A city-sized marketplace can promise what a global one can't: every listing is nearby, payment happens in person, and a person approves what appears.</p>
 
           <h2>Feasibility: what the existing options got wrong</h2>
-          <p>I led the competitive study against two established peer-rental services. It's the part of the project I'm still proudest of, because it turned "we're building a rental site" into a list of specific decisions.</p>
+          <p>I led the competitive study against two established peer-rental services. It's the part I'm still proudest of: it turned "we're building a rental site" into specific decisions.</p>
           <div class="table-scroll">
             <table class="compare">
               <thead><tr><th>Dimension</th><th>Existing services</th><th>Our decision</th></tr></thead>
@@ -159,17 +157,17 @@
             <div>
               <div class="kicker">Psych note</div>
               <h3>The Zeigarnik effect</h3>
-              <p>Unfinished tasks stay active in memory and nag at us; completed ones are released. Bluma Zeigarnik observed waiters remembering unpaid orders far better than paid ones. A renter who finds the perfect kayak marked "unavailable" has an open loop, and the only way to close it is to keep coming back to check.</p>
-              <p>The subscribe button closes the loop for them. One click, and you don't have to remember to check back. It's a small feature, but it saves a nagging chore, which is why we picked it over flashier ideas.</p>
+              <p>Unfinished tasks stay active in memory and nag at us; finished ones are released. Bluma Zeigarnik saw waiters remember unpaid orders far better than paid ones. A renter who finds the perfect kayak marked "unavailable" has an open loop, and the only way to close it is to keep checking back.</p>
+              <p>The subscribe button closes the loop in one click. It's small, but it removes a nagging chore, which is why we picked it over flashier ideas.</p>
               <span class="src">Zeigarnik, B. (1927). Über das Behalten von erledigten und unerledigten Handlungen.</span>
             </div>
           </div>
 
           <h2>Architecture and patterns</h2>
-          <p>Django's Model-View-Template architecture let three people work on separate sub-apps (listings, accounts) without stepping on each other, which mattered more than anything else with a semester deadline. We used two design patterns:</p>
+          <p>Django's Model-View-Template structure let three people work on separate sub-apps (listings, accounts) without stepping on each other, which mattered most with a semester deadline. We used two design patterns:</p>
           <ul>
-            <li><strong>Factory method for messages.</strong> Success, error, and warning feedback each have distinct styling and copy. A creator class instantiates the right concrete message from a context string, so every view speaks to the user the same way.</li>
-            <li><strong>Observer for availability.</strong> A listing is the subject; users who subscribe are observers. When the owner flips a listing to available, every subscriber is emailed, and the owner gets a confirmation of who was notified. We chose the pattern over a simple mail call so a logging or analytics observer could be added later.</li>
+            <li><strong>Factory method for messages.</strong> Success, error and warning messages each have their own styling and copy; a creator class builds the right one from a context string, so every view speaks to users the same way.</li>
+            <li><strong>Observer for availability.</strong> A listing is the subject and its subscribers are observers. When the owner marks it available, every subscriber gets an email and the owner sees who was notified. The pattern, rather than a plain mail call, leaves room for a logging or analytics observer later.</li>
           </ul>
           <div class="figure">
             <div class="frame">
@@ -199,8 +197,8 @@
           </div>
 
           <h2>Quality, tested</h2>
-          <p>We wrote the software qualities down before building (correctness, time efficiency, robustness, user friendliness) and then tested against them: five functional test cases walked through with screenshots, five robustness cases with deliberately bad input (short descriptions, wrong file types, duplicate usernames, non-admins hitting admin routes), and page-speed measurements for the five most-used pages.</p>
-          <p>The user-friendliness quality had a specific scenario attached: a renter who can't find the contact form gives up, and the owner loses a rental. That sentence drove where the request form sits on the listing page.</p>
+          <p>We wrote the software qualities down before building (correctness, time efficiency, robustness, user friendliness), then tested against them: five functional cases, five robustness cases with bad input (short descriptions, wrong file types, duplicate usernames, non-admins on admin routes), and page-speed checks on the five most-used pages.</p>
+          <p>User friendliness came with a scenario: a renter who can't find the contact form gives up, and the owner loses a rental. That sentence decided where the request form sits on the listing page.</p>
 
           <h2>What it taught me</h2>
           <ul>
