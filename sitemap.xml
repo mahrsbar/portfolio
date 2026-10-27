@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>./index.html</loc></url>
-  <url><loc>./about.html</loc></url>
-  <url><loc>./work/design-system.html</loc></url>
-  <url><loc>./work/loafmode.html</loc></url>
-  <!-- archived: <url><loc>./work/unified-user-page.html</loc></url> -->
-  <url><loc>./work/onecomply.html</loc></url>
-  <!-- archived: <url><loc>./work/figma-to-code.html</loc></url> -->
-  <!-- archived: <url><loc>./work/geospatial-search.html</loc></url> -->
-  <url><loc>./work/regina-rentables.html</loc></url>
-  <url><loc>./work/craigslist-redesign.html</loc></url>
-  <url><loc>./work/smash-forum.html</loc></url>
-  <url><loc>./remnant.html</loc></url>
-  <url><loc>./amplify.html</loc></url>
-<!-- hidden:   <url><loc>./writing/index.html</loc></url> -->
-<!-- hidden:   <url><loc>./writing/scripts-vs-agents.html</loc></url> -->
-<!-- hidden:   <url><loc>./writing/design-ai-first-output.html</loc></url> -->
-<!-- hidden:   <url><loc>./writing/session-replays-as-research.html</loc></url> -->
+  <url><loc>https://mahrsbar.github.io/portfolio/</loc></url>
+  <url><loc>https://mahrsbar.github.io/portfolio/about.html</loc></url>
+  <url><loc>https://mahrsbar.github.io/portfolio/work/design-system.html</loc></url>
+  <url><loc>https://mahrsbar.github.io/portfolio/work/loafmode.html</loc></url>
+  <!-- archived: <url><loc>https://mahrsbar.github.io/portfolio/work/unified-user-page.html</loc></url> -->
+  <url><loc>https://mahrsbar.github.io/portfolio/work/onecomply.html</loc></url>
+  <!-- archived: <url><loc>https://mahrsbar.github.io/portfolio/work/figma-to-code.html</loc></url> -->
+  <!-- archived: <url><loc>https://mahrsbar.github.io/portfolio/work/geospatial-search.html</loc></url> -->
+  <url><loc>https://mahrsbar.github.io/portfolio/work/regina-rentables.html</loc></url>
+  <url><loc>https://mahrsbar.github.io/portfolio/work/craigslist-redesign.html</loc></url>
+  <url><loc>https://mahrsbar.github.io/portfolio/work/smash-forum.html</loc></url>
+  <url><loc>https://mahrsbar.github.io/portfolio/remnant.html</loc></url>
+  <url><loc>https://mahrsbar.github.io/portfolio/amplify.html</loc></url>
+<!-- hidden:   <url><loc>https://mahrsbar.github.io/portfolio/writing/index.html</loc></url> -->
+<!-- hidden:   <url><loc>https://mahrsbar.github.io/portfolio/writing/scripts-vs-agents.html</loc></url> -->
+<!-- hidden:   <url><loc>https://mahrsbar.github.io/portfolio/writing/design-ai-first-output.html</loc></url> -->
+<!-- hidden:   <url><loc>https://mahrsbar.github.io/portfolio/writing/session-replays-as-research.html</loc></url> -->
 </urlset>
