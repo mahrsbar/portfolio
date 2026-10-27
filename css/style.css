@@ -4881,3 +4881,12 @@ html .case-intro h1 { font-size: clamp(1.75rem, 3vw, 2.4rem); max-width: 24ch; }
 .pcard-kicker { font-size: 0.9rem; color: var(--ink-3); }
 .pcard-kicker b { font-weight: 600; color: var(--ink); }
 .eyebrow b { font-weight: 600; color: var(--ink-2); }
+
+/* Dark mode: card image areas get their own lighter panel, so screenshots
+   don't float on a background that matches the page. */
+:root[data-theme="dark"] .pcard > :first-child,
+:root[data-theme="dark"] .pcard .pcard-media { background: #1D1E23; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pcard > :first-child,
+  :root:not([data-theme="light"]) .pcard .pcard-media { background: #1D1E23; }
+}
