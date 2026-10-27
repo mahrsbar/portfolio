@@ -248,7 +248,7 @@
   .nudge {
     position: absolute;
     font: 700 clamp(12px, 2.2cqw, 18px) "Shantell Sans", sans-serif;
-    color: var(--text);
+    color: color-mix(in srgb, var(--text) 55%, transparent); /* a hint, quieter than the duck's bubble */
     white-space: nowrap;
     pointer-events: none;
     transform: translate(0, -50%) rotate(-8deg);
