@@ -19,16 +19,20 @@
   }
 }
 
-/* project cards: a hairline border; on hover they lift a little onto a soft shadow */
-.pcard {
-  border: 1px solid var(--line);
+/* project cards: outlined in the illustration's own ink colour, at about the weight
+   its lines render on screen, so the cards read as part of the same drawing.
+   No shadow; hover just lifts a little. */
+:root { --card-edge: color-mix(in srgb, var(--edge) 85%, var(--bg)); }
+.pcard,
+.sn {
+  border: 1.5px solid var(--card-edge);
   box-shadow: none;
 }
 .pcard:hover,
 .pcard:focus-within {
   transform: translateY(-2px);
-  border-color: var(--line-strong);
-  box-shadow: 0 10px 28px rgba(20, 18, 16, 0.07);
+  border-color: var(--card-edge);
+  box-shadow: none;
 }
 
 /* the whole card is clickable: the title's link stretches over the card,
@@ -53,11 +57,6 @@
 .btn-primary:hover,
 .btn-ghost:hover { transform: translateY(-1px); box-shadow: none; }
 
-/* the session-notes card at the end of the homepage matches the cards */
-.sn {
-  border: 1px solid var(--line);
-  box-shadow: none;
-}
 
 /* dark mode: screenshots of light-mode UI are dimmed a touch so they don't glare */
 :root[data-theme="dark"] .pcard-media img { filter: brightness(0.86); }
@@ -170,9 +169,9 @@
    until the next tap), so the lift is replaced by a small press */
 @media (hover: none) {
   .pcard:hover,
-  .pcard:focus-within { transform: none; border-color: var(--line); box-shadow: none; }
+  .pcard:focus-within { transform: none; border-color: var(--card-edge); box-shadow: none; }
   .pcard:hover .pcard-media img,
   .pcard:hover .pcard-stack .win-front,
   .pcard:hover .pcard-mock .mk { transform: none; }
-  .pcard:active { transform: scale(0.99); border-color: var(--line-strong); }
+  .pcard:active { transform: scale(0.99); }
 }
