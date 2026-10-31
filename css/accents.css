@@ -178,3 +178,11 @@
   .pcard:hover .pcard-mock .mk { transform: none; }
   .pcard:active { transform: scale(0.99); }
 }
+
+/* backdrop behind the framed covers (Amplify, Remnant, the ask bar, the user page, the replays):
+   the SVGs are transparent so it follows the theme */
+.cover-frame { background: linear-gradient(135deg, #F4F1EA, #E9EDF2); }
+:root[data-theme="dark"] .cover-frame { background: #1D1E23; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cover-frame { background: #1D1E23; }
+}
