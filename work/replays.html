@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>What three months of session replays said — Mahrs Aslam</title>
+    <meta name="description" content="Two research studies built on session replays, support history and shadowing: an access console that generated tickets, and a map that said 'no results' when there were results. Both turned into ranked fix lists engineering acted on." />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Mahrs Aslam" />
+    <meta property="og:title" content="What three months of session replays said — Mahrs Aslam" />
+    <meta property="og:description" content="Two research studies built on session replays, support history and shadowing: an access console that generated tickets, and a map that said 'no results' when there were results. Both turned into ranked fix lists engineering acted on." />
+    <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/replays.html" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
+    />
+    <link rel="stylesheet" href="../css/style.css?v=20261031a" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261027a" />
+    <script>
+      try {
+        var t = localStorage.getItem("mahrs-theme");
+        if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+    <style>
+      .chapter { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+      .chapter .num { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-text, var(--c)); margin-bottom: 0.4rem; display: block; }
+      .lesson { margin: 2.5rem 0; padding: 1.75rem 1.75rem 1.6rem; border-radius: var(--radius-l); background: var(--c-soft); border-left: 4px solid var(--c); }
+      .lesson-k { display: block; margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .lesson .lesson-big { margin: 0 0 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
+      .lesson p { margin: 0; color: var(--ink-2); }
+      .mock-note { margin: 0.75rem 0 0; font-size: 0.8rem; color: var(--ink-3); }
+      .psych { display: block; margin: 2.5rem 0; padding: 1.25rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
+      .psych-k { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .psych h3 { margin: 0.3rem 0 0.5rem; font-size: 1.1rem; }
+      .psych p { margin: 0 0 0.6rem; color: var(--ink-2); }
+      .psych small { color: var(--ink-3); }
+      /* ---- the recreated replay: press play and watch the pattern behind most tickets ---- */
+      .rp { --rp-hi: #E8553D; --rp-hi-soft: rgba(232, 85, 61, 0.14); border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); overflow: hidden; font-size: 0.78rem; color: var(--ink-2); }
+      .rp-top { display: flex; align-items: center; gap: 0.6rem; padding: 0.55rem 0.9rem; background: #1A1F29; color: #fff; }
+      .rp-top .rec { width: 9px; height: 9px; border-radius: 50%; background: var(--rp-hi); }
+      .rp-top.playing .rec { animation: rp-blink 1s steps(1) infinite; }
+      .rp-top b { font-size: 0.82rem; }
+      .rp-top .who { margin-left: auto; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.04em; color: #AEB5C2; }
+      .rp-screen { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(200px, 1fr); min-height: 380px; }
+      .rp-app { position: relative; display: grid; grid-template-columns: 112px minmax(0, 1fr); background: var(--bg); overflow: hidden; }
+      .rp-side { padding: 0.9rem 0.6rem; background: var(--bg-sunk); display: grid; gap: 0.55rem; align-content: start; }
+      .rp-side i { display: block; height: 9px; border-radius: 4px; background: var(--line-strong); width: 70%; }
+      .rp-side i.on { background: var(--ink); width: 85%; }
+      .rp-main { padding: 1rem 1.1rem; display: grid; gap: 0.7rem; align-content: start; min-width: 0; }
+      .rp-main h4 { margin: 0; font-size: 1rem; color: var(--ink); }
+      .rp-bar { display: flex; gap: 0.5rem; align-items: center; }
+      .rp-search { flex: 1; min-width: 0; height: 34px; padding: 0 0.8rem; border: 1.5px solid var(--line-strong); border-radius: 999px; background: var(--bg-elev); display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink); white-space: nowrap; overflow: hidden; }
+      .rp-search.focus { border-color: var(--ink); }
+      .rp-search .caret { display: inline-block; width: 1.5px; height: 1em; margin-left: 1px; background: var(--ink); visibility: hidden; }
+      .rp-search.focus .caret { visibility: visible; animation: rp-blink 1s steps(1) infinite; }
+      .rp-search .ph { color: var(--ink-3); font-family: inherit; }
+      .rp-btn { height: 34px; padding: 0 0.9rem; border-radius: 999px; background: var(--ink); color: var(--bg); font-weight: 600; font-size: 0.74rem; display: flex; align-items: center; white-space: nowrap; }
+      .rp-tabs { display: flex; gap: 1rem; border-bottom: 1px solid var(--line); }
+      .rp-tabs span { padding: 0.3rem 0 0.4rem; color: var(--ink-3); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.15s, border-color 0.15s; }
+      .rp-tabs span.on { color: var(--ink); font-weight: 600; border-color: var(--ink); }
+      .rp-result { min-height: 140px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-elev); display: grid; place-items: center; text-align: center; padding: 1rem; gap: 0.2rem; align-content: center; }
+      .rp-result b { color: var(--ink); font-size: 0.9rem; }
+      .rp-result small { color: var(--ink-3); }
+      .rp-result .rows { width: 100%; display: grid; gap: 0.45rem; }
+      .rp-result .rows i { display: block; height: 22px; border-radius: 6px; background: var(--bg-sunk); }
+      .rp-modal { position: absolute; left: 50%; top: 50%; width: min(300px, 80%); transform: translate(-50%, -46%) scale(0.98); opacity: 0; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-elev); box-shadow: 0 16px 40px rgba(0,0,0,0.22); padding: 0.9rem 1rem; display: grid; gap: 0.55rem; transition: opacity 0.2s var(--ease), transform 0.2s var(--ease); pointer-events: none; }
+      .rp-modal.on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      .rp-modal b { color: var(--ink); font-size: 0.9rem; }
+      .rp-modal .f { height: 30px; border: 1px solid var(--line-strong); border-radius: 7px; padding: 0 0.6rem; display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink); }
+      .rp-modal .err { display: none; padding: 0.45rem 0.6rem; border-radius: 7px; background: var(--rp-hi-soft); color: var(--rp-hi); font-weight: 600; }
+      .rp-modal.error .err { display: block; }
+      .rp-modal .acts { display: flex; justify-content: flex-end; gap: 0.5rem; }
+      .rp-modal .acts span { padding: 0.35rem 0.75rem; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--ink); }
+      .rp-modal .acts span.pri { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+      .rp-cursor { position: absolute; left: 0; top: 0; width: 18px; height: 22px; pointer-events: none; transition: transform 0.55s cubic-bezier(0.3, 0.8, 0.3, 1); filter: drop-shadow(0 1px 2px rgba(0,0,0,0.35)); z-index: 3; }
+      .rp-cursor.click { animation: rp-click 0.28s var(--ease); }
+      .rp-log { padding: 0.8rem 0.9rem; border-left: 1px solid var(--line); background: var(--bg-elev); display: grid; align-content: start; gap: 0.3rem; min-width: 0; }
+      .rp-log .k { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.3rem; }
+      .rp-log ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.28rem; }
+      .rp-log li { display: flex; gap: 0.5rem; font-size: 0.72rem; color: var(--ink); animation: rp-in 0.3s var(--ease) both; }
+      .rp-log li time { font-family: var(--font-mono); color: var(--ink-3); flex: none; }
+      .rp-log li.bad { color: var(--rp-hi); font-weight: 600; }
+      .rp-log li.note { color: var(--ink-3); font-style: italic; }
+      .rp-foot { padding: 0.7rem 0.9rem 0.8rem; background: #1A1F29; color: #AEB5C2; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.8rem; }
+      .rp-play { width: 34px; height: 34px; border-radius: 50%; border: 0; background: #fff; color: #1A1F29; font: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: grid; place-items: center; }
+      .rp-play:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+      .rp-track { position: relative; height: 34px; }
+      .rp-track .line { position: absolute; left: 0; right: 0; top: 15px; height: 4px; border-radius: 2px; background: #3A4152; }
+      .rp-track .prog { position: absolute; left: 0; top: 15px; height: 4px; border-radius: 2px; background: #AEB5C2; width: 0; transition: width 0.3s linear; }
+      .rp-track .mark { position: absolute; top: 8px; width: 4px; height: 18px; margin-left: -2px; border-radius: 2px; background: var(--rp-hi); opacity: 0; transform: scaleY(0.4); transition: opacity 0.25s, transform 0.25s; }
+      .rp-track .mark.on { opacity: 1; transform: none; }
+      .rp-track .lbl { position: absolute; top: 28px; transform: translateX(-50%); font-size: 0.6rem; white-space: nowrap; opacity: 0; transition: opacity 0.25s; }
+      .rp-track .lbl.on { opacity: 1; }
+      .rp-time { font-family: var(--font-mono); font-size: 0.66rem; min-width: 7ch; text-align: right; }
+      .rp-sum { display: none; padding: 0.7rem 0.9rem; border-top: 1px solid var(--line); background: var(--c-soft); color: var(--ink); font-size: 0.82rem; }
+      .rp.done .rp-sum { display: block; animation: rp-in 0.4s var(--ease) both; }
+      @keyframes rp-blink { 50% { opacity: 0; } }
+      @keyframes rp-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+      @keyframes rp-click { 50% { transform: scale(0.8); } }
+      @media (max-width: 700px) {
+        .rp-screen { grid-template-columns: minmax(0, 1fr); }
+        .rp-app { grid-template-columns: minmax(0, 1fr); }
+        .rp-side { display: none; }
+        .rp-log { border-left: 0; border-top: 1px solid var(--line); }
+        .rp-track .lbl { display: none; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .rp-cursor, .rp-modal, .rp-track .prog, .rp-track .mark { transition: none; }
+        .rp-log li, .rp-sum, .rp-cursor.click, .rp-top.playing .rec, .rp-search.focus .caret { animation: none; }
+      }
+      /* the two-up before/after wireframe */
+      .two-up .label { display: block; margin-bottom: 0.4rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+      .compare td:first-child { white-space: nowrap; font-weight: 600; color: var(--ink); }
+      @media (max-width: 640px) { .compare td:first-child { white-space: normal; } }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="../index.html" aria-label="Mahrs Aslam, home">
+          <span class="wordmark">mahrs<span class="dot">.</span></span>
+        </a>
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a href="../index.html#work" data-section="/work/">Work</a></li>
+            <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
+            <li><a href="../about.html">About</a></li>
+            <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li>
+              <button class="theme-toggle" type="button" aria-label="Switch theme">
+                <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="hue-teal">
+      <section class="wrap case-intro">
+        <p class="eyebrow"><b>Fraud-investigation suite</b> · UX research</p>
+        <h1>What three months of session replays said</h1>
+        <p class="intro-sum">
+          Two studies built on data we already had: session replays, support history and a week shadowing the
+          people who answer the tickets. One found why an access console kept generating support requests. The
+          other found why a map said "no results" when there were results. Both ended as ranked fix lists. Press play to watch the pattern behind most of the tickets.
+        </p>
+        <ul class="highlights">
+          <li><b>3 months of replays</b><span>Split by who the user was</span></li>
+          <li><b>6 friction themes</b><span>Behind a console revamp now in testing</span></li>
+          <li><b>21 map failures</b><span>Ranked by severity; set the fix order</span></li>
+        </ul>
+        <dl class="meta-line">
+          <div><dt>Role</dt><dd>Research lead and product designer; I built several of the front-end fixes myself</dd></div>
+        </dl>
+      </section>
+
+      <section class="wrap">
+        <div class="rp" data-rp>
+          <div class="rp-top" data-top aria-hidden="true"><span class="rec"></span><b>Session replay</b><span class="who">External admin · 04:12</span></div>
+          <div class="rp-screen">
+            <div class="rp-app" aria-hidden="true">
+              <div class="rp-side"><i></i><i></i><i class="on"></i><i></i><i></i></div>
+              <div class="rp-main">
+                <h4>Users</h4>
+                <div class="rp-bar">
+                  <div class="rp-search" data-search><span class="ph" data-typed>Search organisation, operator, user</span><span class="caret"></span></div>
+                  <span class="rp-btn" data-create>Create user</span>
+                </div>
+                <div class="rp-tabs" data-tabs><span class="on">Organisations</span><span>Users</span><span>Operators</span></div>
+                <div class="rp-result" data-result>
+                  <div class="rows"><i></i><i></i><i></i></div>
+                </div>
+              </div>
+              <div class="rp-modal" data-modal>
+                <b>Create user</b>
+                <span class="f">j.chen@example.org</span>
+                <span class="f" style="color:var(--ink-3)">Role · select product first</span>
+                <span class="err">This value already exists.</span>
+                <span class="acts"><span data-cancel>Cancel</span><span class="pri" data-save>Save</span></span>
+              </div>
+              <svg class="rp-cursor" data-cursor viewBox="0 0 18 22" aria-hidden="true"><path d="M2 1 L2 17 L6 13 L9 20 L12 19 L9 12 L15 12 Z" fill="#fff" stroke="#1A1F29" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="rp-log" aria-live="polite">
+              <span class="k">Events</span>
+              <ol data-log></ol>
+            </div>
+          </div>
+          <div class="rp-foot">
+            <button class="rp-play" type="button" data-play aria-label="Play the recreated session">▶</button>
+            <div class="rp-track" aria-hidden="true">
+              <span class="line"></span><span class="prog" data-prog></span>
+              <span class="mark" style="left:18%" data-mark="0"></span><span class="lbl" style="left:18%" data-lbl="0">tab switching</span>
+              <span class="mark" style="left:30%" data-mark="1"></span>
+              <span class="mark" style="left:38%" data-mark="2"></span>
+              <span class="mark" style="left:62%" data-mark="3"></span><span class="lbl" style="left:62%" data-lbl="3">dead-end error</span>
+              <span class="mark" style="left:72%" data-mark="4"></span><span class="lbl" style="left:72%" data-lbl="4">cancel</span>
+              <span class="mark" style="left:88%" data-mark="5"></span><span class="lbl" style="left:88%" data-lbl="5">ticket</span>
+            </div>
+            <span class="rp-time" data-time>00:00</span>
+          </div>
+          <div class="rp-sum" data-sum>Three loops, one dead end, one ticket. The search only looked at organisations, the error didn't link to the pending user, and nothing on the screen said so. This replay is one of six friction themes; the fix list is below.</div>
+        </div>
+        <p class="mock-note">A recreated session with invented data. Company work: no real session, user or product UI.</p>
+      </section>
+
+      <section class="wrap section">
+        <div class="case-body">
+        <div class="prose">
+
+          <h2>The method</h2>
+          <p>
+            For a B2B admin tool with a few thousand sessions a quarter, session replays are the best research
+            instrument I have: faster than interviews, deeper than analytics. The study design was the same both times.
+          </p>
+          <ol class="steps">
+            <li><b>Segment before you watch.</b> Internal staff acting for customers and external admins use the same screens for different reasons. Averaging them hides both stories.</li>
+            <li><b>Hunt for loops.</b> Repeated clicks on one control, tab-switching after a search, a modal cancelled halfway. Loops are what confusion looks like in a replay. A console warning next to one turns "it felt slow" into a ticket.</li>
+            <li><b>Cross-reference support.</b> Six months of "can someone…" messages say what people gave up on before any replay started.</li>
+            <li><b>Shadow the people who get the tickets.</b> A replay shows what happened, never why. A week beside the support team gave me the why for a dozen patterns I'd only seen as clicks.</li>
+          </ol>
+
+          <div class="chapter">
+            <span class="num">Study one</span>
+            <h2>The access console</h2>
+            <p>
+              The console for managing users, roles and integrations was meant to let customer admins help
+              themselves. Leadership's question was whether that was actually happening and what was in the way.
+            </p>
+            <p>
+              The headline surprised people: self-service was already established. External admins were creating
+              users at roughly twice the rate of internal staff, consistently across the whole period. So the goal
+              wasn't to create self-service. It was to stop it failing, and it failed in very specific, repeatable ways.
+            </p>
+            <div class="table-scroll">
+              <table class="compare">
+                <thead><tr><th>Friction</th><th>What replays showed</th><th>Why it became a ticket</th></tr></thead>
+                <tbody>
+                  <tr><td>Search that lied</td><td>The bar promised "organisation, operator, user" but only matched organisation names, and only in the active tab. People typed an email, saw zero results and switched tabs frantically or gave up.</td><td>A false "no results" reads as "this user doesn't exist", so admins asked support to find them.</td></tr>
+                  <tr><td>Nested modals</td><td>Creating or assigning a user took two or three stacked modals, each with its own Save. Frequent cancels mid-flow.</td><td>Nobody was sure whether anything had saved.</td></tr>
+                  <tr><td>Dead-end errors</td><td>Creating a user who already existed (usually pending) returned "this value already exists", with no link to the record.</td><td>The next step was invisible, so the next step was a ticket.</td></tr>
+                  <tr><td>Click-shadows</td><td>Rows, emails, role labels, breadcrumbs and product tags all looked clickable and did nothing.</td><td>Trained people to stop trying.</td></tr>
+                  <tr><td>Missing affordance</td><td>The roles dropdown showed "select product first" as static text.</td><td>Nobody understood which control unlocked it.</td></tr>
+                  <tr><td>Domain errors</td><td>External admins blocked by "unauthorised domain", with no explanation of how domains get approved.</td><td>Without guidance it looked like a bug.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              Support history added the requests the UI had no answer for at all: reassigning an organisation admin
+              who had left, viewing deactivated users, requesting a new email domain. Those were self-service
+              failures so complete that nobody attempted them in the product any more, which is exactly why replays
+              alone would have missed them.
+            </p>
+          </div>
+
+          <aside class="psych" aria-label="Psychology note">
+            <span class="psych-k">Psych note</span>
+            <h3>Learned helplessness</h3>
+            <p>When actions repeatedly produce nothing, people stop acting, even once the situation changes. Every row and label that looked clickable and did nothing was a small lesson that trying is pointless. By the time admins hit the real dead end, they'd already learned to open a ticket instead.</p>
+            <small>Seligman, M. E. P., &amp; Maier, S. F. (1967). Failure to escape traumatic shock. Journal of Experimental Psychology, 74(1), 1–9.</small>
+          </aside>
+
+          <h3>From findings to a revamp</h3>
+          <p>
+            I grouped the actions into six themes and reviewed them with product to sort what was achievable, what
+            was out of scope and what needed more investigation: search and discovery, workflow and interaction,
+            error handling and guardrails, performance, support-to-product transitions, and support deflection.
+            Then I prototyped the fix, first in Figma Make for a better organisations page, then in Claude Design
+            when the scope grew into the full revamp. A clickable artefact changed the review conversations:
+            instead of debating a bullet point, the team tried the flow.
+          </p>
+          <div class="figure wide">
+            <div class="frame">
+              <div class="two-up">
+                <div>
+                  <span class="label">Before: nested modals</span>
+                  <div class="wire" style="position:relative; min-height:150px" aria-hidden="true">
+                    <div class="w-bar title w-40"></div>
+                    <div class="w-input"></div><div class="w-input"></div>
+                    <div class="wire" style="position:absolute; left:14%; top:26%; right:8%; padding:8px">
+                      <div class="w-bar title w-40"></div><div class="w-input"></div>
+                      <div class="wire" style="margin-left:14%; margin-top:2px; padding:8px">
+                        <div class="w-bar title w-50"></div><div class="w-input"></div>
+                        <div class="w-row"><span class="w-btn a2" style="margin-left:auto"></span></div>
+                      </div>
+                      <div class="w-row"><span class="w-btn a2" style="margin-left:auto"></span></div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <span class="label">After: one linear flow</span>
+                  <div class="wire" style="min-height:150px" aria-hidden="true">
+                    <div class="w-row center" style="gap:0"><span class="w-dot a"></span><span class="w-bar thin a" style="flex:1"></span><span class="w-dot a"></span><span class="w-bar thin" style="flex:1"></span><span class="w-dot"></span></div>
+                    <div class="w-bar title w-40" style="margin-top:6px"></div>
+                    <div class="w-input"></div><div class="w-input"></div>
+                    <div class="w-row"><span class="w-pill"></span><span class="w-pill a"></span><span class="w-pill"></span></div>
+                    <div class="w-row" style="margin-top:auto"><span class="w-btn" style="margin-left:auto"></span><span class="w-btn a"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <figcaption>Three stacked Save buttons became one stepper with one clear end.</figcaption>
+          </div>
+          <p>
+            The revamp epic, now in testing, covers the flattened provisioning flow, bulk actions, a duplicate error
+            that links to the existing user, domain-approval guidance, and two new table columns (who invited a
+            pending user, and when). I picked up front-end tickets myself along the way, including ranking direct
+            organisation matches first in search and removing a double search on the users page. What's still open
+            is written down in priority order: row click still does nothing, and the roles affordance is still weak.
+          </p>
+
+          <div class="chapter">
+            <span class="num">Study two</span>
+            <h2>The map that said "no results"</h2>
+            <p>
+              A year after the transaction map got a new version and more filters, a steady stream of complaints
+              arrived: "it says no results, but there's data." I audited the live map with replays and customer
+              feedback, logging every failure with its severity, the version it appeared in, and where the report
+              came from. Twenty-one in all.
+            </p>
+            <p>
+              Most of the high-severity ones had a single root: <strong>panning and zooming quickly cancelled the
+              in-flight request</strong>, the app didn't retry, and the interface rendered the cancellation as
+              "No results found". The data was there. Pins came back only after zooming out, refreshing, or
+              reapplying filters. In a meaningful share of sessions with active map use, the map was lying.
+            </p>
+            <p>
+              The quieter failures compounded it: filters that persisted silently across searches, a "show all"
+              button that behaved as a toggle so people clicked it several times, a date picker with no
+              confirmation and a default range of fifteen minutes, and a polygon-drawing mode people entered by
+              accident and couldn't leave.
+            </p>
+            <h3>Turning the audit into rules</h3>
+            <div class="table-scroll">
+              <table class="compare">
+                <thead><tr><th>Observed</th><th>Rule</th></tr></thead>
+                <tbody>
+                  <tr><td>Cancelled request shown as "no results"</td><td>A cancelled or pending request is a <strong>loading state</strong>, never an empty state. Empty means the server said empty.</td></tr>
+                  <tr><td>"No results" vanished too fast to read</td><td>An empty state is a signal, not a toast. Make it obvious and keep it on screen.</td></tr>
+                  <tr><td>Stale filters, stale search</td><td>Anything that narrows results must be visible where the results are, with one control that clears everything.</td></tr>
+                  <tr><td>Default range too small</td><td>Default to twenty-four hours; cap at a year, with an explanation.</td></tr>
+                  <tr><td>Toggle confusion</td><td>"Show all" is an override that clears filters, not a mode.</td></tr>
+                  <tr><td>Accidental polygon mode</td><td>Delete removes a polygon; fewer apply-then-save steps.</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>
+              Each row became a ticket linked from the audit, a note that a fix was already in progress, or an
+              explicit "not a bug, but reconsider". Engineering fixed the request cancellation first, and the rules
+              shaped the interface work that followed.
+            </p>
+            <aside class="lesson" aria-label="The lesson">
+              <span class="lesson-k">The lesson</span>
+              <p class="lesson-big">Empty and loading are different states.</p>
+              <p>A false "no results" is worse than a slow one, because people believe it.</p>
+            </aside>
+          </div>
+
+          <h2>What I took from it</h2>
+          <ul>
+            <li><strong>Frequency is not severity.</strong> The most common replay pattern was harmless browsing. A rare dead-end error produced a disproportionate share of tickets, because every occurrence was a dead end.</li>
+            <li><strong>Severity, version and source</strong> are the minimum an audit needs to be actionable by engineers, not just persuasive to designers.</li>
+            <li><strong>Every dead end is a ticket.</strong> The most valuable fixes were the ones that made the next step visible: a link in an error, a shortcut on a zero-results state.</li>
+          </ul>
+
+        </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>Company work: the product, data and screens are recreated mockups.</span>
+      </div>
+    </footer>
+    <script>
+      // The recreated replay: a scripted session, played step by step.
+      (function () {
+        var rp = document.querySelector("[data-rp]");
+        if (!rp) return;
+        var $ = function (sel) { return rp.querySelector(sel); };
+        var top = $("[data-top]"), search = $("[data-search]"), typed = $("[data-typed]"), tabs = $("[data-tabs]").children,
+            result = $("[data-result]"), modal = $("[data-modal]"), cursor = $("[data-cursor]"), log = $("[data-log]"),
+            play = $("[data-play]"), prog = $("[data-prog]"), time = $("[data-time]"), create = $("[data-create]"),
+            cancel = $("[data-cancel]"), save = $("[data-save]");
+        var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var timers = [], running = false, EMAIL = "j.chen@example.org";
+        var ROWS = '<div class="rows"><i></i><i></i><i></i></div>';
+        var EMPTY = "<b>No results found</b><small>Searching organisations only</small>";
+        function clock(s) { return "0" + Math.floor(s / 60) + ":" + ("0" + (s % 60)).slice(-2); }
+        function moveTo(el) {
+          var a = rp.querySelector(".rp-app").getBoundingClientRect(), b = el.getBoundingClientRect();
+          cursor.style.transform = "translate(" + (b.left - a.left + Math.min(b.width - 10, 60)) + "px, " + (b.top - a.top + b.height / 2) + "px)";
+        }
+        function click() { cursor.classList.remove("click"); void cursor.offsetWidth; cursor.classList.add("click"); }
+        function note(t, text, cls) {
+          var li = document.createElement("li"); if (cls) li.className = cls;
+          li.innerHTML = "<time>" + clock(t) + "</time><span></span>"; li.lastChild.textContent = text; log.appendChild(li);
+        }
+        function tab(i) { for (var k = 0; k < tabs.length; k++) tabs[k].classList.toggle("on", k === i); }
+        function mark(i, t) { $('[data-mark="' + i + '"]').classList.add("on"); var l = $('[data-lbl="' + i + '"]'); if (l) l.classList.add("on"); }
+        function at(sec, fn) { timers.push(setTimeout(function () { time.textContent = clock(sec); prog.style.width = (sec / 100 * 100) + "%"; fn && fn(sec); }, reduced ? 0 : sec * 90)); }
+        function typeInto(t0, text) {
+          typed.className = ""; typed.textContent = "";
+          for (var i = 0; i < text.length; i++) (function (i) { at(t0 + i * 0.12, function () { typed.textContent = text.slice(0, i + 1); }); })(i);
+        }
+        function reset() {
+          timers.forEach(clearTimeout); timers = [];
+          rp.classList.remove("done"); top.classList.remove("playing"); search.classList.remove("focus");
+          typed.className = "ph"; typed.textContent = "Search organisation, operator, user";
+          result.innerHTML = ROWS; modal.classList.remove("on", "error"); log.innerHTML = ""; tab(0);
+          prog.style.width = "0"; time.textContent = "00:00";
+          rp.querySelectorAll(".mark, .lbl").forEach(function (m) { m.classList.remove("on"); });
+          cursor.style.transform = "translate(40px, 300px)";
+        }
+        function run() {
+          reset(); running = true; top.classList.add("playing"); play.textContent = "↺"; play.setAttribute("aria-label", "Replay the recreated session");
+          at(1, function () { moveTo(search); });
+          at(3, function () { click(); search.classList.add("focus"); });
+          typeInto(4, EMAIL);
+          at(8, function (t) { note(t, "Typed in search"); });
+          at(10, function (t) { result.innerHTML = EMPTY; note(t, "0 results", "bad"); });
+          at(14, function () { moveTo(tabs[1]); });
+          at(16, function (t) { click(); tab(1); note(t, "Clicked Users tab"); mark(0); });
+          at(19, function () { moveTo(tabs[2]); });
+          at(21, function (t) { click(); tab(2); note(t, "Clicked Operators tab"); });
+          at(24, function () { moveTo(tabs[0]); });
+          at(26, function (t) { click(); tab(0); note(t, "Clicked Organisations tab"); mark(1); });
+          at(29, function () { moveTo(search); });
+          at(31, function () { click(); search.classList.add("focus"); });
+          typeInto(32, EMAIL);
+          at(36, function (t) { note(t, "Typed in search again"); mark(2); });
+          at(38, function (t) { note(t, "0 results", "bad"); });
+          at(43, function () { search.classList.remove("focus"); moveTo(create); });
+          at(45, function (t) { click(); modal.classList.add("on"); note(t, "Clicked Create user"); });
+          at(50, function () { moveTo(save); });
+          at(53, function (t) { click(); });
+          at(60, function (t) { modal.classList.add("error"); note(t, "Error: this value already exists", "bad"); mark(3); });
+          at(66, function (t) { note(t, "No link to the existing (pending) user", "note"); });
+          at(70, function () { moveTo(cancel); });
+          at(72, function (t) { click(); modal.classList.remove("on", "error"); note(t, "Cancelled modal"); mark(4); });
+          at(80, function () { cursor.style.transform = "translate(30px, 330px)"; });
+          at(86, function (t) { note(t, "Opened support chat", "bad"); mark(5); });
+          at(92, function () { top.classList.remove("playing"); rp.classList.add("done"); running = false; });
+        }
+        reset();
+        play.addEventListener("click", run);
+        // play once when it first scrolls into view, unless the visitor prefers reduced motion
+        if (!reduced && "IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); if (!running) run(); } }, { threshold: 0.6 });
+          io.observe(rp);
+        }
+      })();
+    </script>
+    <script src="../js/main.js?v=20261026c"></script>
+    <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
+  </body>
+</html>

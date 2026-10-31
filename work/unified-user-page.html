@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta name="robots" content="noindex" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Unified user page — Mahrs Aslam</title>
-    <meta
-      name="description"
-      content="Research-led product design for fraud analysts: journey mapping, personas, and lo-fi flows that turned a four-tab investigation into a single, time-anchored view."
-    />
+    <title>Four tabs to answer one question — Mahrs Aslam</title>
+    <meta name="description" content="Fraud analysts bounced between four tools to answer one question. I ran the research, designed one page around a timeline, and build parts of it." />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Mahrs Aslam" />
+    <meta property="og:title" content="Four tabs to answer one question — Mahrs Aslam" />
+    <meta property="og:description" content="Fraud analysts bounced between four tools to answer one question. I ran the research, designed one page around a timeline, and build parts of it." />
+    <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/unified-user-page.html" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,17 +22,109 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026k" />
+    <link rel="stylesheet" href="../css/style.css?v=20261031a" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261027a" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
         if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
       } catch (e) {}
     </script>
+    <style>
+      .chapter { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+      .chapter .num { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-text, var(--c)); margin-bottom: 0.4rem; display: block; }
+      .lesson { margin: 2.5rem 0; padding: 1.75rem 1.75rem 1.6rem; border-radius: var(--radius-l); background: var(--c-soft); border-left: 4px solid var(--c); }
+      .lesson-k { display: block; margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .lesson .lesson-big { margin: 0 0 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
+      .lesson p { margin: 0; color: var(--ink-2); }
+      .mock-note { margin: 0.75rem 0 0; font-size: 0.8rem; color: var(--ink-3); }
+      .psych { display: block; margin: 2.5rem 0; padding: 1.25rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
+      .psych-k { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .psych h3 { margin: 0.3rem 0 0.5rem; font-size: 1.1rem; }
+      .psych p { margin: 0 0 0.6rem; color: var(--ink-2); }
+      .psych small { color: var(--ink-3); }
+      /* the recreated wireframe sits in the same frame as the other covers */
+      /* ---- the recreated page: a timeline you can drag, and the cards that follow it ---- */
+      .up { --up-line: var(--line); --up-ink: var(--ink); --up-ink2: var(--ink-2); --up-ink3: var(--ink-3); --up-bar: var(--line-strong); --up-hi: #E8553D; --up-hi-soft: rgba(232, 85, 61, 0.14); --up-ok: #1F6E5B; --up-ok-soft: rgba(31, 110, 91, 0.14);
+        border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); overflow: hidden; font-size: 0.8rem; color: var(--up-ink2); }
+      .up .mk-top { display: flex; align-items: center; gap: 5px; height: 30px; padding: 0 12px; background: var(--bg-sunk); border-bottom: 1px solid var(--line); }
+      .up .mk-top i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-strong); }
+      .up .mk-top b { margin-left: 8px; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; font-weight: 500; color: var(--up-ink3); }
+      .up-body { padding: 1rem clamp(0.9rem, 2.5vw, 1.5rem) 1.25rem; display: grid; gap: 0.9rem; }
+      .up-alert { display: flex; justify-content: space-between; gap: 0.75rem; padding: 0.5rem 0.75rem; border-radius: 8px; background: var(--up-hi-soft); color: var(--up-ink); font-weight: 600; }
+      .up-alert u { font-weight: 400; text-decoration: none; color: var(--up-ink2); white-space: nowrap; }
+      .up-head { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+      .up-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--line-strong); flex: none; }
+      .up-id { font-family: var(--font-mono); font-weight: 600; color: var(--up-ink); letter-spacing: 0.04em; }
+      .up-meta { color: var(--up-ink3); }
+      .up-actions { margin-left: auto; display: flex; gap: 0.4rem; }
+      .up-chip { display: inline-block; padding: 0.3rem 0.7rem; border-radius: 999px; border: 1px solid var(--line-strong); color: var(--up-ink); white-space: nowrap; font-size: 0.75rem; }
+      .up-chip.block { background: var(--up-hi); border-color: var(--up-hi); color: #fff; font-weight: 600; }
+      .up-chip.unblock { background: var(--up-ok-soft); border-color: transparent; color: var(--up-ok); font-weight: 600; }
+      .up-ops { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; }
+      .up-op { padding: 0.6rem 0.75rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: grid; gap: 0.3rem; }
+      .up-op b { display: flex; justify-content: space-between; align-items: center; color: var(--up-ink); }
+      .up-op.warn { border-left: 3px solid var(--up-hi); }
+      .up-op small { font-size: 0.7rem; color: var(--up-ink3); }
+      .up-tag { padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.66rem; font-weight: 600; }
+      .up-tag.bad { background: var(--up-hi); color: #fff; }
+      .up-tag.ok { background: var(--up-ok-soft); color: var(--up-ok); }
+      /* the timeline */
+      .up-tl { display: grid; gap: 0.5rem; padding-top: 0.4rem; border-top: 1px solid var(--line); }
+      .up-tl-head { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
+      .up-tl-head b { color: var(--up-ink); font-size: 0.85rem; }
+      .up-tl-head output { font-family: var(--font-mono); font-size: 0.72rem; color: var(--up-ink3); }
+      .up-hint { font-size: 0.78rem; color: var(--c-text); font-weight: 500; }
+      .up-chart { position: relative; height: 96px; }
+      .up-bars { position: absolute; inset: 0 0 18px; display: grid; grid-template-columns: repeat(28, 1fr); gap: 3px; align-items: end; }
+      .up-bars i { display: block; height: calc(var(--h) * 1%); border-radius: 3px 3px 0 0; background: var(--up-bar); transition: background 0.25s var(--ease), opacity 0.25s var(--ease); opacity: 0.55; }
+      .up-bars i.in { background: var(--up-hi); opacity: 1; }
+      .up-sel { position: absolute; top: -4px; bottom: 14px; border: 1.5px dashed var(--up-hi); border-radius: 6px; pointer-events: none; transition: left 0.08s linear, right 0.08s linear; }
+      .up-range { position: absolute; left: 0; right: 0; bottom: 0; height: 28px; }
+      .up-range input { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 28px; margin: 0; background: none; -webkit-appearance: none; appearance: none; pointer-events: none; }
+      .up-range input::-webkit-slider-runnable-track { height: 2px; background: transparent; }
+      .up-range input::-moz-range-track { height: 2px; background: transparent; }
+      .up-range input::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; pointer-events: auto; width: 22px; height: 22px; margin-top: -10px; border-radius: 50%; background: var(--bg); border: 2.5px solid var(--up-hi); box-shadow: 0 1px 3px rgba(0,0,0,0.25); cursor: ew-resize; }
+      .up-range input::-moz-range-thumb { pointer-events: auto; width: 18px; height: 18px; border-radius: 50%; background: var(--bg); border: 2.5px solid var(--up-hi); box-shadow: 0 1px 3px rgba(0,0,0,0.25); cursor: ew-resize; }
+      .up-range input:focus-visible { outline: none; }
+      .up-range input:focus-visible::-webkit-slider-thumb { outline: 3px solid var(--link); outline-offset: 2px; }
+      .up-range input:focus-visible::-moz-range-thumb { outline: 3px solid var(--link); outline-offset: 2px; }
+      .up-axis { position: absolute; left: 0; right: 0; bottom: 18px; height: 1px; background: var(--line-strong); }
+      /* the cards that follow */
+      .up-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; }
+      .up-kpi { padding: 0.6rem 0.75rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: grid; gap: 0.2rem; }
+      .up-kpi small { font-size: 0.7rem; color: var(--up-ink3); }
+      .up-kpi b { font-size: 1.15rem; color: var(--up-ink); font-variant-numeric: tabular-nums; display: flex; align-items: center; gap: 0.4rem; }
+      .up-kpi em { font-style: normal; font-size: 0.66rem; padding: 0.05rem 0.4rem; border-radius: 999px; }
+      .up-kpi em.up { background: var(--up-hi-soft); color: var(--up-hi); }
+      .up-kpi em.down { background: var(--up-ok-soft); color: var(--up-ok); }
+      .up-kpi em.flat { background: var(--bg-sunk); color: var(--up-ink3); }
+      .up-low { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 0.6rem; }
+      .up-map { position: relative; min-height: 170px; border-radius: 10px; background: var(--bg-sunk); overflow: hidden; }
+      .up-map .land { position: absolute; border-radius: 10px; background: var(--line); opacity: 0.6; }
+      .up-map .road { position: absolute; background: var(--bg-elev); }
+      .up-pin { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--up-hi); box-shadow: 0 0 0 2px var(--bg-elev); transform: scale(1); transition: transform 0.25s var(--ease), opacity 0.25s var(--ease); }
+      .up-pin.off { transform: scale(0); opacity: 0; }
+      .up-map .map-tag { position: absolute; right: 8px; bottom: 8px; padding: 0.2rem 0.55rem; border-radius: 999px; background: var(--bg-elev); border: 1px solid var(--line); font-size: 0.66rem; color: var(--up-ink2); }
+      .up-list { padding: 0.6rem 0.75rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: grid; gap: 0.35rem; align-content: start; }
+      .up-list b { color: var(--up-ink); display: flex; justify-content: space-between; }
+      .up-list b small { font-weight: 400; color: var(--up-ink3); }
+      .up-list ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.3rem; }
+      .up-list li { display: flex; justify-content: space-between; gap: 0.5rem; padding: 0.3rem 0; border-top: 1px solid var(--line); font-family: var(--font-mono); font-size: 0.68rem; color: var(--up-ink2); }
+      .up-list li em { font-style: normal; color: var(--up-hi); }
+      .up-list li.empty { color: var(--up-ink3); font-family: inherit; }
+      @media (max-width: 700px) {
+        .up-ops, .up-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .up-low { grid-template-columns: minmax(0, 1fr); }
+        .up-alert u { display: none; }
+      }
+      @media (prefers-reduced-motion: reduce) { .up-bars i, .up-sel, .up-pin { transition: none; } }
+      .prose .quote { margin: 1.5rem 0; padding-left: 1rem; border-left: 3px solid var(--c); font-size: 1.05rem; color: var(--ink); }
+      .prose .quote small { display: block; margin-top: 0.3rem; font-size: 0.8rem; color: var(--ink-3); }
+    </style>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
-
     <header class="nav">
       <div class="wrap">
         <a class="brand" href="../index.html" aria-label="Mahrs Aslam, home">
@@ -52,164 +150,191 @@
     </header>
 
     <main id="main" class="hue-pink">
-      <section class="wrap case-hero">
-        <p class="eyebrow"><b>Unified user page</b> · UX research + product design</p>
-        <h1>From four tabs to one page</h1>
-        <p class="lead">
-          Analysts investigating a suspicious account bounced between a search tool, a map, a link graph
-          and a log viewer, holding the timeline in their heads. I ran the research that made the case
-          for one unified view, designed it, and now build parts of it.
+      <section class="wrap case-intro">
+        <p class="eyebrow"><b>Fraud-investigation suite</b> · UX research + product design</p>
+        <h1>Four tabs to answer one question</h1>
+        <p class="intro-sum">
+          Analysts investigating a suspicious account bounced between a search tool, a map, a link graph and a
+          log viewer, holding the timeline in their heads. I ran the research that made the case for one page,
+          designed it around a timeline, and build parts of it. Drag the range below to see why the timeline is the spine.
         </p>
-        <dl class="case-meta">
-          <div class="chips"><dt>Role</dt><dd>UX research</dd><dd>product design</dd><dd>front-end implementation</dd></div>
-          <div><dt>Status</dt><dd>MVP handed off and shipped; iteration continuing</dd></div>
+        <ul class="highlights">
+          <li><b>4 tools → 1 page</b><span>One time-anchored view, shipped</span></li>
+          <li><b>First pillar</b><span>Of a multi-year back-office strategy</span></li>
+          <li><b>Research first</b><span>Analyst sessions, journey map, personas</span></li>
+        </ul>
+        <dl class="meta-line">
+          <div><dt>Role</dt><dd>UX research and product design; front-end implementation of parts of the page</dd></div>
         </dl>
-        <div class="tldr" aria-label="Summary">
-          <div><div class="k"><span class="tldr-icon warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg></span>Problem</div><p>Four separate tools, and no single place to see what a user did over time.</p></div>
-          <div><div class="k"><span class="tldr-icon act" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l3 3"/></svg></span>What I did</div><p>Researched how analysts really work, mapped their journey across products, then designed and iterated the page.</p></div>
-          <div><div class="k"><span class="tldr-icon win" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18 10l-4.3 1.4L12 16l-1.7-4.6L6 10l4.3-1.4z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>Outcome</div><p><strong>One time-anchored view, shipped as the first pillar of a multi-year unification strategy.</strong></p></div>
-        </div>
       </section>
 
       <section class="wrap">
-        <div class="case-cover">
-          <div class="wire lg" style="max-width:900px">
-            <!-- top bar -->
-            <div class="w-row center" style="padding-bottom:6px; border-bottom:1px solid var(--line)">
-              <span class="w-dot lg a" style="border-radius:6px"></span>
-              <span class="w-input" style="max-width:300px; height:24px"></span>
-              <span class="w-txt" style="margin-left:auto">UTC −4</span><span class="w-dot"></span><span class="w-dot"></span><span class="w-dot lg"></span>
+        <div class="up" data-up>
+          <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>User page</b></div>
+          <div class="up-body">
+            <div class="up-alert" aria-hidden="true">⚠&#xFE0E; This user has a different status across several operators.<u>View history</u></div>
+            <div class="up-head" aria-hidden="true">
+              <span class="up-avatar"></span>
+              <span class="up-id">USER-7F3A-••••</span>
+              <span class="up-meta">First seen 2 Mar</span>
+              <span class="up-meta">Last seen 29 Mar</span>
+              <span class="up-actions"><span class="up-chip">All operators ▾</span><span class="up-chip block">Block</span><span class="up-chip unblock">Unblock</span></span>
             </div>
-            <!-- actions row -->
-            <div class="w-row center" style="padding:4px 0">
-              <span class="w-txt">Organisation · All operators</span>
-              <span class="w-txt" style="margin-left:auto">⇄ Compare users</span><span class="w-txt">⛶ Multi-level search</span><span class="w-txt">◎ View on map</span><span class="w-txt">✎ Note</span><span class="w-txt">⤓ PDF</span>
+            <div class="up-ops" aria-hidden="true">
+              <div class="up-op warn"><b>Operator 1 <span class="up-tag bad">Blocked</span></b><small>Blocked by · Auto-block API</small><small>Duration · 11 Mar to now</small></div>
+              <div class="up-op warn"><b>Operator 2 <span class="up-tag bad">Blocked</span></b><small>Blocked by · Analyst</small><small>Duration · 14 Mar to now</small></div>
+              <div class="up-op"><b>Operator 3 <span class="up-tag ok">Active</span></b><small>Status · Active</small><small>No blocks on record</small></div>
             </div>
-            <!-- alert -->
-            <div class="w-row center" style="padding:6px 8px; border-radius:6px; background:var(--coral-soft)"><span class="w-txt strong" style="color:var(--coral-deep)">⚠&#xFE0E; This user has a different status across several operators.</span><span class="w-txt" style="margin-left:auto">View history</span></div>
-            <!-- entity header -->
-            <div class="w-row center">
-              <span class="w-dot"></span><span class="w-txt strong">USER-ID-████████</span><span class="w-txt">First seen —</span><span class="w-txt">Last seen —</span>
-              <span class="w-chip" style="margin-left:auto">All operators ▾</span><span class="w-chip" style="background:var(--coral); color:#fff">⊘ Block</span><span class="w-chip a">🔓 Unblock</span>
-            </div>
-            <div class="w-row"><span class="w-tab on">Summary</span><span class="w-tab">Anti-fraud</span></div>
-            <!-- operator cards -->
-            <div class="w-row" style="gap:8px">
-              <div class="w-card warn"><div class="w-row center"><span class="w-txt strong">Operator 1</span><span class="w-chip" style="margin-left:auto; background:var(--coral); color:#fff">Blocked</span></div><span class="w-txt">Blocked by · Auto-block API</span><span class="w-txt">Duration · — to —</span><span class="w-bar thin w-80"></span></div>
-              <div class="w-card warn"><div class="w-row center"><span class="w-txt strong">Operator 2</span><span class="w-chip" style="margin-left:auto; background:var(--coral); color:#fff">Blocked</span></div><span class="w-txt">Blocked by · Auto-block API</span><span class="w-txt">Duration · — to —</span><span class="w-bar thin w-60"></span></div>
-              <div class="w-card"><div class="w-row center"><span class="w-txt strong">Operator 3</span></div><span class="w-txt">Status · Active</span><span class="w-bar thin w-50"></span></div>
-            </div>
-            <!-- timeline -->
-            <div class="w-row center"><span class="w-chip">📅 Date range ▾</span><span class="w-txt" style="margin-left:auto">the timeline drives every card below</span></div>
-            <div class="w-row" style="align-items:flex-end; min-height:44px; gap:2px; padding:0 4px">
-              <span class="w-block" style="min-height:8px"></span><span class="w-block" style="min-height:14px"></span><span class="w-block" style="min-height:10px"></span><span class="w-block" style="min-height:18px"></span><span class="w-block" style="min-height:12px"></span><span class="w-block" style="min-height:22px"></span><span class="w-block" style="min-height:9px"></span><span class="w-block" style="min-height:16px"></span><span class="w-block" style="min-height:12px"></span><span class="w-block" style="min-height:26px"></span><span class="w-block" style="min-height:10px"></span><span class="w-block" style="min-height:14px"></span><span class="w-block a" style="min-height:34px"></span><span class="w-block a" style="min-height:28px"></span><span class="w-block a" style="min-height:40px"></span><span class="w-block a" style="min-height:22px"></span><span class="w-block a" style="min-height:30px"></span><span class="w-block" style="min-height:12px"></span><span class="w-block" style="min-height:8px"></span>
-            </div>
-            <!-- KPIs -->
-            <div class="w-row" style="gap:8px">
-              <div class="w-card"><span class="w-txt">Total transactions</span><span class="w-num">—</span></div>
-              <div class="w-card"><span class="w-txt">Failed rate</span><div class="w-row center"><span class="w-num">—</span><span class="w-chip" style="background:var(--coral-soft); color:var(--coral-deep)">▼</span></div></div>
-              <div class="w-card"><span class="w-txt">In residential areas</span><div class="w-row center"><span class="w-num">—</span><span class="w-chip" style="background:var(--teal-soft); color:var(--teal)">▲</span></div></div>
-              <div class="w-card"><span class="w-txt">In stadiums</span><div class="w-row center"><span class="w-num">—</span><span class="w-chip" style="background:var(--teal-soft); color:var(--teal)">▲</span></div></div>
-            </div>
-            <!-- map + list -->
-            <div class="w-row center"><span class="w-txt strong">Transactions map</span><span class="w-tab on" style="margin-left:auto">Map</span><span class="w-tab">Table</span><span class="w-chip">⤓ Export</span></div>
-            <div class="w-row" style="gap:8px; min-height:120px">
-              <div class="w-map" style="min-height:120px">
-                <span class="w-pin" style="left:22%;top:30%"></span><span class="w-pin" style="left:30%;top:60%"></span><span class="w-pin a2" style="left:52%;top:40%"></span><span class="w-pin" style="left:66%;top:66%"></span><span class="w-pin" style="left:78%;top:28%"></span>
-                <span class="w-chip" style="position:absolute; right:8px; bottom:8px">Map · Satellite</span>
+
+            <div class="up-tl">
+              <div class="up-tl-head">
+                <b>Timeline <output data-range aria-live="polite">2 Mar – 28 Mar</output></b>
+                <span class="up-hint">Drag the handles. Every card below follows.</span>
               </div>
-              <div class="w-card" style="flex:0 0 30%">
-                <div class="w-row"><span class="w-tab on">Transactions</span><span class="w-tab">Devices</span></div>
-                <div class="w-row center"><span class="w-dot" style="border-radius:3px"></span><span class="w-txt">Show pass</span><span class="w-chip" style="margin-left:auto">Filter</span></div>
-                <span class="w-txt strong">✕ TXN-████████</span>
-                <span class="w-txt">Date/time · —</span><span class="w-txt">Device · —</span><span class="w-txt">IP · —</span><span class="w-txt">Solution · —</span><span class="w-txt">Geohash · —</span>
+              <div class="up-chart">
+                <div class="up-bars" data-bars aria-hidden="true"></div>
+                <div class="up-axis" aria-hidden="true"></div>
+                <div class="up-sel" data-sel aria-hidden="true"></div>
+                <div class="up-range">
+                  <label class="sr-only" for="up-from">Range start</label>
+                  <input id="up-from" type="range" min="0" max="27" value="0" step="1" data-from />
+                  <label class="sr-only" for="up-to">Range end</label>
+                  <input id="up-to" type="range" min="0" max="27" value="27" step="1" data-to />
+                </div>
               </div>
             </div>
-            <!-- bottom cards -->
-            <div class="w-row" style="gap:8px">
-              <div class="w-card"><span class="w-txt strong">Top user errors</span><div class="w-row center"><span class="w-dot lg" style="width:34px;height:34px; border:6px solid var(--violet); background:transparent"></span><div class="w-col"><span class="w-txt">● Boundary configuration</span><span class="w-txt">● Device inclusion/exclusion</span><span class="w-txt">● Network error</span></div></div></div>
-              <div class="w-card"><span class="w-txt strong">Fail rate by operator</span><span class="w-txt">Operator 1</span><span class="w-bar thin w-70 a"></span><span class="w-txt">Operator 2</span><span class="w-bar thin w-30 a"></span><span class="w-txt">Operator 3</span><span class="w-bar thin w-20 a"></span></div>
-              <div class="w-card"><span class="w-txt strong">⚑ User flagged in</span><span class="w-txt">Case Management System · —</span><span class="w-txt">Location Compliance Report · —</span></div>
+
+            <div class="up-kpis" aria-live="polite">
+              <div class="up-kpi"><small>Total transactions</small><b><span data-k="total">0</span><em data-d="total" class="flat">–</em></b></div>
+              <div class="up-kpi"><small>Failed rate</small><b><span data-k="failed">0%</span><em data-d="failed" class="flat">–</em></b></div>
+              <div class="up-kpi"><small>In residential areas</small><b><span data-k="res">0</span><em data-d="res" class="flat">–</em></b></div>
+              <div class="up-kpi"><small>In stadiums</small><b><span data-k="stad">0</span><em data-d="stad" class="flat">–</em></b></div>
+            </div>
+
+            <div class="up-low">
+              <div class="up-map" data-map aria-hidden="true">
+                <span class="land" style="left:6%;top:12%;width:26%;height:30%"></span>
+                <span class="land" style="left:44%;top:18%;width:20%;height:22%"></span>
+                <span class="land" style="left:70%;top:8%;width:24%;height:34%"></span>
+                <span class="land" style="left:14%;top:58%;width:40%;height:30%"></span>
+                <span class="road" style="left:0;right:0;top:50%;height:4px"></span>
+                <span class="road" style="left:38%;top:0;bottom:0;width:4px"></span>
+                <span class="map-tag">Map · Satellite</span>
+              </div>
+              <div class="up-list">
+                <b>Transactions <small data-count>0 in range</small></b>
+                <ol data-list></ol>
+              </div>
             </div>
           </div>
         </div>
-        <span class="confidential">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
-          The shipped layout: alert, entity header with block and unblock, per-operator cards, the timeline that drives every card, KPIs, map with transaction list, and the three analysis cards.
-        </span>
-        <aside class="stack">
-          <div class="kicker">Built with<b>Tools and models</b></div>
-          <div>
-            <ul class="chips"><li>Figma</li><li>Figma Make (interaction prototype)</li><li>Analyst sessions · journey map</li><li>Personas · lo-fi → hi-fi</li><li>React (implementation)</li><li>LogRocket events</li></ul>
-            <ul>
-            <li><strong>Figma Make</strong> for the clickable device-link clustering prototype.</li>
-            <li><strong>Figma</strong> for the journey map, personas, lo-fi flows, and the final annotated MVP handoff.</li>
-            <li><strong>React</strong> for the parts I build myself.</li>
-            <li><strong>LogRocket</strong> analytics events on new cards, so the next iteration starts with usage data.</li>
-            </ul>
-          </div>
-        </aside>
+        <p class="mock-note">A recreated mockup with invented data. Company work: no real product UI or data.</p>
       </section>
 
       <section class="wrap section">
         <div class="case-body">
         <div class="prose">
-          <h2>What analysts told us</h2>
-          <p>The suite was a set of powerful but siloed tools. Customer feedback said it plainly: there's no complete picture of a user or device, you switch between tabs, some details only live in a log viewer, and "time basis is very important, it's hard to see a timeline with the current tools."</p>
-          <p>Before proposing anything, I validated that story properly.</p>
 
-          <h2>Research</h2>
-          <ol class="steps">
-            <li><b>Validate workflows with real analysts.</b> Sessions with internal and external fraud analysts, mapping each step, where it hurt, and when they left our product for another tool.</li>
-            <li><b>Map the journey across every product.</b> The investigation tool plus the case-management and identity products around it, validated with those teams.</li>
-            <li><b>Personas and an ideal flow.</b> Lo-fi mockups of an ideal flow built around four jobs: <strong>review the problem, investigate, take action, share findings</strong>, deliberately not limited by the current products.</li>
-            <li><b>Validate the lo-fi with users and stakeholders</b> before anything was rendered in high fidelity.</li>
-          </ol>
-          <div class="figure wide">
-            <div class="frame">
-              <div class="pipeline" style="margin:0">
-                <div class="node"><b>Review the problem</b><small>Alert, case, or hunch</small></div>
-                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                <div class="node hi"><b>Investigate</b><small>Where the four-tab problem lived</small></div>
-                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                <div class="node"><b>Take action</b><small>Block, allow, escalate</small></div>
-                <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                <div class="node"><b>Share findings</b><small>Case notes, exports</small></div>
+          <h2>The problem</h2>
+          <p>
+            The suite was four powerful tools that didn't talk to each other: a search tool, a map, a link graph
+            and a log viewer. To answer "what did this account do last Tuesday?", an analyst opened all four,
+            searched the same identifier in each, and stitched the answer together in their head. Some details
+            only lived in the log viewer. Customer feedback said it plainly:
+          </p>
+          <p class="quote">"Time basis is very important. It's hard to see a timeline with the current tools."<small>Customer feedback, before the project</small></p>
+          <p>Before proposing anything, I checked that story properly.</p>
+
+          <div class="chapter">
+            <span class="num">Research</span>
+            <h2>How analysts actually work</h2>
+            <ol class="steps">
+              <li><b>Sessions with real analysts.</b> Internal and external fraud analysts walked me through live investigations: each step, where it hurt, and the moment they left our product for another tool.</li>
+              <li><b>A journey map across every product.</b> Not just the investigation tool but the case-management and identity products around it, checked with the teams who own them.</li>
+              <li><b>Personas and an ideal flow.</b> Lo-fi mockups built around four jobs, deliberately not limited by what the current products could do.</li>
+              <li><b>Validation before rendering.</b> Analysts and stakeholders reviewed the lo-fi flow before anything was drawn in high fidelity.</li>
+            </ol>
+            <div class="figure wide">
+              <div class="frame">
+                <div class="pipeline" style="margin:0">
+                  <div class="node"><b>Review the problem</b><small>Alert, case, or hunch</small></div>
+                  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  <div class="node hi"><b>Investigate</b><small>Where the four-tab problem lived</small></div>
+                  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  <div class="node"><b>Take action</b><small>Block, allow, escalate</small></div>
+                  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  <div class="node"><b>Share findings</b><small>Case notes, exports</small></div>
+                </div>
               </div>
+              <figcaption>The four jobs the ideal flow was organised around. Almost all the tool-switching happened inside "investigate".</figcaption>
             </div>
-            <figcaption>The four analyst jobs the ideal flow was organised around. Most tool-switching happened inside "investigate".</figcaption>
           </div>
 
-          <h2>The proposal</h2>
-          <p>A unified user page: everything about a user (or device) in one place, so an investigation no longer means opening tabs. The organising element is a <strong>timeline</strong>: every card is anchored to it, and the time range you pick drives what every card shows.</p>
-          <p>The proposal became the first pillar of a multi-year "one back office" strategy, with AI tooling and explainability to follow. So the page had to leave room for AI features that didn't exist yet.</p>
+          <aside class="psych" aria-label="Psychology note">
+            <span class="psych-k">Psych note</span>
+            <h3>Working memory holds about four things</h3>
+            <p>Analysts were spending that capacity on bookkeeping: which tab, which search, which time range. Put the timeline on the screen and the four slots go back to the actual question.</p>
+            <small>Cowan, N. (2001). The magical number 4 in short-term memory. Behavioral and Brain Sciences, 24(1), 87–114.</small>
+          </aside>
 
-          <h2>From V1 to MVP</h2>
-          <ul>
-            <li><strong>V1 design</strong> for the investigation tool, reviewed with analysts and product.</li>
-            <li><strong>Feedback round.</strong> Reworked layout and hierarchy, and made clear which cards the timeline applies to; users found the first version ambiguous.</li>
-            <li><strong>MVP.</strong> A final annotated design, built from the component library and handed to engineering.</li>
-            <li><strong>Post-launch fixes</strong> driven by observed confusion, including making the timeline's scope visually explicit.</li>
-          </ul>
+          <div class="chapter">
+            <span class="num">The proposal</span>
+            <h2>A timeline as the spine</h2>
+            <p>
+              One page with everything about a user (or a device) on it, so an investigation no longer means
+              opening tabs. The organising element is the <strong>timeline</strong>: every card hangs off it, and
+              the time range you pick drives what every card shows. Change the range once and the map, the
+              KPIs, the transaction list and the analysis cards all follow.
+            </p>
+            <p>
+              The proposal became the first pillar of a multi-year "one back office" strategy, with AI tooling
+              and explainability to follow. So the page had to leave room for AI features that didn't exist
+              yet. The first of them, <a href="ask-bar.html">an ask bar that turns a question into filters</a>,
+              arrived a year later and landed on exactly the structure this page set up.
+            </p>
+            <aside class="lesson" aria-label="The lesson">
+              <span class="lesson-k">The lesson</span>
+              <p class="lesson-big">Find the organising element first.</p>
+              <p>Once the timeline was the spine, every other layout question got easier, and the features that came later had somewhere to go.</p>
+            </aside>
+          </div>
 
-          <h2>Extending it: device-link analysis</h2>
-          <p>Once the page existed, new signals had a natural home. When a device-integrity feature started finding duplicate devices, I designed how that shows up on the page and the link graph:</p>
-          <ul>
-            <li>A toggle to enable the feature and a switch between clustered and unclustered views.</li>
-            <li><strong>Unclustered:</strong> an overlay grouping duplicate devices, with a copy-all action on hover.</li>
-            <li><strong>Clustered:</strong> duplicate devices collapsed into an expandable node; expanding opens a dismissible popover listing them, again with copy-all.</li>
-          </ul>
-          <p>I built a Figma Make prototype so engineers and stakeholders could try the interactions instead of reading about them. Later ideas were written down too: confidence scores for grandchild nodes, showing <em>why</em> a score is what it is, and export.</p>
+          <div class="chapter">
+            <span class="num">From V1 to MVP</span>
+            <h2>Three rounds with the people who'd use it</h2>
+            <ul>
+              <li><strong>V1</strong> of the investigation view, reviewed with analysts and product.</li>
+              <li><strong>Feedback round.</strong> Analysts found the first version ambiguous: it wasn't clear which cards the timeline applied to. I reworked the layout and hierarchy so the scope of the timeline is visible, not implied.</li>
+              <li><strong>MVP.</strong> A final annotated design, built from the <a href="design-system.html">component library</a> and handed to engineering.</li>
+              <li><strong>After launch.</strong> Fixes driven by observed confusion, and analytics events on every new card so the next iteration starts with usage data instead of opinions.</li>
+            </ul>
+          </div>
+
+          <div class="chapter">
+            <span class="num">Extending it</span>
+            <h2>New signals had a home</h2>
+            <p>
+              Once the page existed, new findings had an obvious place to appear. When a device-integrity feature
+              started detecting duplicate devices, I designed how that shows up on the page and in the link graph:
+              a toggle for the feature, a switch between clustered and unclustered views, duplicates collapsed into
+              one expandable node, and a copy-all action wherever a list of devices appears. I built the
+              interactions as a Figma Make prototype so engineers and stakeholders could try them instead of
+              reading about them.
+            </p>
+          </div>
 
           <h2>Building it</h2>
-          <p>I now implement parts of this page myself, currently its full-text search. Designing something and then building it in the same codebase is the fastest feedback loop I know.</p>
+          <p>
+            I build parts of this page myself, in the same codebase the rest of the team ships from. Designing
+            something and then implementing it in the same repo is the fastest feedback loop I know.
+          </p>
 
-          <h2>What I learned</h2>
+          <h2>What I took from it</h2>
           <ul>
-            <li><strong>Find the organising element.</strong> Once the timeline was the spine, every other layout question got easier.</li>
-            <li><strong>Validate before you render.</strong> Lo-fi flows reviewed by real analysts saved at least one full redesign.</li>
-            <li><strong>Design the room, not just the furniture.</strong> Knowing AI features were coming shaped the page's structure before a single one existed.</li>
+            <li><strong>Check the story before you design for it.</strong> The customer quote was right, but the sessions showed exactly where the tabs opened, and that decided the layout.</li>
+            <li><strong>Validate on paper.</strong> Lo-fi flows reviewed by real analysts saved at least one full redesign.</li>
           </ul>
+
         </div>
         </div>
       </section>
@@ -218,8 +343,68 @@
     <footer class="footer">
       <div class="wrap">
         <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>Company work: the product, data and screens are recreated mockups.</span>
       </div>
     </footer>
+    <script>
+      // The recreated user page: the date range drives every card below it.
+      (function () {
+        var root = document.querySelector("[data-up]");
+        if (!root) return;
+        // 28 invented days: transactions, failed, in residential areas, in stadiums
+        var D = [
+          [31,4,9,0],[44,6,12,1],[38,5,10,0],[52,7,15,2],[40,6,11,0],[61,9,16,3],[29,3,8,0],
+          [47,7,13,1],[39,5,11,0],[70,12,18,4],[33,4,9,0],[45,6,12,1],[88,41,9,12],[76,36,8,10],
+          [102,55,10,15],[64,30,7,9],[81,39,9,11],[36,5,10,0],[28,3,8,0],[42,6,12,1],[35,4,9,0],
+          [49,7,13,1],[30,4,8,0],[41,5,11,1],[37,5,10,0],[46,6,12,1],[33,4,9,0],[27,3,7,0]
+        ];
+        var PINS = [[14,30,2],[22,66,5],[48,36,9],[57,72,12],[79,28,13],[84,62,14],[33,46,15],[66,44,16],[26,82,19],[90,84,22],[52,20,25],[12,54,27]];
+        var TX = [[27,"Pass","Location check"],[26,"Pass","Device check"],[22,"Fail","Location check"],[16,"Fail","Location check"],[15,"Fail","Device shared"],[14,"Fail","Location check"],[13,"Fail","Location check"],[12,"Fail","Boundary"],[9,"Pass","Location check"],[5,"Pass","Device check"],[2,"Pass","Location check"]];
+        var from = root.querySelector("[data-from]"), to = root.querySelector("[data-to]");
+        var bars = root.querySelector("[data-bars]"), sel = root.querySelector("[data-sel]"), out = root.querySelector("[data-range]");
+        var map = root.querySelector("[data-map]"), list = root.querySelector("[data-list]"), count = root.querySelector("[data-count]");
+        var max = Math.max.apply(null, D.map(function (d) { return d[0]; }));
+        D.forEach(function (d) { var i = document.createElement("i"); i.style.setProperty("--h", Math.round(d[0] / max * 100)); bars.appendChild(i); });
+        PINS.forEach(function (p) { var s = document.createElement("span"); s.className = "up-pin"; s.style.left = p[0] + "%"; s.style.top = p[1] + "%"; s.dataset.day = p[2]; map.appendChild(s); });
+        function day(i) { return (i + 2) + " Mar"; }
+        function sum(a, b, k) { var t = 0; for (var i = a; i <= b; i++) t += D[i][k]; return t; }
+        function delta(el, now, before, invert) {
+          if (before == null || before === 0) { el.className = "flat"; el.textContent = "–"; return; }
+          var ch = (now - before) / before;
+          el.className = Math.abs(ch) < 0.05 ? "flat" : (ch > 0) !== !!invert ? "up" : "down";
+          el.textContent = (ch > 0 ? "▲ " : "▼ ") + Math.round(Math.abs(ch) * 100) + "%";
+        }
+        function render() {
+          var a = +from.value, b = +to.value;
+          if (a > b) { var t = a; a = b; b = t; }
+          out.textContent = day(a) + " – " + day(b);
+          var kids = bars.children;
+          for (var i = 0; i < kids.length; i++) kids[i].classList.toggle("in", i >= a && i <= b);
+          var pct = 100 / 28;
+          sel.style.left = (a * pct) + "%"; sel.style.right = (100 - (b + 1) * pct) + "%";
+          var n = b - a + 1, pa = a - n, pb = a - 1, prev = pa >= 0;
+          var total = sum(a, b, 0), failed = sum(a, b, 1), res = sum(a, b, 2), stad = sum(a, b, 3);
+          var rate = total ? Math.round(failed / total * 100) : 0;
+          root.querySelector('[data-k="total"]').textContent = total;
+          root.querySelector('[data-k="failed"]').textContent = rate + "%";
+          root.querySelector('[data-k="res"]').textContent = res;
+          root.querySelector('[data-k="stad"]').textContent = stad;
+          var ptotal = prev ? sum(pa, pb, 0) : null, pfail = prev ? sum(pa, pb, 1) : null;
+          delta(root.querySelector('[data-d="total"]'), total, ptotal);
+          delta(root.querySelector('[data-d="failed"]'), rate, prev && ptotal ? Math.round(pfail / ptotal * 100) : null);
+          delta(root.querySelector('[data-d="res"]'), res, prev ? sum(pa, pb, 2) : null);
+          delta(root.querySelector('[data-d="stad"]'), stad, prev ? sum(pa, pb, 3) : null);
+          map.querySelectorAll(".up-pin").forEach(function (p) { var d = +p.dataset.day; p.classList.toggle("off", d < a || d > b); });
+          var rows = TX.filter(function (t) { return t[0] >= a && t[0] <= b; });
+          count.textContent = rows.length + " in range";
+          list.innerHTML = rows.length ? rows.slice(0, 5).map(function (t) {
+            return "<li><span>TXN-" + (3100 + t[0] * 7) + "••</span><span>" + day(t[0]) + "</span><span>" + (t[1] === "Fail" ? "<em>Failed</em>" : "Pass") + " · " + t[2] + "</span></li>";
+          }).join("") : '<li class="empty">No transactions in this range.</li>';
+        }
+        from.addEventListener("input", render); to.addEventListener("input", render);
+        render();
+      })();
+    </script>
     <script src="../js/main.js?v=20261026c"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>

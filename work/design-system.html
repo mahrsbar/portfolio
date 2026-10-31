@@ -25,8 +25,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026k" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261026i" />
+    <link rel="stylesheet" href="../css/style.css?v=20261031a" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261027a" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -62,6 +62,11 @@
       .plugin-head h3 { margin: 0.2rem 0 0.35rem; font-size: 1.15rem; }
       .plugin-head p { margin: 0; font-size: 0.92rem; color: var(--ink-2); }
       .plugin-head .plugin-why { margin-top: 0.6rem; padding-left: 0.75rem; border-left: 2px solid var(--line-strong); font-size: 0.85rem; color: var(--ink-3); }
+      .fails { padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); }
+      .fails .k { display: block; margin-bottom: 0.5rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+      .fails ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; color: var(--ink-2); }
+      .fails li { margin: 0.3rem 0; }
+      .fails li::marker { content: "✕  "; color: var(--c-text); }
       .ba { display: grid; gap: 0.75rem; align-items: start; }
       .after-pair { grid-template-columns: 1fr 1fr; margin-top: 0.75rem; }
       .panel-lead { margin: 0; font-size: 0.92rem; color: var(--ink-2); }
@@ -294,6 +299,25 @@
   },
   "figmaUrl": "&lt;MCP deep link&gt;"
 }</code></pre>
+                </div>
+              </article>
+
+              <article class="plugin">
+                <div class="plugin-head">
+                  <span class="plugin-n">Plugin 4 · Any frame</span>
+                  <h3>Handoff bundle</h3>
+                  <p>Packages one frame for an agent instead of writing code for it: the full spec with exact values, a ground-truth render, the real SVG and image bytes, and a prompt that tells the agent where every value lives and what "done" means.</p>
+                  <p class="plugin-why">The prompt is the product: its list of shortcuts that fail is every mistake I watched an agent make. <a href="../writing/figma-to-claude.html">How it compares to the MCP server and Claude Design.</a></p>
+                </div>
+                <div class="fails" aria-label="From the handoff prompt: shortcuts that fail">
+                  <span class="k">From the handoff prompt · shortcuts that fail</span>
+                  <ul>
+                    <li>"The spec is large, I'll be efficient and skip parts." It fits in context. Read all of it.</li>
+                    <li>"I can't find the dimensions, I'll measure the PNG." Every node has <code>size.width</code>. The PNG is for checking, not measuring.</li>
+                    <li>"I'll substitute Lucide or Heroicons, they look similar." The exact path data is in <code>svgInline</code>. Use it verbatim.</li>
+                    <li>"This text seems off, I'll fix it." A badge that says 3 says 3.</li>
+                    <li>"This looks close enough, calling it done." Render, compare to the PNG, fix, repeat.</li>
+                  </ul>
                 </div>
               </article>
             </div>
