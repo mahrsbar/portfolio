@@ -1,4 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#0f4ecd"/>
-  <path d="M14 48V16h8l10 16 10-16h8v32h-8V30l-8 13h-4l-8-13v18z" fill="#e7e9ea"/>
+  <!-- the wordmark in miniature: a lowercase m in ink with the blue period, on the page colour -->
+  <style>
+    .bg { fill: #F3F2EF; }
+    .ink { fill: none; stroke: #121212; stroke-width: 7; stroke-linejoin: round; }
+    .dot { fill: #0F4ECD; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #101114; }
+      .ink { stroke: #ECEBE8; }
+      .dot { fill: #427CF1; }
+    }
+  </style>
+  <rect class="bg" width="64" height="64" rx="14"/>
+  <g transform="translate(-2 0)">
+    <path class="ink" d="M15.5 47V23 M15.5 31.5C15.5 26.5 18.5 23.5 22.75 23.5S30 26.5 30 31.5V47 M30 31.5C30 26.5 33 23.5 37.25 23.5S44.5 26.5 44.5 31.5V47"/>
+    <circle class="dot" cx="52" cy="43" r="4.5"/>
+  </g>
 </svg>
