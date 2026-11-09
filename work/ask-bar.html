@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>An ask bar that answers with filters — Mahrs Aslam</title>
+    <meta name="description" content="A fraud-investigation demo with an AI designed around the analyst's journey: ask a question and land on the filtered page, a launcher that has read the page before you do, an assistant that shows each step, and a plan for every way it can be wrong." />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Mahrs Aslam" />
+    <meta property="og:title" content="An ask bar that answers with filters — Mahrs Aslam" />
+    <meta property="og:description" content="A fraud-investigation demo with an AI designed around the analyst's journey: ask a question and land on the filtered page, a launcher that has read the page before you do, an assistant that shows each step, and a plan for every way it can be wrong." />
+    <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/ask-bar.html" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="../assets/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
+    />
+    <link rel="stylesheet" href="../css/style.css?v=20261031a" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261027a" />
+    <script>
+      try {
+        var t = localStorage.getItem("mahrs-theme");
+        if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+    <style>
+      .chapter { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+      .chapter .num { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-text, var(--c)); margin-bottom: 0.4rem; display: block; }
+      .lesson { margin: 2.5rem 0; padding: 1.75rem 1.75rem 1.6rem; border-radius: var(--radius-l); background: var(--c-soft); border-left: 4px solid var(--c); }
+      .lesson-k { display: block; margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .lesson .lesson-big { margin: 0 0 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
+      .lesson p { margin: 0; color: var(--ink-2); }
+      .mock-note { margin: 0.75rem 0 0; font-size: 0.8rem; color: var(--ink-3); }
+
+
+      /* Designing for when it's wrong: plain rows. */
+
+      /* The agent drawer mockup: each step appears as it happens. */
+      .drawer { margin: 1.5rem 0; padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); max-width: 460px; }
+      .drawer-head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; }
+      .drawer-head b { font-size: 0.95rem; }
+      .synthetic { padding: 0.15rem 0.55rem; border-radius: 999px; background: var(--bg-sunk); font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+      .drawer-q { margin: 0 0 0.8rem; padding: 0.6rem 0.8rem; border-radius: var(--radius); background: var(--bg-sunk); font-size: 0.9rem; color: var(--ink); }
+      .prose .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+      .prose .steps li { margin: 0; }
+      .steps li { display: flex; gap: 0.6rem; font-size: 0.86rem; color: var(--ink-2); opacity: 0; transform: translateY(4px); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); }
+      .steps li::before { content: "✓"; flex: none; color: var(--c-text); font-weight: 700; }
+      .steps li small { display: block; color: var(--ink-3); }
+      .drawer.play .steps li { opacity: 1; transform: none; }
+      .drawer.play .steps li:nth-child(2) { transition-delay: 0.7s; }
+      .drawer.play .steps li:nth-child(3) { transition-delay: 1.4s; }
+      .drawer.play .steps li:nth-child(4) { transition-delay: 2.1s; }
+      .drawer-replay { margin-top: 0.8rem; padding: 0; border: 0; background: none; color: var(--link); font: inherit; font-size: 0.82rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+      @media (prefers-reduced-motion: reduce) { .steps li { opacity: 1; transform: none; transition: none; } .drawer-replay { display: none; } }
+
+      /* The ask-bar demo: the product itself, drawn light in both themes like the covers,
+         with three callouts for what to notice. */
+      .askdemo { --ap-bg: #FFFFFF; --ap-sunk: #F3F4F6; --ap-line: #E6E8EC; --ap-ink: #1A1F29; --ap-ink2: #4B5563; --ap-ink3: #8A93A2; --ap-navy: #1F3A63; --ap-blue: #2F5BD6; --ap-ai: #E8553D; --ap-ai-soft: #FCE9E4; --ap-ai-text: #B8402F; --ap-ok: #1F6E5B; --ap-ok-soft: #DCEFEA;
+        padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
+      /* suggestions: the product's own pattern, a panel under the bar when it has focus */
+      .aa-suggest { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 20; padding: 0.35rem; border: 1px solid var(--ap-line); border-radius: 14px; background: #fff; box-shadow: 0 12px 32px rgba(15,20,40,0.16); }
+      .aa-suggest-k { margin: 0.3rem 0.6rem 0.35rem; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ap-ink3); }
+      .aa-suggest [role="option"] { display: flex; align-items: center; gap: 0.65rem; padding: 0.5rem 0.6rem; border-radius: 9px; color: var(--ap-ink); font-size: 0.86rem; cursor: pointer; }
+      .aa-suggest [role="option"] span { flex: 1; min-width: 0; }
+      .aa-suggest [role="option"] small { font-size: 0.7rem; color: var(--ap-ink3); }
+      .aa-suggest [role="option"]:hover, .aa-suggest [role="option"][aria-selected="true"] { background: var(--ap-sunk); }
+      .aa-suggest [role="option"][hidden] { display: none; }
+      .aa-suggest .ic { flex: none; width: 22px; height: 22px; border-radius: 6px; background: var(--ap-sunk); position: relative; }
+      .aa-suggest .ic::after { content: ""; position: absolute; inset: 6px; border-radius: 2px; background: var(--ap-ink3); }
+      .aa-suggest .ic.map::after { border-radius: 50% 50% 50% 0; transform: rotate(-45deg); inset: 6px 7px 7px; background: var(--ap-ok); }
+      .aa-suggest .ic.graph::after { border-radius: 50%; background: var(--ap-blue); }
+      .aa-suggest .ic.user::after { border-radius: 50% 50% 3px 3px; background: var(--ap-blue); }
+      .aa-suggest .ic.list::after { inset: 7px 5px; height: 2px; box-shadow: 0 4px 0 var(--ap-ink3), 0 -4px 0 var(--ap-ink3); }
+      .aa-suggest .ic.ai { background: var(--ap-ai-soft); }
+      .aa-suggest .ic.ai::after { content: "✦"; inset: 0; background: none; display: grid; place-items: center; color: var(--ap-ai); font-size: 0.75rem; border-radius: 0; }
+      .askdemo-input::placeholder { color: var(--ap-ink3); }
+      /* the app frame */
+      .askdemo-app { display: grid; grid-template-columns: 112px minmax(0, 1fr); border: 1px solid var(--line); border-radius: 14px; background: var(--ap-bg); color: var(--ap-ink2); overflow: hidden; box-shadow: 0 10px 30px rgba(15, 20, 40, 0.14); font-size: 0.78rem; }
+      .aa-side { background: var(--ap-navy); padding: 0.9rem 0.7rem; display: grid; gap: 0.35rem; align-content: start; }
+      .aa-logo { width: 22px; height: 22px; border-radius: 6px; background: var(--ap-blue); margin-bottom: 0.6rem; box-shadow: inset 0 0 0 2px rgba(255,255,255,0.25); }
+      .aa-nav { padding: 0.35rem 0.5rem; border: 0; border-radius: 7px; background: none; color: rgba(255,255,255,0.72); font: inherit; font-size: 0.74rem; text-align: left; transition: background 0.2s, color 0.2s; }
+      .aa-side { user-select: none; }
+      .aa-nav.on { background: rgba(255,255,255,0.14); color: #fff; font-weight: 600; }
+      .aa-main { position: relative; min-width: 0; display: grid; grid-template-rows: auto auto minmax(0, 1fr); }
+      .askdemo-bar { position: relative; display: flex; gap: 0.35rem; align-items: center; height: 42px; margin: 0.8rem 0.9rem 0; padding: 0 5px 0 0.8rem; border: 1px solid #D3D8E0; border-radius: 10px; background: var(--ap-bg); box-shadow: 0 1px 2px rgba(15,20,40,0.06); transition: border-color 0.15s, box-shadow 0.15s; }
+      .askdemo-bar:focus-within { border-color: var(--ap-blue); box-shadow: 0 0 0 3px rgba(47,91,214,0.14); }
+      .askdemo-bar.typing { border-color: var(--ap-blue); box-shadow: 0 0 0 3px rgba(47,91,214,0.14); }
+      .askdemo-bar.thinking { border-color: var(--ap-ai); box-shadow: 0 0 0 3px var(--ap-ai-soft); }
+      .askdemo-spark { color: var(--ap-ai); font-size: 0.82rem; line-height: 1; flex: none; margin-right: 0.15rem; }
+      .askdemo-bar.thinking .askdemo-spark { animation: ask-spin 0.9s linear infinite; }
+      .askdemo-input { flex: 1; min-width: 0; border: 0; background: none; font: inherit; font-size: 0.88rem; color: var(--ap-ink); padding: 0; }
+      .askdemo-input:focus { outline: none; }
+      .askdemo-go { flex: none; height: 32px; padding: 0 0.95rem; border: 0; border-radius: 7px; background: var(--ap-blue); color: #fff; font: inherit; font-weight: 600; font-size: 0.78rem; cursor: pointer; transition: background 0.15s; }
+      .askdemo-go:hover { background: #2649B5; }
+      .askdemo-ex { flex: none; display: inline-flex; align-items: center; gap: 0.3rem; height: 32px; padding: 0 0.6rem; border: 0; border-radius: 7px; background: none; color: var(--ap-ink2); font: inherit; font-size: 0.76rem; font-weight: 500; cursor: pointer; transition: background 0.15s, color 0.15s; }
+      .askdemo-ex:hover, .askdemo-ex[aria-expanded="true"] { background: var(--ap-sunk); color: var(--ap-ink); }
+      .askdemo-ex svg { width: 10px; height: 10px; transition: transform 0.15s; }
+      .askdemo-ex[aria-expanded="true"] svg { transform: rotate(180deg); }
+      .askdemo-ex:focus-visible { outline: 2px solid var(--ap-blue); outline-offset: 1px; }
+      .askdemo-go:focus-visible { outline: 2px solid var(--ap-blue); outline-offset: 2px; }
+      .askdemo-go:disabled { opacity: 0.6; cursor: wait; }
+      .aa-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem; min-height: 24px; padding: 0.6rem 0.9rem; }
+      .aa-filters.empty > * { visibility: hidden; }
+      .aa-filters-k { font-size: 0.72rem; color: var(--ap-ink3); }
+      .aa-filters.reading .aa-filters-k { color: var(--ap-ai-text); }
+      .askdemo-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem; }
+      .aa-clear { padding: 0 0.15rem; border: 0; background: none; font: inherit; font-size: 0.72rem; color: var(--ap-blue); cursor: pointer; }
+      .aa-clear:hover { text-decoration: underline; }
+      .aa-clear:focus-visible { outline: 2px solid var(--ap-blue); outline-offset: 2px; border-radius: 3px; }
+      .aa-filters.reading .aa-clear { visibility: hidden; }
+      .aa-banner { position: absolute; left: 50%; top: 14px; transform: translateX(-50%); max-width: calc(100% - 2rem); padding: 0.45rem 0.8rem; border-radius: 999px; background: #fff; border: 1px solid var(--ap-line); box-shadow: 0 4px 12px rgba(15,20,40,0.1); font-size: 0.74rem; color: var(--ap-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; animation: page-in 0.4s 0.15s var(--ease) both; }
+      .aa-banner b { color: var(--ap-ai-text); }
+      .askdemo-chip { display: inline-flex; align-items: center; gap: 0.3rem; height: 24px; padding: 0 3px 0 0.55rem; border: 1px solid #D6DFF6; border-radius: 6px; background: #EEF2FC; color: var(--ap-navy); font: inherit; font-size: 0.74rem; font-weight: 600; line-height: 1; cursor: pointer; animation: chip-in 0.35s var(--ease) both; transition: border-color 0.15s, background 0.15s; }
+      .askdemo-chip:hover { border-color: #AFC0EE; background: #E4EBFB; }
+      .askdemo-chip .k { font-weight: 400; color: #5D6F95; }
+      .askdemo-chip .k::after { content: ":"; }
+      .askdemo-chip .mono { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; }
+      .askdemo-chip i { font-style: normal; width: 18px; height: 18px; border-radius: 4px; display: grid; place-items: center; font-size: 0.85rem; line-height: 1; color: #5D6F95; }
+      .askdemo-chip:hover i { background: rgba(47,91,214,0.12); color: var(--ap-navy); }
+      .askdemo-chip:focus-visible { outline: 2px solid var(--ap-blue); outline-offset: 2px; }
+      @keyframes chip-in { from { opacity: 0; transform: translateY(4px) scale(0.96); } to { opacity: 1; transform: none; } }
+      @keyframes ask-spin { to { transform: rotate(360deg); } }
+      .aa-stage { position: relative; margin: 0 0.9rem 0.9rem; border: 1px solid var(--ap-line); border-radius: 10px; overflow: hidden; background: var(--ap-bg); }
+      .aa-top { position: relative; display: flex; align-items: center; gap: 0.5rem; height: 32px; padding: 0 0.8rem; border-bottom: 1px solid var(--ap-line); background: var(--ap-sunk); }
+      .aa-top b { color: var(--ap-ink); font-weight: 600; display: inline-flex; align-items: center; gap: 0.4rem; }
+      .aa-top b::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--ap-blue); }
+      .aa-top.switched { animation: top-pulse 0.6s var(--ease); }
+      .aa-top.switched b { animation: page-in 0.4s var(--ease) both; }
+      @keyframes top-pulse { 0% { background: var(--ap-ai-soft); } 100% { background: var(--ap-sunk); } }
+      .aa-range { margin-left: auto; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ap-ink3); }
+      .aa-body { position: relative; height: 250px; }
+      .aa-body > * { position: absolute; inset: 0; animation: page-in 0.35s var(--ease) both; }
+      @keyframes page-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+      .aa-map { background: #DCE8F2; }
+      .aa-mapsvg { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .aa-mapsvg .water { fill: #DCE8F2; }
+      .aa-mapsvg .land path { fill: #F1F3EC; stroke: #B8C4CE; stroke-width: 0.25; vector-effect: non-scaling-stroke; }
+      .aa-mapsvg .lake path { fill: #DCE8F2; stroke: #B8C4CE; stroke-width: 0.2; vector-effect: non-scaling-stroke; }
+      .aa-mapsvg .city { font-size: 5px; fill: var(--ap-ink3); font-weight: 500; }
+      .aa-mapsvg .pin { fill: var(--ap-ok); stroke: #fff; stroke-width: 1.5; vector-effect: non-scaling-stroke; transition: opacity 0.25s, fill 0.25s; }
+      .aa-mapsvg .pin.fail { fill: var(--ap-ai); }
+      .aa-mapsvg .pin.dim { opacity: 0.22; }
+      .aa-mapsvg .place { fill: rgba(232,85,61,0.12); stroke: var(--ap-ai); stroke-width: 1.5; stroke-dasharray: 4 3; vector-effect: non-scaling-stroke; animation: page-in 0.5s 0.5s var(--ease) both; }
+      .aa-mapsvg .place-l { font-size: 0.7px; font-weight: 600; fill: var(--ap-ai-text); text-anchor: middle; animation: page-in 0.5s 0.5s var(--ease) both; }
+      .aa-map .legend { position: absolute; left: 10px; bottom: 10px; display: flex; gap: 0.6rem; padding: 0.25rem 0.5rem; border-radius: 6px; background: #fff; border: 1px solid var(--ap-line); font-size: 0.66rem; color: var(--ap-ink2); }
+      .aa-map .legend span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; background: var(--ap-ok); }
+      .aa-map .legend span.f::before { background: var(--ap-ai); }
+      /* the connection graph */
+      .aa-graph { background: var(--ap-bg); }
+      .aa-graph svg { width: 100%; height: 100%; display: block; }
+      .aa-graph .g-dot { fill: #DCE1E8; }
+      .aa-graph .g-edge { stroke: #C9D0DA; stroke-width: 1.5; }
+      .aa-graph .g-edge.hi { stroke: var(--ap-ai); stroke-width: 2.5; }
+      .aa-graph .g-fill { fill: var(--ap-ok); }
+      .aa-graph .user .g-fill { fill: var(--ap-blue); }
+      .aa-graph .hi .g-fill { fill: var(--ap-ai); }
+      .aa-graph .g-halo { fill: var(--ap-blue); opacity: 0.12; }
+      .aa-graph .g-icon { fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      .aa-graph .g-label { font-family: var(--font-mono); font-size: 9.5px; fill: var(--ap-ink); text-anchor: middle; }
+      .aa-graph .g-sub { font-size: 8.5px; fill: var(--ap-ink3); text-anchor: middle; }
+      .aa-graph .g-pill rect { fill: #fff; stroke: var(--ap-ai); stroke-width: 1; }
+      .aa-graph .g-pill text { font-size: 8.5px; font-weight: 600; fill: var(--ap-ai-text); text-anchor: middle; }
+      .aa-graph .lbl { position: absolute; right: 10px; top: 10px; padding: 0.3rem 0.6rem; border-radius: 8px; background: var(--ap-ai-soft); color: var(--ap-ai-text); font-size: 0.7rem; font-weight: 600; }
+      .aa-graph .legend { position: absolute; left: 10px; bottom: 10px; display: flex; gap: 0.7rem; padding: 0.25rem 0.55rem; border-radius: 6px; background: #fff; border: 1px solid var(--ap-line); font-size: 0.66rem; color: var(--ap-ink2); }
+      .aa-graph .legend span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; background: var(--ap-blue); }
+      .aa-graph .legend span.d::before { background: var(--ap-ok); }
+      .aa-graph .legend span.s::before { background: var(--ap-ai); }
+      .aa-user { padding: 0.8rem 0.9rem; display: grid; gap: 0.55rem; align-content: start; background: var(--ap-bg); }
+      .aa-user .hd { display: flex; align-items: center; gap: 0.5rem; }
+      .aa-user .av { width: 22px; height: 22px; border-radius: 50%; background: #D8E0EC; }
+      .aa-user .id { font-family: var(--font-mono); font-weight: 600; color: var(--ap-ink); }
+      .aa-user .tag { margin-left: auto; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--ap-ai); color: #fff; font-size: 0.64rem; font-weight: 600; }
+      .aa-user .bars { display: grid; grid-template-columns: repeat(14, 1fr); gap: 3px; align-items: end; height: 66px; padding-top: 0.5rem; border-top: 1px solid var(--ap-line); }
+      .aa-user .bars i { display: block; height: calc(var(--h) * 1%); border-radius: 2px 2px 0 0; background: #C9D0DA; }
+      .aa-user .bars i.in { background: var(--ap-ai); }
+      .aa-user .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+      .aa-user .kpis span { padding: 0.4rem 0.6rem; border: 1px solid var(--ap-line); border-radius: 8px; }
+      .aa-user .kpis b { display: block; color: var(--ap-ink); font-size: 0.95rem; }
+      .aa-need { display: grid; place-items: center; text-align: center; padding: 1.5rem; color: var(--ap-ink3); font-size: 0.85rem; background: var(--ap-bg); }
+      .aa-need b { display: block; color: var(--ap-ink); margin-bottom: 0.2rem; }
+      .aa-list { padding: 0.7rem 0.9rem; background: var(--ap-bg); overflow: auto; }
+      .aa-list-h { display: flex; align-items: baseline; gap: 0.4rem; margin-bottom: 0.5rem; font-weight: 600; color: var(--ap-ink); }
+      .aa-list-h small { font-weight: 400; color: var(--ap-ink3); }
+      .aa-tbl { width: 100%; border-collapse: collapse; font-size: 0.74rem; }
+      .aa-tbl th { text-align: left; font-weight: 500; color: var(--ap-ink3); padding: 0.3rem 0.5rem; border-bottom: 1px solid var(--ap-line); }
+      .aa-tbl td { padding: 0.38rem 0.5rem; border-bottom: 1px solid var(--ap-line); color: var(--ap-ink2); animation: page-in 0.3s var(--ease) both; }
+      .aa-tbl td.mono { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ap-ink); }
+      .aa-tbl td em { font-style: normal; color: var(--ap-ai-text); font-weight: 600; }
+      .aa-tbl td.none { color: var(--ap-ink3); text-align: center; padding: 1.2rem; }
+      /* the assistant panel, docked on the right when the question wants an answer */
+      .aa-assist { position: absolute; top: 32px; right: 0; bottom: 0; width: min(60%, 290px); border-left: 1px solid var(--ap-line); background: var(--ap-bg); padding: 0.7rem 0.8rem; display: grid; gap: 0.45rem; align-content: start; font-size: 0.74rem; color: var(--ap-ink2); transform: translateX(100%); transition: transform 0.35s var(--ease); box-shadow: -8px 0 20px rgba(15,20,40,0.08); }
+      .aa-assist.on { transform: none; }
+      .aa-assist-head { display: flex; align-items: center; gap: 0.45rem; }
+      .aa-assist-head b { color: var(--ap-ink); font-size: 0.8rem; }
+      .aa-assist .lnch-mark { width: 20px; height: 20px; font-size: 0.6rem; background: var(--ap-blue); }
+      .aa-assist .synthetic { margin-left: auto; background: var(--ap-sunk); color: var(--ap-ink3); }
+      .aa-q { margin: 0; padding: 0.4rem 0.6rem; border-radius: 8px; background: var(--ap-sunk); color: var(--ap-ink); }
+      .aa-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+      .aa-steps li { display: flex; gap: 0.5rem; animation: page-in 0.3s var(--ease) both; }
+      .aa-steps li::before { content: "✓"; color: var(--ap-ok); font-weight: 700; flex: none; }
+      .aa-steps li small { display: block; color: var(--ap-ink3); }
+      .aa-steps li.answer { color: var(--ap-ink); font-weight: 600; }
+      .aa-steps li.answer::before { content: "→"; color: var(--ap-ai); }
+      .askdemo-json { margin-top: 0.9rem; }
+      .askdemo-json summary { cursor: pointer; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+      .askdemo-plan { margin: 0.5rem 0 0; padding: 0.8rem 0.9rem; border-radius: var(--radius); background: var(--bg-sunk); font-size: 0.74rem; line-height: 1.5; overflow-x: auto; max-width: 34rem; }
+      @media (max-width: 700px) {
+        .askdemo-app { grid-template-columns: minmax(0, 1fr); }
+        .aa-side { display: none; }
+        .aa-banner { white-space: normal; text-align: center; }
+        .aa-assist { width: 72%; }
+        .askdemo-ex span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+        .askdemo-input { font-size: 0.82rem; }
+        .aa-filters-k { display: none; }
+        .aa-filters.reading .aa-filters-k { display: inline; }
+      }
+      @media (prefers-reduced-motion: reduce) { .askdemo-chip, .aa-body > *, .aa-steps li, .aa-mapsvg .place, .aa-mapsvg .place-l, .aa-top.switched, .aa-top.switched b { animation: none; } .aa-assist { transition: none; } .askdemo-bar.thinking .askdemo-spark { animation: none; } }
+      /* context, as a short definition list */
+      .prose .ctx { margin: 1rem 0 1.5rem; padding: 0; display: grid; gap: 0.6rem; }
+      .prose .ctx div { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 0.75rem; padding: 0.6rem 0; border-top: 1px solid var(--line); }
+      .prose .ctx div:last-child { border-bottom: 1px solid var(--line); }
+      .prose .ctx dt { margin: 0; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); padding-top: 0.2rem; }
+      .prose .ctx dd { margin: 0; color: var(--ink-2); }
+      @media (max-width: 560px) { .prose .ctx div { grid-template-columns: minmax(0, 1fr); gap: 0.2rem; } }
+      /* each chapter opens with one line on what the analyst does */
+      .prose .dek { margin: 0.25rem 0 1.25rem; font-size: 1.08rem; line-height: 1.5; color: var(--ink); max-width: 44ch; }
+      /* the three rules: one card each, every case a "when / then" pair on two short lines */
+      .rulecards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 1.25rem 0 1.5rem; }
+      .rulecard { padding: 1rem 1.05rem 1.1rem; border: 1px solid var(--line); border-top: 3px solid var(--rc); border-radius: var(--radius-l); background: var(--bg-elev); }
+      .rulecard.r1 { --rc: var(--teal); } .rulecard.r2 { --rc: var(--mustard); } .rulecard.r3 { --rc: var(--c); }
+      .prose .rulecard h3 { margin: 0; font-size: 1.1rem; }
+      .prose .rulecard .rc-def { margin: 0.2rem 0 0.85rem; font-size: 0.9rem; color: var(--ink-2); }
+      .prose .rulecard ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+      .prose .rulecard li { margin: 0; padding-top: 0.6rem; border-top: 1px solid var(--line); display: grid; gap: 0.1rem; }
+      .rulecard li span { font-size: 0.76rem; color: var(--ink-3); }
+      .rulecard li b { font-size: 0.9rem; font-weight: 500; line-height: 1.35; color: var(--ink); }
+      @media (max-width: 760px) { .rulecards { grid-template-columns: minmax(0, 1fr); } }
+      /* Moment 1: the same question, as a reply and as filters */
+      .vs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin: 0 0 1.5rem; }
+      .vs-card { margin: 0; padding: 0.9rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); display: grid; grid-template-rows: auto 1fr auto; gap: 0.7rem; }
+      .vs-k { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+      .vs-card.on .vs-k { color: var(--ink); }
+      .vs-ui { min-height: 170px; padding: 0.7rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: grid; gap: 0.5rem; align-content: start; font-size: 0.8rem; }
+      .prose .vs-ui p { margin: 0; }
+      .prose .vs-me { justify-self: end; max-width: 85%; padding: 0.45rem 0.7rem; border-radius: 12px 12px 3px 12px; background: var(--bg-sunk); color: var(--ink); }
+      .prose .vs-bot { max-width: 92%; padding: 0.55rem 0.75rem; border: 1px solid var(--line); border-radius: 12px 12px 12px 3px; background: var(--bg-elev); color: var(--ink); line-height: 1.45; }
+      .vs-bot::before { content: "✦ "; color: var(--c); }
+      .vs-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+      .vs-chip { display: inline-flex; align-items: center; gap: 0.25rem; height: 22px; padding: 0 0.3rem 0 0.5rem; border: 1px solid #D6DFF6; border-radius: 6px; background: #EEF2FC; color: #1F3A63; font-size: 0.7rem; font-weight: 600; white-space: nowrap; }
+      .vs-chip small { font-size: inherit; font-weight: 400; color: #5D6F95; }
+      .vs-chip i { font-style: normal; color: #5D6F95; }
+      .vs-map { position: relative; height: 112px; border-radius: 8px; overflow: hidden; background: #DCE8F2; }
+      .vs-map svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .vs-map .land path { fill: #F1F3EC; stroke: #B8C4CE; stroke-width: 0.25; vector-effect: non-scaling-stroke; }
+      .vs-map .lake path { fill: #DCE8F2; }
+      .vs-map .pin { stroke: #fff; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+      .prose .vs-cap { margin: 0; font-size: 0.86rem; line-height: 1.45; color: var(--ink-2); }
+      .vs-card.on .vs-cap { color: var(--ink); }
+      @media (max-width: 640px) { .vs { grid-template-columns: minmax(0, 1fr); } .vs-ui { min-height: 0; } }
+      /* Moment 4: each rule opens with what that failure looks like on screen */
+      .rc-ui { position: relative; height: 92px; margin: 0 0 0.9rem; padding: 0.7rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: flex; flex-wrap: wrap; align-content: center; gap: 0.35rem; font-size: 0.74rem; color: var(--ink-2); overflow: hidden; }
+      .rc-chip { display: inline-flex; align-items: center; gap: 0.3rem; height: 24px; padding: 0 0.3rem 0 0.55rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg-elev); color: var(--ink); font-weight: 600; white-space: nowrap; }
+      .rc-chip small { font-size: inherit; font-weight: 400; color: var(--ink-3); }
+      .rc-chip i { font-style: normal; width: 16px; text-align: center; color: var(--ink-3); }
+      .rc-chip.wrong { border-color: var(--c); background: var(--c-soft); }
+      .rc-chip.wrong { position: relative; }
+      .rc-cursor { position: absolute; width: 14px; height: 18px; right: 2px; top: 13px; opacity: 0; pointer-events: none; }
+      .rulecards.play .rc-chip.wrong { animation: rc-remove 0.4s 1.5s var(--ease) forwards; }
+      .rulecards.play .rc-cursor { animation: rc-point 1.4s 0.3s var(--ease) forwards; }
+      @keyframes rc-point { 0% { opacity: 0; transform: translate(26px, 22px); } 30% { opacity: 1; } 85% { opacity: 1; transform: none; } 92% { transform: scale(0.85); } 100% { opacity: 1; transform: none; } }
+      @keyframes rc-remove { to { opacity: 0; transform: scale(0.85); max-width: 0; padding: 0; margin: 0; border-width: 0; } }
+      .rc-fixed { width: 100%; font-size: 0.7rem; color: var(--ink-3); opacity: 0; }
+      .rulecards.play .rc-fixed { animation: page-in 0.4s 1.9s var(--ease) forwards; }
+      .rc-note { width: 100%; display: grid; gap: 0.2rem; padding: 0.5rem 0.6rem; border-radius: 8px; background: var(--mustard-soft); color: var(--ink); line-height: 1.35; }
+      .rc-note u { color: var(--link); text-underline-offset: 2px; font-weight: 600; }
+      .prose .rc-steps { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; gap: 0.2rem; }
+      .prose .rc-steps li { margin: 0; display: flex; gap: 0.4rem; line-height: 1.3; }
+      .rc-steps li::before { content: "✓"; color: var(--teal-text); font-weight: 700; }
+      .rc-steps li.stop { color: var(--ink); font-weight: 600; }
+      .rc-steps li.stop::before { content: "■"; color: var(--ink); font-size: 0.6rem; line-height: 1.6; }
+      .rc-steps small { margin-left: auto; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ink-3); }
+      @media (prefers-reduced-motion: reduce) { .rc-cursor { display: none; } .rulecards.play .rc-chip.wrong { animation: none; display: none; } .rc-fixed, .rulecards.play .rc-fixed { animation: none; opacity: 1; } }
+      /* the launcher mockup: a faint page with the assistant's card in the corner */
+      .launcher-demo { position: relative; height: 300px; margin: 1.25rem 0 0; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg); overflow: hidden; }
+      .ld-page { position: absolute; inset: 0; padding: 0.9rem 1.1rem; display: grid; gap: 0.4rem; align-content: start; }
+      .ld-head { display: grid; gap: 0.1rem; font-size: 0.74rem; color: var(--ink-3); }
+      .ld-head b { color: var(--ink); font-size: 0.95rem; }
+      .ld-graph { position: relative; height: 220px; }
+      .ld-graph svg { height: 100%; }
+      .lnch { position: absolute; right: 14px; bottom: 12px; display: flex; align-items: center; gap: 0.7rem; max-width: min(400px, calc(100% - 28px)); padding: 0.6rem 0.85rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; background: #1A1F29; color: #fff; font: inherit; text-align: left; cursor: pointer; box-shadow: 0 6px 18px rgba(26,31,41,0.3); transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease), opacity 0.2s; }
+      .lnch:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(26,31,41,0.36); }
+      .lnch:hover .lnch-go { transform: translateX(3px); color: #fff; }
+      .lnch:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+      .lnch[aria-expanded="true"] { opacity: 0; pointer-events: none; }
+      .ld-panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(62%, 340px); padding: 0.8rem 0.9rem; border-left: 1px solid var(--line); background: var(--bg-elev); display: grid; gap: 0.5rem; align-content: start; font-size: 0.76rem; color: var(--ink-2); transform: translateX(100%); transition: transform 0.35s var(--ease); }
+      .ld-panel.on { transform: none; }
+      .ld-panel .lnch-mark { width: 20px; height: 20px; font-size: 0.6rem; }
+      .ld-close { margin-left: auto; border: 0; background: none; font: inherit; font-size: 1.1rem; color: var(--ink-3); cursor: pointer; }
+      .ld-close:focus-visible { outline: 2px solid var(--link); }
+      .ld-read { margin: 0; color: var(--ink); }
+      .ld-beats { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.3rem; }
+      .ld-beats small { display: block; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ink-3); }
+      .ld-follow { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+      .ld-follow span { padding: 0.3rem 0.65rem; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--ink); font-size: 0.72rem; }
+      @media (prefers-reduced-motion: reduce) { .ld-panel, .lnch { transition: none; } }
+
+      .lnch-mark { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #2F5BD6; display: grid; place-items: center; font-size: 0.8rem; }
+      .lnch-text { display: grid; gap: 1px; min-width: 0; font-size: 0.78rem; line-height: 1.3; }
+      .lnch-text small { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
+      .lnch-go { flex: none; color: rgba(255,255,255,0.7); transition: transform 0.15s var(--ease), color 0.15s; }
+      .psych { display: block; margin: 2.5rem 0; padding: 1.25rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
+      .psych-k { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .psych h3 { margin: 0.3rem 0 0.5rem; font-size: 1.1rem; }
+      .psych p { margin: 0 0 0.6rem; color: var(--ink-2); }
+      .psych small { color: var(--ink-3); }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="../index.html" aria-label="Mahrs Aslam, home">
+          <span class="wordmark">mahrs<span class="dot">.</span></span>
+        </a>
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a href="../index.html#work" data-section="/work/">Work</a></li>
+            <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
+            <li><a href="../about.html">About</a></li>
+            <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li>
+              <button class="theme-toggle" type="button" aria-label="Switch theme">
+                <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="hue-coral">
+      <section class="wrap case-intro">
+        <p class="eyebrow"><b>Fraud-investigation suite</b> · AI interaction design</p>
+        <h1>An ask bar that answers with filters</h1>
+        <p class="intro-sum">
+          A customer-facing demo of a fraud-investigation tool, with AI designed into four moments of the analyst's
+          journey: ask, land, dig deeper, and the moment it's wrong. Try it below.
+        </p>
+        <ul class="highlights">
+          <li><b>Reference demo</b><span>For a major prospect</span></li>
+          <li><b>2 patterns</b><span>On the product roadmap</span></li>
+          <li><b>Built solo</b><span>Front end, back end and the AI layer</span></li>
+        </ul>
+        <dl class="meta-line">
+          <div><dt>Role</dt><dd>Designed and built it end to end, with Claude Code</dd></div>
+          <div><dt>Stack</dt><dd>React, Cloudflare Workers, Claude API</dd></div>
+        </dl>
+      </section>
+
+
+
+      <section class="wrap intro-visual">
+        <div class="askdemo" data-askdemo>
+          <div class="askdemo-app" data-app>
+            <div class="aa-side" aria-hidden="true">
+              <span class="aa-logo"></span>
+              <span class="aa-nav" data-nav="map">Map</span><span class="aa-nav" data-nav="transactions">Transactions</span><span class="aa-nav" data-nav="connections">Connections</span><span class="aa-nav" data-nav="user">Accounts</span>
+            </div>
+            <div class="aa-main">
+              <form class="askdemo-bar" data-form>
+                <span class="askdemo-spark" aria-hidden="true">✦</span>
+                <label class="sr-only" for="ask-input">Ask anything</label>
+                <input class="askdemo-input" id="ask-input" data-input type="text" autocomplete="off" spellcheck="false" value="Failed transactions near Halifax last week"
+                       role="combobox" aria-expanded="false" aria-controls="ask-suggest" aria-autocomplete="list" placeholder="Ask anything about an account, a device or a place" />
+                <button class="askdemo-ex" type="button" data-examples aria-controls="ask-suggest" aria-expanded="false"><span>Examples</span><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+                <button class="askdemo-go" type="submit" data-go>Ask</button>
+                <div class="aa-suggest" id="ask-suggest" role="listbox" aria-label="Try asking" data-suggest hidden>
+                  <p class="aa-suggest-k">Try asking</p>
+                  <div role="option" id="sg-0" data-q="Failed transactions near Halifax last week" aria-selected="false"><i class="ic map"></i><span>Failed transactions near Halifax last week</span><small>Map</small></div>
+                  <div role="option" id="sg-1" data-q="Which accounts share a device with this one?" aria-selected="false"><i class="ic graph"></i><span>Which accounts share a device with this one?</span><small>Connections</small></div>
+                  <div role="option" id="sg-2" data-q="Show me this user over the weekend" aria-selected="false"><i class="ic user"></i><span>Show me this user over the weekend</span><small>Account</small></div>
+                  <div role="option" id="sg-3" data-q="Failed transactions in Toronto today" aria-selected="false"><i class="ic list"></i><span>Failed transactions in Toronto today</span><small>Transactions</small></div>
+                  <div role="option" id="sg-4" data-q="Why does this account keep failing?" aria-selected="false"><i class="ic ai"></i><span>Why does this account keep failing?</span><small>Assistant</small></div>
+                  <div role="option" id="sg-5" data-q="Is anything weird going on?" aria-selected="false"><i class="ic map"></i><span>Is anything weird going on?</span><small>Map</small></div>
+                </div>
+              </form>
+              <div class="aa-filters" aria-live="polite">
+                <span class="aa-filters-k" data-fk>From your question</span>
+                <div class="askdemo-chips" data-chips></div>
+                <button type="button" class="aa-clear" data-clear>Clear</button>
+              </div>
+              <div class="aa-stage">
+                <div class="aa-top"><b data-page-name>Map</b><span class="aa-range" data-range></span></div>
+                <div class="aa-body" data-body></div>
+                <div class="aa-assist" data-assist hidden>
+                  <div class="aa-assist-head"><span class="lnch-mark" aria-hidden="true">✦</span><b>Assistant</b><span class="synthetic">Synthetic data</span></div>
+                  <p class="aa-q" data-aq></p>
+                  <ol class="aa-steps" data-asteps></ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <details class="askdemo-json">
+            <summary>The plan, as the model returned it</summary>
+            <pre class="askdemo-plan" data-plan></pre>
+          </details>
+        </div>
+        <p class="mock-note">A recreated mockup with invented questions and data; a few keyword rules stand in for the model. Click the ask bar for example questions, or type your own; remove a chip and the page follows.</p>
+      </section>
+
+      <section class="wrap section">
+        <div class="case-body">
+        <div class="prose">
+
+          <h2>Context</h2>
+          <dl class="ctx">
+            <div><dt>Who asked</dt><dd>Sales and product, for a prospective customer.</dd></div>
+            <div><dt>What it had to do</dt><dd>Feel like the real investigation product, show AI in the workflow, and run with no credentials.</dd></div>
+            <div><dt>What it could not do</dt><dd>Leak real data, or be a chatbot that is confidently wrong. Investigators want the right page, not a paragraph, and one wrong answer poisons every answer after it.</dd></div>
+            <div><dt>How it was built</dt><dd>Solo, as a small sibling of the product: a React front end, a small back end that proxies the data APIs and holds the keys, and the AI layer. Claude Code wrote most of the code; I reviewed every change that touched data.</dd></div>
+          </dl>
+          <p>So the AI was designed into the journey an analyst already takes, in four moments: <strong>ask</strong>, <strong>land</strong>, <strong>dig deeper</strong>, and <strong>when it's wrong</strong>.</p>
+
+          <div class="chapter">
+            <span class="num">Moment 1 of 4</span>
+            <h2 id="ask">Ask</h2>
+            <p class="dek">The question becomes the page. The analyst types what they want to see and gets the page, with the filters already set.</p>
+            <div class="vs">
+              <figure class="vs-card">
+                <figcaption class="vs-k">If it replied</figcaption>
+                <div class="vs-ui" aria-hidden="true">
+                  <p class="vs-me">Failed transactions near Halifax last week</p>
+                  <p class="vs-bot">Halifax had 4 failed transactions last week, all from one shared device.</p>
+                </div>
+                <p class="vs-cap">All of them? Which device? Checking means running the search yourself.</p>
+              </figure>
+              <figure class="vs-card on">
+                <figcaption class="vs-k">What the ask bar does</figcaption>
+                <div class="vs-ui" aria-hidden="true">
+                  <div class="vs-chips"><span class="vs-chip"><small>Status:</small>Failed<i>×</i></span><span class="vs-chip"><small>Range:</small>Last 7 days<i>×</i></span><span class="vs-chip"><small>Place:</small>Halifax<i>×</i></span></div>
+                  <div class="vs-map" data-vs-map></div>
+                </div>
+                <p class="vs-cap">Its reading is on screen as filters, over the real rows. A wrong one is a click to remove.</p>
+              </figure>
+            </div>
+            <p>
+              The ask bar never answers. The model returns one flat plan, enforced through structured outputs, and
+              the app applies it as the filters the product already has. Anything it can't infer comes back
+              <code>null</code>, so the page opens without that filter rather than with a guessed one.
+            </p>
+            <p>
+              The plan also says what kind of question it was. A <em>navigate</em> question is answered by the page
+              itself. An <em>answer</em> question opens the page and the assistant together, with the question
+              already asked, so the page frames the evidence while the assistant answers.
+            </p>
+            <aside class="lesson" aria-label="The decision">
+              <span class="lesson-k">The decision</span>
+              <p class="lesson-big">The model is a translator, not an oracle.</p>
+              <p>Its output is the product's own vocabulary. A wrong answer from a chatbot is a trust problem; a wrong filter is just a filter.</p>
+            </aside>
+          </div>
+
+          <div class="chapter">
+            <span class="num">Moment 2 of 4</span>
+            <h2 id="land">Land</h2>
+            <p class="dek">The assistant has read the page before you. The launcher in the corner carries one line about what's on screen, and the line is the invitation.</p>
+            <div class="launcher-demo" data-launcher>
+              <div class="ld-page" aria-hidden="true">
+                <div class="ld-head"><b>Connections</b><span>Who shares devices, phones and addresses with whom.</span></div>
+                <div class="aa-graph ld-graph" id="aa-graph-launcher"><span class="legend"><span>Account</span><span class="d">Device</span><span class="s">Shared</span></span></div>
+              </div>
+              <button class="lnch" type="button" data-lnch aria-expanded="false" aria-controls="ld-panel">
+                <span class="lnch-mark" aria-hidden="true">✦</span>
+                <span class="lnch-text"><small>Spotted something</small>u-4471-ny and u-0298-mi share a device and a phone number.</span>
+                <span class="lnch-go" aria-hidden="true">→</span>
+              </button>
+              <div class="ld-panel" id="ld-panel" data-ld-panel hidden>
+                <div class="aa-assist-head"><span class="lnch-mark" aria-hidden="true">✦</span><b>Assistant</b><button type="button" class="ld-close" data-ld-close aria-label="Close">×</button></div>
+                <p class="ld-read"><b>u-4471-ny and u-0298-mi share a device and a phone number.</b></p>
+                <ol class="ld-beats">
+                  <li>Both accounts used d-31f0a9c2 in the last 30 days <small>TXN-3184, TXN-3191, TXN-3205</small></li>
+                  <li>Both registered +1 (313) 555-0142 <small>profile records</small></li>
+                  <li>u-0298-mi is blocked by one operator; u-4471-ny is not <small>status history</small></li>
+                </ol>
+                <div class="ld-follow"><span>Block both?</span><span>Who else used this device?</span></div>
+              </div>
+            </div>
+            <p class="mock-note">A recreated mockup with invented identifiers. Click the launcher.</p>
+            <p>
+              That line isn't generated. A small narrator computes it locally from the rows on screen: shared
+              devices, a failure rate, two checks too far apart to be the same person. Nothing is sent to a model,
+              and every claim cites the transactions behind it. It uses the map's own impossible-travel thresholds
+              and only the visible rows, so it never disagrees with the screen next to it.
+            </p>
+            <aside class="lesson" aria-label="The decision">
+              <span class="lesson-k">The decision</span>
+              <p class="lesson-big">A button that says "Assistant" gets ignored. A specific observation gets clicked.</p>
+              <p>A single truncated sentence looked like debug output. An eyebrow that carries the severity, two lines of text and an arrow made it something that asks to be opened.</p>
+            </aside>
+          </div>
+
+          <aside class="psych" aria-label="Psychology note">
+            <span class="psych-k">Psych note</span>
+            <h3>The cocktail party effect</h3>
+            <p>
+              In a loud room you can follow one conversation and tune out the rest, yet your own name cuts straight
+              through. Selective attention is a filter that lets a few relevant signals in.
+            </p>
+            <p>
+              A fraud dataset is the loud room. The ask bar hands the investigator one thread, and the launcher
+              speaks their name across it: the account they're looking at, and the one thing worth knowing about
+              it. The AI never adds to the noise; it only decides which conversation to follow.
+            </p>
+            <small>Cherry, 1953; Moray, 1959</small>
+          </aside>
+
+          <div class="chapter">
+            <span class="num">Moment 3 of 4</span>
+            <h2 id="dig">Dig deeper</h2>
+            <p class="dek">An assistant that shows its work. For questions a page can't answer, it works through the account with tools while you watch.</p>
+            <div class="drawer" data-drawer>
+              <div class="drawer-head"><b>Assistant</b><span class="synthetic">Synthetic demo data</span></div>
+              <p class="drawer-q">Why does this account keep failing?</p>
+              <ol class="steps">
+                <li><span>Pulled 30 days of transactions<small>212 transactions found</small></span></li>
+                <li><span>Summarised the failures<small>Most were location checks, from 2 places</small></span></li>
+                <li><span>Compared devices<small>2 devices, 1 shared with another account</small></span></li>
+                <li><span>Answer ready<small>Shared device + repeated location failures: worth a closer look</small></span></li>
+              </ol>
+              <button class="drawer-replay" type="button" data-replay>Replay</button>
+            </div>
+            <p class="mock-note">A recreated mockup with invented data.</p>
+            <p>
+              Each step and its one-line result appear as they happen, so you see how it got to the answer. It stops
+              after eight tool steps and says what it found. By default it sees only the invented records the pages
+              show. Reaching real data takes a deployment setup with a named security sign-off, not a switch.
+            </p>
+            <aside class="lesson" aria-label="The decision">
+              <span class="lesson-k">The decision</span>
+              <p class="lesson-big">Show the steps. Bound the effort. Gate the data in the setup, not the prompt.</p>
+              <p>Watching the steps is how people learn when to trust it. A spinner teaches nothing.</p>
+            </aside>
+          </div>
+
+          <div class="chapter">
+            <span class="num">Moment 4 of 4</span>
+            <h2 id="wrong">When it's wrong</h2>
+            <p class="dek">An AI feature is judged on its worst day. Three rules decided what every surface does when it fails.</p>
+            <div class="rulecards">
+              <section class="rulecard r1">
+                <div class="rc-ui" aria-hidden="true">
+                  <span class="rc-chip"><small>Status:</small>Failed<i>×</i></span>
+                  <span class="rc-chip wrong"><small>Place:</small>Toronto<i>×</i><svg class="rc-cursor" viewBox="0 0 16 20"><path d="M1 1v15l4-4 3 7 3-1.4-3-6.6h6z" fill="#14161A" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
+                  <span class="rc-fixed">Place removed. The map zooms back out.</span>
+                </div>
+                <h3>Fixable</h3>
+                <p class="rc-def">A mistake is one click to undo.</p>
+                <ul>
+                  <li><span>Misreads the question</span><b>Every filter is a chip you can remove</b></li>
+                  <li><span>The read is off</span><b>Every claim cites the transactions behind it</b></li>
+                </ul>
+              </section>
+              <section class="rulecard r2">
+                <div class="rc-ui" aria-hidden="true">
+                  <div class="rc-note"><span><b>Showing a sample of 500 rows.</b> Totals are hidden until they're exact.</span><u>Get exact totals</u></div>
+                </div>
+                <h3>Honest</h3>
+                <p class="rc-def">Uncertainty is shown, not smoothed over.</p>
+                <ul>
+                  <li><span>Can't infer part of it</span><b>Leaves that filter off, and says so</b></li>
+                  <li><span>Only a sample loaded</span><b>No headline numbers; offers exact totals</b></li>
+                  <li><span>Still working</span><b>Each step appears as it runs</b></li>
+                  <li><span>Data is synthetic</span><b>A label on every page</b></li>
+                </ul>
+              </section>
+              <section class="rulecard r3">
+                <div class="rc-ui" aria-hidden="true">
+                  <ol class="rc-steps">
+                    <li>Compared devices<small>7/8</small></li>
+                    <li>Checked locations<small>8/8</small></li>
+                    <li class="stop">Stopped. Here's what I found.</li>
+                  </ol>
+                </div>
+                <h3>Bounded</h3>
+                <p class="rc-def">Hard limits live in the setup, not the prompt.</p>
+                <ul>
+                  <li><span>Could run on</span><b>Stops after eight steps</b></li>
+                  <li><span>Shouldn't see real data</span><b>Can't, unless a deployment is set up and signed off</b></li>
+                  <li><span>Other people's IDs on screen</span><b>Forgotten when the tab closes</b></li>
+                </ul>
+              </section>
+            </div>
+            <p>
+              The two patterns that moved into the roadmap are these rules applied: question-to-filters is
+              "fixable" made into a feature, and the gated assistant is "bounded" made into a setup.
+            </p>
+          </div>
+
+          <h2>The outcome</h2>
+          <ul>
+            <li><strong>Two patterns on the production roadmap:</strong> question-to-filters and the gated assistant.</li>
+            <li><strong>A stress test for the <a href="design-system.html">component library</a>:</strong> every deviation the demo needed became a library ticket rather than a one-off override.</li>
+          </ul>
+
+          <h2>What I took from it</h2>
+          <ul>
+            <li><strong>Design from the failure case.</strong> What happens when it's wrong shaped every surface more than what happens when it's right.</li>
+            <li><strong>Constrain the AI to the product's vocabulary.</strong> Translators are easy to trust and easy to correct.</li>
+            <li><strong>Make safety structural.</strong> A rule people could ignore is weaker than a setup that can't send anything real.</li>
+          </ul>
+
+        </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>Company work: the product, data and screens are recreated mockups.</span>
+      </div>
+    </footer>
+    <script src="../js/na-map.js?v=20261027"></script>
+    <script>
+      // The connection graph, drawn once for both the demo and the launcher: accounts and
+      // devices as icons, the shared ones in red, with a label on the edge that matters.
+      window.drawGraph = function (el, opts) {
+        var W = opts.w, H = opts.h, cx = W / 2, cy = H / 2 + (opts.dy || 0);
+        var ICON = {
+          user: '<circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5c0-4 3.4-6.5 7.5-6.5s7.5 2.5 7.5 6.5"/>',
+          device: '<rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M10.5 18h3"/>',
+          phone: '<path d="M6 4.5h3.2l1.6 4-2 1.3a10 10 0 0 0 5.4 5.4l1.3-2 4 1.6v3.2a1.5 1.5 0 0 1-1.5 1.5A14.5 14.5 0 0 1 4.5 6a1.5 1.5 0 0 1 1.5-1.5z"/>'
+        };
+        var N = {};
+        opts.nodes.forEach(function (n) { N[n.id] = n; });
+        var html = '<svg viewBox="0 0 ' + W + ' ' + H + '" aria-hidden="true"><defs><pattern id="' + el.id + '-grid" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" class="g-dot"/></pattern></defs>' +
+          '<rect width="' + W + '" height="' + H + '" fill="url(#' + el.id + '-grid)"/>';
+        opts.edges.forEach(function (e) {
+          var a = N[e.a], b = N[e.b];
+          html += '<line class="g-edge' + (e.hi ? ' hi' : '') + '" x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '"/>';
+        });
+        opts.edges.forEach(function (e) {
+          if (!e.label) return;
+          var a = N[e.a], b = N[e.b], mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, w = e.label.length * 5.6 + 14;
+          html += '<g class="g-pill" transform="translate(' + mx + ' ' + my + ')"><rect x="' + (-w / 2) + '" y="-9" width="' + w + '" height="18" rx="9"/><text y="3.5">' + e.label + '</text></g>';
+        });
+        opts.nodes.forEach(function (n) {
+          var r = n.focus ? 17 : 13, cls = 'g-node ' + n.type + (n.hi ? ' hi' : '') + (n.focus ? ' focus' : '');
+          html += '<g class="' + cls + '" transform="translate(' + n.x + ' ' + n.y + ')">' +
+            (n.focus ? '<circle class="g-halo" r="' + (r + 9) + '"/>' : '') +
+            '<circle class="g-fill" r="' + r + '"/>' +
+            '<g class="g-icon" transform="translate(' + (-r * 0.6) + ' ' + (-r * 0.6) + ') scale(' + (r * 0.05) + ')">' + ICON[n.type] + '</g>' +
+            '<text class="g-label" y="' + (r + 14) + '">' + n.label + '</text>' +
+            (n.sub ? '<text class="g-sub" y="' + (r + 25) + '">' + n.sub + '</text>' : '') +
+            '</g>';
+        });
+        html += '</svg>';
+        el.innerHTML = html;
+      };
+      // with no account selected: the clusters worth a look, each a device shared by several accounts
+      window.GRAPH_OVERVIEW = function () {
+        var nodes = [
+          { id: "a", x: 92, y: 96, type: "device", label: "d-31f0a9c2", hi: true },
+          { id: "a1", x: 36, y: 46, type: "user", label: "u-4471-ny" }, { id: "a2", x: 30, y: 150, type: "user", label: "u-0298-mi" }, { id: "a3", x: 150, y: 168, type: "user", label: "u-5520-qc" },
+          { id: "b", x: 284, y: 82, type: "device", label: "d-9c07be11", hi: true },
+          { id: "b1", x: 226, y: 30, type: "user", label: "u-7710-tx" }, { id: "b2", x: 356, y: 36, type: "user", label: "u-3381-fl" },
+          { id: "c", x: 318, y: 196, type: "device", label: "d-6e2d4a90", hi: true },
+          { id: "c1", x: 250, y: 236, type: "user", label: "u-1152-on" }, { id: "c2", x: 390, y: 236, type: "user", label: "u-9034-bc" }
+        ];
+        var edges = [{ a: "a", b: "a1", hi: true }, { a: "a", b: "a2", hi: true }, { a: "a", b: "a3", hi: true }, { a: "b", b: "b1", hi: true }, { a: "b", b: "b2", hi: true }, { a: "c", b: "c1", hi: true }, { a: "c", b: "c2", hi: true }];
+        return { w: 420, h: 268, nodes: nodes, edges: edges };
+      };
+      // the invented case both graphs show: one account, the devices it used, and the other
+      // account that shares one of them
+      window.GRAPH_CASE = function (withPhone) {
+        var nodes = [
+          { id: "me", x: 210, y: 118, type: "user", label: "u-4471-ny", sub: "this account", focus: true },
+          { id: "d1", x: 96, y: 118, type: "device", label: "d-31f0a9c2", hi: true },
+          { id: "u2", x: 96, y: 226, type: "user", label: "u-0298-mi", hi: true },
+          { id: "d2", x: 324, y: 118, type: "device", label: "d-77be10d4" },
+          { id: "d3", x: 210, y: 36, type: "device", label: "d-0a4c9e21" }
+        ];
+        var edges = [{ a: "me", b: "d1", hi: true }, { a: "d1", b: "u2", hi: true, label: "shared device" }, { a: "me", b: "d2" }, { a: "me", b: "d3" }];
+        if (withPhone) {
+          nodes.push({ id: "ph", x: 324, y: 226, type: "phone", label: "+1 (313) 555-0142", hi: true });
+          edges.push({ a: "me", b: "ph", hi: true }, { a: "ph", b: "u2", hi: true, label: "shared phone" });
+        }
+        return { w: 420, h: 268, nodes: nodes, edges: edges };
+      };
+      // The ask-bar demo: a question becomes a plan, the plan becomes a page. The
+      // "model" here is a few keyword rules, so the demo needs no network and no key.
+      (function () {
+        var root = document.querySelector("[data-askdemo]");
+        if (!root) return;
+        var $ = function (q) { return root.querySelector(q); };
+        var form = $("[data-form]"), input = $("[data-input]"), go = $("[data-go]"), bar = $(".askdemo-bar");
+        var chips = $("[data-chips]"), filters = $(".aa-filters"), fk = $("[data-fk]"), planEl = $("[data-plan]");
+        var pageName = $("[data-page-name]"), rangeEl = $("[data-range]"), body = $("[data-body]");
+        var assist = $("[data-assist]"), aq = $("[data-aq]"), asteps = $("[data-asteps]");
+        var panel = $("[data-suggest]"), opts = Array.prototype.slice.call(root.querySelectorAll("[data-suggest] [role=option]")), active = -1;
+        function visibleOpts() { return opts.filter(function (o) { return !o.hidden; }); }
+        function setActive(i) {
+          var v = visibleOpts(); active = i;
+          opts.forEach(function (o) { o.setAttribute("aria-selected", "false"); });
+          if (i >= 0 && v[i]) { v[i].setAttribute("aria-selected", "true"); input.setAttribute("aria-activedescendant", v[i].id); } else input.removeAttribute("aria-activedescendant");
+        }
+        function openPanel() {
+          var term = input.value.trim().toLowerCase(), exact = opts.some(function (o) { return o.getAttribute("data-q").toLowerCase() === term; });
+          opts.forEach(function (o) { o.hidden = !!term && !exact && o.getAttribute("data-q").toLowerCase().indexOf(term) < 0; });
+          var any = visibleOpts().length > 0;
+          showPanel(any);
+        }
+        function showPanel(on) { panel.hidden = !on; input.setAttribute("aria-expanded", on ? "true" : "false"); $("[data-examples]").setAttribute("aria-expanded", on ? "true" : "false"); setActive(-1); }
+        function closePanel() { showPanel(false); }
+        var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var timers = [];
+        var PLACES = ["halifax", "toronto", "vancouver", "montreal", "calgary", "ottawa", "boston", "chicago", "denver"];
+        function cap(w) { return w.charAt(0).toUpperCase() + w.slice(1); }
+
+        // the rules standing in for the model
+        function plan(q) {
+          var t = q.toLowerCase(), p = { page: null, searchType: null, identifiers: [], from: null, to: null, status: null, placeName: null, intent: "navigate" };
+          if (/\b(why|how many|what drove|explain|should i)\b/.test(t)) { p.intent = "answer"; p.page = "user"; p.searchType = "user"; p.identifiers = ["u-4471-ny"]; }
+          else if (/\b(share|shares|shared|connect|connected|linked|same device)\b/.test(t)) { p.page = "connections"; p.searchType = "user"; p.identifiers = ["u-4471-ny"]; }
+          else if (/\b(this user|this account|profile|over the weekend)\b/.test(t)) { p.page = "user"; p.searchType = "user"; p.identifiers = ["u-4471-ny"]; }
+          else if (/\b(near|around|map|where)\b/.test(t)) { p.page = "map"; }
+          else if (/\b(transactions?|list|table)\b/.test(t)) { p.page = "transactions"; }
+          else if (/\b(failed|fails?|blocked|attempts)\b/.test(t)) { p.page = "map"; }
+          if (/\bfail(ed|s|ures?)?\b/.test(t)) p.status = "failed";
+          if (/\bblocked\b/.test(t)) p.status = "blocked";
+          if (/\bpass(ed)?\b/.test(t)) p.status = "pass";
+          PLACES.forEach(function (pl) { if (t.indexOf(pl) >= 0) { p.placeName = cap(pl); if (!p.page) p.page = "map"; } });
+          if (/last week|past week|7 days/.test(t)) { p.from = "last 7 days"; }
+          else if (/weekend/.test(t)) { p.from = "Sat–Sun"; }
+          else if (/today/.test(t)) { p.from = "today"; }
+          else if (/yesterday/.test(t)) { p.from = "yesterday"; }
+          else if (/this month|30 days/.test(t)) { p.from = "last 30 days"; }
+          return p;
+        }
+        // normal filter chips: the page isn't a filter, the header and sidebar show it
+        function chipsOf(p) {
+          var c = [];
+          if (p.identifiers.length) c.push([p.searchType || "id", p.identifiers[0], true]);
+          if (p.status) c.push(["status", cap(p.status)]);
+          if (p.from) c.push(["range", cap(p.from)]);
+          if (p.placeName) c.push(["place", p.placeName]);
+          return c;
+        }
+
+        // the pages the plan can open (all invented)
+        // The map: Natural Earth coastlines, pins near real cities, and a zoom to the place asked about.
+        var M = window.NA_MAP;
+        function pr(lon, lat) { return [(lon - M.lon0) * M.cos * M.k, (M.lat1 - lat) * M.k]; }
+        // invented transactions scattered around the cities the ask bar knows (lon, lat offsets in degrees)
+        var SPREAD = [[0.05, 0.03, 1], [-0.08, 0.05, 0], [0.11, -0.04, 1], [-0.03, -0.08, 1], [0.13, 0.06, 0], [-0.12, -0.03, 0], [0.02, 0.09, 1], [0.16, -0.08, 0]];
+        var PINS = [];
+        Object.keys(M.cities).forEach(function (city, ci) {
+          var c = M.cities[city];
+          SPREAD.slice(0, 5 + (ci % 4)).forEach(function (o, k) { PINS.push({ city: city, lon: c[0] + o[0] * (1 + ci % 3 * 0.4), lat: c[1] + o[1] * (1 + k % 2 * 0.5), fail: ci % 2 === 0 ? o[2] === 1 : o[2] === 0 }); });
+        });
+        // the resting view: the band the cities sit in, so wide containers crop water, not cities
+        var VIEW = { cont: [0, 36, M.w, 205] };
+        function viewFor(p) {
+          if (!p.placeName || !M.cities[p.placeName]) return VIEW.cont;
+          var box = root.querySelector(".aa-body"), asp = box && box.clientHeight ? box.clientWidth / box.clientHeight : 1.7;
+          var c = pr(M.cities[p.placeName][0], M.cities[p.placeName][1]), h = 9, w = h * asp;
+          return [c[0] - w / 2, c[1] - h / 2 + 0.4, w, h];
+        }
+        var lastView = null;
+        function mapPage(p) {
+          var zoomed = p.placeName && M.cities[p.placeName], d = zoomed ? M.detail[p.placeName] : null;
+          var html = '<div class="aa-map"><svg class="aa-mapsvg" data-mapsvg viewBox="' + (lastView || VIEW.cont).join(" ") + '" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+            '<rect x="-2000" y="-2000" width="6000" height="6000" class="water"/>' +
+            '<g class="land">' + (d ? d.land : M.land).map(function (q) { return '<path d="' + q + '"/>'; }).join("") + '</g>' +
+            '<g class="lake">' + (d ? d.lakes : M.lakes).map(function (q) { return '<path d="' + q + '"/>'; }).join("") + '</g>';
+          if (zoomed) {
+            var c = pr(M.cities[p.placeName][0], M.cities[p.placeName][1]);
+            html += '<circle class="place" cx="' + c[0] + '" cy="' + c[1] + '" r="1.7"/><text class="place-l" x="' + c[0] + '" y="' + (c[1] - 2.3) + '">' + p.placeName + '</text>';
+          } else {
+            Object.keys(M.cities).forEach(function (city) { var c = pr(M.cities[city][0], M.cities[city][1]); html += '<text class="city" x="' + (c[0] + 2.2) + '" y="' + (c[1] + 1.2) + '">' + city + '</text>'; });
+          }
+          PINS.forEach(function (q) {
+            var inPlace = !p.placeName || q.city === p.placeName;
+            var dim = (p.status === "failed" && !q.fail) || (p.status === "pass" && q.fail) || (p.status === "blocked" && !q.fail) || !inPlace;
+            var c = pr(q.lon, q.lat);
+            html += '<circle class="pin' + (q.fail ? " fail" : "") + (dim ? " dim" : "") + '" cx="' + c[0] + '" cy="' + c[1] + '" r="' + (zoomed ? 0.22 : 2.4) + '"/>';
+          });
+          html += '</svg><span class="legend"><span>Pass</span><span class="f">Failed</span></span>';
+          if (!p.page) html += '<span class="aa-banner"><b>Nothing inferred.</b> Nothing guessed: no filters applied.</span>';
+          html += '</div>';
+          return html;
+        }
+        // the zoom: the viewBox glides from where it was to where the question points
+        function flyTo(target) {
+          var svg = root.querySelector("[data-mapsvg]"); if (!svg) return;
+          var from = lastView || VIEW.cont; lastView = target;
+          if (reduced || document.hidden || from.join() === target.join()) { svg.setAttribute("viewBox", target.join(" ")); return; }
+          var t0 = performance.now(), dur = 900, done = false;
+          (function step(now) {
+            if (done) return;
+            var t = Math.min(1, (now - t0) / dur), e = t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+            var w = from[2] * Math.pow(target[2] / from[2], e), h = from[3] * Math.pow(target[3] / from[3], e);
+            var cx = (from[0] + from[2] / 2) + ((target[0] + target[2] / 2) - (from[0] + from[2] / 2)) * e;
+            var cy = (from[1] + from[3] / 2) + ((target[1] + target[3] / 2) - (from[1] + from[3] / 2)) * e;
+            svg.setAttribute("viewBox", [cx - w / 2, cy - h / 2, w, h].join(" "));
+            if (t < 1) requestAnimationFrame(step); else done = true;
+          })(t0);
+          // a throttled tab may never get another frame: land on the target anyway
+          setTimeout(function () { if (!done) { done = true; svg.setAttribute("viewBox", target.join(" ")); } }, dur + 80);
+        }
+        function graphPage(p) {
+          if (!p.identifiers.length) return '<div class="aa-graph" id="aa-graph-demo" data-overview><span class="lbl">3 devices shared by more than one account' + (p.from ? ' · ' + p.from.toLowerCase() : '') + '</span><span class="legend"><span>Account</span><span class="d">Device</span><span class="s">Shared</span></span></div>';
+          return '<div class="aa-graph" id="aa-graph-demo"><span class="lbl">2 accounts share a device' + (p.from ? ' · ' + p.from.toLowerCase() : '') + '</span><span class="legend"><span>Account</span><span class="d">Device</span><span class="s">Shared</span></span></div>';
+        }
+        var DAYS = [[31, 4], [44, 6], [38, 5], [52, 7], [40, 6], [61, 9], [29, 3], [88, 41], [76, 36], [102, 55], [64, 30], [36, 5], [28, 3], [42, 6]];
+        var ACCOUNTS = [["u-4471-ny", "Blocked · 2 operators", 49], ["u-0298-mi", "Blocked · 1 operator", 38], ["u-7710-tx", "Active", 6], ["u-1152-on", "Active", 4], ["u-9034-bc", "Active", 2]];
+        function inRange(p, i) { return p.from === "Sat–Sun" ? (i === 5 || i === 6) : p.from === "today" ? i === 13 : p.from === "yesterday" ? i === 12 : p.from === "last 7 days" ? i >= 7 : true; }
+        function userPage(p) {
+          if (!p.identifiers.length) {
+            return '<div class="aa-list"><div class="aa-list-h">Accounts <small>' + ACCOUNTS.length + '</small></div><table class="aa-tbl"><thead><tr><th>Account</th><th>Status</th><th>Failed</th></tr></thead><tbody>' +
+              ACCOUNTS.filter(function (a) { return p.status !== "failed" || a[2] > 10; }).map(function (a) { return '<tr><td class="mono">' + a[0] + '</td><td>' + a[1] + '</td><td>' + a[2] + '%</td></tr>'; }).join("") + '</tbody></table></div>';
+          }
+          var onlyFailed = p.status === "failed";
+          var bars = DAYS.map(function (d, i) { var inR = inRange(p, i), h = onlyFailed ? d[1] : d[0]; return '<i class="' + (inR ? "in" : "") + '" style="--h:' + Math.round(h / 102 * 100) + '"></i>'; }).join("");
+          var tot = 0, fail = 0; DAYS.forEach(function (d, i) { if (inRange(p, i)) { tot += d[0]; fail += d[1]; } });
+          return '<div class="aa-user"><div class="hd"><span class="av"></span><span class="id">u-4471-ny</span><span class="tag">Blocked · 2 operators</span></div>' +
+            '<div class="bars">' + bars + '</div>' +
+            '<div class="kpis"><span><b>' + (onlyFailed ? fail : tot) + '</b>' + (onlyFailed ? 'failed transactions' : 'transactions') + '</span><span><b>' + Math.round(fail / tot * 100) + '%</b>failed</span><span><b>2</b>devices</span></div></div>';
+        }
+        var TXNS = [[13, "Fail", "Halifax", "Location check"], [13, "Pass", "Toronto", "Device check"], [12, "Fail", "Halifax", "Location check"], [12, "Pass", "Halifax", "Location check"], [10, "Fail", "Halifax", "Device shared"], [9, "Fail", "Toronto", "Location check"], [8, "Pass", "Vancouver", "Location check"], [7, "Fail", "Halifax", "Boundary"], [5, "Pass", "Toronto", "Device check"], [2, "Pass", "Halifax", "Location check"]];
+        function transactionsPage(p) {
+          var rows = TXNS.filter(function (t) { return inRange(p, t[0]) && (!p.status || (p.status === "failed" ? t[1] === "Fail" : p.status === "pass" ? t[1] === "Pass" : true)) && (!p.placeName || t[2] === p.placeName); });
+          var body = rows.length ? rows.map(function (t) { return '<tr><td class="mono">TXN-' + (3100 + t[0] * 7) + '••</td><td>' + (16 + t[0]) + ' Mar</td><td>' + t[2] + '</td><td>' + (t[1] === "Fail" ? '<em>Failed</em>' : 'Pass') + '</td><td>' + t[3] + '</td></tr>'; }).join("") : '<tr><td colspan="5" class="none">No transactions match these filters.</td></tr>';
+          return '<div class="aa-list"><div class="aa-list-h">Transactions <small>' + rows.length + '</small></div><table class="aa-tbl"><thead><tr><th>ID</th><th>Date</th><th>Place</th><th>Status</th><th>Check</th></tr></thead><tbody>' + body + '</tbody></table></div>';
+        }
+
+        var ANSWER = [["Pulled 30 days of transactions", "212 found"], ["Summarised the failures", "Most were location checks, from 2 places"], ["Compared devices", "2 devices, 1 shared with another account"]];
+        function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+        function at(ms, fn) { timers.push(setTimeout(fn, reduced ? 0 : ms)); }
+
+        var K = { page: "Page", status: "Status", range: "Range", place: "Place", user: "Account", device: "Device", ip: "IP", id: "ID" };
+        function render(p) {
+          var c = chipsOf(p);
+          chips.innerHTML = c.length ? c.map(function (x, i) {
+            return '<button type="button" class="askdemo-chip" data-remove="' + x[0] + '" style="animation-delay:' + i * 90 + 'ms" title="Remove" aria-label="Remove ' + (K[x[0]] || x[0]) + ' filter"><span class="k">' + (K[x[0]] || x[0]) + '</span>' + (x[2] ? '<span class="mono">' + x[1] + '</span>' : x[1]) + '<i aria-hidden="true">×</i></button>';
+          }).join("") : '';
+          filters.classList.remove("reading"); fk.textContent = "From your question";
+          filters.classList.toggle("empty", !c.length);
+          planEl.textContent = JSON.stringify(p, null, 2);
+          var top = root.querySelector(".aa-top");
+          top.classList.remove("switched"); void top.offsetWidth; top.classList.add("switched");
+          pageName.textContent = { map: "Map", connections: "Connections", user: p.identifiers.length ? "Account" : "Accounts", transactions: "Transactions" }[p.page] || "Map";
+          root.querySelectorAll("[data-nav]").forEach(function (n) { n.classList.toggle("on", n.getAttribute("data-nav") === (p.page || "map")); });
+          rangeEl.textContent = p.from ? "Range · " + p.from : "";
+          body.innerHTML = p.page === "connections" ? graphPage(p) : p.page === "user" ? userPage(p) : p.page === "transactions" ? transactionsPage(p) : mapPage(p);
+          var g = root.querySelector("#aa-graph-demo"); if (g) window.drawGraph(g, g.hasAttribute("data-overview") ? window.GRAPH_OVERVIEW() : window.GRAPH_CASE(false));
+          if (root.querySelector("[data-mapsvg]")) flyTo(viewFor(p)); else lastView = null;
+          assist.classList.remove("on"); assist.hidden = true; asteps.innerHTML = "";
+          if (p.intent === "answer") {
+            aq.textContent = input.value;
+            assist.hidden = false;
+            at(350, function () { assist.classList.add("on"); });
+            ANSWER.forEach(function (st, i) { at(900 + i * 650, function () { asteps.insertAdjacentHTML("beforeend", "<li><span>" + st[0] + "<small>" + st[1] + "</small></span></li>"); }); });
+            at(900 + ANSWER.length * 650, function () { asteps.insertAdjacentHTML("beforeend", '<li class="answer"><span>Shared device + repeated location failures: worth a closer look</span></li>'); });
+          }
+        }
+        var current = null;
+        function ask(q) {
+          clearTimers();
+          input.value = q;
+          closePanel();
+          go.disabled = true; bar.classList.add("thinking");
+          chips.innerHTML = ""; filters.classList.remove("empty"); filters.classList.add("reading"); fk.textContent = "Reading your question…";
+          at(650, function () {
+            bar.classList.remove("thinking"); go.disabled = false;
+            current = plan(q); render(current);
+          });
+        }
+        form.addEventListener("submit", function (e) { e.preventDefault(); if (input.value.trim()) ask(input.value.trim()); });
+        // the suggestions: open on focus (whole question selected, so typing replaces it), filter as you type,
+        // arrows and Enter to pick, Escape or a click outside to close
+        input.addEventListener("focus", function () { input.select(); openPanel(); });
+        input.addEventListener("click", function () { if (panel.hidden) openPanel(); });
+        input.addEventListener("input", openPanel);
+        input.addEventListener("keydown", function (e) {
+          var v = visibleOpts();
+          if (e.key === "ArrowDown") { e.preventDefault(); if (panel.hidden) openPanel(); setActive(Math.min(active + 1, v.length - 1)); }
+          else if (e.key === "ArrowUp") { e.preventDefault(); setActive(Math.max(active - 1, -1)); }
+          else if (e.key === "Enter" && active >= 0 && v[active]) { e.preventDefault(); ask(v[active].getAttribute("data-q")); }
+          else if (e.key === "Escape") { closePanel(); }
+        });
+        opts.forEach(function (o) {
+          o.addEventListener("mousedown", function (e) { e.preventDefault(); });
+          o.addEventListener("click", function () { ask(o.getAttribute("data-q")); input.blur(); });
+        });
+        document.addEventListener("mousedown", function (e) { if (!form.contains(e.target)) closePanel(); });
+        // removing a chip edits the plan, and the page follows: a wrong filter is just a filter
+        chips.addEventListener("click", function (e) {
+          var b = e.target.closest("[data-remove]"); if (!b || !current) return;
+          var k = b.getAttribute("data-remove");
+          if (k === "status") current.status = null;
+          else if (k === "range") current.from = null;
+          else if (k === "place") current.placeName = null;
+          else { current.identifiers = []; current.searchType = null; current.intent = "navigate"; }
+          clearTimers(); render(current);
+          b = null;
+        });
+        $("[data-clear]").addEventListener("click", function () {
+          if (!current) return;
+          current.status = null; current.from = null; current.placeName = null; current.identifiers = []; current.searchType = null; current.intent = "navigate";
+          clearTimers(); render(current);
+        });
+        // the Examples button opens the same list as clicking into the bar
+        var exBtn = $("[data-examples]");
+        exBtn.addEventListener("mousedown", function (e) { e.preventDefault(); });
+        exBtn.addEventListener("click", function () {
+          stopDemo();
+          if (!panel.hidden) { closePanel(); return; }
+          input.focus({ preventScroll: true });
+          opts.forEach(function (o) { o.hidden = false; });
+          showPanel(true);
+        });
+        current = plan(input.value); render(current);
+
+        // the first time the demo is in view, it asks a second question itself, so it's clear the bar takes any question
+        var demoTimers = [], demoDone = false;
+        function stopDemo() { demoDone = true; demoTimers.forEach(clearTimeout); demoTimers = []; }
+        function demo() {
+          if (demoDone) return; demoDone = true;
+          var q = "Which accounts share a device with this one?", i = 0;
+          input.value = ""; bar.classList.add("typing");
+          (function type() {
+            input.value = q.slice(0, ++i);
+            if (i < q.length) demoTimers.push(setTimeout(type, 32 + (q.charAt(i) === " " ? 30 : 0)));
+            else demoTimers.push(setTimeout(function () { bar.classList.remove("typing"); ask(q); }, 350));
+          })();
+        }
+        ["pointerdown", "keydown", "focusin"].forEach(function (ev) { root.addEventListener(ev, function (e) { if (e.isTrusted) stopDemo(); }); });
+        if (!reduced && "IntersectionObserver" in window) {
+          var seen = new IntersectionObserver(function (es) {
+            if (!es[0].isIntersecting) return;
+            seen.disconnect(); demoTimers.push(setTimeout(demo, 1600));
+          }, { threshold: 0.6 });
+          seen.observe(root.querySelector(".askdemo-app"));
+        }
+      })();
+      // Moment 1: a small Halifax map for the "what the ask bar does" card, drawn from the same coastline data
+      (function () {
+        var el = document.querySelector("[data-vs-map]"), M = window.NA_MAP; if (!el || !M || !M.detail.Halifax) return;
+        function pr(lon, lat) { return [(lon - M.lon0) * M.cos * M.k, (M.lat1 - lat) * M.k]; }
+        var h = M.cities.Halifax, c = pr(h[0], h[1]), d = M.detail.Halifax;
+        var pins = [[0.05, 0.03, 1], [-0.08, 0.05, 0], [0.11, -0.04, 1], [-0.03, -0.08, 1], [0.13, 0.06, 0], [-0.12, -0.03, 0], [0.02, 0.09, 1]];
+        el.innerHTML = '<svg viewBox="' + [c[0] - 8, c[1] - 3.2, 16, 6.4].join(" ") + '" preserveAspectRatio="xMidYMid slice">' +
+          '<g class="land">' + d.land.map(function (q) { return '<path d="' + q + '"/>'; }).join("") + '</g>' +
+          '<g class="lake">' + d.lakes.map(function (q) { return '<path d="' + q + '"/>'; }).join("") + '</g>' +
+          '<circle cx="' + c[0] + '" cy="' + c[1] + '" r="1.7" fill="rgba(232,85,61,0.12)" stroke="#E8553D" stroke-width="1.2" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>' +
+          pins.map(function (o) { var p = pr(h[0] + o[0], h[1] + o[1]); return '<circle class="pin" cx="' + p[0] + '" cy="' + p[1] + '" r="0.24" fill="' + (o[2] ? "#E8553D" : "#1F6E5B") + '"' + (o[2] ? "" : ' opacity="0.3"') + '/>'; }).join("") + '</svg>';
+      })();
+      // Moment 4: the Fixable card removes its wrong chip once, when the cards scroll into view
+      (function () {
+        var c = document.querySelector(".rulecards"); if (!c) return;
+        if (!("IntersectionObserver" in window)) { c.classList.add("play"); return; }
+        var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { c.classList.add("play"); io.disconnect(); } }, { threshold: 0.4 });
+        io.observe(c);
+      })();
+      // The launcher: click it and the assistant's full read slides in beside the graph.
+      (function () {
+        var d = document.querySelector("[data-launcher]"); if (!d) return;
+        window.drawGraph(d.querySelector("#aa-graph-launcher"), window.GRAPH_CASE(true));
+        var b = d.querySelector("[data-lnch]"), p = d.querySelector("[data-ld-panel]");
+        function open() { b.setAttribute("aria-expanded", "true"); p.hidden = false; requestAnimationFrame(function () { p.classList.add("on"); }); }
+        function close() { b.setAttribute("aria-expanded", "false"); p.classList.remove("on"); setTimeout(function () { p.hidden = true; b.focus(); }, 350); }
+        b.addEventListener("click", open);
+        d.querySelector("[data-ld-close]").addEventListener("click", close);
+        d.addEventListener("keydown", function (e) { if (e.key === "Escape" && !p.hidden) close(); });
+      })();
+      // The agent drawer: play the steps when it scrolls into view; Replay runs them again.
+      (function () {
+        var d = document.querySelector("[data-drawer]");
+        if (!d) return;
+        function play() { d.classList.remove("play"); void d.offsetWidth; d.classList.add("play"); }
+        d.querySelector("[data-replay]").addEventListener("click", play);
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { play(); io.disconnect(); } }, { threshold: 0.5 });
+          io.observe(d);
+        } else { d.classList.add("play"); }
+      })();
+    </script>
+    <script src="../js/main.js?v=20261026c"></script>
+    <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
+  </body>
+</html>

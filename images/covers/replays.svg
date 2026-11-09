@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
+  <!-- A session replay, recreated: the admin console on the left (a search that found nothing),
+       the event log on the right, and the scrubber with the moments that became findings.
+       Drawn flat; no real product UI, user or data. -->
+  <defs>
+    <clipPath id="win"><rect x="150" y="100" width="1300" height="960" rx="18"/></clipPath>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#1F3A63" flood-opacity=".16"/>
+    </filter>
+  </defs>
+
+  <!-- no backdrop: the page paints it (.cover-frame in accents.css) so it follows light/dark -->
+
+  <g filter="url(#shadow)">
+    <rect x="150" y="100" width="1300" height="960" rx="18" fill="#FFFFFF"/>
+  </g>
+  <g clip-path="url(#win)">
+    <!-- title bar -->
+    <rect x="150" y="100" width="1300" height="46" fill="#F3F4F6"/>
+    <circle cx="182" cy="123" r="7" fill="#D9DCE1"/>
+    <circle cx="206" cy="123" r="7" fill="#D9DCE1"/>
+    <circle cx="230" cy="123" r="7" fill="#D9DCE1"/>
+    <rect x="560" y="111" width="480" height="24" rx="12" fill="#E6E8EC"/>
+
+    <!-- replay header -->
+    <rect x="150" y="146" width="1300" height="56" fill="#1A1F29"/>
+    <circle cx="200" cy="174" r="7" fill="#E8553D"/>
+    <text x="218" y="180" font-size="16" font-weight="600" fill="#FFFFFF">Session replay</text>
+    <rect x="372" y="166" width="150" height="16" rx="4" fill="#3A4152"/>
+    <text x="1410" y="180" font-size="15" fill="#AEB5C2" text-anchor="end">External admin · 04:12</text>
+
+    <!-- the recorded screen: the admin console -->
+    <rect x="150" y="202" width="960" height="700" fill="#F7F8FA"/>
+    <rect x="150" y="202" width="180" height="700" fill="#EEF0F3"/>
+    <g fill="#C9D0DA">
+      <rect x="172" y="232" width="110" height="12" rx="4"/>
+      <rect x="172" y="272" width="90" height="10" rx="3"/>
+      <rect x="172" y="300" width="120" height="10" rx="3"/>
+      <rect x="172" y="328" width="80" height="10" rx="3"/>
+      <rect x="172" y="356" width="104" height="10" rx="3"/>
+    </g>
+    <rect x="164" y="292" width="156" height="26" rx="6" fill="#FFFFFF"/>
+    <rect x="172" y="300" width="120" height="10" rx="3" fill="#1A1F29"/>
+
+    <text x="366" y="258" font-size="20" font-weight="600" fill="#1A1F29">Users</text>
+    <!-- the search that lied -->
+    <rect x="366" y="282" width="460" height="46" rx="23" fill="#FFFFFF" stroke="#C9D0DA" stroke-width="2"/>
+    <text x="392" y="312" font-size="17" fill="#1A1F29">j.chen@example.org</text>
+    <rect x="596" y="294" width="2" height="22" fill="#1A1F29"/>
+    <rect x="846" y="282" width="110" height="46" rx="23" fill="#1A1F29"/>
+    <text x="901" y="312" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="middle">Create user</text>
+
+    <!-- tabs -->
+    <text x="368" y="376" font-size="15" font-weight="600" fill="#1A1F29">Organisations</text>
+    <rect x="366" y="384" width="122" height="3" fill="#1A1F29"/>
+    <text x="520" y="376" font-size="15" fill="#8A93A2">Users</text>
+    <text x="596" y="376" font-size="15" fill="#8A93A2">Operators</text>
+    <rect x="366" y="388" width="708" height="1" fill="#E1E5EB"/>
+
+    <!-- the empty state -->
+    <rect x="366" y="420" width="708" height="200" rx="10" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2"/>
+    <circle cx="720" cy="494" r="26" fill="#F3F4F6"/>
+    <circle cx="714" cy="488" r="11" fill="none" stroke="#AEB5C2" stroke-width="3"/>
+    <path d="M722 496 L732 506" stroke="#AEB5C2" stroke-width="3" stroke-linecap="round"/>
+    <text x="720" y="548" font-size="18" font-weight="600" fill="#1A1F29" text-anchor="middle">No results found</text>
+    <text x="720" y="576" font-size="15" fill="#8A93A2" text-anchor="middle">Searching organisations only</text>
+
+    <!-- below the fold: faded table rows -->
+    <g fill="#E6E8EC">
+      <rect x="366" y="652" width="708" height="36" rx="6"/>
+      <rect x="366" y="700" width="708" height="36" rx="6"/>
+      <rect x="366" y="748" width="708" height="36" rx="6"/>
+    </g>
+
+    <!-- event log -->
+    <rect x="1110" y="202" width="340" height="700" fill="#FFFFFF"/>
+    <rect x="1110" y="202" width="1" height="700" fill="#E6E8EC"/>
+    <text x="1136" y="240" font-size="13" font-weight="600" fill="#8A93A2" letter-spacing="2">EVENTS</text>
+    <g font-size="14">
+      <g class="cv-ev">
+      <text x="1136" y="284" fill="#8A93A2">00:41</text>
+      <text x="1196" y="284" fill="#1A1F29">Typed in search</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="318" fill="#8A93A2">00:43</text>
+      <text x="1196" y="318" fill="#1A1F29">0 results</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="352" fill="#8A93A2">00:46</text>
+      <text x="1196" y="352" fill="#1A1F29">Clicked Users tab</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="386" fill="#8A93A2">00:47</text>
+      <text x="1196" y="386" fill="#1A1F29">Clicked Operators tab</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="420" fill="#8A93A2">00:49</text>
+      <text x="1196" y="420" fill="#1A1F29">Clicked Organisations tab</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="454" fill="#8A93A2">00:52</text>
+      <text x="1196" y="454" fill="#1A1F29">Typed in search</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="488" fill="#8A93A2">00:54</text>
+      <text x="1196" y="488" fill="#1A1F29">0 results</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="522" fill="#8A93A2">01:10</text>
+      <text x="1196" y="522" fill="#1A1F29">Clicked Create user</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="556" fill="#8A93A2">01:31</text>
+      <text x="1196" y="556" fill="#B8402F" font-weight="600">Error: value already exists</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="590" fill="#8A93A2">01:34</text>
+      <text x="1196" y="590" fill="#1A1F29">Cancelled modal</text>
+      </g>
+      <g class="cv-ev">
+      <text x="1136" y="624" fill="#8A93A2">01:40</text>
+      <text x="1196" y="624" fill="#1A1F29">Opened support chat</text>
+      </g>
+    </g>
+    <rect class="cv-ev-hi" x="1124" y="540" width="312" height="28" rx="6" fill="#FCE9E4" fill-opacity=".7"/>
+
+    <!-- scrubber with the moments that became findings -->
+    <rect x="150" y="902" width="1300" height="158" fill="#1A1F29"/>
+    <path d="M214 972 L214 1000 L238 986 Z" fill="#FFFFFF"/>
+    <rect x="270" y="982" width="1130" height="8" rx="4" fill="#3A4152"/>
+    <rect class="cv-prog" x="270" y="982" width="404" height="8" rx="4" fill="#AEB5C2"/>
+    <circle class="cv-head" cx="674" cy="986" r="10" fill="#FFFFFF"/>
+    <g class="cv-marks" fill="#E8553D">
+      <rect x="420" y="972" width="6" height="28" rx="3"/>
+      <rect x="486" y="972" width="6" height="28" rx="3"/>
+      <rect x="548" y="972" width="6" height="28" rx="3"/>
+      <rect x="760" y="972" width="6" height="28" rx="3"/>
+      <rect x="836" y="972" width="6" height="28" rx="3"/>
+    </g>
+    <g font-size="13" fill="#AEB5C2">
+      <text x="420" y="1030" text-anchor="middle">tab switching</text>
+      <text x="760" y="1030" text-anchor="middle">dead-end error</text>
+      <text x="836" y="1030" text-anchor="middle">cancel</text>
+    </g>
+    <text x="1410" y="1032" font-size="13" fill="#AEB5C2" text-anchor="end">01:34 / 04:12</text>
+  </g>
+</svg>
