@@ -9,6 +9,8 @@
   if (!wall) return;
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var INK = 'fill="none" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"';
+  /* the same drawing as images/room/jars.svg */
+  var JARS = '<ellipse cx="60" cy="113" rx="56" ry="3.500" fill="#1E1A17" stroke="none" opacity=".12"/><g class="ob-jar j2"><clipPath id="tj"><path d="M47 30 H75 V34 C80 36 80 40 80 46 V103 Q80 112 71 112 H51 Q42 112 42 103 V46 C42 40 42 36 47 34 Z"/></clipPath><path d="M47 30 H75 V34 C80 36 80 40 80 46 V103 Q80 112 71 112 H51 Q42 112 42 103 V46 C42 40 42 36 47 34 Z" fill="#EEF6FA" stroke="none"/><g clip-path="url(#tj)" stroke="none"><text x="61" y="106" text-anchor="middle" font-family="Shantell Sans, sans-serif" font-weight="800" font-size="25" fill="#6E7BF2">Aa</text><text x="61" y="78" text-anchor="middle" font-family="Shantell Sans, sans-serif" font-weight="800" font-size="17" fill="#8F9AFA">Aa</text><text x="61" y="58" text-anchor="middle" font-family="Shantell Sans, sans-serif" font-weight="800" font-size="11" fill="#A9B4F5">Aa</text></g><path d="M48 50 C47 60 47 92 49 100" stroke="#FFFFFF" stroke-width="3" opacity=".9"/><path d="M47 30 H75 V34 C80 36 80 40 80 46 V103 Q80 112 71 112 H51 Q42 112 42 103 V46 C42 40 42 36 47 34 Z"/><rect x="44" y="20" width="34" height="11" rx="3" fill="#E8553D"/><path d="M48 22 v6 M53 22 v6 M58 22 v6 M63 22 v6 M68 22 v6" stroke-width="1.4" opacity=".35"/></g><g class="ob-jar j1" role="button" tabindex="0" aria-label="Colour tokens: change the theme"><clipPath id="cj"><path d="M11 54 H37 V58 C42 60 42 64 42 70 V103 Q42 112 33 112 H15 Q6 112 6 103 V70 C6 64 6 60 11 58 Z"/></clipPath><path d="M11 54 H37 V58 C42 60 42 64 42 70 V103 Q42 112 33 112 H15 Q6 112 6 103 V70 C6 64 6 60 11 58 Z" fill="#EEF6FA" stroke="none"/><g clip-path="url(#cj)" stroke="none"><path class="cl cl3" d="M4 70 C14 66 22 72 30 68 S40 69 44 67 V114 H4 Z" fill="#6E7BF2"/><path class="cl cl2" d="M4 81 C14 77 22 83 30 79 S40 80 44 78 V114 H4 Z" fill="#3FA899"/><path class="cl cl1" d="M4 92 C14 88 22 94 30 90 S40 91 44 89 V114 H4 Z" fill="#FFC93C"/><path class="cl cl0" d="M4 103 C14 99 22 105 30 101 S40 102 44 100 V114 H4 Z" fill="#E8553D"/></g><path d="M12 74 C11 84 11 92 13 100" stroke="#FFFFFF" stroke-width="3" opacity=".9"/><path d="M11 54 H37 V58 C42 60 42 64 42 70 V103 Q42 112 33 112 H15 Q6 112 6 103 V70 C6 64 6 60 11 58 Z"/><rect x="8" y="44" width="32" height="11" rx="3" fill="#C98A4B"/><path d="M12 46 v6 M17 46 v6 M22 46 v6 M27 46 v6 M32 46 v6" stroke-width="1.4" opacity=".35"/></g><g class="ob-jar j3"><clipPath id="sj"><path d="M85 62 H109 V66 C114 68 114 72 114 78 V103 Q114 112 105 112 H89 Q80 112 80 103 V78 C80 72 80 68 85 66 Z"/></clipPath><path d="M85 62 H109 V66 C114 68 114 72 114 78 V103 Q114 112 105 112 H89 Q80 112 80 103 V78 C80 72 80 68 85 66 Z" fill="#EEF6FA" stroke="none"/><g clip-path="url(#sj)" stroke="none"><rect x="88.0" y="92" width="18" height="18" rx="1.5" fill="#F27A5E" stroke="#1E1A17" stroke-width="1.6"/><rect x="90.5" y="79" width="13" height="13" rx="1.5" fill="#F7A08A" stroke="#1E1A17" stroke-width="1.6"/><rect x="92.5" y="70" width="9" height="9" rx="1.5" fill="#F7C4B9" stroke="#1E1A17" stroke-width="1.6"/><rect x="94.0" y="64" width="6" height="6" rx="1.5" fill="#FCE0D8" stroke="#1E1A17" stroke-width="1.6"/></g><path d="M86 82 C85 92 85 92 87 100" stroke="#FFFFFF" stroke-width="3" opacity=".9"/><path d="M85 62 H109 V66 C114 68 114 72 114 78 V103 Q114 112 105 112 H89 Q80 112 80 103 V78 C80 72 80 68 85 66 Z"/><rect x="82" y="52" width="30" height="11" rx="3" fill="#3FA899"/><path d="M86 54 v6 M91 54 v6 M96 54 v6 M101 54 v6" stroke-width="1.4" opacity=".35"/></g>';
 
   function isDark() {
     var t = document.documentElement.getAttribute("data-theme");
@@ -16,51 +18,39 @@
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
 
-  /* chip: one paint swatch, drawn upright; CSS turns it about the rivet */
-  function chip(a, c1, c2, c3, name) {
-    return '<g class="ob-chip" style="--a:' + a + 'deg" role="button" tabindex="0" aria-label="' + name + ' theme">' +
-      '<rect x="19" y="20" width="22" height="90" rx="4" fill="#FFFDF6"/>' +
-      '<path d="M19 20 h22 v24 h-22 Z" fill="' + c1 + '" stroke="none"/><path d="M19 44 h22 v22 h-22 Z" fill="' + c2 + '" stroke="none"/><path d="M19 66 h22 v18 h-22 Z" fill="' + c3 + '" stroke="none"/>' +
-      '<rect x="19" y="20" width="22" height="90" rx="4"/><path d="M24 94 h12 M24 100 h8" stroke-width="2"/></g>';
-  }
-
   var OBJECTS = {
-    /* Design system: the fan opens; a swatch re-themes the wall from one set of tokens */
+    /* Design system: three jars of tokens (colour, type, spacing). They hop when pointed at; the colour
+       jar is a button: each tap turns its layers over and the wall takes the colour now on top. */
     theme: {
-      label: "Swatch fan: pick a colour to re-theme this header",
-      svg: '<svg viewBox="0 0 120 120"><g ' + INK + '>' +
-        chip(-10, "#BFE4D3", "#3FA899", "#2F8F83", "Mint") +
-        chip(12, "#FFE08A", "#FFC93C", "#F0A91B", "Butter") +
-        chip(34, "#F7C4B9", "#F27A5E", "#E8553D", "Coral") +
-        chip(56, "#D4D8FF", "#8F9AFA", "#6E7BF2", "Violet") +
-        '<circle cx="30" cy="104" r="5" fill="#C98A4B"/></g></svg>',
-      hover: true,
+      label: "Token jars: colour, type and spacing. Tap the colour jar to change the theme",
+      svg: '<svg viewBox="0 0 120 120"><g ' + INK + '>' + JARS + '</g></svg>',
       init: function (box) {
+        var ORDER = ["#6E7BF2", "#3FA899", "#FFC93C", "#E8553D"];
         var WALLS = {
-          Mint: [["#BFE4D3", "#B5DECB"], ["#1B2238", "#1F2740"]],
-          Butter: [["#FAEFC4", "#F6E7B0"], ["#26231B", "#2C2820"]],
-          Coral: [["#F8D6CC", "#F4CCBF"], ["#2A1E24", "#30232A"]],
-          Violet: [["#D9D5F4", "#D0CBF0"], ["#201E3A", "#25223F"]]
+          "#6E7BF2": [["#D9D5F4", "#D0CBF0"], ["#201E3A", "#25223F"]],
+          "#3FA899": [["#BFE4D3", "#B5DECB"], ["#1B2238", "#1F2740"]],
+          "#FFC93C": [["#FAEFC4", "#F6E7B0"], ["#26231B", "#2C2820"]],
+          "#E8553D": [["#F8D6CC", "#F4CCBF"], ["#2A1E24", "#30232A"]]
         };
-        var picked = null;
+        var jar = box.querySelector(".j1"), turned = false;
         function apply() {
-          if (!picked) return;
-          var w = WALLS[picked][isDark() ? 1 : 0], b = document.body.style;
+          if (!turned) return;
+          var w = WALLS[ORDER[0]][isDark() ? 1 : 0], b = document.body.style;
           b.setProperty("--wall", w[0]);
           b.setProperty("--wall-stripe", w[1]);
           b.setProperty("--wallpaper", "repeating-linear-gradient(90deg, transparent 0 26px, " + w[1] + " 26px 52px)");
         }
-        box.querySelectorAll(".ob-chip").forEach(function (c) {
-          function pick(e) {
-            e.stopPropagation();
-            picked = c.getAttribute("aria-label").split(" ")[0];
-            box.querySelectorAll(".ob-chip").forEach(function (x) { x.classList.toggle("on", x === c); });
-            box.classList.add("open");
-            apply();
-          }
-          c.addEventListener("click", pick);
-          c.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(e); } });
-        });
+        function turn(e) {
+          e.stopPropagation();
+          ORDER.push(ORDER.shift());
+          // the layers are drawn top first: .cl3 is the top band
+          [3, 2, 1, 0].forEach(function (n, i) { jar.querySelector(".cl" + n).setAttribute("fill", ORDER[i]); });
+          jar.classList.remove("shake"); void jar.getBoundingClientRect(); jar.classList.add("shake");
+          turned = true;
+          apply();
+        }
+        jar.addEventListener("click", turn);
+        jar.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); turn(e); } });
         new MutationObserver(apply).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
       }
     },
@@ -122,19 +112,17 @@
   wall.appendChild(box);
   if (o.init) o.init(box);
 
-  /* the fan opens while pointed at; the others play their move through once */
+  /* each plays its move through once: on pointing, focus or a tap */
   function play() {
-    if (o.hover) return box.classList.add("open");
     box.classList.remove("play");
     void box.offsetWidth;
     box.classList.add("play");
   }
   box.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") play(); });
-  box.addEventListener("pointerleave", function () { if (o.hover && !box.querySelector(".ob-chip.on")) box.classList.remove("open"); });
   box.addEventListener("focusin", play);
   box.addEventListener("click", play);
   box.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && e.target === box) { e.preventDefault(); play(); } });
-  if (still) { box.classList.add(o.hover ? "open" : "done"); return; }
+  if (still) { box.classList.add("done"); return; }
   /* touch screens have no hover: play it once when it comes into view */
   if ("IntersectionObserver" in window && !window.matchMedia("(hover: hover)").matches) {
     var io = new IntersectionObserver(function (es) {

@@ -5969,7 +5969,7 @@ html .case-hero:has(> .tldr) .room-lamp { bottom: auto; top: calc(1.5rem + 96px)
 html .eyebrow .case-no { color: var(--ink); }
 
 /* which object goes with which file */
-[data-prop="swatches"] { --prop: url("../images/room/swatches.svg"); }
+[data-prop="jars"] { --prop: url("../images/room/jars.svg"); }
 [data-prop="map"] { --prop: url("../images/room/map.svg"); }
 [data-prop="rolodex"] { --prop: url("../images/room/rolodex.svg"); }
 [data-prop="stamp"] { --prop: url("../images/room/stamp.svg"); }
@@ -6132,21 +6132,24 @@ html .obj {
   display: block; width: 150px; height: 150px; cursor: pointer; -webkit-tap-highlight-color: transparent;
 }
 html .obj svg { display: block; width: 100%; height: 100%; overflow: visible; }
-html .obj:focus-visible, html .obj .ob-chip:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+html .obj:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
 @media (max-width: 999px) {
   html .case-intro[data-toy] .intro-sum { padding-bottom: 150px; }
   html .obj { right: 50%; translate: 50% 0; width: 130px; height: 130px; }
 }
-html .obj :is(.ob-chip, .ob-glass, .ob-pin, .ob-flip, .ob-person, .ob-mark, .ob-stamp) { transform-box: view-box; }
+html .obj :is(.ob-glass, .ob-pin, .ob-flip, .ob-person, .ob-mark, .ob-stamp) { transform-box: view-box; }
 
-/* design system: the fan, closed until pointed at */
-html .ob-chip { transform-origin: 30px 104px; transform: rotate(-10deg); transition: transform 420ms cubic-bezier(.3, 1.4, .5, 1); cursor: pointer; outline: none; }
-html .obj.open .ob-chip { transform: rotate(var(--a)); }
-html .obj.open .ob-chip:nth-of-type(2) { transition-delay: 40ms; }
-html .obj.open .ob-chip:nth-of-type(3) { transition-delay: 80ms; }
-html .obj.open .ob-chip:nth-of-type(4) { transition-delay: 120ms; }
-html .obj.open .ob-chip:hover, html .obj .ob-chip.on { transform: rotate(var(--a)) translateY(-7px); }
-html .obj .ob-chip:focus-visible rect:last-of-type { stroke-width: 5; }
+/* design system: the jars hop one after another; the colour jar shakes when its layers turn over */
+html .obj :is(.ob-jar) { transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes ob-hop { 0%, 100% { transform: none; } 40% { transform: translateY(-9px) rotate(-3deg); } 70% { transform: translateY(1px) scaleY(.97); } }
+html .obj-theme.play .ob-jar { animation: ob-hop 420ms var(--ease); }
+html .obj-theme.play .j2 { animation-delay: 110ms; }
+html .obj-theme.play .j3 { animation-delay: 220ms; }
+@keyframes ob-shake { 0%, 100% { transform: none; } 25% { transform: rotate(-7deg); } 60% { transform: rotate(6deg); } }
+html .obj .j1 { cursor: pointer; outline: none; }
+html .obj .j1.shake { animation: ob-shake 380ms var(--ease); }
+html .obj .j1:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { html .obj .ob-jar { animation: none !important; } }
 
 /* ask bar: magnifier off to the side, no pin yet */
 html .ob-glass { transform: translate(26px, 10px) rotate(8deg); transform-origin: 62px 62px; }
