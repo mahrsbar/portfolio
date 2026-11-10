@@ -667,11 +667,13 @@
 
       <!-- ===== the talking cure ===== -->
       <ellipse cx="263" cy="424" rx="168" ry="7" fill="var(--line)" opacity=".18"/>
+      <!-- the sofa sits low on short feet, so it reads as a different piece from the duck's armchair -->
+      <g transform="translate(0 30)">
       <!-- the patient's sofa: built like the duck's armchair, in coral, a loveseat for the bug to sit on -->
       <g class="couch">
-        <!-- tapered sofa legs, splayed a little, in dark walnut -->
-        <path class="ink" d="M112 356 H134 L124 418 H114 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M118 362 L117 404" stroke="#8A5A36" stroke-width="2.4" stroke-linecap="round"/>
-        <path class="ink" d="M392 356 H414 L412 418 H402 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M398 362 L404 404" stroke="#8A5A36" stroke-width="2.4" stroke-linecap="round"/>
+        <!-- short, stubby walnut feet -->
+        <path class="ink" d="M110 358 H138 L134 386 Q133 390 129 390 H119 Q115 390 114 386 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M118 364 L119 382" stroke="#8A5A36" stroke-width="2.4" stroke-linecap="round"/>
+        <path class="ink" d="M388 358 H416 L412 386 Q411 390 407 390 H397 Q393 390 392 386 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M396 364 L397 382" stroke="#8A5A36" stroke-width="2.4" stroke-linecap="round"/>
         <rect class="ink" x="126" y="176" width="274" height="172" rx="46" fill="var(--couch)"/><path class="shine" d="M142 214 q4 -20 24 -26" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
         <path d="M168 206 C220 196 306 196 358 206" fill="none" stroke="var(--line)" stroke-width="1.88" stroke-dasharray="5 7" opacity=".45"/>
         <rect class="cushion anim ink" x="132" y="300" width="262" height="62" rx="20" fill="var(--couch-hi)"/>
@@ -732,13 +734,15 @@
       <!-- the sofa's arms come up in front, as the duck's chair does -->
       <rect class="ink" x="102" y="250" width="44" height="114" rx="20" fill="var(--couch)"/>
       <rect class="ink" x="380" y="250" width="44" height="114" rx="20" fill="var(--couch)"/>
+      </g>
 
 
       <!-- ===== rubber duck debugging ===== -->
       <ellipse cx="610" cy="424" rx="118" ry="7" fill="var(--line)" opacity=".18"/>
       <g class="chair anim">
-        <rect class="ink" x="522" y="356" width="18" height="64" rx="6" fill="var(--wood)"/>
-        <rect class="ink" x="680" y="356" width="18" height="64" rx="6" fill="var(--wood)"/>
+        <!-- tall, slim, tapered walnut legs -->
+        <path class="ink" d="M520 356 H538 L532 418 H526 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M527 362 L529 408" stroke="#8A5A36" stroke-width="2" stroke-linecap="round"/>
+        <path class="ink" d="M682 356 H700 L694 418 H688 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M689 362 L691 408" stroke="#8A5A36" stroke-width="2" stroke-linecap="round"/>
         <rect class="ink" x="522" y="168" width="176" height="180" rx="46" fill="var(--chair)"/><path class="shine" d="M538 206 q4 -20 24 -26" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
         <path d="M560 200 C590 190 630 190 660 200" fill="none" stroke="var(--line)" stroke-width="1.88" stroke-dasharray="5 7" opacity=".45"/>
         <rect class="ink" x="528" y="300" width="164" height="62" rx="20" fill="var(--chair-hi)"/>
@@ -809,7 +813,7 @@
   const isEmbed = document.documentElement.classList.contains('embed');
   const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 672 : 726;
   if (isEmbed) document.querySelector('.stage svg').setAttribute('viewBox', `0 ${VB_Y} ${VB_W} ${VB_H}`);
-  const PATIENT_AT = [318, 148], DUCK_AT = [578, 156];
+  const PATIENT_AT = [318, 178], DUCK_AT = [578, 156];
   const bubbles = document.getElementById('bubbles');
   const duck = document.getElementById('duck');
   const patient = document.getElementById('patient');
@@ -1061,7 +1065,7 @@
   // ...and only then the bug answers, in its own bubble: tap me! (tapping it, or the bug, starts the session)
   setTimeout(() => {
     if (i || busy) return;
-    isNarrow() ? say('tap me!', [228, 196], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
+    isNarrow() ? say('tap me!', [228, 226], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
   }, reduced ? 0 : 2000);
 })();
 </script>
