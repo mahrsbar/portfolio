@@ -5698,3 +5698,9 @@ html .eyebrow .case-no {
     html .toc:hover::before, html .sn:hover::before, html .clipboard:hover::before { transform-origin: 50% 0; animation: clip-snap 320ms var(--ease-pop); }
   }
 }
+
+/* the App Store badge on the LoafMode cover: a small label, not a second headline */
+html .app-badge-over { gap: 0.55rem; padding: 0.4rem 0.7rem 0.4rem 0.45rem; border-radius: 12px; }
+html .app-badge-over img { width: 36px; height: 36px; }
+html .app-badge-over b { font-size: 0.9rem; }
+html .app-badge-over small { margin-top: 0; font-size: 0.78rem; }
