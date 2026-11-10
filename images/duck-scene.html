@@ -666,29 +666,28 @@
       </g>
 
       <!-- ===== the talking cure ===== -->
-      <ellipse cx="263" cy="424" rx="168" ry="7" fill="var(--line)" opacity=".18"/>
-      <!-- the sofa sits low on short feet, so it reads as a different piece from the duck's armchair -->
-      <g transform="translate(0 30)">
-      <!-- the patient's sofa: built like the duck's armchair, in coral, a loveseat for the bug to sit on -->
+      <ellipse cx="244" cy="424" rx="124" ry="7" fill="var(--line)" opacity=".18"/>
+      <!-- the patient's armchair, three-quarters on, turned toward the duck -->
       <g class="couch">
-        <!-- the back feet, further in and a touch higher -->
-        <path class="ink" d="M150 356 H172 L169 380 Q168 384 165 384 H157 Q154 384 153 380 Z" fill="#3E2716" stroke-width="2.2"/>
-        <path class="ink" d="M354 356 H376 L373 380 Q372 384 369 384 H361 Q358 384 357 380 Z" fill="#3E2716" stroke-width="2.2"/>
-        <!-- short, stubby walnut feet -->
-        <path class="ink" d="M110 358 H138 L134 386 Q133 390 129 390 H119 Q115 390 114 386 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M118 364 L119 382" stroke="#8A5A36" stroke-width="2.4" stroke-linecap="round"/>
-        <path class="ink" d="M388 358 H416 L412 386 Q411 390 407 390 H397 Q393 390 392 386 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M396 364 L397 382" stroke="#8A5A36" stroke-width="2.4" stroke-linecap="round"/>
-        <rect class="ink" x="126" y="176" width="274" height="172" rx="46" fill="var(--couch)"/><path class="shine" d="M142 214 q4 -20 24 -26" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
-        <path d="M168 206 C220 196 306 196 358 206" fill="none" stroke="var(--line)" stroke-width="1.88" stroke-dasharray="5 7" opacity=".45"/>
-        <rect class="cushion anim ink" x="132" y="300" width="262" height="62" rx="20" fill="var(--couch-hi)"/>
-        <path d="M263 304 V358" stroke="var(--line)" stroke-width="1.88" opacity=".35"/>
-        <ellipse cx="318" cy="331" rx="52" ry="7" fill="var(--line)" opacity=".18"/>
+        <!-- back legs: further in, a touch higher, darker -->
+        <path class="ink" d="M176 345 H188 L185 404 H180 Z" fill="#3E2716" stroke-width="2.2"/>
+        <path class="ink" d="M300 345 H312 L314 404 H309 Z" fill="#3E2716" stroke-width="2.2"/>
+        <!-- front legs, splayed -->
+        <path class="ink" d="M144 352 H160 L150 418 H143 Z" fill="#5C3A22" stroke-width="2.6"/>
+        <path class="ink" d="M322 352 H338 L346 418 H339 Z" fill="#5C3A22" stroke-width="2.6"/>
+        <!-- the back, on the outer side, its inner face catching the light -->
+        <path class="ink" d="M134 352 L122 214 C120 182 144 166 172 170 L214 176 C240 180 248 198 246 222 L238 340 Z" fill="var(--couch)"/>
+        <path d="M206 186 C226 190 234 204 232 222 L226 318" fill="none" stroke="var(--couch-hi)" stroke-width="10" stroke-linecap="round" opacity=".8"/>
+        <path class="shine" d="M136 216 q2 -26 24 -32" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
+        <!-- the seat, turned toward the other chair -->
+        <rect class="cushion anim ink" x="166" y="294" width="184" height="44" rx="18" fill="var(--couch-hi)"/>
+        <ellipse cx="256" cy="327" rx="50" ry="7" fill="var(--line)" opacity=".18"/>
       </g>
-
       <g class="patient" id="patient" tabindex="0" role="button" aria-label="Start a session with the bug">
-        <!-- sitting on the sofa, at the end nearest the duck, turned a little toward it -->
+        <!-- sitting in its armchair, facing the duck -->
         <!-- a still target: the bug pops up on hover, and without this its feet would slide out from under the pointer -->
-        <rect class="hit" x="252" y="122" width="136" height="216" fill="transparent"/>
-        <g transform="translate(56 40) rotate(5 262 292)"><g class="pop">
+        <rect class="hit" x="190" y="120" width="136" height="216" fill="transparent"/>
+        <g transform="translate(-6 34) rotate(5 262 292)"><g class="pop">
         <g class="torso anim">
           <!-- glossy domed shell, peeking out both sides -->
           <ellipse class="ink" cx="262" cy="240" rx="48" ry="42" fill="var(--bug)"/>
@@ -734,27 +733,40 @@
         </g>
       </g></g>
       </g>
-      <!-- the sofa's arms come up in front, as the duck's chair does -->
-      <rect class="ink" x="102" y="250" width="44" height="114" rx="20" fill="var(--couch)"/>
-      <rect class="ink" x="380" y="250" width="44" height="114" rx="20" fill="var(--couch)"/>
+      <!-- its near arm, in front of the bug -->
+      <path class="ink" d="M150 312 H338 C352 312 360 322 360 336 C360 352 350 362 336 362 H152 C136 362 128 352 128 336 C128 322 136 312 150 312 Z" fill="var(--couch)"/><path class="shine" d="M150 324 h40" fill="none" stroke="#FFFFFF" stroke-width="3.38" stroke-linecap="round"/>
+
+
+      <!-- a side table between the chairs, with a plant -->
+      <g class="side-table">
+        <path class="ink" d="M380 344 L374 418 M420 344 L426 418" stroke="#5C3A22" stroke-width="5" fill="none"/>
+        <rect class="ink" x="364" y="336" width="72" height="10" rx="4" fill="#5C3A22" stroke-width="2.4"/>
+        <path class="ink" d="M388 336 L386 316 H414 L412 336 Z" fill="var(--couch-hi)" stroke-width="2.4"/>
+        <path class="leaf anim ink" d="M400 316 C384 300 380 282 388 268 C400 280 404 300 400 316 Z" fill="var(--leaf)" stroke-width="2.25"/>
+        <path class="leaf anim ink" d="M400 316 C414 298 422 282 418 264 C406 278 400 298 400 316 Z" fill="var(--leaf-hi)" stroke-width="2.25"/>
+        <path class="leaf anim ink" d="M400 316 C388 310 376 304 372 292 C386 292 396 302 400 316 Z" fill="var(--leaf-hi)" stroke-width="2.25"/>
       </g>
 
-
       <!-- ===== rubber duck debugging ===== -->
-      <ellipse cx="610" cy="424" rx="118" ry="7" fill="var(--line)" opacity=".18"/>
+      <ellipse cx="556" cy="424" rx="124" ry="7" fill="var(--line)" opacity=".18"/>
       <g class="chair anim">
-        <!-- the back legs, further in, a touch higher and darker: further away -->
-        <path class="ink" d="M552 350 H566 L562 410 H557 Z" fill="#3E2716" stroke-width="2.2"/>
-        <path class="ink" d="M654 350 H668 L663 410 H658 Z" fill="#3E2716" stroke-width="2.2"/>
-        <!-- tall, slim, tapered walnut legs -->
-        <path class="ink" d="M520 356 H538 L532 418 H526 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M527 362 L529 408" stroke="#8A5A36" stroke-width="2" stroke-linecap="round"/>
-        <path class="ink" d="M682 356 H700 L694 418 H688 Z" fill="#5C3A22" stroke-width="2.6"/><path d="M689 362 L691 408" stroke="#8A5A36" stroke-width="2" stroke-linecap="round"/>
-        <rect class="ink" x="522" y="168" width="176" height="180" rx="46" fill="var(--chair)"/><path class="shine" d="M538 206 q4 -20 24 -26" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
-        <path d="M560 200 C590 190 630 190 660 200" fill="none" stroke="var(--line)" stroke-width="1.88" stroke-dasharray="5 7" opacity=".45"/>
-        <rect class="ink" x="528" y="300" width="164" height="62" rx="20" fill="var(--chair-hi)"/>
+        <g transform="translate(800 0) scale(-1 1)">
+        <!-- back legs: further in, a touch higher, darker -->
+        <path class="ink" d="M176 345 H188 L185 404 H180 Z" fill="#3E2716" stroke-width="2.2"/>
+        <path class="ink" d="M300 345 H312 L314 404 H309 Z" fill="#3E2716" stroke-width="2.2"/>
+        <!-- front legs, splayed -->
+        <path class="ink" d="M144 352 H160 L150 418 H143 Z" fill="#5C3A22" stroke-width="2.6"/>
+        <path class="ink" d="M322 352 H338 L346 418 H339 Z" fill="#5C3A22" stroke-width="2.6"/>
+        <!-- the back, on the outer side, its inner face catching the light -->
+        <path class="ink" d="M134 352 L122 214 C120 182 144 166 172 170 L214 176 C240 180 248 198 246 222 L238 340 Z" fill="var(--chair)"/>
+        <path d="M206 186 C226 190 234 204 232 222 L226 318" fill="none" stroke="var(--chair-hi)" stroke-width="10" stroke-linecap="round" opacity=".8"/>
+        <path class="shine" d="M136 216 q2 -26 24 -32" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
+        <!-- the seat, turned toward the other chair -->
+        <rect class="ink" x="166" y="294" width="184" height="44" rx="18" fill="var(--chair-hi)"/>
+        </g>
         <!-- where the duck sits: a dip in the cushion -->
-        <ellipse cx="612" cy="331" rx="58" ry="7" fill="var(--line)" opacity=".18"/>
-
+        <ellipse cx="560" cy="327" rx="54" ry="7" fill="var(--line)" opacity=".18"/>
+        <g transform="translate(-50 -4)">
         <g class="duck anim" id="duck" tabindex="0" role="button" aria-label="Squeeze the rubber duck">
           <!-- feet tucked under, the way a duck sits: just the toes show below its body -->
           <g class="duck-toes">
@@ -793,9 +805,9 @@
           <path class="pen" d="M604 304 L636 280" stroke="var(--couch)" stroke-width="1.88" stroke-linecap="round"/>
           <path class="ink" d="M622 284 C636 266 666 268 670 288 C670 302 650 308 634 302 C626 298 620 292 622 284 Z" fill="var(--duck-dk)" stroke-width="2.25"/>
         </g>
-        <!-- the arms come up in front of it, so it sits in the chair rather than on top of it -->
-        <rect class="ink" x="498" y="250" width="44" height="114" rx="20" fill="var(--chair)"/>
-        <rect class="ink" x="678" y="250" width="44" height="114" rx="20" fill="var(--chair)"/>
+        </g>
+        <!-- its near arm, in front of the duck -->
+        <g transform="translate(800 0) scale(-1 1)"><path class="ink" d="M150 312 H338 C352 312 360 322 360 336 C360 352 350 362 336 362 H152 C136 362 128 352 128 336 C128 322 136 312 150 312 Z" fill="var(--chair)"/><path class="shine" d="M150 324 h40" fill="none" stroke="#FFFFFF" stroke-width="3.38" stroke-linecap="round"/></g>
       </g>
 
       <!-- labels -->
@@ -819,7 +831,7 @@
   const isEmbed = document.documentElement.classList.contains('embed');
   const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 672 : 726;
   if (isEmbed) document.querySelector('.stage svg').setAttribute('viewBox', `0 ${VB_Y} ${VB_W} ${VB_H}`);
-  const PATIENT_AT = [318, 178], DUCK_AT = [578, 156];
+  const PATIENT_AT = [256, 146], DUCK_AT = [528, 152];
   const bubbles = document.getElementById('bubbles');
   const duck = document.getElementById('duck');
   const patient = document.getElementById('patient');
@@ -995,7 +1007,7 @@
       const h = document.createElement('span');
       h.className = 'heart';
       h.textContent = '♥';
-      Object.assign(h.style, pct([590 + n * 22, 170]));
+      Object.assign(h.style, pct([540 + n * 22, 166]));
       h.style.setProperty('--dx', (n - 1) * 18 + 'px');
       h.style.animationDelay = n * 90 + 'ms';
       bubbles.appendChild(h);
@@ -1071,7 +1083,7 @@
   // ...and only then the bug answers, in its own bubble: tap me! (tapping it, or the bug, starts the session)
   setTimeout(() => {
     if (i || busy) return;
-    isNarrow() ? say('tap me!', [228, 226], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
+    isNarrow() ? say('tap me!', [168, 194], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
   }, reduced ? 0 : 2000);
 })();
 </script>
