@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><g fill="none" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+<g transform="rotate(-14 40 110)"><rect x="14" y="30" width="44" height="66" rx="4" fill="#9CA6F5"/><rect x="19" y="35" width="34" height="50" rx="2" fill="#3B2F5C" stroke-width="2"/><circle cx="36" cy="58" r="7" fill="#C77DF0" stroke-width="2"/></g>
+<g transform="rotate(14 80 110)"><rect x="62" y="30" width="44" height="66" rx="4" fill="#8CC79C"/><rect x="67" y="35" width="34" height="50" rx="2" fill="#2F4A5C" stroke-width="2"/><path d="M78 52 c0 -8 12 -8 12 0 v8 h-12 Z" fill="#E8553D" stroke-width="2"/></g>
+<rect x="34" y="14" width="52" height="80" rx="5" fill="#FFC93C"/>
+<rect x="40" y="26" width="40" height="52" rx="2" fill="#2A3D6B" stroke-width="2.400"/>
+<path d="M47 20.500 l1.300 2.600 2.800 .4 -2 2 .5 2.800 -2.600 -1.300 -2.600 1.300 .5 -2.800 -2 -2 2.800 -.4 Z M60 18.500 l1.300 2.600 2.800 .4 -2 2 .5 2.800 -2.600 -1.300 -2.600 1.300 .5 -2.800 -2 -2 2.800 -.4 Z M73 20.500 l1.300 2.600 2.800 .4 -2 2 .5 2.800 -2.600 -1.300 -2.600 1.300 .5 -2.800 -2 -2 2.800 -.4 Z" fill="#FFF3C4" stroke-width="1.400"/>
+<path d="M46 78 C46 64 52 58 60 58 C68 58 74 64 74 78 Z" fill="#FFFDF6" stroke-width="2.200"/><path d="M56 60 L60 78 L64 60" fill="#E8553D" stroke-width="2"/>
+<path d="M48 50 C46 34 74 34 72 50 C74 58 70 64 68 64 C68 56 66 54 66 52 H54 C54 54 52 56 52 64 C50 64 46 58 48 50 Z" fill="#3FA899" stroke-width="2.200"/>
+<ellipse cx="60" cy="50" rx="7.500" ry="8" fill="#FCE3BF" stroke-width="2.200"/><path d="M53 45 C56 40 64 40 67 45" fill="#3FA899" stroke-width="2"/>
+<circle cx="57" cy="51" r="1.200" fill="#1E1A17" stroke="none"/><circle cx="63" cy="51" r="1.200" fill="#1E1A17" stroke="none"/>
+<circle cx="76" cy="34" r="1.600" fill="#FFF3C4" stroke="none"/><circle cx="44" cy="40" r="1.200" fill="#FFF3C4" stroke="none"/>
+<rect x="44" y="81" width="32" height="7" rx="2" fill="#FFF3C4" stroke-width="2"/>
+<path d="M30 112 L44 94 M90 112 L76 94" stroke-width="3"/><rect x="24" y="106" width="72" height="9" rx="4.500" fill="#C98A4B"/></g></svg>
