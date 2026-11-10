@@ -6230,3 +6230,18 @@ html .plugin-head { margin-bottom: 1.5rem; }
 html .plugin-head h3 { margin: 0.25rem 0 0.5rem; }
 html .plugin-head .plugin-why { margin-top: 1rem; }
 html .plugin .type-tablist { margin-bottom: 0.75rem; }
+
+/* design-system plugins: the number and what it's for live in the title, not in an eyebrow above it */
+html .plugin-head h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 0.5rem; }
+html .plugin-no {
+  display: inline-grid; place-items: center; flex: none; align-self: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  background: var(--duck); color: var(--on-duck); font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+}
+html .plugin-for { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--ink-3); }
+
+/* case intro: the outcomes and the role/stack lines are one card, so it reads card, then the work */
+html:root body .case-intro .highlights:has(+ .meta-line) { border-bottom: 0; border-radius: var(--radius) var(--radius) 0 0; margin-bottom: 0; }
+html:root body .case-intro .highlights + .meta-line {
+  margin-top: 0; padding: 0.95rem 1rem 1rem; border: var(--frame-w) solid var(--frame); border-top: 1px solid var(--line);
+  border-radius: 0 0 var(--radius) var(--radius); background: var(--bg-elev);
+}

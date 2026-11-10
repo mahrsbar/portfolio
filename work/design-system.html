@@ -25,8 +25,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261111k" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261111k" />
+    <link rel="stylesheet" href="../css/style.css?v=20261111l" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261111l" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -185,8 +185,7 @@
             <div class="plugins">
               <article class="plugin">
                 <div class="plugin-head">
-                  <span class="plugin-n">Plugin 1 · Type</span>
-                  <h3>Tokenization</h3>
+                  <h3><span class="plugin-no"><span class="sr-only">Plugin </span>1</span>Tokenization <span class="plugin-for">for type</span></h3>
                   <p>Created the type variables (size, weight, family, line height), merged text styles that shared a size and weight, swapped every use onto four shared groups, and deleted the duplicates.</p>
                   <p class="plugin-why">One run covers every page, component and nested instance in the file, then reports anything it couldn't convert.</p>
                 </div>
@@ -224,8 +223,7 @@
 
               <article class="plugin">
                 <div class="plugin-head">
-                  <span class="plugin-n">Plugin 2 · Everything else</span>
-                  <h3>Variable relinker</h3>
+                  <h3><span class="plugin-no"><span class="sr-only">Plugin </span>2</span>Variable relinker <span class="plugin-for">for everything else</span></h3>
                   <p>Creates nothing new. It connects colours, padding, gaps, radii and stroke widths to the variables that already exist, and repairs broken links. 1,516 properties in its biggest run.</p>
                   <p class="plugin-why">Figma's built-in fixes can reconnect a variable to its library or detach a dead one.
                   They can't turn a raw <code>12</code> into <code>space-12</code>, or point a dead variable at its replacement. This does both.</p>
@@ -272,8 +270,7 @@
             <div class="plugins">
               <article class="plugin">
                 <div class="plugin-head">
-                  <span class="plugin-n">Plugin 3 · Figma to code</span>
-                  <h3>Figma export</h3>
+                  <h3><span class="plugin-no"><span class="sr-only">Plugin </span>3</span>Figma export <span class="plugin-for">from Figma to code</span></h3>
                   <p>Exports variables, components and icons as JSON with consistent names that a script, an engineer or a model reads the same way. A Button with a hundred variant nodes comes out as one component with its options. A re-export that used to mean six to eight hours of hand fixes now takes about ten minutes and none.</p>
                 </div>
                 <div class="type-tablist steps" role="tablist" aria-label="Steps">
@@ -306,8 +303,7 @@
 
               <article class="plugin">
                 <div class="plugin-head">
-                  <span class="plugin-n">Plugin 4 · Any frame</span>
-                  <h3>Handoff bundle</h3>
+                  <h3><span class="plugin-no"><span class="sr-only">Plugin </span>4</span>Handoff bundle <span class="plugin-for">for any frame</span></h3>
                   <p>Packages one frame for an agent instead of writing code for it: the full spec with exact values, a ground-truth render, the real SVG and image bytes, and a prompt that tells the agent where every value lives and what "done" means.</p>
                   <p class="plugin-why">The prompt is the product: its list of shortcuts that fail is every mistake I watched an agent make. <a href="../writing/figma-to-claude.html">How it compares to the MCP server and Claude Design.</a></p>
                 </div>
