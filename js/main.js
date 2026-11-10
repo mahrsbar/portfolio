@@ -221,35 +221,6 @@
     });
   }
 
-  /* ---- One-off entrances: case tabs stamp on, heading strokes draw in ---- */
-  function entrances() {
-    if (!("IntersectionObserver" in window)) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          var el = entry.target;
-          if (el.classList.contains("case-wait")) {
-            el.classList.remove("case-wait");
-            el.classList.add("case-in");
-          }
-          el.classList.remove("stroke-wait");
-          io.unobserve(el);
-        });
-      },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0 }
-    );
-    document.querySelectorAll(".projects .pcard-flagship").forEach(function (card) {
-      card.classList.add("case-wait");
-      io.observe(card);
-    });
-    document.querySelectorAll(".prose h2, .section-head h2").forEach(function (h) {
-      h.classList.add("stroke-wait");
-      io.observe(h);
-    });
-  }
-
   /* ---- Copy email ---- */
   function copyEmail() {
     document.querySelectorAll("[data-copy]").forEach(function (btn) {
@@ -385,7 +356,6 @@
     stackTables();
     headingStroke();
     reveal();
-    entrances();
     copyEmail();
     year();
     readingTime();

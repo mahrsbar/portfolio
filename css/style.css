@@ -5638,37 +5638,14 @@ html .eyebrow .case-no {
 }
 
 /* ---------- motion ---------- */
-/* Small and quick: 150–250ms for feedback, about 400ms for a one-off entrance, moves of 2–4px.
+/* Small and quick: 150–250ms, moves of 2–4px, and only as feedback for something the reader did.
    Everything that travels sits inside no-preference; lifts are for real pointers only.
    Individual translate / rotate / scale are used so existing transforms stay as they are. */
 :root { --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1); }
 
 @media (prefers-reduced-motion: no-preference) {
-  @keyframes case-stamp {
-    0% { opacity: 0; scale: 1.45; rotate: -9deg; }
-    55% { opacity: 1; scale: 0.94; rotate: -2deg; }
-  }
   @keyframes sheet-in { from { opacity: 0; translate: 0 4px; } }
   @keyframes note-nudge { 40% { translate: 0 -5px; } 70% { translate: 0 1px; } }
-  @keyframes clip-snap { 35% { scale: 1 0.72; } }
-  @keyframes ico-pop { 0% { scale: 0.6; rotate: -22deg; } }
-
-  /* case tab: stamped on as its file comes into view (main.js adds the classes) */
-  html .projects .pcard.pcard-flagship::before { transform-origin: 30% 100%; transition: rotate 220ms var(--ease-pop), translate 220ms var(--ease-pop); }
-  html .projects .pcard.case-wait::before { opacity: 0; }
-  html .projects .pcard.case-in::before { animation: case-stamp 420ms var(--ease) 180ms backwards; }
-  html .eyebrow .case-no { animation: case-stamp 420ms var(--ease) 300ms backwards; }
-
-  /* heading stroke: drawn left to right the first time the heading is seen */
-  html .prose h2, html .section-head h2 { transition: background-size 650ms var(--ease) 120ms; }
-  html .prose h2.stroke-wait, html .section-head h2.stroke-wait { background-size: 0 0.28em; }
-
-  /* section icons: pop in with the heading, then the notes write themselves */
-  html .section-head.reveal.in .sh-ico { animation: ico-pop 420ms var(--ease-pop) 150ms backwards; }
-  html .sh-ico .i-write { transition: stroke-dashoffset 380ms var(--ease) 500ms; }
-  html .sh-ico .i-write:nth-of-type(2) { transition-delay: 680ms; }
-  html .sh-ico .i-write:nth-of-type(3) { transition-delay: 860ms; }
-  html .section-head.reveal:not(.in) .sh-ico .i-write { stroke-dashoffset: 1; transition: none; }
 
   /* tabs: the sheet you open settles in */
   html .type-panel:not([hidden]) { animation: sheet-in 200ms var(--ease); }
@@ -5685,7 +5662,6 @@ html .eyebrow .case-no {
     /* a case file: lifts a little, its tab tips, the cover leans in, the margin arrow points */
     html .projects .pcard { transition: translate 240ms var(--ease); }
     html .projects .pcard:hover { translate: 0 -3px; }
-    html .projects .pcard.pcard-flagship:hover::before { rotate: -4deg; translate: 0 -2px; }
     html .pcard:hover .pcard-media:not(.pcard-stack) img { transform: scale(1.02); }
     html .pcard:hover .pcard-stack .win-front { transform: translateY(-4px); }
     html .pcard:hover .pcard-mock .mk { transform: scale(1.02); }
@@ -5695,7 +5671,6 @@ html .eyebrow .case-no {
     html .post-row:hover .arrow { translate: 4px 0; }
     html .theme-toggle:hover svg { rotate: 18deg; }
     html .brand:hover::before { rotate: -12deg; }
-    html .toc:hover::before, html .sn:hover::before, html .clipboard:hover::before { transform-origin: 50% 0; animation: clip-snap 320ms var(--ease-pop); }
   }
 }
 
@@ -5843,11 +5818,6 @@ html .projects .case-drawer > .pcard.pcard-flagship::before {
 html body .projects .pcard:not(.pcard-flagship) { margin-top: 3.25rem; padding: 0; border: 0; border-radius: 0; background: none; }
 /* a file doesn't lift when you point at it; the title takes the marker and the cover leans in */
 html .projects .pcard:hover { translate: none; }
-html .projects .pcard.pcard-flagship:hover::before { rotate: none; translate: none; }
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes tab-rise { from { clip-path: inset(100% 0 0 0); translate: 0 8px; } to { clip-path: inset(0); } }
-  html .projects .pcard.case-in::before { animation: tab-rise 360ms var(--ease) 120ms backwards; }
-}
 
 /* ---------- tabs: one segmented control ---------- */
 /* One outlined group, the segments inside it, the open one filled in ink. The sheet it switches sits below, on its own. */
