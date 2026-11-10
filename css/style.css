@@ -5578,3 +5578,43 @@ html .cards-demo .demo-actions { margin-bottom: 0.6rem; }
 /* Teal is for finding your way: links, section numbers, the current section, the open tab,
    the focus ring. Hover is a shade of the thing's own surface, never a second hue. */
 html .btn-ghost:hover, html .theme-toggle:hover, html .toc a:hover:not(.on) { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); }
+
+/* ---------- nav and the About headline ---------- */
+html .nav-links a { font-family: var(--font-display); font-weight: 600; }
+html body .case-hero:has(> .lead) h1 { max-width: 24ch; font-size: clamp(1.9rem, 3.4vw, 2.8rem); line-height: 1.08; }
+
+/* ---------- Toolbox: labels stuck on the sheet, a little crooked ---------- */
+html .skills { gap: 1.4rem; }
+html .skills div { padding: 0; border: 0; border-radius: 0; background: none; }
+html .skills h4 { margin: 0 0 0.6rem; font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--ink); }
+html .skill-tags { gap: 0.5rem 0.45rem; }
+html .skill-tags li {
+  padding: 0.28rem 0.6rem; border: var(--frame-w) solid var(--frame); border-radius: 6px;
+  background: var(--bg); color: var(--ink); font-weight: 500;
+  transition: transform 160ms var(--ease), background-color 160ms var(--ease);
+}
+html .skill-tags li:nth-child(3n+1) { transform: rotate(-1.2deg); }
+html .skill-tags li:nth-child(3n) { transform: rotate(1deg); }
+@media (hover: hover) {
+  html .skill-tags li:hover { transform: translateY(-2px); background: var(--duck); color: var(--on-duck); }
+}
+@media (prefers-reduced-motion: reduce) { html .skill-tags li { transition: none; } }
+
+/* ---------- no side rules: each kind of aside gets its own shape ---------- */
+/* what went wrong: numbered blocks, two across */
+html .issues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; padding: 0; list-style: none; counter-reset: issue; }
+html .issues li { counter-increment: issue; margin: 0; padding: 0.9rem 1rem; border: 0; border-radius: var(--radius); background: var(--bg-sunk); font-size: 0.92rem; }
+html .issues li b { display: block; margin-bottom: 0.2rem; }
+html .issues li b::before { content: counter(issue) ". "; font-family: var(--font-display); }
+@media (max-width: 640px) { html .issues { grid-template-columns: 1fr; } }
+/* why a plugin exists: a yellow note */
+html .plugin-head .plugin-why { padding: 0.6rem 0.8rem; border: 0; border-radius: 6px; background: var(--duck-soft); color: var(--ink-2); }
+/* quotes: a drawn quote mark instead of a rule */
+html .prose blockquote, html .prose .quote { position: relative; padding: 0 0 0 2.6rem; border: 0; background: none; }
+html .prose blockquote::before, html .prose .quote::before {
+  content: "\201C"; position: absolute; left: 0; top: -0.35rem;
+  font-family: var(--font-display); font-size: 3.4rem; line-height: 1; color: var(--duck-dk);
+}
+html .callout { border: 0; border-radius: var(--radius); background: var(--bg-sunk); }
+/* the prompt excerpt sits on its own sheet again */
+html .fails { border: var(--frame-w) solid var(--frame); background: var(--bg-elev); }
