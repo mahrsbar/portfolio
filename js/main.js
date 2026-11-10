@@ -128,6 +128,31 @@
     });
   }
 
+  /* ---- The stroke under a heading: as wide as the line it sits under ----
+     A heading that wraps would otherwise get a stroke as wide as the column. */
+  function headingStroke() {
+    var heads = document.querySelectorAll(".prose h2, .section-head h2");
+    if (!heads.length || !document.createRange) return;
+    function measure() {
+      heads.forEach(function (h) {
+        var range = document.createRange();
+        range.selectNodeContents(h);
+        var rects = range.getClientRects();
+        if (!rects.length) return;
+        var bottom = rects[rects.length - 1].bottom;
+        var left = h.getBoundingClientRect().left;
+        var right = left;
+        Array.prototype.forEach.call(rects, function (r) {
+          if (Math.abs(r.bottom - bottom) < 4) right = Math.max(right, r.right);
+        });
+        h.style.setProperty("--stroke-w", Math.ceil(right - left) + "px");
+      });
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+  }
+
   /* ---- Reveal on scroll ---- */
   function reveal() {
     var els = document.querySelectorAll(".reveal");
@@ -284,6 +309,7 @@
     menu();
     navEdge();
     stackTables();
+    headingStroke();
     reveal();
     copyEmail();
     year();
