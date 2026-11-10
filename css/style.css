@@ -6216,3 +6216,21 @@ html .la-assign b { font-size: 0.62rem; color: var(--ink); }
   html .la-form, html .la-assign { display: none; }
   html [data-observe="Licence applications"] .pcard-mock-ba .six.lic-app { min-height: 0; }
 }
+
+/* wide screens: the tabs stand off the folder's left edge, like dividers in a binder */
+@media (min-width: 1240px) {
+  html .projects .case-drawer { padding-top: 0; }
+  html .projects .case-tabs {
+    left: auto; right: calc(100% + var(--frame-w)); top: 1.5rem; bottom: auto;
+    flex-direction: column; align-items: flex-end; gap: 0.3rem;
+  }
+  html .projects .case-tabs > * {
+    writing-mode: vertical-rl; rotate: 180deg; width: var(--tab-h); height: auto; padding: 0.95rem 0 0.95rem 0.15rem;
+    border-bottom: var(--frame-w) solid; border-left: 0; border-radius: 0 9px 9px 0; text-align: center;
+  }
+  html .projects .case-tabs > b { border-color: var(--frame); }
+  html .projects .case-tabs > span { width: calc(var(--tab-h) - 6px); height: auto; padding-top: 0.95rem; border-color: transparent; }
+  @media (min-height: 740px) {
+    html .projects .case-drawer > .pcard.pcard-flagship { top: calc(64px + 1rem); }
+  }
+}
