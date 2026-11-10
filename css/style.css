@@ -5387,14 +5387,14 @@ html .timeline li::before, html .timeline li:nth-child(2n)::before, html .timeli
 :root {
   --chair: #1B655D; --chair-soft: #DCEEE9;
   --frame: var(--ink); --frame-w: 1.5px;
-  --cover-bg: var(--bg); --clip: #B9DED6;
+  --cover-bg: var(--bg); --clip: #DCCDB0;
   --on-duck: #1E1A17;
 }
 :root[data-theme="dark"] {
   --bg: #14161D; --bg-elev: #1B1E27; --bg-sunk: #101218; --card: #1E222C;
   --ink: #EDEAE2; --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --line-strong: #EDEAE2;
   --chair: #7CCBBE; --chair-soft: #183330; --frame: #4A5063; --cover-bg: var(--bg); --clip: #4A5063;
-  --duck-soft: #3A3218;
+  --duck-soft: #3A3218; --link: var(--ink);
   --accent: #EDEAE2; --accent-ink: #14161D;
   --coral-on: #14161D; --teal-on: #14161D; --mustard-on: #14161D; --violet-on: #14161D; --pink-on: #14161D;
   --wire: #2E3240; --wire-2: #454A5C; --wire-bg: #101218; --wire-frame: #1B1E27;
@@ -5404,7 +5404,7 @@ html .timeline li::before, html .timeline li:nth-child(2n)::before, html .timeli
     --bg: #14161D; --bg-elev: #1B1E27; --bg-sunk: #101218; --card: #1E222C;
     --ink: #EDEAE2; --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --line-strong: #EDEAE2;
     --chair: #7CCBBE; --chair-soft: #183330; --frame: #4A5063; --cover-bg: var(--bg); --clip: #4A5063;
-    --duck-soft: #3A3218;
+    --duck-soft: #3A3218; --link: var(--ink);
     --accent: #EDEAE2; --accent-ink: #14161D;
     --coral-on: #14161D; --teal-on: #14161D; --mustard-on: #14161D; --violet-on: #14161D; --pink-on: #14161D;
     --wire: #2E3240; --wire-2: #454A5C; --wire-bg: #101218; --wire-frame: #1B1E27;
@@ -5471,12 +5471,12 @@ html .psych-k, html .psych .kicker, html .sn-head .sn-k {
 }
 html .sn-data .sn-k, html .sn-pad .sn-k, html .sn-plan .sn-k { margin: 0 0 0.6rem; }
 
-/* the decision: a tab on the panel's edge, in the armchair's teal, on a full outline */
+/* the decision: a tab on the panel's edge, on a full outline */
 html body .lesson { border: var(--frame-w) solid var(--frame); border-radius: var(--radius); background: var(--bg-elev); padding-top: 1.6rem; }
 html body .lesson-k {
   position: absolute; top: 0; left: 1rem; transform: translateY(-50%); display: inline-block;
   padding: 0.1rem 0.55rem; border: var(--frame-w) solid var(--frame); border-radius: 4px;
-  background: var(--chair-soft); color: var(--ink); box-shadow: none; font-size: 0.8rem;
+  background: var(--bg-sunk); color: var(--ink); box-shadow: none; font-size: 0.8rem;
 }
 html body .psych { border: var(--frame-w) solid var(--frame); background: var(--card); }
 
@@ -5484,10 +5484,6 @@ html body .psych { border: var(--frame-w) solid var(--frame); background: var(--
 html .toc a.on { background: var(--chair-soft); color: var(--ink); font-weight: 600; }
 html .toc a:hover { background: var(--bg-sunk); }
 
-/* tabs: the open one is paper, the closed ones sit back */
-html .type-tablist button, html .type-tablist.steps button { border: var(--frame-w) solid var(--frame); background: var(--bg-sunk); color: var(--ink-3); font-weight: 600; }
-html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { background: var(--bg-elev); color: var(--ink); border-bottom-color: var(--bg-elev); }
-html .type-tablist, html .type-tablist.steps { margin-bottom: calc(var(--frame-w) * -1); }
 
 /* the stroke under a heading spans the heading, and scales with it */
 html .prose h2, html .section-head h2 {
@@ -5517,11 +5513,6 @@ html body .projects .pcard:not(.pcard-flagship) {
 html:root body .projects .pcard .pcard-media-wrap:has(> .app-badge) { border: var(--frame-w) solid var(--frame); border-radius: var(--radius-s); overflow: hidden; }
 html:root body .projects .pcard .pcard-media-wrap:has(> .app-badge) > .pcard-media { border: 0; border-radius: 0; }
 
-/* tabs: a row of index cards above the panel, with no rule joining them to it */
-html .type-tablist, html .type-tablist.steps { gap: 0.4rem; margin: 0 0 0.6rem; flex-wrap: wrap; }
-html .type-tablist button, html .type-tablist.steps button { margin: 0; border-radius: var(--radius-s); border: var(--frame-w) solid var(--frame); box-shadow: none; }
-html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { border-bottom-color: var(--frame); }
-html .type-panel, html .step-panel { border-radius: var(--radius); }
 
 @media (max-width: 640px) {
   /* the facts strip: room above the first fact and below each line */
@@ -5542,18 +5533,48 @@ html .type-panel, html .step-panel { border-radius: var(--radius); }
   html body .pcard .pcard-media-wrap:has(> .pcard-note) { margin-bottom: 0; }
   html body .projects .pcard .pcard-body { padding-top: 1.35rem; }
 }
-/* tabs: the open one is filled in the armchair's teal, the others are outlines, so the choice reads at a glance */
-html .type-tablist button, html .type-tablist.steps button { background: transparent; color: var(--ink-2); border-color: var(--frame); }
-html .type-tablist button:hover, html .type-tablist.steps button:hover { background: var(--bg-sunk); color: var(--ink); }
-html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { background: var(--chair); color: var(--bg); border-color: var(--chair); }
-/* inside a plugin card the steps sit on the card itself: one frame, not two */
-html .plugin .step-panel { padding: 0.5rem 0 0; border: 0; border-radius: 0; background: none; }
-html .type-tablist, html .type-tablist.steps { background: none; padding: 0; border: 0; }
 @media (max-width: 560px) {
   /* code samples wrap on phones instead of scrolling sideways */
   html .prose pre, html .prose pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
 }
 
-/* the secondary teal on the remaining hovers, so yellow is kept for highlights */
-html .btn-ghost:hover, html .theme-toggle:hover, html .type-tablist button:hover:not([aria-selected="true"]) { background: var(--chair-soft); color: var(--ink); }
-html .toc a:hover:not(.on) { background: var(--chair-soft); }
+/* ---------- tabs ---------- */
+/* Folder tabs. The row stands on its panel's top edge, which is the line under every tab.
+   The open tab shares the panel's surface and paints over that line (::after), so tab and
+   panel read as one sheet. Closed tabs sit back in the darker paper. */
+html .type-tablist, html .type-tablist.steps {
+  position: relative; z-index: 1; display: flex; flex-wrap: nowrap; align-items: flex-end; gap: 0.3rem;
+  width: auto; max-width: none; margin: 0; padding: 0 0.9rem;
+  border: 0; border-radius: 0; background: none;
+}
+html .type-tablist button, html .type-tablist.steps button {
+  position: relative; height: auto; margin: 0; padding: 0.5rem 1rem; border: var(--frame-w) solid var(--frame); border-bottom: 0; border-radius: 8px 8px 0 0;
+  background: var(--bg-sunk); color: var(--ink-2); box-shadow: none; font-size: 0.875rem; font-weight: 600; line-height: 1.3; white-space: nowrap;
+}
+html .type-tablist button:hover:not([aria-selected="true"]) { background: color-mix(in srgb, var(--bg-sunk) 45%, var(--bg-elev)); color: var(--ink); }
+html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] {
+  background: var(--bg-elev); color: var(--ink); box-shadow: inset 0 3px 0 var(--chair);
+}
+html .type-tablist button[aria-selected="true"]::after {
+  content: ""; position: absolute; left: 0; right: 0; top: calc(100% - 1px); height: calc(var(--frame-w) + 2px); background: var(--bg-elev);
+}
+html .type-panel, html .step-panel, html .plugin .step-panel {
+  padding: 1rem; border: var(--frame-w) solid var(--frame); border-radius: var(--radius); background: var(--bg-elev);
+}
+/* a plugin is its heading and its tabbed sheet; the sheet carries the one frame */
+html .plugin { padding: 0; border: 0; border-radius: 0; background: none; }
+html .plugins { gap: 2.75rem; }
+/* Remnant's demo: the buttons beside the tabs wrap above them, so the tabs stay on the sheet */
+html .cards-demo .demo-bar { flex-wrap: wrap-reverse; align-items: flex-start; margin-bottom: 0; }
+html .cards-demo .demo-actions { margin-bottom: 0.6rem; }
+@media (max-width: 560px) {
+  /* phones: tabs share the row and a long label wraps inside its tab, so the row never scrolls */
+  html .type-tablist, html .type-tablist.steps { align-items: stretch; gap: 0.2rem; padding: 0 0.5rem; }
+  html .type-tablist button, html .type-tablist.steps button { flex: 0 1 auto; padding: 0.45rem 0.6rem; font-size: 0.8rem; line-height: 1.2; white-space: normal; }
+  html .type-panel, html .step-panel, html .plugin .step-panel { padding: 0.75rem; }
+}
+
+/* ---------- one job per colour ---------- */
+/* Teal is for finding your way: links, section numbers, the current section, the open tab,
+   the focus ring. Hover is a shade of the thing's own surface, never a second hue. */
+html .btn-ghost:hover, html .theme-toggle:hover, html .toc a:hover:not(.on) { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); }
