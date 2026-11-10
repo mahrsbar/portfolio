@@ -5374,3 +5374,130 @@ html .timeline li::before, html .timeline li:nth-child(2n)::before, html .timeli
 .about-grid .psych p { margin: 0; }
 /* long inline code (a full command or URL) may wrap */
 :not(pre) > code.wrap { white-space: normal; overflow-wrap: anywhere; }
+
+/* =====================================================================
+   The practice, refined (10 November 2026). Two inks from the scene:
+   the duck's yellow marks what the duck says (its notes, the primary
+   button, the stroke under a heading); the bug's blue, its complement,
+   marks what you can act on (links, focus, where you are). The lettering
+   face is for headings and the duck's handwriting; everything you read or
+   press is in the text face. One outline weight, softer at night, and no
+   box drawn inside another. Night is ink-blue, not aubergine.
+   ===================================================================== */
+:root {
+  --blue: #3F49B8; --blue-soft: #E4E6FB;
+  --frame: var(--ink); --frame-w: 1.5px;
+  --cover-bg: #EFE4CC; --clip: #C9CDF2;
+  --on-duck: #1E1A17;
+}
+:root[data-theme="dark"] {
+  --bg: #14161D; --bg-elev: #1B1E27; --bg-sunk: #101218; --card: #1E222C;
+  --ink: #EDEAE2; --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --line-strong: #EDEAE2;
+  --blue: #A3ACF8; --blue-soft: #262B4A; --frame: #4A5063; --cover-bg: #101218; --clip: #4A5063;
+  --duck-soft: #3A3218;
+  --accent: #EDEAE2; --accent-ink: #14161D;
+  --coral-on: #14161D; --teal-on: #14161D; --mustard-on: #14161D; --violet-on: #14161D; --pink-on: #14161D;
+  --wire: #2E3240; --wire-2: #454A5C; --wire-bg: #101218; --wire-frame: #1B1E27;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14161D; --bg-elev: #1B1E27; --bg-sunk: #101218; --card: #1E222C;
+    --ink: #EDEAE2; --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --line-strong: #EDEAE2;
+    --blue: #A3ACF8; --blue-soft: #262B4A; --frame: #4A5063; --cover-bg: #101218; --clip: #4A5063;
+    --duck-soft: #3A3218;
+    --accent: #EDEAE2; --accent-ink: #14161D;
+    --coral-on: #14161D; --teal-on: #14161D; --mustard-on: #14161D; --violet-on: #14161D; --pink-on: #14161D;
+    --wire: #2E3240; --wire-2: #454A5C; --wire-bg: #101218; --wire-frame: #1B1E27;
+  }
+}
+html body { background: var(--bg); }
+
+/* the text face for everything you read or press */
+html .nav-links a { font-family: var(--font-sans); font-weight: 500; font-size: 0.95rem; }
+html .btn { font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem; }
+html .eyebrow, html .pcard-kicker, html .toc .k, html .compare th, html .type-tablist button,
+html .type-tablist.steps button, html .skills h4 { font-family: var(--font-sans); }
+html .eyebrow, html .pcard-kicker { font-size: 0.85rem; font-weight: 500; }
+html .compare th { font-weight: 600; font-size: 0.85rem; }
+html .toc .k { font-weight: 600; font-size: 0.85rem; }
+html .sn-plan-line { font-family: var(--font-display); font-weight: 700; }
+/* the year belongs on the case page, not on the card */
+html .pcard-kicker .yr { display: none; }
+
+/* links and focus: the bug's blue */
+html a { text-decoration-color: color-mix(in srgb, var(--blue) 55%, transparent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+html .prose a, html .meta-line a, html .timeline a, html .sn a, html .lead a, html .intro-sum a, html .footer a { text-decoration-color: color-mix(in srgb, var(--blue) 55%, transparent); text-decoration-thickness: 1.5px; }
+html .prose a:hover, html .meta-line a:hover, html .timeline a:hover, html .sn a:hover, html .lead a:hover, html .intro-sum a:hover, html .footer a:hover { background: none; color: var(--blue); text-decoration-color: currentColor; }
+html .nav-links a::after { background: var(--blue); height: 2px; }
+html .btn:focus-visible, html .theme-toggle:focus-visible, html .type-tablist button:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+html .pcard:has(h3 a:focus-visible) { outline: 3px solid var(--blue); outline-offset: 4px; }
+html .pcard:hover h3 a, html .pcard:focus-within h3 a, html .pcard h3 a:hover { background: none; color: var(--blue); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+
+/* one outline weight; at night the frames are slate, not cream */
+html .btn, html .btn-ghost, html .theme-toggle { border: var(--frame-w) solid var(--frame); }
+html .btn-primary { border-color: var(--frame); background: var(--duck); color: var(--on-duck); }
+html .btn-primary:hover { background: var(--duck-dk); color: var(--on-duck); }
+html .btn-ghost { background: transparent; }
+html .btn-ghost:hover { background: var(--bg-elev); }
+html .theme-toggle { background: transparent; }
+html .theme-toggle:hover { background: var(--bg-elev); color: var(--ink); }
+html .nav.scrolled { border-bottom: 1px solid var(--line); }
+html .section + .section, html .chapter, html .rulecards, html .footer { border-top: 1px solid var(--line); }
+html .lesson + .chapter, html .psych + .chapter { border-top: 1px solid var(--line); }
+html .compare th { border-bottom: var(--frame-w) solid var(--frame); }
+html .stats, html .case-intro .highlights, html .toc, html .sn, html .clipboard, html .plugin,
+html .askdemo, html .loopfig, html .drawer, html .vs-ui, html .rc-ui, html .shot, html .case-fig img,
+html .type-panel, html .step-panel { border: var(--frame-w) solid var(--frame); }
+html .toc::before, html .sn::before, html .clipboard::before { border: var(--frame-w) solid var(--frame); background: var(--clip); }
+
+/* the case files: a paper folder with a plain tab; the cover inside sits on a hairline, not a second frame */
+html .projects .pcard.pcard-flagship { border: var(--frame-w) solid var(--frame); background: var(--bg-elev); }
+html .projects .pcard.pcard-flagship::before { border: var(--frame-w) solid var(--frame); border-radius: 4px; background: var(--bg-elev); color: var(--ink); font-family: var(--font-sans); font-weight: 600; font-size: 0.8rem; }
+html body .projects .pcard .pcard-media, html body .projects .pcard .pcard-media.cover-frame, html body .projects .pcard .pcard-media.pcard-stack,
+html body .pcard .pcard-media { border: 1px solid var(--line); border-radius: var(--radius-s); background: var(--cover-bg); }
+html body .pcard-note { font-weight: 500; }
+
+/* labels: plain text in the text face; the duck's yellow marker is kept for the duck's own notes */
+html .chapter .num, html .lesson-k, html .sn-k, html .vs-k, html .loopfig > figcaption {
+  display: block; padding: 0; background: none; box-shadow: none;
+  font-family: var(--font-sans); font-weight: 600; font-size: 0.85rem; line-height: 1.4; color: var(--ink-3);
+}
+html .chapter .num { color: var(--blue); margin-bottom: 0.35rem; }
+html .chapter .num + * { margin-top: 0; }
+html .psych-k, html .psych .kicker, html .sn-head .sn-k {
+  display: inline; padding: 0.05em 0.35em; color: var(--on-duck);
+  background: linear-gradient(to top, var(--duck) 0 80%, transparent 80%);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
+}
+html .sn-data .sn-k, html .sn-pad .sn-k, html .sn-plan .sn-k { margin: 0 0 0.6rem; }
+
+/* the decision: a tab on the panel's edge, in the bug's blue, on a full outline */
+html body .lesson { border: var(--frame-w) solid var(--frame); border-radius: var(--radius); background: var(--bg-elev); padding-top: 1.6rem; }
+html body .lesson-k {
+  position: absolute; top: 0; left: 1rem; transform: translateY(-50%); display: inline-block;
+  padding: 0.1rem 0.55rem; border: var(--frame-w) solid var(--frame); border-radius: 4px;
+  background: var(--blue-soft); color: var(--ink); box-shadow: none; font-size: 0.8rem;
+}
+html body .psych { border: var(--frame-w) solid var(--frame); background: var(--card); }
+
+/* where you are on the page */
+html .toc a.on { background: var(--blue-soft); color: var(--ink); font-weight: 600; }
+html .toc a:hover { background: var(--bg-sunk); }
+
+/* tabs: the open one is paper, the closed ones sit back */
+html .type-tablist button, html .type-tablist.steps button { border: var(--frame-w) solid var(--frame); background: var(--bg-sunk); color: var(--ink-3); font-weight: 600; }
+html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { background: var(--bg-elev); color: var(--ink); border-bottom-color: var(--bg-elev); }
+html .type-tablist, html .type-tablist.steps { margin-bottom: calc(var(--frame-w) * -1); }
+
+/* the stroke under a heading spans the heading, and scales with it */
+html .prose h2, html .section-head h2 {
+  width: fit-content; max-width: 100%; padding-bottom: 0.4rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='10' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6c30-3 62-3.5 96-2s68 1.5 100-1.5' fill='none' stroke='%23FFC93C' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom / 100% 0.28em;
+}
+
+/* the timeline on About: ink rings, the current role in yellow */
+html .timeline li::before, html .timeline li:nth-child(2n)::before, html .timeline li:nth-child(3n)::before { border: var(--frame-w) solid var(--frame); background: var(--bg-elev); }
+html .timeline li:first-child::before { background: var(--duck); }
+/* a decision that ends a chapter still closes its own panel */
+html body .chapter > .lesson:last-child, html body .lesson + .chapter > .lesson { border-bottom: var(--frame-w) solid var(--frame); }
+html body .chapter > .psych:last-child { border-bottom: var(--frame-w) solid var(--frame); }

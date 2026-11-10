@@ -22,8 +22,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261109" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261109" />
+    <link rel="stylesheet" href="../css/style.css?v=20261110" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261110" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -316,10 +316,11 @@
       .rc-steps small { margin-left: auto; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ink-3); }
       @media (prefers-reduced-motion: reduce) { .rc-cursor { display: none; } .rulecards.play .rc-chip.wrong { animation: none; display: none; } .rc-fixed, .rulecards.play .rc-fixed { animation: none; opacity: 1; } }
       /* the launcher mockup: a faint page with the assistant's card in the corner */
-      .launcher-demo { position: relative; height: 300px; margin: 1.25rem 0 0; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg); overflow: hidden; }
+      .launcher-demo { --ap-bg: #FFFFFF; --ap-sunk: #F3F4F6; --ap-line: #E6E8EC; --ap-ink: #1A1F29; --ap-ink2: #4B5563; --ap-ink3: #8A93A2; --ap-navy: #1F3A63; --ap-blue: #2F5BD6; --ap-ai: #E8553D; --ap-ai-soft: #FCE9E4; --ap-ai-text: #B8402F; --ap-ok: #1F6E5B; --ap-ok-soft: #DCEFEA;
+        position: relative; height: 300px; margin: 1.25rem 0 0; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--ap-bg); color: var(--ap-ink); overflow: hidden; }
       .ld-page { position: absolute; inset: 0; padding: 0.9rem 1.1rem; display: grid; gap: 0.4rem; align-content: start; }
-      .ld-head { display: grid; gap: 0.1rem; font-size: 0.74rem; color: var(--ink-3); }
-      .ld-head b { color: var(--ink); font-size: 0.95rem; }
+      .ld-head { display: grid; gap: 0.1rem; font-size: 0.74rem; color: var(--ap-ink3); }
+      .ld-head b { color: var(--ap-ink); font-size: 0.95rem; }
       .ld-graph { position: relative; height: 220px; }
       .ld-graph svg { height: 100%; }
       .lnch { position: absolute; right: 14px; bottom: 12px; display: flex; align-items: center; gap: 0.7rem; max-width: min(400px, calc(100% - 28px)); padding: 0.6rem 0.85rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; background: #1A1F29; color: #fff; font: inherit; text-align: left; cursor: pointer; box-shadow: 0 6px 18px rgba(26,31,41,0.3); transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease), opacity 0.2s; }
@@ -327,16 +328,16 @@
       .lnch:hover .lnch-go { transform: translateX(3px); color: #fff; }
       .lnch:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
       .lnch[aria-expanded="true"] { opacity: 0; pointer-events: none; }
-      .ld-panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(62%, 340px); padding: 0.8rem 0.9rem; border-left: 1px solid var(--line); background: var(--bg-elev); display: grid; gap: 0.5rem; align-content: start; font-size: 0.76rem; color: var(--ink-2); transform: translateX(100%); transition: transform 0.35s var(--ease); }
+      .ld-panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(62%, 340px); padding: 0.8rem 0.9rem; border-left: 1px solid var(--ap-line); background: var(--ap-bg); display: grid; gap: 0.5rem; align-content: start; font-size: 0.76rem; color: var(--ap-ink2); transform: translateX(100%); transition: transform 0.35s var(--ease); }
       .ld-panel.on { transform: none; }
       .ld-panel .lnch-mark { width: 20px; height: 20px; font-size: 0.6rem; }
-      .ld-close { margin-left: auto; border: 0; background: none; font: inherit; font-size: 1.1rem; color: var(--ink-3); cursor: pointer; }
+      .ld-close { margin-left: auto; border: 0; background: none; font: inherit; font-size: 1.1rem; color: var(--ap-ink3); cursor: pointer; }
       .ld-close:focus-visible { outline: 2px solid var(--link); }
-      .ld-read { margin: 0; color: var(--ink); }
+      .ld-read { margin: 0; color: var(--ap-ink); }
       .ld-beats { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.3rem; }
-      .ld-beats small { display: block; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ink-3); }
+      .ld-beats small { display: block; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ap-ink3); }
       .ld-follow { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-      .ld-follow span { padding: 0.3rem 0.65rem; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--ink); font-size: 0.72rem; }
+      .ld-follow span { padding: 0.3rem 0.65rem; border: 1px solid var(--ap-line); border-radius: 999px; background: var(--ap-sunk); color: var(--ap-ink); font-size: 0.72rem; }
       @media (prefers-reduced-motion: reduce) { .ld-panel, .lnch { transition: none; } }
 
       .lnch-mark { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #2F5BD6; display: grid; place-items: center; font-size: 0.8rem; }
