@@ -6221,7 +6221,7 @@ html .la-assign b { font-size: 0.62rem; color: var(--ink); }
 /* What belongs together sits close; a box (figure, mockup, table, list of boxes) always gets clear air
    before the story picks up again, so the next paragraph never reads as its caption. */
 html .prose :is(.plugins, figure, .figure, .mk, .ba, .stats, .table-scroll, .fails, .loopfig, .shots, .two-up, .callout, .type-tabs, .issues, .pipeline, .demo, .rp, .up, .wt, .askdemo, .vs, .launcher-demo, .rulecards, .mock-note)
-  + :is(p, h3, ul:not([class]), ol:not([class])) { margin-top: 2.25rem; }
+  + :is(p:not(.mock-note, .panel-cap, .phone-note, .caption), h3, ul:not([class]), ol:not([class])) { margin-top: 2.25rem; }
 html .prose :is(p, ul:not([class]), ol:not([class]))
   + :is(.plugins, figure, .figure, .mk, .ba, .stats, .table-scroll, .fails, .loopfig, .shots, .two-up, .callout, .type-tabs, .issues, .pipeline, .demo) { margin-top: 1.5rem; }
 /* plugins: one group each, with more room between plugins than inside one */
@@ -6263,3 +6263,19 @@ html .issues li b::before {
   content: counter(issue); flex: none; display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
   background: #E8553D; color: #fff; font-family: var(--font-display); font-size: 0.85rem; font-weight: 700;
 }
+
+
+/* ---------- one system for every case page ---------- */
+/* Three kinds of box, each with one look:
+   1. my cards (what I'm telling you: summary, decisions, findings, notes on psychology, stats): the ink outline;
+   2. exhibits (the product itself, recreated or captured: tab panels, demos, diagrams): a light hairline frame,
+      so the work reads as the work and the ink outline keeps its meaning;
+   3. asides (the note under a plugin): a tinted fill, no border. */
+html:root body .prose :is(.type-panel, .step-panel, .loopfig, .drawer, .launcher-demo, .rc-ui) {
+  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent); border-radius: 12px;
+}
+/* a caption belongs to the exhibit above it: close under it, one size, never italic */
+html .prose :is(.mock-note, .panel-cap, figcaption, .caption) { font-size: 0.86rem; font-style: normal; color: var(--ink-3); }
+html .prose :is(.launcher-demo, .askdemo, .loopfig, .drawer, .up, .rp, .vs, figure, .figure, .type-tabs, .demo) + :is(.mock-note, .caption) { margin-top: 0.6rem; }
+/* every card title is in the display face, as the section titles are */
+html .plugin-head h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
