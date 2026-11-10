@@ -38,7 +38,7 @@
           var w = WALLS[ORDER[0]][isDark() ? 1 : 0], b = document.body.style;
           b.setProperty("--wall", w[0]);
           b.setProperty("--wall-stripe", w[1]);
-          b.setProperty("--wallpaper", "repeating-linear-gradient(90deg, transparent 0 26px, " + w[1] + " 26px 52px)");
+          b.setProperty("--wallpaper", "repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, " + w[1] + " 40%, transparent) 26px 52px)");
         }
         function turn(e) {
           e.stopPropagation();

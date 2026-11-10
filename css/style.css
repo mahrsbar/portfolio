@@ -5852,7 +5852,8 @@ html .cards-demo .demo-bar .type-tablist, html .cards-demo .demo-actions { margi
   --skirt: #FFFDF6; --boards: #E8B974; --room-ink: #1E1A17;
   --wall-btn-ink: #FFFFFF;
   --planks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='86' viewBox='0 0 320 86'%3E%3Cg fill='none' stroke='%231E1A17' stroke-opacity='.34' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M0 26 C80 25 160 27 240 26 S300 25.5 320 26'/%3E%3Cpath d='M0 55 C100 56 200 54 320 55'/%3E%3Cpath d='M70 3 V24 M230 3 V24 M150 29 V53 M300 29 V53 M40 58 V86 M200 58 V86'/%3E%3C/g%3E%3C/svg%3E");
-  --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px);
+  /* the stripes are a whisper: 40% of the stripe colour over the wall */
+  --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px);
 }
 :root[data-theme="dark"] {
   --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA;
@@ -6099,33 +6100,33 @@ html .projects .case-tabs > span {
 /* The cases stop sharing one wall: each page takes its project's colour, so they no longer open
    on the same view. The table and pendant are gone; the object stays on the homepage folders. */
 html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after { content: none; }
-html body:has(main.hue-violet) { --wall: #D9D5F4; --wall-stripe: #D0CBF0; --on-wall-2: #34304C; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-:root[data-theme="dark"] body:has(main.hue-violet) { --wall: #201E3A; --wall-stripe: #25223F; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-violet) { --wall: #201E3A; --wall-stripe: #25223F; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
-html body:has(main.hue-coral) { --wall: #F8D6CC; --wall-stripe: #F4CCBF; --on-wall-2: #4B3029; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-:root[data-theme="dark"] body:has(main.hue-coral) { --wall: #2A1E24; --wall-stripe: #30232A; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-coral) { --wall: #2A1E24; --wall-stripe: #30232A; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
-html body:has(main.hue-pink) { --wall: #BFE4D3; --wall-stripe: #B5DECB; --on-wall-2: #2E3A35; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-:root[data-theme="dark"] body:has(main.hue-pink) { --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-pink) { --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
-html body:has(main.hue-mustard) { --wall: #CFE2F3; --wall-stripe: #C5DBEF; --on-wall-2: #2C3A4A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-:root[data-theme="dark"] body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
+html body:has(main.hue-violet) { --wall: #D9D5F4; --wall-stripe: #D0CBF0; --on-wall-2: #34304C; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-violet) { --wall: #201E3A; --wall-stripe: #25223F; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-violet) { --wall: #201E3A; --wall-stripe: #25223F; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html body:has(main.hue-coral) { --wall: #F8D6CC; --wall-stripe: #F4CCBF; --on-wall-2: #4B3029; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-coral) { --wall: #2A1E24; --wall-stripe: #30232A; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-coral) { --wall: #2A1E24; --wall-stripe: #30232A; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html body:has(main.hue-pink) { --wall: #BFE4D3; --wall-stripe: #B5DECB; --on-wall-2: #2E3A35; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-pink) { --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-pink) { --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html body:has(main.hue-mustard) { --wall: #CFE2F3; --wall-stripe: #C5DBEF; --on-wall-2: #2C3A4A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
 
 
 /* the homepage covers stand against the same wall as their case page */
-html .projects .pcard.hue-violet { --wall: #D9D5F4; --wall-stripe: #D0CBF0; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-:root[data-theme="dark"] .projects .pcard.hue-violet { --wall: #201E3A; --wall-stripe: #25223F; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-violet { --wall: #201E3A; --wall-stripe: #25223F; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
-html .projects .pcard.hue-coral { --wall: #F8D6CC; --wall-stripe: #F4CCBF; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-:root[data-theme="dark"] .projects .pcard.hue-coral { --wall: #2A1E24; --wall-stripe: #30232A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-coral { --wall: #2A1E24; --wall-stripe: #30232A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
-html .projects .pcard.hue-pink { --wall: #BFE4D3; --wall-stripe: #B5DECB; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-:root[data-theme="dark"] .projects .pcard.hue-pink { --wall: #1B2238; --wall-stripe: #1F2740; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-pink { --wall: #1B2238; --wall-stripe: #1F2740; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
-html .projects .pcard.hue-mustard { --wall: #CFE2F3; --wall-stripe: #C5DBEF; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-:root[data-theme="dark"] .projects .pcard.hue-mustard { --wall: #18263A; --wall-stripe: #1C2B41; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-mustard { --wall: #18263A; --wall-stripe: #1C2B41; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
+html .projects .pcard.hue-violet { --wall: #D9D5F4; --wall-stripe: #D0CBF0; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-violet { --wall: #201E3A; --wall-stripe: #25223F; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-violet { --wall: #201E3A; --wall-stripe: #25223F; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html .projects .pcard.hue-coral { --wall: #F8D6CC; --wall-stripe: #F4CCBF; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-coral { --wall: #2A1E24; --wall-stripe: #30232A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-coral { --wall: #2A1E24; --wall-stripe: #30232A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html .projects .pcard.hue-pink { --wall: #BFE4D3; --wall-stripe: #B5DECB; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-pink { --wall: #1B2238; --wall-stripe: #1F2740; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-pink { --wall: #1B2238; --wall-stripe: #1F2740; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html .projects .pcard.hue-mustard { --wall: #CFE2F3; --wall-stripe: #C5DBEF; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-mustard { --wall: #18263A; --wall-stripe: #1C2B41; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-mustard { --wall: #18263A; --wall-stripe: #1C2B41; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
 
 /* where the wall meets the skirting: the bar keeps the wallpaper until exactly here (main.js) */
 html .wall-end { position: absolute; left: 0; width: 1px; height: 0; pointer-events: none; bottom: calc(var(--room-floor) + var(--room-skirt)); }
