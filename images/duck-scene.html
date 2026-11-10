@@ -599,8 +599,8 @@
         <circle cx="677" cy="-146" r="1.6" fill="var(--line)"/>
       </g>
 
-      <!-- lamp, beside the patient's chair: click it to switch the lights (dark mode) on and off -->
-      <g class="lamp" id="lamp" transform="translate(-600 0)" tabindex="0" role="button" aria-label="Lamp: switch between light and dark mode">
+      <!-- lamp, at the far end of the sofa: click it to switch the lights (dark mode) on and off -->
+      <g class="lamp" id="lamp" transform="translate(-700 0)" tabindex="0" role="button" aria-label="Lamp: switch between light and dark mode">
         <g class="lamp-on">
           <polygon class="lamp-light" points="722,172 778,172 830,420 670,420" fill="url(#cone)" mask="url(#cone-mask)"/>
           <g class="motes" fill="var(--glow)">
@@ -656,22 +656,23 @@
       </g>
 
       <!-- ===== the talking cure ===== -->
-      <ellipse cx="312" cy="424" rx="118" ry="7" fill="var(--line)" opacity=".18"/>
-      <!-- the patient's armchair: the same chair as the duck's, in coral, the two facing each other -->
+      <ellipse cx="263" cy="424" rx="168" ry="7" fill="var(--line)" opacity=".18"/>
+      <!-- the patient's sofa: built like the duck's armchair, in coral, long enough to lie down on -->
       <g class="couch">
-        <rect class="ink" x="224" y="356" width="18" height="64" rx="6" fill="var(--wood)"/>
+        <rect class="ink" x="126" y="356" width="18" height="64" rx="6" fill="var(--wood)"/>
         <rect class="ink" x="382" y="356" width="18" height="64" rx="6" fill="var(--wood)"/>
-        <rect class="ink" x="224" y="168" width="176" height="180" rx="46" fill="var(--couch)"/><path class="shine" d="M240 206 q4 -20 24 -26" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
-        <path d="M262 200 C292 190 332 190 362 200" fill="none" stroke="var(--line)" stroke-width="1.88" stroke-dasharray="5 7" opacity=".45"/>
-        <rect class="cushion anim ink" x="230" y="300" width="164" height="62" rx="20" fill="var(--couch-hi)"/>
-        <ellipse cx="312" cy="331" rx="52" ry="7" fill="var(--line)" opacity=".18"/>
+        <rect class="ink" x="126" y="176" width="274" height="172" rx="46" fill="var(--couch)"/><path class="shine" d="M142 214 q4 -20 24 -26" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
+        <path d="M168 206 C220 196 306 196 358 206" fill="none" stroke="var(--line)" stroke-width="1.88" stroke-dasharray="5 7" opacity=".45"/>
+        <rect class="cushion anim ink" x="132" y="300" width="262" height="62" rx="20" fill="var(--couch-hi)"/>
+        <path d="M263 304 V358" stroke="var(--line)" stroke-width="1.88" opacity=".35"/>
+        <ellipse cx="270" cy="331" rx="100" ry="7" fill="var(--line)" opacity=".18"/>
       </g>
 
       <g class="patient" id="patient" tabindex="0" role="button" aria-label="Start a session with the bug">
-        <!-- sitting in its armchair, turned a little toward the duck -->
+        <!-- lying down on the sofa, head on the armrest nearest the duck -->
         <!-- a still target: the bug pops up on hover, and without this its feet would slide out from under the pointer -->
-        <rect class="hit" x="246" y="122" width="136" height="216" fill="transparent"/>
-        <g transform="translate(50 40) rotate(5 262 292)"><g class="pop">
+        <rect class="hit" x="170" y="190" width="240" height="140" fill="transparent"/>
+        <g transform="translate(36 62) rotate(74 262 225)"><g class="pop">
         <g class="torso anim">
           <!-- glossy domed shell, peeking out both sides -->
           <ellipse class="ink" cx="262" cy="240" rx="48" ry="42" fill="var(--bug)"/>
@@ -718,7 +719,7 @@
       </g></g>
       </g>
       <!-- its arms come up in front of the bug, as the duck's chair does -->
-      <rect class="ink" x="200" y="250" width="44" height="114" rx="20" fill="var(--couch)"/>
+      <rect class="ink" x="102" y="250" width="44" height="114" rx="20" fill="var(--couch)"/>
       <rect class="ink" x="380" y="250" width="44" height="114" rx="20" fill="var(--couch)"/>
 
       <!-- ===== rubber duck debugging ===== -->
@@ -796,7 +797,7 @@
   const isEmbed = document.documentElement.classList.contains('embed');
   const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 672 : 726;
   if (isEmbed) document.querySelector('.stage svg').setAttribute('viewBox', `0 ${VB_Y} ${VB_W} ${VB_H}`);
-  const PATIENT_AT = [312, 148], DUCK_AT = [578, 156];
+  const PATIENT_AT = [340, 196], DUCK_AT = [578, 156];
   const bubbles = document.getElementById('bubbles');
   const duck = document.getElementById('duck');
   const patient = document.getElementById('patient');
@@ -1048,7 +1049,7 @@
   // ...and only then the bug answers, in its own bubble: tap me! (tapping it, or the bug, starts the session)
   setTimeout(() => {
     if (i || busy) return;
-    isNarrow() ? say('tap me!', [222, 196], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
+    isNarrow() ? say('tap me!', [236, 196], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
   }, reduced ? 0 : 2000);
 })();
 </script>
