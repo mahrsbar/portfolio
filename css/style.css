@@ -5542,3 +5542,14 @@ html .type-panel, html .step-panel { border-radius: var(--radius); }
   html body .pcard .pcard-media-wrap:has(> .pcard-note) { margin-bottom: 0; }
   html body .projects .pcard .pcard-body { padding-top: 1.35rem; }
 }
+/* tabs: the open one is filled in ink, the others are outlines, so the choice reads at a glance */
+html .type-tablist button, html .type-tablist.steps button { background: transparent; color: var(--ink-2); border-color: var(--frame); }
+html .type-tablist button:hover, html .type-tablist.steps button:hover { background: var(--bg-sunk); color: var(--ink); }
+html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+/* inside a plugin card the steps sit on the card itself: one frame, not two */
+html .plugin .step-panel { padding: 0.5rem 0 0; border: 0; border-radius: 0; background: none; }
+html .type-tablist, html .type-tablist.steps { background: none; padding: 0; border: 0; }
+@media (max-width: 560px) {
+  /* code samples wrap on phones instead of scrolling sideways */
+  html .prose pre, html .prose pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+}
