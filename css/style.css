@@ -5980,7 +5980,7 @@ html .eyebrow .case-no { color: var(--ink); }
 [data-prop="papers"] { --prop: url("../images/room/papers.svg"); }
 [data-prop="house"] { --prop: url("../images/room/house.svg"); }
 [data-prop="arcade"] { --prop: url("../images/room/arcade.svg"); }
-[data-prop="knight"] { --prop: url("../images/room/knight.svg"); }
+[data-prop="tower"] { --prop: url("../images/room/tower.svg"); }
 [data-prop="megaphone"] { --prop: url("../images/room/megaphone.svg"); }
 [data-prop="books"] { --prop: url("../images/room/books.svg"); }
 [data-prop="plant"] { --prop: url("../images/room/plant.svg"); }
