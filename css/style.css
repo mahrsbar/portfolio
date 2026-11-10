@@ -6245,3 +6245,5 @@ html:root body .case-intro .highlights + .meta-line {
   margin-top: 0; padding: 0.95rem 1rem 1rem; border: var(--frame-w) solid var(--frame); border-top: 1px solid var(--line);
   border-radius: 0 0 var(--radius) var(--radius); background: var(--bg-elev);
 }
+/* the labels in the role card are handwritten, like the case plaque and the notes */
+html:root body .case-intro .meta-line dt { font-family: var(--font-display); font-weight: 600; letter-spacing: 0; }
