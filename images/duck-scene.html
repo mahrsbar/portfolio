@@ -689,6 +689,8 @@
       </g>
 
       <g class="patient" id="patient" tabindex="0" role="button" aria-label="Start a session with the bug">
+        <!-- reclined against the raised end of the couch, turned toward the duck -->
+        <g transform="translate(-16 6) rotate(-20 262 292)">
         <g class="torso anim">
           <!-- glossy domed shell, peeking out both sides -->
           <ellipse class="ink" cx="262" cy="240" rx="48" ry="42" fill="var(--bug)"/>
@@ -732,6 +734,7 @@
           <path class="smile" d="M263 208 q6 5 12 0" fill="none" stroke="var(--line)" stroke-width="1.88" stroke-linecap="round"/>
           <ellipse class="mouth anim" cx="269" cy="210" rx="4" ry="3.5" fill="var(--line)"/>
         </g>
+      </g>
       </g>
 
       <!-- ===== rubber duck debugging ===== -->
@@ -806,7 +809,7 @@
   const isEmbed = document.documentElement.classList.contains('embed');
   const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 672 : 726;
   if (isEmbed) document.querySelector('.stage svg').setAttribute('viewBox', `0 ${VB_Y} ${VB_W} ${VB_H}`);
-  const PATIENT_AT = [262, 116], DUCK_AT = [578, 156];
+  const PATIENT_AT = [226, 120], DUCK_AT = [578, 156];
   const bubbles = document.getElementById('bubbles');
   const duck = document.getElementById('duck');
   const patient = document.getElementById('patient');
@@ -1058,7 +1061,7 @@
   // ...and only then the bug answers, in its own bubble: tap me! (tapping it, or the bug, starts the session)
   setTimeout(() => {
     if (i || busy) return;
-    isNarrow() ? say('tap me!', [146, 188], 'invite', '86%') : say('tap me!', PATIENT_AT, 'invite', '50%');
+    isNarrow() ? say('tap me!', [112, 172], 'invite', '72%') : say('tap me!', PATIENT_AT, 'invite', '50%');
   }, reduced ? 0 : 2000);
 })();
 </script>
