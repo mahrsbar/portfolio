@@ -5973,9 +5973,9 @@ html .case-hero:has(> .tldr) .room-lamp { bottom: auto; top: calc(1.5rem + 96px)
 html .eyebrow .case-no { color: var(--ink); }
 
 /* which object goes with which file */
-[data-prop="blocks"] { --prop: url("../images/room/blocks.svg"); }
-[data-prop="bell"] { --prop: url("../images/room/bell.svg"); }
-[data-prop="cards"] { --prop: url("../images/room/cards.svg"); }
+[data-prop="swatches"] { --prop: url("../images/room/swatches.svg"); }
+[data-prop="map"] { --prop: url("../images/room/map.svg"); }
+[data-prop="rolodex"] { --prop: url("../images/room/rolodex.svg"); }
 [data-prop="stamp"] { --prop: url("../images/room/stamp.svg"); }
 [data-prop="tv"] { --prop: url("../images/room/tv.svg"); }
 [data-prop="loaf"] { --prop: url("../images/room/mochi.svg"); }
@@ -5985,7 +5985,7 @@ html .eyebrow .case-no { color: var(--ink); }
 [data-prop="house"] { --prop: url("../images/room/house.svg"); }
 [data-prop="arcade"] { --prop: url("../images/room/arcade.svg"); }
 [data-prop="sword"] { --prop: url("../images/room/sword.svg"); }
-[data-prop="megaphone"] { --prop: url("../images/room/megaphone.svg"); }
+[data-prop="postbox"] { --prop: url("../images/room/postbox.svg"); }
 [data-prop="books"] { --prop: url("../images/room/books.svg"); }
 [data-prop="plant"] { --prop: url("../images/room/plant.svg"); }
 
