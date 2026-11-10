@@ -244,11 +244,8 @@
   .bubble { pointer-events: auto; cursor: pointer; }
   .bubble:not(.out):hover { translate: 0 -2px; }
   /* the bug has an answer ready and is waiting to be asked for it */
-  .bubble.dots { display: flex; gap: .34em; padding: .75em .85em; }
-  .bubble.dots i { width: .44em; height: .44em; border-radius: 50%; background: #1E1A17; animation: dot 1.2s ease-in-out infinite; }
-  .bubble.dots i:nth-child(2) { animation-delay: .15s; }
-  .bubble.dots i:nth-child(3) { animation-delay: .3s; }
-  @keyframes dot { 0%, 60%, 100% { translate: 0 0; opacity: .4; } 30% { translate: 0 -.32em; opacity: 1; } }
+  .bubble.invite { font-weight: 800; --tilt: -4deg; animation: pop .35s cubic-bezier(.3,1.7,.5,1) both, invite 1.6s ease-in-out .5s infinite; }
+  @keyframes invite { 0%, 100% { translate: 0 0; } 50% { translate: 0 -4px; } }
   @container (max-width: 560px) {
     .bubble { max-width: 34cqw; font-size: 11px; padding: .45em .65em; }
   }
@@ -295,25 +292,10 @@
   .motion-toggle .i-play, .paused .motion-toggle .i-pause { display: none; }
   .paused .motion-toggle .i-play { display: inline; }
   html.paused :is(.cloud, .rain line, .city circle, .lamp-light, .mote, .leaf, .cushion, .torso, .feet, .chair, .eye, .p-eye, .tail,
-    .duck-feet, .code, .pen, .antennae, .nudge, .bubble.dots i) { animation: none !important; }
+    .duck-feet, .code, .pen, .antennae, .bubble.invite) { animation: none !important; }
   html.paused .duck:not(.squeak), html.paused .cord:not(.tug) { animation: none; }
   html.paused .code { stroke-dashoffset: 0; }
 
-  /* first-visit nudge beside the bug: stays until the bug itself is tapped */
-  .nudge {
-    position: absolute;
-    font: 700 clamp(13px, 2.4cqw, 19px) "Shantell Sans", sans-serif;
-    color: var(--text);
-    white-space: nowrap;
-    pointer-events: none;
-    transform: translate(0, -50%) rotate(-8deg);
-    animation: nudge 1.4s ease-in-out infinite;
-    transition: opacity .3s;
-  }
-  .nudge.waiting { opacity: 0; }
-  /* anchored by its right edge, so it never reaches the antennae */
-  .nudge.end { transform: translate(-100%, -50%) rotate(-6deg); transform-origin: 100% 50%; }
-  @keyframes nudge { 0%, 100% { translate: 0 0; } 50% { translate: 4px -3px; } }
 
   /* Everything clickable answers the pointer the way the cabinet's drawer does: it moves toward you.
      The same move plays by itself now and then (.peek) while the room sits idle, for touch screens. */
@@ -457,7 +439,6 @@
   [data-style="blueprint"] .duck .ink { stroke: #FFE14D; }
   [data-style="blueprint"] .bubble { background: #EAF2FF; color: #17407A; border-color: #EAF2FF; box-shadow: none; }
   [data-style="blueprint"] .bubble::after { background: #EAF2FF; border-color: #EAF2FF; }
-  [data-style="blueprint"] .nudge { color: #EAF2FF; }
 
   /* embedded in the homepage hero: no page chrome, the host page owns the background */
   html.embed body { display: block; min-height: 0; padding: 0; background: transparent; }
@@ -958,7 +939,6 @@
   function session() {
     if (busy) return;
     busy = true;
-    uninvite();
     tell('session');
     const [human, duckLine] = SESSIONS[i++ % SESSIONS.length];
     const narrow = isNarrow();
@@ -1054,18 +1034,8 @@
     setInterval(() => { if (!document.documentElement.classList.contains('paused') && !document.hidden) tick(); }, 1000);
   })();
 
-  // a nudge next to the bug, until the bug itself is tapped
-  const nudge = document.createElement('span');
-  nudge.className = 'nudge end waiting'; // fades in after the duck's opening question
-  nudge.setAttribute('aria-hidden', 'true');
-  nudge.textContent = 'tap me! ↘\uFE0E';
-  bubbles.appendChild(nudge);
-  const placeNudge = () => Object.assign(nudge.style, pct([206, 140]));
-  placeNudge();
-  addEventListener('resize', placeNudge);
   fitWall();
   addEventListener('resize', fitWall);
-  function uninvite() { nudge.classList.add('waiting'); }
 
   // while the room sits idle, the clickable things take turns making their hover move, so a
   // touch screen (no hover) still shows what's alive; the bug every other turn, the rest until tried
@@ -1085,11 +1055,10 @@
 
   // the duck opens the session, then waits for the visitor
   setTimeout(() => { duckNods(); isNarrow() ? say('so… what brings you in?', NARROW_AT, 'duck-says wide', '76%') : say('so… what brings you in?', DUCK_AT, 'duck-says', '34%'); }, reduced ? 0 : 900);
-  // ...and only then the bug has something to say: a waiting bubble, and the nudge
+  // ...and only then the bug answers, in its own bubble: tap me! (tapping it, or the bug, starts the session)
   setTimeout(() => {
     if (i || busy) return;
-    nudge.classList.remove('waiting');
-    if (!isNarrow()) say('<i></i><i></i><i></i>', PATIENT_AT, 'dots', '50%');
+    isNarrow() ? say('tap me!', [146, 188], 'invite', '86%') : say('tap me!', PATIENT_AT, 'invite', '50%');
   }, reduced ? 0 : 2000);
 })();
 </script>
