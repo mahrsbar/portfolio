@@ -5422,7 +5422,8 @@ html .compare th { font-weight: 600; font-size: 0.85rem; }
 html .toc .k { font-weight: 600; font-size: 0.85rem; }
 html .sn-plan-line { font-family: var(--font-display); font-weight: 700; }
 /* the year belongs on the case page, not on the card */
-html .pcard-kicker .yr { display: none; }
+/* the year each piece of work was done, after its kind */
+html .pcard-kicker .yr { display: inline; white-space: nowrap; }
 
 /* links and focus: the armchair's teal */
 html a { text-decoration-color: color-mix(in srgb, var(--chair) 55%, transparent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
