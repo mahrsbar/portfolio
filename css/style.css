@@ -5372,3 +5372,5 @@ html .timeline::before { background: var(--line); }
 html .timeline li::before, html .timeline li:nth-child(2n)::before, html .timeline li:nth-child(3n)::before { border-color: var(--ink); background: var(--duck); }
 .skills h4 { font-family: var(--font-display); font-weight: 600; }
 .about-grid .psych p { margin: 0; }
+/* long inline code (a full command or URL) may wrap */
+:not(pre) > code.wrap { white-space: normal; overflow-wrap: anywhere; }
