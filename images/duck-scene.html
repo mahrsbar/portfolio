@@ -327,7 +327,7 @@
   }
 
   /* diplomas zoom, lamp switches the lights */
-  .diploma { cursor: zoom-in; outline: none; transform-origin: 50% 0%; transition: transform .28s cubic-bezier(.3,1.6,.5,1); }
+  .diploma { cursor: pointer; outline: none; transform-origin: 50% 0%; transition: transform .28s cubic-bezier(.3,1.6,.5,1); }
   .diploma + .diploma.peek { transition-delay: .12s; }
   .diploma:is(:hover, :focus-visible, .peek) { transform: translateY(-9px) rotate(-3deg) scale(1.1); }
   .diploma:focus-visible > rect:first-child, .lamp:focus-visible .shade { stroke: var(--chair); stroke-width: 6; }
