@@ -5978,7 +5978,7 @@ html .eyebrow .case-no { color: var(--ink); }
 [data-prop="cards"] { --prop: url("../images/room/cards.svg"); }
 [data-prop="stamp"] { --prop: url("../images/room/stamp.svg"); }
 [data-prop="tv"] { --prop: url("../images/room/tv.svg"); }
-[data-prop="loaf"] { --prop: url("../images/room/loaf.svg"); }
+[data-prop="loaf"] { --prop: url("../images/room/mochi.svg"); }
 [data-prop="globe"] { --prop: url("../images/room/globe.svg"); }
 [data-prop="pencils"] { --prop: url("../images/room/pencils.svg"); }
 [data-prop="papers"] { --prop: url("../images/room/papers.svg"); }
@@ -6067,3 +6067,25 @@ html body { overflow-x: clip; }
   html .projects .case-drawer { margin-bottom: 0; }
   html .projects .pcard:not(.pcard-flagship)[data-prop]:not(:first-child) { margin-top: 5rem; }
 }
+
+/* ---------- the drawer's tabs, on every folder ---------- */
+/* Each folder shows the whole row: its own tab in the duck's yellow, the rest as the paper edges of the
+   files behind it. They are labels, not controls, so they sit flat, quiet, and ignore the pointer.
+   Same size in every state, so as one folder files over the last the row stays put and only the yellow moves. */
+html .projects .case-drawer > .pcard.pcard-flagship::before { display: none; }
+html .projects .case-tabs {
+  position: absolute; left: 1.25rem; bottom: calc(100% + var(--frame-w)); display: flex; gap: 0.3rem;
+  margin: 0; pointer-events: none; user-select: none; cursor: default;
+}
+html .projects .case-tabs > * {
+  box-sizing: border-box; height: var(--tab-h); padding: 0.3rem 0.95rem 0;
+  border: var(--frame-w) solid color-mix(in srgb, var(--frame) 28%, var(--bg)); border-bottom: 0; border-radius: 9px 9px 0 0;
+  background: var(--bg); color: var(--ink-soft);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; line-height: 1.45; white-space: nowrap;
+}
+html .projects .case-tabs > b { border-color: var(--frame); background: var(--duck); color: var(--on-duck); }
+@media (max-width: 560px) {
+  html .projects .case-tabs { left: 0.75rem; gap: 0.2rem; }
+  html .projects .case-tabs > * { padding: 0.25rem 0.55rem 0; font-size: 0.8rem; }
+}
+@media (min-width: 920px) and (min-height: 740px) { html .projects .case-drawer { --drawer-step: 0rem; } }
