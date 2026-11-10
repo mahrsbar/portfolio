@@ -6232,9 +6232,9 @@ html .plugin-head .plugin-why { margin-top: 1rem; }
 html .plugin .type-tablist { margin-bottom: 0.75rem; }
 
 /* design-system plugins: the number and what it's for live in the title, not in an eyebrow above it */
-html .plugin-head h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 0.5rem; }
+html .plugin-head h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 0.5rem; line-height: 1.25; }
 html .plugin-no {
-  display: inline-grid; place-items: center; flex: none; align-self: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  display: inline-grid; place-items: center; flex: none; align-self: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; translate: 0 -0.05em;
   background: var(--duck); color: var(--on-duck); font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
 }
 html .plugin-for { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--ink-3); }
@@ -6247,3 +6247,19 @@ html:root body .case-intro .highlights + .meta-line {
 }
 /* the labels in the role card are handwritten, like the case plaque and the notes */
 html:root body .case-intro .meta-line dt { font-family: var(--font-display); font-weight: 600; letter-spacing: 0; }
+
+/* the note under each plugin takes the page's own colour, not the duck's yellow */
+html .plugin-head .plugin-why { background: color-mix(in srgb, var(--wall) 55%, var(--bg-elev)); }
+
+/* the six ways version one failed: outline cards like the rest of the site, each numbered in a coral
+   badge (these are problems), the finding in the handwriting font */
+html .issues { gap: 1rem; }
+html .issues li {
+  padding: 1rem 1.15rem 1.1rem; border: var(--frame-w) solid var(--frame); border-radius: var(--radius); background: var(--bg-elev);
+  color: var(--ink-2); line-height: 1.55;
+}
+html .issues li b { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; font-family: var(--font-display); font-size: 1.05rem; line-height: 1.3; color: var(--ink); }
+html .issues li b::before {
+  content: counter(issue); flex: none; display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  background: #E8553D; color: #fff; font-family: var(--font-display); font-size: 0.85rem; font-weight: 700;
+}
