@@ -5387,13 +5387,13 @@ html .timeline li::before, html .timeline li:nth-child(2n)::before, html .timeli
 :root {
   --chair: #1B655D; --chair-soft: #DCEEE9;
   --frame: var(--ink); --frame-w: 1.5px;
-  --cover-bg: #FFEDB8; --clip: #B9DED6;
+  --cover-bg: #D5EAE3; --clip: #B9DED6;
   --on-duck: #1E1A17;
 }
 :root[data-theme="dark"] {
   --bg: #14161D; --bg-elev: #1B1E27; --bg-sunk: #101218; --card: #1E222C;
   --ink: #EDEAE2; --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --line-strong: #EDEAE2;
-  --chair: #7CCBBE; --chair-soft: #183330; --frame: #4A5063; --cover-bg: #262A36; --clip: #4A5063;
+  --chair: #7CCBBE; --chair-soft: #183330; --frame: #4A5063; --cover-bg: #1D3B37; --clip: #4A5063;
   --duck-soft: #3A3218;
   --accent: #EDEAE2; --accent-ink: #14161D;
   --coral-on: #14161D; --teal-on: #14161D; --mustard-on: #14161D; --violet-on: #14161D; --pink-on: #14161D;
@@ -5403,7 +5403,7 @@ html .timeline li::before, html .timeline li:nth-child(2n)::before, html .timeli
   :root:not([data-theme="light"]) {
     --bg: #14161D; --bg-elev: #1B1E27; --bg-sunk: #101218; --card: #1E222C;
     --ink: #EDEAE2; --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --line-strong: #EDEAE2;
-    --chair: #7CCBBE; --chair-soft: #183330; --frame: #4A5063; --cover-bg: #262A36; --clip: #4A5063;
+    --chair: #7CCBBE; --chair-soft: #183330; --frame: #4A5063; --cover-bg: #1D3B37; --clip: #4A5063;
     --duck-soft: #3A3218;
     --accent: #EDEAE2; --accent-ink: #14161D;
     --coral-on: #14161D; --teal-on: #14161D; --mustard-on: #14161D; --violet-on: #14161D; --pink-on: #14161D;
@@ -5450,7 +5450,7 @@ html .askdemo, html .loopfig, html .drawer, html .vs-ui, html .rc-ui, html .shot
 html .type-panel, html .step-panel { border: var(--frame-w) solid var(--frame); }
 html .toc::before, html .sn::before, html .clipboard::before { border: var(--frame-w) solid var(--frame); background: var(--clip); }
 
-/* the case files: a paper folder with the duck's yellow tab; the cover sits in ink on the duck's pale yellow */
+/* the case files: a paper folder with the duck's yellow tab; the cover sits in ink on the armchair's soft teal */
 html .projects .pcard.pcard-flagship { border: var(--frame-w) solid var(--frame); background: var(--bg-elev); }
 html .projects .pcard.pcard-flagship::before { border: var(--frame-w) solid var(--frame); background: var(--duck); color: var(--on-duck); }
 html:root body .projects .pcard .pcard-media, html:root body .projects .pcard .pcard-media.cover-frame, html:root body .projects .pcard .pcard-media.pcard-stack,
@@ -5542,10 +5542,10 @@ html .type-panel, html .step-panel { border-radius: var(--radius); }
   html body .pcard .pcard-media-wrap:has(> .pcard-note) { margin-bottom: 0; }
   html body .projects .pcard .pcard-body { padding-top: 1.35rem; }
 }
-/* tabs: the open one is filled in ink, the others are outlines, so the choice reads at a glance */
+/* tabs: the open one is filled in the armchair's teal, the others are outlines, so the choice reads at a glance */
 html .type-tablist button, html .type-tablist.steps button { background: transparent; color: var(--ink-2); border-color: var(--frame); }
 html .type-tablist button:hover, html .type-tablist.steps button:hover { background: var(--bg-sunk); color: var(--ink); }
-html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { background: var(--chair); color: var(--bg); border-color: var(--chair); }
 /* inside a plugin card the steps sit on the card itself: one frame, not two */
 html .plugin .step-panel { padding: 0.5rem 0 0; border: 0; border-radius: 0; background: none; }
 html .type-tablist, html .type-tablist.steps { background: none; padding: 0; border: 0; }
@@ -5553,3 +5553,7 @@ html .type-tablist, html .type-tablist.steps { background: none; padding: 0; bor
   /* code samples wrap on phones instead of scrolling sideways */
   html .prose pre, html .prose pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
 }
+
+/* the secondary teal on the remaining hovers, so yellow is kept for highlights */
+html .btn-ghost:hover, html .theme-toggle:hover, html .type-tablist button:hover:not([aria-selected="true"]) { background: var(--chair-soft); color: var(--ink); }
+html .toc a:hover:not(.on) { background: var(--chair-soft); }
