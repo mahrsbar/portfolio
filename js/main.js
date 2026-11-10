@@ -259,12 +259,24 @@
     });
   }
 
-  /* ---- Section links: jump, then drop the #hash so a refresh starts where you are, not at the section ---- */
+  /* ---- Section links: jump, then drop the #hash so a refresh starts where you are, not at the section.
+          On load, land on the target ourselves: the browser's own jump can be lost while images and demos lay out. ---- */
   function clearHash() {
     if (location.hash) history.replaceState(null, "", location.pathname + location.search);
   }
+  function landOnHash() {
+    var id = location.hash ? decodeURIComponent(location.hash.slice(1)) : "";
+    var target = id && document.getElementById(id);
+    if (target) {
+      target.scrollIntoView();
+      setTimeout(function () {
+        if (Math.abs(target.getBoundingClientRect().top - 90) > 40) target.scrollIntoView();
+      }, 600);
+    }
+    clearHash();
+  }
   window.addEventListener("hashchange", clearHash);
-  window.addEventListener("load", clearHash);
+  window.addEventListener("load", landOnHash);
 
   document.addEventListener("DOMContentLoaded", function () {
     bindToggle();

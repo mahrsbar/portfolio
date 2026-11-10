@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Five ways to get a Figma design in front of Claude — Mahrs Aslam</title>
+    <meta name="description" content="Paste a picture, connect the Figma MCP server, import a design system into Claude Design, or export a handoff bundle: what Claude actually receives from each, what gets lost, and which one I use when." />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Mahrs Aslam" />
+    <meta property="og:title" content="Five ways to get a Figma design in front of Claude — Mahrs Aslam" />
+    <meta property="og:description" content="Paste a picture, connect the Figma MCP server, import a design system into Claude Design, or export a handoff bundle: what Claude actually receives from each, what gets lost, and which one I use when." />
+    <meta property="og:url" content="https://mahrsbar.github.io/portfolio/writing/figma-to-claude.html" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
+    />
+    <link rel="stylesheet" href="../css/style.css?v=20261109" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261109" />
+    <script>
+      try {
+        var t = localStorage.getItem("mahrs-theme");
+        if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    </script>
+    <style>
+      .compare td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+      @media (max-width: 640px) { .compare td:first-child { white-space: normal; } }
+      .prose .way { margin-top: 2.75rem; }
+      .prose .way h2 { margin-bottom: 0.35rem; }
+      .prose .way .gets { margin: 0 0 1rem; font-size: 0.92rem; color: var(--ink-3); }
+      .prose .way .gets b { color: var(--ink-2); font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="../index.html" aria-label="Mahrs Aslam, home">
+          <span class="wordmark">mahrs<span class="dot">.</span></span>
+        </a>
+        <nav aria-label="Primary">
+          <ul class="nav-links">
+            <li><a href="../index.html#work" data-section="/work/">Work</a></li>
+            <!-- Writing hidden for now: <li><a href="index.html" data-section="/writing/">Writing</a></li> -->
+            <li><a href="../about.html">About</a></li>
+            <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li>
+              <button class="theme-toggle" type="button" aria-label="Switch theme">
+                <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+                <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="hue-violet">
+      <section class="wrap post-hero">
+        <p class="eyebrow">Writing · Design to code</p>
+        <h1>Five ways to get a Figma design in front of Claude</h1>
+        <p class="byline">October 2026</p>
+      </section>
+
+      <section class="wrap" style="padding-bottom: clamp(3rem, 8vw, 6rem)">
+        <div class="prose">
+          <p class="lead">
+            "How do I send a Figma file to Claude?" hides a choice: how much of the design should Claude actually
+            receive? A picture, the exact values, the variables, the real icons? Five ways, what each one hands
+            over, what it drops, and when I use it.
+          </p>
+
+          <div class="table-scroll">
+            <table class="compare">
+              <thead><tr><th>Way</th><th>What Claude gets</th><th>What it loses</th><th>When I use it</th></tr></thead>
+              <tbody>
+                <tr><td>1 · Paste a picture</td><td>The layout, at a glance</td><td>Every exact value; the icons; the variables</td><td>Early ideas, throwaway prototypes</td></tr>
+                <tr><td>2 · Figma MCP server</td><td>Structure, values, variables, a screenshot</td><td>Your components, unless you map them</td><td>Building the real screen in the codebase</td></tr>
+                <tr><td>3 · The Figma skills</td><td>Pre-written instructions for the server</td><td>Nothing; it's the server, made easier</td><td>Writing back to Figma, Code Connect</td></tr>
+                <tr><td>4 · A design system in Claude Design</td><td>Your tokens and components, as code</td><td>Live sync with Figma</td><td>Generating new screens that follow the system</td></tr>
+                <tr><td>5 · A handoff bundle</td><td>Exact spec, real assets, a ground truth</td><td>It's a snapshot</td><td>One screen, pixel-faithful, nothing leaves the machine</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="way">
+            <h2>1. Paste a picture</h2>
+            <p class="gets"><b>Setup:</b> none. <b>Fidelity:</b> low. <b>Direction:</b> Figma → Claude, Claude Design or Claude Code.</p>
+            <p>
+              Export the frame as a PNG (or copy it as one) and paste it into the chat, or into a Claude Design
+              project as a reference image. Claude Design is built for this: screenshots, wireframes and
+              competitor products are exactly the context it asks for.
+            </p>
+            <p>
+              What you get is a model looking at a picture. It will reproduce the layout convincingly and
+              approximate everything else. Colours come back close but not exact, spacing gets rounded to whatever
+              the model considers normal, icons get redrawn from memory or swapped for a library that "looks
+              similar", and the text is retyped. Pasting an SVG instead of a PNG keeps the vectors but tells
+              Claude nothing about layout.
+            </p>
+            <p>
+              That's fine when the design is an idea rather than a spec. For "make me something like this", a
+              picture is the fastest input there is. For "make me exactly this", it's where every round of
+              feedback begins.
+            </p>
+          </div>
+
+          <div class="way">
+            <h2>2. Connect the Figma MCP server</h2>
+            <p class="gets"><b>Setup:</b> one command. <b>Fidelity:</b> high. <b>Direction:</b> Figma → Claude Code (not Claude Design).</p>
+            <p>
+              Figma's MCP server lets an agent read a file directly. In Claude Code the recommended path is the
+              Figma plugin, which bundles the server settings and the skills below; the manual route is
+              <code>claude mcp add --transport http figma https://mcp.figma.com/mcp</code>. Then you paste a link
+              to a frame or a layer and ask for it to be implemented. Claude Code can't follow the link, but the
+              server extracts the node from it.
+            </p>
+            <p>
+              The server's main tool, <code>get_design_context</code>, returns a structured representation of the
+              selection with its exact values. <code>get_variable_defs</code> returns the variables and styles in
+              use, so colours arrive as <code>colour/button/border-focus</code> instead of a hex guess.
+              <code>get_screenshot</code> gives the agent something to check its work against, and
+              <code>get_metadata</code> is the fallback when a frame is too big to return in one piece.
+            </p>
+            <p>
+              Three things to know before you rely on it. It needs a Dev or Full seat on a paid plan for real use;
+              the Starter plan and View or Collab seats get six tool calls a month, which is enough to try it and
+              not enough to work with. Large frames time out or come back truncated, so break a screen into its
+              sections. And the agent still has to map Figma's component instances to <em>your</em> components:
+              without Code Connect it will happily build a Button from divs.
+            </p>
+            <p>
+              This is the one I use for real product work, because it's the only option where the agent reads the
+              live file. The <a href="../work/design-system.html">design-system rules</a> I wrote for Cursor name
+              the server as the authoritative source of design truth: if it's unavailable, the agent must stop,
+              not guess.
+            </p>
+          </div>
+
+          <div class="way">
+            <h2>3. Add the Figma skills</h2>
+            <p class="gets"><b>Setup:</b> included with the plugin. <b>Fidelity:</b> same as the server. <b>Direction:</b> both.</p>
+            <p>
+              The skills are pre-written instructions that teach the agent common Figma jobs, so you can say
+              "implement this design" or "create a new Figma file" without describing each step. They come with
+              the plugin for Claude Code, Cursor and Codex, or as a zip you drop into your tool's skills folder.
+            </p>
+            <p>
+              Most of them point the other way, from code into Figma. <code>figma-use</code> creates and edits
+              frames, components, variables and layouts in a Design file (it needs edit access and a file link).
+              <code>figma-code-workflows</code> imports a local project into Figma, which needs a Full seat and can
+              take ten minutes or more. The one I'd single out for design-to-code is
+              <code>figma-code-connect</code>: it links published library components to your code, so
+              <code>get_design_context</code> can say "this is your Button" instead of describing a rectangle with
+              text in it. It needs a published team library and a Professional, Organization or Enterprise plan.
+            </p>
+          </div>
+
+          <div class="way">
+            <h2>4. Bring the design system into Claude Design</h2>
+            <p class="gets"><b>Setup:</b> an afternoon. <b>Fidelity:</b> high for the system, none for a specific frame. <b>Direction:</b> Figma → code → Claude Design.</p>
+            <p>
+              Claude Design has no Figma connector. It can't read a Figma URL or a .fig file, and nothing in its
+              import list mentions Figma. What it can take is a design system from a GitHub repo, design files, raw
+              uploads, or the <code>/design-sync</code> command in Claude Code, plus a linked code repository so it
+              understands your existing components and styling.
+            </p>
+            <p>
+              So the route from Figma runs through code. Get the tokens and component definitions out of Figma as
+              files (the MCP server's <code>get_variable_defs</code> will do it; my
+              <a href="../work/design-system.html">export plugin</a> writes them as Style Dictionary JSON with
+              every variant and its options), commit them to the repo, and point Claude Design at it. From then
+              on, screens it generates use your colours, type and spacing by name, and your components where it
+              knows them.
+            </p>
+            <p>
+              The cost is that nothing is live. When the Figma library changes, you re-export and re-sync. For
+              a design system that changes weekly that's a chore; for one that changes quarterly it's a
+              non-issue. This is the way I'd pick for exploring new screens quickly inside an existing system,
+              which is what Claude Design is good at.
+            </p>
+          </div>
+
+          <div class="way">
+            <h2>5. Export a handoff bundle</h2>
+            <p class="gets"><b>Setup:</b> a plugin I built. <b>Fidelity:</b> highest for one frame. <b>Direction:</b> Figma → a zip → any Claude.</p>
+            <p>
+              After watching agents implement frames from the MCP server for a while, I noticed the failures
+              were never code problems. They were context problems: an approximated colour, a hand-drawn icon, a
+              font silently swapped, "close enough" after one pass. So I built a Figma plugin that stopped trying
+              to write code and instead packages everything the agent needs to write it: <code>spec.json</code>
+              with the full tree and exact values, <code>frame.png</code> as a ground-truth render, the real SVG
+              and image bytes in <code>assets/</code>, and a handoff prompt.
+            </p>
+            <p>
+              The prompt is the part that matters. It names the exact field paths ("canvas size is in
+              <code>meta.size</code>, per-node size is <code>tree.size</code>, not <code>node.width</code>"),
+              defines done as an iteration loop against the PNG, and lists the shortcuts I'd watched agents take:
+              measuring pixels off the screenshot instead of reading the spec, swapping an icon for one that "looks
+              similar", calling it done after the first pass. The full list is on the
+              <a href="../work/design-system.html">design-system page</a>.
+            </p>
+            <p>
+              The plugin needs no network access, so the bundle is a zip you drop into Claude Code or a Claude
+              project yourself and nothing leaves the machine, which matters when the frames are internal product
+              screens. The trade-off is that it's a snapshot of one frame, not a link to a live file. I reach for it
+              when a single screen has to be pixel-faithful and I want the agent to stop guessing.
+            </p>
+          </div>
+
+          <h2>What I actually do</h2>
+          <p>
+            Pictures for ideas. The MCP server for anything that ships, with Code Connect once the library is
+            published. The export plugin and a repo sync for Claude Design, so the screens it dreams up are at
+            least in our colours. And the handoff bundle when a specific frame has to match and I've already
+            watched the agent get it wrong once. Each step up the list costs more setup and gives the model less
+            room to improvise. The better the input, the less the output needs fixing.
+          </p>
+
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+      </div>
+    </footer>
+    <script src="../js/main.js?v=20261026c"></script>
+    <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
+  </body>
+</html>

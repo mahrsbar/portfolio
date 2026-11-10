@@ -178,3 +178,45 @@
   .pcard:hover .pcard-mock .mk { transform: none; }
   .pcard:active { transform: scale(0.99); }
 }
+
+/* backdrop behind the framed covers (Amplify, Remnant, the ask bar, the user page, the replays):
+   the SVGs are transparent so it follows the theme */
+.cover-frame { background: linear-gradient(135deg, #F4F1EA, #E9EDF2); }
+:root[data-theme="dark"] .cover-frame { background: #1D1E23; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cover-frame { background: #1D1E23; }
+}
+
+/* November 2026 rework: the project list has no card boxes. Rules between
+   projects, a hairline around each cover, nothing moves on hover. These
+   come last in the cascade and carry the html prefix to beat the rules above. */
+html .pcard {
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  overflow: visible;
+  padding: clamp(1.75rem, 3vw, 2.5rem) 0 clamp(2rem, 3.5vw, 3rem);
+}
+html .pcard:hover, html .pcard:focus-within { transform: none; box-shadow: none; border-color: var(--line); }
+html .pcard:active { transform: none; }
+html .pcard:has(h3 a:focus-visible) { outline-offset: 2px; }
+html .pcard .pcard-body { padding: 1.25rem 0 0; }
+html .pcard .pcard-media, html .pcard .pcard-media-wrap { border-radius: var(--radius); overflow: hidden; }
+html .pcard .pcard-media.cover-frame { border: 1px solid var(--line); }
+@media (min-width: 920px) {
+  html .projects .pcard.pcard-flagship {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: start;
+  }
+  html .projects .pcard.pcard-flagship .pcard-media,
+  html .projects .pcard.pcard-flagship .pcard-media-wrap { aspect-ratio: 16 / 10; }
+  html .projects .pcard.pcard-flagship .pcard-body { display: block; padding: 0.2rem 0 0; }
+  html .projects .pcard.pcard-flagship .pcard-body > p:not(.pcard-kicker) { margin-top: 0.75rem; max-width: none; }
+  html .projects .pcard.pcard-flagship:nth-of-type(even) .pcard-media,
+  html .projects .pcard.pcard-flagship:nth-of-type(even) .pcard-media-wrap { order: 2; }
+  html .projects .pcard.pcard-flagship h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); }
+}

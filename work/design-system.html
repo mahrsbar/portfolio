@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI built our component library in days. It didn't work. — Mahrs Aslam</title>
+    <title>A design system four products run on — Mahrs Aslam</title>
     <meta
       name="description"
       content="How I took a design system that only existed in Figma to a React + MUI component library: cleaning the source, a generated first version that turned out hollow, and a theme-first rebuild that styles 66 MUI components from design tokens."
     />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Mahrs Aslam" />
-    <meta property="og:title" content="AI built our component library in days. It didn't work. — Mahrs Aslam" />
+    <meta property="og:title" content="A design system four products run on — Mahrs Aslam" />
     <meta property="og:description" content="How I took a design system that only existed in Figma to a React + MUI component library: cleaning the source, a generated first version that turned out hollow, and a theme-first rebuild that styles 66 MUI components from design tokens." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/design-system.html" />
     <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
@@ -23,10 +23,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261026k" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261026i" />
+    <link rel="stylesheet" href="../css/style.css?v=20261109" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261109" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -35,13 +35,13 @@
     </script>
     <style>
       .chapter { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
-      .chapter .num { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-text, var(--c)); margin-bottom: 0.4rem; display: block; }
+      .chapter .num { display: block; margin-bottom: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .issues { display: grid; gap: 0.9rem; padding: 0; list-style: none; }
       .issues li { padding-left: 1rem; border-left: 2px solid var(--line-strong); }
       .issues b { display: block; color: var(--ink); }
       .case-cover img { display: block; width: 100%; height: auto; }
-      .lesson { margin: 2.5rem 0; padding: 1.75rem 1.75rem 1.6rem; border-radius: var(--radius-l); background: var(--c-soft); border-left: 4px solid var(--c); }
-      .lesson-k { display: block; margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .lesson { margin: 2.5rem 0; padding: 1.4rem 0 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .lesson-k { display: block; margin-bottom: 0.5rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .lesson .lesson-big { margin: 0 0 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
       .lesson p { margin: 0; color: var(--ink-2); }
       .type-tablist { display: inline-flex; gap: 0.25rem; padding: 0.25rem; margin-bottom: 0.75rem; border-radius: 999px; background: var(--bg-sunk); }
@@ -53,7 +53,7 @@
       .panel-note { margin: 0.75rem 0 0; font-size: 0.9rem; color: var(--ink-2); }
       .type-panel > .panel-note:first-child { margin: 0 0 0.75rem; }
       .code-more { margin: -1rem 0 2rem; }
-      .code-more summary { cursor: pointer; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-text); }
+      .code-more summary { cursor: pointer; font-size: 0.82rem; font-weight: 500; color: var(--c-text); }
       .code-more summary:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
       .plugins { display: grid; gap: 1.25rem; margin: 1.75rem 0 0; }
       .plugin { padding: 1.25rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
@@ -62,13 +62,18 @@
       .plugin-head h3 { margin: 0.2rem 0 0.35rem; font-size: 1.15rem; }
       .plugin-head p { margin: 0; font-size: 0.92rem; color: var(--ink-2); }
       .plugin-head .plugin-why { margin-top: 0.6rem; padding-left: 0.75rem; border-left: 2px solid var(--line-strong); font-size: 0.85rem; color: var(--ink-3); }
+      .fails { padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg); }
+      .fails .k { display: block; margin-bottom: 0.5rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
+      .fails ul { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; color: var(--ink-2); }
+      .fails li { margin: 0.3rem 0; }
+      .fails li::marker { content: "✕  "; color: var(--c-text); }
       .ba { display: grid; gap: 0.75rem; align-items: start; }
       .after-pair { grid-template-columns: 1fr 1fr; margin-top: 0.75rem; }
       .panel-lead { margin: 0; font-size: 0.92rem; color: var(--ink-2); }
       .ba figure { margin: 0; min-width: 0; }
       .ba img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line); }
       .ba figcaption { margin-top: 0.45rem; font-size: 0.8rem; line-height: 1.4; color: var(--ink-3); }
-      .ba-tag { display: inline-block; margin-bottom: 0.4rem; padding: 0.15rem 0.5rem; border-radius: 999px; font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--bg-sunk); color: var(--ink-2); }
+      .ba-tag { display: inline-block; margin-bottom: 0.4rem; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.82rem; font-weight: 500; background: var(--bg-sunk); color: var(--ink-2); }
       .ba-tag.ba-run { background: var(--mustard-soft); color: var(--mustard-text); }
       .ba-tag.ba-after { background: var(--teal-soft); color: var(--teal-text); }
       .ba-code { margin: 0; font-size: 0.72rem; line-height: 1.55; }
@@ -92,7 +97,7 @@
       .step-panel .ba-code { font-size: 0.8rem; max-width: 30rem; margin-inline: auto; }
       .code-pair { display: grid; gap: 1rem; margin: 1.5rem 0; }
       .code-pair figure { margin: 0; min-width: 0; }
-      .code-pair figcaption { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.4rem; }
+      .code-pair figcaption { font-size: 0.82rem; font-weight: 500; color: var(--ink-3); margin-bottom: 0.4rem; }
       .code-pair pre { margin: 0; }
     </style>
   </head>
@@ -125,7 +130,7 @@
     <main id="main" class="hue-violet">
       <section class="wrap case-intro">
         <p class="eyebrow"><b>Design system</b></p>
-        <h1>AI built our component library in days. It didn't work.</h1>
+        <h1>A design system four products run on</h1>
         <p class="intro-sum">
           Our design system only existed in Figma. I cleaned it up with Figma plugins I built with AI, had an agent generate the component library in a few days, found out why it only worked in Storybook, and rebuilt it theme-first, so 66 MUI components take their look straight from design tokens.
         </p>
@@ -137,6 +142,8 @@
         <dl class="meta-line">
           <div><dt>Role</dt><dd>Design-system lead: Figma plugins, the generation pipeline and the component architecture</dd></div>
           <div><dt>Stack</dt><dd>React 18, TypeScript, MUI 6, Storybook, Style Dictionary, Chromatic, Figma Plugin API, Cursor, Claude Code</dd></div>
+          <div><dt>When</dt><dd>2025 to 2026</dd></div>
+          <div><dt>With</dt><dd>The designers who own the Figma library, and the four product teams that build on the library</dd></div>
         </dl>
       </section>
 
@@ -267,7 +274,7 @@
                 <div class="plugin-head">
                   <span class="plugin-n">Plugin 3 · Figma to code</span>
                   <h3>Figma export</h3>
-                  <p>Exports variables, components and icons as JSON with consistent names that a script, an engineer or a model reads the same way.</p>
+                  <p>Exports variables, components and icons as JSON with consistent names that a script, an engineer or a model reads the same way. A Button with a hundred variant nodes comes out as one component with its options. A re-export that used to mean six to eight hours of hand fixes now takes about ten minutes and none.</p>
                 </div>
                 <div class="type-tablist steps" role="tablist" aria-label="Steps">
                   <button type="button" role="tab" id="exp-t0" aria-controls="exp-p0" aria-selected="true"><span class="step-n">1</span>In Figma</button>
@@ -296,11 +303,29 @@
 }</code></pre>
                 </div>
               </article>
+
+              <article class="plugin">
+                <div class="plugin-head">
+                  <span class="plugin-n">Plugin 4 · Any frame</span>
+                  <h3>Handoff bundle</h3>
+                  <p>Packages one frame for an agent instead of writing code for it: the full spec with exact values, a ground-truth render, the real SVG and image bytes, and a prompt that tells the agent where every value lives and what "done" means.</p>
+                  <p class="plugin-why">The prompt is the product: its list of shortcuts that fail is every mistake I watched an agent make. <a href="../writing/figma-to-claude.html">How it compares to the MCP server and Claude Design.</a></p>
+                </div>
+                <div class="fails" aria-label="From the handoff prompt: shortcuts that fail">
+                  <span class="k">From the handoff prompt · shortcuts that fail</span>
+                  <ul>
+                    <li>"The spec is large, I'll be efficient and skip parts." It fits in context. Read all of it.</li>
+                    <li>"I can't find the dimensions, I'll measure the PNG." Every node has <code>size.width</code>. The PNG is for checking, not measuring.</li>
+                    <li>"I'll substitute Lucide or Heroicons, they look similar." The exact path data is in <code>svgInline</code>. Use it verbatim.</li>
+                    <li>"This text seems off, I'll fix it." A badge that says 3 says 3.</li>
+                    <li>"This looks close enough, calling it done." Render, compare to the PNG, fix, repeat.</li>
+                  </ul>
+                </div>
+              </article>
             </div>
             <p>
               Then I had an agent in Cursor generate the library from that export. In a few days
-              it produced 33 components, 156 Storybook stories and 420 passing tests. Honestly, I was surprised
-              how easy it had been. Then I tried to build a real screen with them.
+              it produced 33 components, 156 Storybook stories and 420 passing tests. Then I tried to build a real screen with them.
             </p>
             <ul class="issues">
               <li><b>You couldn't read their values.</b> 22 of 33 components kept their own internal state. A Switch toggled on screen but never told the app it had changed.</li>
@@ -312,8 +337,7 @@
             </ul>
 
             <p>
-              The AI didn't go rogue. My rules did tell
-              it to build on MUI, and it did. The problem was who the rules were written for: Storybook.
+              My rules told it to build on MUI, and it did. The problem was who the rules were written for: Storybook.
               Every component had to be interactive in Storybook, so each one kept its own state. Every Figma
               property had to be a Storybook control, so hover and focus became a dropdown. Icons had to be
               picked from a list, so you couldn't pass your own. Each rule made sense on its own; together they
@@ -378,7 +402,9 @@ export const Switch = MuiSwitch;</code></pre>
             <h2>Version two: a contract, then an architecture</h2>
             <p>
               So version two started by changing what “done” meant. I audited everything first: a QA report
-              per component (38 of them), tracing every failure to one of seven root causes. Then I rewrote the
+              per component, 38 of them. Most failures came from a few systemic causes: hard-coded colours and pixel
+              values in 31 of the 38, runtime tests that existed for only two components, group wrappers importing
+              raw MUI instead of our own atoms, and state held where none was needed. Then I rewrote the
               agent's rules. The biggest change: <strong>a component extends its MUI base instead of copying the
               Figma picture</strong>. The rest stop it guessing: take the MUI API from MUI's documentation server,
               never from memory; map every Figma value to the exact token; measure the render against Figma before
@@ -389,18 +415,21 @@ export const Switch = MuiSwitch;</code></pre>
               That fixed the components. Then I realised we didn't need most of them.
               I wrote a guide for building new components that starts from one idea:
               <strong>the design system is the theme, not the components.</strong> Every component falls into
-              one of three types, and you always pick the lightest one that works.
+              one of five types, and you always pick the lightest one that works: the theme first, then a slot, and
+              composition last.
             </p>
 
             <div class="table-scroll">
               <table class="compare">
                 <thead>
-                  <tr><th>Type</th><th>What it is</th><th>Examples</th><th>Count</th></tr>
+                  <tr><th>Type</th><th>What it is</th><th>Examples</th></tr>
                 </thead>
                 <tbody>
-                  <tr><td>Theme only</td><td>MUI's own component, re-exported. All the design lives in the theme, built from tokens.</td><td>Switch, Tabs, Dialog, TextField, Select</td><td>22</td></tr>
-                  <tr><td>Styled extension</td><td>MUI plus the one thing Figma needs that MUI doesn't have, added as a single prop.</td><td>Avatar sizes, Chip variants, IconButton variants</td><td>9</td></tr>
-                  <tr><td>Composition</td><td>A new component assembled from design-system parts, for things MUI doesn't offer.</td><td>Sidebar, Topbar, Stepper, DatePicker, Drawer</td><td>9</td></tr>
+                  <tr><td>Theme only</td><td>MUI's own component, re-exported. All the design lives in the theme, built from tokens.</td><td>Switch, Tabs, Dialog, TextField, Select</td></tr>
+                  <tr><td>Styled extension</td><td>MUI plus the one thing Figma needs that MUI doesn't have, as a single prop the theme reads.</td><td>Avatar sizes, Chip variants, IconButton variants</td></tr>
+                  <tr><td>Theme augmentation</td><td>A paid MUI X component, themed the same way.</td><td>TreeView, DataGrid</td></tr>
+                  <tr><td>Slot override</td><td>One piece of MUI's render tree doesn't match Figma, and MUI exposes it as a slot. A small component fills the slot. Nothing wraps the whole thing.</td><td>The date picker's action bar and day cell</td></tr>
+                  <tr><td>Composition</td><td>A new component assembled from design-system parts, for things MUI doesn't offer.</td><td>Sidebar, Topbar, Stepper, Drawer</td></tr>
                 </tbody>
               </table>
             </div>
@@ -430,7 +459,8 @@ export const Switch = MuiSwitch;</code></pre>
               The reason is rework. Every custom wrapper is an API teams have to migrate to and we have to keep
               in step with MUI. With the design in the theme, teams keep importing straight from MUI and still get
               the look, so adopting it is a theme swap, not a rewrite. Composition is only for what MUI doesn't
-              have; as the guide puts it, composition is the trap.
+              have; as the guide puts it, composition is the trap. The slot rule came out of review: most of what looked
+              like “MUI can't do this” was a slot nobody had wired yet.
             </p>
             <p>
               Breadcrumbs went from 289 lines to 20. Three custom group components were deleted outright, because MUI's form
@@ -445,20 +475,43 @@ export const Switch = MuiSwitch;</code></pre>
             <div class="stat"><b>9</b><span>new components built from the guide since May</span></div>
             <div class="stat"><b>240</b><span>Storybook stories, with tests that actually render</span></div>
           </div>
-          <p>
-            The guide outlived the rebuild. Since May, the Alert, Drawer, DataGrid, Card,
-            DatePicker, Sidebar, Header, Stepper and Topbar have all been built from it, and for consumers a component now reads
-            like MUI because it is MUI: <code>&lt;Button label="Save" /&gt;</code> became
-            <code>&lt;Button&gt;Save&lt;/Button&gt;</code>.
-          </p>
 
-          <h2>What I took from it</h2>
-          <ul>
-            <li><strong>Decide what “done” means first.</strong> Then test for that, before you generate anything.</li>
-            <li><strong>Fix data where it's authored.</strong> Every clean-up step downstream is a sign the source is wrong.</li>
-            <li><strong>Passing tests and a good-looking Storybook can both lie.</strong> Real screens are the test that matters.</li>
-            <li><strong>Most of the time, the theme beat a new component.</strong> Owning the theme gave us the design system without owning a fork of MUI.</li>
-          </ul>
+          <h2 id="adoption">Adoption and contribution</h2>
+          <p>
+            The architecture was chosen for what adoption costs a team. The design lives in the MUI theme, so a
+            product adopts the system by installing the theme and keeps importing MUI as before. Nothing is
+            rewritten. Four products run on it today.
+          </p>
+          <div class="table-scroll">
+            <table class="compare">
+              <thead>
+                <tr><th>A team wants to</th><th>How it works</th><th>What gates it</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Use the system</td><td>Install the theme. Imports stay <code>@mui/material</code>.</td><td>A theme-only component is plain MUI, so there is no API to migrate to.</td></tr>
+                <tr><td>Change how something looks</td><td>Change the token. The theme reads it.</td><td>A test fails the build on any hard-coded colour.</td></tr>
+                <tr><td>Add a component</td><td>Follow the guide: pick the lightest of the three types. An agent builds it from the rules file.</td><td>Tests render it and fail on a raw MUI import where we have a component, or a stateless component holding state. The render is measured against Figma before it's done.</td></tr>
+                <tr><td>Retire a wrapper</td><td>Delete it when MUI's own component does the job.</td><td>Three group components went this way. Breadcrumbs went from 289 lines to 20.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Since May, nine components have been added by that route (Alert, Drawer, DataGrid, Card, DatePicker,
+            Sidebar, Header, Stepper and Topbar), each with its type on its Storybook page. The one API change
+            consumers saw was the kind you want: <code>&lt;Button label="Save" /&gt;</code> became
+            <code>&lt;Button&gt;Save&lt;/Button&gt;</code>, because the component became MUI's own. The rules file
+            that agents build from ends with a table of every mistake an agent has made so far, each paired with
+            the rule that now prevents it: eighteen so far, each a real bug from an earlier session. The guide works
+            the same way. Every rule in it came out of a code review, and there are nineteen: no prop that encodes
+            hover or focus, typed props after the spread so a consumer can't break the contract by accident, hover
+            actions rendered and hidden rather than mounted on hover so they stay in the tab order, nothing
+            hard-coded down to a 4px gap. Products move over page by page, the sidebar first, then the top bar, then
+            the busiest page, so each step is tested on its own.
+          </p>
+          <p>
+            The rule I'd carry into any rebuild: decide what “done” means first, then test for that before
+            anything is generated.
+          </p>
 
         </div>
         </div>
