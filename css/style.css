@@ -6280,3 +6280,24 @@ html .prose :is(.mock-note, .panel-cap, figcaption, .caption) { font-size: 0.86r
 html .prose :is(.launcher-demo, .askdemo, .loopfig, .drawer, .up, .rp, .vs, figure, .figure, .type-tabs, .demo) + :is(.mock-note, .caption) { margin-top: 0.6rem; }
 /* every card title is in the display face, as the section titles are */
 html .plugin-head h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
+
+/* ---------- labels: three styles, each with one job ---------- */
+/* 1. A card's kind ("The decision", "The lesson", "Psych note", "From the handoff prompt"): a tag hung on
+      the card's top edge, like the case plaque. */
+html:root body :is(.lesson-k, .psych-k, .psych .kicker, .fails > .k) {
+  position: absolute; top: 0; left: 1rem; transform: translateY(-50%); display: inline-block; margin: 0;
+  padding: 0.1rem 0.55rem; border: var(--frame-w) solid var(--frame); border-radius: 4px; background: var(--bg-sunk);
+  color: var(--ink); box-shadow: none; font-family: var(--font-sans); font-weight: 600; font-size: 0.8rem; line-height: 1.4;
+}
+html:root body .psych { padding-top: 1.6rem; }
+html:root body .psych::before { top: 1.5rem; }
+html:root body .fails { position: relative; padding-top: 1.5rem; }
+@media (max-width: 640px) { html:root body .psych { padding-top: 4.9rem; } html:root body .psych::before { top: 1.4rem; } }
+/* 2. Where you are in the story ("Step 2", "Moment 2 of 4", "Navigation"): small bold grey text above the heading. */
+html:root body :is(.chapter .num, .vs-k, .tn-k, .block-k) {
+  display: block; padding: 0; background: none; color: var(--ink-3);
+  font-family: var(--font-sans); font-weight: 600; font-size: 0.85rem; line-height: 1.4;
+}
+/* 3. A number in a list (plugins, findings): one yellow badge. */
+html .issues li b::before { background: var(--duck); color: var(--on-duck); }
+html:root body .psych h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
