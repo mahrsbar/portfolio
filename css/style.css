@@ -5591,14 +5591,10 @@ html .skill-tags { gap: 0.5rem 0.45rem; }
 html .skill-tags li {
   padding: 0.28rem 0.6rem; border: var(--frame-w) solid var(--frame); border-radius: 6px;
   background: var(--bg); color: var(--ink); font-weight: 500;
-  transition: transform 160ms var(--ease), background-color 160ms var(--ease);
 }
 html .skill-tags li:nth-child(3n+1) { transform: rotate(-1.2deg); }
 html .skill-tags li:nth-child(3n) { transform: rotate(1deg); }
-@media (hover: hover) {
-  html .skill-tags li:hover { transform: translateY(-2px); background: var(--duck); color: var(--on-duck); }
-}
-@media (prefers-reduced-motion: reduce) { html .skill-tags li { transition: none; } }
+/* labels, not links: nothing happens on hover */
 
 /* ---------- no side rules: each kind of aside gets its own shape ---------- */
 /* what went wrong: numbered blocks, two across */

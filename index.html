@@ -30,7 +30,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261110p" />
+    <link rel="stylesheet" href="css/style.css?v=20261110q" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -52,7 +52,7 @@
         "sameAs": ["https://github.com/mahrsbar"]
       }
     </script>
-    <link rel="stylesheet" href="css/accents.css?v=20261110p" />
+    <link rel="stylesheet" href="css/accents.css?v=20261110q" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500..800&amp;display=swap" />
     <style>
       /* hero: the duck scene stands on a floor that runs the full width of the page.
@@ -247,14 +247,16 @@
       .sn-stats b { order: 2; font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
       .sn-stats span { order: 1; font-size: 0.88rem; color: var(--ink-3); }
 
-      /* the duck's notes: the same hairline rows and body font as the numbers beside them */
+      /* the duck's notes: hairline rows, in the same handwriting as the notes on the covers */
       .sn-list { margin: 0; padding: 0; list-style: none; counter-reset: note; }
       .sn-list li {
         display: flex;
         gap: 0.75rem;
         padding: 0.7rem 0;
         border-bottom: 1px solid var(--line);
-        font-size: 0.92rem;
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        font-weight: 500;
         line-height: 1.45;
         color: var(--ink);
       }
