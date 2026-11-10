@@ -5618,3 +5618,83 @@ html .prose blockquote::before, html .prose .quote::before {
 html .callout { border: 0; border-radius: var(--radius); background: var(--bg-sunk); }
 /* the prompt excerpt sits on its own sheet again */
 html .fails { border: var(--frame-w) solid var(--frame); background: var(--bg-elev); }
+
+/* ---------- case-file details ---------- */
+/* a small drawn object beside the homepage section titles; fixed colours, like the duck mark */
+html .section-head .sh-row { display: flex; align-items: center; gap: 0.7rem; }
+html .sh-ico { flex: none; width: 34px; height: 38px; margin-bottom: 0.45rem; rotate: -6deg; overflow: visible; }
+html .sh-ico.wide { width: 38px; height: 34px; rotate: -4deg; }
+html .sh-ico * { stroke: #1E1A17; stroke-width: 2; }
+html .sh-ico .i-duck { fill: #FFC93C; }
+html .sh-ico .i-paper { fill: #FFF9EC; stroke-width: 1.5; }
+html .sh-ico .i-tan { fill: #DCCDB0; }
+html .sh-ico .i-ink { fill: #1E1A17; stroke: none; }
+html .sh-ico .i-write { fill: none; stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 0; }
+/* the case number from the homepage card, carried onto the case page */
+html .eyebrow .case-no {
+  display: inline-block; margin-right: 0.6rem; padding: 0.1rem 0.6rem 0.15rem;
+  border: var(--frame-w) solid var(--frame); border-radius: 4px; background: var(--duck); color: var(--on-duck);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; line-height: 1.45; rotate: -2deg;
+}
+
+/* ---------- motion ---------- */
+/* Small and quick: 150–250ms for feedback, about 400ms for a one-off entrance, moves of 2–4px.
+   Everything that travels sits inside no-preference; lifts are for real pointers only.
+   Individual translate / rotate / scale are used so existing transforms stay as they are. */
+:root { --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes case-stamp {
+    0% { opacity: 0; scale: 1.45; rotate: -9deg; }
+    55% { opacity: 1; scale: 0.94; rotate: -2deg; }
+  }
+  @keyframes sheet-in { from { opacity: 0; translate: 0 4px; } }
+  @keyframes note-nudge { 40% { translate: 0 -5px; } 70% { translate: 0 1px; } }
+  @keyframes clip-snap { 35% { scale: 1 0.72; } }
+  @keyframes ico-pop { 0% { scale: 0.6; rotate: -22deg; } }
+
+  /* case tab: stamped on as its file comes into view (main.js adds the classes) */
+  html .projects .pcard.pcard-flagship::before { transform-origin: 30% 100%; transition: rotate 220ms var(--ease-pop), translate 220ms var(--ease-pop); }
+  html .projects .pcard.case-wait::before { opacity: 0; }
+  html .projects .pcard.case-in::before { animation: case-stamp 420ms var(--ease) 180ms backwards; }
+  html .eyebrow .case-no { animation: case-stamp 420ms var(--ease) 300ms backwards; }
+
+  /* heading stroke: drawn left to right the first time the heading is seen */
+  html .prose h2, html .section-head h2 { transition: background-size 650ms var(--ease) 120ms; }
+  html .prose h2.stroke-wait, html .section-head h2.stroke-wait { background-size: 0 0.28em; }
+
+  /* section icons: pop in with the heading, then the notes write themselves */
+  html .section-head.reveal.in .sh-ico { animation: ico-pop 420ms var(--ease-pop) 150ms backwards; }
+  html .sh-ico .i-write { transition: stroke-dashoffset 380ms var(--ease) 500ms; }
+  html .sh-ico .i-write:nth-of-type(2) { transition-delay: 680ms; }
+  html .sh-ico .i-write:nth-of-type(3) { transition-delay: 860ms; }
+  html .section-head.reveal:not(.in) .sh-ico .i-write { stroke-dashoffset: 1; transition: none; }
+
+  /* tabs: the sheet you open settles in */
+  html .type-panel:not([hidden]) { animation: sheet-in 200ms var(--ease); }
+
+  /* press feedback */
+  html .btn { transition: background-color 150ms var(--ease), scale 120ms var(--ease), transform 150ms var(--ease); }
+  html .btn:active { scale: 0.97; }
+  html .btn svg, html .post-row .arrow, html .theme-toggle svg { transition: translate 180ms var(--ease), rotate 300ms var(--ease-pop); }
+  html .toc a { transition: background-color 150ms var(--ease), color 150ms var(--ease); }
+  html .brand::before { transform-origin: 50% 90%; transition: rotate 260ms var(--ease-pop); }
+  html .pcard .pcard-media img, html .pcard .pcard-stack .win-front, html .pcard .pcard-mock .mk { transition: transform 320ms var(--ease); }
+
+  @media (hover: hover) {
+    /* a case file: lifts a little, its tab tips, the cover leans in, the margin arrow points */
+    html .projects .pcard { transition: translate 240ms var(--ease); }
+    html .projects .pcard:hover { translate: 0 -3px; }
+    html .projects .pcard.pcard-flagship:hover::before { rotate: -4deg; translate: 0 -2px; }
+    html .pcard:hover .pcard-media:not(.pcard-stack) img { transform: scale(1.02); }
+    html .pcard:hover .pcard-stack .win-front { transform: translateY(-4px); }
+    html .pcard:hover .pcard-mock .mk { transform: scale(1.02); }
+    html .pcard:hover .pcard-note svg { animation: note-nudge 520ms var(--ease); }
+
+    html .btn[href^="#"]:hover svg { translate: 0 2px; }
+    html .post-row:hover .arrow { translate: 4px 0; }
+    html .theme-toggle:hover svg { rotate: 18deg; }
+    html .brand:hover::before { rotate: -12deg; }
+    html .toc:hover::before, html .sn:hover::before, html .clipboard:hover::before { transform-origin: 50% 0; animation: clip-snap 320ms var(--ease-pop); }
+  }
+}
