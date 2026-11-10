@@ -299,7 +299,7 @@
   html.paused .duck:not(.squeak), html.paused .cord:not(.tug) { animation: none; }
   html.paused .code { stroke-dashoffset: 0; }
 
-  /* the invitation beside the bug: stays until the bug is tapped, and comes back after every exchange */
+  /* first-visit nudge beside the bug: stays until the bug itself is tapped */
   .nudge {
     position: absolute;
     font: 700 clamp(13px, 2.4cqw, 19px) "Shantell Sans", sans-serif;
@@ -315,25 +315,21 @@
   .nudge.end { transform: translate(-100%, -50%) rotate(-6deg); transform-origin: 100% 50%; }
   @keyframes nudge { 0%, 100% { translate: 0 0; } 50% { translate: 4px -3px; } }
 
-  /* handwritten labels: what each clickable thing does. Shown on hover or focus, and one at a
-     time while the room sits idle, so a visitor on a phone gets them too */
-  .cue {
-    position: absolute;
-    font: 700 clamp(12px, 2.1cqw, 17px) "Shantell Sans", sans-serif;
-    color: var(--text);
-    white-space: nowrap;
-    pointer-events: none;
-    opacity: 0;
-    translate: 0 4px;
-    transform: translate(-50%, -50%) rotate(-4deg);
-    transition: opacity .2s, translate .2s;
-  }
-  .cue.end { transform: translate(-100%, -50%) rotate(-4deg); }
-  .cue.on { opacity: 1; translate: 0 0; }
-  /* each thing's turn in the idle round: the move it makes when used, without the result */
-  .duck.peek:not(.squeak) { animation: squeak .45s cubic-bezier(.3,1.6,.5,1) 2; }
-  .patient.peek:not(.talking) .head-group { animation: wiggle-head .5s ease-in-out 2; }
-  .duck:hover:not(.squeak, .peek) { animation-duration: .7s; }
+  /* Everything clickable answers the pointer the way the cabinet's drawer does: it moves toward you.
+     The same move plays by itself now and then (.peek) while the room sits idle, for touch screens. */
+  .patient { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .28s cubic-bezier(.3,1.6,.5,1); }
+  .patient:not(.talking):is(:hover, :focus-visible, .peek) { transform: translateY(-14px) scale(1.08); }
+  .patient:not(.talking):is(:hover, :focus-visible, .peek) .head-group { animation: wiggle-head .5s ease-in-out 2; }
+  .patient:not(.talking):is(:hover, :focus-visible, .peek) .antennae { animation-duration: .45s; }
+  .duck { transition: scale .28s cubic-bezier(.3,1.6,.5,1), rotate .28s cubic-bezier(.3,1.6,.5,1); }
+  .duck:is(:hover, :focus-visible, .peek) { scale: 1.12; rotate: -5deg; }
+  .duck:is(:hover, :focus-visible, .peek) .duck-head { animation: nod .5s ease-in-out 2; }
+  /* the lamp previews the switch: pointing at it lights the shade (or dims it, after dark) and pulls the cord */
+  .shade { transition: fill .25s; }
+  .lamp:is(:hover, :focus-visible, .peek) .shade { fill: var(--glow); }
+  :root[data-theme="dark"] .lamp:is(:hover, :focus-visible, .peek) .shade { fill: var(--couch-hi); }
+  .lamp:is(:hover, :focus-visible, .peek) .cord:not(.tug) { scale: 1 1.35; }
+  .cord { transition: scale .25s cubic-bezier(.3,1.6,.5,1); }
 
   /* squeeze hearts */
   .heart {
@@ -351,13 +347,12 @@
   }
 
   /* diplomas zoom, lamp switches the lights */
-  .diploma { cursor: zoom-in; outline: none; transform-origin: 50% 0%; transition: transform .2s; }
+  .diploma { cursor: zoom-in; outline: none; transform-origin: 50% 0%; transition: transform .28s cubic-bezier(.3,1.6,.5,1); }
   .diploma + .diploma.peek { transition-delay: .12s; }
-  .diploma:hover, .diploma:focus-visible, .diploma.peek { transform: translateY(-3px) rotate(-1.5deg) scale(1.03); }
+  .diploma:is(:hover, :focus-visible, .peek) { transform: translateY(-9px) rotate(-3deg) scale(1.1); }
   .diploma:focus-visible > rect:first-child, .lamp:focus-visible .shade { stroke: var(--chair); stroke-width: 6; }
   .lamp { cursor: pointer; outline: none; }
   .cord { transform-origin: 50% 0%; animation: cord-sway 2.8s ease-in-out infinite; }
-  .lamp:hover .cord { animation-duration: 1.2s; }
   .cord.tug { animation: cord-tug .7s cubic-bezier(.3, 1.5, .5, 1); }
   @keyframes cord-sway { 0%, 100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
   /* the tug stretches the cord from its top (the transform origin), so it never
@@ -980,8 +975,6 @@
       if (narrow) { clearBubbles(); say(duckLine, NARROW_AT, 'duck-says wide', '76%'); }
       else say(duckLine, DUCK_AT, 'duck-says', '34%');
       busy = false;
-      // there is always another one: say so once this exchange has landed
-      setTimeout(() => { if (!busy) invite(isNarrow() ? 'again?' : 'tap again'); }, reduced ? 0 : 1400);
     }, reduced ? 600 : narrow ? 2600 : 1500);
   }
 
@@ -1064,70 +1057,41 @@
     setInterval(() => { if (!document.documentElement.classList.contains('paused') && !document.hidden) tick(); }, 1000);
   })();
 
-  // the invitation next to the bug: it stays until the bug is tapped, and returns after every exchange
+  // a nudge next to the bug, until the bug itself is tapped
   const nudge = document.createElement('span');
   nudge.className = 'nudge end waiting'; // fades in after the duck's opening question
   nudge.setAttribute('aria-hidden', 'true');
+  nudge.textContent = 'tap me! ↘\uFE0E';
   bubbles.appendChild(nudge);
   const placeNudge = () => Object.assign(nudge.style, pct([206, 140]));
   placeNudge();
   addEventListener('resize', placeNudge);
   fitWall();
   addEventListener('resize', fitWall);
-  function invite(text) { nudge.textContent = text + ' ↘\uFE0E'; nudge.classList.remove('waiting'); }
   function uninvite() { nudge.classList.add('waiting'); }
 
-  // every other clickable thing says what it does: a handwritten label on hover or focus and,
-  // while the room sits idle, each one not yet tried takes a turn showing its move
-  const tried = new Set();
+  // while the room sits idle, the clickable things take turns making their hover move, so a
+  // touch screen (no hover) still shows what's alive; the bug every other turn, the rest until tried
   const peek = (els, ms = 1100) => els.forEach(el => { el.classList.add('peek'); setTimeout(() => el.classList.remove('peek'), ms); });
-  const CUES = [
-    { el: duck, text: () => (isNarrow() ? 'squeeze' : 'squeeze me') + ' →\uFE0E', cls: 'end', at: () => [522, 204], demo: () => peek([duck]) },
-    { el: lamp, text: () => 'lights ↓\uFE0E', at: () => [750, 102], demo: tug },
-    { el: diplomas, text: () => '↑\uFE0E zoom in', at: () => isNarrow() ? [424, 0] : [470, 34], demo: () => peek([...diplomas.querySelectorAll('.diploma')], 1400) },
-  ];
-  const placeCue = c => {
-    const l = c.label;
-    l.textContent = c.text();
-    Object.assign(l.style, pct(c.at()));
-    const r = l.getBoundingClientRect(), pad = 4;
-    if (r.right > innerWidth - pad) l.style.left = `${parseFloat(l.style.left) + innerWidth - pad - r.right}px`;
-  };
-  const showCue = c => { placeCue(c); c.label.classList.add('on'); };
-  const hideCue = c => c.label.classList.remove('on');
-  for (const c of CUES) {
-    const l = c.label = document.createElement('span');
-    l.className = 'cue ' + (c.cls || '');
-    l.setAttribute('aria-hidden', 'true');
-    bubbles.appendChild(l);
-    c.el.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') showCue(c); });
-    c.el.addEventListener('pointerleave', () => hideCue(c));
-    c.el.addEventListener('focusin', e => { if (e.target.matches(':focus-visible')) showCue(c); });
-    c.el.addEventListener('focusout', () => hideCue(c));
-    const used = () => { tried.add(c); hideCue(c); };
-    c.el.addEventListener('click', used);
-    c.el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') used(); });
-  }
+  const lampEl = document.getElementById('lamp');
+  const others = [[duck], [lampEl], [...diplomas.querySelectorAll('.diploma')]];
+  const tried = new Set();
+  others.forEach(els => els.forEach(el => el.addEventListener('click', () => tried.add(els))));
   let turn = 0, inView = true;
   if ('IntersectionObserver' in window) new IntersectionObserver(es => { inView = es[0].isIntersecting; }).observe(stage);
   setInterval(() => {
     if (busy || !inView || document.hidden || document.documentElement.classList.contains('paused') || stage.matches(':hover')) return;
-    // the conversation is the main thing, so the bug fidgets every other turn for as long as it waits
     if (turn++ % 2 === 0) return peek([patient]);
-    const left = CUES.filter(c => !tried.has(c));
-    if (!left.length) return;
-    const c = left[(turn >> 1) % left.length];
-    c.demo();
-    showCue(c);
-    setTimeout(() => { if (!c.el.matches(':hover')) hideCue(c); }, 2600);
-  }, 6000);
+    const left = others.filter(g => !tried.has(g));
+    if (left.length) peek(left[(turn >> 1) % left.length], 1300);
+  }, 5000);
 
   // the duck opens the session, then waits for the visitor
   setTimeout(() => { duckNods(); isNarrow() ? say('so… what brings you in?', NARROW_AT, 'duck-says wide', '76%') : say('so… what brings you in?', DUCK_AT, 'duck-says', '34%'); }, reduced ? 0 : 900);
-  // ...and only then the bug has something to say: a waiting bubble, and the invitation to tap
+  // ...and only then the bug has something to say: a waiting bubble, and the nudge
   setTimeout(() => {
     if (i || busy) return;
-    invite('tap me!');
+    nudge.classList.remove('waiting');
     if (!isNarrow()) say('<i></i><i></i><i></i>', PATIENT_AT, 'dots', '50%');
   }, reduced ? 0 : 2000);
 })();
