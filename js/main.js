@@ -109,11 +109,18 @@
     if (!header) return;
     /* the bar keeps the wall's colour for as long as the wall is behind it */
     var wall = document.querySelector(".duck-room, .case-intro .intro-sum, .case-hero, .post-hero");
+    /* a marker at the top of the skirting board, where the wall actually ends (CSS places it) */
+    var end = null;
+    if (wall) {
+      end = document.createElement("span");
+      end.className = "wall-end";
+      end.setAttribute("aria-hidden", "true");
+      wall.appendChild(end);
+    }
     function update() {
       header.classList.toggle("scrolled", window.scrollY > 4);
-      if (!wall) return;
-      var floor = wall.classList.contains("duck-room") ? parseFloat(getComputedStyle(wall).getPropertyValue("--floor-h")) || 0 : 0;
-      header.classList.toggle("on-wall", wall.getBoundingClientRect().bottom - floor > header.offsetHeight);
+      if (!end) return;
+      header.classList.toggle("on-wall", end.getBoundingClientRect().top > header.offsetHeight);
     }
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);

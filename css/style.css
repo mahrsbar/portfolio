@@ -6252,3 +6252,9 @@ html .st-duck {
   transition: left 230ms var(--ease), bottom 230ms cubic-bezier(.3, 1.6, .5, 1);
 }
 html .st-count { font-weight: 600; color: var(--t-mute); font-variant-numeric: tabular-nums; }
+
+/* where the wall meets the skirting: the bar keeps the wallpaper until exactly here (main.js) */
+html .wall-end { position: absolute; left: 0; width: 1px; height: 0; pointer-events: none; bottom: calc(var(--room-floor) + var(--room-skirt)); }
+html .case-intro .intro-sum > .wall-end { bottom: calc(var(--room-floor) + var(--room-skirt) - var(--band-drop)); }
+/* the stripes can't fade, so the colour doesn't either: one clean switch */
+html .nav { transition: border-color 200ms var(--ease); }
