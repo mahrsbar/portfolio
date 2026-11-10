@@ -6175,3 +6175,34 @@ html .obj.done .ob-mark { opacity: 1; }
 @keyframes ob-mark { from { opacity: 0; transform: scale(1.25); } to { opacity: 1; transform: none; } }
 html .obj-stairs.play .ob-stamp { animation: ob-stamp 1000ms var(--ease); }
 html .obj-stairs.play .ob-mark { animation: ob-mark 200ms ease-out 500ms both; }
+
+/* ---------- the licence application cover: the same framing as the other covers ---------- */
+/* a full window inset from the wall and running off the bottom edge, with the step in progress open */
+html [data-observe="Licence applications"] .pcard-mock .mk { zoom: 1; }
+html [data-observe="Licence applications"] .pcard-mock-ba .six.lic-app { height: auto; min-height: 340px; }
+html .mkset .lic-app .six-body { grid-template-columns: 30% minmax(0, 1fr) 24%; }
+html .mkset .lic-app .rail span.done { color: var(--ink-3); }
+html .mkset .lic-app .rail span em.ok { color: #2F8F5B; font-weight: 700; }
+html .la-form { display: flex; flex-direction: column; gap: 0.45rem; padding: 0.85rem 0.9rem; border-right: 1px solid var(--line); min-width: 0; }
+html .la-h { font-weight: 700; font-size: 0.85rem; color: var(--ink); }
+html .la-sub { font-size: 0.66rem; color: var(--ink-3); margin-bottom: 0.2rem; }
+html .la-doc { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; align-items: center; gap: 0.45rem; padding: 0.45rem 0.55rem; border: 1px solid var(--line); border-radius: 7px; font-size: 0.7rem; color: var(--ink); }
+html .la-doc i { width: 16px; height: 16px; border-radius: 50%; }
+html .la-doc.ok i { background: #2F8F5B; box-shadow: inset 0 0 0 4px color-mix(in srgb, #2F8F5B 35%, var(--bg-elev)); }
+html .la-doc.todo { border-style: dashed; border-color: #d93f3f; }
+html .la-doc.todo i { border: 2px solid #d93f3f; }
+html .la-doc em { font-style: normal; font-size: 0.62rem; color: var(--ink-3); white-space: nowrap; }
+html .la-doc em.la-up { padding: 0.15rem 0.5rem; border-radius: 5px; background: var(--ink); color: var(--bg-elev); font-weight: 600; }
+html .la-next { display: flex; justify-content: flex-end; gap: 0.35rem; margin-top: auto; padding-top: 0.4rem; }
+html .la-btn { padding: 0.3rem 0.6rem; border-radius: 6px; background: var(--c, #2F6FB8); color: #fff; font-size: 0.64rem; font-weight: 600; }
+html .la-btn.ghost { background: none; color: var(--ink-2); border: 1px solid var(--line); }
+html .mkset .lic-app .ring-wrap { align-content: start; padding-top: 1.1rem; }
+html .mkset .lic-app .ring { width: 84px; height: 84px; }
+html .la-assign { display: grid; gap: 0.1rem; width: 100%; margin-top: 0.6rem; padding: 0.45rem 0.5rem; border-radius: 7px; background: var(--c-soft, var(--bg-sunk)); font-size: 0.6rem; color: var(--ink-2); text-align: left; }
+html .la-assign b { font-size: 0.62rem; color: var(--ink); }
+/* phones: the steps and the progress ring, as before; the open step needs more width than this */
+@media (max-width: 760px) {
+  html .mkset .lic-app .six-body { grid-template-columns: 54% minmax(0, 1fr); }
+  html .la-form, html .la-assign { display: none; }
+  html [data-observe="Licence applications"] .pcard-mock-ba .six.lic-app { min-height: 0; }
+}

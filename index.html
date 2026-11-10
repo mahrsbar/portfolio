@@ -30,7 +30,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261111d" />
+    <link rel="stylesheet" href="css/style.css?v=20261111f" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -52,7 +52,7 @@
         "sameAs": ["https://github.com/mahrsbar"]
       }
     </script>
-    <link rel="stylesheet" href="css/accents.css?v=20261111d" />
+    <link rel="stylesheet" href="css/accents.css?v=20261111f" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500..800&amp;display=swap" />
     <style>
       /* hero: the duck scene stands on a floor that runs the full width of the page.
@@ -156,7 +156,7 @@
       }
 
       /* The licence-application card shows only the "after" mockup, centred */
-      [data-observe="Licence applications"] .pcard-mock-ba { grid-template-columns: 1fr; padding: 4.5% 18% 0; }
+      [data-observe="Licence applications"] .pcard-mock-ba { grid-template-columns: 1fr; padding: 5.5% 6% 0; }
       [data-observe="Licence applications"] .pcard-mock-ba .pcard-mock-col:first-child,
       [data-observe="Licence applications"] .pcard-mock-ba .ba-tag { display: none; }
 
@@ -727,19 +727,28 @@
                   <span class="ba-tag after">After</span>
                   <span class="mk">
                     <span class="mk-top"><i></i><i></i><i></i><b>Licence application</b></span>
-                    <span class="six">
+                    <span class="six lic-app">
                       <span class="six-body">
                         <span class="rail steps-rail">
-                          <span class="now">Fill in your information <em class="count">9</em></span>
-                          <span>Attach documents <em class="count">1</em></span>
+                          <span class="done">Fill in your information <em class="ok">✓&#xFE0E;</em></span>
+                          <span class="now">Attach documents <em class="count">1</em></span>
                           <span>Get fingerprints <em class="count">2</em></span>
                           <span>Review and finalise</span>
                           <span>Sign</span>
                           <span>Submit</span>
                         </span>
+                        <span class="la-form">
+                          <span class="la-h">Attach documents</span>
+                          <span class="la-sub">Upload each one; we'll tell you if anything's missing.</span>
+                          <span class="la-doc ok"><i></i><span>Proof of identity</span><em>passport.pdf</em></span>
+                          <span class="la-doc ok"><i></i><span>Proof of address</span><em>utility-bill.pdf</em></span>
+                          <span class="la-doc todo"><i></i><span>Background disclosure</span><em class="la-up">Upload</em></span>
+                          <span class="la-next"><span class="la-btn ghost">Back</span><span class="la-btn">Save and continue</span></span>
+                        </span>
                         <span class="ring-wrap">
-                          <span class="ring" style="--p: 40"><b>12 of 30<br />sections</b></span>
+                          <span class="ring" style="--p: 66"><b>20 of 30<br />sections</b></span>
                           <small>Saved as you go</small>
+                          <span class="la-assign"><b>Assigned by your manager</b>Due Friday</span>
                         </span>
                       </span>
                     </span>
