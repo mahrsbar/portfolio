@@ -1,6 +1,6 @@
-/* The toy on each case file's wall: a small, playable version of what the project does.
-   Built from spans and buttons so it can live inside the summary paragraph, which is
-   what carries the wall; on a narrow screen it simply drops under the words. */
+/* The object each case file is filed under, standing on the floor of its header. Point at it
+   (or tap it, or on a phone just scroll to it) and it does that project's one move.
+   Built from inline SVG inside a span, so it can sit in the summary paragraph that carries the wall. */
 (function () {
   "use strict";
   var host = document.querySelector(".case-intro[data-toy]");
@@ -8,248 +8,138 @@
   var wall = host.querySelector(".intro-sum");
   if (!wall) return;
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var INK = 'fill="none" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"';
 
-  function el(tag, cls, text) {
-    var e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
-    return e;
-  }
-  function panel(kind, title) {
-    var p = el("span", "toy toy-" + kind);
-    p.appendChild(el("span", "toy-k", title));
-    wall.appendChild(p);
-    return p;
-  }
   function isDark() {
     var t = document.documentElement.getAttribute("data-theme");
     if (t) return t === "dark";
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
-  function onTheme(fn) {
-    new MutationObserver(fn).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", fn);
-  }
-  function whenSeen(node, fn) {
-    if (!("IntersectionObserver" in window)) return fn();
-    var io = new IntersectionObserver(function (es) {
-      if (es[0].isIntersecting) { io.disconnect(); fn(); }
-    }, { threshold: 0.5 });
-    io.observe(node);
+
+  /* chip: one paint swatch, drawn upright; CSS turns it about the rivet */
+  function chip(a, c1, c2, c3, name) {
+    return '<g class="ob-chip" style="--a:' + a + 'deg" role="button" tabindex="0" aria-label="' + name + ' theme">' +
+      '<rect x="19" y="20" width="22" height="90" rx="4" fill="#FFFDF6"/>' +
+      '<path d="M19 20 h22 v24 h-22 Z" fill="' + c1 + '" stroke="none"/><path d="M19 44 h22 v22 h-22 Z" fill="' + c2 + '" stroke="none"/><path d="M19 66 h22 v18 h-22 Z" fill="' + c3 + '" stroke="none"/>' +
+      '<rect x="19" y="20" width="22" height="90" rx="4"/><path d="M24 94 h12 M24 100 h8" stroke-width="2"/></g>';
   }
 
-  var toys = {
-    /* Design system: one set of tokens. A swatch re-themes the wall, the bar and the components at once. */
-    theme: function () {
-      var p = panel("theme", "one set of tokens");
-      var THEMES = [
-        { name: "Violet", brand: "#6E5BD6", light: ["#D9D5F4", "#D0CBF0"], dark: ["#201E3A", "#25223F"] },
-        { name: "Teal", brand: "#2F8F83", light: ["#BFE4D3", "#B5DECB"], dark: ["#1B2238", "#1F2740"] },
-        { name: "Coral", brand: "#E0503A", light: ["#F8D6CC", "#F4CCBF"], dark: ["#2A1E24", "#30232A"] },
-        { name: "Sky", brand: "#2F6FB8", light: ["#CFE2F3", "#C5DBEF"], dark: ["#18263A", "#1C2B41"] }
-      ];
-      var row = el("span", "tt-swatches");
-      row.setAttribute("role", "group");
-      row.setAttribute("aria-label", "Theme");
-      var demo = el("span", "tt-demo");
-      demo.innerHTML =
-        '<span class="tt-row"><span class="tt-btn">Approve</span><span class="tt-btn tt-ghost">Cancel</span><span class="tt-switch" aria-hidden="true"><i></i></span></span>' +
-        '<span class="tt-row"><span class="tt-chip">Pending</span><span class="tt-chip tt-chip-on">Approved</span><span class="tt-chip">Flagged</span></span>' +
-        '<span class="tt-card"><span class="tt-ava" aria-hidden="true"></span><span class="tt-lines" aria-hidden="true"><i></i><i></i></span><span class="tt-badge">3</span></span>';
-      var current = 0;
-      function apply() {
-        var t = THEMES[current], w = isDark() ? t.dark : t.light, b = document.body.style;
-        b.setProperty("--wall", w[0]);
-        b.setProperty("--wall-stripe", w[1]);
-        b.setProperty("--wallpaper", "repeating-linear-gradient(90deg, transparent 0 26px, " + w[1] + " 26px 52px)");
-        p.style.setProperty("--brand", t.brand);
-        row.querySelectorAll("button").forEach(function (x, i) { x.setAttribute("aria-pressed", String(i === current)); });
-      }
-      THEMES.forEach(function (t, i) {
-        var s = el("button", "tt-swatch");
-        s.type = "button";
-        s.style.setProperty("--sw", t.brand);
-        s.setAttribute("aria-label", t.name + " theme");
-        s.addEventListener("click", function () { current = i; apply(); });
-        row.appendChild(s);
-      });
-      p.appendChild(row);
-      p.appendChild(demo);
-      onTheme(apply);
-      apply();
-    },
-
-    /* Ask bar: the question comes back as filters you can see and remove, not as an answer. */
-    ask: function () {
-      var p = panel("ask", "ask it something");
-      var bar = el("span", "ta-bar");
-      var input = el("input");
-      input.type = "text";
-      input.setAttribute("aria-label", "Ask a question about transactions");
-      input.placeholder = "failed payments near Halifax";
-      var go = el("button", "ta-go", "Ask");
-      go.type = "button";
-      bar.appendChild(input);
-      bar.appendChild(go);
-      var chips = el("span", "ta-chips");
-      chips.setAttribute("aria-live", "polite");
-      var map = el("span", "ta-map");
-      map.setAttribute("aria-hidden", "true");
-      var PLACES = { halifax: [74, 30], toronto: [46, 52], vancouver: [12, 34], calgary: [22, 40], montreal: [60, 40], ottawa: [54, 46], regina: [30, 44], winnipeg: [36, 48] };
-      var svg = '<svg viewBox="0 12 100 50" preserveAspectRatio="xMidYMid slice"><path class="ta-land" d="M0 22 C12 14 20 26 30 20 S48 10 58 18 S74 8 84 16 S96 12 100 14 V64 H0 Z"/>';
-      for (var i = 0; i < 18; i++) {
-        var x = 6 + ((i * 37) % 88), y = 24 + ((i * 23) % 34);
-        svg += '<circle class="ta-pin" cx="' + x + '" cy="' + y + '" r="2"/>';
-      }
-      svg += '<g class="ta-hot"></g></svg>';
-      map.innerHTML = svg;
-      p.appendChild(bar);
-      p.appendChild(chips);
-      p.appendChild(map);
-
-      function parse(q) {
-        q = q.toLowerCase();
-        var out = [];
-        if (/fail|declin|reject|bounc/.test(q)) out.push(["Status", "Failed"]);
-        else if (/approv|success|clear/.test(q)) out.push(["Status", "Approved"]);
-        if (/fraud|suspicious|odd|weird/.test(q)) out.push(["Flag", "Suspicious"]);
-        for (var k in PLACES) if (q.indexOf(k) > -1) { out.push(["Place", k.charAt(0).toUpperCase() + k.slice(1)]); break; }
-        if (/today/.test(q)) out.push(["Range", "Today"]);
-        else if (/yesterday/.test(q)) out.push(["Range", "Yesterday"]);
-        else if (/week|7 days/.test(q)) out.push(["Range", "Last 7 days"]);
-        else if (/month|30 days/.test(q)) out.push(["Range", "Last 30 days"]);
-        var m = q.match(/(?:over|above|more than|>)\s*\$?(\d+)/);
-        if (m) out.push(["Amount", "Over $" + m[1]]);
-        return out;
-      }
-      function draw(list) {
-        chips.innerHTML = "";
-        var hot = map.querySelector(".ta-hot");
-        hot.innerHTML = "";
-        if (!list.length) {
-          chips.appendChild(el("span", "ta-none", "Nothing in that maps to a filter yet"));
-          return;
+  var OBJECTS = {
+    /* Design system: the fan opens; a swatch re-themes the wall from one set of tokens */
+    theme: {
+      label: "Swatch fan: pick a colour to re-theme this header",
+      svg: '<svg viewBox="0 0 120 120"><g ' + INK + '>' +
+        chip(-10, "#BFE4D3", "#3FA899", "#2F8F83", "Mint") +
+        chip(12, "#FFE08A", "#FFC93C", "#F0A91B", "Butter") +
+        chip(34, "#F7C4B9", "#F27A5E", "#E8553D", "Coral") +
+        chip(56, "#D4D8FF", "#8F9AFA", "#6E7BF2", "Violet") +
+        '<circle cx="30" cy="104" r="5" fill="#C98A4B"/></g></svg>',
+      hover: true,
+      init: function (box) {
+        var WALLS = {
+          Mint: [["#BFE4D3", "#B5DECB"], ["#1B2238", "#1F2740"]],
+          Butter: [["#FAEFC4", "#F6E7B0"], ["#26231B", "#2C2820"]],
+          Coral: [["#F8D6CC", "#F4CCBF"], ["#2A1E24", "#30232A"]],
+          Violet: [["#D9D5F4", "#D0CBF0"], ["#201E3A", "#25223F"]]
+        };
+        var picked = null;
+        function apply() {
+          if (!picked) return;
+          var w = WALLS[picked][isDark() ? 1 : 0], b = document.body.style;
+          b.setProperty("--wall", w[0]);
+          b.setProperty("--wall-stripe", w[1]);
+          b.setProperty("--wallpaper", "repeating-linear-gradient(90deg, transparent 0 26px, " + w[1] + " 26px 52px)");
         }
-        list.forEach(function (f, i) {
-          var c = el("span", "ta-chip");
-          c.style.setProperty("--i", i);
-          c.appendChild(el("b", null, f[0] + ": "));
-          c.appendChild(document.createTextNode(f[1]));
-          var x = el("button", "ta-x", "×");
-          x.type = "button";
-          x.setAttribute("aria-label", "Remove " + f[0] + " filter");
-          x.addEventListener("click", function () { list.splice(list.indexOf(f), 1); draw(list); });
-          c.appendChild(x);
-          chips.appendChild(c);
+        box.querySelectorAll(".ob-chip").forEach(function (c) {
+          function pick(e) {
+            e.stopPropagation();
+            picked = c.getAttribute("aria-label").split(" ")[0];
+            box.querySelectorAll(".ob-chip").forEach(function (x) { x.classList.toggle("on", x === c); });
+            box.classList.add("open");
+            apply();
+          }
+          c.addEventListener("click", pick);
+          c.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(e); } });
         });
-        var place = list.filter(function (f) { return f[0] === "Place"; })[0];
-        var at = place ? PLACES[place[1].toLowerCase()] : null;
-        var n = list.length ? 5 : 0;
-        for (var j = 0; j < n; j++) {
-          var cx = at ? at[0] + ((j * 7) % 9) - 4 : 10 + ((j * 29) % 80);
-          var cy = at ? at[1] + ((j * 5) % 9) - 4 : 28 + ((j * 13) % 30);
-          hot.insertAdjacentHTML("beforeend", '<circle class="ta-hit" style="--i:' + j + '" cx="' + cx + '" cy="' + cy + '" r="3"/>');
-        }
+        new MutationObserver(apply).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
       }
-      function ask() { draw(parse(input.value || input.placeholder)); }
-      go.addEventListener("click", ask);
-      input.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); ask(); } });
-
-      // the first question types itself once the wall is in view
-      var demoQ = "failed payments near Halifax last week";
-      whenSeen(p, function () {
-        if (still) { input.value = demoQ; return ask(); }
-        var n = 0;
-        var t = setInterval(function () {
-          if (document.activeElement === input) { clearInterval(t); return; }
-          input.value = demoQ.slice(0, ++n);
-          if (n >= demoQ.length) { clearInterval(t); setTimeout(ask, 300); }
-        }, 45);
-      });
     },
 
-    /* Unified user page: four tools an analyst juggled, folded into one page around a timeline. */
-    tabs: function () {
-      var p = panel("tabs", "four tools, one page");
-      var stage = el("span", "tb-stage");
-      stage.setAttribute("aria-hidden", "true");
-      ["Search", "Map", "Graph", "Logs"].forEach(function (n, i) {
-        var w = el("span", "tb-win");
-        w.style.setProperty("--i", i);
-        w.innerHTML = '<span class="tb-top"><i></i><i></i><i></i><b>' + n + '</b></span><span class="tb-body tb-' + n.toLowerCase() + '"></span>';
-        stage.appendChild(w);
-      });
-      var page = el("span", "tb-page");
-      var bars = "";
-      [3, 4, 2, 5, 3, 9, 11, 8, 10, 3, 2, 4, 3].forEach(function (h, i) { bars += '<i style="--h:' + h + ';' + (i > 4 && i < 9 ? "--hot:1" : "") + '"></i>'; });
-      page.innerHTML = '<span class="tb-top"><i></i><i></i><i></i><b>User page</b></span><span class="tb-time">' + bars + '</span><span class="tb-cards"><i></i><i></i><i></i><i></i></span>';
-      stage.appendChild(page);
-      var btn = el("button", "toy-btn", "Fold into one page");
-      btn.type = "button";
-      btn.setAttribute("aria-pressed", "false");
-      btn.addEventListener("click", function () {
-        var on = !p.classList.contains("merged");
-        p.classList.toggle("merged", on);
-        btn.setAttribute("aria-pressed", String(on));
-        btn.textContent = on ? "Back to four tools" : "Fold into one page";
-      });
-      p.appendChild(stage);
-      p.appendChild(btn);
+    /* Ask bar: the magnifier slides over the map and a pin drops where the answer is */
+    ask: {
+      label: "Map and magnifier: find the place on the map",
+      svg: '<svg viewBox="0 0 120 120"><g ' + INK + '>' +
+        '<path d="M8 50 L38 44 V108 L8 114 Z" fill="#FFFDF6"/><path d="M38 44 L68 52 V114 L38 108 Z" fill="#E9F1F7"/><path d="M68 52 L98 44 V108 L68 114 Z" fill="#FFFDF6"/>' +
+        '<path d="M12 70 C20 62 30 66 34 58 L38 60 V84 C30 90 22 82 12 88 Z" fill="#8CC79C" stroke-width="2"/><path d="M68 74 C76 70 82 78 94 70 V92 C84 96 76 90 68 96 Z" fill="#8CC79C" stroke-width="2"/>' +
+        '<path d="M16 100 C30 96 42 84 54 90 S80 84 90 62" stroke="#E8553D" stroke-width="2" stroke-dasharray="4 5"/>' +
+        '<g class="ob-pin"><path d="M62 74 C54 64 52 60 52 56 a10 10 0 0 1 20 0 c0 4 -2 8 -10 18 Z" fill="#E8553D" stroke-width="2.600"/><circle cx="62" cy="56" r="3.500" fill="#FFFFFF" stroke-width="2"/></g>' +
+        '<g class="ob-glass"><circle cx="62" cy="62" r="23" fill="#FFFFFF" fill-opacity=".45"/><path d="M50 52 q4 -6 10 -7" stroke="#FFFFFF" stroke-width="3"/>' +
+        '<circle cx="62" cy="62" r="23" stroke-width="5"/><path d="M79 79 L104 104" stroke-width="12"/><path d="M80 80 L103 103" stroke="#C98A4B" stroke-width="6"/></g>' +
+        '</g></svg>'
     },
 
-    /* Licensing: the application was eleven steps; the redesign made it six. The duck climbs either. */
-    stairs: function () {
-      var p = panel("stairs", "eleven steps, then six");
-      var stage = el("span", "st-stage");
-      stage.setAttribute("aria-hidden", "true");
-      var steps = [];
-      for (var i = 0; i < 11; i++) { var s = el("span", "st-step"); s.style.setProperty("--i", i); stage.appendChild(s); steps.push(s); }
-      var duck = el("img", "st-duck");
-      duck.src = (document.querySelector('link[rel="icon"]') || {}).href || "";
-      duck.alt = "";
-      stage.appendChild(duck);
-      var count = el("span", "st-count");
-      count.setAttribute("aria-live", "polite");
-      var seg = el("span", "toy-seg");
-      seg.setAttribute("role", "group");
-      seg.setAttribute("aria-label", "Version");
-      var b11 = el("button", null, "Before: 11"), b6 = el("button", null, "After: 6");
-      [b11, b6].forEach(function (b) { b.type = "button"; seg.appendChild(b); });
-      p.appendChild(stage);
-      p.appendChild(count);
-      p.appendChild(seg);
+    /* Unified user page: the Rolodex flips through the tools and stops on one person's card */
+    tabs: {
+      label: "Rolodex: flip to the one card for this user",
+      svg: '<svg viewBox="0 0 120 120"><g ' + INK + '>' +
+        '<path d="M14 112 L22 80 H30 L28 104 Z M106 112 L98 80 H90 L92 104 Z" fill="#3B2F5C"/>' +
+        '<g transform="rotate(-16 60 92)"><rect x="32" y="42" width="56" height="40" rx="4" fill="#F4B6C2"/></g>' +
+        '<g transform="rotate(14 60 92)"><rect x="32" y="42" width="56" height="40" rx="4" fill="#FFE08A"/></g>' +
+        '<g class="ob-person"><rect x="30" y="46" width="60" height="42" rx="4" fill="#FFFDF6"/>' +
+        '<circle cx="44" cy="62" r="7" fill="#6E7BF2" stroke-width="2.400"/><path d="M35 79 c2 -7 16 -7 18 0" fill="#6E7BF2" stroke-width="2.400"/>' +
+        '<path d="M60 58 h22 M60 66 h16 M60 74 h20" stroke-width="2.400"/></g>' +
+        ['#D9E6F2', '#FFE08A', '#F4B6C2', '#FFFDF6'].map(function (c, i) {
+          return '<g class="ob-flip" style="--i:' + (3 - i) + '"><rect x="30" y="46" width="60" height="42" rx="4" fill="' + c + '"/><path d="M40 60 h40 M40 68 h28 M40 76 h34" stroke-width="2.200" opacity=".35"/></g>';
+        }).join("") +
+        '<path d="M52 88 v6 M68 88 v6" stroke-width="2.400"/>' +
+        '<path d="M18 92 H102" stroke-width="3.400"/><circle cx="16" cy="92" r="7" fill="#E8553D"/><circle cx="104" cy="92" r="7" fill="#E8553D"/>' +
+        '<rect x="10" y="106" width="100" height="9" rx="4.500" fill="#3B2F5C"/></g></svg>'
+    },
 
-      var timer = null;
-      function set(n) {
-        clearInterval(timer);
-        p.style.setProperty("--n", n);
-        steps.forEach(function (s, i) { s.classList.toggle("gone", i >= n); });
-        b11.setAttribute("aria-pressed", String(n === 11));
-        b6.setAttribute("aria-pressed", String(n === 6));
-        var at = 0;
-        function place() {
-          p.style.setProperty("--at", at);
-          count.textContent = "Step " + at + " of " + n;
-        }
-        place();
-        if (still) { at = n; return place(); }
-        timer = setInterval(function () {
-          at++;
-          place();
-          if (at >= n) clearInterval(timer);
-        }, 260);
-      }
-      b11.addEventListener("click", function () { set(11); });
-      b6.addEventListener("click", function () { set(6); });
-      p.style.setProperty("--n", 11);
-      p.style.setProperty("--at", 0);
-      count.textContent = "Step 0 of 11";
-      b11.setAttribute("aria-pressed", "true");
-      b6.setAttribute("aria-pressed", "false");
-      whenSeen(p, function () { set(11); });
+    /* Licensing: the stamp comes down and leaves "6 steps" where there used to be eleven */
+    stairs: {
+      label: "Rubber stamp: approve the application",
+      svg: '<svg viewBox="0 0 120 120"><g ' + INK + '>' +
+        '<path d="M4 114 L22 90 H104 L116 114 Z" fill="#FFFDF6"/>' +
+        '<path d="M14 109 L20 100 H44 M14 104 H38" stroke="#9AA3B5" stroke-width="2" opacity=".7"/>' +
+        '<g class="ob-mark"><path d="M46 110 L52 98 H90 L86 110 Z" stroke="#E8553D" stroke-width="2.600"/>' +
+        '<text x="68" y="107.500" text-anchor="middle" fill="#E8553D" stroke="none" font-family="Shantell Sans, sans-serif" font-weight="800" font-size="8.500">6 STEPS</text></g>' +
+        '<g class="ob-stamp"><path d="M72 76 C72 60 79 56 78 42 H90 C89 56 96 60 96 76 Z" fill="#C98A4B"/><circle cx="84" cy="32" r="15" fill="#C98A4B"/><path d="M76 26 C78 22 82 20 86 20" stroke="#E9B27A" stroke-width="2.600"/>' +
+        '<rect x="60" y="74" width="48" height="16" rx="5" fill="#E8553D"/></g>' +
+        '</g></svg>'
     }
   };
 
-  var make = toys[host.getAttribute("data-toy")];
-  if (make) make();
+  var kind = host.getAttribute("data-toy");
+  var o = OBJECTS[kind];
+  if (!o) return;
+  var box = document.createElement("span");
+  box.className = "obj obj-" + kind;
+  box.setAttribute("role", "group");
+  box.setAttribute("aria-label", o.label);
+  if (kind !== "theme") box.tabIndex = 0;
+  box.innerHTML = o.svg;
+  wall.appendChild(box);
+  if (o.init) o.init(box);
+
+  /* the fan opens while pointed at; the others play their move through once */
+  function play() {
+    if (o.hover) return box.classList.add("open");
+    box.classList.remove("play");
+    void box.offsetWidth;
+    box.classList.add("play");
+  }
+  box.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") play(); });
+  box.addEventListener("pointerleave", function () { if (o.hover && !box.querySelector(".ob-chip.on")) box.classList.remove("open"); });
+  box.addEventListener("focusin", play);
+  box.addEventListener("click", play);
+  box.addEventListener("keydown", function (e) { if ((e.key === "Enter" || e.key === " ") && e.target === box) { e.preventDefault(); play(); } });
+  if (still) { box.classList.add(o.hover ? "open" : "done"); return; }
+  /* touch screens have no hover: play it once when it comes into view */
+  if ("IntersectionObserver" in window && !window.matchMedia("(hover: hover)").matches) {
+    var io = new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting) { io.disconnect(); setTimeout(play, 400); }
+    }, { threshold: 0.6 });
+    io.observe(box);
+  }
 })();
