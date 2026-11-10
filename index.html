@@ -127,9 +127,14 @@
       .split-fig.duck-fig::before {
         content: "";
         position: absolute;
-        inset: -12% -18% 0 -12%;
+        inset: -12% -12% 0 -12%;
         pointer-events: none;
-        background: radial-gradient(ellipse 42% 48% at 82% 44%, rgba(255, 214, 120, 0.13), rgba(255, 214, 120, 0.04) 55%, transparent 100%);
+        background: radial-gradient(ellipse 38% 46% at 80% 50%, rgba(255, 220, 140, 0.10), rgba(255, 220, 140, 0.03) 55%, transparent 100%);
+        /* fade every edge, so the light never stops in a straight line, whatever the width */
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 20%, #000 72%, transparent), linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent);
+        -webkit-mask-composite: source-in;
+        mask-image: linear-gradient(to right, transparent, #000 20%, #000 72%, transparent), linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent);
+        mask-composite: intersect;
         opacity: 0;
         transition: opacity 0.6s ease;
       }
