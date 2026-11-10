@@ -6104,32 +6104,55 @@ html body:has(main.hue-mustard) { --wall: #CFE2F3; --wall-stripe: #C5DBEF; --on-
 :root[data-theme="dark"] body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
 
-/* the outcomes, pinned to the wall beside the title: the first thing on the page that says what came of it */
-@media (min-width: 1000px) {
-  html :is(.case-intro, .case-intro .intro-text):has(> .intro-sum + .highlights) {
-    display: grid; grid-template-columns: minmax(0, 1fr) clamp(250px, 24vw, 310px); column-gap: clamp(2.5rem, 6vw, 6rem); align-items: start;
-  }
-  html :is(.case-intro, .case-intro .intro-text):has(> .intro-sum + .highlights) > * { grid-column: 1; }
-  html :is(.case-intro, .case-intro .intro-text):has(> .intro-sum + .highlights) > .intro-sum { align-self: stretch; }
-  html:root body :is(.case-intro, .case-intro .intro-text) > .intro-sum + .highlights {
-    grid-column: 2; grid-row: 1 / span 3; align-self: center; display: flex; flex-direction: column; gap: 1.4rem;
-    margin: 0.75rem 0 0; padding: 0; border: 0; border-radius: 0; background: none;
-  }
-  html:root body :is(.case-intro, .case-intro .intro-text) > .intro-sum + .highlights + * { margin-top: calc(var(--band-drop) + 2.25rem); }
-  html:root body .case-intro .highlights li, html:root body .case-intro .highlights li + li, html:root body .case-intro .highlights li:has(.hl-link) {
-    position: relative; display: block; padding: 1.05rem 1.2rem 0.95rem; border: var(--frame-w) solid var(--frame); border-radius: 6px;
-    background: var(--note-paper, #FFFDF6); rotate: -1.4deg;
-  }
-  html:root body .case-intro .highlights li:nth-child(2) { rotate: 1.2deg; margin-left: 1.25rem; }
-  html:root body .case-intro .highlights li:nth-child(3) { rotate: -0.5deg; margin-left: 0.4rem; }
-  html:root body .case-intro .highlights li::before {
-    content: ""; position: absolute; top: -11px; left: 50%; width: 64px; height: 20px; translate: -50% 0; rotate: -3deg;
-    background: color-mix(in srgb, var(--c, var(--duck)) 55%, transparent); border-radius: 2px;
-  }
-  html:root body .case-intro .highlights li:nth-child(2)::before { rotate: 4deg; left: 38%; }
-  html:root body .case-intro .highlights b { display: block; font-size: 1.3rem; line-height: 1.2; white-space: normal; }
-  html:root body .case-intro .highlights span { display: block; margin-top: 0.3rem; font-size: 0.86rem; line-height: 1.4; }
-  html:root body .case-intro .highlights .hl-link { padding: 0; }
+
+/* ---------- the duck, at work in each room ---------- */
+/* Each case opens with the duck beside the object it's filed under, acting the part: a detective's
+   cap for the investigation tool, popcorn for the replays, asleep next to Mochi. It stands on the floor. */
+[data-prop="swatches"] { --scene: url("../images/room/scenes/swatches.svg"); }
+[data-prop="map"] { --scene: url("../images/room/scenes/map.svg"); }
+[data-prop="rolodex"] { --scene: url("../images/room/scenes/rolodex.svg"); }
+[data-prop="stamp"] { --scene: url("../images/room/scenes/stamp.svg"); }
+[data-prop="tv"] { --scene: url("../images/room/scenes/tv.svg"); }
+[data-prop="loaf"] { --scene: url("../images/room/scenes/loaf.svg"); }
+[data-prop="globe"] { --scene: url("../images/room/scenes/globe.svg"); }
+[data-prop="pencils"] { --scene: url("../images/room/scenes/pencils.svg"); }
+[data-prop="papers"] { --scene: url("../images/room/scenes/papers.svg"); }
+[data-prop="house"] { --scene: url("../images/room/scenes/house.svg"); }
+[data-prop="arcade"] { --scene: url("../images/room/scenes/arcade.svg"); }
+[data-prop="tower"] { --scene: url("../images/room/scenes/tower.svg"); }
+[data-prop="megaphone"] { --scene: url("../images/room/scenes/megaphone.svg"); }
+[data-prop="books"] { --scene: url("../images/room/scenes/books.svg"); }
+[data-prop="plant"] { --scene: url("../images/room/scenes/plant.svg"); }
+html .case-intro .intro-sum { --scene-bottom: calc(var(--room-floor) - var(--band-drop) - 6px); }
+html .case-hero, html .post-hero { --scene-bottom: calc(var(--room-floor) - 6px); }
+html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after {
+  content: ""; position: absolute; left: auto; right: clamp(0rem, 3vw, 2.5rem); bottom: var(--scene-bottom);
+  width: clamp(220px, 24vw, 330px); aspect-ratio: 240 / 170; height: auto; pointer-events: none;
+  -webkit-mask: none; mask: none; background: var(--scene, none) center bottom / contain no-repeat;
 }
-:root[data-theme="dark"] { --note-paper: #262C45; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --note-paper: #262C45; } }
+/* a deep dive keeps the scene on the floor too, not on a shelf */
+html .case-hero:has(> .tldr)::after { top: auto; bottom: var(--scene-bottom); height: auto; }
+@media (max-width: 1180px) {
+  html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after { display: block; }
+}
+/* narrower: the duck stands under the words instead of beside them */
+@media (max-width: 999px) {
+  html .case-intro .intro-sum { padding-bottom: 150px; }
+  html .case-hero, html .post-hero { padding-bottom: calc(var(--band-drop) + 150px); }
+  html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after { right: 50%; translate: 50% 0; width: 230px; }
+}
+
+
+/* the homepage covers stand against the same wall as their case page */
+html .projects .pcard.hue-violet { --wall: #D9D5F4; --wall-stripe: #D0CBF0; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-violet { --wall: #201E3A; --wall-stripe: #25223F; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-violet { --wall: #201E3A; --wall-stripe: #25223F; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
+html .projects .pcard.hue-coral { --wall: #F8D6CC; --wall-stripe: #F4CCBF; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-coral { --wall: #2A1E24; --wall-stripe: #30232A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-coral { --wall: #2A1E24; --wall-stripe: #30232A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
+html .projects .pcard.hue-pink { --wall: #F7D7E0; --wall-stripe: #F3CDD8; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-pink { --wall: #291D2B; --wall-stripe: #2F2232; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-pink { --wall: #291D2B; --wall-stripe: #2F2232; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
+html .projects .pcard.hue-mustard { --wall: #CFE2F3; --wall-stripe: #C5DBEF; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-mustard { --wall: #18263A; --wall-stripe: #1C2B41; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-mustard { --wall: #18263A; --wall-stripe: #1C2B41; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }

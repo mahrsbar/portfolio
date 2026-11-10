@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 170"><g fill="none" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="72" cy="163" rx="10" ry="4.500" fill="#FF8A1F"/><ellipse cx="102" cy="163" rx="10" ry="4.500" fill="#FF8A1F"/>
+<path d="M112 158 C124 152 126 136 118 126 C108 114 90 112 70 116 C50 120 34 112 24 98 C14 112 16 142 32 154 C44 162 62 162 82 162 C96 162 106 161 112 158 Z" fill="#FFC93C"/>
+<path d="M78 132 C62 124 42 128 40 142 C52 152 72 150 80 140 Z" fill="#F0A91B"/>
+<g transform="rotate(-4 92 120) translate(92 92) scale(-0.652 0.652) translate(-585 -212)">
+<path d="M588 172 C582 160 588 150 597 155 C600 145 613 145 613 156 C613 164 606 170 600 174 Z" fill="#FFC93C" stroke="#1E1A17" stroke-width="4.600" stroke-linejoin="round"/>
+<circle cx="585" cy="212" r="46" fill="#FFC93C" stroke="#1E1A17" stroke-width="4.600"/>
+<path d="M556 200 q4 -20 22 -28" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+<path d="M546 214 C532 208 518 214 518 224 C522 234 540 236 552 230 Z" fill="#FF8A1F" stroke="#1E1A17" stroke-width="4.600" stroke-linejoin="round"/>
+<path d="M522 225 C530 229 542 229 550 225" fill="none" stroke="#1E1A17" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="598" cy="232" rx="11" ry="6.500" fill="#FF8FA3" opacity=".75"/>
+<circle cx="569" cy="204" r="16" fill="#fff" fill-opacity=".22"/><circle cx="569" cy="204" r="8.5" fill="#1E1A17"/><circle cx="572" cy="200" r="3" fill="#fff"/><circle cx="566" cy="208" r="1.5" fill="#fff"/>
+<circle cx="569" cy="204" r="16" fill="none" stroke="#1E1A17" stroke-width="4.600"/>
+<path d="M585 201 L622 194" stroke="#1E1A17" stroke-width="4.600" stroke-linecap="round"/>
+</g>
+
+</g>
+<g transform="translate(118 48)"><g fill="none" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M58 44 C62 26 78 10 100 6 C98 26 84 40 62 46 Z" fill="#FFFDF6"/><path d="M60 45 L96 10" stroke-width="2"/>
+<rect x="51" y="38" width="13" height="10" fill="#3B2F5C"/><rect x="43" y="46" width="29" height="22" rx="5" fill="#3B2F5C"/>
+<rect x="20" y="66" width="80" height="17" rx="3" fill="#FFC93C"/><rect x="26" y="83" width="74" height="16" rx="3" fill="#2F8F83"/><rect x="16" y="99" width="88" height="16" rx="3" fill="#E8553D"/>
+<path d="M88 66 V83 M36 83 V99 M92 99 V115" stroke-width="2.2"/></g></g></svg>
