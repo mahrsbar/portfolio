@@ -5704,3 +5704,396 @@ html .app-badge-over { gap: 0.55rem; padding: 0.4rem 0.7rem 0.4rem 0.45rem; bord
 html .app-badge-over img { width: 36px; height: 36px; }
 html .app-badge-over b { font-size: 0.9rem; }
 html .app-badge-over small { margin-top: 0; font-size: 0.78rem; }
+
+/* =====================================================================
+   The room (10 November 2026, second pass). The paper is white now. Every
+   page opens on the room's wall, in the duck's yellow, and the work is laid
+   out on the plain floor below it. Yellow is the one colour: the wall, a
+   folder's tab, the marker over a link. The armchair's teal stays in the
+   drawing. Case files stand in a drawer; tabs are one segmented control.
+   ===================================================================== */
+:root {
+  --bg: #FFFFFF; --bg-elev: #FFFFFF; --card: #FFFFFF; --bg-sunk: #F4F3EF;
+  --ink-2: #45413C; --ink-3: #6A655E; --line: #E3E1DB; --clip: #D9D6CE;
+  --wall: #FFC93C; --on-wall-2: #3B352C; --wall-paper: #FFFFFF; --marker: var(--duck);
+  --wall-btn: #1E1A17; --wall-btn-ink: #FFC93C; --floor-line: #1E1A17;
+  --chair: var(--ink); --chair-soft: var(--duck-soft);
+  --cover-bg: var(--bg-sunk); --case-cover: var(--wall);
+  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='10'%3E%3Cpath d='M0 5 C40 3.6 80 6.4 120 5 S200 3.6 240 5' fill='none' stroke='black' stroke-width='2.6'/%3E%3C/svg%3E");
+}
+:root[data-theme="dark"] {
+  --bg: #14161D; --bg-elev: #1B1E27; --card: #1E222C; --bg-sunk: #101218;
+  --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --clip: #4A5063;
+  --wall: #1D2130; --on-wall-2: #C4C2BC; --wall-paper: transparent;
+  --wall-btn: var(--duck); --wall-btn-ink: var(--on-duck); --floor-line: #4A5063;
+  --chair: var(--ink); --chair-soft: var(--duck-soft);
+  --cover-bg: var(--bg); --case-cover: var(--bg);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14161D; --bg-elev: #1B1E27; --card: #1E222C; --bg-sunk: #101218;
+    --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --clip: #4A5063;
+    --wall: #1D2130; --on-wall-2: #C4C2BC; --wall-paper: transparent;
+    --wall-btn: var(--duck); --wall-btn-ink: var(--on-duck); --floor-line: #4A5063;
+    --chair: var(--ink); --chair-soft: var(--duck-soft);
+    --cover-bg: var(--bg); --case-cover: var(--bg);
+  }
+}
+html .sh-ico .i-paper { fill: #FFFFFF; }
+html .sh-ico .i-tan { fill: #D9D6CE; }
+
+/* links: ink, underlined in ink; the yellow marker goes over them on hover (white where the wall is yellow) */
+html .prose a:hover, html .meta-line a:hover, html .timeline a:hover, html .sn a:hover, html .lead a:hover, html .intro-sum a:hover, html .footer a:hover {
+  background: var(--marker); color: var(--on-duck); text-decoration-color: transparent; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+
+/* ---------- the wall ---------- */
+/* text that sits on the wall is a shade darker, so it holds on yellow */
+html .duck-room .hero-copy, html .case-intro .eyebrow, html .case-intro .intro-sum, html .case-hero, html .post-hero {
+  --ink-2: var(--on-wall-2); --ink-3: var(--on-wall-2); --marker: var(--wall-paper);
+}
+/* the bar is part of the wall for as long as the wall is behind it (main.js sets .on-wall) */
+html .nav { transition: background-color 200ms var(--ease), border-color 200ms var(--ease); }
+html .nav.on-wall, html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) { background: var(--wall); }
+html .nav.on-wall.scrolled { border-bottom-color: color-mix(in srgb, var(--floor-line) 22%, transparent); }
+html .nav.on-wall .nav-links a, html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) .nav-links a { color: var(--on-wall-2); }
+html .nav.on-wall .nav-links a:hover, html .nav.on-wall .nav-links a[aria-current="page"],
+html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) .nav-links a:is(:hover, [aria-current="page"]) { color: var(--ink); }
+html .nav.on-wall .brand .wordmark .dot, html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) .brand .wordmark .dot { color: var(--ink); }
+
+/* the homepage: the room runs the full width; the wall meets a white floor at a hand-drawn line */
+html .duck-room { background: var(--wall); }
+html .duck-room::before {
+  background: var(--floor-line);
+  -webkit-mask: var(--wave) repeat-x center / 240px 10px; mask: var(--wave) repeat-x center / 240px 10px;
+}
+html .duck-room .split-inner { padding-top: clamp(2rem, 5vw, 4rem); }
+@media (min-width: 861px) {
+  html .duck-room .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(340px, 46vw, 600px); }
+}
+html .duck-room .btn-primary { border-color: var(--wall-btn); background: var(--wall-btn); color: var(--wall-btn-ink); }
+html .duck-room .btn-primary:hover { background: color-mix(in srgb, var(--wall-btn) 86%, #fff); color: var(--wall-btn-ink); }
+html .duck-room .btn-ghost { background: var(--wall-paper); }
+html .duck-room .btn-ghost:hover { background: color-mix(in srgb, var(--ink) 8%, var(--wall-paper)); }
+
+/* a case page: the title and its summary hang on the wall; the facts are on the floor */
+html .case-intro .intro-sum { position: relative; }
+html .case-intro .intro-sum::before {
+  content: ""; position: absolute; z-index: -1; left: -100vw; right: -100vw; top: -100vh; bottom: -2.5rem;
+  background: var(--wall); pointer-events: none;
+}
+html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after, html #session-notes::after {
+  content: ""; position: absolute; left: -100vw; right: -100vw; bottom: calc(-2.5rem - 5px); height: 10px; pointer-events: none;
+  background: var(--floor-line);
+  -webkit-mask: var(--wave) repeat-x center / 240px 10px; mask: var(--wave) repeat-x center / 240px 10px;
+}
+html body .case-intro .intro-sum + * { margin-top: 4.75rem; }
+/* About, the writing index and each post: the whole opening is on the wall */
+html .case-hero, html .post-hero { position: relative; padding-bottom: clamp(2rem, 4vw, 3rem); margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+html .case-hero::before, html .post-hero::before {
+  content: ""; display: block; position: absolute; z-index: -1; left: -100vw; right: -100vw; top: -100vh; bottom: 0;
+  width: auto; height: auto; transform: none; background: var(--wall); pointer-events: none;
+}
+html .case-hero::after, html .post-hero::after, html #session-notes::after { bottom: -5px; }
+
+/* the case number: a small plaque hung on the wall from a nail */
+html .eyebrow .case-no { position: relative; background: var(--wall-paper); }
+html .eyebrow .case-no::before {
+  content: ""; position: absolute; left: 50%; top: -8px; width: 13px; height: 13px; translate: -50% 0; rotate: 45deg;
+  border-left: var(--frame-w) solid var(--floor-line); border-top: var(--frame-w) solid var(--floor-line);
+}
+html .eyebrow .case-no::after {
+  content: ""; position: absolute; left: 50%; top: -11px; width: 5px; height: 5px; translate: -50% 0; border-radius: 50%; background: var(--floor-line);
+}
+html .case-intro { padding-top: clamp(3rem, 6vw, 4.5rem); }
+
+/* session notes: back on the wall, the clipboard hung on it */
+html #session-notes { position: relative; background: var(--wall); border-top: 0; }
+html body:has(#session-notes) .footer { border-top: 0; }
+
+/* ---------- the drawer ---------- */
+/* The four case files are folders standing in a drawer. Each tab is cut one step along from
+   the last; on a screen tall enough, each folder files over the one before as you scroll,
+   so the tabs line up the way they do when you look into a drawer. */
+html .projects .case-drawer { grid-column: 1 / -1; --tab-step: 6.4rem; --tab-h: 2rem; padding-top: var(--tab-h); }
+html .projects .case-drawer > .pcard.pcard-flagship { --i: 0; margin-top: 0; }
+html .projects .case-drawer > .pcard.pcard-flagship:nth-of-type(2) { --i: 1; }
+html .projects .case-drawer > .pcard.pcard-flagship:nth-of-type(3) { --i: 2; }
+html .projects .case-drawer > .pcard.pcard-flagship:nth-of-type(4) { --i: 3; }
+html .projects .case-drawer > .pcard.pcard-flagship + .pcard-flagship { margin-top: calc(var(--tab-h) + 2.25rem); }
+html .projects .pcard.pcard-flagship { --cover-bg: var(--case-cover); }
+html .projects .case-drawer > .pcard.pcard-flagship::before {
+  top: auto; bottom: calc(100% + var(--frame-w)); left: calc(1.25rem + var(--i) * var(--tab-step)); transform: none;
+  box-sizing: border-box; height: var(--tab-h); padding: 0.3rem 0.95rem 0; border-bottom: 0; border-radius: 9px 9px 0 0;
+  font-size: 0.9rem; line-height: 1.45; white-space: nowrap;
+}
+@media (max-width: 560px) {
+  html .projects .case-drawer { --tab-step: 4.7rem; --tab-h: 1.8rem; }
+  html .projects .case-drawer > .pcard.pcard-flagship::before { left: calc(0.75rem + var(--i) * var(--tab-step)); padding: 0.25rem 0.6rem 0; font-size: 0.8rem; }
+}
+@media (min-width: 920px) and (min-height: 740px) {
+  html .projects .case-drawer { --drawer-step: 0.7rem; }
+  html .projects .case-drawer > .pcard.pcard-flagship {
+    position: sticky; top: calc(64px + var(--tab-h) + 0.75rem + var(--i) * var(--drawer-step));
+    /* main.js sets --folder-h to the tallest folder, so the pile closes square */
+    min-height: var(--folder-h, 0);
+  }
+}
+/* the other projects are not files: a cover in an ink frame and the words under it, straight on the page */
+html body .projects .pcard:not(.pcard-flagship) { margin-top: 3.25rem; padding: 0; border: 0; border-radius: 0; background: none; }
+/* a file doesn't lift when you point at it; the title takes the marker and the cover leans in */
+html .projects .pcard:hover { translate: none; }
+html .projects .pcard.pcard-flagship:hover::before { rotate: none; translate: none; }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes tab-rise { from { clip-path: inset(100% 0 0 0); translate: 0 8px; } to { clip-path: inset(0); } }
+  html .projects .pcard.case-in::before { animation: tab-rise 360ms var(--ease) 120ms backwards; }
+}
+
+/* ---------- tabs: one segmented control ---------- */
+/* One outlined group, the segments inside it, the open one filled in ink. The sheet it switches sits below, on its own. */
+html .type-tablist, html .type-tablist.steps {
+  position: relative; z-index: auto; display: inline-flex; flex-wrap: wrap; align-items: stretch; gap: 2px;
+  width: auto; max-width: 100%; margin: 0 0 0.75rem; padding: 3px;
+  border: var(--frame-w) solid var(--frame); border-radius: 10px; background: var(--bg-elev);
+}
+html .type-tablist::before, html .type-tablist.steps::before { display: none; }
+html .type-tablist button, html .type-tablist.steps button {
+  position: relative; flex: 0 0 auto; height: auto; margin: 0; padding: 0.42rem 0.95rem; border: 0; border-radius: 6px;
+  background: transparent; color: var(--ink-2); box-shadow: none; font-size: 0.875rem; font-weight: 600; line-height: 1.3; white-space: nowrap;
+}
+html .type-tablist button:hover:not([aria-selected="true"]) { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); }
+html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { background: var(--ink); color: var(--bg); box-shadow: none; }
+html .type-tablist button[aria-selected="true"]::after { content: none; }
+html .type-tablist button:focus-visible { outline: 3px solid var(--duck-dk); outline-offset: 2px; }
+html .cards-demo .demo-bar { flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; margin-bottom: 0.75rem; }
+html .cards-demo .demo-bar .type-tablist, html .cards-demo .demo-actions { margin-bottom: 0; }
+@media (max-width: 560px) {
+  /* phones: the control spans the column and its segments share the row */
+  html .type-tablist, html .type-tablist.steps { display: flex; gap: 2px; padding: 3px; }
+  html .type-tablist button, html .type-tablist.steps button { flex: 1 1 auto; padding: 0.45rem 0.5rem; font-size: 0.8rem; line-height: 1.2; white-space: normal; }
+}
+
+/* =====================================================================
+   The room, third pass (10 November 2026). The site is the duck's practice,
+   and a practice is a room: papered wall, skirting board, floorboards, a
+   window on the North Shore. The colour lives in the room; the pages laid
+   out below it stay white. Every band that used to be a flat colour is now
+   a stretch of the same wall.
+   ===================================================================== */
+:root {
+  --wall: #BFE4D3; --wall-stripe: #B5DECB; --on-wall-2: #2E3A35;
+  --skirt: #FFFDF6; --boards: #E8B974; --room-ink: #1E1A17;
+  --wall-btn-ink: #FFFFFF;
+  --planks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='86' viewBox='0 0 320 86'%3E%3Cg fill='none' stroke='%231E1A17' stroke-opacity='.34' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M0 26 C80 25 160 27 240 26 S300 25.5 320 26'/%3E%3Cpath d='M0 55 C100 56 200 54 320 55'/%3E%3Cpath d='M70 3 V24 M230 3 V24 M150 29 V53 M300 29 V53 M40 58 V86 M200 58 V86'/%3E%3C/g%3E%3C/svg%3E");
+  --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px);
+}
+:root[data-theme="dark"] {
+  --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA;
+  --skirt: #39405C; --boards: #2B2535; --room-ink: #0D0F16; --wall-btn-ink: var(--on-duck); --wall-paper: #2A3150;
+  --planks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='86' viewBox='0 0 320 86'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='.13' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M0 26 C80 25 160 27 240 26 S300 25.5 320 26'/%3E%3Cpath d='M0 55 C100 56 200 54 320 55'/%3E%3Cpath d='M70 3 V24 M230 3 V24 M150 29 V53 M300 29 V53 M40 58 V86 M200 58 V86'/%3E%3C/g%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA;
+    --skirt: #39405C; --boards: #2B2535; --room-ink: #0D0F16; --wall-btn-ink: var(--on-duck); --wall-paper: #2A3150;
+  --planks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='86' viewBox='0 0 320 86'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='.13' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M0 26 C80 25 160 27 240 26 S300 25.5 320 26'/%3E%3Cpath d='M0 55 C100 56 200 54 320 55'/%3E%3Cpath d='M70 3 V24 M230 3 V24 M150 29 V53 M300 29 V53 M40 58 V86 M200 58 V86'/%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+/* ---------- the homepage: the consulting room ---------- */
+html .duck-room {
+  --u: 0.7px; --room-floor: calc(86 * var(--u)); --room-skirt: calc(15 * var(--u));
+  background: var(--room); border-bottom: 0;
+}
+html .duck-room::before, html .duck-room::after { content: none; }
+@media (min-width: 861px) {
+  html .duck-room .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(360px, 48vw, 640px); }
+  html .duck-room .hero-copy { padding-bottom: calc(var(--room-floor) + var(--room-skirt) + 2rem); }
+}
+/* the bar is the same papered wall for as long as the wall is behind it */
+html .nav.on-wall, html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) { background: var(--wallpaper), var(--wall); }
+
+/* by the couch: the filing cabinet opens the case files. Drawn in the scene's units, so its line matches. */
+html .duck-room .hero-figure { position: relative; }
+html .room-props {
+  position: absolute; z-index: 2; right: calc(100% - 46 * var(--u)); bottom: calc(var(--room-floor) - 22 * var(--u));
+  width: calc(214 * var(--u)); line-height: 0; border-radius: 8px;
+}
+html .room-props svg { display: block; width: 100%; height: auto; overflow: visible; }
+html .room-props .rp-ink { stroke: #1E1A17; stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+html .room-props .rp-drawer, html .room-props .rp-tabs { transition: translate 260ms var(--ease); }
+html .room-props:is(:hover, :focus-visible) .rp-drawer { translate: 0 7px; }
+html .room-props:is(:hover, :focus-visible) .rp-tabs { translate: 0 -9px; }
+html .room-props:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes rp-steam { 0% { translate: 0 3px; opacity: 0; } 40% { opacity: .6; } 100% { translate: 0 -7px; opacity: 0; } }
+  html .room-props .rp-steam path { animation: rp-steam 3.2s ease-in-out infinite; }
+  html .room-props .rp-steam path + path { animation-delay: -1.6s; }
+}
+@media (max-width: 1020px) { html .room-props { display: none; } }
+
+/* One stretch of room: wall, skirting board, floorboards, and the ink line it ends on.
+   Declared on each element that paints it, so each can say how much floor it shows. */
+html :is(.duck-room, .case-intro .intro-sum, .case-hero, .post-hero, #session-notes, .projects .pcard-media, body:has(> .lost)) {
+  --room:
+    linear-gradient(var(--room-ink), var(--room-ink)) left bottom / 100% 2px no-repeat,
+    linear-gradient(var(--room-ink), var(--room-ink)) left bottom calc(var(--room-floor) + var(--room-skirt)) / 100% 2px no-repeat,
+    linear-gradient(var(--skirt), var(--skirt)) left bottom var(--room-floor) / 100% var(--room-skirt) no-repeat,
+    linear-gradient(var(--room-ink), var(--room-ink)) left bottom calc(var(--room-floor) - 2px) / 100% 2px no-repeat,
+    var(--planks) left bottom / auto var(--room-floor) repeat-x,
+    linear-gradient(var(--boards), var(--boards)) left bottom / 100% var(--room-floor) no-repeat,
+    var(--wallpaper) var(--paper-x, 0) 0,
+    var(--wall);
+}
+
+/* ---------- every other page opens in the same room ---------- */
+/* The band reaches a screen past each side of the column, so its wallpaper is set back by the
+   same amount: the stripes then run on, unbroken, from the bar above it. */
+html :is(.case-intro, .case-hero, .post-hero) {
+  --room-floor: 44px; --room-skirt: 11px; --band-drop: calc(2.25rem + var(--room-floor) + var(--room-skirt));
+  --paper-x: calc(100vw - max(var(--gutter), (100vw - var(--max)) / 2));
+}
+html .case-intro .intro-sum { max-width: none; padding-right: max(0px, 100% - 62ch); }
+html .case-intro .intro-sum::before { bottom: calc(-1 * var(--band-drop)); background: var(--room); }
+html body .case-intro .intro-sum + * { margin-top: calc(var(--band-drop) + 2.25rem); }
+html .case-hero, html .post-hero { padding-bottom: calc(var(--band-drop) + 0.5rem); }
+html .case-hero::before, html .post-hero::before { background: var(--room); }
+/* the object this case is filed under, on the side table: the same one that stands on its folder on the homepage */
+html .case-intro .intro-sum { --stand-bottom: calc(var(--room-floor) - var(--band-drop) - 13px); }
+html .case-hero, html .post-hero { --stand-bottom: calc(var(--room-floor) - 13px); }
+html :is(.case-intro .intro-sum, .case-hero, .post-hero) { --stand-right: clamp(0.5rem, 4vw, 3.5rem); }
+html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after {
+  content: ""; position: absolute; left: auto; right: var(--stand-right); width: 200px; height: 440px; bottom: var(--stand-bottom);
+  -webkit-mask: none; mask: none; pointer-events: none;
+  background:
+    var(--lamp-glow, linear-gradient(transparent, transparent)) center bottom 60px / 200px 250px no-repeat,
+    var(--prop, none) center bottom 82px / 104px 104px no-repeat,
+    url("../images/room/table.svg") center bottom / 150px auto no-repeat;
+}
+/* the pendant over it is a light switch, like the lamp in the duck's room (main.js adds it) */
+html .room-lamp {
+  position: absolute; right: calc(var(--stand-right) + 56px); bottom: calc(var(--stand-bottom) + 226px); width: 88px; height: 62px;
+  padding: 0; border: 0; border-radius: 12px; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+html .room-lamp::before {
+  content: ""; position: absolute; left: 50%; bottom: 6px; width: 96px; height: 1120px; margin-left: -48px; pointer-events: none;
+  background: url("../images/room/pendant.svg") center bottom / 96px auto no-repeat; transform-origin: 50% 0;
+}
+html .room-lamp:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes lamp-sway { 0%, 100% { rotate: 0deg; } 25% { rotate: 0.45deg; } 75% { rotate: -0.45deg; } }
+  html .room-lamp:is(:hover, :focus-visible)::before { animation: lamp-sway 1.6s ease-in-out infinite; }
+  html .room-lamp:active::before { translate: 0 5px; }
+}
+/* a deep dive keeps its facts on the wall too, so its object goes up on a shelf instead */
+html .case-hero:has(> .tldr)::after {
+  top: 1.5rem; bottom: auto; height: 330px;
+  background:
+    var(--lamp-glow, linear-gradient(transparent, transparent)) center bottom / 200px 230px no-repeat,
+    var(--prop, none) center bottom 28px / 104px 104px no-repeat,
+    url("../images/room/shelf.svg") center bottom / 150px auto no-repeat;
+}
+html .case-hero:has(> .tldr) .room-lamp { bottom: auto; top: calc(1.5rem + 96px); }
+@media (max-width: 1180px) {
+  html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after, html .room-lamp { display: none; }
+}
+/* at night the pendant is on, and the object sits in its pool of light */
+:root[data-theme="dark"] { --lamp-glow: radial-gradient(closest-side, rgb(255 226 150 / 0.34), rgb(255 226 150 / 0.12) 55%, transparent); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --lamp-glow: radial-gradient(closest-side, rgb(255 226 150 / 0.34), rgb(255 226 150 / 0.12) 55%, transparent); } }
+html .eyebrow .case-no { color: var(--ink); }
+
+/* which object goes with which file */
+[data-prop="blocks"] { --prop: url("../images/room/blocks.svg"); }
+[data-prop="bell"] { --prop: url("../images/room/bell.svg"); }
+[data-prop="cards"] { --prop: url("../images/room/cards.svg"); }
+[data-prop="stamp"] { --prop: url("../images/room/stamp.svg"); }
+[data-prop="tv"] { --prop: url("../images/room/tv.svg"); }
+[data-prop="loaf"] { --prop: url("../images/room/loaf.svg"); }
+[data-prop="globe"] { --prop: url("../images/room/globe.svg"); }
+[data-prop="pencils"] { --prop: url("../images/room/pencils.svg"); }
+[data-prop="papers"] { --prop: url("../images/room/papers.svg"); }
+[data-prop="house"] { --prop: url("../images/room/house.svg"); }
+[data-prop="arcade"] { --prop: url("../images/room/arcade.svg"); }
+[data-prop="sword"] { --prop: url("../images/room/sword.svg"); }
+[data-prop="megaphone"] { --prop: url("../images/room/megaphone.svg"); }
+[data-prop="books"] { --prop: url("../images/room/books.svg"); }
+[data-prop="plant"] { --prop: url("../images/room/plant.svg"); }
+
+/* ---------- the homepage files ---------- */
+/* each cover is a stretch of the same wall, the work propped against it */
+html:root body .projects .pcard .pcard-media.pcard-media { background: var(--wallpaper), var(--wall); }
+/* and each folder has its object standing on its bottom edge, in the margin beside the words */
+html .projects .case-drawer > .pcard.pcard-flagship[data-prop]::after {
+  content: ""; position: absolute; right: 1.75rem; bottom: 0; width: 92px; height: 92px; pointer-events: none;
+  background: var(--prop) center bottom / contain no-repeat;
+}
+html .projects .case-drawer > .pcard.pcard-flagship[data-prop]:nth-of-type(even)::after { right: auto; left: 1.75rem; }
+@media (max-width: 919px) { html .projects .case-drawer > .pcard.pcard-flagship[data-prop]::after { display: none; } }
+
+/* the files outside the drawer keep theirs on top of the frame, like something left on a shelf */
+html .projects .case-drawer { margin-bottom: 2.75rem; }
+html .projects .pcard:not(.pcard-flagship)[data-prop] { position: relative; }
+html .projects .pcard:not(.pcard-flagship)[data-prop]::after {
+  content: ""; position: absolute; top: 3px; right: 1.25rem; width: 66px; height: 66px; translate: 0 -100%; pointer-events: none;
+  background: var(--prop) center bottom / contain no-repeat;
+}
+
+/* session notes: the far end of the room */
+html #session-notes { --room-floor: 44px; --room-skirt: 11px; background: var(--room); padding-bottom: calc(clamp(3rem, 6vw, 4.75rem) + 55px); }
+html #session-notes::after { content: none; }
+
+/* ---------- 404: the same room, with the thing you came for gone from its table ---------- */
+html:root body:has(> .lost) { --room-floor: 76px; --room-skirt: 13px; background: var(--room); }
+html .lost {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  padding-inline: var(--gutter);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: 3rem calc(var(--room-floor) + var(--room-skirt) + 150px);
+}
+html .lost::before,
+html .lost::after {
+  content: "";
+  position: absolute;
+  right: clamp(1rem, 5vw, 5rem);
+  width: 200px;
+  pointer-events: none;
+}
+html .lost::after {
+  bottom: calc(var(--room-floor) - 14px);
+  height: 330px;
+  background:
+    var(--lamp-glow, linear-gradient(transparent, transparent)) center bottom 40px / 200px 250px no-repeat,
+    url("../images/room/table.svg") center bottom / 150px auto no-repeat;
+}
+html .lost::before {
+  top: 0;
+  bottom: calc(var(--room-floor) + 226px);
+  background: url("../images/room/pendant.svg") center bottom / 96px auto no-repeat;
+}
+html .lost .lost-bug {
+  position: absolute;
+  right: calc(clamp(1rem, 5vw, 5rem) + 188px);
+  bottom: calc(var(--room-floor) - 16px);
+  width: 76px;
+  margin: 0;
+}
+@media (max-width: 1320px) {
+  html .lost::before { display: none; }
+  html .lost::after { height: 100px; background: url("../images/room/table.svg") center bottom / 150px auto no-repeat; }
+}
+@media (max-width: 860px) {
+  html .lost::after { right: 50%; translate: 72% 0; }
+  html .lost .lost-bug { right: 50%; translate: -32% 0; }
+}
+
+/* the full-bleed walls run past both edges; clip them here so a phone never widens its viewport to fit them */
+html body { overflow-x: clip; }
+/* stacked in one column, each shelf object needs clear wall above it */
+@media (max-width: 700px) {
+  html .projects .case-drawer { margin-bottom: 0; }
+  html .projects .pcard:not(.pcard-flagship)[data-prop]:not(:first-child) { margin-top: 5rem; }
+}

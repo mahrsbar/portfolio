@@ -107,9 +107,52 @@
   function navEdge() {
     var header = document.querySelector("header.nav");
     if (!header) return;
-    function update() { header.classList.toggle("scrolled", window.scrollY > 4); }
+    /* the bar keeps the wall's colour for as long as the wall is behind it */
+    var wall = document.querySelector(".duck-room, .case-intro .intro-sum, .case-hero, .post-hero");
+    function update() {
+      header.classList.toggle("scrolled", window.scrollY > 4);
+      if (!wall) return;
+      var floor = wall.classList.contains("duck-room") ? parseFloat(getComputedStyle(wall).getPropertyValue("--floor-h")) || 0 : 0;
+      header.classList.toggle("on-wall", wall.getBoundingClientRect().bottom - floor > header.offsetHeight);
+    }
     window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     update();
+  }
+
+  /* ---- The pendant lamp ----
+     Every page but the homepage opens under a pendant lamp. Like the floor lamp
+     in the duck's room, it is a light switch: it presses the theme toggle. */
+  function roomLamp() {
+    var wall = document.querySelector(".case-intro .intro-sum, .case-hero, .post-hero");
+    var toggle = document.querySelector(".theme-toggle");
+    if (!wall || !toggle) return;
+    var lamp = document.createElement("button");
+    lamp.type = "button";
+    lamp.className = "room-lamp";
+    lamp.setAttribute("aria-label", "Lamp: switch between light and dark mode");
+    lamp.title = "Switch the lights";
+    lamp.addEventListener("click", function () { toggle.click(); });
+    wall.appendChild(lamp);
+  }
+
+  /* ---- The drawer ----
+     The case files pile up as you scroll. Give every folder the height of the
+     tallest, so the pile closes square with its tabs in one row. */
+  function drawer() {
+    var box = document.querySelector(".projects .case-drawer");
+    if (!box) return;
+    var files = box.querySelectorAll(".pcard-flagship");
+    function measure() {
+      box.style.removeProperty("--folder-h");
+      var tallest = 0;
+      files.forEach(function (f) { tallest = Math.max(tallest, f.offsetHeight); });
+      box.style.setProperty("--folder-h", tallest + "px");
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    window.addEventListener("load", measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
   }
 
   /* ---- Tables that stack on phones ----
@@ -337,6 +380,8 @@
     markNav();
     menu();
     navEdge();
+    roomLamp();
+    drawer();
     stackTables();
     headingStroke();
     reveal();

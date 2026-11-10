@@ -30,7 +30,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261110k" />
+    <link rel="stylesheet" href="css/style.css?v=20261110m" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -52,7 +52,7 @@
         "sameAs": ["https://github.com/mahrsbar"]
       }
     </script>
-    <link rel="stylesheet" href="css/accents.css?v=20261110k" />
+    <link rel="stylesheet" href="css/accents.css?v=20261110m" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500..800&amp;display=swap" />
     <style>
       /* hero: the duck scene stands on a floor that runs the full width of the page.
@@ -114,7 +114,7 @@
       .duck-room .hero-copy h1 { white-space: nowrap; font-size: clamp(2.4rem, 5vw, 4rem); }
       .split-fig.duck-fig .split-fig-anim {
         display: block;
-        aspect-ratio: 800 / 596;
+        aspect-ratio: 800 / 696;
         pointer-events: auto;
         color-scheme: normal;
       }
@@ -379,12 +379,58 @@
             </div>
 
             <div class="hero-figure">
+              <!-- by the door: the filing cabinet (it opens the case files), tissues, tea, and an umbrella, because Vancouver -->
+              <a class="room-props" href="#work" aria-label="Open the case files" title="Open the case files">
+                <svg viewBox="0 0 214 250" aria-hidden="true" focusable="false">
+                  <g class="rp-ink">
+                    <!-- umbrella in its stand -->
+                    <path d="M170 196 V112" fill="none" stroke-width="3"/>
+                    <path d="M170 112 C170 96 190 96 190 110" fill="none" stroke-width="7"/>
+                    <path d="M170 112 C170 96 190 96 190 110" fill="none" stroke="#C98A4B" stroke-width="3"/>
+                    <path d="M170 124 C158 150 160 184 166 204 L174 204 C180 184 182 150 170 124 Z" fill="#FFC93C"/>
+                    <path d="M170 128 V204" fill="none" stroke-width="1.4" opacity=".5"/>
+                    <path d="M152 190 H188 L184 246 H156 Z" fill="#2F8F83"/>
+                    <path d="M152 190 H188" fill="none" stroke="#3FA899" stroke-width="0"/>
+                    <ellipse cx="170" cy="190" rx="18" ry="5" fill="#1E1A17"/>
+                    <!-- the cabinet -->
+                    <rect x="8" y="96" width="126" height="150" rx="8" fill="#FFFDF6"/>
+                    <rect x="17" y="105" width="108" height="26" rx="3" fill="#1E1A17"/>
+                    <g class="rp-tabs">
+                      <path d="M24 131 V110 a4 4 0 0 1 4 -4 h14 a4 4 0 0 1 4 4 V131 Z" fill="#FFC93C"/>
+                      <path d="M48 131 V114 a4 4 0 0 1 4 -4 h14 a4 4 0 0 1 4 4 V131 Z" fill="#FFC93C"/>
+                      <path d="M72 131 V110 a4 4 0 0 1 4 -4 h14 a4 4 0 0 1 4 4 V131 Z" fill="#FFC93C"/>
+                      <path d="M96 131 V114 a4 4 0 0 1 4 -4 h14 a4 4 0 0 1 4 4 V131 Z" fill="#FFC93C"/>
+                    </g>
+                    <g class="rp-drawer">
+                      <rect x="13" y="122" width="116" height="52" rx="5" fill="#FFFDF6"/>
+                      <rect x="54" y="132" width="34" height="13" rx="2" fill="#FFFFFF" stroke-width="1.6"/>
+                      <path d="M60 138.500 H82" fill="none" stroke-width="1.4"/>
+                      <rect x="56" y="153" width="30" height="9" rx="4.500" fill="#E8553D"/>
+                    </g>
+                    <rect x="17" y="184" width="108" height="52" rx="5" fill="#FFFDF6"/>
+                    <rect x="54" y="193" width="34" height="13" rx="2" fill="#FFFFFF" stroke-width="1.6"/>
+                    <path d="M60 199.500 H78" fill="none" stroke-width="1.4"/>
+                    <rect x="56" y="214" width="30" height="9" rx="4.500" fill="#E8553D"/>
+                    <!-- tissues: it is that kind of office -->
+                    <path d="M40 72 C36 58 42 50 48 56 C50 46 60 48 58 58 C64 56 64 66 58 72 Z" fill="#FFFFFF" stroke-width="2"/>
+                    <rect x="22" y="70" width="54" height="26" rx="4" fill="#F4B6C2"/>
+                    <path d="M38 76 C44 72 54 72 60 76" fill="none" stroke-width="1.8"/>
+                    <!-- tea -->
+                    <path d="M118 78 c9 -2 11 12 0 12" fill="none" stroke-width="2.4"/>
+                    <rect x="94" y="72" width="26" height="24" rx="4" fill="#6E7BF2"/>
+                    <g class="rp-steam" fill="none" stroke-width="1.8" opacity=".55">
+                      <path d="M101 64 c-4 -5 4 -8 0 -14"/>
+                      <path d="M112 64 c-4 -5 4 -8 0 -14"/>
+                    </g>
+                  </g>
+                </svg>
+              </a>
               <!-- The animation is decorative and non-interactive; the static SVG
                    stays as the reduced-motion fallback. -->
               <figure class="split-fig duck-fig">
                 <!-- Interactive: tap the dev to start a session, squeeze the duck. It reports
                      both to this page so the session notes at the bottom can mention them. -->
-                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261110" width="800" height="596"
+                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261110c" width="800" height="696"
                         title="A developer on a therapist's couch talking to a rubber duck in glasses. Interactive." loading="eager"></iframe>
               </figure>
             </div>
@@ -404,7 +450,9 @@
 
           <div class="projects reveal">
 
-            <article class="pcard pcard-flagship hue-violet" data-observe="Design system" data-prose="the design system">
+            <!-- the four case files stand in one drawer: each folder files over the last as you scroll -->
+            <div class="case-drawer">
+            <article class="pcard pcard-flagship hue-violet" data-prop="blocks" data-observe="Design system" data-prose="the design system">
               <!-- Layered cover: the Chip component set in Figma behind, the same Chip
                    running in Storybook in front. -->
               <div class="pcard-media-wrap">
@@ -427,7 +475,7 @@
               </div>
             </article>
 
-            <article class="pcard pcard-flagship hue-coral" data-observe="Ask bar" data-prose="the ask bar">
+            <article class="pcard pcard-flagship hue-coral" data-prop="bell" data-observe="Ask bar" data-prose="the ask bar">
               <!-- Cover is a recreated mockup (company work): the question and data are invented. -->
               <div class="pcard-media-wrap">
               <a class="pcard-media cover-frame" href="work/ask-bar.html" tabindex="-1" aria-hidden="true">
@@ -508,7 +556,7 @@
               </div>
             </article>
 
-            <article class="pcard pcard-flagship hue-pink" data-observe="Unified user page" data-prose="the unified user page">
+            <article class="pcard pcard-flagship hue-pink" data-prop="cards" data-observe="Unified user page" data-prose="the unified user page">
               <!-- Cover is a recreated mockup (company work): identifiers are bars, not data. -->
               <div class="pcard-media-wrap">
               <a class="pcard-media cover-frame" href="work/unified-user-page.html" tabindex="-1" aria-hidden="true">
@@ -646,7 +694,7 @@
               </div>
             </article>
 
-            <article class="pcard pcard-flagship hue-mustard mkset" data-observe="Licence applications" data-prose="the licence application forms">
+            <article class="pcard pcard-flagship hue-mustard mkset" data-prop="stamp" data-observe="Licence applications" data-prose="the licence application forms">
               <!-- Cover is a recreated mockup (company work): no real product, branding or data. -->
               <div class="pcard-media-wrap">
               <a class="pcard-media pcard-mock pcard-mock-ba" href="work/onecomply.html" tabindex="-1" aria-hidden="true">
@@ -700,8 +748,9 @@
                 <p>A licence application people actually finish, with visible progress and tools for the managers who assign it.</p>
               </div>
             </article>
+            </div>
 
-            <article class="pcard hue-teal" data-observe="Replay studies" data-prose="the replay studies">
+            <article class="pcard hue-teal" data-prop="tv" data-observe="Replay studies" data-prose="the replay studies">
               <!-- Cover is a recreated mockup (company work): no real session, user or data. -->
               <a class="pcard-media cover-frame" href="work/replays.html" tabindex="-1" aria-hidden="true">
                 <svg class="cv cv-rp" preserveAspectRatio="xMidYMin slice" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="A recreated session replay: a search that found nothing, the event log, and the scrubber" viewBox="0 0 1600 1000" font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
@@ -835,7 +884,7 @@
                 <p>Two replay studies: six friction themes behind a console revamp, and twenty-one map failures ranked so engineering knew what to fix first.</p>
               </div>
             </article>
-            <article class="pcard hue-mustard" data-observe="LoafMode" data-prose="LoafMode">
+            <article class="pcard hue-mustard" data-prop="loaf" data-observe="LoafMode" data-prose="LoafMode">
               <div class="pcard-media-wrap">
                 <a class="pcard-media pcard-media-center pcard-media-2x1" href="work/loafmode.html" tabindex="-1" aria-hidden="true">
                   <img src="images/loafmode/card.webp" width="2000" height="1000" alt="" loading="lazy" />
@@ -866,7 +915,7 @@
             </div>
           </div>
           <div class="projects reveal">
-            <article class="pcard hue-coral">
+            <article class="pcard hue-coral" data-prop="sword">
               <a class="pcard-media cover-frame" href="remnant.html" tabindex="-1" aria-hidden="true">
                 <img src="images/covers/remnant.svg" width="1600" height="1000" alt="" loading="lazy" />
               </a>
@@ -876,7 +925,7 @@
                 <p>Research, prototypes and the Vue front end for a game studio. Traffic up 125%.</p>
               </div>
             </article>
-            <article class="pcard hue-teal">
+            <article class="pcard hue-teal" data-prop="megaphone">
               <a class="pcard-media cover-frame" href="amplify.html" tabindex="-1" aria-hidden="true">
                 <img src="images/covers/amplify.svg" width="1600" height="1000" alt="" loading="lazy" />
               </a>
@@ -1033,16 +1082,17 @@
         document.querySelectorAll(".pcard .cv").forEach(function (c) { io.observe(c.closest(".pcard")); });
       })();
     </script>
-    <script src="js/main.js?v=20261110c"></script>
+    <script src="js/main.js?v=20261110e"></script>
 
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
     <script>
-      // Hero floor: the embedded scene's floor line sits 62 of its 800 viewBox units above its bottom.
+      // The room is drawn in the scene's own units: --u is one of its 800 viewBox units in pixels,
+      // so the host's skirting board and floorboards line up with the furniture at any width.
       (function () {
         var room = document.querySelector(".duck-room");
         var scene = room && room.querySelector(".duck-fig iframe");
         if (!scene) return;
-        var fit = function () { room.style.setProperty("--floor-h", (scene.clientWidth * 62 / 800) + "px"); };
+        var fit = function () { room.style.setProperty("--u", (scene.clientWidth / 800) + "px"); };
         fit();
         if ("ResizeObserver" in window) new ResizeObserver(fit).observe(scene);
         else addEventListener("resize", fit);

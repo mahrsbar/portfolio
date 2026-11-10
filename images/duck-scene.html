@@ -33,6 +33,15 @@
     --card: #FFF9EC;
     --lamp-base: #3B2F5C;
     --glow: #FFE08A;
+    /* the view out of the window: the North Shore, in the rain */
+    --sky: #CFE6F2;
+    --hill-far: #8DB2C6;
+    --hill-near: #3F8478;
+    --snow: #FFFFFF;
+    --cloud: #FFFFFF;
+    --water: #9CC7DE;
+    --frame: #FFFDF6;
+    --curtain: #F4B6C2;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -41,6 +50,14 @@
       --text: #F6EEDD;
       --muted: #9A9DA9;
       --rug: #8E5A78;
+      --sky: #1B2244;
+      --hill-far: #2B3364;
+      --hill-near: #141A38;
+      --snow: #AEB6DA;
+      --cloud: #323A68;
+      --water: #222A56;
+      --frame: #D8D3E4;
+      --curtain: #8E5A78;
     }
   }
   :root[data-theme="dark"] {
@@ -49,6 +66,14 @@
     --text: #F6EEDD;
     --muted: #9A9DA9;
     --rug: #8E5A78;
+    --sky: #1B2244;
+    --hill-far: #2B3364;
+    --hill-near: #141A38;
+    --snow: #AEB6DA;
+    --cloud: #323A68;
+    --water: #222A56;
+    --frame: #D8D3E4;
+    --curtain: #8E5A78;
   }
 
   * { box-sizing: border-box; }
@@ -105,6 +130,27 @@
   .leaf:nth-of-type(3) { animation-duration: 4.5s; animation-delay: -2s; }
   .leaf:nth-of-type(4) { animation-duration: 5.5s; animation-delay: -.5s; }
   .leaf:nth-of-type(5) { animation-duration: 3.8s; animation-delay: -3s; }
+
+  /* window: clouds drift, rain falls; the moon and the city lights come out at night */
+  .cloud { animation: drift 46s linear infinite; }
+  .cloud:nth-of-type(2) { animation-duration: 64s; animation-delay: -30s; }
+  .cloud:nth-of-type(3) { animation-duration: 54s; animation-delay: -12s; }
+  .rain line { stroke: var(--snow); stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 9 23; opacity: .7; animation: rain .8s linear infinite; }
+  .rain line:nth-of-type(even) { animation-duration: 1s; animation-delay: -.4s; opacity: .5; }
+  .city circle { animation: twinkle 5s steps(1) infinite; }
+  .city circle:nth-of-type(3n) { animation-delay: -2s; }
+  .city circle:nth-of-type(4n) { animation-delay: -3.5s; }
+  .night-only { display: none; }
+  :root[data-theme="dark"] .night-only { display: inline; }
+  :root[data-theme="dark"] .day-only { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .night-only { display: inline; }
+    :root:not([data-theme="light"]) .day-only { display: none; }
+  }
+  @keyframes drift { from { transform: translateX(-150px); } to { transform: translateX(150px); } }
+  @keyframes rain { to { stroke-dashoffset: -32; } }
+  @keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+  .clock .sec { transition: none; }
 
   /* couch + patient */
   .cushion { transform-origin: 50% 100%; animation: squish 4s ease-in-out infinite; }
@@ -239,7 +285,7 @@
   .motion-toggle svg { width: 10px; height: 10px; fill: currentColor; }
   .motion-toggle .i-play, .paused .motion-toggle .i-pause { display: none; }
   .paused .motion-toggle .i-play { display: inline; }
-  html.paused :is(.lamp-light, .mote, .leaf, .cushion, .torso, .feet, .chair, .eye, .p-eye, .tail,
+  html.paused :is(.cloud, .rain line, .city circle, .lamp-light, .mote, .leaf, .cushion, .torso, .feet, .chair, .eye, .p-eye, .tail,
     .duck-feet, .code, .pen, .antennae, .nudge) { animation: none !important; }
   html.paused .duck:not(.squeak), html.paused .cord:not(.tug) { animation: none; }
   html.paused .code { stroke-dashoffset: 0; }
@@ -397,7 +443,6 @@
   html.embed .stage { width: 100%; padding-top: 3vw; }
   html.embed .hint { display: none; }
   html.embed .floor, html.embed .caption { display: none; }
-
   @media (prefers-reduced-motion: reduce) {
     /* reduced motion stays still, unless the visitor presses play */
     html:not(.motion-on) *, html:not(.motion-on) *::before, html:not(.motion-on) *::after { animation: none !important; transition: none !important; }
@@ -426,7 +471,7 @@
 </head>
 <body>
 <main class="stage" id="stage">
-  <svg viewBox="0 -90 800 626" role="img" aria-label="The talking cure meets rubber duck debugging" aria-describedby="d">
+  <svg viewBox="0 -190 800 726" role="img" aria-label="The talking cure meets rubber duck debugging" aria-describedby="d">
     <desc id="d">A small round blue beetle sits on a therapist's couch, talking, while a rubber duck in glasses listens from an armchair, taking notes on a clipboard.</desc>
     <defs>
       <!-- line boil: redraws the outlines a few times a second like hand-drawn animation -->
@@ -484,6 +529,68 @@
       <!-- rug: sits under the furniture so the legs stand on it -->
       <ellipse class="ink" cx="400" cy="432" rx="360" ry="30" fill="var(--rug)"/>
       <ellipse cx="400" cy="432" rx="330" ry="20" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="6 9" opacity=".45"/>
+
+
+      <!-- window behind the couch: the North Shore mountains, and it is raining -->
+      <g class="window">
+        <clipPath id="pane"><rect x="44" y="-160" width="160" height="246" rx="3"/></clipPath>
+        <rect class="ink" x="34" y="-170" width="180" height="266" rx="6" fill="var(--frame)"/>
+        <g clip-path="url(#pane)">
+          <rect x="44" y="-160" width="160" height="246" fill="var(--sky)"/>
+          <g class="night-only">
+            <circle cx="166" cy="-118" r="17" fill="#FFE9A8"/>
+            <circle cx="158" cy="-123" r="15" fill="var(--sky)"/>
+            <g fill="#FFE9A8"><circle cx="70" cy="-136" r="1.6"/><circle cx="98" cy="-108" r="1.2"/><circle cx="122" cy="-142" r="1.4"/><circle cx="62" cy="-84" r="1.2"/><circle cx="142" cy="-76" r="1.5"/><circle cx="188" cy="-70" r="1.2"/><circle cx="106" cy="-62" r="1"/></g>
+          </g>
+          <g fill="var(--cloud)" transform="translate(70 0)">
+            <path class="cloud anim" d="M20 -112 c0 -12 16 -14 20 -6 c4 -12 24 -10 24 2 c10 -2 14 10 4 12 h-46 c-10 0 -10 -8 -2 -8 z"/>
+            <path class="cloud anim" d="M0 -64 c0 -10 14 -12 17 -5 c3 -10 20 -8 20 2 c8 -2 12 8 3 10 h-38 c-8 0 -8 -7 -2 -7 z"/>
+            <path class="cloud anim" d="M30 -140 c0 -8 11 -9 13 -4 c3 -8 16 -6 16 1 c6 -1 9 6 2 8 h-29 c-6 0 -6 -5 -2 -5 z"/>
+          </g>
+          <path d="M44 22 L70 -12 L90 6 L116 -40 L130 -22 L140 -30 L164 4 L182 -14 L204 10 L204 86 L44 86 Z" fill="var(--hill-far)" stroke="var(--line)" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M116 -40 L105 -20 L112 -24 L118 -16 L124 -26 L130 -22 Z M140 -30 L133 -18 L141 -22 L148 -18 Z" fill="var(--snow)" stroke="var(--line)" stroke-width="1.2" stroke-linejoin="round"/>
+          <path d="M44 44 C66 26 92 30 120 46 C146 30 178 26 204 40 L204 86 L44 86 Z" fill="var(--hill-near)" stroke="var(--line)" stroke-width="1.5" stroke-linejoin="round"/>
+          <rect x="44" y="64" width="160" height="22" fill="var(--water)"/>
+          <path d="M44 64 H204 M58 72 h18 M96 76 h24 M150 71 h16 M170 79 h20" fill="none" stroke="var(--line)" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
+          <g class="city night-only" fill="#FFD866"><circle cx="56" cy="60" r="1.6"/><circle cx="68" cy="58" r="1.3"/><circle cx="82" cy="61" r="1.6"/><circle cx="97" cy="59" r="1.2"/><circle cx="111" cy="61" r="1.5"/><circle cx="133" cy="60" r="1.3"/><circle cx="147" cy="58" r="1.6"/><circle cx="163" cy="61" r="1.2"/><circle cx="178" cy="59" r="1.5"/><circle cx="193" cy="61" r="1.3"/></g>
+          <g class="rain"><line x1="66" y1="-164" x2="38" y2="90"/><line x1="92" y1="-164" x2="64" y2="90"/><line x1="118" y1="-164" x2="90" y2="90"/><line x1="144" y1="-164" x2="116" y2="90"/><line x1="170" y1="-164" x2="142" y2="90"/><line x1="196" y1="-164" x2="168" y2="90"/><line x1="222" y1="-164" x2="194" y2="90"/></g>
+        </g>
+        <rect x="44" y="-160" width="160" height="246" rx="3" fill="none" stroke="var(--line)" stroke-width="2.25"/>
+        <path d="M124 -160 V86 M44 -37 H204" fill="none" stroke="var(--line)" stroke-width="9" stroke-linecap="butt"/>
+        <path d="M124 -160 V86 M44 -37 H204" fill="none" stroke="var(--frame)" stroke-width="4.5"/>
+        <rect class="ink" x="24" y="94" width="200" height="13" rx="4" fill="var(--frame)"/>
+        <!-- curtains, tied back -->
+        <path class="ink" d="M26 -176 L72 -176 C76 -100 66 -40 46 16 C40 48 40 80 44 104 L22 104 C18 40 20 -80 26 -176 Z" fill="var(--curtain)" stroke-width="2.25"/>
+        <path class="ink" d="M222 -176 L176 -176 C172 -100 182 -40 202 16 C208 48 208 80 204 104 L226 104 C230 40 228 -80 222 -176 Z" fill="var(--curtain)" stroke-width="2.25"/>
+        <path d="M40 -168 C40 -90 38 -30 34 10 M56 -168 C58 -100 54 -44 44 6 M208 -168 C208 -90 210 -30 214 10 M192 -168 C190 -100 194 -44 204 6" fill="none" stroke="var(--line)" stroke-width="1.3" stroke-linecap="round" opacity=".45"/>
+        <path d="M30 12 L48 18 M218 12 L200 18" stroke="var(--line)" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M30 12 L48 18 M218 12 L200 18" stroke="var(--duck)" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M12 -178 H236" stroke="var(--line)" stroke-width="7" stroke-linecap="round"/><path d="M12 -178 H236" stroke="var(--wood)" stroke-width="3" stroke-linecap="round"/>
+        <circle class="ink" cx="12" cy="-178" r="5.5" fill="var(--wood)" stroke-width="2.25"/><circle class="ink" cx="236" cy="-178" r="5.5" fill="var(--wood)" stroke-width="2.25"/>
+      </g>
+
+      <!-- wall clock: the time in Vancouver, where the practice is -->
+      <g class="clock" id="clock"><title>The time in Vancouver</title>
+        <circle class="ink" cx="425" cy="-140" r="31" fill="var(--couch)"/>
+        <circle cx="425" cy="-140" r="23.5" fill="#FFFDF6" stroke="var(--line)" stroke-width="1.88"/>
+        <path d="M425 -160 v5 M425 -125 v5 M405 -140 h5 M440 -140 h5" stroke="var(--line)" stroke-width="2" stroke-linecap="round"/>
+        <line id="hand-h" x1="425" y1="-140" x2="425" y2="-152" stroke="#1E1A17" stroke-width="3.6" stroke-linecap="round"/>
+        <line id="hand-m" x1="425" y1="-140" x2="425" y2="-158" stroke="#1E1A17" stroke-width="2.6" stroke-linecap="round"/>
+        <line id="hand-s" class="sec" x1="425" y1="-135" x2="425" y2="-159" stroke="#E8553D" stroke-width="1.3" stroke-linecap="round"/>
+        <circle cx="425" cy="-140" r="2.6" fill="#1E1A17"/>
+      </g>
+
+      <!-- over the shelf: a portrait of an ordinary rubber duck. Family. -->
+      <g class="portrait">
+        <path d="M686 -186 L672 -172 M686 -186 L700 -172" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="686" cy="-186" r="2.6" fill="var(--line)"/>
+        <ellipse class="ink" cx="686" cy="-138" rx="31" ry="37" fill="var(--wood)" stroke-width="2.25"/>
+        <ellipse cx="686" cy="-138" rx="23" ry="29" fill="#D9EEF0" stroke="var(--line)" stroke-width="1.5"/>
+        <ellipse cx="689" cy="-125" rx="15" ry="10" fill="#FFC93C" stroke="var(--line)" stroke-width="1.88"/>
+        <circle cx="680" cy="-143" r="10" fill="#FFC93C" stroke="var(--line)" stroke-width="1.88"/>
+        <path d="M671 -143 l-8 2.5 l8 3.5 Z" fill="#FF8A1F" stroke="var(--line)" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="677" cy="-146" r="1.6" fill="var(--line)"/>
+      </g>
 
       <!-- lamp: click it to switch the lights (dark mode) on and off -->
       <g class="lamp" id="lamp" tabindex="0" role="button" aria-label="Lamp: switch between light and dark mode">
@@ -694,7 +801,7 @@
 (() => {
   // embedded: crop the empty floor under the rug (the host page draws the floor)
   const isEmbed = document.documentElement.classList.contains('embed');
-  const VB_W = 800, VB_Y = -90, VB_H = isEmbed ? 572 : 626;
+  const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 672 : 726;
   if (isEmbed) document.querySelector('.stage svg').setAttribute('viewBox', `0 ${VB_Y} ${VB_W} ${VB_H}`);
   const PATIENT_AT = [262, 116], DUCK_AT = [578, 156];
   const bubbles = document.getElementById('bubbles');
@@ -901,6 +1008,23 @@
 
   // diplomas open a zoomed-in view on the host page
   document.querySelectorAll('.diploma').forEach(d => onActivate(d, () => tell('diploma', d.dataset.degree)));
+
+
+  // the wall clock keeps Vancouver time
+  (function () {
+    const h = document.getElementById('hand-h'), m = document.getElementById('hand-m'), sec = document.getElementById('hand-s');
+    if (!h) return;
+    const fmt = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Vancouver', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: false });
+    const turn = (el, deg) => el.setAttribute('transform', `rotate(${deg} 425 -140)`);
+    const tick = () => {
+      const p = {}; fmt.formatToParts(new Date()).forEach(x => p[x.type] = +x.value);
+      turn(h, (p.hour % 12) * 30 + p.minute / 2);
+      turn(m, p.minute * 6 + p.second / 10);
+      turn(sec, p.second * 6);
+    };
+    tick();
+    setInterval(() => { if (!document.documentElement.classList.contains('paused') && !document.hidden) tick(); }, 1000);
+  })();
 
   // a small nudge next to the bug, until someone taps something
   const nudge = document.createElement('span');
