@@ -321,9 +321,6 @@
   .patient:not(.talking):is(:hover, :focus-visible, .peek) { transform: translateY(-14px) scale(1.08); }
   .patient:not(.talking):is(:hover, :focus-visible, .peek) .head-group { animation: wiggle-head .5s ease-in-out 2; }
   .patient:not(.talking):is(:hover, :focus-visible, .peek) .antennae { animation-duration: .45s; }
-  .duck { transition: scale .28s cubic-bezier(.3,1.6,.5,1), rotate .28s cubic-bezier(.3,1.6,.5,1); }
-  .duck:is(:hover, :focus-visible, .peek) { scale: 1.12; rotate: -5deg; }
-  .duck:is(:hover, :focus-visible, .peek) .duck-head { animation: nod .5s ease-in-out 2; }
   /* the lamp previews the switch: pointing at it lights the shade (or dims it, after dark) and pulls the cord */
   .shade { transition: fill .25s; }
   .lamp:is(:hover, :focus-visible, .peek) .shade { fill: var(--glow); }
@@ -1074,7 +1071,7 @@
   // touch screen (no hover) still shows what's alive; the bug every other turn, the rest until tried
   const peek = (els, ms = 1100) => els.forEach(el => { el.classList.add('peek'); setTimeout(() => el.classList.remove('peek'), ms); });
   const lampEl = document.getElementById('lamp');
-  const others = [[duck], [lampEl], [...diplomas.querySelectorAll('.diploma')]];
+  const others = [[lampEl], [...diplomas.querySelectorAll('.diploma')]];
   const tried = new Set();
   others.forEach(els => els.forEach(el => el.addEventListener('click', () => tried.add(els))));
   let turn = 0, inView = true;
