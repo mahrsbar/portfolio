@@ -5503,3 +5503,42 @@ html body .chapter > .lesson:last-child, html body .lesson + .chapter > .lesson 
 html body .chapter > .psych:last-child { border-bottom: var(--frame-w) solid var(--frame); }
 /* the licence-application cover is drawn in CSS; it takes the same backdrop as the others */
 html:root body .projects .pcard .pcard-mock, html:root body .projects .pcard .pcard-media-tint, html:root body .projects .pcard .pcard-media-wrap { background: var(--cover-bg); }
+
+/* ---------- phone pass (10 November) ---------- */
+/* numbered steps: the yellow numerals were unreadable on paper */
+html .steps li::before { color: var(--ink-3); font-weight: 600; }
+
+/* every homepage card is a whole panel, not only the four case files */
+html body .projects .pcard:not(.pcard-flagship) {
+  margin-top: 2.75rem; padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border: var(--frame-w) solid var(--frame); border-radius: var(--radius); background: var(--bg-elev);
+}
+/* LoafMode: one frame round the screenshot and the App Store badge together */
+html:root body .projects .pcard .pcard-media-wrap:has(> .app-badge) { border: var(--frame-w) solid var(--frame); border-radius: var(--radius-s); overflow: hidden; }
+html:root body .projects .pcard .pcard-media-wrap:has(> .app-badge) > .pcard-media { border: 0; border-radius: 0; }
+
+/* tabs: a row of index cards above the panel, with no rule joining them to it */
+html .type-tablist, html .type-tablist.steps { gap: 0.4rem; margin: 0 0 0.6rem; flex-wrap: wrap; }
+html .type-tablist button, html .type-tablist.steps button { margin: 0; border-radius: var(--radius-s); border: var(--frame-w) solid var(--frame); box-shadow: none; }
+html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { border-bottom-color: var(--frame); }
+html .type-panel, html .step-panel { border-radius: var(--radius); }
+
+@media (max-width: 640px) {
+  /* the facts strip: room above the first fact and below each line */
+  html body .case-intro .highlights { padding: 0 1rem; }
+  html body .case-intro .highlights li, html body .case-intro .highlights li + li { padding: 0.9rem 0; }
+  html body .case-intro .highlights li:has(.hl-link) { padding: 0.9rem 0; }
+  html body .case-intro .highlights .hl-link { padding: 0; }
+}
+@media (max-width: 560px) {
+  /* the decision: tighter panel, smaller lettering, so the line isn't crammed */
+  html body .lesson { padding: 1.5rem 1rem 1.1rem; margin: 2.25rem 0; }
+  html body .lesson .lesson-big { font-size: 1.3rem; line-height: 1.25; }
+  html body .lesson-k { left: 0.75rem; }
+}
+@media (max-width: 919px) {
+  /* covers stack above the words: the handwritten notes crowd them, so they go */
+  html body .pcard-note { display: none; }
+  html body .pcard .pcard-media-wrap:has(> .pcard-note) { margin-bottom: 0; }
+  html body .projects .pcard .pcard-body { padding-top: 1.35rem; }
+}

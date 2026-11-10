@@ -22,8 +22,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261110b" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261110b" />
+    <link rel="stylesheet" href="../css/style.css?v=20261110c" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261110c" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -217,7 +217,12 @@
         .aa-banner { white-space: normal; text-align: center; }
         .aa-assist { width: 72%; }
         .askdemo-ex span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+        .askdemo-ex { min-width: 40px; height: 36px; justify-content: center; }
         .askdemo-input { font-size: 0.82rem; }
+        /* the question list scrolls inside the demo instead of running off its bottom edge */
+        .aa-suggest { max-height: min(340px, 60vh); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+        .aa-suggest [role="option"] { min-height: 44px; padding: 0.55rem 0.6rem; font-size: 0.84rem; line-height: 1.3; }
+        .aa-suggest [role="option"] small { display: none; }
         .aa-filters-k { display: none; }
         .aa-filters.reading .aa-filters-k { display: inline; }
       }
