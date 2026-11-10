@@ -299,8 +299,9 @@
 
   /* Everything clickable answers the pointer the way the cabinet's drawer does: it moves toward you.
      The same move plays by itself now and then (.peek) while the room sits idle, for touch screens. */
-  .patient { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .28s cubic-bezier(.3,1.6,.5,1); }
-  .patient:not(.talking):is(:hover, :focus-visible, .peek) { transform: translateY(-14px) scale(1.08); }
+  .patient .pop { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .28s cubic-bezier(.3,1.6,.5,1); }
+  .patient:not(.talking):is(:hover, :focus-visible, .peek) .pop { transform: translateY(-14px) scale(1.08); }
+  .patient .hit { pointer-events: all; }
   .patient:not(.talking):is(:hover, :focus-visible, .peek) .head-group { animation: wiggle-head .5s ease-in-out 2; }
   .patient:not(.talking):is(:hover, :focus-visible, .peek) .antennae { animation-duration: .45s; }
   /* the lamp previews the switch: pointing at it lights the shade (or dims it, after dark) and pulls the cord */
@@ -690,7 +691,9 @@
 
       <g class="patient" id="patient" tabindex="0" role="button" aria-label="Start a session with the bug">
         <!-- reclined against the raised end of the couch, turned toward the duck -->
-        <g transform="translate(-16 6) rotate(-20 262 292)">
+        <!-- a still target: the bug pops up on hover, and without this its feet would slide out from under the pointer -->
+        <rect class="hit" x="134" y="100" width="166" height="212" fill="transparent"/>
+        <g transform="translate(-16 6) rotate(-20 262 292)"><g class="pop">
         <g class="torso anim">
           <!-- glossy domed shell, peeking out both sides -->
           <ellipse class="ink" cx="262" cy="240" rx="48" ry="42" fill="var(--bug)"/>
@@ -734,7 +737,7 @@
           <path class="smile" d="M263 208 q6 5 12 0" fill="none" stroke="var(--line)" stroke-width="1.88" stroke-linecap="round"/>
           <ellipse class="mouth anim" cx="269" cy="210" rx="4" ry="3.5" fill="var(--line)"/>
         </g>
-      </g>
+      </g></g>
       </g>
 
       <!-- ===== rubber duck debugging ===== -->
@@ -749,10 +752,10 @@
         <ellipse cx="612" cy="331" rx="58" ry="7" fill="var(--line)" opacity=".18"/>
 
         <g class="duck anim" id="duck" tabindex="0" role="button" aria-label="Squeeze the rubber duck">
-          <!-- dangling feet -->
-          <g class="duck-feet anim">
-            <path class="ink" d="M590 316 L587 364 C579 366 577 374 585 374 L605 374 C611 374 609 366 601 364 L598 316 Z" fill="var(--beak)" stroke-width="2.25"/>
-            <path class="ink" d="M626 316 L625 364 C617 366 615 374 623 374 L643 374 C649 374 647 366 639 364 L634 316 Z" fill="var(--beak)" stroke-width="2.25"/>
+          <!-- feet tucked under, the way a duck sits: just the toes show below its body -->
+          <g class="duck-toes">
+            <path class="ink" d="M576 322 C570 332 574 338 584 338 L606 338 C612 338 612 330 604 326 Z" fill="var(--beak)" stroke-width="2.25"/>
+            <path class="ink" d="M624 322 C618 332 622 338 632 338 L654 338 C660 338 660 330 652 326 Z" fill="var(--beak)" stroke-width="2.25"/>
           </g>
           <path class="tail anim ink" d="M670 270 C690 262 700 244 696 232 C708 248 704 276 684 290 Z" fill="var(--duck)"/>
           <ellipse class="duck-body ink" cx="615" cy="288" rx="68" ry="42" fill="var(--duck)"/><path class="shine" d="M566 268 q12 -12 30 -14" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
