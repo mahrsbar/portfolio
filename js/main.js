@@ -120,22 +120,6 @@
     update();
   }
 
-  /* ---- The pendant lamp ----
-     Every page but the homepage opens under a pendant lamp. Like the floor lamp
-     in the duck's room, it is a light switch: it presses the theme toggle. */
-  function roomLamp() {
-    var wall = document.querySelector(".case-intro .intro-sum, .case-hero, .post-hero");
-    var toggle = document.querySelector(".theme-toggle");
-    if (!wall || !toggle) return;
-    var lamp = document.createElement("button");
-    lamp.type = "button";
-    lamp.className = "room-lamp";
-    lamp.setAttribute("aria-label", "Lamp: switch between light and dark mode");
-    lamp.title = "Switch the lights";
-    lamp.addEventListener("click", function () { toggle.click(); });
-    wall.appendChild(lamp);
-  }
-
   /* ---- The drawer ----
      The case files pile up as you scroll. Give every folder the height of the
      tallest, so the pile closes square with its tabs in one row. */
@@ -351,7 +335,6 @@
     markNav();
     menu();
     navEdge();
-    roomLamp();
     drawer();
     stackTables();
     headingStroke();

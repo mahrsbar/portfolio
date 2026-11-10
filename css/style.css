@@ -6085,3 +6085,51 @@ html .projects .case-tabs > b { border-color: var(--frame); background: var(--du
   html .projects .case-tabs > * { padding: 0.25rem 0.55rem 0; font-size: 0.8rem; }
 }
 @media (min-width: 920px) and (min-height: 740px) { html .projects .case-drawer { --drawer-step: 0rem; } }
+
+
+/* ---------- each case is its own room ---------- */
+/* The cases stop sharing one wall: each page takes its project's colour, so they no longer open
+   on the same view. The table and pendant are gone; the object stays on the homepage folders. */
+html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after { content: none; }
+html body:has(main.hue-violet) { --wall: #D9D5F4; --wall-stripe: #D0CBF0; --on-wall-2: #34304C; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-violet) { --wall: #201E3A; --wall-stripe: #25223F; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-violet) { --wall: #201E3A; --wall-stripe: #25223F; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
+html body:has(main.hue-coral) { --wall: #F8D6CC; --wall-stripe: #F4CCBF; --on-wall-2: #4B3029; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-coral) { --wall: #2A1E24; --wall-stripe: #30232A; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-coral) { --wall: #2A1E24; --wall-stripe: #30232A; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
+html body:has(main.hue-pink) { --wall: #F7D7E0; --wall-stripe: #F3CDD8; --on-wall-2: #4A2F38; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-pink) { --wall: #291D2B; --wall-stripe: #2F2232; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-pink) { --wall: #291D2B; --wall-stripe: #2F2232; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
+html body:has(main.hue-mustard) { --wall: #CFE2F3; --wall-stripe: #C5DBEF; --on-wall-2: #2C3A4A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, var(--wall-stripe) 26px 52px); } }
+
+/* the outcomes, pinned to the wall beside the title: the first thing on the page that says what came of it */
+@media (min-width: 1000px) {
+  html :is(.case-intro, .case-intro .intro-text):has(> .intro-sum + .highlights) {
+    display: grid; grid-template-columns: minmax(0, 1fr) clamp(250px, 24vw, 310px); column-gap: clamp(2.5rem, 6vw, 6rem); align-items: start;
+  }
+  html :is(.case-intro, .case-intro .intro-text):has(> .intro-sum + .highlights) > * { grid-column: 1; }
+  html :is(.case-intro, .case-intro .intro-text):has(> .intro-sum + .highlights) > .intro-sum { align-self: stretch; }
+  html:root body :is(.case-intro, .case-intro .intro-text) > .intro-sum + .highlights {
+    grid-column: 2; grid-row: 1 / span 3; align-self: center; display: flex; flex-direction: column; gap: 1.4rem;
+    margin: 0.75rem 0 0; padding: 0; border: 0; border-radius: 0; background: none;
+  }
+  html:root body :is(.case-intro, .case-intro .intro-text) > .intro-sum + .highlights + * { margin-top: calc(var(--band-drop) + 2.25rem); }
+  html:root body .case-intro .highlights li, html:root body .case-intro .highlights li + li, html:root body .case-intro .highlights li:has(.hl-link) {
+    position: relative; display: block; padding: 1.05rem 1.2rem 0.95rem; border: var(--frame-w) solid var(--frame); border-radius: 6px;
+    background: var(--note-paper, #FFFDF6); rotate: -1.4deg;
+  }
+  html:root body .case-intro .highlights li:nth-child(2) { rotate: 1.2deg; margin-left: 1.25rem; }
+  html:root body .case-intro .highlights li:nth-child(3) { rotate: -0.5deg; margin-left: 0.4rem; }
+  html:root body .case-intro .highlights li::before {
+    content: ""; position: absolute; top: -11px; left: 50%; width: 64px; height: 20px; translate: -50% 0; rotate: -3deg;
+    background: color-mix(in srgb, var(--c, var(--duck)) 55%, transparent); border-radius: 2px;
+  }
+  html:root body .case-intro .highlights li:nth-child(2)::before { rotate: 4deg; left: 38%; }
+  html:root body .case-intro .highlights b { display: block; font-size: 1.3rem; line-height: 1.2; white-space: normal; }
+  html:root body .case-intro .highlights span { display: block; margin-top: 0.3rem; font-size: 0.86rem; line-height: 1.4; }
+  html:root body .case-intro .highlights .hl-link { padding: 0; }
+}
+:root[data-theme="dark"] { --note-paper: #262C45; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --note-paper: #262C45; } }
