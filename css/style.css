@@ -6216,3 +6216,17 @@ html .la-assign b { font-size: 0.62rem; color: var(--ink); }
   html .la-form, html .la-assign { display: none; }
   html [data-observe="Licence applications"] .pcard-mock-ba .six.lic-app { min-height: 0; }
 }
+
+/* ---------- spacing: tight inside a group, wide between groups ---------- */
+/* What belongs together sits close; a box (figure, mockup, table, list of boxes) always gets clear air
+   before the story picks up again, so the next paragraph never reads as its caption. */
+html .prose :is(.plugins, figure, .figure, .mk, .ba, .stats, .table-scroll, .fails, .loopfig, .shots, .two-up, .callout, .type-tabs, .issues, .pipeline, .demo, .rp, .up, .wt, .askdemo, .vs, .launcher-demo, .rulecards, .mock-note)
+  + :is(p, h3, ul:not([class]), ol:not([class])) { margin-top: 2.25rem; }
+html .prose :is(p, ul:not([class]), ol:not([class]))
+  + :is(.plugins, figure, .figure, .mk, .ba, .stats, .table-scroll, .fails, .loopfig, .shots, .two-up, .callout, .type-tabs, .issues, .pipeline, .demo) { margin-top: 1.5rem; }
+/* plugins: one group each, with more room between plugins than inside one */
+html .plugins { gap: 4.25rem; }
+html .plugin-head { margin-bottom: 1.5rem; }
+html .plugin-head h3 { margin: 0.25rem 0 0.5rem; }
+html .plugin-head .plugin-why { margin-top: 1rem; }
+html .plugin .type-tablist { margin-bottom: 0.75rem; }
