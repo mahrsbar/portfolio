@@ -26,7 +26,7 @@
     --bug-dk: #3F49B8;
     --bug-belly: #D4D8FF;
     --bug-head: #8F9AFA;
-    --rug: #F4B6C2;
+    --rug: #EBDCC2; --rug-edge: #D9825B;
     --leaf: #3F9D5B;
     --leaf-hi: #5CB874;
     --wood: #C98A4B;
@@ -49,7 +49,7 @@
       --floor: #1C1F29;
       --text: #F6EEDD;
       --muted: #9A9DA9;
-      --rug: #8E5A78;
+      --rug: #3F3A55; --rug-edge: #8C5A6E;
       --sky: #1B2244;
       --hill-far: #2B3364;
       --hill-near: #141A38;
@@ -65,7 +65,7 @@
     --floor: #1C1F29;
     --text: #F6EEDD;
     --muted: #9A9DA9;
-    --rug: #8E5A78;
+    --rug: #3F3A55; --rug-edge: #8C5A6E;
     --sky: #1B2244;
     --hill-far: #2B3364;
     --hill-near: #141A38;
@@ -545,9 +545,10 @@
       <rect class="floor" x="-400" y="420" width="1600" height="116" fill="var(--floor)"/>
       <path class="floor ink" d="M10 420 C200 417 600 423 790 419" fill="none"/>
       <g class="far rug">
-      <!-- rug: sits under the furniture so the legs stand on it -->
-      <ellipse class="ink" cx="400" cy="432" rx="360" ry="30" fill="var(--rug)"/>
-      <ellipse cx="400" cy="432" rx="330" ry="20" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="6 9" opacity=".45"/>
+      <!-- rug: a wide flat-weave in oat, with a terracotta border, under all the furniture -->
+      <ellipse class="ink" cx="400" cy="440" rx="380" ry="40" fill="var(--rug)"/>
+      <ellipse cx="400" cy="440" rx="358" ry="31" fill="none" stroke="var(--rug-edge)" stroke-width="7"/>
+      <ellipse cx="400" cy="440" rx="336" ry="23" fill="none" stroke="var(--rug-edge)" stroke-width="1.6" stroke-dasharray="3 7" stroke-linecap="round"/>
       </g>
 
 
