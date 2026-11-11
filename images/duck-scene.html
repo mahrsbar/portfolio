@@ -590,7 +590,7 @@
       </g>
 
       <!-- wall clock: the time in Vancouver, where the practice is -->
-      <g class="far clock" id="clock" transform="translate(-250 -6)"><title>The time in Vancouver</title>
+      <g class="far clock" id="clock" transform="translate(-293 -6)"><title>The time in Vancouver</title>
         <circle class="ink" cx="425" cy="-140" r="31" fill="var(--couch)"/>
         <circle cx="425" cy="-140" r="23.5" fill="#FFFDF6" stroke="var(--line)" stroke-width="1.88"/>
         <path d="M425 -160 v5 M425 -125 v5 M405 -140 h5 M440 -140 h5" stroke="var(--line)" stroke-width="2" stroke-linecap="round"/>
@@ -635,7 +635,7 @@
       </g>
 
       <!-- shelf over the duck's chair -->
-      <g class="far shelf" transform="translate(30 -60)">
+      <g class="far shelf" transform="translate(30 -96)">
         <rect x="556" y="58" width="13" height="40" rx="2" fill="#E8553D" stroke="var(--line)" stroke-width="1.88"/>
         <rect x="570" y="64" width="11" height="34" rx="2" fill="#5A86C6" stroke="var(--line)" stroke-width="1.88"/>
         <rect x="582" y="54" width="14" height="44" rx="2" fill="#3FA899" stroke="var(--line)" stroke-width="1.88"/>
@@ -981,7 +981,7 @@
   const NARROW_AT = [400, 116];
   // phones: shrink the diplomas a little so the single bubble has room above the moth
   const diplomas = document.querySelector('.diplomas');
-  const fitWall = () => diplomas.setAttribute('transform', isNarrow() ? 'translate(-10 -96) scale(.72)' : 'translate(-14 -86) scale(.72)');
+  const fitWall = () => diplomas.setAttribute('transform', isNarrow() ? 'translate(-24 -96) scale(.72)' : 'translate(-30 -86) scale(.72)');
 
   function session() {
     if (busy) return;
