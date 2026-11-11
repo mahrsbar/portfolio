@@ -546,8 +546,8 @@
       <path class="floor ink" d="M10 420 C200 417 600 423 790 419" fill="none"/>
       <g class="far rug">
       <!-- rug: a wide flat-weave in oat, under all the furniture -->
-      <ellipse class="ink" cx="400" cy="440" rx="330" ry="30" fill="var(--rug)"/>
-      <ellipse cx="400" cy="440" rx="304" ry="20" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="6 9" opacity=".35"/>
+      <ellipse class="ink" cx="400" cy="458" rx="330" ry="36" fill="var(--rug)"/>
+      <ellipse cx="400" cy="458" rx="304" ry="25" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="6 9" opacity=".35"/>
       </g>
 
 
@@ -686,7 +686,7 @@
       </g>
 
       <!-- the furniture stands forward on the rug, out from the wall -->
-      <g transform="translate(0 24)">
+      <g transform="translate(0 40)">
       <!-- ===== the talking cure ===== -->
       <ellipse cx="244" cy="424" rx="124" ry="7" fill="var(--line)" opacity=".18"/>
       <!-- the patient's armchair, three-quarters on, turned toward the duck -->
@@ -851,9 +851,9 @@
 (() => {
   // embedded: crop the empty floor under the rug (the host page draws the floor)
   const isEmbed = document.documentElement.classList.contains('embed');
-  const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 672 : 726;
+  const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 722 : 726;
   if (isEmbed) document.querySelector('.stage svg').setAttribute('viewBox', `0 ${VB_Y} ${VB_W} ${VB_H}`);
-  const PATIENT_AT = [236, 162], DUCK_AT = [528, 130];
+  const PATIENT_AT = [236, 178], DUCK_AT = [528, 146];
   const bubbles = document.getElementById('bubbles');
   const duck = document.getElementById('duck');
   const patient = document.getElementById('patient');
@@ -1029,7 +1029,7 @@
       const h = document.createElement('span');
       h.className = 'heart';
       h.textContent = '♥';
-      Object.assign(h.style, pct([540 + n * 22, 144]));
+      Object.assign(h.style, pct([540 + n * 22, 160]));
       h.style.setProperty('--dx', (n - 1) * 18 + 'px');
       h.style.animationDelay = n * 90 + 'ms';
       bubbles.appendChild(h);
@@ -1105,7 +1105,7 @@
   // ...and only then the bug answers, in its own bubble: tap me! (tapping it, or the bug, starts the session)
   setTimeout(() => {
     if (i || busy) return;
-    isNarrow() ? say('tap me!', [150, 208], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
+    isNarrow() ? say('tap me!', [150, 224], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
   }, reduced ? 0 : 2000);
 })();
 </script>
