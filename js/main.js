@@ -138,8 +138,12 @@
     function place() {
       cab.classList.remove("on-left");
       cab.style.removeProperty("left");
-      var w = cab.offsetWidth, gutter = name.getBoundingClientRect().left;
-      if (!w || gutter < w + 40) return;
+      cab.style.removeProperty("width");
+      // on the left wall it may shrink to fit the margin, but never below 112px
+      var full = cab.offsetWidth, gutter = name.getBoundingClientRect().left;
+      var w = Math.min(full, gutter - 36);
+      if (!full || w < 112) return;
+      cab.style.width = Math.round(w) + "px";
       var x = (gutter - w) / 2 - fig.getBoundingClientRect().left;
       cab.classList.add("on-left");
       cab.style.left = Math.round(x) + "px";
