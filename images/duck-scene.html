@@ -237,6 +237,11 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --recede: saturate(.62) brightness(.8); --wall-shadow: drop-shadow(5px 6px 0 rgb(0 0 0 / .28)); } }
   .far { filter: var(--recede); }
   .far:is(.window, .clock, .portrait, .diplomas, .bookcase, .shelf) { filter: var(--recede) var(--wall-shadow); }
+  /* the chairs are nearer, so they soften only a little: the bug and the duck stay at full strength */
+  :root { --recede-near: saturate(.82) contrast(.94) brightness(1.02); }
+  :root[data-theme="dark"] { --recede-near: saturate(.82) brightness(.92); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --recede-near: saturate(.82) brightness(.92); } }
+  .seat { filter: var(--recede-near); }
   /* after dark the lamp is the light source: it keeps its glow */
   :root[data-theme="dark"] .far.lamp { filter: none; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .far.lamp { filter: none; } }
@@ -709,7 +714,7 @@
       <!-- ===== the talking cure ===== -->
       <ellipse cx="244" cy="424" rx="124" ry="7" fill="var(--line)" opacity=".18"/>
       <!-- the patient's armchair, three-quarters on, turned toward the duck -->
-      <g class="couch">
+      <g class="couch seat">
         <!-- back legs: further in, a touch higher, darker -->
         <path class="ink" d="M176 345 H188 L185 404 H180 Z" fill="#3E2716" stroke-width="2.2"/>
         <path class="ink" d="M300 345 H312 L314 404 H309 Z" fill="#3E2716" stroke-width="2.2"/>
@@ -783,7 +788,7 @@
       <!-- ===== rubber duck debugging ===== -->
       <ellipse cx="556" cy="424" rx="124" ry="7" fill="var(--line)" opacity=".18"/>
       <g class="chair anim">
-        <g transform="translate(800 0) scale(-1 1)">
+        <g class="seat" transform="translate(800 0) scale(-1 1)">
         <!-- back legs: further in, a touch higher, darker -->
         <path class="ink" d="M176 345 H188 L185 404 H180 Z" fill="#3E2716" stroke-width="2.2"/>
         <path class="ink" d="M300 345 H312 L314 404 H309 Z" fill="#3E2716" stroke-width="2.2"/>
