@@ -545,10 +545,9 @@
       <rect class="floor" x="-400" y="420" width="1600" height="116" fill="var(--floor)"/>
       <path class="floor ink" d="M10 420 C200 417 600 423 790 419" fill="none"/>
       <g class="far rug">
-      <!-- rug: a wide flat-weave in oat, with a terracotta border, under all the furniture -->
+      <!-- rug: a wide flat-weave in oat, under all the furniture -->
       <ellipse class="ink" cx="400" cy="440" rx="380" ry="40" fill="var(--rug)"/>
-      <ellipse cx="400" cy="440" rx="358" ry="31" fill="none" stroke="var(--rug-edge)" stroke-width="7"/>
-      <ellipse cx="400" cy="440" rx="336" ry="23" fill="none" stroke="var(--rug-edge)" stroke-width="1.6" stroke-dasharray="3 7" stroke-linecap="round"/>
+      <ellipse cx="400" cy="440" rx="350" ry="28" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="6 9" opacity=".35"/>
       </g>
 
 
@@ -686,6 +685,8 @@
         </g>
       </g>
 
+      <!-- the furniture stands forward on the rug, out from the wall -->
+      <g transform="translate(0 24)">
       <!-- ===== the talking cure ===== -->
       <ellipse cx="244" cy="424" rx="124" ry="7" fill="var(--line)" opacity=".18"/>
       <!-- the patient's armchair, three-quarters on, turned toward the duck -->
@@ -829,6 +830,8 @@
         </g>
       </g>
 
+      </g>
+
       <!-- labels -->
       <text class="caption" x="242" y="504" text-anchor="middle" font-family="Shantell Sans, sans-serif" font-size="24" font-weight="700" fill="var(--text)">the talking cure</text>
       <path class="caption scribble" pathLength="1" d="M152 516 C200 510 290 514 334 510" fill="none" stroke="var(--couch)" stroke-width="3.75" stroke-linecap="round"/>
@@ -850,7 +853,7 @@
   const isEmbed = document.documentElement.classList.contains('embed');
   const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 672 : 726;
   if (isEmbed) document.querySelector('.stage svg').setAttribute('viewBox', `0 ${VB_Y} ${VB_W} ${VB_H}`);
-  const PATIENT_AT = [236, 138], DUCK_AT = [528, 106];
+  const PATIENT_AT = [236, 162], DUCK_AT = [528, 130];
   const bubbles = document.getElementById('bubbles');
   const duck = document.getElementById('duck');
   const patient = document.getElementById('patient');
@@ -1026,7 +1029,7 @@
       const h = document.createElement('span');
       h.className = 'heart';
       h.textContent = '♥';
-      Object.assign(h.style, pct([540 + n * 22, 120]));
+      Object.assign(h.style, pct([540 + n * 22, 144]));
       h.style.setProperty('--dx', (n - 1) * 18 + 'px');
       h.style.animationDelay = n * 90 + 'ms';
       bubbles.appendChild(h);
@@ -1102,7 +1105,7 @@
   // ...and only then the bug answers, in its own bubble: tap me! (tapping it, or the bug, starts the session)
   setTimeout(() => {
     if (i || busy) return;
-    isNarrow() ? say('tap me!', [150, 184], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
+    isNarrow() ? say('tap me!', [150, 208], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
   }, reduced ? 0 : 2000);
 })();
 </script>
