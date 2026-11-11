@@ -33,6 +33,7 @@
     --card: #FFF9EC;
     --lamp-base: #3B2F5C;
     --glow: #FFE08A;
+    --shade: #F0E3CB; /* the lamp shade: a cream neutral, so coral stays the bug's chair */
     /* the view out of the window: the North Shore, in the rain */
     --sky: #CFE6F2;
     --hill-far: #8DB2C6;
@@ -321,7 +322,7 @@
   /* the lamp previews the switch: pointing at it lights the shade (or dims it, after dark) and pulls the cord */
   .shade { transition: fill .25s; }
   .lamp:is(:hover, :focus-visible, .peek) .shade { fill: var(--glow); }
-  :root[data-theme="dark"] .lamp:is(:hover, :focus-visible, .peek) .shade { fill: var(--couch-hi); }
+  :root[data-theme="dark"] .lamp:is(:hover, :focus-visible, .peek) .shade { fill: var(--shade); }
   .lamp:is(:hover, :focus-visible, .peek) .cord:not(.tug) { scale: 1 1.35; }
   .cord { transition: scale .25s cubic-bezier(.3,1.6,.5,1); }
 
@@ -633,7 +634,7 @@
         <!-- the shade: a dome tipped toward the chair, its bulb just showing -->
         <g transform="translate(676 104) rotate(14)">
           <path d="M-11 0 A11 8 0 0 0 11 0 Z" fill="var(--glow)" stroke="var(--line)" stroke-width="1.8"/>
-          <path class="shade ink" d="M-31 0 A31 30 0 0 1 31 0 Z" fill="var(--couch-hi)"/>
+          <path class="shade ink" d="M-31 0 A31 30 0 0 1 31 0 Z" fill="var(--shade)"/>
           <path class="shine" d="M-20 -8 q2 -10 12 -16" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
         </g>
         <!-- pull cord: sways on its own, gets tugged on click -->

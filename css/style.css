@@ -6368,3 +6368,11 @@ html :is(.case-intro .intro-sum, .case-hero, .post-hero) {
     --planks: inherit;
   }
 }
+
+/* After dark the putty cabinet dims with the room, so it doesn't outshine the chairs */
+:root[data-theme="dark"] .room-props [fill="#B5A993"] { fill: #8A806C; }
+:root[data-theme="dark"] .room-props [fill="#D2C8B4"] { fill: #A59B87; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .room-props [fill="#B5A993"] { fill: #8A806C; }
+  :root:not([data-theme="light"]) .room-props [fill="#D2C8B4"] { fill: #A59B87; }
+}
