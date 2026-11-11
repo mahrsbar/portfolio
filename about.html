@@ -18,14 +18,14 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon.svg?v=7" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261031a" />
+    <link rel="stylesheet" href="css/style.css?v=20261112y" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -61,9 +61,9 @@
     </header>
 
     <main id="main">
-      <section class="wrap case-hero">
+      <section class="wrap case-hero" data-prop="plant">
         <p class="eyebrow" data-no-read-time>About</p>
-         <h1>I design and build for how people actually behave.</h1>
+         <h1>I research how people work, then design and build the product.</h1>
         <p class="lead">
           I'm a UX engineer in Vancouver with 7 years of building software, trained in psychology before
           computer science. At GeoComply I work on fraud-investigation tools: I find out how analysts
@@ -76,7 +76,7 @@
           <div class="prose">
             <h2 style="margin-top:0">How I work</h2>
             <ul>
-              <li><strong>Research decides what gets built.</strong> I start with what people do, not what they say: session replays, support tickets, shadowing, analyst interviews. That's how a four-tool investigation workflow became <a href="work/unified-user-page.html">one user page</a>, and how <a href="work/replays.html">a ranked audit of 21 map failures</a> set engineering's fix order.</li>
+              <li><strong>Research decides what gets built.</strong> Session replays, support tickets, shadowing, analyst interviews. That's how a four-tool investigation workflow became <a href="work/unified-user-page.html">one user page</a>, and how <a href="work/replays.html">a ranked audit of 21 map failures</a> set engineering's fix order.</li>
               <li><strong>Then I build it.</strong> I prototype the real thing instead of handing off a spec, and I ship it in React and TypeScript.</li>
               <li><strong>Then I make the next one faster.</strong> I took our <a href="work/design-system.html">design system</a> from Figma-only to a React library used by four products, with four Figma plugins and an agent pipeline that cut design-to-code from days to about ten minutes.</li>
             </ul>
@@ -85,11 +85,13 @@
             <p>I designed and built <a href="work/ask-bar.html">an investigation assistant</a> (React, Cloudflare Workers, Claude API) that turns an analyst's question into filters. Analysts answer for every decision they make, so the assistant shows its work as filters they can see and edit, not an answer they have to trust. It's now a major prospect's reference demo, and two of its patterns are on the product roadmap.</p>
             <p>Day to day I build with Claude Code and Cursor, with Figma and MUI connected so the agent reads the real design and docs instead of guessing. What to build, anything that touches customer data, and whether it's right stay with me. Every mistake an agent makes becomes a rule or a test. I wrote up <a href="writing/figma-to-claude.html">the five ways I get a Figma design in front of Claude</a>, and what each one loses.</p>
 
-            <h2>Why the psychology matters</h2>
-            <p>It's why I look at behaviour before opinions, and it gives me names for what goes wrong: cognitive load, automation bias, a false "no results" that's worse than a slow one. Most of my design decisions come down to making the next step obvious and the system's state impossible to misread.</p>
+            <aside class="psych" aria-label="Why the psychology matters">
+              <span class="psych-k">Why the psychology matters</span>
+              <p>It's why I look at behaviour before opinions, and it gives me names for what goes wrong: cognitive load, automation bias, a false "no results" that's worse than a slow one. Most of my design decisions come down to making the next step obvious and the system's state impossible to misread.</p>
+            </aside>
           </div>
 
-          <aside>
+          <aside class="clipboard">
             <h3 style="margin-bottom:1rem">Timeline</h3>
             <ul class="timeline">
               <li>
@@ -162,7 +164,7 @@
         <span>© <span data-year>2026</span> Mahrs Aslam.</span>
       </div>
     </footer>
-    <script src="js/main.js?v=20261026c"></script>
+    <script src="js/main.js?v=20261112e"></script>
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

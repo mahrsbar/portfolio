@@ -15,15 +15,15 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261031a" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261027a" />
+    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -32,14 +32,14 @@
     </script>
     <style>
       .chapter { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
-      .chapter .num { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-text, var(--c)); margin-bottom: 0.4rem; display: block; }
-      .lesson { margin: 2.5rem 0; padding: 1.75rem 1.75rem 1.6rem; border-radius: var(--radius-l); background: var(--c-soft); border-left: 4px solid var(--c); }
-      .lesson-k { display: block; margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .chapter .num { display: block; margin-bottom: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
+      .lesson { margin: 2.5rem 0; padding: 1.4rem 0 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .lesson-k { display: block; margin-bottom: 0.5rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .lesson .lesson-big { margin: 0 0 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
       .lesson p { margin: 0; color: var(--ink-2); }
       .mock-note { margin: 0.75rem 0 0; font-size: 0.8rem; color: var(--ink-3); }
-      .psych { display: block; margin: 2.5rem 0; padding: 1.25rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
-      .psych-k { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .psych { margin: 2.5rem 0; padding: 1.4rem 0 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .psych-k { display: block; margin-bottom: 0.35rem; font-family: "Shantell Sans", var(--font-sans); font-size: 1rem; font-weight: 500; color: var(--mustard-text); }
       .psych h3 { margin: 0.3rem 0 0.5rem; font-size: 1.1rem; }
       .psych p { margin: 0 0 0.6rem; color: var(--ink-2); }
       .psych small { color: var(--ink-3); }
@@ -118,7 +118,7 @@
         .rp-log li, .rp-sum, .rp-cursor.click, .rp-top.playing .rec, .rp-search.focus .caret { animation: none; }
       }
       /* the two-up before/after wireframe */
-      .two-up .label { display: block; margin-bottom: 0.4rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+      .two-up .label { display: block; margin-bottom: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .compare td:first-child { white-space: nowrap; font-weight: 600; color: var(--ink); }
       @media (max-width: 640px) { .compare td:first-child { white-space: normal; } }
     </style>
@@ -150,7 +150,7 @@
     </header>
 
     <main id="main" class="hue-teal">
-      <section class="wrap case-intro">
+      <section class="wrap case-intro" data-prop="tv">
         <p class="eyebrow"><b>Fraud-investigation suite</b> · UX research</p>
         <h1>What three months of session replays said</h1>
         <p class="intro-sum">
@@ -165,6 +165,8 @@
         </ul>
         <dl class="meta-line">
           <div><dt>Role</dt><dd>Research lead and product designer; I built several of the front-end fixes myself</dd></div>
+          <div><dt>When</dt><dd>2026</dd></div>
+          <div><dt>With</dt><dd>The technical-support team I shadowed; product and the console's engineers, who took the fix list</dd></div>
         </dl>
       </section>
 
@@ -214,7 +216,7 @@
           </div>
           <div class="rp-sum" data-sum>Three loops, one dead end, one ticket. The search only looked at organisations, the error didn't link to the pending user, and nothing on the screen said so. This replay is one of six friction themes; the fix list is below.</div>
         </div>
-        <p class="mock-note">A recreated session with invented data. Company work: no real session, user or product UI.</p>
+        <p class="mock-note">A recreated session with invented data.</p>
       </section>
 
       <section class="wrap section">
@@ -224,13 +226,14 @@
           <h2>The method</h2>
           <p>
             For a B2B admin tool with a few thousand sessions a quarter, session replays are the best research
-            instrument I have: faster than interviews, deeper than analytics. The study design was the same both times.
+            instrument I have. The study design was the same both times, and the full method is written up in
+            <a href="../writing/session-replays-as-research.html">What session replays can't tell you</a>.
           </p>
           <ol class="steps">
             <li><b>Segment before you watch.</b> Internal staff acting for customers and external admins use the same screens for different reasons. Averaging them hides both stories.</li>
-            <li><b>Hunt for loops.</b> Repeated clicks on one control, tab-switching after a search, a modal cancelled halfway. Loops are what confusion looks like in a replay. A console warning next to one turns "it felt slow" into a ticket.</li>
+            <li><b>Hunt for loops.</b> Repeated clicks on one control, tab-switching after a search, a modal cancelled halfway. A console warning next to one turns "it felt slow" into a ticket.</li>
             <li><b>Cross-reference support.</b> Six months of "can someone…" messages say what people gave up on before any replay started.</li>
-            <li><b>Shadow the people who get the tickets.</b> A replay shows what happened, never why. A week beside the support team gave me the why for a dozen patterns I'd only seen as clicks.</li>
+            <li><b>Shadow the people who get the tickets.</b> A week beside the support team gave me the why for a dozen patterns I'd only seen as clicks.</li>
           </ol>
 
           <div class="chapter">
@@ -266,12 +269,6 @@
             </p>
           </div>
 
-          <aside class="psych" aria-label="Psychology note">
-            <span class="psych-k">Psych note</span>
-            <h3>Learned helplessness</h3>
-            <p>When actions repeatedly produce nothing, people stop acting, even once the situation changes. Every row and label that looked clickable and did nothing was a small lesson that trying is pointless. By the time admins hit the real dead end, they'd already learned to open a ticket instead.</p>
-            <small>Seligman, M. E. P., &amp; Maier, S. F. (1967). Failure to escape traumatic shock. Journal of Experimental Psychology, 74(1), 1–9.</small>
-          </aside>
 
           <h3>From findings to a revamp</h3>
           <p>
@@ -334,7 +331,7 @@
               Most of the high-severity ones had a single root: <strong>panning and zooming quickly cancelled the
               in-flight request</strong>, the app didn't retry, and the interface rendered the cancellation as
               "No results found". The data was there. Pins came back only after zooming out, refreshing, or
-              reapplying filters. In a meaningful share of sessions with active map use, the map was lying.
+              reapplying filters. In roughly one of every six sessions with active map use, the map was lying.
             </p>
             <p>
               The quieter failures compounded it: filters that persisted silently across searches, a "show all"
@@ -368,12 +365,15 @@
             </aside>
           </div>
 
-          <h2>What I took from it</h2>
-          <ul>
-            <li><strong>Frequency is not severity.</strong> The most common replay pattern was harmless browsing. A rare dead-end error produced a disproportionate share of tickets, because every occurrence was a dead end.</li>
-            <li><strong>Severity, version and source</strong> are the minimum an audit needs to be actionable by engineers, not just persuasive to designers.</li>
-            <li><strong>Every dead end is a ticket.</strong> The most valuable fixes were the ones that made the next step visible: a link in an error, a shortcut on a zero-results state.</li>
-          </ul>
+          <h2>The outcome</h2>
+          <p>
+            Study one became the console revamp, now shipped: a flattened provisioning flow, bulk actions, a
+            duplicate error that links to the existing user, domain-approval guidance, two new table columns (who
+            invited a pending user, and when), clickable rows and a clearer roles control. Study two's
+            cancelled-request fix shipped first, and its rules shaped the map work that followed. Both ended as ranked
+            lists an engineer could act on without a designer in the room, which is what severity, version and
+            source are for.
+          </p>
 
         </div>
         </div>
@@ -383,7 +383,6 @@
     <footer class="footer">
       <div class="wrap">
         <span>© <span data-year>2026</span> Mahrs Aslam.</span>
-        <span>Company work: the product, data and screens are recreated mockups.</span>
       </div>
     </footer>
     <script>
@@ -465,7 +464,7 @@
         }
       })();
     </script>
-    <script src="../js/main.js?v=20261026c"></script>
+    <script src="../js/main.js?v=20261112e"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

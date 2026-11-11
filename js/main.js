@@ -107,9 +107,43 @@
   function navEdge() {
     var header = document.querySelector("header.nav");
     if (!header) return;
-    function update() { header.classList.toggle("scrolled", window.scrollY > 4); }
+    /* the bar keeps the wall's colour for as long as the wall is behind it */
+    var wall = document.querySelector(".duck-room, .case-intro .intro-sum, .case-hero, .post-hero");
+    /* a marker at the top of the skirting board, where the wall actually ends (CSS places it) */
+    var end = null;
+    if (wall) {
+      end = document.createElement("span");
+      end.className = "wall-end";
+      end.setAttribute("aria-hidden", "true");
+      wall.appendChild(end);
+    }
+    function update() {
+      header.classList.toggle("scrolled", window.scrollY > 4);
+      if (!end) return;
+      header.classList.toggle("on-wall", end.getBoundingClientRect().top > header.offsetHeight);
+    }
     window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     update();
+  }
+
+  /* ---- The drawer ----
+     The case files pile up as you scroll. Give every folder the height of the
+     tallest, so the pile closes square with its tabs in one row. */
+  function drawer() {
+    var box = document.querySelector(".projects .case-drawer");
+    if (!box) return;
+    var files = box.querySelectorAll(".pcard-flagship");
+    function measure() {
+      box.style.removeProperty("--folder-h");
+      var tallest = 0;
+      files.forEach(function (f) { tallest = Math.max(tallest, f.offsetHeight); });
+      box.style.setProperty("--folder-h", tallest + "px");
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    window.addEventListener("load", measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
   }
 
   /* ---- Tables that stack on phones ----
@@ -126,6 +160,31 @@
         });
       });
     });
+  }
+
+  /* ---- The stroke under a heading: as wide as the line it sits under ----
+     A heading that wraps would otherwise get a stroke as wide as the column. */
+  function headingStroke() {
+    var heads = document.querySelectorAll(".prose h2, .section-head h2");
+    if (!heads.length || !document.createRange) return;
+    function measure() {
+      heads.forEach(function (h) {
+        var range = document.createRange();
+        range.selectNodeContents(h);
+        var rects = range.getClientRects();
+        if (!rects.length) return;
+        var bottom = rects[rects.length - 1].bottom;
+        var left = h.getBoundingClientRect().left;
+        var right = left;
+        Array.prototype.forEach.call(rects, function (r) {
+          if (Math.abs(r.bottom - bottom) < 4) right = Math.max(right, r.right);
+        });
+        h.style.setProperty("--stroke-w", Math.ceil(right - left) + "px");
+      });
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
   }
 
   /* ---- Reveal on scroll ---- */
@@ -146,7 +205,7 @@
           }
         });
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+      { rootMargin: "0px 0px -8% 0px", threshold: 0 }
     );
     els.forEach(function (el) {
       io.observe(el);
@@ -259,19 +318,33 @@
     });
   }
 
-  /* ---- Section links: jump, then drop the #hash so a refresh starts where you are, not at the section ---- */
+  /* ---- Section links: jump, then drop the #hash so a refresh starts where you are, not at the section.
+          On load, land on the target ourselves: the browser's own jump can be lost while images and demos lay out. ---- */
   function clearHash() {
     if (location.hash) history.replaceState(null, "", location.pathname + location.search);
   }
+  function landOnHash() {
+    var id = location.hash ? decodeURIComponent(location.hash.slice(1)) : "";
+    var target = id && document.getElementById(id);
+    if (target) {
+      target.scrollIntoView();
+      setTimeout(function () {
+        if (Math.abs(target.getBoundingClientRect().top - 90) > 40) target.scrollIntoView();
+      }, 600);
+    }
+    clearHash();
+  }
   window.addEventListener("hashchange", clearHash);
-  window.addEventListener("load", clearHash);
+  window.addEventListener("load", landOnHash);
 
   document.addEventListener("DOMContentLoaded", function () {
     bindToggle();
     markNav();
     menu();
     navEdge();
+    drawer();
     stackTables();
+    headingStroke();
     reveal();
     copyEmail();
     year();

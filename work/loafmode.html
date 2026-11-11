@@ -18,15 +18,15 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261031a" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261027a" />
+    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -35,13 +35,13 @@
     </script>
     <style>
       .chapter { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
-      .chapter .num { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-text, var(--c)); margin-bottom: 0.4rem; display: block; }
+      .chapter .num { display: block; margin-bottom: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .case-cover img { display: block; width: 100%; height: auto; }
       .store-link { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--link); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
       .store-link svg { width: 14px; height: 14px; }
       .thennow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1.75rem 0; }
       .tn { display: flex; flex-direction: column; }
-      .tn-k { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); margin-bottom: 0.6rem; }
+      .tn-k { font-size: 0.7rem; color: var(--c-text); margin-bottom: 0.6rem; }
       .tn-media { position: relative; }
       .tn-quote { margin: 0.9rem 0 0.3rem; font-weight: 600; color: var(--ink); }
       .tn-note { margin: 0; font-size: 0.85rem; color: var(--ink-3); }
@@ -63,8 +63,8 @@
         .feature { grid-template-columns: minmax(0, 1fr); }
         .feature-media { max-width: 240px; margin-inline: auto; }
       }
-      .lesson { margin: 2.5rem 0; padding: 1.75rem 1.75rem 1.6rem; border-radius: var(--radius-l); background: var(--c-soft); border-left: 4px solid var(--c); }
-      .lesson-k { display: block; margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .lesson { margin: 2.5rem 0; padding: 1.4rem 0 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .lesson-k { display: block; margin-bottom: 0.5rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .lesson .lesson-big { margin: 0 0 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
       .lesson p { margin: 0; color: var(--ink-2); }
       .story { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); align-items: center; gap: 1.5rem; margin: 2rem 0 0; }
@@ -102,7 +102,7 @@
     </header>
 
     <main id="main" class="hue-mustard">
-      <section class="wrap case-intro">
+      <section class="wrap case-intro" data-prop="loaf">
         <div class="intro-text">
           <p class="eyebrow"><b>LoafMode</b> · iOS app</p>
           <h1>A screen-time app without streaks</h1>
@@ -118,6 +118,8 @@
           <dl class="meta-line">
             <div><dt>Role</dt><dd>Solo: research, design, iOS engineering and launch</dd></div>
             <div><dt>Stack</dt><dd>Swift, SwiftUI, Screen Time API, WidgetKit, Live Activities</dd></div>
+            <div><dt>When</dt><dd>2026</dd></div>
+            <div><dt>With</dt><dd>Nobody. Research, design, code and the App Store submission were mine, with Claude Code</dd></div>
           </dl>
         </div>
         <div class="intro-phones intro-phones-stagger">
@@ -277,7 +279,8 @@
               Apps that block other apps need Apple's sign-off twice: a Family Controls distribution entitlement for
               each of the four extensions, then App Review. Review came back asking for more information, so I sent a
               screen recording of the full flow on a real iPhone and explained each permission, including what the
-              app can't see. LoafMode is now on version 1.1.
+              app can't see. LoafMode is now on version 1.1. Claude Code sped up the build and drew the companions
+              with me. The decisions about what the app should and shouldn't do stayed mine.
             </p>
             <figure class="story">
               <div class="story-frame">
@@ -291,12 +294,6 @@
             </figure>
           </div>
 
-          <h2>What I took from it</h2>
-          <ul>
-            <li><strong>Build the obvious version, then question it.</strong> The gamified version worked, and that's exactly why it was worth throwing away.</li>
-            <li><strong>The research set real numbers.</strong> Every timing, wait and word in LoafMode traces back to a finding.</li>
-            <li><strong>Claude Code as a collaborator.</strong> It sped up the build and drew the companions with me. The decisions about what the app should and shouldn't do stayed mine.</li>
-          </ul>
 
         </div>
         </div>
@@ -349,7 +346,7 @@
         box.addEventListener("close", function () { shots[i].focus(); });
       })();
     </script>
-    <script src="../js/main.js?v=20261026c"></script>
+    <script src="../js/main.js?v=20261112e"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

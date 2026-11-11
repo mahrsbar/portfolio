@@ -4,26 +4,26 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>An ask bar that answers with filters — Mahrs Aslam</title>
-    <meta name="description" content="A fraud-investigation demo with an AI designed around the analyst's journey: ask a question and land on the filtered page, a launcher that has read the page before you do, an assistant that shows each step, and a plan for every way it can be wrong." />
+    <meta name="description" content="A fraud-investigation demo with an AI designed around four moments of an investigation: ask a question and land on the filtered page, a launcher that has read the page before you do, an assistant that shows each step, and a plan for every way it can be wrong." />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Mahrs Aslam" />
     <meta property="og:title" content="An ask bar that answers with filters — Mahrs Aslam" />
-    <meta property="og:description" content="A fraud-investigation demo with an AI designed around the analyst's journey: ask a question and land on the filtered page, a launcher that has read the page before you do, an assistant that shows each step, and a plan for every way it can be wrong." />
+    <meta property="og:description" content="A fraud-investigation demo with an AI designed around four moments of an investigation: ask a question and land on the filtered page, a launcher that has read the page before you do, an assistant that shows each step, and a plan for every way it can be wrong." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/ask-bar.html" />
     <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261031a" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261027a" />
+    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -32,9 +32,9 @@
     </script>
     <style>
       .chapter { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
-      .chapter .num { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-text, var(--c)); margin-bottom: 0.4rem; display: block; }
-      .lesson { margin: 2.5rem 0; padding: 1.75rem 1.75rem 1.6rem; border-radius: var(--radius-l); background: var(--c-soft); border-left: 4px solid var(--c); }
-      .lesson-k { display: block; margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .chapter .num { display: block; margin-bottom: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
+      .lesson { margin: 2.5rem 0; padding: 1.4rem 0 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .lesson-k { display: block; margin-bottom: 0.5rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .lesson .lesson-big { margin: 0 0 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
       .lesson p { margin: 0; color: var(--ink-2); }
       .mock-note { margin: 0.75rem 0 0; font-size: 0.8rem; color: var(--ink-3); }
@@ -62,7 +62,7 @@
 
       /* The ask-bar demo: the product itself, drawn light in both themes like the covers,
          with three callouts for what to notice. */
-      .askdemo { --ap-bg: #FFFFFF; --ap-sunk: #F3F4F6; --ap-line: #E6E8EC; --ap-ink: #1A1F29; --ap-ink2: #4B5563; --ap-ink3: #8A93A2; --ap-navy: #1F3A63; --ap-blue: #2F5BD6; --ap-ai: #E8553D; --ap-ai-soft: #FCE9E4; --ap-ai-text: #B8402F; --ap-ok: #1F6E5B; --ap-ok-soft: #DCEFEA;
+      .askdemo, .loopfig { --ap-bg: #FFFFFF; --ap-sunk: #F3F4F6; --ap-line: #E6E8EC; --ap-ink: #1A1F29; --ap-ink2: #4B5563; --ap-ink3: #8A93A2; --ap-navy: #1F3A63; --ap-blue: #2F5BD6; --ap-ai: #E8553D; --ap-ai-soft: #FCE9E4; --ap-ai-text: #B8402F; --ap-ok: #1F6E5B; --ap-ok-soft: #DCEFEA;
         padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
       /* suggestions: the product's own pattern, a panel under the bar when it has focus */
       .aa-suggest { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 20; padding: 0.35rem; border: 1px solid var(--ap-line); border-radius: 14px; background: #fff; box-shadow: 0 12px 32px rgba(15,20,40,0.16); }
@@ -209,7 +209,7 @@
       .aa-steps li.answer { color: var(--ap-ink); font-weight: 600; }
       .aa-steps li.answer::before { content: "→"; color: var(--ap-ai); }
       .askdemo-json { margin-top: 0.9rem; }
-      .askdemo-json summary { cursor: pointer; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+      .askdemo-json summary { cursor: pointer; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .askdemo-plan { margin: 0.5rem 0 0; padding: 0.8rem 0.9rem; border-radius: var(--radius); background: var(--bg-sunk); font-size: 0.74rem; line-height: 1.5; overflow-x: auto; max-width: 34rem; }
       @media (max-width: 700px) {
         .askdemo-app { grid-template-columns: minmax(0, 1fr); }
@@ -217,7 +217,12 @@
         .aa-banner { white-space: normal; text-align: center; }
         .aa-assist { width: 72%; }
         .askdemo-ex span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+        .askdemo-ex { min-width: 40px; height: 36px; justify-content: center; }
         .askdemo-input { font-size: 0.82rem; }
+        /* the question list scrolls inside the demo instead of running off its bottom edge */
+        .aa-suggest { max-height: min(340px, 60vh); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+        .aa-suggest [role="option"] { min-height: 44px; padding: 0.55rem 0.6rem; font-size: 0.84rem; line-height: 1.3; }
+        .aa-suggest [role="option"] small { display: none; }
         .aa-filters-k { display: none; }
         .aa-filters.reading .aa-filters-k { display: inline; }
       }
@@ -232,8 +237,9 @@
       /* each chapter opens with one line on what the analyst does */
       .prose .dek { margin: 0.25rem 0 1.25rem; font-size: 1.08rem; line-height: 1.5; color: var(--ink); max-width: 44ch; }
       /* the three rules: one card each, every case a "when / then" pair on two short lines */
-      .rulecards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 1.25rem 0 1.5rem; }
-      .rulecard { padding: 1rem 1.05rem 1.1rem; border: 1px solid var(--line); border-top: 3px solid var(--rc); border-radius: var(--radius-l); background: var(--bg-elev); }
+      .rulecards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 1.25rem; margin: 1.25rem 0 1.5rem; border-top: 1px solid var(--line); }
+      .rulecard { padding: 1rem 0 0.5rem; }
+      @media (min-width: 761px) { .rulecard + .rulecard { border-left: 1px solid var(--line); padding-left: 1.25rem; } }
       .rulecard.r1 { --rc: var(--teal); } .rulecard.r2 { --rc: var(--mustard); } .rulecard.r3 { --rc: var(--c); }
       .prose .rulecard h3 { margin: 0; font-size: 1.1rem; }
       .prose .rulecard .rc-def { margin: 0.2rem 0 0.85rem; font-size: 0.9rem; color: var(--ink-2); }
@@ -244,9 +250,9 @@
       @media (max-width: 760px) { .rulecards { grid-template-columns: minmax(0, 1fr); } }
       /* Moment 1: the same question, as a reply and as filters */
       .vs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; margin: 0 0 1.5rem; }
-      .vs-card { margin: 0; padding: 0.9rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); display: grid; grid-template-rows: auto 1fr auto; gap: 0.7rem; }
-      .vs-k { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
-      .vs-card.on .vs-k { color: var(--ink); }
+      .vs-card { margin: 0; padding: 1rem 0 0; border-top: 1px solid var(--line); display: grid; grid-template-rows: auto 1fr auto; gap: 0.7rem; }
+      .vs-k { font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
+      .vs-card.on .vs-k { font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .vs-ui { min-height: 170px; padding: 0.7rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: grid; gap: 0.5rem; align-content: start; font-size: 0.8rem; }
       .prose .vs-ui p { margin: 0; }
       .prose .vs-me { justify-self: end; max-width: 85%; padding: 0.45rem 0.7rem; border-radius: 12px 12px 3px 12px; background: var(--bg-sunk); color: var(--ink); }
@@ -264,8 +270,35 @@
       .prose .vs-cap { margin: 0; font-size: 0.86rem; line-height: 1.45; color: var(--ink-2); }
       .vs-card.on .vs-cap { color: var(--ink); }
       @media (max-width: 640px) { .vs { grid-template-columns: minmax(0, 1fr); } .vs-ui { min-height: 0; } }
+      /* Moment 3: how one question is answered, the product's pattern with its names removed */
+      .loopfig { margin: 1.5rem 0 0; }
+      .loopfig .vs-k { font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
+      .loopfig-scroll { overflow-x: auto; border-radius: 10px; }
+      .loopfig .lf { display: block; width: 100%; min-width: 540px; height: auto; background: var(--ap-bg); border-radius: 10px; }
+      .lf .lane { fill: #F4F5F8; }
+      .lf text { fill: var(--ap-ink); }
+      .lf .k { fill: var(--ap-ink2); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+      .lf .s { fill: var(--ap-ink3); } .lf .s.fg { fill: var(--ap-ink2); } .lf .s.g { fill: var(--ap-ok); } .lf .s.w { fill: #fff; }
+      .lf .t { font-weight: 600; } .lf .t.a { fill: var(--ap-blue); } .lf .t.g { fill: var(--ap-ok); } .lf .t.w { fill: #fff; }
+      .lf .spark { fill: var(--ap-ai); }
+      .lf .box { fill: #fff; stroke: #C9D0DA; stroke-width: 1.2; }
+      .lf .box.own { stroke: var(--ap-ink); stroke-width: 1.5; }
+      .lf .box.mcp, .lf .store.mcp { fill: #EEF2FC; stroke: var(--ap-blue); stroke-width: 1.4; }
+      .lf .read { fill: var(--ap-ok-soft); stroke: var(--ap-ok); stroke-width: 1.2; stroke-dasharray: 4 3; }
+      .lf .hdr, .lf .dot { fill: var(--ap-ink); }
+      .lf .bubble { fill: var(--ap-sunk); }
+      .lf .chip, .lf .inp { fill: #fff; stroke: #C9D0DA; stroke-width: 1.1; }
+      .lf .badge { fill: var(--ap-ai-soft); } .lf .badge-t { fill: var(--ap-ai-text); font-weight: 600; }
+      .lf .ar { fill: none; stroke: #8A93A2; stroke-width: 1.3; } .lf .ar.a { stroke: var(--ap-blue); stroke-width: 1.6; } .lf .ar.g { stroke: var(--ap-ok); stroke-width: 1.6; }
+      .lf .ah { fill: #8A93A2; } .lf .ah.a { fill: var(--ap-blue); } .lf .ah.g { fill: var(--ap-ok); }
+      .lf .lbl { fill: #6B7280; } .lf .lbl.a { fill: var(--ap-blue); font-weight: 600; } .lf .lbl.g { fill: var(--ap-ok); font-weight: 600; }
+      .prose .loopfig-legend { list-style: none; margin: 0.7rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; font-size: 0.74rem; color: var(--ink-2); }
+      .prose .loopfig-legend li { margin: 0; display: inline-flex; align-items: center; gap: 0.45rem; }
+      .loopfig-legend i { display: inline-block; flex: none; }
+      .loopfig-legend .l { width: 22px; border-top: 2px solid var(--ap-blue); } .loopfig-legend .l.g { border-color: var(--ap-ok); }
+      .loopfig-legend .bx { width: 18px; height: 11px; border: 1.5px solid var(--ink); border-radius: 3px; }
       /* Moment 4: each rule opens with what that failure looks like on screen */
-      .rc-ui { position: relative; height: 92px; margin: 0 0 0.9rem; padding: 0.7rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: flex; flex-wrap: wrap; align-content: center; gap: 0.35rem; font-size: 0.74rem; color: var(--ink-2); overflow: hidden; }
+      .rc-ui { position: relative; min-height: 92px; margin: 0 0 0.9rem; padding: 0.7rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: flex; flex-wrap: wrap; align-content: center; gap: 0.35rem; font-size: 0.74rem; color: var(--ink-2); overflow: hidden; }
       .rc-chip { display: inline-flex; align-items: center; gap: 0.3rem; height: 24px; padding: 0 0.3rem 0 0.55rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg-elev); color: var(--ink); font-weight: 600; white-space: nowrap; }
       .rc-chip small { font-size: inherit; font-weight: 400; color: var(--ink-3); }
       .rc-chip i { font-style: normal; width: 16px; text-align: center; color: var(--ink-3); }
@@ -288,10 +321,11 @@
       .rc-steps small { margin-left: auto; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ink-3); }
       @media (prefers-reduced-motion: reduce) { .rc-cursor { display: none; } .rulecards.play .rc-chip.wrong { animation: none; display: none; } .rc-fixed, .rulecards.play .rc-fixed { animation: none; opacity: 1; } }
       /* the launcher mockup: a faint page with the assistant's card in the corner */
-      .launcher-demo { position: relative; height: 300px; margin: 1.25rem 0 0; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg); overflow: hidden; }
+      .launcher-demo { --ap-bg: #FFFFFF; --ap-sunk: #F3F4F6; --ap-line: #E6E8EC; --ap-ink: #1A1F29; --ap-ink2: #4B5563; --ap-ink3: #8A93A2; --ap-navy: #1F3A63; --ap-blue: #2F5BD6; --ap-ai: #E8553D; --ap-ai-soft: #FCE9E4; --ap-ai-text: #B8402F; --ap-ok: #1F6E5B; --ap-ok-soft: #DCEFEA;
+        position: relative; height: 300px; margin: 1.25rem 0 0; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--ap-bg); color: var(--ap-ink); overflow: hidden; }
       .ld-page { position: absolute; inset: 0; padding: 0.9rem 1.1rem; display: grid; gap: 0.4rem; align-content: start; }
-      .ld-head { display: grid; gap: 0.1rem; font-size: 0.74rem; color: var(--ink-3); }
-      .ld-head b { color: var(--ink); font-size: 0.95rem; }
+      .ld-head { display: grid; gap: 0.1rem; font-size: 0.74rem; color: var(--ap-ink3); }
+      .ld-head b { color: var(--ap-ink); font-size: 0.95rem; }
       .ld-graph { position: relative; height: 220px; }
       .ld-graph svg { height: 100%; }
       .lnch { position: absolute; right: 14px; bottom: 12px; display: flex; align-items: center; gap: 0.7rem; max-width: min(400px, calc(100% - 28px)); padding: 0.6rem 0.85rem; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; background: #1A1F29; color: #fff; font: inherit; text-align: left; cursor: pointer; box-shadow: 0 6px 18px rgba(26,31,41,0.3); transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease), opacity 0.2s; }
@@ -299,24 +333,24 @@
       .lnch:hover .lnch-go { transform: translateX(3px); color: #fff; }
       .lnch:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
       .lnch[aria-expanded="true"] { opacity: 0; pointer-events: none; }
-      .ld-panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(62%, 340px); padding: 0.8rem 0.9rem; border-left: 1px solid var(--line); background: var(--bg-elev); display: grid; gap: 0.5rem; align-content: start; font-size: 0.76rem; color: var(--ink-2); transform: translateX(100%); transition: transform 0.35s var(--ease); }
+      .ld-panel { position: absolute; top: 0; right: 0; bottom: 0; width: min(62%, 340px); padding: 0.8rem 0.9rem; border-left: 1px solid var(--ap-line); background: var(--ap-bg); display: grid; gap: 0.5rem; align-content: start; font-size: 0.76rem; color: var(--ap-ink2); transform: translateX(100%); transition: transform 0.35s var(--ease); }
       .ld-panel.on { transform: none; }
       .ld-panel .lnch-mark { width: 20px; height: 20px; font-size: 0.6rem; }
-      .ld-close { margin-left: auto; border: 0; background: none; font: inherit; font-size: 1.1rem; color: var(--ink-3); cursor: pointer; }
+      .ld-close { margin-left: auto; border: 0; background: none; font: inherit; font-size: 1.1rem; color: var(--ap-ink3); cursor: pointer; }
       .ld-close:focus-visible { outline: 2px solid var(--link); }
-      .ld-read { margin: 0; color: var(--ink); }
+      .ld-read { margin: 0; color: var(--ap-ink); }
       .ld-beats { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.3rem; }
-      .ld-beats small { display: block; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ink-3); }
+      .ld-beats small { display: block; font-family: var(--font-mono); font-size: 0.64rem; color: var(--ap-ink3); }
       .ld-follow { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-      .ld-follow span { padding: 0.3rem 0.65rem; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--ink); font-size: 0.72rem; }
+      .ld-follow span { padding: 0.3rem 0.65rem; border: 1px solid var(--ap-line); border-radius: 999px; background: var(--ap-sunk); color: var(--ap-ink); font-size: 0.72rem; }
       @media (prefers-reduced-motion: reduce) { .ld-panel, .lnch { transition: none; } }
 
       .lnch-mark { flex: none; width: 26px; height: 26px; border-radius: 50%; background: #2F5BD6; display: grid; place-items: center; font-size: 0.8rem; }
       .lnch-text { display: grid; gap: 1px; min-width: 0; font-size: 0.78rem; line-height: 1.3; }
       .lnch-text small { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.62); }
       .lnch-go { flex: none; color: rgba(255,255,255,0.7); transition: transform 0.15s var(--ease), color 0.15s; }
-      .psych { display: block; margin: 2.5rem 0; padding: 1.25rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
-      .psych-k { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .psych { margin: 2.5rem 0; padding: 1.4rem 0 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .psych-k { display: block; margin-bottom: 0.35rem; font-family: "Shantell Sans", var(--font-sans); font-size: 1rem; font-weight: 500; color: var(--mustard-text); }
       .psych h3 { margin: 0.3rem 0 0.5rem; font-size: 1.1rem; }
       .psych p { margin: 0 0 0.6rem; color: var(--ink-2); }
       .psych small { color: var(--ink-3); }
@@ -349,12 +383,12 @@
     </header>
 
     <main id="main" class="hue-coral">
-      <section class="wrap case-intro">
-        <p class="eyebrow"><b>Fraud-investigation suite</b> · AI interaction design</p>
+      <section class="wrap case-intro" data-toy="ask" data-prop="map">
+        <p class="eyebrow"><span class="case-no">Case 02</span><b>Fraud-investigation suite</b> · AI interaction design</p>
         <h1>An ask bar that answers with filters</h1>
         <p class="intro-sum">
-          A customer-facing demo of a fraud-investigation tool, with AI designed into four moments of the analyst's
-          journey: ask, land, dig deeper, and the moment it's wrong. Try it below.
+          A customer-facing demo of a fraud-investigation tool, with AI designed into four moments of an
+          investigation: ask, land, dig deeper, and the moment it's wrong. Try the first one below.
         </p>
         <ul class="highlights">
           <li><b>Reference demo</b><span>For a major prospect</span></li>
@@ -362,8 +396,10 @@
           <li><b>Built solo</b><span>Front end, back end and the AI layer</span></li>
         </ul>
         <dl class="meta-line">
-          <div><dt>Role</dt><dd>Designed and built it end to end, with Claude Code</dd></div>
+          <div><dt>Role</dt><dd>Designed and built it end to end. Claude Code wrote most of the code; I reviewed every change that touched data.</dd></div>
           <div><dt>Stack</dt><dd>React, Cloudflare Workers, Claude API</dd></div>
+          <div><dt>When</dt><dd>2026</dd></div>
+          <div><dt>With</dt><dd>Sales and product, who asked for it; the data team, whose APIs it reads</dd></div>
         </dl>
       </section>
 
@@ -387,10 +423,10 @@
                 <div class="aa-suggest" id="ask-suggest" role="listbox" aria-label="Try asking" data-suggest hidden>
                   <p class="aa-suggest-k">Try asking</p>
                   <div role="option" id="sg-0" data-q="Failed transactions near Halifax last week" aria-selected="false"><i class="ic map"></i><span>Failed transactions near Halifax last week</span><small>Map</small></div>
-                  <div role="option" id="sg-1" data-q="Which accounts share a device with this one?" aria-selected="false"><i class="ic graph"></i><span>Which accounts share a device with this one?</span><small>Connections</small></div>
-                  <div role="option" id="sg-2" data-q="Show me this user over the weekend" aria-selected="false"><i class="ic user"></i><span>Show me this user over the weekend</span><small>Account</small></div>
+                  <div role="option" id="sg-1" data-q="Which accounts share a device with u-4471-ny?" aria-selected="false"><i class="ic graph"></i><span>Which accounts share a device with u-4471-ny?</span><small>Connections</small></div>
+                  <div role="option" id="sg-2" data-q="Show me u-4471-ny over the weekend" aria-selected="false"><i class="ic user"></i><span>Show me u-4471-ny over the weekend</span><small>Account</small></div>
                   <div role="option" id="sg-3" data-q="Failed transactions in Toronto today" aria-selected="false"><i class="ic list"></i><span>Failed transactions in Toronto today</span><small>Transactions</small></div>
-                  <div role="option" id="sg-4" data-q="Why does this account keep failing?" aria-selected="false"><i class="ic ai"></i><span>Why does this account keep failing?</span><small>Assistant</small></div>
+                  <div role="option" id="sg-4" data-q="Why does u-4471-ny keep failing?" aria-selected="false"><i class="ic ai"></i><span>Why does u-4471-ny keep failing?</span><small>Assistant</small></div>
                   <div role="option" id="sg-5" data-q="Is anything weird going on?" aria-selected="false"><i class="ic map"></i><span>Is anything weird going on?</span><small>Map</small></div>
                 </div>
               </form>
@@ -422,14 +458,18 @@
         <div class="case-body">
         <div class="prose">
 
-          <h2>Context</h2>
-          <dl class="ctx">
-            <div><dt>Who asked</dt><dd>Sales and product, for a prospective customer.</dd></div>
-            <div><dt>What it had to do</dt><dd>Feel like the real investigation product, show AI in the workflow, and run with no credentials.</dd></div>
-            <div><dt>What it could not do</dt><dd>Leak real data, or be a chatbot that is confidently wrong. Investigators want the right page, not a paragraph, and one wrong answer poisons every answer after it.</dd></div>
-            <div><dt>How it was built</dt><dd>Solo, as a small sibling of the product: a React front end, a small back end that proxies the data APIs and holds the keys, and the AI layer. Claude Code wrote most of the code; I reviewed every change that touched data.</dd></div>
-          </dl>
-          <p>So the AI was designed into the journey an analyst already takes, in four moments: <strong>ask</strong>, <strong>land</strong>, <strong>dig deeper</strong>, and <strong>when it's wrong</strong>.</p>
+          <h2>The brief</h2>
+          <p>
+            Sales and product asked for a demo for a prospective customer: something that felt like the real
+            investigation product, showed AI in the workflow, and ran with no credentials. Two things it could not
+            do: leak real data, or be a chatbot that is confidently wrong. Investigators want the right page, not a
+            paragraph, and one wrong answer poisons every answer after it.
+          </p>
+          <p>
+            So the AI went into the four moments an analyst already passes through:
+            <a href="#ask">ask</a>, <a href="#land">land</a>, <a href="#dig">dig deeper</a>, and
+            <a href="#wrong">when it's wrong</a>.
+          </p>
 
           <div class="chapter">
             <span class="num">Moment 1 of 4</span>
@@ -456,7 +496,7 @@
             <p>
               The ask bar never answers. The model returns one flat plan, enforced through structured outputs, and
               the app applies it as the filters the product already has. Anything it can't infer comes back
-              <code>null</code>, so the page opens without that filter rather than with a guessed one.
+              <code>null</code>, so the page opens without that filter, never with a guessed one.
             </p>
             <p>
               The plan also says what kind of question it was. A <em>navigate</em> question is answered by the page
@@ -465,8 +505,8 @@
             </p>
             <aside class="lesson" aria-label="The decision">
               <span class="lesson-k">The decision</span>
-              <p class="lesson-big">The model is a translator, not an oracle.</p>
-              <p>Its output is the product's own vocabulary. A wrong answer from a chatbot is a trust problem; a wrong filter is just a filter.</p>
+              <p class="lesson-big">The model returns filters, never an answer.</p>
+              <p>Its output is the product's own vocabulary. A wrong answer from a chatbot is a trust problem. A wrong filter is one click to remove.</p>
             </aside>
           </div>
 
@@ -511,17 +551,17 @@
 
           <aside class="psych" aria-label="Psychology note">
             <span class="psych-k">Psych note</span>
-            <h3>The cocktail party effect</h3>
+            <h3>The cocktail party effect, measured</h3>
             <p>
-              In a loud room you can follow one conversation and tune out the rest, yet your own name cuts straight
-              through. Selective attention is a filter that lets a few relevant signals in.
+              In a loud room you can follow one conversation and tune out the rest. The famous part, your own name
+              cutting through, is weaker than it sounds: in the tests, only about a third of people noticed it.
             </p>
             <p>
-              A fraud dataset is the loud room. The ask bar hands the investigator one thread, and the launcher
-              speaks their name across it: the account they're looking at, and the one thing worth knowing about
-              it. The AI never adds to the noise; it only decides which conversation to follow.
+              A fraud dataset is the loud room, and an important signal can't be trusted to stand out on its own. So
+              the launcher doesn't wait for it to: it puts the account and the one thing worth knowing about it where
+              the investigator is already looking.
             </p>
-            <small>Cherry, 1953; Moray, 1959</small>
+            <small>Cherry, 1953; Moray, 1959; Wood &amp; Cowan, 1995</small>
           </aside>
 
           <div class="chapter">
@@ -542,9 +582,102 @@
             <p class="mock-note">A recreated mockup with invented data.</p>
             <p>
               Each step and its one-line result appear as they happen, so you see how it got to the answer. It stops
-              after eight tool steps and says what it found. By default it sees only the invented records the pages
+              after eight tool steps and says what it found. Every fact in the answer comes from a tool call to an
+              internal MCP server, made as the analyst, so it reaches only the records they are permitted to see. By default it sees only the invented records the pages
               show. Reaching real data takes a deployment setup with a named security sign-off, not a switch.
             </p>
+            <figure class="loopfig">
+              <figcaption class="vs-k">How one question is answered</figcaption>
+              <div class="loopfig-scroll">
+<svg class="lf" viewBox="0 0 660 574" role="img" aria-label="How one question is answered. A question typed in the ask bar goes to a router, which asks the model for a plan and opens the page with filters. The page feeds what is on screen into the assistant drawer, which shows an On this page read worked out in the browser and sent nowhere, the question, the steps, the answer with every ID as a link, follow-ups and the input. Each question goes with the page to the agent loop, which asks the model what to look up, calls a tool on an internal MCP server as the analyst, read only, over data the analyst is permitted to see, and sends the results back, until the model writes the answer, in at most eight rounds. Steps and the answer come back to the drawer.">
+  <defs>
+    <marker id="lf-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="lf-ah-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah a" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="lf-ah-g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah g" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+  <rect class="lane" x="10" y="10" width="190" height="552" rx="10"/>
+  <rect class="lane" x="224" y="10" width="212" height="552" rx="10"/>
+  <rect class="lane" x="460" y="10" width="190" height="552" rx="10"/>
+  <text class="k" font-size="10.5" x="26" y="32">In the browser</text><text class="s" font-size="10.5" x="26" y="47">where a question starts</text>
+  <text class="k" font-size="10.5" x="240" y="32">On the server</text><text class="s" font-size="10.5" x="240" y="47">the assistant’s own code</text>
+  <text class="k" font-size="10.5" x="476" y="32">Outside the app</text><text class="s" font-size="10.5" x="476" y="47">the model and the data</text>
+
+  <rect class="box" x="30" y="66" width="150" height="40" rx="20"/>
+  <text class="spark" font-size="13" x="44" y="92">✦</text>
+  <text class="t" font-size="12.5" x="60" y="84">Ask bar</text><text class="s" font-size="10" x="60" y="98">the product’s search</text>
+  <line class="ar" x1="180" y1="86" x2="251" y2="86" marker-end="url(#lf-ah)"/>
+  <text class="lbl" font-size="10.5" text-anchor="middle" x="217" y="78">question</text>
+
+  <rect class="box own" x="255" y="66" width="150" height="72" rx="8"/>
+  <text class="t" font-size="13" x="267" y="85">Router</text>
+  <text class="s fg" font-size="10.5" x="267" y="101">a question becomes</text><text class="s fg" font-size="10.5" x="267" y="114">a page and filters</text><text class="s" font-size="10.5" x="267" y="127">one call, no lookups</text>
+  <line class="ar" x1="405" y1="86" x2="476" y2="86" marker-end="url(#lf-ah)"/>
+  <text class="lbl" font-size="10.5" text-anchor="middle" x="442" y="78">plan the page</text>
+
+  <rect class="box" x="480" y="66" width="150" height="140" rx="8"/>
+  <text class="t" font-size="13" x="492" y="85">Claude</text><text class="s" font-size="10.5" x="492" y="100">the model</text>
+  <text class="s fg" font-size="10.5" x="492" y="120">decides what to</text><text class="s fg" font-size="10.5" x="492" y="134">look up, then writes</text><text class="s fg" font-size="10.5" x="492" y="148">the answer</text>
+
+  <path class="ar g" d="M330,138 V154 H105 V166" marker-end="url(#lf-ah-g)"/>
+  <text class="lbl g" font-size="10.5" x="112" y="149">opens the page with filters</text>
+
+  <rect class="box" x="30" y="170" width="150" height="50" rx="8"/>
+  <text class="t" font-size="12.5" x="40" y="189">The page you’re on</text><text class="s" font-size="10.5" x="40" y="205">account, map or graph</text>
+  <line class="ar" x1="70" y1="220" x2="70" y2="258" marker-end="url(#lf-ah)"/>
+  <text class="lbl" font-size="10.5" x="78" y="245">what’s on screen</text>
+
+  <rect class="box own" x="30" y="262" width="150" height="274" rx="8"/>
+  <path class="hdr" d="M30,270 a8,8 0 0 1 8,-8 H172 a8,8 0 0 1 8,8 V288 H30 Z"/>
+  <text class="t w" font-size="11.5" x="40" y="280">Assistant</text><text class="spark" font-size="11" text-anchor="end" x="170" y="281">✦</text>
+  <rect class="read" x="40" y="298" width="130" height="52" rx="6"/>
+  <text class="t g" font-size="11" x="50" y="314">On this page</text><text class="s" font-size="10" x="50" y="328">worked out in the</text><text class="s" font-size="10" x="50" y="341">browser, sent nowhere</text>
+  <rect class="bubble" x="84" y="362" width="86" height="22" rx="11"/>
+  <text class="s fg" font-size="10" text-anchor="middle" x="127" y="377">your question</text>
+  <line class="ar" x1="180" y1="373" x2="251" y2="373" marker-end="url(#lf-ah)"/>
+  <text class="lbl" font-size="10.5" text-anchor="middle" x="217" y="352">question</text><text class="lbl" font-size="10.5" text-anchor="middle" x="217" y="364">+ the page</text>
+  <text class="s" font-size="10" x="40" y="402">✓ what it looked up</text>
+  <rect class="box" x="40" y="412" width="130" height="44" rx="6"/>
+  <text class="t" font-size="10.5" x="50" y="429">the answer</text><text class="s g" font-size="10" x="50" y="446">↗ every ID is a link</text>
+  <line class="ar" x1="255" y1="434" x2="184" y2="434" marker-end="url(#lf-ah)"/>
+  <text class="lbl" font-size="10.5" text-anchor="middle" x="217" y="416">steps, then</text><text class="lbl" font-size="10.5" text-anchor="middle" x="217" y="428">the answer</text>
+  <rect class="chip" x="40" y="468" width="60" height="20" rx="10"/><text class="s" font-size="9.5" text-anchor="middle" x="70" y="482">follow-up</text>
+  <rect class="chip" x="106" y="468" width="64" height="20" rx="10"/><text class="s" font-size="9.5" text-anchor="middle" x="138" y="482">follow-up</text>
+  <rect class="inp" x="40" y="500" width="130" height="22" rx="11"/><text class="s" font-size="10" x="50" y="515">Ask…</text><circle class="dot" cx="159" cy="511" r="5.5"/>
+
+  <rect class="box own" x="255" y="318" width="150" height="222" rx="8"/>
+  <text class="t" font-size="13" x="267" y="338">Agent loop</text><text class="s" font-size="10" x="267" y="353">behind every answer</text>
+  <text class="s fg" font-size="10.5" x="267" y="375">① asks the model</text><text class="s fg" font-size="10.5" x="267" y="389">what to look up</text>
+  <text class="s fg" font-size="10.5" x="267" y="409">② calls that tool,</text><text class="s fg" font-size="10.5" x="267" y="423">on the MCP, as the analyst</text>
+  <text class="s fg" font-size="10.5" x="267" y="443">③ sends the results</text><text class="s fg" font-size="10.5" x="267" y="457">back to the model</text>
+  <text class="s" font-size="10.5" x="267" y="477">…until it writes</text><text class="s" font-size="10.5" x="267" y="491">the answer</text>
+  <rect class="badge" x="267" y="506" width="92" height="20" rx="10"/><text class="badge-t" font-size="10" text-anchor="middle" x="313" y="520">up to 8 rounds</text>
+  <path class="ar" d="M275,318 V176 H476" marker-end="url(#lf-ah)"/>
+  <text class="lbl" font-size="10.5" x="283" y="168">what should I look up?</text>
+  <path class="ar" d="M480,196 H388 V314" marker-end="url(#lf-ah)"/>
+  <text class="lbl" font-size="10.5" text-anchor="end" x="380" y="212">look this up next</text>
+
+  <rect class="box mcp" x="480" y="330" width="150" height="100" rx="8"/>
+  <text class="t a" font-size="12.5" x="492" y="349">Internal MCP server</text>
+  <text class="s fg" font-size="10.5" x="492" y="366">tools: accounts, devices,</text><text class="s fg" font-size="10.5" x="492" y="380">transactions, networks</text>
+  <text class="t a" font-size="10.5" x="492" y="402">as the analyst,</text><text class="t a" font-size="10.5" x="492" y="416">read only</text>
+  <line class="ar a" x1="405" y1="352" x2="476" y2="352" marker-end="url(#lf-ah-a)"/>
+  <text class="lbl a" font-size="10.5" text-anchor="middle" x="442" y="344">tool call</text>
+  <line class="ar a" x1="480" y1="374" x2="409" y2="374" marker-end="url(#lf-ah-a)"/>
+  <text class="lbl a" font-size="10.5" text-anchor="middle" x="442" y="388">result</text>
+  <line class="ar a" x1="555" y1="430" x2="555" y2="464" marker-end="url(#lf-ah-a)"/>
+  <text class="lbl a" font-size="10.5" x="563" y="452">reads</text>
+  <path class="store mcp" d="M483,476 a72,8 0 0 0 144,0 a72,8 0 0 0 -144,0 v66 a72,8 0 0 0 144,0 v-66"/>
+  <text class="t a" font-size="11.5" text-anchor="middle" x="555" y="500">Permissioned data</text>
+  <text class="s" font-size="10" text-anchor="middle" x="555" y="515">only the records</text><text class="s" font-size="10" text-anchor="middle" x="555" y="528">the analyst may see</text>
+</svg>
+              </div>
+              <ul class="loopfig-legend" aria-label="Legend">
+                <li><i class="l a"></i>Tool calls to the internal MCP server, as the analyst</li>
+                <li><i class="l g"></i>Reads and acts on the page</li>
+                <li><i class="bx"></i>The assistant’s own parts</li>
+              </ul>
+            </figure>
+            <p class="mock-note">The shape of the system, redrawn without the product’s names.</p>
             <aside class="lesson" aria-label="The decision">
               <span class="lesson-k">The decision</span>
               <p class="lesson-big">Show the steps. Bound the effort. Gate the data in the setup, not the prompt.</p>
@@ -555,7 +688,7 @@
           <div class="chapter">
             <span class="num">Moment 4 of 4</span>
             <h2 id="wrong">When it's wrong</h2>
-            <p class="dek">An AI feature is judged on its worst day. Three rules decided what every surface does when it fails.</p>
+            <p class="dek">Three rules decided what every surface does when it fails.</p>
             <div class="rulecards">
               <section class="rulecard r1">
                 <div class="rc-ui" aria-hidden="true">
@@ -578,6 +711,7 @@
                 <p class="rc-def">Uncertainty is shown, not smoothed over.</p>
                 <ul>
                   <li><span>Can't infer part of it</span><b>Leaves that filter off, and says so</b></li>
+                  <li><span>Points at an id it doesn't name</span><b>Says so. It never invents an identifier</b></li>
                   <li><span>Only a sample loaded</span><b>No headline numbers; offers exact totals</b></li>
                   <li><span>Still working</span><b>Each step appears as it runs</b></li>
                   <li><span>Data is synthetic</span><b>A label on every page</b></li>
@@ -607,17 +741,16 @@
           </div>
 
           <h2>The outcome</h2>
-          <ul>
-            <li><strong>Two patterns on the production roadmap:</strong> question-to-filters and the gated assistant.</li>
-            <li><strong>A stress test for the <a href="design-system.html">component library</a>:</strong> every deviation the demo needed became a library ticket rather than a one-off override.</li>
-          </ul>
-
-          <h2>What I took from it</h2>
-          <ul>
-            <li><strong>Design from the failure case.</strong> What happens when it's wrong shaped every surface more than what happens when it's right.</li>
-            <li><strong>Constrain the AI to the product's vocabulary.</strong> Translators are easy to trust and easy to correct.</li>
-            <li><strong>Make safety structural.</strong> A rule people could ignore is weaker than a setup that can't send anything real.</li>
-          </ul>
+          <p>
+            Two of the demo's patterns went onto the product roadmap and have since been built into the product: the
+            question that becomes filters, and an assistant that can only reach what the analyst can. And every
+            place the demo had to deviate from the <a href="design-system.html">component library</a> became a
+            library ticket instead of a one-off override.
+          </p>
+          <p>
+            <strong>Design from the failure case.</strong> What happens when it's wrong shaped every surface more
+            than what happens when it's right.
+          </p>
 
         </div>
         </div>
@@ -627,7 +760,6 @@
     <footer class="footer">
       <div class="wrap">
         <span>© <span data-year>2026</span> Mahrs Aslam.</span>
-        <span>Company work: the product, data and screens are recreated mockups.</span>
       </div>
     </footer>
     <script src="../js/na-map.js?v=20261027"></script>
@@ -729,10 +861,14 @@
 
         // the rules standing in for the model
         function plan(q) {
-          var t = q.toLowerCase(), p = { page: null, searchType: null, identifiers: [], from: null, to: null, status: null, placeName: null, intent: "navigate" };
-          if (/\b(why|how many|what drove|explain|should i)\b/.test(t)) { p.intent = "answer"; p.page = "user"; p.searchType = "user"; p.identifiers = ["u-4471-ny"]; }
-          else if (/\b(share|shares|shared|connect|connected|linked|same device)\b/.test(t)) { p.page = "connections"; p.searchType = "user"; p.identifiers = ["u-4471-ny"]; }
-          else if (/\b(this user|this account|profile|over the weekend)\b/.test(t)) { p.page = "user"; p.searchType = "user"; p.identifiers = ["u-4471-ny"]; }
+          var t = q.toLowerCase(), p = { page: null, searchType: null, identifiers: [], from: null, to: null, status: null, placeName: null, intent: "navigate", note: null };
+          // ids are only ever copied from the question, never invented: "this one" names nothing, so nothing is guessed
+          var idm = t.match(/\bu-\d{4}-[a-z]{2}\b/), ids = idm ? [idm[0]] : [];
+          var pointer = /\b(this|that) (one|account|user|device)\b|\b(these|them|who else)\b/.test(t);
+          function named(page) { p.page = page; p.identifiers = ids; p.searchType = ids.length ? "user" : null; if (!ids.length && pointer) p.note = "No id was named, so none was guessed."; }
+          if (/\b(why|how many|what drove|explain|should i)\b/.test(t)) { p.intent = "answer"; named("user"); }
+          else if (/\b(share|shares|shared|connect|connected|linked|same device|who else)\b/.test(t)) { named("connections"); }
+          else if (ids.length || /\b(this user|this account|profile|over the weekend)\b/.test(t)) { named("user"); }
           else if (/\b(near|around|map|where)\b/.test(t)) { p.page = "map"; }
           else if (/\b(transactions?|list|table)\b/.test(t)) { p.page = "transactions"; }
           else if (/\b(failed|fails?|blocked|attempts)\b/.test(t)) { p.page = "map"; }
@@ -819,7 +955,7 @@
           setTimeout(function () { if (!done) { done = true; svg.setAttribute("viewBox", target.join(" ")); } }, dur + 80);
         }
         function graphPage(p) {
-          if (!p.identifiers.length) return '<div class="aa-graph" id="aa-graph-demo" data-overview><span class="lbl">3 devices shared by more than one account' + (p.from ? ' · ' + p.from.toLowerCase() : '') + '</span><span class="legend"><span>Account</span><span class="d">Device</span><span class="s">Shared</span></span></div>';
+          if (!p.identifiers.length) return (p.note ? '<span class="aa-banner"><b>No id named.</b> Nothing guessed, so here is the overview.</span>' : '') + '<div class="aa-graph" id="aa-graph-demo" data-overview><span class="lbl">3 devices shared by more than one account' + (p.from ? ' · ' + p.from.toLowerCase() : '') + '</span><span class="legend"><span>Account</span><span class="d">Device</span><span class="s">Shared</span></span></div>';
           return '<div class="aa-graph" id="aa-graph-demo"><span class="lbl">2 accounts share a device' + (p.from ? ' · ' + p.from.toLowerCase() : '') + '</span><span class="legend"><span>Account</span><span class="d">Device</span><span class="s">Shared</span></span></div>';
         }
         var DAYS = [[31, 4], [44, 6], [38, 5], [52, 7], [40, 6], [61, 9], [29, 3], [88, 41], [76, 36], [102, 55], [64, 30], [36, 5], [28, 3], [42, 6]];
@@ -827,7 +963,7 @@
         function inRange(p, i) { return p.from === "Sat–Sun" ? (i === 5 || i === 6) : p.from === "today" ? i === 13 : p.from === "yesterday" ? i === 12 : p.from === "last 7 days" ? i >= 7 : true; }
         function userPage(p) {
           if (!p.identifiers.length) {
-            return '<div class="aa-list"><div class="aa-list-h">Accounts <small>' + ACCOUNTS.length + '</small></div><table class="aa-tbl"><thead><tr><th>Account</th><th>Status</th><th>Failed</th></tr></thead><tbody>' +
+            return (p.note ? '<span class="aa-banner"><b>No id named.</b> Nothing guessed, so here are all accounts.</span>' : '') + '<div class="aa-list"><div class="aa-list-h">Accounts <small>' + ACCOUNTS.length + '</small></div><table class="aa-tbl"><thead><tr><th>Account</th><th>Status</th><th>Failed</th></tr></thead><tbody>' +
               ACCOUNTS.filter(function (a) { return p.status !== "failed" || a[2] > 10; }).map(function (a) { return '<tr><td class="mono">' + a[0] + '</td><td>' + a[1] + '</td><td>' + a[2] + '%</td></tr>'; }).join("") + '</tbody></table></div>';
           }
           var onlyFailed = p.status === "failed";
@@ -937,7 +1073,7 @@
         function stopDemo() { demoDone = true; demoTimers.forEach(clearTimeout); demoTimers = []; }
         function demo() {
           if (demoDone) return; demoDone = true;
-          var q = "Which accounts share a device with this one?", i = 0;
+          var q = "Which accounts share a device with u-4471-ny?", i = 0;
           input.value = ""; bar.classList.add("typing");
           (function type() {
             input.value = q.slice(0, ++i);
@@ -996,7 +1132,8 @@
         } else { d.classList.add("play"); }
       })();
     </script>
-    <script src="../js/main.js?v=20261026c"></script>
+    <script src="../js/main.js?v=20261112e"></script>
+    <script src="../js/toys.js?v=8" defer></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

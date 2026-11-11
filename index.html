@@ -12,7 +12,7 @@
     <meta property="og:title" content="Mahrs Aslam — UX Engineer" />
     <meta
       property="og:description"
-      content="Every interface is a theory about how people think. I happen to have studied the theory and written the code that tests it."
+      content="UX engineer in Vancouver, trained in psychology before computer science. I build design systems and the AI features that run on them, with the research first."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Mahrs Aslam" />
@@ -23,14 +23,14 @@
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
-    <link rel="icon" href="assets/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon.svg?v=7" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;display=swap"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261031a" />
+    <link rel="stylesheet" href="css/style.css?v=20261112y" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -52,8 +52,8 @@
         "sameAs": ["https://github.com/mahrsbar"]
       }
     </script>
-    <link rel="stylesheet" href="css/accents.css?v=20261027a" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500;700;800&amp;display=swap" />
+    <link rel="stylesheet" href="css/accents.css?v=20261112y" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500..800&amp;display=swap" />
     <style>
       /* hero: the duck scene stands on a floor that runs the full width of the page.
          --floor-h is set from the scene's real width by script; this is the fallback. */
@@ -114,7 +114,7 @@
       .duck-room .hero-copy h1 { white-space: nowrap; font-size: clamp(2.4rem, 5vw, 4rem); }
       .split-fig.duck-fig .split-fig-anim {
         display: block;
-        aspect-ratio: 800 / 596;
+        aspect-ratio: 800 / 746;
         pointer-events: auto;
         color-scheme: normal;
       }
@@ -127,9 +127,14 @@
       .split-fig.duck-fig::before {
         content: "";
         position: absolute;
-        inset: -12% -18% 0 -12%;
+        inset: -12% -12% 0 -12%;
         pointer-events: none;
-        background: radial-gradient(ellipse 42% 48% at 82% 44%, rgba(255, 214, 120, 0.13), rgba(255, 214, 120, 0.04) 55%, transparent 100%);
+        background: radial-gradient(ellipse 38% 46% at 80% 50%, rgba(255, 220, 140, 0.10), rgba(255, 220, 140, 0.03) 55%, transparent 100%);
+        /* fade every edge, so the light never stops in a straight line, whatever the width */
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 20%, #000 72%, transparent), linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent);
+        -webkit-mask-composite: source-in;
+        mask-image: linear-gradient(to right, transparent, #000 20%, #000 72%, transparent), linear-gradient(to bottom, transparent, #000 22%, #000 82%, transparent);
+        mask-composite: intersect;
         opacity: 0;
         transition: opacity 0.6s ease;
       }
@@ -151,7 +156,7 @@
       }
 
       /* The licence-application card shows only the "after" mockup, centred */
-      [data-observe="Licence applications"] .pcard-mock-ba { grid-template-columns: 1fr; padding: 4.5% 18% 0; }
+      [data-observe="Licence applications"] .pcard-mock-ba { grid-template-columns: 1fr; padding: 5.5% 6% 0; }
       [data-observe="Licence applications"] .pcard-mock-ba .pcard-mock-col:first-child,
       [data-observe="Licence applications"] .pcard-mock-ba .ba-tag { display: none; }
 
@@ -242,14 +247,16 @@
       .sn-stats b { order: 2; font-size: 1rem; font-weight: 600; font-variant-numeric: tabular-nums; text-align: right; }
       .sn-stats span { order: 1; font-size: 0.88rem; color: var(--ink-3); }
 
-      /* the duck's notes: the same hairline rows and body font as the numbers beside them */
+      /* the duck's notes: hairline rows, in the same handwriting as the notes on the covers */
       .sn-list { margin: 0; padding: 0; list-style: none; counter-reset: note; }
       .sn-list li {
         display: flex;
         gap: 0.75rem;
         padding: 0.7rem 0;
         border-bottom: 1px solid var(--line);
-        font-size: 0.92rem;
+        font-family: var(--font-display);
+        font-size: 0.95rem;
+        font-weight: 500;
         line-height: 1.45;
         color: var(--ink);
       }
@@ -355,31 +362,96 @@
           <div class="hero-grid">
 
             <div class="hero-copy">
-              <h1>Mahrs Aslam</h1>
-              
-              <p class="claim">
-        Every interface is a theory about how people think. I happen to have studied the theory and written the code that tests it.
-              </p>
-              <ul class="hero-facts">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-6.2-6.5-11.2a6.5 6.5 0 0 1 13 0C18.5 14.8 12 21 12 21z"/><circle cx="12" cy="9.8" r="2.3"/></svg><span>UX Engineer in Vancouver, BC</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v4.2c1.6 1.5 3.5 2.3 5.5 2.3s3.9-.8 5.5-2.3V11"/><path d="M21.5 9v5"/></svg><span>B.A. Psychology, B.Sc. Computer Science</span></li>
-              </ul>
-              <div class="hero-actions">
-                <a class="btn btn-primary" href="#work">
-                  See the work
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" /></svg>
-                </a>
-                <a class="btn btn-ghost" href="about.html">About me</a>
+              <!-- the intro is the practice's intake form, pinned to the wall -->
+              <div class="intake">
+                <p class="intake-head" aria-hidden="true"><span>Intake form</span><span>Session 1</span></p>
+                <span class="intake-k" aria-hidden="true">Name</span>
+                <h1>Mahrs Aslam</h1>
+                <span class="intake-k">Presenting with</span>
+                <p class="claim">I build design systems and the AI features that run on them. The research comes first.</p>
+                <dl class="intake-facts">
+                  <div><dt>Role</dt><dd>UX Engineer in Vancouver, BC</dd></div>
+                  <div><dt>Training</dt><dd>B.A. Psychology, B.Sc. Computer Science</dd></div>
+                </dl>
+                <div class="hero-actions">
+                  <a class="btn btn-primary" href="#work">
+                    See the work
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" /></svg>
+                  </a>
+                  <a class="btn btn-ghost" href="about.html">About me</a>
+                </div>
               </div>
             </div>
 
             <div class="hero-figure">
+              <!-- by the door: the filing cabinet (it opens the case files), tissues, tea, and an umbrella, because Vancouver -->
+              <a class="room-props" href="#work" aria-label="Open the case files" title="Open the case files">
+                <svg viewBox="0 0 214 250" aria-hidden="true" focusable="false">
+                  <!-- floor shadows, like the chairs' -->
+                  <ellipse cx="71" cy="247" rx="70" ry="5" fill="#1E1A17" opacity=".16"/>
+                  <ellipse cx="170" cy="247" rx="28" ry="4" fill="#1E1A17" opacity=".16"/>
+                  <g class="rp-ink">
+                    <g class="rp-far">
+                    <!-- umbrella in its stand, at the chairs' scale: a long umbrella of about 70 cm in a stand of about 40 -->
+                    <!-- the stand's opening, behind the umbrella -->
+                    <ellipse cx="170" cy="146" rx="25" ry="6" fill="#1E1A17"/>
+                    <!-- leaning on the rim, the way an umbrella rests in a stand -->
+                    <g transform="rotate(10 170 146) translate(0 -18)">
+                    <path d="M170 112 V80" fill="none" stroke-width="3"/>
+                    <path d="M170 82.4 C170 56.8 202 56.8 202 79.2" fill="none" stroke-width="7"/>
+                    <path d="M170 82.4 C170 56.8 202 56.8 202 79.2" fill="none" stroke="#C98A4B" stroke-width="3"/>
+                    <path d="M149.9 117.6 C152.2 109.6 157 108 159.3 114.4 C162.9 106.4 167.6 106.4 170 114.4 C172.4 106.4 177.1 106.4 180.7 114.4 C183 108 187.8 109.6 190.1 117.6 L173.6 236 H166.4 Z" fill="#FFC93C"/>
+                    <path d="M158.2 120.8 L167.6 229.6 M170 117.6 V229.6 M181.8 120.8 L172.4 229.6" fill="none" stroke="#B9772F" stroke-width="1.6"/>
+                    </g>
+                    <path d="M145 146 A25 6 0 0 0 195 146 L190 246 H150 Z" fill="#3B2F5C"/>
+                    <path d="M150.8 228 H189.2" fill="none" stroke-width="1.6"/>
+                    </g>
+                    <!-- the cabinet sits back by the wall: a putty-grey metal cabinet, so the two chairs keep the colour, the room's lighter back-of-room line.
+                         About 70 cm tall at the chairs' scale: a two-drawer cabinet. -->
+                    <g class="rp-far">
+                    <rect x="8" y="74" width="126" height="172" rx="8" fill="#B5A993"/>
+                    <rect x="17" y="83" width="108" height="26" rx="3" fill="#3C322A"/>
+                    <g transform="translate(0 -22)"><g class="rp-tabs">
+                      <path d="M24 131 V110 a4 4 0 0 1 4 -4 h14 a4 4 0 0 1 4 4 V131 Z" fill="#F6CC64"/>
+                      <path d="M48 131 V114 a4 4 0 0 1 4 -4 h14 a4 4 0 0 1 4 4 V131 Z" fill="#F6CC64"/>
+                      <path d="M72 131 V110 a4 4 0 0 1 4 -4 h14 a4 4 0 0 1 4 4 V131 Z" fill="#F6CC64"/>
+                      <path d="M96 131 V114 a4 4 0 0 1 4 -4 h14 a4 4 0 0 1 4 4 V131 Z" fill="#F6CC64"/>
+                    </g></g>
+                    <g class="rp-drawer">
+                      <rect x="15" y="100" width="112" height="62" rx="5" fill="#D2C8B4"/>
+                      <rect x="54" y="112" width="34" height="13" rx="2" fill="#FFFFFF" stroke-width="1.6"/>
+                      <path d="M60 118.500 H82" fill="none" stroke-width="1.4"/>
+                      <rect x="56" y="137" width="30" height="9" rx="4.500" fill="#7E6A55"/>
+                    </g>
+                    <rect x="15" y="170" width="112" height="62" rx="5" fill="#D2C8B4"/>
+                    <rect x="54" y="182" width="34" height="13" rx="2" fill="#FFFFFF" stroke-width="1.6"/>
+                    <path d="M60 188.500 H82" fill="none" stroke-width="1.4"/>
+                    <rect x="56" y="207" width="30" height="9" rx="4.500" fill="#7E6A55"/>
+                    <!-- the base: a recessed kick plate -->
+                    <rect x="18" y="238" width="106" height="6" rx="1.5" fill="#3C322A" stroke-width="1.6"/>
+                    <g transform="translate(0 -22)">
+                    <!-- tissues: it is that kind of office -->
+                    <path d="M40 72 C36 58 42 50 48 56 C50 46 60 48 58 58 C64 56 64 66 58 72 Z" fill="#FFFFFF" stroke-width="2"/>
+                    <rect x="22" y="70" width="54" height="26" rx="4" fill="#EFBEC7"/>
+                    <path d="M38 76 C44 72 54 72 60 76" fill="none" stroke-width="1.8"/>
+                    <!-- tea -->
+                    <path d="M118 78 c9 -2 11 12 0 12" fill="none" stroke-width="2.4"/>
+                    <rect x="94" y="72" width="26" height="24" rx="4" fill="#848EE2"/>
+                    <g class="rp-steam" fill="none" stroke-width="1.8" opacity=".55">
+                      <path d="M101 64 c-4 -5 4 -8 0 -14"/>
+                      <path d="M112 64 c-4 -5 4 -8 0 -14"/>
+                    </g>
+                    </g>
+                    </g>
+                  </g>
+                </svg>
+              </a>
               <!-- The animation is decorative and non-interactive; the static SVG
                    stays as the reduced-motion fallback. -->
               <figure class="split-fig duck-fig">
                 <!-- Interactive: tap the dev to start a session, squeeze the duck. It reports
                      both to this page so the session notes at the bottom can mention them. -->
-                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261026i" width="800" height="596"
+                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261112zm" width="800" height="746"
                         title="A developer on a therapist's couch talking to a rubber duck in glasses. Interactive." loading="eager"></iframe>
               </figure>
             </div>
@@ -393,15 +465,19 @@
         <div class="wrap">
           <div class="section-head reveal">
             <div>
-              <h2>My work</h2>
+              <div class="sh-row"><svg class="sh-ico" viewBox="0 0 32 36" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect class="i-duck" x="3" y="5" width="26" height="29" rx="3.5"/><rect class="i-paper" x="7" y="10" width="18" height="20" rx="1.5"/><rect class="i-tan" x="10.5" y="2" width="11" height="7" rx="2"/><path class="i-write" pathLength="1" d="M10.5 16h11"/><path class="i-write" pathLength="1" d="M10.5 20.5h8"/><path class="i-write" pathLength="1" d="M10.5 25h10"/></svg><h2>Case files</h2></div>
             </div>
           </div>
 
           <div class="projects reveal">
 
-            <article class="pcard pcard-flagship hue-violet" data-observe="Design system" data-prose="the design system">
+            <!-- the four case files stand in one drawer: each folder files over the last as you scroll -->
+            <div class="case-drawer">
+            <article class="pcard pcard-flagship hue-violet" data-prop="jars" data-observe="Design system" data-prose="the design system">
+              <p class="case-tabs"><b>Case 01</b><span aria-hidden="true">Case 02</span><span aria-hidden="true">Case 03</span><span aria-hidden="true">Case 04</span></p>
               <!-- Layered cover: the Chip component set in Figma behind, the same Chip
                    running in Storybook in front. -->
+              <div class="pcard-media-wrap">
               <a class="pcard-media pcard-stack" href="work/design-system.html" tabindex="-1" aria-hidden="true">
                 <span class="win win-back">
                   <span class="win-bar win-bar-dark"><i></i><i></i><i></i><b>Figma · Chips</b></span>
@@ -412,15 +488,19 @@
                   <img src="images/covers/storybook-chip-700.webp" srcset="images/covers/storybook-chip-700.webp 700w, images/covers/storybook-chip.webp 1316w" sizes="(max-width: 760px) 62vw, 500px" width="1316" height="1286" alt="" loading="lazy" />
                 </span>
               </a>
+              <p class="pcard-note r" style="--nx:66%" aria-hidden="true"><svg viewBox="0 0 22 26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24 C5 16 8 9 15 3"/><path d="M8.5 3.5 L15 3 L15.5 9.5"/></svg><span>the same Chip, in Figma and in Storybook</span></p>
+              </div>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Design system</b> · Front end + AI tooling</p>
-                <h3><a href="work/design-system.html">AI built our component library in days. It didn't work.</a></h3>
+                <p class="pcard-kicker"><b>Design system</b> · Front end + AI tooling<span class="yr">2025–26</span></p>
+                <h3><a href="work/design-system.html">A design system four products run on</a></h3>
                 <p>Our component library looked perfect and only worked in Storybook. I cleaned up Figma with AI-built plugins and rebuilt it theme-first. It's now used by 4 products.</p>
               </div>
             </article>
 
-            <article class="pcard pcard-flagship hue-coral" data-observe="Ask bar" data-prose="the ask bar">
+            <article class="pcard pcard-flagship hue-coral" data-prop="map" data-observe="Ask bar" data-prose="the ask bar">
+              <p class="case-tabs"><span aria-hidden="true">Case 01</span><b>Case 02</b><span aria-hidden="true">Case 03</span><span aria-hidden="true">Case 04</span></p>
               <!-- Cover is a recreated mockup (company work): the question and data are invented. -->
+              <div class="pcard-media-wrap">
               <a class="pcard-media cover-frame" href="work/ask-bar.html" tabindex="-1" aria-hidden="true">
                 <svg class="cv cv-ab" preserveAspectRatio="xMidYMin slice" viewBox="0 64 1600 936" width="1600" height="936" role="img" aria-label="A recreated mockup: an ask bar turning a question into filter chips above a map of Halifax" font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
                 <defs>
@@ -490,15 +570,19 @@
                 </g>
                 </svg>
               </a>
+              <p class="pcard-note" style="--nx:30%" aria-hidden="true"><svg viewBox="0 0 22 26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24 C5 16 8 9 15 3"/><path d="M8.5 3.5 L15 3 L15.5 9.5"/></svg><span>the answer is these filters</span></p>
+              </div>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Fraud-investigation suite</b> · AI interaction design</p>
+                <p class="pcard-kicker"><b>Fraud-investigation suite</b> · AI interaction design<span class="yr">2026</span></p>
                 <h3><a href="work/ask-bar.html">An ask bar that answers with filters</a></h3>
                 <p>An ask bar that turns an analyst's question into the page and filters the product already has, so a wrong answer is just a filter you can fix.</p>
               </div>
             </article>
 
-            <article class="pcard pcard-flagship hue-pink" data-observe="Unified user page" data-prose="the unified user page">
+            <article class="pcard pcard-flagship hue-pink" data-prop="rolodex" data-observe="Unified user page" data-prose="the unified user page">
+              <p class="case-tabs"><span aria-hidden="true">Case 01</span><span aria-hidden="true">Case 02</span><b>Case 03</b><span aria-hidden="true">Case 04</span></p>
               <!-- Cover is a recreated mockup (company work): identifiers are bars, not data. -->
+              <div class="pcard-media-wrap">
               <a class="pcard-media cover-frame" href="work/unified-user-page.html" tabindex="-1" aria-hidden="true">
                 <svg class="cv cv-up" preserveAspectRatio="xMidYMin slice" viewBox="0 64 1600 936" width="1600" height="1000" role="img" aria-label="A recreated mockup of the user page: operator cards, a timeline, KPIs and a map" viewBox="0 0 1600 1000" font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
                 <defs>
@@ -625,15 +709,19 @@
                 </g>
                 </svg>
               </a>
+              <p class="pcard-note" style="--nx:17%" aria-hidden="true"><svg viewBox="0 0 22 26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24 C5 16 8 9 15 3"/><path d="M8.5 3.5 L15 3 L15.5 9.5"/></svg><span>one date range drives every card</span></p>
+              </div>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Fraud-investigation suite</b> · Research + product design</p>
+                <p class="pcard-kicker"><b>Fraud-investigation suite</b> · Research + product design<span class="yr">2025</span></p>
                 <h3><a href="work/unified-user-page.html">Four tabs to answer one question</a></h3>
                 <p>Analyst sessions and a journey map made the case for one page built around a timeline. I designed and built it, and it shipped as the first pillar of a multi-year strategy.</p>
               </div>
             </article>
 
-            <article class="pcard pcard-flagship hue-mustard mkset" data-observe="Licence applications" data-prose="the licence application forms">
+            <article class="pcard pcard-flagship hue-mustard mkset" data-prop="stamp" data-observe="Licence applications" data-prose="the licence application forms">
+              <p class="case-tabs"><span aria-hidden="true">Case 01</span><span aria-hidden="true">Case 02</span><span aria-hidden="true">Case 03</span><b>Case 04</b></p>
               <!-- Cover is a recreated mockup (company work): no real product, branding or data. -->
+              <div class="pcard-media-wrap">
               <a class="pcard-media pcard-mock pcard-mock-ba" href="work/onecomply.html" tabindex="-1" aria-hidden="true">
                 <span class="pcard-mock-col">
                   <span class="ba-tag">Before</span>
@@ -658,33 +746,45 @@
                   <span class="ba-tag after">After</span>
                   <span class="mk">
                     <span class="mk-top"><i></i><i></i><i></i><b>Licence application</b></span>
-                    <span class="six">
+                    <span class="six lic-app">
                       <span class="six-body">
                         <span class="rail steps-rail">
-                          <span class="now">Fill in your information <em class="count">9</em></span>
-                          <span>Attach documents <em class="count">1</em></span>
+                          <span class="done">Fill in your information <em class="ok">✓&#xFE0E;</em></span>
+                          <span class="now">Attach documents <em class="count">1</em></span>
                           <span>Get fingerprints <em class="count">2</em></span>
                           <span>Review and finalise</span>
                           <span>Sign</span>
                           <span>Submit</span>
                         </span>
+                        <span class="la-form">
+                          <span class="la-h">Attach documents</span>
+                          <span class="la-sub">Upload each one; we'll tell you if anything's missing.</span>
+                          <span class="la-doc ok"><i></i><span>Proof of identity</span><em>passport.pdf</em></span>
+                          <span class="la-doc ok"><i></i><span>Proof of address</span><em>utility-bill.pdf</em></span>
+                          <span class="la-doc todo"><i></i><span>Background disclosure</span><em class="la-up">Upload</em></span>
+                          <span class="la-next"><span class="la-btn ghost">Back</span><span class="la-btn">Save and continue</span></span>
+                        </span>
                         <span class="ring-wrap">
-                          <span class="ring" style="--p: 40"><b>12 of 30<br />sections</b></span>
+                          <span class="ring" style="--p: 66"><b>20 of 30<br />sections</b></span>
                           <small>Saved as you go</small>
+                          <span class="la-assign"><b>Assigned by your manager</b>Due Friday</span>
                         </span>
                       </span>
                     </span>
                   </span>
                 </span>
               </a>
+              <p class="pcard-note r" style="--nx:74%" aria-hidden="true"><svg viewBox="0 0 22 26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24 C5 16 8 9 15 3"/><path d="M8.5 3.5 L15 3 L15.5 9.5"/></svg><span>eleven steps became six</span></p>
+              </div>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Licensing platform</b> · Product design</p>
+                <p class="pcard-kicker"><b>Licensing platform</b> · Product design<span class="yr">2023–25</span></p>
                 <h3><a href="work/onecomply.html">Eleven steps down to six</a></h3>
                 <p>A licence application people actually finish, with visible progress and tools for the managers who assign it.</p>
               </div>
             </article>
+            </div>
 
-            <article class="pcard hue-teal" data-observe="Replay studies" data-prose="the replay studies">
+            <article class="pcard hue-teal" data-prop="tv" data-observe="Replay studies" data-prose="the replay studies">
               <!-- Cover is a recreated mockup (company work): no real session, user or data. -->
               <a class="pcard-media cover-frame" href="work/replays.html" tabindex="-1" aria-hidden="true">
                 <svg class="cv cv-rp" preserveAspectRatio="xMidYMin slice" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="A recreated session replay: a search that found nothing, the event log, and the scrubber" viewBox="0 0 1600 1000" font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
@@ -813,12 +913,12 @@
                 </svg>
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Fraud-investigation suite</b> · UX research</p>
+                <p class="pcard-kicker"><b>Fraud-investigation suite</b> · UX research<span class="yr">2026</span></p>
                 <h3><a href="work/replays.html">What three months of session replays said</a></h3>
                 <p>Two replay studies: six friction themes behind a console revamp, and twenty-one map failures ranked so engineering knew what to fix first.</p>
               </div>
             </article>
-            <article class="pcard hue-mustard" data-observe="LoafMode" data-prose="LoafMode">
+            <article class="pcard hue-mustard" data-prop="loaf" data-observe="LoafMode" data-prose="LoafMode">
               <div class="pcard-media-wrap">
                 <a class="pcard-media pcard-media-center pcard-media-2x1" href="work/loafmode.html" tabindex="-1" aria-hidden="true">
                   <img src="images/loafmode/card.webp" width="2000" height="1000" alt="" loading="lazy" />
@@ -829,7 +929,7 @@
                 </a>
               </div>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Personal project</b> · iOS app</p>
+                <p class="pcard-kicker"><b>Personal project</b> · iOS app<span class="yr">2026</span></p>
                 <h3><a href="work/loafmode.html">A screen-time app without streaks</a></h3>
                 <p>A calm iPhone app for scrolling less, built on behaviour research instead of points and guilt. Made with Claude Code.</p>
               </div>
@@ -845,26 +945,26 @@
         <div class="wrap">
           <div class="section-head reveal">
             <div>
-              <h2>Earlier work</h2>
+              <div class="sh-row"><svg class="sh-ico wide" viewBox="0 0 36 32" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><path class="i-tan" d="M3 8a3 3 0 0 1 3-3h8l3.5 4H30a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/><rect class="i-paper" x="8" y="8" width="20" height="12" rx="1.5" transform="rotate(-4 18 14)"/><path class="i-duck" d="M3 16a3 3 0 0 1 3-3h24a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3z"/></svg><h2>Earlier work</h2></div>
             </div>
           </div>
           <div class="projects reveal">
-            <article class="pcard hue-coral">
+            <article class="pcard hue-coral" data-prop="tower">
               <a class="pcard-media cover-frame" href="remnant.html" tabindex="-1" aria-hidden="true">
                 <img src="images/covers/remnant.svg" width="1600" height="1000" alt="" loading="lazy" />
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Remnant Labs</b> · Lead front end</p>
+                <p class="pcard-kicker"><b>Remnant Labs</b> · Lead front end<span class="yr">2022</span></p>
                 <h3><a href="remnant.html">A game studio's website, rebuilt</a></h3>
                 <p>Research, prototypes and the Vue front end for a game studio. Traffic up 125%.</p>
               </div>
             </article>
-            <article class="pcard hue-teal">
+            <article class="pcard hue-teal" data-prop="megaphone">
               <a class="pcard-media cover-frame" href="amplify.html" tabindex="-1" aria-hidden="true">
                 <img src="images/covers/amplify.svg" width="1600" height="1000" alt="" loading="lazy" />
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>ProgramEquity</b> · Technical lead</p>
+                <p class="pcard-kicker"><b>ProgramEquity</b> · Technical lead<span class="yr">2021–22</span></p>
                 <h3><a href="amplify.html">Helping supporters write to their representatives</a></h3>
                 <p>Led a volunteer team building Amplify, an open-source advocacy tool.</p>
               </div>
@@ -880,7 +980,7 @@
           <div class="section-head reveal">
             <div>
               <p class="eyebrow">Writing</p>
-              <h2>Notes from the pipeline</h2>
+              <div class="sh-row"><svg class="sh-ico" viewBox="0 0 32 36" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><g transform="rotate(38 16 18)"><rect class="i-tan" x="12" y="1.5" width="8" height="5" rx="1.5"/><rect class="i-duck" x="12" y="6.5" width="8" height="18"/><path class="i-paper" d="M12 24.5l4 8.5 4-8.5z"/><path class="i-ink" d="M14.6 30l1.4 3 1.4-3z"/></g></svg><h2>Notes from the pipeline</h2></div>
             </div>
             <a class="btn btn-ghost" href="writing/index.html">All posts</a>
           </div>
@@ -1016,16 +1116,17 @@
         document.querySelectorAll(".pcard .cv").forEach(function (c) { io.observe(c.closest(".pcard")); });
       })();
     </script>
-    <script src="js/main.js?v=20261026c"></script>
+    <script src="js/main.js?v=20261112e"></script>
 
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
     <script>
-      // Hero floor: the embedded scene's floor line sits 62 of its 800 viewBox units above its bottom.
+      // The room is drawn in the scene's own units: --u is one of its 800 viewBox units in pixels,
+      // so the host's skirting board and floorboards line up with the furniture at any width.
       (function () {
         var room = document.querySelector(".duck-room");
         var scene = room && room.querySelector(".duck-fig iframe");
         if (!scene) return;
-        var fit = function () { room.style.setProperty("--floor-h", (scene.clientWidth * 62 / 800) + "px"); };
+        var fit = function () { room.style.setProperty("--u", (scene.clientWidth / 800) + "px"); };
         fit();
         if ("ResizeObserver" in window) new ResizeObserver(fit).observe(scene);
         else addEventListener("resize", fit);

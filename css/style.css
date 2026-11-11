@@ -4911,5 +4911,1528 @@ html .case-intro h1 { font-size: clamp(1.75rem, 3vw, 2.4rem); max-width: 24ch; }
   object-fit: cover;
   object-position: left top;
 }
+
+/* =====================================================================
+   November 2026 rework. Fewer boxes, no tracked uppercase labels, no
+   hover lift, no glass, no accent stripes. Hairline rules and type carry
+   the hierarchy; a frame is kept only around a mockup, where it stands
+   for the product's window. These rules override earlier ones.
+   ===================================================================== */
+:root {
+  --radius-s: 4px;
+  --radius: 8px;
+  --radius-l: 10px;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* labels: sentence case in the text face, no tracking */
+.eyebrow, .pcard-kicker, .lesson-k, .psych-k, .psych .kicker, .toc .k, .meta-line dt,
+.chapter .num, .block-k, .sn-k, .tn-k, .plugin-n, .vs-k, .two-up .label, .askdemo-json summary {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.eyebrow::before { display: none; }
+.eyebrow, .pcard-kicker, .toc .k, .meta-line dt, .chapter .num, .lesson-k, .block-k, .sn-k, .tn-k, .plugin-n, .vs-k, .two-up .label { color: var(--ink-3); }
+.meta-line dt { line-height: inherit; min-width: 3rem; }
+
+/* the bar at the top: solid, no blur */
+.nav { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--bg); }
+
+/* buttons: rectangles that stay put */
+.btn { border-radius: var(--radius-s); }
+.btn:hover { transform: none; }
+.btn-primary:hover { background: var(--ink-2); color: var(--bg); box-shadow: none; }
+.post-row:hover { padding-left: 0; }
+
+/* the homepage: projects as a list separated by rules, covers beside the words */
+.projects { gap: 0 clamp(1.5rem, 3vw, 2.5rem); }
+.pcard {
+  background: none;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  overflow: visible;
+  padding: clamp(1.75rem, 3vw, 2.5rem) 0 clamp(2rem, 3.5vw, 3rem);
+}
+.pcard:hover, .pcard:focus-within { transform: none; box-shadow: none; border-color: var(--line); }
+.pcard:hover .pcard-media img, .pcard:hover .pcard-stack .win-front { transform: none; }
+.pcard-body { padding: 1.25rem 0 0; }
+.pcard h3 a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.pcard-media, .pcard-media-wrap { border-radius: var(--radius); overflow: hidden; }
+.pcard-media.cover-frame { border: 1px solid var(--line); }
+.cover-frame { background: var(--bg-sunk); }
+:root[data-theme="dark"] .cover-frame { background: #1D1E23; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cover-frame { background: #1D1E23; } }
+@media (min-width: 920px) {
+  .projects .pcard.pcard-flagship {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 3vw, 2.5rem);
+    align-items: start;
+  }
+  .pcard.pcard-flagship .pcard-media, .pcard.pcard-flagship .pcard-media-wrap { aspect-ratio: 16 / 10; }
+  .pcard.pcard-flagship .pcard-body { display: block; padding-top: 0.2rem; }
+  .pcard.pcard-flagship .pcard-body > p:not(.pcard-kicker) { margin-top: 0.75rem; }
+  .pcard.pcard-flagship:nth-of-type(even) .pcard-media,
+  .pcard.pcard-flagship:nth-of-type(even) .pcard-media-wrap { order: 2; }
+  .pcard.pcard-flagship h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); }
+}
+
+/* facts and numbers on rules, not in boxes */
+.highlights { gap: 0 2rem; margin-top: 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.highlights li { padding: 0.9rem 0; border: 0; border-radius: 0; background: none; }
+.highlights li + li { border-left: 1px solid var(--line); padding-left: 1.5rem; }
+.stats { gap: 0 2rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.stat { padding: 1rem 0; border: 0; border-radius: 0; background: none; }
+.stat + .stat { border-left: 1px solid var(--line); padding-left: 1.5rem; }
+.stat b { color: var(--ink); }
+@media (max-width: 640px) {
+  .highlights li + li, .stat + .stat { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+}
+
+/* decisions and psych notes: pull-quotes between rules, no fills, no stripes */
+.lesson, .psych {
+  margin: 2.5rem 0;
+  padding: 1.4rem 0 1.5rem;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: none;
+}
+.lesson-k { margin-bottom: 0.5rem; }
+.psych { display: block; }
+.psych .ico { display: none; }
+.psych .kicker, .psych-k {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: "Shantell Sans", var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--mustard-text);
+}
+.psych h3 { margin-top: 0; }
+.psych .src { font-family: var(--font-sans); font-size: 0.8rem; }
+
+/* a decision or a psych note that ends a chapter shares the next chapter's rule */
+.chapter > .lesson:last-child, .chapter > .psych:last-child, .lesson + .chapter, .psych + .chapter { border-bottom: 0; }
+.lesson + .chapter, .psych + .chapter { border-top: 0; margin-top: 0; }
+.pcard-kicker .yr { color: var(--ink-3); font-weight: 400; }
+.pcard-kicker .yr::before { content: " · "; }
+.toolbelt h3 { font-family: var(--font-sans); font-size: 0.82rem; letter-spacing: 0; text-transform: none; font-weight: 500; }
+.timeline time { font-family: var(--font-sans); font-size: 0.82rem; }
+/* About: no "Intro" label, and the heading sits left like every other page */
+.case-hero .lead::before { display: none; }
+.case-hero:has(> .lead) { text-align: left; grid-template-columns: minmax(0, 1fr); justify-items: start; }
+.case-hero:has(> .lead) h1 { margin-left: 0; margin-right: 0; max-width: 22ch; }
+.case-hero:has(> .lead) .lead { margin-left: 0; margin-right: 0; max-width: 62ch; }
+.case-hero:has(> .lead) .eyebrow { justify-content: flex-start; }
+/* segmented tabs on the design-system page: small radius, like the buttons */
+.type-tablist, .type-tablist button { border-radius: var(--radius-s); }
+html body .case-hero:has(> .lead) { display: block; text-align: left; }
+html body .case-hero:has(> .lead) .eyebrow,
+html body .case-hero:has(> .lead) h1,
+html body .case-hero:has(> .lead) .lead { text-align: left; margin-left: 0; margin-right: 0; justify-self: start; }
+
+/* =====================================================================
+   Direction C, "Field notes, colour-blocked" (November 2026). The comic
+   carries the site: its lettering face on headings, titles, numbers and
+   decisions; 2px ink rules like panel borders; its palette on every
+   accent; each project's cover on one of its colours. Body text stays in
+   the text face. Dark mode is the scene's night version.
+   ===================================================================== */
+:root {
+  --bg: #FBF8F1;
+  --bg-elev: #FFFDF8;
+  --bg-sunk: #F1EBDE;
+  --ink: #1E1A17;
+  --ink-2: #4A433B;
+  --ink-3: #7A7064;
+  --line: #E3DACA;
+  --line-strong: #1E1A17;
+  --coral: #E8553D; --coral-deep: #D9472F; --coral-soft: #FBE1DA; --coral-text: #C2402B; --coral-on: #1E1A17;
+  --teal: #3FA899; --teal-soft: #DDEFEA; --teal-text: #1F7B6E; --teal-on: #1E1A17;
+  --mustard: #E9B23A; --mustard-soft: #FBEFC9; --mustard-text: #8A6410; --mustard-on: #1E1A17;
+  --violet: #5A86C6; --violet-soft: #DCE6F6; --violet-text: #3C66A6; --violet-on: #FFFDF8;
+  --pink: #8E78D8; --pink-soft: #E6E3FB; --pink-text: #6A54B8; --pink-on: #FFFDF8;
+  --accent: #1E1A17; --accent-ink: #FFFDF8; --accent-soft: var(--coral-soft);
+  --link: #C2402B;
+  --ok: #1F7B6E; --warn: #8A6410;
+  --wire: #D8CFBD; --wire-2: #B9AE98; --wire-bg: #F1EBDE; --wire-frame: #FFFDF8;
+  --band: var(--bg); --band-accent: var(--coral-text);
+  --font-display: "Shantell Sans", "Instrument Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --radius-s: 3px; --radius: 6px; --radius-l: 8px;
+}
+:root[data-theme="dark"] {
+  --bg: #221E2B; --bg-elev: #2A2535; --bg-sunk: #1B1824;
+  --ink: #F6EEDD; --ink-2: #D9CFBE; --ink-3: #A99CB8;
+  --line: #3A3447; --line-strong: #F6EEDD;
+  --coral: #F27A5E; --coral-deep: #F27A5E; --coral-soft: #3A2520; --coral-text: #F7A99B; --coral-on: #221E2B;
+  --teal: #7CCBBE; --teal-soft: #1C3330; --teal-text: #9CCFC4; --teal-on: #221E2B;
+  --mustard: #FFC93C; --mustard-soft: #3A3118; --mustard-text: #F3CF6B; --mustard-on: #221E2B;
+  --violet: #8EB0E6; --violet-soft: #1E2A3F; --violet-text: #A9C4F0; --violet-on: #221E2B;
+  --pink: #B9A6F2; --pink-soft: #2A2340; --pink-text: #C9BCF7; --pink-on: #221E2B;
+  --accent: #F6EEDD; --accent-ink: #221E2B; --accent-soft: var(--coral-soft);
+  --link: #F7A99B; --ok: #9CCFC4; --warn: #F3CF6B;
+  --wire: #3A3447; --wire-2: #4C4559; --wire-bg: #1B1824; --wire-frame: #2A2535;
+  --band: var(--bg); --band-accent: var(--coral);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #221E2B; --bg-elev: #2A2535; --bg-sunk: #1B1824;
+    --ink: #F6EEDD; --ink-2: #D9CFBE; --ink-3: #A99CB8;
+    --line: #3A3447; --line-strong: #F6EEDD;
+    --coral: #F27A5E; --coral-deep: #F27A5E; --coral-soft: #3A2520; --coral-text: #F7A99B; --coral-on: #221E2B;
+    --teal: #7CCBBE; --teal-soft: #1C3330; --teal-text: #9CCFC4; --teal-on: #221E2B;
+    --mustard: #FFC93C; --mustard-soft: #3A3118; --mustard-text: #F3CF6B; --mustard-on: #221E2B;
+    --violet: #8EB0E6; --violet-soft: #1E2A3F; --violet-text: #A9C4F0; --violet-on: #221E2B;
+    --pink: #B9A6F2; --pink-soft: #2A2340; --pink-text: #C9BCF7; --pink-on: #221E2B;
+    --accent: #F6EEDD; --accent-ink: #221E2B; --accent-soft: var(--coral-soft);
+    --link: #F7A99B; --ok: #9CCFC4; --warn: #F3CF6B;
+    --wire: #3A3447; --wire-2: #4C4559; --wire-bg: #1B1824; --wire-frame: #2A2535;
+    --band: var(--bg); --band-accent: var(--coral);
+  }
+}
+
+
+/* hand-lettered display: headings, titles, numbers, decisions; sub-headings stay in the text face */
+h1, h2, .wordmark, .pcard h3, .lesson .lesson-big, .highlights b, .stat b { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.005em; }
+h3, .prose h3 { font-family: var(--font-sans); }
+h1 { line-height: 1.02; }
+.prose h2 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); }
+.wordmark { font-weight: 800; }
+.claim { color: var(--ink); }
+.prose h2, .section-head h2 {
+  padding-bottom: 0.5rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='10' viewBox='0 0 120 10'%3E%3Cpath d='M3 5.5c18-3 36-3 54-1.5s40 1.5 60-2' fill='none' stroke='%23FFC93C' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom / 120px 10px;
+}
+
+/* ink rules where a project or a chapter begins */
+html .pcard { border-top: 2px solid var(--ink); }
+.section + .section, .chapter, .rulecards, .footer { border-top: 2px solid var(--ink); }
+.highlights, .stats { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); }
+.lesson, .psych { border-top: 2px solid var(--ink); border-bottom: 0; padding-bottom: 0.5rem; }
+.lesson + .chapter, .psych + .chapter { border-top: 2px solid var(--ink); margin-top: 2.5rem; }
+.chapter > .lesson:last-child, .chapter > .psych:last-child { border-bottom: 0; }
+.nav.scrolled { border-bottom: 2px solid var(--ink); }
+.compare th { border-bottom: 2px solid var(--ink); }
+
+/* covers framed in ink on sunk paper */
+html .pcard .pcard-media, html .pcard .pcard-media-wrap, html .pcard .pcard-media.cover-frame,
+html .pcard .pcard-media.pcard-stack, .cover-frame,
+:root[data-theme="dark"] .pcard .pcard-media, :root[data-theme="dark"] .pcard > :first-child { background: var(--bg-sunk); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pcard .pcard-media, :root:not([data-theme="light"]) .pcard > :first-child, :root:not([data-theme="light"]) .cover-frame { background: var(--bg-sunk); }
+}
+html .pcard .pcard-media, html .pcard .pcard-media-wrap { border: 2px solid var(--ink); border-radius: var(--radius); overflow: hidden; }
+.pcard-kicker b, .eyebrow b { color: var(--ink); }
+
+/* buttons, toggle, chips */
+.btn { border-radius: var(--radius-s); font-weight: 600; }
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover { background: var(--coral); color: var(--coral-on); }
+.btn-ghost { border: 2px solid var(--ink); color: var(--ink); }
+.theme-toggle { border: 2px solid var(--ink); }
+.pcard-kicker, .eyebrow, .chapter .num, .lesson-k, .toc .k, .meta-line dt { color: var(--ink-3); }
+.psych .kicker, .psych-k { color: var(--coral-text); }
+.toc a.on { color: var(--coral-text); border-left-color: var(--coral); }
+.askdemo, .loopfig, .launcher-demo, .drawer, .vs-ui, .rc-ui { border-color: var(--ink); }
+.askdemo, .loopfig { border-width: 2px; }
+
+/* the case-page titles and the wordmark read a separate --font-mark variable; point it at the lettering face */
+:root { --font-mark: var(--font-display); }
+html .case-intro h1, html .case-hero h1, html .post-hero h1, html .brand .wordmark { font-family: var(--font-display); font-variation-settings: normal; font-weight: 700; }
+html .brand .wordmark { font-weight: 800; }
+/* the facts strip on the newer case template (.case-intro) takes the project's colour too */
+html .case-intro .highlights { background: var(--bg-elev); padding: 0 1rem; gap: 0 1.5rem; border: 2px solid var(--ink); border-radius: var(--radius); }
+html .case-intro .highlights li { padding: 0.9rem 0; border: 0; border-radius: 0; background: none; }
+html .case-intro .highlights li + li { border-left: 1px solid var(--line); padding-left: 1.5rem; }
+@media (max-width: 640px) {
+  html .case-intro .highlights { gap: 0; padding: 0 1rem; }
+  html .case-intro .highlights li { padding: 0.75rem 0; }
+  html .case-intro .highlights li + li { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); }
+}
+html .case-intro .highlights b { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.005em; }
+
+/* ============================================================
+   The practice (November 2026). One drawing language for everything the
+   site itself draws, taken from the comic: paper, ink outlines, flat fills,
+   the lettering face, and the duck's yellow as the only accent. The product
+   mockups stay realistic inside ink frames, like photos in a case file. The
+   duck appears where the duck speaks (notes, the clipboard, the sign-off);
+   the bug appears where a problem does (the case files, the lost page).
+   ============================================================ */
+:root {
+  --bg: #F6EEDD; --bg-elev: #FFF9EC; --bg-sunk: #EADBC0; --card: #FFFDF5;
+  --ink: #1E1A17; --ink-2: #4A433B; --ink-3: #6B6052;
+  --line: #D8C9AC; --line-strong: var(--ink);
+  --duck: #FFC93C; --duck-dk: #F0A91B; --duck-soft: #FFF1C4; --clip: #B9B3C9;
+  --link: var(--ink); --coral: var(--duck); --coral-text: var(--ink-2); --coral-on: #1E1A17;
+  --mustard-soft: var(--card); --shadow-2: none;
+}
+:root[data-theme="dark"] {
+  --bg: #221E2B; --bg-elev: #2A2535; --bg-sunk: #1B1824; --card: #2E2839;
+  --ink: #F6EEDD; --ink-2: #D9CFBE; --ink-3: #A99CB8; --line: #3D374B;
+  --duck-soft: #4A3F1E; --clip: #6E6782;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #221E2B; --bg-elev: #2A2535; --bg-sunk: #1B1824; --card: #2E2839;
+    --ink: #F6EEDD; --ink-2: #D9CFBE; --ink-3: #A99CB8; --line: #3D374B;
+    --duck-soft: #4A3F1E; --clip: #6E6782;
+  }
+}
+/* the per-project accent the templates carried is retired: one accent, the duck's */
+[class*="hue-"] { --c: var(--duck); --c-text: var(--ink-3); --c-soft: var(--duck-soft); }
+.case-intro::before { display: none; }
+
+/* links: ink, underlined in yellow; the marker goes over them on hover */
+a { color: var(--ink); text-decoration-color: var(--duck); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.prose a, .meta-line a, .timeline a, .sn a, .lead a, .intro-sum a, .footer a { text-decoration: underline; text-decoration-color: var(--duck); text-decoration-thickness: 2px; }
+.prose a:hover, .meta-line a:hover, .timeline a:hover, .sn a:hover, .lead a:hover, .intro-sum a:hover, .footer a:hover { background: var(--duck); color: #1E1A17; text-decoration-color: #1E1A17; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* the bar: paper, an ink rule once you scroll, the duck beside the name */
+.nav { background: var(--bg); border-bottom: 2px solid transparent; }
+.nav.scrolled { border-bottom-color: var(--ink); }
+.brand { display: inline-flex; align-items: center; gap: 0.5rem; }
+.brand::before { content: ""; flex: none; width: 28px; height: 27px; background: url("../assets/duck-mark.svg?v=4") center / contain no-repeat; }
+.brand .wordmark .dot { color: var(--duck-dk); }
+.nav-links a { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: var(--ink-2); }
+.nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
+.nav-links a::after { background: var(--duck); height: 3px; border-radius: 2px; }
+.theme-toggle { border: 2px solid var(--ink); background: var(--bg-elev); color: var(--ink); }
+.theme-toggle:hover { background: var(--duck); color: #1E1A17; }
+
+/* buttons: ink outline, flat fill, the lettering face */
+.btn { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; border: 2px solid var(--ink); border-radius: var(--radius-s); }
+.btn-primary, .btn-primary:hover { color: #1E1A17; box-shadow: none; }
+.btn-primary { background: var(--duck); }
+.btn-primary:hover { background: var(--duck-dk); }
+.btn-ghost { background: var(--bg-elev); color: var(--ink); }
+.btn-ghost:hover { background: var(--bg-sunk); color: var(--ink); }
+.btn:focus-visible, .theme-toggle:focus-visible { outline: 3px solid var(--duck); outline-offset: 2px; }
+
+/* comic captions: the small labels that open a chapter or a note */
+.chapter .num, .lesson-k, .psych-k, .psych .kicker, .sn-k, .vs-k, .loopfig > figcaption {
+  display: inline; padding: 0.05em 0.35em; border: 0; border-radius: 0;
+  background: linear-gradient(to top, var(--duck) 0 78%, transparent 78%); font-family: var(--font-display); font-weight: 600; font-size: 0.8rem; line-height: 1.5;
+  letter-spacing: 0; text-transform: none; color: #1E1A17; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.chapter .num { margin-bottom: 0.9rem; }
+.eyebrow, .pcard-kicker { font-family: var(--font-display); font-weight: 500; font-size: 0.82rem; letter-spacing: 0; text-transform: none; color: var(--ink-3); }
+.eyebrow b, .pcard-kicker b { font-weight: 600; color: var(--ink); }
+
+/* the decision: a caption panel with its label sitting on the border */
+html .lesson { position: relative; margin: 2.75rem 0; padding: 1.5rem 1.4rem 1.35rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--bg-elev); }
+html .lesson-k { position: absolute; top: 0; left: 1rem; transform: translateY(-55%); margin: 0; box-shadow: 0 0 0 5px var(--bg-elev); background-color: var(--bg-elev); }
+html .lesson .lesson-big { margin-bottom: 0.6rem; font-weight: 700; }
+html .lesson .lesson-big:last-child { margin-bottom: 0; }
+html .lesson p:last-child { margin: 0; }
+
+/* the psych note: the duck's own note, with the duck beside it */
+html .psych { position: relative; display: block; margin: 2.75rem 0; padding: 1.35rem 1.4rem 1.25rem 5.4rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--card); }
+html .psych::before { content: ""; position: absolute; left: 1.05rem; top: 1.2rem; width: 56px; height: 54px; background: url("../assets/duck-mark.svg?v=4") center / contain no-repeat; }
+html .psych-k, html .psych .kicker { margin: 0 0 0.6rem; color: var(--ink); }
+html .psych p { color: var(--ink-2); }
+html .psych .src { color: var(--ink-3); }
+@media (max-width: 560px) {
+  html .psych { padding: 4.6rem 1.2rem 1.2rem; }
+  html .psych::before { top: 1rem; left: 1rem; }
+}
+
+/* the facts strip and the stats: ink panels on paper, numbers in the lettering face */
+html .case-intro .highlights b { color: var(--ink); }
+.stats { border: 2px solid var(--ink); border-radius: var(--radius); padding: 0 1rem; background: var(--bg-elev); }
+.stat + .stat { border-left-color: var(--line); }
+
+/* on this page: the duck's clipboard */
+html .toc { padding: 1.6rem 1rem 1rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--bg-elev); }
+html .toc::before { content: ""; position: absolute; top: -10px; left: 50%; width: 52px; height: 18px; transform: translateX(-50%); border: 2px solid var(--ink); border-radius: 5px; background: var(--clip); }
+html .toc .k { margin-bottom: 0.5rem; font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; letter-spacing: 0; text-transform: none; color: var(--ink); }
+html .toc ol { border-left: 0; }
+html .toc a { margin: 0 -0.35rem; padding: 0.3rem 0.35rem; border: 0; border-radius: 3px; color: var(--ink-2); }
+html .toc a:hover { color: var(--ink); background: var(--bg-sunk); }
+html .toc a.on { color: #1E1A17; background: var(--duck); }
+
+/* tables: a lettered header on an ink rule */
+.compare th { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--ink); border-bottom: 2px solid var(--ink); }
+.compare td { border-bottom: 1px solid var(--line); }
+
+/* tabs: file-folder tabs on the panel they open */
+html .type-tablist { display: inline-flex; align-items: flex-end; gap: 0; width: auto; max-width: none; padding: 0; margin: 0 0 -2px; border-radius: 0; background: none; }
+html .type-tablist::before { display: none; }
+html .type-tablist button {
+  position: relative; z-index: 0; height: auto; margin-right: -2px; padding: 0.45rem 0.9rem 0.5rem;
+  border: 2px solid var(--ink); border-radius: 5px 5px 0 0; background: var(--bg-sunk); color: var(--ink-2);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem; box-shadow: none;
+}
+html .type-tablist button[aria-selected="true"] { z-index: 1; background: var(--bg-elev); color: var(--ink); border-bottom-color: var(--bg-elev); }
+html .type-tablist button:focus-visible { outline: 3px solid var(--duck); outline-offset: -3px; }
+html .type-panel, html .step-panel { padding: 1rem; border: 2px solid var(--ink); border-radius: 0 var(--radius) var(--radius) var(--radius); background: var(--bg-elev); }
+html .type-panel img, html .step-panel img { border: 1px solid var(--line); border-radius: var(--radius-s); }
+html .type-panel > .panel-note:first-child { margin-top: 0; }
+@media (max-width: 560px) { html .type-tablist button { padding: 0.4rem 0.55rem; font-size: 0.8rem; } }
+
+/* ink frames around the recreated products */
+.askdemo, .loopfig, .launcher-demo, .drawer, .vs-ui, .rc-ui, .plugin, .shot, .case-fig img { border: 2px solid var(--ink); }
+.ba figcaption, .after-pair figcaption { padding: 0.5rem 0 0; font-size: 0.85rem; color: var(--ink-3); }
+.plugin { background: var(--bg-elev); border-radius: var(--radius); }
+
+/* ---------- the case files ---------- */
+.section-head .sh-title { display: flex; align-items: flex-end; gap: 1rem; }
+.section-head .sh-bug { flex: none; width: 60px; height: auto; margin-bottom: 0.35rem; }
+.projects { counter-reset: casefile; }
+html .projects .pcard { border-top: 0; }
+html .projects .pcard.pcard-flagship {
+  position: relative; counter-increment: casefile; margin-top: 1.5rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem); border: 2px solid var(--ink); border-radius: var(--radius); background: var(--bg-elev);
+}
+html .projects .pcard.pcard-flagship + .pcard-flagship { margin-top: 2.75rem; }
+html .projects .pcard.pcard-flagship::before {
+  content: "Case " counter(casefile, decimal-leading-zero); position: absolute; top: 0; left: 1.1rem; transform: translateY(-58%);
+  padding: 0.1rem 0.6rem 0.15rem; border: 2px solid var(--ink); border-radius: 4px; background: var(--duck); color: #1E1A17;
+  font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; line-height: 1.45;
+}
+html .projects .pcard.pcard-flagship .pcard-body { padding-top: 0.1rem; }
+html .pcard .pcard-media { border: 2px solid var(--ink); border-radius: var(--radius-s); }
+html .pcard .pcard-media-wrap { position: relative; overflow: visible; border: 0; border-radius: 0; }
+html .pcard .pcard-media-wrap:has(> .pcard-note) { margin-bottom: 2.7rem; }
+html .pcard h3 a:hover { background: var(--duck); color: #1E1A17; text-decoration: none; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* the duck's annotation under each cover, its arrow pointing at the detail */
+.pcard-note {
+  position: absolute; top: 100%; left: var(--nx, 50%); margin: 0.45rem 0 0; transform: translateX(-17px);
+  display: flex; align-items: flex-start; gap: 0.2rem; max-width: 20rem;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.92rem; line-height: 1.25; color: var(--ink); text-wrap: balance;
+}
+.pcard-note svg { flex: none; width: 22px; height: 26px; margin-top: -6px; color: var(--ink); }
+.pcard-note.r { left: auto; right: calc(100% - var(--nx, 50%)); transform: translateX(17px); flex-direction: row-reverse; text-align: right; }
+.pcard-note.r svg { transform: scaleX(-1); }
+@media (max-width: 560px) { .pcard-note { font-size: 0.85rem; max-width: 14rem; } }
+
+/* earlier work and the notes from the pipeline keep the ruled list, with the lettering */
+.post-row h3 { font-family: var(--font-display); font-weight: 700; }
+
+/* session notes: the clipboard */
+html .sn { position: relative; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--card); box-shadow: none; }
+html .sn::before { content: ""; position: absolute; top: -10px; left: 50%; width: 64px; height: 18px; transform: translateX(-50%); border: 2px solid var(--ink); border-radius: 5px; background: var(--clip); }
+html .sn-k { color: var(--ink); }
+
+/* the sign-off */
+.footer { border-top: 2px solid var(--ink); }
+.footer .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; }
+.footer .wrap::before { content: ""; flex: none; width: 22px; height: 21px; background: url("../assets/duck-mark.svg?v=4") center / contain no-repeat; }
+
+/* the lost page: the bug, on its own */
+.lost .lost-bug { display: block; width: 96px; height: auto; margin: 0 auto 1.5rem; }
+html body .projects .pcard .pcard-media-wrap { overflow: visible; }
+/* the pages' own styles set these labels to block; captions stay inline boxes */
+html .chapter .num, html .psych-k, html .psych .kicker, html .sn-k, html .vs-k, html .loopfig > figcaption { display: inline; }
+html .chapter .num, html .sn-k, html .psych-k, html .psych .kicker { margin-bottom: 0; }
+.chapter .num + *, .sn-k + *, .psych-k + * { margin-top: 0.75rem; }
+html .compare th { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; letter-spacing: 0; text-transform: none; color: var(--ink); }
+html .toc a, html .nav-links a, html .pcard h3 a, html .btn, html .post-row a { text-decoration: none; }
+
+/* the step tabs (Before / Run / After) share the folder-tab style; the sliding pill is gone */
+html .type-tablist.steps { display: inline-flex; width: auto; max-width: none; gap: 0; padding: 0; margin-bottom: -2px; }
+html .type-tablist.steps::before { display: none; }
+html .type-tablist.steps button { height: auto; padding: 0.45rem 0.9rem 0.5rem; border: 2px solid var(--ink); border-radius: 5px 5px 0 0; background: var(--bg-sunk); color: var(--ink-2); font-size: 0.85rem; }
+html .type-tablist.steps button[aria-selected="true"] { background: var(--bg-elev); color: var(--ink); border-bottom-color: var(--bg-elev); }
+html .type-tablist.steps button:focus-visible { outline: 3px solid var(--duck); outline-offset: -3px; }
+
+/* the licence-application cover is a CSS mockup drawn at a fixed size; scale it to the frame it sits in */
+html .pcard .pcard-media-wrap { container-type: inline-size; }
+[data-observe="Licence applications"] .pcard-mock-ba { padding: 5% 12% 0; }
+[data-observe="Licence applications"] .pcard-mock .mk { zoom: 0.92; }
+@container (max-width: 600px) { [data-observe="Licence applications"] .pcard-mock .mk { zoom: 0.84; } }
+@container (max-width: 520px) { [data-observe="Licence applications"] .pcard-mock .mk { zoom: 0.74; } }
+@container (max-width: 440px) { [data-observe="Licence applications"] .pcard-mock .mk { zoom: 0.64; } }
+@container (max-width: 360px) { [data-observe="Licence applications"] .pcard-mock .mk { zoom: 0.56; } }
+
+/* every cover gets the same ink frame, whichever template drew it */
+html .projects .pcard .pcard-media, html .projects .pcard .pcard-media.cover-frame, html .projects .pcard .pcard-media.pcard-stack { border: 2px solid var(--ink); border-radius: var(--radius-s); background: var(--bg-sunk); }
+
+/* when the cover sits on the right, it takes the wider column, so every case file has the same size of cover */
+@media (min-width: 920px) {
+  html .projects .pcard.pcard-flagship:nth-of-type(even) { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+}
+
+/* the whole case file is the link again: the title's link stretches over the card, and the marker lands on the title */
+html .pcard:hover h3 a, html .pcard:focus-within h3 a { background: var(--duck); color: #1E1A17; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+html .pcard:has(h3 a:focus-visible) { outline: 3px solid var(--duck); outline-offset: 4px; }
+
+/* About: the timeline and toolbox are the duck's clipboard; the psychology paragraph is its note */
+.clipboard { position: relative; padding: 2rem 1.4rem 1.5rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--bg-elev); }
+.clipboard::before { content: ""; position: absolute; top: -10px; left: 50%; width: 64px; height: 18px; transform: translateX(-50%); border: 2px solid var(--ink); border-radius: 5px; background: var(--clip); }
+.clipboard > h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+html .timeline::before { background: var(--line); }
+html .timeline li::before, html .timeline li:nth-child(2n)::before, html .timeline li:nth-child(3n)::before { border-color: var(--ink); background: var(--duck); }
+.skills h4 { font-family: var(--font-display); font-weight: 600; }
+.about-grid .psych p { margin: 0; }
 /* long inline code (a full command or URL) may wrap */
 :not(pre) > code.wrap { white-space: normal; overflow-wrap: anywhere; }
+
+/* =====================================================================
+   The practice, refined (10 November 2026). Two inks from the scene:
+   the duck's yellow marks what the duck says (its notes, the primary
+   button, the stroke under a heading); the deep teal of the duck's armchair
+   marks what you can act on (links, focus, where you are). The lettering
+   face is for headings and the duck's handwriting; everything you read or
+   press is in the text face. One outline weight, softer at night, and no
+   box drawn inside another. Night is ink-blue, not aubergine.
+   ===================================================================== */
+:root {
+  --chair: #1B655D; --chair-soft: #DCEEE9;
+  --frame: var(--ink); --frame-w: 1.5px;
+  --cover-bg: var(--bg); --clip: #DCCDB0;
+  --on-duck: #1E1A17;
+}
+:root[data-theme="dark"] {
+  --bg: #14161D; --bg-elev: #1B1E27; --bg-sunk: #101218; --card: #1E222C;
+  --ink: #EDEAE2; --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --line-strong: #EDEAE2;
+  --chair: #7CCBBE; --chair-soft: #183330; --frame: #4A5063; --cover-bg: var(--bg); --clip: #4A5063;
+  --duck-soft: #3A3218; --link: var(--ink);
+  --accent: #EDEAE2; --accent-ink: #14161D;
+  --coral-on: #14161D; --teal-on: #14161D; --mustard-on: #14161D; --violet-on: #14161D; --pink-on: #14161D;
+  --wire: #2E3240; --wire-2: #454A5C; --wire-bg: #101218; --wire-frame: #1B1E27;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14161D; --bg-elev: #1B1E27; --bg-sunk: #101218; --card: #1E222C;
+    --ink: #EDEAE2; --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --line-strong: #EDEAE2;
+    --chair: #7CCBBE; --chair-soft: #183330; --frame: #4A5063; --cover-bg: var(--bg); --clip: #4A5063;
+    --duck-soft: #3A3218; --link: var(--ink);
+    --accent: #EDEAE2; --accent-ink: #14161D;
+    --coral-on: #14161D; --teal-on: #14161D; --mustard-on: #14161D; --violet-on: #14161D; --pink-on: #14161D;
+    --wire: #2E3240; --wire-2: #454A5C; --wire-bg: #101218; --wire-frame: #1B1E27;
+  }
+}
+html body { background: var(--bg); }
+
+/* the text face for everything you read or press */
+html .nav-links a { font-family: var(--font-sans); font-weight: 500; font-size: 0.95rem; }
+html .btn { font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem; }
+html .eyebrow, html .pcard-kicker, html .toc .k, html .compare th, html .type-tablist button,
+html .type-tablist.steps button, html .skills h4 { font-family: var(--font-sans); }
+html .eyebrow, html .pcard-kicker { font-size: 0.85rem; font-weight: 500; }
+html .compare th { font-weight: 600; font-size: 0.85rem; }
+html .toc .k { font-weight: 600; font-size: 0.85rem; }
+html .sn-plan-line { font-family: var(--font-display); font-weight: 700; }
+/* the year belongs on the case page, not on the card */
+/* the year each piece of work was done, after its kind */
+html .pcard-kicker .yr { display: inline; white-space: nowrap; }
+
+/* links and focus: the armchair's teal */
+html a { text-decoration-color: color-mix(in srgb, var(--chair) 55%, transparent); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+html .prose a, html .meta-line a, html .timeline a, html .sn a, html .lead a, html .intro-sum a, html .footer a { text-decoration-color: color-mix(in srgb, var(--chair) 55%, transparent); text-decoration-thickness: 1.5px; }
+html .prose a:hover, html .meta-line a:hover, html .timeline a:hover, html .sn a:hover, html .lead a:hover, html .intro-sum a:hover, html .footer a:hover { background: none; color: var(--chair); text-decoration-color: currentColor; }
+html .nav-links a::after { background: var(--chair); height: 2px; }
+html .btn:focus-visible, html .theme-toggle:focus-visible, html .type-tablist button:focus-visible { outline: 3px solid var(--chair); outline-offset: 2px; }
+html .pcard:has(h3 a:focus-visible) { outline: 3px solid var(--chair); outline-offset: 4px; }
+html .pcard:hover h3 a, html .pcard:focus-within h3 a, html .pcard h3 a:hover { background: var(--duck); color: var(--on-duck); text-decoration: none; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* one outline weight; at night the frames are slate, not cream */
+html .btn, html .btn-ghost, html .theme-toggle { border: var(--frame-w) solid var(--frame); }
+html .btn-primary { border-color: var(--frame); background: var(--duck); color: var(--on-duck); }
+html .btn-primary:hover { background: var(--duck-dk); color: var(--on-duck); }
+html .btn-ghost { background: transparent; }
+html .btn-ghost:hover { background: var(--bg-elev); }
+html .theme-toggle { background: transparent; }
+html .theme-toggle:hover { background: var(--bg-elev); color: var(--ink); }
+html .nav.scrolled { border-bottom: 1px solid var(--line); }
+html .section + .section, html .chapter, html .rulecards, html .footer { border-top: 1px solid var(--line); }
+html .lesson + .chapter, html .psych + .chapter { border-top: 1px solid var(--line); }
+html .compare th { border-bottom: var(--frame-w) solid var(--frame); }
+html .stats, html .case-intro .highlights, html .toc, html .sn, html .clipboard, html .plugin,
+html .askdemo, html .loopfig, html .drawer, html .vs-ui, html .rc-ui, html .shot, html .case-fig img,
+html .type-panel, html .step-panel { border: var(--frame-w) solid var(--frame); }
+html .toc::before, html .sn::before, html .clipboard::before { border: var(--frame-w) solid var(--frame); background: var(--clip); }
+
+/* the case files: a paper folder with the duck's yellow tab; the cover sits in ink on the page's own paper, recessed into the card */
+html .projects .pcard.pcard-flagship { border: var(--frame-w) solid var(--frame); background: var(--bg-elev); }
+html .projects .pcard.pcard-flagship::before { border: var(--frame-w) solid var(--frame); background: var(--duck); color: var(--on-duck); }
+html:root body .projects .pcard .pcard-media, html:root body .projects .pcard .pcard-media.cover-frame, html:root body .projects .pcard .pcard-media.pcard-stack,
+html:root body .pcard .pcard-media { border: var(--frame-w) solid var(--frame); border-radius: var(--radius-s); background: var(--cover-bg); }
+html body .pcard-note { font-weight: 500; }
+
+/* labels: plain text in the text face; the duck's yellow marker is kept for the duck's own notes */
+html .chapter .num, html .lesson-k, html .sn-k, html .vs-k, html .loopfig > figcaption {
+  display: block; padding: 0; background: none; box-shadow: none;
+  font-family: var(--font-sans); font-weight: 600; font-size: 0.85rem; line-height: 1.4; color: var(--ink-3);
+}
+html .chapter .num { color: var(--chair); margin-bottom: 0.35rem; }
+html .chapter .num + * { margin-top: 0; }
+html .psych-k, html .psych .kicker, html .sn-head .sn-k {
+  display: inline; padding: 0.05em 0.35em; color: var(--on-duck);
+  background: linear-gradient(to top, var(--duck) 0 80%, transparent 80%);
+  font-family: var(--font-display); font-weight: 600; font-size: 0.85rem;
+}
+html .sn-data .sn-k, html .sn-pad .sn-k, html .sn-plan .sn-k { margin: 0 0 0.6rem; }
+
+/* the decision: a tab on the panel's edge, on a full outline */
+html body .lesson { border: var(--frame-w) solid var(--frame); border-radius: var(--radius); background: var(--bg-elev); padding-top: 1.6rem; }
+html body .lesson-k {
+  position: absolute; top: 0; left: 1rem; transform: translateY(-50%); display: inline-block;
+  padding: 0.1rem 0.55rem; border: var(--frame-w) solid var(--frame); border-radius: 4px;
+  background: var(--bg-sunk); color: var(--ink); box-shadow: none; font-size: 0.8rem;
+}
+html body .psych { border: var(--frame-w) solid var(--frame); background: var(--card); }
+
+/* where you are on the page */
+html .toc a.on { background: var(--chair-soft); color: var(--ink); font-weight: 600; }
+html .toc a:hover { background: var(--bg-sunk); }
+
+
+/* the stroke under a heading spans the heading, and scales with it */
+html .prose h2, html .section-head h2 {
+  width: fit-content; max-width: 100%; padding-bottom: 0.4rem;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='10' viewBox='0 0 200 10' preserveAspectRatio='none'%3E%3Cpath d='M2 6c30-3 62-3.5 96-2s68 1.5 100-1.5' fill='none' stroke='%23FFC93C' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat left bottom / var(--stroke-w, 100%) 0.28em;
+}
+
+/* the timeline on About: ink rings, the current role in yellow */
+html .timeline li::before, html .timeline li:nth-child(2n)::before, html .timeline li:nth-child(3n)::before { border: var(--frame-w) solid var(--frame); background: var(--bg-elev); }
+html .timeline li:first-child::before { background: var(--duck); }
+/* a decision that ends a chapter still closes its own panel */
+html body .chapter > .lesson:last-child, html body .lesson + .chapter > .lesson { border-bottom: var(--frame-w) solid var(--frame); }
+html body .chapter > .psych:last-child { border-bottom: var(--frame-w) solid var(--frame); }
+/* the licence-application cover is drawn in CSS; it takes the same backdrop as the others */
+html:root body .projects .pcard .pcard-mock, html:root body .projects .pcard .pcard-media-tint, html:root body .projects .pcard .pcard-media-wrap { background: var(--cover-bg); }
+
+/* ---------- phone pass (10 November) ---------- */
+/* numbered steps: the yellow numerals were unreadable on paper */
+html .steps li::before { color: var(--ink-3); font-weight: 600; }
+
+/* every homepage card is a whole panel, not only the four case files */
+html body .projects .pcard:not(.pcard-flagship) {
+  margin-top: 2.75rem; padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border: var(--frame-w) solid var(--frame); border-radius: var(--radius); background: var(--bg-elev);
+}
+/* LoafMode: one frame round the screenshot and the App Store badge together */
+html:root body .projects .pcard .pcard-media-wrap:has(> .app-badge) { border: var(--frame-w) solid var(--frame); border-radius: var(--radius-s); overflow: hidden; }
+html:root body .projects .pcard .pcard-media-wrap:has(> .app-badge) > .pcard-media { border: 0; border-radius: 0; }
+
+
+@media (max-width: 640px) {
+  /* the facts strip: room above the first fact and below each line */
+  html body .case-intro .highlights { padding: 0 1rem; }
+  html body .case-intro .highlights li, html body .case-intro .highlights li + li { padding: 0.9rem 0; }
+  html body .case-intro .highlights li:has(.hl-link) { padding: 0.9rem 0; }
+  html body .case-intro .highlights .hl-link { padding: 0; }
+}
+@media (max-width: 560px) {
+  /* the decision: tighter panel, smaller lettering, so the line isn't crammed */
+  html body .lesson { padding: 1.5rem 1rem 1.1rem; margin: 2.25rem 0; }
+  html body .lesson .lesson-big { font-size: 1.3rem; line-height: 1.25; }
+  html body .lesson-k { left: 0.75rem; }
+}
+@media (max-width: 919px) {
+  /* covers stack above the words: the handwritten notes crowd them, so they go */
+  html body .pcard-note { display: none; }
+  html body .pcard .pcard-media-wrap:has(> .pcard-note) { margin-bottom: 0; }
+  html body .projects .pcard .pcard-body { padding-top: 1.35rem; }
+}
+@media (max-width: 560px) {
+  /* code samples wrap on phones instead of scrolling sideways */
+  html .prose pre, html .prose pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+}
+
+/* ---------- tabs ---------- */
+/* Folder tabs. The row stands on its panel's top edge, which is the line under every tab.
+   The open tab shares the panel's surface and paints over that line (::after), so tab and
+   panel read as one sheet. Closed tabs sit back in the darker paper. */
+html .type-tablist, html .type-tablist.steps {
+  position: relative; z-index: 1; display: flex; flex-wrap: nowrap; align-items: flex-end; gap: 0.3rem;
+  width: auto; max-width: none; margin: 0; padding: 0 0.9rem;
+  border: 0; border-radius: 0; background: none;
+}
+html .type-tablist button, html .type-tablist.steps button {
+  position: relative; height: auto; margin: 0; padding: 0.5rem 1rem; border: var(--frame-w) solid var(--frame); border-bottom: 0; border-radius: 8px 8px 0 0;
+  background: var(--bg-sunk); color: var(--ink-2); box-shadow: none; font-size: 0.875rem; font-weight: 600; line-height: 1.3; white-space: nowrap;
+}
+html .type-tablist button:hover:not([aria-selected="true"]) { background: color-mix(in srgb, var(--bg-sunk) 45%, var(--bg-elev)); color: var(--ink); }
+html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] {
+  background: var(--bg-elev); color: var(--ink); box-shadow: inset 0 3px 0 var(--chair);
+}
+html .type-tablist button[aria-selected="true"]::after {
+  content: ""; position: absolute; left: 0; right: 0; top: calc(100% - 1px); height: calc(var(--frame-w) + 2px); background: var(--bg-elev);
+}
+html .type-panel, html .step-panel, html .plugin .step-panel {
+  padding: 1rem; border: var(--frame-w) solid var(--frame); border-radius: var(--radius); background: var(--bg-elev);
+}
+/* a plugin is its heading and its tabbed sheet; the sheet carries the one frame */
+html .plugin { padding: 0; border: 0; border-radius: 0; background: none; }
+html .plugins { gap: 2.75rem; }
+/* Remnant's demo: the buttons beside the tabs wrap above them, so the tabs stay on the sheet */
+html .cards-demo .demo-bar { flex-wrap: wrap-reverse; align-items: flex-start; margin-bottom: 0; }
+html .cards-demo .demo-actions { margin-bottom: 0.6rem; }
+@media (max-width: 560px) {
+  /* phones: tabs share the row and a long label wraps inside its tab, so the row never scrolls */
+  html .type-tablist, html .type-tablist.steps { align-items: stretch; gap: 0.2rem; padding: 0 0.5rem; }
+  html .type-tablist button, html .type-tablist.steps button { flex: 0 1 auto; padding: 0.45rem 0.6rem; font-size: 0.8rem; line-height: 1.2; white-space: normal; }
+  html .type-panel, html .step-panel, html .plugin .step-panel { padding: 0.75rem; }
+}
+
+/* ---------- one job per colour ---------- */
+/* Teal is for finding your way: links, section numbers, the current section, the open tab,
+   the focus ring. Hover is a shade of the thing's own surface, never a second hue. */
+html .btn-ghost:hover, html .theme-toggle:hover, html .toc a:hover:not(.on) { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); }
+
+/* ---------- nav and the About headline ---------- */
+html .nav-links a { font-family: var(--font-display); font-weight: 600; }
+html body .case-hero:has(> .lead) h1 { max-width: 24ch; font-size: clamp(1.9rem, 3.4vw, 2.8rem); line-height: 1.08; }
+
+/* ---------- Toolbox: labels stuck on the sheet, a little crooked ---------- */
+html .skills { gap: 1.4rem; }
+html .skills div { padding: 0; border: 0; border-radius: 0; background: none; }
+html .skills h4 { margin: 0 0 0.6rem; font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; letter-spacing: 0; text-transform: none; color: var(--ink); }
+html .skill-tags { gap: 0.5rem 0.45rem; }
+html .skill-tags li {
+  padding: 0.28rem 0.6rem; border: var(--frame-w) solid var(--frame); border-radius: 6px;
+  background: var(--bg); color: var(--ink); font-weight: 500;
+}
+html .skill-tags li:nth-child(3n+1) { transform: rotate(-1.2deg); }
+html .skill-tags li:nth-child(3n) { transform: rotate(1deg); }
+/* labels, not links: nothing happens on hover */
+
+/* ---------- no side rules: each kind of aside gets its own shape ---------- */
+/* what went wrong: numbered blocks, two across */
+html .issues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; padding: 0; list-style: none; counter-reset: issue; }
+html .issues li { counter-increment: issue; margin: 0; padding: 0.9rem 1rem; border: 0; border-radius: var(--radius); background: var(--bg-sunk); font-size: 0.92rem; }
+html .issues li b { display: block; margin-bottom: 0.2rem; }
+html .issues li b::before { content: counter(issue) ". "; font-family: var(--font-display); }
+@media (max-width: 640px) { html .issues { grid-template-columns: 1fr; } }
+/* why a plugin exists: a yellow note */
+html .plugin-head .plugin-why { padding: 0.6rem 0.8rem; border: 0; border-radius: 6px; background: var(--duck-soft); color: var(--ink-2); }
+/* quotes: a drawn quote mark instead of a rule */
+html .prose blockquote, html .prose .quote { position: relative; padding: 0 0 0 2.6rem; border: 0; background: none; }
+html .prose blockquote::before, html .prose .quote::before {
+  content: "\201C"; position: absolute; left: 0; top: -0.35rem;
+  font-family: var(--font-display); font-size: 3.4rem; line-height: 1; color: var(--duck-dk);
+}
+html .callout { border: 0; border-radius: var(--radius); background: var(--bg-sunk); }
+/* the prompt excerpt sits on its own sheet again */
+html .fails { border: var(--frame-w) solid var(--frame); background: var(--bg-elev); }
+
+/* ---------- case-file details ---------- */
+/* a small drawn object beside the homepage section titles; fixed colours, like the duck mark */
+html .section-head .sh-row { display: flex; align-items: center; gap: 0.7rem; }
+html .sh-ico { flex: none; width: 34px; height: 38px; margin-bottom: 0.45rem; rotate: -6deg; overflow: visible; }
+html .sh-ico.wide { width: 38px; height: 34px; rotate: -4deg; }
+html .sh-ico * { stroke: #1E1A17; stroke-width: 2; }
+html .sh-ico .i-duck { fill: #FFC93C; }
+html .sh-ico .i-paper { fill: #FFF9EC; stroke-width: 1.5; }
+html .sh-ico .i-tan { fill: #DCCDB0; }
+html .sh-ico .i-ink { fill: #1E1A17; stroke: none; }
+html .sh-ico .i-write { fill: none; stroke-width: 1.6; stroke-dasharray: 1; stroke-dashoffset: 0; }
+/* the case number from the homepage card, carried onto the case page */
+html .eyebrow .case-no {
+  display: inline-block; margin-right: 0.6rem; padding: 0.1rem 0.6rem 0.15rem;
+  border: var(--frame-w) solid var(--frame); border-radius: 4px; background: var(--duck); color: var(--on-duck);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; line-height: 1.45; rotate: -2deg;
+}
+
+/* ---------- motion ---------- */
+/* Small and quick: 150–250ms, moves of 2–4px, and only as feedback for something the reader did.
+   Everything that travels sits inside no-preference; lifts are for real pointers only.
+   Individual translate / rotate / scale are used so existing transforms stay as they are. */
+:root { --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes sheet-in { from { opacity: 0; translate: 0 4px; } }
+  @keyframes note-nudge { 40% { translate: 0 -5px; } 70% { translate: 0 1px; } }
+
+  /* tabs: the sheet you open settles in */
+  html .type-panel:not([hidden]) { animation: sheet-in 200ms var(--ease); }
+
+  /* press feedback */
+  html .btn { transition: background-color 150ms var(--ease), scale 120ms var(--ease), transform 150ms var(--ease); }
+  html .btn:active { scale: 0.97; }
+  html .btn svg, html .post-row .arrow, html .theme-toggle svg { transition: translate 180ms var(--ease), rotate 300ms var(--ease-pop); }
+  html .toc a { transition: background-color 150ms var(--ease), color 150ms var(--ease); }
+  html .brand::before { transform-origin: 50% 90%; transition: rotate 260ms var(--ease-pop); }
+  html .pcard .pcard-media img, html .pcard .pcard-stack .win-front, html .pcard .pcard-mock .mk { transition: transform 320ms var(--ease); }
+
+  @media (hover: hover) {
+    /* a case file: lifts a little, its tab tips, the cover leans in, the margin arrow points */
+    html .projects .pcard { transition: translate 240ms var(--ease); }
+    html .projects .pcard:hover { translate: 0 -3px; }
+    html .pcard:hover .pcard-media:not(.pcard-stack) img { transform: scale(1.02); }
+    html .pcard:hover .pcard-stack .win-front { transform: translateY(-4px); }
+    html .pcard:hover .pcard-mock .mk { transform: scale(1.02); }
+    html .pcard:hover .pcard-note svg { animation: note-nudge 520ms var(--ease); }
+
+    html .btn[href^="#"]:hover svg { translate: 0 2px; }
+    html .post-row:hover .arrow { translate: 4px 0; }
+    html .theme-toggle:hover svg { rotate: 18deg; }
+    html .brand:hover::before { rotate: -12deg; }
+  }
+}
+
+/* the App Store badge on the LoafMode cover: a small label, not a second headline */
+html .app-badge-over { gap: 0.55rem; padding: 0.4rem 0.7rem 0.4rem 0.45rem; border-radius: 12px; }
+html .app-badge-over img { width: 36px; height: 36px; }
+html .app-badge-over b { font-size: 0.9rem; }
+html .app-badge-over small { margin-top: 0; font-size: 0.78rem; }
+
+/* =====================================================================
+   The room (10 November 2026, second pass). The paper is white now. Every
+   page opens on the room's wall, in the duck's yellow, and the work is laid
+   out on the plain floor below it. Yellow is the one colour: the wall, a
+   folder's tab, the marker over a link. The armchair's teal stays in the
+   drawing. Case files stand in a drawer; tabs are one segmented control.
+   ===================================================================== */
+:root {
+  --bg: #FFFFFF; --bg-elev: #FFFFFF; --card: #FFFFFF; --bg-sunk: #F4F3EF;
+  --ink-2: #45413C; --ink-3: #6A655E; --line: #E3E1DB; --clip: #D9D6CE;
+  --wall: #FFC93C; --on-wall-2: #3B352C; --wall-paper: #FFFFFF; --marker: var(--duck);
+  --wall-btn: #1E1A17; --wall-btn-ink: #FFC93C; --floor-line: #1E1A17;
+  --chair: var(--ink); --chair-soft: var(--duck-soft);
+  --cover-bg: var(--bg-sunk); --case-cover: var(--wall);
+  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='10'%3E%3Cpath d='M0 5 C40 3.6 80 6.4 120 5 S200 3.6 240 5' fill='none' stroke='black' stroke-width='2.6'/%3E%3C/svg%3E");
+}
+:root[data-theme="dark"] {
+  --bg: #14161D; --bg-elev: #1B1E27; --card: #1E222C; --bg-sunk: #101218;
+  --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --clip: #4A5063;
+  --wall: #1D2130; --on-wall-2: #C4C2BC; --wall-paper: transparent;
+  --wall-btn: var(--duck); --wall-btn-ink: var(--on-duck); --floor-line: #4A5063;
+  --chair: var(--ink); --chair-soft: var(--duck-soft);
+  --cover-bg: var(--bg); --case-cover: var(--bg);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14161D; --bg-elev: #1B1E27; --card: #1E222C; --bg-sunk: #101218;
+    --ink-2: #C4C2BC; --ink-3: #9A9DA9; --line: #2E3240; --clip: #4A5063;
+    --wall: #1D2130; --on-wall-2: #C4C2BC; --wall-paper: transparent;
+    --wall-btn: var(--duck); --wall-btn-ink: var(--on-duck); --floor-line: #4A5063;
+    --chair: var(--ink); --chair-soft: var(--duck-soft);
+    --cover-bg: var(--bg); --case-cover: var(--bg);
+  }
+}
+html .sh-ico .i-paper { fill: #FFFFFF; }
+html .sh-ico .i-tan { fill: #D9D6CE; }
+
+/* links: ink, underlined in ink; the yellow marker goes over them on hover (white where the wall is yellow) */
+html .prose a:hover, html .meta-line a:hover, html .timeline a:hover, html .sn a:hover, html .lead a:hover, html .intro-sum a:hover, html .footer a:hover {
+  background: var(--marker); color: var(--on-duck); text-decoration-color: transparent; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+
+/* ---------- the wall ---------- */
+/* text that sits on the wall is a shade darker, so it holds on yellow */
+html .duck-room .hero-copy, html .case-intro .eyebrow, html .case-intro .intro-sum, html .case-hero, html .post-hero {
+  --ink-2: var(--on-wall-2); --ink-3: var(--on-wall-2); --marker: var(--wall-paper);
+}
+/* the bar is part of the wall for as long as the wall is behind it (main.js sets .on-wall) */
+html .nav { transition: background-color 200ms var(--ease), border-color 200ms var(--ease); }
+html .nav.on-wall, html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) { background: var(--wall); }
+html .nav.on-wall.scrolled { border-bottom-color: color-mix(in srgb, var(--floor-line) 22%, transparent); }
+html .nav.on-wall .nav-links a, html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) .nav-links a { color: var(--on-wall-2); }
+html .nav.on-wall .nav-links a:hover, html .nav.on-wall .nav-links a[aria-current="page"],
+html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) .nav-links a:is(:hover, [aria-current="page"]) { color: var(--ink); }
+html .nav.on-wall .brand .wordmark .dot, html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) .brand .wordmark .dot { color: var(--ink); }
+
+/* the homepage: the room runs the full width; the wall meets a white floor at a hand-drawn line */
+html .duck-room { background: var(--wall); }
+html .duck-room::before {
+  background: var(--floor-line);
+  -webkit-mask: var(--wave) repeat-x center / 240px 10px; mask: var(--wave) repeat-x center / 240px 10px;
+}
+html .duck-room .split-inner { padding-top: clamp(2rem, 5vw, 4rem); }
+@media (min-width: 861px) {
+  html .duck-room .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(340px, 46vw, 600px); }
+}
+html .duck-room .btn-primary { border-color: var(--wall-btn); background: var(--wall-btn); color: var(--wall-btn-ink); }
+html .duck-room .btn-primary:hover { background: color-mix(in srgb, var(--wall-btn) 86%, #fff); color: var(--wall-btn-ink); }
+html .duck-room .btn-ghost { background: var(--wall-paper); }
+html .duck-room .btn-ghost:hover { background: color-mix(in srgb, var(--ink) 8%, var(--wall-paper)); }
+
+/* a case page: the title and its summary hang on the wall; the facts are on the floor */
+html .case-intro .intro-sum { position: relative; }
+html .case-intro .intro-sum::before {
+  content: ""; position: absolute; z-index: -1; left: -100vw; right: -100vw; top: -100vh; bottom: -2.5rem;
+  background: var(--wall); pointer-events: none;
+}
+html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after, html #session-notes::after {
+  content: ""; position: absolute; left: -100vw; right: -100vw; bottom: calc(-2.5rem - 5px); height: 10px; pointer-events: none;
+  background: var(--floor-line);
+  -webkit-mask: var(--wave) repeat-x center / 240px 10px; mask: var(--wave) repeat-x center / 240px 10px;
+}
+html body .case-intro .intro-sum + * { margin-top: 4.75rem; }
+/* About, the writing index and each post: the whole opening is on the wall */
+html .case-hero, html .post-hero { position: relative; padding-bottom: clamp(2rem, 4vw, 3rem); margin-bottom: clamp(2.5rem, 5vw, 3.5rem); }
+html .case-hero::before, html .post-hero::before {
+  content: ""; display: block; position: absolute; z-index: -1; left: -100vw; right: -100vw; top: -100vh; bottom: 0;
+  width: auto; height: auto; transform: none; background: var(--wall); pointer-events: none;
+}
+html .case-hero::after, html .post-hero::after, html #session-notes::after { bottom: -5px; }
+
+/* the case number: a small plaque hung on the wall from a nail */
+html .eyebrow .case-no { position: relative; background: var(--wall-paper); }
+html .eyebrow .case-no::before {
+  content: ""; position: absolute; left: 50%; top: -8px; width: 13px; height: 13px; translate: -50% 0; rotate: 45deg;
+  border-left: var(--frame-w) solid var(--floor-line); border-top: var(--frame-w) solid var(--floor-line);
+}
+html .eyebrow .case-no::after {
+  content: ""; position: absolute; left: 50%; top: -11px; width: 5px; height: 5px; translate: -50% 0; border-radius: 50%; background: var(--floor-line);
+}
+html .case-intro { padding-top: clamp(3rem, 6vw, 4.5rem); }
+
+/* session notes: back on the wall, the clipboard hung on it */
+html #session-notes { position: relative; background: var(--wall); border-top: 0; }
+html body:has(#session-notes) .footer { border-top: 0; }
+
+/* ---------- the drawer ---------- */
+/* The four case files are folders standing in a drawer. Each tab is cut one step along from
+   the last; on a screen tall enough, each folder files over the one before as you scroll,
+   so the tabs line up the way they do when you look into a drawer. */
+html .projects .case-drawer { grid-column: 1 / -1; --tab-step: 6.4rem; --tab-h: 2rem; padding-top: var(--tab-h); }
+html .projects .case-drawer > .pcard.pcard-flagship { --i: 0; margin-top: 0; }
+html .projects .case-drawer > .pcard.pcard-flagship:nth-of-type(2) { --i: 1; }
+html .projects .case-drawer > .pcard.pcard-flagship:nth-of-type(3) { --i: 2; }
+html .projects .case-drawer > .pcard.pcard-flagship:nth-of-type(4) { --i: 3; }
+html .projects .case-drawer > .pcard.pcard-flagship + .pcard-flagship { margin-top: calc(var(--tab-h) + 2.25rem); }
+html .projects .pcard.pcard-flagship { --cover-bg: var(--case-cover); }
+html .projects .case-drawer > .pcard.pcard-flagship::before {
+  top: auto; bottom: calc(100% + var(--frame-w)); left: calc(1.25rem + var(--i) * var(--tab-step)); transform: none;
+  box-sizing: border-box; height: var(--tab-h); padding: 0.3rem 0.95rem 0; border-bottom: 0; border-radius: 9px 9px 0 0;
+  font-size: 0.9rem; line-height: 1.45; white-space: nowrap;
+}
+@media (max-width: 560px) {
+  html .projects .case-drawer { --tab-step: 4.7rem; --tab-h: 1.8rem; }
+  html .projects .case-drawer > .pcard.pcard-flagship::before { left: calc(0.75rem + var(--i) * var(--tab-step)); padding: 0.25rem 0.6rem 0; font-size: 0.8rem; }
+}
+@media (min-width: 920px) and (min-height: 740px) {
+  html .projects .case-drawer { --drawer-step: 0.7rem; }
+  html .projects .case-drawer > .pcard.pcard-flagship {
+    position: sticky; top: calc(64px + var(--tab-h) + 0.75rem + var(--i) * var(--drawer-step));
+    /* main.js sets --folder-h to the tallest folder, so the pile closes square */
+    min-height: var(--folder-h, 0);
+  }
+}
+/* the other projects are not files: a cover in an ink frame and the words under it, straight on the page */
+html body .projects .pcard:not(.pcard-flagship) { margin-top: 3.25rem; padding: 0; border: 0; border-radius: 0; background: none; }
+/* a file doesn't lift when you point at it; the title takes the marker and the cover leans in */
+html .projects .pcard:hover { translate: none; }
+
+/* ---------- tabs: one segmented control ---------- */
+/* One outlined group, the segments inside it, the open one filled in ink. The sheet it switches sits below, on its own. */
+html .type-tablist, html .type-tablist.steps {
+  position: relative; z-index: auto; display: inline-flex; flex-wrap: wrap; align-items: stretch; gap: 2px;
+  width: auto; max-width: 100%; margin: 0 0 0.75rem; padding: 3px;
+  border: var(--frame-w) solid var(--frame); border-radius: 10px; background: var(--bg-elev);
+}
+html .type-tablist::before, html .type-tablist.steps::before { display: none; }
+html .type-tablist button, html .type-tablist.steps button {
+  position: relative; flex: 0 0 auto; height: auto; margin: 0; padding: 0.42rem 0.95rem; border: 0; border-radius: 6px;
+  background: transparent; color: var(--ink-2); box-shadow: none; font-size: 0.875rem; font-weight: 600; line-height: 1.3; white-space: nowrap;
+}
+html .type-tablist button:hover:not([aria-selected="true"]) { background: color-mix(in srgb, var(--ink) 8%, transparent); color: var(--ink); }
+html .type-tablist button[aria-selected="true"], html .type-tablist.steps button[aria-selected="true"] { background: var(--ink); color: var(--bg); box-shadow: none; }
+html .type-tablist button[aria-selected="true"]::after { content: none; }
+html .type-tablist button:focus-visible { outline: 3px solid var(--duck-dk); outline-offset: 2px; }
+html .cards-demo .demo-bar { flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem; margin-bottom: 0.75rem; }
+html .cards-demo .demo-bar .type-tablist, html .cards-demo .demo-actions { margin-bottom: 0; }
+@media (max-width: 560px) {
+  /* phones: the control spans the column and its segments share the row */
+  html .type-tablist, html .type-tablist.steps { display: flex; gap: 2px; padding: 3px; }
+  html .type-tablist button, html .type-tablist.steps button { flex: 1 1 auto; padding: 0.45rem 0.5rem; font-size: 0.8rem; line-height: 1.2; white-space: normal; }
+}
+
+/* =====================================================================
+   The room, third pass (10 November 2026). The site is the duck's practice,
+   and a practice is a room: papered wall, skirting board, floorboards, a
+   window on the North Shore. The colour lives in the room; the pages laid
+   out below it stay white. Every band that used to be a flat colour is now
+   a stretch of the same wall.
+   ===================================================================== */
+:root {
+  --wall: #BFE4D3; --wall-stripe: #B5DECB; --on-wall-2: #2E3A35;
+  --skirt: #FFFDF6; --boards: #E8B974; --room-ink: #1E1A17;
+  --wall-btn-ink: #FFFFFF;
+  --planks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='86' viewBox='0 0 640 86'%3E%3Cg fill='none' stroke='%231E1A17' stroke-linecap='round'%3E%3Cg stroke-opacity='.28' stroke-width='2.2'%3E%3Cpath d='M0 27 C60 25.5 120 28.5 200 26.8 S330 25 420 27.2 S560 28.4 640 26.6' stroke-dasharray='230 8 340 7'/%3E%3Cpath d='M0 56 C80 57.6 160 54.4 260 55.8 S420 57.4 500 55.2 S600 54.6 640 56' stroke-dasharray='170 8 380 7'/%3E%3C/g%3E%3Cg stroke-opacity='.2' stroke-width='2'%3E%3Cpath d='M180 30 C181.5 38 179 45 180.5 53'/%3E%3Cpath d='M470 3 C469 11 471 17 469.5 24'/%3E%3Cpath d='M70 59 C71.5 67 69 75 71 84'/%3E%3Cpath d='M560 30 C561 38 559 45 560.5 53'/%3E%3Cpath d='M340 59 C339 66 341.5 76 339.5 84'/%3E%3C/g%3E%3Cg stroke-opacity='.1' stroke-width='1.6'%3E%3Cpath d='M40 14 c10 -1.6 18 1.2 28 -0.4'/%3E%3Cpath d='M380 40 c8 1.2 14 -1 22 0.4'/%3E%3Cpath d='M230 70 c10 -1.6 18 1 26 -0.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  /* the stripes are a whisper: 40% of the stripe colour over the wall */
+  --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px);
+}
+:root[data-theme="dark"] {
+  --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA;
+  --skirt: #39405C; --boards: #2B2535; --room-ink: #0D0F16; --wall-btn-ink: var(--on-duck); --wall-paper: #2A3150;
+  --planks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='86' viewBox='0 0 640 86'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-linecap='round'%3E%3Cg stroke-opacity='.14' stroke-width='2.2'%3E%3Cpath d='M0 27 C60 25.5 120 28.5 200 26.8 S330 25 420 27.2 S560 28.4 640 26.6' stroke-dasharray='230 8 340 7'/%3E%3Cpath d='M0 56 C80 57.6 160 54.4 260 55.8 S420 57.4 500 55.2 S600 54.6 640 56' stroke-dasharray='170 8 380 7'/%3E%3C/g%3E%3Cg stroke-opacity='.1' stroke-width='2'%3E%3Cpath d='M180 30 C181.5 38 179 45 180.5 53'/%3E%3Cpath d='M470 3 C469 11 471 17 469.5 24'/%3E%3Cpath d='M70 59 C71.5 67 69 75 71 84'/%3E%3Cpath d='M560 30 C561 38 559 45 560.5 53'/%3E%3Cpath d='M340 59 C339 66 341.5 76 339.5 84'/%3E%3C/g%3E%3Cg stroke-opacity='.05' stroke-width='1.6'%3E%3Cpath d='M40 14 c10 -1.6 18 1.2 28 -0.4'/%3E%3Cpath d='M380 40 c8 1.2 14 -1 22 0.4'/%3E%3Cpath d='M230 70 c10 -1.6 18 1 26 -0.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA;
+    --skirt: #39405C; --boards: #2B2535; --room-ink: #0D0F16; --wall-btn-ink: var(--on-duck); --wall-paper: #2A3150;
+  --planks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='86' viewBox='0 0 640 86'%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-linecap='round'%3E%3Cg stroke-opacity='.14' stroke-width='2.2'%3E%3Cpath d='M0 27 C60 25.5 120 28.5 200 26.8 S330 25 420 27.2 S560 28.4 640 26.6' stroke-dasharray='230 8 340 7'/%3E%3Cpath d='M0 56 C80 57.6 160 54.4 260 55.8 S420 57.4 500 55.2 S600 54.6 640 56' stroke-dasharray='170 8 380 7'/%3E%3C/g%3E%3Cg stroke-opacity='.1' stroke-width='2'%3E%3Cpath d='M180 30 C181.5 38 179 45 180.5 53'/%3E%3Cpath d='M470 3 C469 11 471 17 469.5 24'/%3E%3Cpath d='M70 59 C71.5 67 69 75 71 84'/%3E%3Cpath d='M560 30 C561 38 559 45 560.5 53'/%3E%3Cpath d='M340 59 C339 66 341.5 76 339.5 84'/%3E%3C/g%3E%3Cg stroke-opacity='.05' stroke-width='1.6'%3E%3Cpath d='M40 14 c10 -1.6 18 1.2 28 -0.4'/%3E%3Cpath d='M380 40 c8 1.2 14 -1 22 0.4'/%3E%3Cpath d='M230 70 c10 -1.6 18 1 26 -0.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+}
+
+/* ---------- the homepage: the consulting room ---------- */
+html .duck-room {
+  --u: 0.7px; --room-floor: calc(86 * var(--u)); --room-skirt: calc(15 * var(--u));
+  background: var(--room); border-bottom: 0;
+}
+html .duck-room::before, html .duck-room::after { content: none; }
+@media (min-width: 861px) {
+  html .duck-room .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(360px, 48vw, 640px); }
+  html .duck-room .hero-copy { padding-bottom: calc(var(--room-floor) + var(--room-skirt) + 2rem); }
+}
+/* the bar is the same papered wall for as long as the wall is behind it */
+html .nav.on-wall, html body:has(.duck-room, .case-intro, .case-hero, .post-hero) .nav:not(.scrolled) { background: var(--wallpaper), var(--wall); }
+
+/* by the couch: the filing cabinet opens the case files. Drawn in the scene's units, so its line matches. */
+html .duck-room .hero-figure { position: relative; }
+html .room-props {
+  position: absolute; z-index: 2; right: calc(100% - 46 * var(--u)); bottom: calc(var(--room-floor) - 22 * var(--u));
+  width: calc(214 * var(--u)); line-height: 0; border-radius: 8px;
+}
+html .room-props svg { display: block; width: 100%; height: auto; overflow: visible; }
+html .room-props .rp-ink { stroke: #1E1A17; stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+html .room-props .rp-drawer, html .room-props .rp-tabs { transition: translate 260ms var(--ease); }
+html .room-props:is(:hover, :focus-visible) .rp-drawer { translate: 0 7px; }
+html .room-props:is(:hover, :focus-visible) .rp-tabs { translate: 0 -9px; }
+html .room-props:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes rp-steam { 0% { translate: 0 3px; opacity: 0; } 40% { opacity: .6; } 100% { translate: 0 -7px; opacity: 0; } }
+  html .room-props .rp-steam path { animation: rp-steam 3.2s ease-in-out infinite; }
+  html .room-props .rp-steam path + path { animation-delay: -1.6s; }
+}
+@media (max-width: 1020px) { html .room-props { display: none; } }
+
+/* One stretch of room: wall, skirting board, floorboards, and the ink line it ends on.
+   Declared on each element that paints it, so each can say how much floor it shows. */
+html :is(.duck-room, .case-intro .intro-sum, .case-hero, .post-hero, #session-notes, .projects .pcard-media, body:has(> .lost)) {
+  --room:
+    linear-gradient(var(--room-ink), var(--room-ink)) left bottom / 100% 2px no-repeat,
+    linear-gradient(var(--room-ink), var(--room-ink)) left bottom calc(var(--room-floor) + var(--room-skirt)) / 100% 2px no-repeat,
+    linear-gradient(var(--skirt), var(--skirt)) left bottom var(--room-floor) / 100% var(--room-skirt) no-repeat,
+    linear-gradient(var(--room-ink), var(--room-ink)) left bottom calc(var(--room-floor) - 2px) / 100% 2px no-repeat,
+    var(--planks) left bottom / auto var(--room-floor) repeat-x,
+    linear-gradient(var(--boards), var(--boards)) left bottom / 100% var(--room-floor) no-repeat,
+    var(--wallpaper) var(--paper-x, 0) 0,
+    var(--wall);
+}
+
+/* ---------- every other page opens in the same room ---------- */
+/* The band reaches a screen past each side of the column, so its wallpaper is set back by the
+   same amount: the stripes then run on, unbroken, from the bar above it. */
+html :is(.case-intro, .case-hero, .post-hero) {
+  --room-floor: 44px; --room-skirt: 11px; --band-drop: calc(2.25rem + var(--room-floor) + var(--room-skirt));
+  --paper-x: calc(100vw - max(var(--gutter), (100vw - var(--max)) / 2));
+}
+html .case-intro .intro-sum { max-width: none; padding-right: max(0px, 100% - 62ch); }
+html .case-intro .intro-sum::before { bottom: calc(-1 * var(--band-drop)); background: var(--room); }
+html body .case-intro .intro-sum + * { margin-top: calc(var(--band-drop) + 2.25rem); }
+html .case-hero, html .post-hero { padding-bottom: calc(var(--band-drop) + 0.5rem); }
+html .case-hero::before, html .post-hero::before { background: var(--room); }
+/* the object this case is filed under, on the side table: the same one that stands on its folder on the homepage */
+html .case-intro .intro-sum { --stand-bottom: calc(var(--room-floor) - var(--band-drop) - 13px); }
+html .case-hero, html .post-hero { --stand-bottom: calc(var(--room-floor) - 13px); }
+html :is(.case-intro .intro-sum, .case-hero, .post-hero) { --stand-right: clamp(0.5rem, 4vw, 3.5rem); }
+html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after {
+  content: ""; position: absolute; left: auto; right: var(--stand-right); width: 200px; height: 440px; bottom: var(--stand-bottom);
+  -webkit-mask: none; mask: none; pointer-events: none;
+  background:
+    var(--lamp-glow, linear-gradient(transparent, transparent)) center bottom 60px / 200px 250px no-repeat,
+    var(--prop, none) center bottom 82px / 104px 104px no-repeat,
+    url("../images/room/table.svg") center bottom / 150px auto no-repeat;
+}
+/* the pendant over it is a light switch, like the lamp in the duck's room (main.js adds it) */
+html .room-lamp {
+  position: absolute; right: calc(var(--stand-right) + 56px); bottom: calc(var(--stand-bottom) + 226px); width: 88px; height: 62px;
+  padding: 0; border: 0; border-radius: 12px; background: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+html .room-lamp::before {
+  content: ""; position: absolute; left: 50%; bottom: 6px; width: 96px; height: 1120px; margin-left: -48px; pointer-events: none;
+  background: url("../images/room/pendant.svg") center bottom / 96px auto no-repeat; transform-origin: 50% 0;
+}
+html .room-lamp:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes lamp-sway { 0%, 100% { rotate: 0deg; } 25% { rotate: 0.45deg; } 75% { rotate: -0.45deg; } }
+  html .room-lamp:is(:hover, :focus-visible)::before { animation: lamp-sway 1.6s ease-in-out infinite; }
+  html .room-lamp:active::before { translate: 0 5px; }
+}
+/* a deep dive keeps its facts on the wall too, so its object goes up on a shelf instead */
+html .case-hero:has(> .tldr)::after {
+  top: 1.5rem; bottom: auto; height: 330px;
+  background:
+    var(--lamp-glow, linear-gradient(transparent, transparent)) center bottom / 200px 230px no-repeat,
+    var(--prop, none) center bottom 28px / 104px 104px no-repeat,
+    url("../images/room/shelf.svg") center bottom / 150px auto no-repeat;
+}
+html .case-hero:has(> .tldr) .room-lamp { bottom: auto; top: calc(1.5rem + 96px); }
+@media (max-width: 1180px) {
+  html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after, html .room-lamp { display: none; }
+}
+/* at night the pendant is on, and the object sits in its pool of light */
+:root[data-theme="dark"] { --lamp-glow: radial-gradient(closest-side, rgb(255 226 150 / 0.34), rgb(255 226 150 / 0.12) 55%, transparent); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --lamp-glow: radial-gradient(closest-side, rgb(255 226 150 / 0.34), rgb(255 226 150 / 0.12) 55%, transparent); } }
+html .eyebrow .case-no { color: var(--ink); }
+
+/* which object goes with which file */
+[data-prop="jars"] { --prop: url("../images/room/jars.svg"); }
+[data-prop="map"] { --prop: url("../images/room/map.svg"); }
+[data-prop="rolodex"] { --prop: url("../images/room/rolodex.svg"); }
+[data-prop="stamp"] { --prop: url("../images/room/stamp.svg"); }
+[data-prop="tv"] { --prop: url("../images/room/tv.svg"); }
+[data-prop="loaf"] { --prop: url("../images/room/mochi.svg"); }
+[data-prop="globe"] { --prop: url("../images/room/globe.svg"); }
+[data-prop="pencils"] { --prop: url("../images/room/pencils.svg"); }
+[data-prop="papers"] { --prop: url("../images/room/papers.svg"); }
+[data-prop="house"] { --prop: url("../images/room/house.svg"); }
+[data-prop="arcade"] { --prop: url("../images/room/arcade.svg"); }
+[data-prop="tower"] { --prop: url("../images/room/tower.svg"); }
+[data-prop="megaphone"] { --prop: url("../images/room/megaphone.svg"); }
+[data-prop="books"] { --prop: url("../images/room/books.svg"); }
+[data-prop="plant"] { --prop: url("../images/room/plant.svg"); }
+
+/* ---------- the homepage files ---------- */
+/* each cover is a stretch of the same wall, the work propped against it */
+html:root body .projects .pcard .pcard-media.pcard-media { background: var(--wallpaper), var(--wall); }
+/* and each folder has its object standing on its bottom edge, in the margin beside the words */
+html .projects .case-drawer > .pcard.pcard-flagship[data-prop]::after {
+  content: ""; position: absolute; right: 1.75rem; bottom: 0; width: 92px; height: 92px; pointer-events: none;
+  background: var(--prop) center bottom / contain no-repeat;
+}
+html .projects .case-drawer > .pcard.pcard-flagship[data-prop]:nth-of-type(even)::after { right: auto; left: 1.75rem; }
+@media (max-width: 919px) { html .projects .case-drawer > .pcard.pcard-flagship[data-prop]::after { display: none; } }
+
+/* the files outside the drawer keep theirs on top of the frame, like something left on a shelf */
+html .projects .case-drawer { margin-bottom: 2.75rem; }
+html .projects .pcard:not(.pcard-flagship)[data-prop] { position: relative; }
+html .projects .pcard:not(.pcard-flagship)[data-prop]::after {
+  content: ""; position: absolute; top: 3px; right: 1.25rem; width: 66px; height: 66px; translate: 0 -100%; pointer-events: none;
+  background: var(--prop) center bottom / contain no-repeat;
+}
+
+/* session notes: the far end of the room */
+html #session-notes { --room-floor: 44px; --room-skirt: 11px; background: var(--room); padding-bottom: calc(clamp(3rem, 6vw, 4.75rem) + 55px); }
+html #session-notes::after { content: none; }
+
+/* ---------- 404: the same room, with the thing you came for gone from its table ---------- */
+html:root body:has(> .lost) { --room-floor: 76px; --room-skirt: 13px; background: var(--room); }
+html .lost {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  padding-inline: var(--gutter);
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: 3rem calc(var(--room-floor) + var(--room-skirt) + 150px);
+}
+html .lost::before,
+html .lost::after {
+  content: "";
+  position: absolute;
+  right: clamp(1rem, 5vw, 5rem);
+  width: 200px;
+  pointer-events: none;
+}
+html .lost::after {
+  bottom: calc(var(--room-floor) - 14px);
+  height: 330px;
+  background:
+    var(--lamp-glow, linear-gradient(transparent, transparent)) center bottom 40px / 200px 250px no-repeat,
+    url("../images/room/table.svg") center bottom / 150px auto no-repeat;
+}
+html .lost::before {
+  top: 0;
+  bottom: calc(var(--room-floor) + 226px);
+  background: url("../images/room/pendant.svg") center bottom / 96px auto no-repeat;
+}
+html .lost .lost-bug {
+  position: absolute;
+  right: calc(clamp(1rem, 5vw, 5rem) + 188px);
+  bottom: calc(var(--room-floor) - 16px);
+  width: 76px;
+  margin: 0;
+}
+@media (max-width: 1320px) {
+  html .lost::before { display: none; }
+  html .lost::after { height: 100px; background: url("../images/room/table.svg") center bottom / 150px auto no-repeat; }
+}
+@media (max-width: 860px) {
+  html .lost::after { right: 50%; translate: 72% 0; }
+  html .lost .lost-bug { right: 50%; translate: -32% 0; }
+}
+
+/* the full-bleed walls run past both edges; clip them here so a phone never widens its viewport to fit them */
+html body { overflow-x: clip; }
+/* stacked in one column, each shelf object needs clear wall above it */
+@media (max-width: 700px) {
+  html .projects .case-drawer { margin-bottom: 0; }
+  html .projects .pcard:not(.pcard-flagship)[data-prop]:not(:first-child) { margin-top: 5rem; }
+}
+
+/* ---------- the drawer's tabs, on every folder ---------- */
+/* Each folder shows the whole row: its own tab in the duck's yellow, the rest as the paper edges of the
+   files behind it. They are labels, not controls, so they sit flat, quiet, and ignore the pointer.
+   Same size in every state, so as one folder files over the last the row stays put and only the yellow moves. */
+html .projects .case-drawer > .pcard.pcard-flagship::before { display: none; }
+html .projects .case-tabs {
+  position: absolute; left: 1.25rem; bottom: calc(100% + var(--frame-w)); display: flex; gap: 0.3rem;
+  margin: 0; pointer-events: none; user-select: none; cursor: default;
+}
+html .projects .case-tabs > * {
+  box-sizing: border-box; height: var(--tab-h); padding: 0.3rem 0.95rem 0;
+  border: var(--frame-w) solid color-mix(in srgb, var(--frame) 28%, var(--bg)); border-bottom: 0; border-radius: 9px 9px 0 0;
+  background: var(--bg); color: var(--ink-soft);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; line-height: 1.45; white-space: nowrap;
+}
+html .projects .case-tabs > b { border-color: var(--frame); background: var(--duck); color: var(--on-duck); }
+/* the files behind: shorter, tucked lower, shaded paper and faint ink, so they read as edges of other
+   folders rather than buttons. Only the open file's tab is full height, in the duck's yellow. */
+html .projects .case-tabs { align-items: flex-end; }
+html .projects .case-tabs > span {
+  height: calc(var(--tab-h) - 6px); padding-top: 0.2rem; border-color: transparent;
+  background: color-mix(in srgb, var(--ink) 8%, var(--bg)); color: color-mix(in srgb, var(--ink) 42%, var(--bg)); font-weight: 600;
+}
+@media (max-width: 560px) {
+  html .projects .case-tabs { left: 0.75rem; gap: 0.2rem; }
+  html .projects .case-tabs > * { padding: 0.25rem 0.55rem 0; font-size: 0.8rem; }
+}
+@media (min-width: 920px) and (min-height: 740px) { html .projects .case-drawer { --drawer-step: 0rem; } }
+
+
+/* ---------- each case is its own room ---------- */
+/* The cases stop sharing one wall: each page takes its project's colour, so they no longer open
+   on the same view. The table and pendant are gone; the object stays on the homepage folders. */
+html .case-intro .intro-sum::after, html .case-hero::after, html .post-hero::after { content: none; }
+html body:has(main.hue-violet) { --wall: #D9D5F4; --wall-stripe: #D0CBF0; --on-wall-2: #34304C; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-violet) { --wall: #201E3A; --wall-stripe: #25223F; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-violet) { --wall: #201E3A; --wall-stripe: #25223F; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html body:has(main.hue-coral) { --wall: #F8D6CC; --wall-stripe: #F4CCBF; --on-wall-2: #4B3029; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-coral) { --wall: #2A1E24; --wall-stripe: #30232A; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-coral) { --wall: #2A1E24; --wall-stripe: #30232A; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html body:has(main.hue-pink) { --wall: #BFE4D3; --wall-stripe: #B5DECB; --on-wall-2: #2E3A35; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-pink) { --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-pink) { --wall: #1B2238; --wall-stripe: #1F2740; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html body:has(main.hue-mustard) { --wall: #CFE2F3; --wall-stripe: #C5DBEF; --on-wall-2: #2C3A4A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body:has(main.hue-mustard) { --wall: #18263A; --wall-stripe: #1C2B41; --on-wall-2: #C9CCDA; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+
+
+/* the homepage covers stand against the same wall as their case page */
+html .projects .pcard.hue-violet { --wall: #D9D5F4; --wall-stripe: #D0CBF0; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-violet { --wall: #201E3A; --wall-stripe: #25223F; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-violet { --wall: #201E3A; --wall-stripe: #25223F; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html .projects .pcard.hue-coral { --wall: #F8D6CC; --wall-stripe: #F4CCBF; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-coral { --wall: #2A1E24; --wall-stripe: #30232A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-coral { --wall: #2A1E24; --wall-stripe: #30232A; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html .projects .pcard.hue-pink { --wall: #BFE4D3; --wall-stripe: #B5DECB; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-pink { --wall: #1B2238; --wall-stripe: #1F2740; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-pink { --wall: #1B2238; --wall-stripe: #1F2740; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+html .projects .pcard.hue-mustard { --wall: #CFE2F3; --wall-stripe: #C5DBEF; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+:root[data-theme="dark"] .projects .pcard.hue-mustard { --wall: #18263A; --wall-stripe: #1C2B41; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard.hue-mustard { --wall: #18263A; --wall-stripe: #1C2B41; --wallpaper: repeating-linear-gradient(90deg, transparent 0 26px, color-mix(in srgb, var(--wall-stripe) 40%, transparent) 26px 52px); } }
+
+/* where the wall meets the skirting: the bar keeps the wallpaper until exactly here (main.js) */
+html .wall-end { position: absolute; left: 0; width: 1px; height: 0; pointer-events: none; bottom: calc(var(--room-floor) + var(--room-skirt)); }
+html .case-intro .intro-sum > .wall-end { bottom: calc(var(--room-floor) + var(--room-skirt) - var(--band-drop)); }
+/* the stripes can't fade, so the colour doesn't either: one clean switch */
+html .nav { transition: border-color 200ms var(--ease); }
+
+/* ---------- the case's object, on the floor of its header (js/toys.js) ---------- */
+/* Point at it, tap it, or (on a phone) scroll to it, and it does the project's one move. */
+html .obj {
+  position: absolute; right: clamp(0.5rem, 4vw, 3.5rem); bottom: calc(var(--room-floor) - var(--band-drop) - 4px); z-index: 1;
+  display: block; width: 150px; height: 150px; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+html .obj svg { display: block; width: 100%; height: 100%; overflow: visible; }
+html .obj:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+@media (max-width: 999px) {
+  html .case-intro[data-toy] .intro-sum { padding-bottom: 150px; }
+  html .obj { right: 50%; translate: 50% 0; width: 130px; height: 130px; }
+}
+html .obj :is(.ob-glass, .ob-pin, .ob-flip, .ob-person, .ob-mark, .ob-stamp) { transform-box: view-box; }
+
+/* design system: the jars hop one after another; the colour jar shakes when its layers turn over */
+html .obj :is(.ob-jar) { transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes ob-hop { 0%, 100% { transform: none; } 40% { transform: translateY(-9px) rotate(-3deg); } 70% { transform: translateY(1px) scaleY(.97); } }
+html .obj-theme.play .ob-jar { animation: ob-hop 420ms var(--ease); }
+html .obj-theme.play .j2 { animation-delay: 110ms; }
+html .obj-theme.play .j3 { animation-delay: 220ms; }
+@keyframes ob-shake { 0%, 100% { transform: none; } 25% { transform: rotate(-7deg); } 60% { transform: rotate(6deg); } }
+html .obj .j1 { cursor: pointer; outline: none; }
+html .obj .j1.shake { animation: ob-shake 380ms var(--ease); }
+html .obj .j1:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { html .obj .ob-jar { animation: none !important; } }
+
+/* ask bar: magnifier off to the side, no pin yet */
+html .ob-glass { transform: translate(26px, 10px) rotate(8deg); transform-origin: 62px 62px; }
+html .ob-pin { transform-origin: 62px 74px; transform: scale(0); }
+html .obj.done .ob-glass { transform: none; }
+html .obj.done .ob-pin { transform: none; }
+@keyframes ob-search { 0% { transform: translate(26px, 10px) rotate(8deg); } 35% { transform: translate(-14px, 4px) rotate(-4deg); } 70%, 100% { transform: none; } }
+@keyframes ob-drop { from { transform: translateY(-18px) scale(.6); } 60% { transform: translateY(2px) scale(1.05); } to { transform: none; } }
+html .obj-ask.play .ob-glass { animation: ob-search 1100ms var(--ease) forwards; }
+html .obj-ask.play .ob-pin { animation: ob-drop 380ms cubic-bezier(.3, 1.5, .5, 1) 900ms both; }
+
+/* user page: the cards flip over the drum until one person's card is left */
+html .ob-flip { transform-origin: 60px 88px; }
+@keyframes ob-flip { 0% { transform: none; } 100% { transform: scaleY(0); opacity: 0; } }
+html .obj-tabs.play .ob-flip { animation: ob-flip 200ms ease-in forwards; animation-delay: calc(var(--i) * 230ms); }
+html .obj-tabs.done .ob-flip { display: none; }
+@keyframes ob-land { 0% { transform: scale(1); } 50% { transform: scale(1.06); } 100% { transform: scale(1); } }
+html .ob-person { transform-origin: 60px 88px; }
+html .obj-tabs.play .ob-person { animation: ob-land 260ms ease-out 920ms; }
+
+/* licensing: stamp up, no mark; it comes down and leaves one */
+html .ob-stamp { transform: translateY(-10px); }
+html .ob-mark { opacity: 0; transform-origin: 68px 104px; }
+html .obj.done .ob-mark { opacity: 1; }
+@keyframes ob-stamp { 0% { transform: translateY(-10px); } 30% { transform: translate(-16px, -16px); } 50% { transform: translate(-16px, 12px) scaleY(.94); } 70% { transform: translate(-16px, 10px); } 100% { transform: translateY(-10px); } }
+@keyframes ob-mark { from { opacity: 0; transform: scale(1.25); } to { opacity: 1; transform: none; } }
+html .obj-stairs.play .ob-stamp { animation: ob-stamp 1000ms var(--ease); }
+html .obj-stairs.play .ob-mark { animation: ob-mark 200ms ease-out 500ms both; }
+
+/* ---------- the licence application cover: the same framing as the other covers ---------- */
+/* a full window inset from the wall and running off the bottom edge, with the step in progress open */
+html [data-observe="Licence applications"] .pcard-mock .mk { zoom: 1; }
+html [data-observe="Licence applications"] .pcard-mock-ba .six.lic-app { height: auto; min-height: 340px; }
+html .mkset .lic-app .six-body { grid-template-columns: 30% minmax(0, 1fr) 24%; }
+html .mkset .lic-app .rail span.done { color: var(--ink-3); }
+html .mkset .lic-app .rail span em.ok { color: #2F8F5B; font-weight: 700; }
+html .la-form { display: flex; flex-direction: column; gap: 0.45rem; padding: 0.85rem 0.9rem; border-right: 1px solid var(--line); min-width: 0; }
+html .la-h { font-weight: 700; font-size: 0.85rem; color: var(--ink); }
+html .la-sub { font-size: 0.66rem; color: var(--ink-3); margin-bottom: 0.2rem; }
+html .la-doc { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; align-items: center; gap: 0.45rem; padding: 0.45rem 0.55rem; border: 1px solid var(--line); border-radius: 7px; font-size: 0.7rem; color: var(--ink); }
+html .la-doc i { width: 16px; height: 16px; border-radius: 50%; }
+html .la-doc.ok i { background: #2F8F5B; box-shadow: inset 0 0 0 4px color-mix(in srgb, #2F8F5B 35%, var(--bg-elev)); }
+html .la-doc.todo { border-style: dashed; border-color: #d93f3f; }
+html .la-doc.todo i { border: 2px solid #d93f3f; }
+html .la-doc em { font-style: normal; font-size: 0.62rem; color: var(--ink-3); white-space: nowrap; }
+html .la-doc em.la-up { padding: 0.15rem 0.5rem; border-radius: 5px; background: var(--ink); color: var(--bg-elev); font-weight: 600; }
+html .la-next { display: flex; justify-content: flex-end; gap: 0.35rem; margin-top: auto; padding-top: 0.4rem; }
+html .la-btn { padding: 0.3rem 0.6rem; border-radius: 6px; background: var(--c, #2F6FB8); color: #fff; font-size: 0.64rem; font-weight: 600; }
+html .la-btn.ghost { background: none; color: var(--ink-2); border: 1px solid var(--line); }
+html .mkset .lic-app .ring-wrap { align-content: start; padding-top: 1.1rem; }
+html .mkset .lic-app .ring { width: 84px; height: 84px; }
+html .la-assign { display: grid; gap: 0.1rem; width: 100%; margin-top: 0.6rem; padding: 0.45rem 0.5rem; border-radius: 7px; background: var(--c-soft, var(--bg-sunk)); font-size: 0.6rem; color: var(--ink-2); text-align: left; }
+html .la-assign b { font-size: 0.62rem; color: var(--ink); }
+/* phones: the steps and the progress ring, as before; the open step needs more width than this */
+@media (max-width: 760px) {
+  html .mkset .lic-app .six-body { grid-template-columns: 54% minmax(0, 1fr); }
+  html .la-form, html .la-assign { display: none; }
+  html [data-observe="Licence applications"] .pcard-mock-ba .six.lic-app { min-height: 0; }
+}
+
+/* ---------- spacing: tight inside a group, wide between groups ---------- */
+/* What belongs together sits close; a box (figure, mockup, table, list of boxes) always gets clear air
+   before the story picks up again, so the next paragraph never reads as its caption. */
+html .prose :is(.plugins, figure, .figure, .mk, .ba, .stats, .table-scroll, .fails, .loopfig, .shots, .two-up, .callout, .type-tabs, .issues, .pipeline, .demo, .rp, .up, .wt, .askdemo, .vs, .launcher-demo, .rulecards, .mock-note)
+  + :is(p:not(.mock-note, .panel-cap, .phone-note, .caption), h3, ul:not([class]), ol:not([class])) { margin-top: 2.25rem; }
+html .prose :is(p, ul:not([class]), ol:not([class]))
+  + :is(.plugins, figure, .figure, .mk, .ba, .stats, .table-scroll, .fails, .loopfig, .shots, .two-up, .callout, .type-tabs, .issues, .pipeline, .demo) { margin-top: 1.5rem; }
+/* plugins: one group each, with more room between plugins than inside one */
+html .plugins { gap: 4.25rem; }
+html .plugin-head { margin-bottom: 1.5rem; }
+html .plugin-head h3 { margin: 0.25rem 0 0.5rem; }
+html .plugin-head .plugin-why { margin-top: 1rem; }
+html .plugin .type-tablist { margin-bottom: 0.75rem; }
+
+/* design-system plugins: the number and what it's for live in the title, not in an eyebrow above it */
+html .plugin-head h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 0.5rem; line-height: 1.25; }
+html .plugin-no {
+  display: inline-grid; place-items: center; flex: none; align-self: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; translate: 0 -0.05em;
+  background: var(--duck); color: var(--on-duck); font-family: var(--font-display); font-size: 0.9rem; font-weight: 700;
+}
+html .plugin-for { font-family: var(--font-sans); font-size: 0.95rem; font-weight: 500; color: var(--ink-3); }
+
+/* case intro: the outcomes and the role/stack lines are one card, so it reads card, then the work */
+html:root body .case-intro .highlights:has(+ .meta-line) { border-bottom: 0; border-radius: var(--radius) var(--radius) 0 0; margin-bottom: 0; }
+html:root body .case-intro .highlights + .meta-line {
+  margin-top: 0; padding: 0.95rem 1rem 1rem; border: var(--frame-w) solid var(--frame); border-top: 1px solid var(--line);
+  border-radius: 0 0 var(--radius) var(--radius); background: var(--bg-elev);
+}
+/* the labels in the role card are handwritten, like the case plaque and the notes */
+html:root body .case-intro .meta-line dt { font-family: var(--font-display); font-weight: 600; letter-spacing: 0; }
+
+/* the note under each plugin takes the page's own colour, not the duck's yellow */
+html .plugin-head .plugin-why { background: color-mix(in srgb, var(--wall) 55%, var(--bg-elev)); }
+
+/* the six ways version one failed: outline cards like the rest of the site, each numbered in a coral
+   badge (these are problems), the finding in the handwriting font */
+html .issues { gap: 1rem; }
+html .issues li {
+  padding: 1rem 1.15rem 1.1rem; border: var(--frame-w) solid var(--frame); border-radius: var(--radius); background: var(--bg-elev);
+  color: var(--ink-2); line-height: 1.55;
+}
+html .issues li b { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; font-family: var(--font-display); font-size: 1.05rem; line-height: 1.3; color: var(--ink); }
+html .issues li b::before {
+  content: counter(issue); flex: none; display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  background: #E8553D; color: #fff; font-family: var(--font-display); font-size: 0.85rem; font-weight: 700;
+}
+
+
+/* ---------- one system for every case page ---------- */
+/* Three kinds of box, each with one look:
+   1. my cards (what I'm telling you: summary, decisions, findings, notes on psychology, stats): the ink outline;
+   2. exhibits (the product itself, recreated or captured: tab panels, demos, diagrams): a light hairline frame,
+      so the work reads as the work and the ink outline keeps its meaning;
+   3. asides (the note under a plugin): a tinted fill, no border. */
+html:root body .prose :is(.type-panel, .step-panel, .loopfig, .drawer, .launcher-demo, .rc-ui) {
+  border: 1px solid color-mix(in srgb, var(--ink) 16%, transparent); border-radius: 12px;
+}
+/* a caption belongs to the exhibit above it: close under it, one size, never italic */
+html .prose :is(.mock-note, .panel-cap, figcaption, .caption) { font-size: 0.86rem; font-style: normal; color: var(--ink-3); }
+html .prose :is(.launcher-demo, .askdemo, .loopfig, .drawer, .up, .rp, .vs, figure, .figure, .type-tabs, .demo) + :is(.mock-note, .caption) { margin-top: 0.6rem; }
+/* every card title is in the display face, as the section titles are */
+html .plugin-head h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
+
+/* ---------- labels: three styles, each with one job ---------- */
+/* 1. A card's kind ("The decision", "The lesson", "Psych note", "From the handoff prompt"): a tag hung on
+      the card's top edge, like the case plaque. */
+html:root body :is(.lesson-k, .psych-k, .psych .kicker, .fails > .k) {
+  position: absolute; top: 0; left: 1rem; transform: translateY(-50%); display: inline-block; margin: 0;
+  padding: 0.1rem 0.55rem; border: var(--frame-w) solid var(--frame); border-radius: 4px; background: var(--bg-sunk);
+  color: var(--ink); box-shadow: none; font-family: var(--font-sans); font-weight: 600; font-size: 0.8rem; line-height: 1.4;
+}
+html:root body .psych { padding-top: 1.6rem; }
+html:root body .psych::before { top: 1.5rem; }
+html:root body .fails { position: relative; padding-top: 1.5rem; }
+@media (max-width: 640px) { html:root body .psych { padding-top: 4.9rem; } html:root body .psych::before { top: 1.4rem; } }
+/* 2. Where you are in the story ("Step 2", "Moment 2 of 4", "Navigation"): small bold grey text above the heading. */
+html:root body :is(.chapter .num, .vs-k, .tn-k, .block-k) {
+  display: block; padding: 0; background: none; color: var(--ink-3);
+  font-family: var(--font-sans); font-weight: 600; font-size: 0.85rem; line-height: 1.4;
+}
+/* 3. A number in a list (plugins, findings): one yellow badge. */
+html .issues li b::before { background: var(--duck); color: var(--on-duck); }
+html:root body .psych h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
+/* the umbrella stands back in the corner: a lighter, warmer line, as the room's back pieces have */
+html .room-props .rp-far { stroke: #5B4A3E; stroke-width: 2; }
+:root[data-theme="dark"] .room-props .rp-far { stroke: #0E1020; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .room-props .rp-far { stroke: #0E1020; } }
+
+/* ---------- the homepage room: a deeper floor, in perspective ---------- */
+/* The floor is half as deep again, and its boards run from the front edge back to the wall, closing in
+   toward the middle (one-point perspective), so the floor tilts away and the furniture stands in the room. */
+html .duck-room { --room-floor: calc(136 * var(--u)); --planks-deep: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 120' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='120'%3E%3Cstop offset='0' stop-color='%235B4A3E' stop-opacity='.08'/%3E%3Cstop offset='1' stop-color='%235B4A3E' stop-opacity='.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke='url%28%23f%29' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke-width='1.5'%3E%3Cpath d='M10.4 0 C-39.9 40 -89.6 80 -140.0 120' stroke-dasharray='54 6 83 4' stroke-dashoffset='53'/%3E%3Cpath d='M111.2 0 C69.2 40 23.6 80 -20.0 120' stroke-dasharray='67 5 53 4' stroke-dashoffset='7'/%3E%3Cpath d='M212.0 0 C174.7 40 137.7 80 100.0 120' stroke-dasharray='61 7 65 5' stroke-dashoffset='34'/%3E%3Cpath d='M312.8 0 C280.6 40 251.0 80 220.0 120' stroke-dasharray='44 5 50 6' stroke-dashoffset='13'/%3E%3Cpath d='M413.6 0 C389.6 40 365.7 80 340.0 120' stroke-dasharray='64 6 61 5' stroke-dashoffset='10'/%3E%3Cpath d='M514.4 0 C494.6 40 477.3 80 460.0 120' stroke-dasharray='42 5 89 6' stroke-dashoffset='28'/%3E%3Cpath d='M615.2 0 C601.8 40 593.0 80 580.0 120' stroke-dasharray='46 5 50 4' stroke-dashoffset='13'/%3E%3Cpath d='M716.0 0 C711.4 40 703.5 80 700.0 120' stroke-dasharray='51 5 60 5' stroke-dashoffset='20'/%3E%3Cpath d='M816.8 0 C819.8 40 820.8 80 820.0 120' stroke-dasharray='50 5 61 6' stroke-dashoffset='12'/%3E%3Cpath d='M917.6 0 C925.7 40 933.0 80 940.0 120' stroke-dasharray='62 6 51 5' stroke-dashoffset='26'/%3E%3Cpath d='M1018.4 0 C1030.9 40 1044.2 80 1060.0 120' stroke-dasharray='48 5 66 4' stroke-dashoffset='21'/%3E%3Cpath d='M1119.2 0 C1139.6 40 1158.0 80 1180.0 120' stroke-dasharray='57 4 88 6' stroke-dashoffset='45'/%3E%3Cpath d='M1220.0 0 C1245.4 40 1272.3 80 1300.0 120' stroke-dasharray='59 4 69 5' stroke-dashoffset='52'/%3E%3Cpath d='M1320.8 0 C1352.0 40 1386.8 80 1420.0 120' stroke-dasharray='57 7 70 4' stroke-dashoffset='30'/%3E%3Cpath d='M1421.6 0 C1460.8 40 1501.9 80 1540.0 120' stroke-dasharray='68 5 53 5' stroke-dashoffset='60'/%3E%3Cpath d='M1522.4 0 C1568.3 40 1614.7 80 1660.0 120' stroke-dasharray='39 6 75 4' stroke-dashoffset='35'/%3E%3Cpath d='M1623.2 0 C1675.5 40 1728.4 80 1780.0 120' stroke-dasharray='64 6 74 6' stroke-dashoffset='53'/%3E%3C/g%3E%3Cg stroke-width='1.3'%3E%3Cpath d='M484.0 78 C520.2 77 551.2 79 587.3 78.3'/%3E%3Cpath d='M822.9 40 C856.9 39 886.0 41 920.1 40.3'/%3E%3Cpath d='M1172.8 96 C1210.0 95 1241.8 97 1279.0 96.3'/%3E%3Cpath d='M1262.3 56 C1297.2 55 1327.2 57 1362.1 56.3'/%3E%3C/g%3E%3C/g%3E%3Cg fill='none' stroke='%235B4A3E' stroke-opacity='.14' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M207.8 64 c-3.7 4.8 -6.8 7.2 -9.3 12.0'/%3E%3Cpath d='M448.0 30 c-2.2 4.8 -4.5 7.2 -5.4 12.0'/%3E%3Cpath d='M761.7 88 c0.1 4.8 -1.0 7.2 0.3 12.0'/%3E%3Cpath d='M1084.2 36 c2.4 4.8 2.4 7.2 6.1 12.0'/%3E%3Cpath d='M1438.3 74 c4.7 4.8 5.9 7.2 11.8 12.0'/%3E%3C/g%3E%3C/svg%3E"); }
+:root[data-theme="dark"] .duck-room { --planks-deep: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 120' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='120'%3E%3Cstop offset='0' stop-color='%23FFFFFF' stop-opacity='.06'/%3E%3Cstop offset='1' stop-color='%23FFFFFF' stop-opacity='.22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke='url%28%23f%29' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke-width='1.5'%3E%3Cpath d='M10.4 0 C-39.9 40 -89.6 80 -140.0 120' stroke-dasharray='54 6 83 4' stroke-dashoffset='53'/%3E%3Cpath d='M111.2 0 C69.2 40 23.6 80 -20.0 120' stroke-dasharray='67 5 53 4' stroke-dashoffset='7'/%3E%3Cpath d='M212.0 0 C174.7 40 137.7 80 100.0 120' stroke-dasharray='61 7 65 5' stroke-dashoffset='34'/%3E%3Cpath d='M312.8 0 C280.6 40 251.0 80 220.0 120' stroke-dasharray='44 5 50 6' stroke-dashoffset='13'/%3E%3Cpath d='M413.6 0 C389.6 40 365.7 80 340.0 120' stroke-dasharray='64 6 61 5' stroke-dashoffset='10'/%3E%3Cpath d='M514.4 0 C494.6 40 477.3 80 460.0 120' stroke-dasharray='42 5 89 6' stroke-dashoffset='28'/%3E%3Cpath d='M615.2 0 C601.8 40 593.0 80 580.0 120' stroke-dasharray='46 5 50 4' stroke-dashoffset='13'/%3E%3Cpath d='M716.0 0 C711.4 40 703.5 80 700.0 120' stroke-dasharray='51 5 60 5' stroke-dashoffset='20'/%3E%3Cpath d='M816.8 0 C819.8 40 820.8 80 820.0 120' stroke-dasharray='50 5 61 6' stroke-dashoffset='12'/%3E%3Cpath d='M917.6 0 C925.7 40 933.0 80 940.0 120' stroke-dasharray='62 6 51 5' stroke-dashoffset='26'/%3E%3Cpath d='M1018.4 0 C1030.9 40 1044.2 80 1060.0 120' stroke-dasharray='48 5 66 4' stroke-dashoffset='21'/%3E%3Cpath d='M1119.2 0 C1139.6 40 1158.0 80 1180.0 120' stroke-dasharray='57 4 88 6' stroke-dashoffset='45'/%3E%3Cpath d='M1220.0 0 C1245.4 40 1272.3 80 1300.0 120' stroke-dasharray='59 4 69 5' stroke-dashoffset='52'/%3E%3Cpath d='M1320.8 0 C1352.0 40 1386.8 80 1420.0 120' stroke-dasharray='57 7 70 4' stroke-dashoffset='30'/%3E%3Cpath d='M1421.6 0 C1460.8 40 1501.9 80 1540.0 120' stroke-dasharray='68 5 53 5' stroke-dashoffset='60'/%3E%3Cpath d='M1522.4 0 C1568.3 40 1614.7 80 1660.0 120' stroke-dasharray='39 6 75 4' stroke-dashoffset='35'/%3E%3Cpath d='M1623.2 0 C1675.5 40 1728.4 80 1780.0 120' stroke-dasharray='64 6 74 6' stroke-dashoffset='53'/%3E%3C/g%3E%3Cg stroke-width='1.3'%3E%3Cpath d='M484.0 78 C520.2 77 551.2 79 587.3 78.3'/%3E%3Cpath d='M822.9 40 C856.9 39 886.0 41 920.1 40.3'/%3E%3Cpath d='M1172.8 96 C1210.0 95 1241.8 97 1279.0 96.3'/%3E%3Cpath d='M1262.3 56 C1297.2 55 1327.2 57 1362.1 56.3'/%3E%3C/g%3E%3C/g%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='.06' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M207.8 64 c-3.7 4.8 -6.8 7.2 -9.3 12.0'/%3E%3Cpath d='M448.0 30 c-2.2 4.8 -4.5 7.2 -5.4 12.0'/%3E%3Cpath d='M761.7 88 c0.1 4.8 -1.0 7.2 0.3 12.0'/%3E%3Cpath d='M1084.2 36 c2.4 4.8 2.4 7.2 6.1 12.0'/%3E%3Cpath d='M1438.3 74 c4.7 4.8 5.9 7.2 11.8 12.0'/%3E%3C/g%3E%3C/svg%3E"); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .duck-room { --planks-deep: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 120' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='120'%3E%3Cstop offset='0' stop-color='%23FFFFFF' stop-opacity='.06'/%3E%3Cstop offset='1' stop-color='%23FFFFFF' stop-opacity='.22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke='url%28%23f%29' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke-width='1.5'%3E%3Cpath d='M10.4 0 C-39.9 40 -89.6 80 -140.0 120' stroke-dasharray='54 6 83 4' stroke-dashoffset='53'/%3E%3Cpath d='M111.2 0 C69.2 40 23.6 80 -20.0 120' stroke-dasharray='67 5 53 4' stroke-dashoffset='7'/%3E%3Cpath d='M212.0 0 C174.7 40 137.7 80 100.0 120' stroke-dasharray='61 7 65 5' stroke-dashoffset='34'/%3E%3Cpath d='M312.8 0 C280.6 40 251.0 80 220.0 120' stroke-dasharray='44 5 50 6' stroke-dashoffset='13'/%3E%3Cpath d='M413.6 0 C389.6 40 365.7 80 340.0 120' stroke-dasharray='64 6 61 5' stroke-dashoffset='10'/%3E%3Cpath d='M514.4 0 C494.6 40 477.3 80 460.0 120' stroke-dasharray='42 5 89 6' stroke-dashoffset='28'/%3E%3Cpath d='M615.2 0 C601.8 40 593.0 80 580.0 120' stroke-dasharray='46 5 50 4' stroke-dashoffset='13'/%3E%3Cpath d='M716.0 0 C711.4 40 703.5 80 700.0 120' stroke-dasharray='51 5 60 5' stroke-dashoffset='20'/%3E%3Cpath d='M816.8 0 C819.8 40 820.8 80 820.0 120' stroke-dasharray='50 5 61 6' stroke-dashoffset='12'/%3E%3Cpath d='M917.6 0 C925.7 40 933.0 80 940.0 120' stroke-dasharray='62 6 51 5' stroke-dashoffset='26'/%3E%3Cpath d='M1018.4 0 C1030.9 40 1044.2 80 1060.0 120' stroke-dasharray='48 5 66 4' stroke-dashoffset='21'/%3E%3Cpath d='M1119.2 0 C1139.6 40 1158.0 80 1180.0 120' stroke-dasharray='57 4 88 6' stroke-dashoffset='45'/%3E%3Cpath d='M1220.0 0 C1245.4 40 1272.3 80 1300.0 120' stroke-dasharray='59 4 69 5' stroke-dashoffset='52'/%3E%3Cpath d='M1320.8 0 C1352.0 40 1386.8 80 1420.0 120' stroke-dasharray='57 7 70 4' stroke-dashoffset='30'/%3E%3Cpath d='M1421.6 0 C1460.8 40 1501.9 80 1540.0 120' stroke-dasharray='68 5 53 5' stroke-dashoffset='60'/%3E%3Cpath d='M1522.4 0 C1568.3 40 1614.7 80 1660.0 120' stroke-dasharray='39 6 75 4' stroke-dashoffset='35'/%3E%3Cpath d='M1623.2 0 C1675.5 40 1728.4 80 1780.0 120' stroke-dasharray='64 6 74 6' stroke-dashoffset='53'/%3E%3C/g%3E%3Cg stroke-width='1.3'%3E%3Cpath d='M484.0 78 C520.2 77 551.2 79 587.3 78.3'/%3E%3Cpath d='M822.9 40 C856.9 39 886.0 41 920.1 40.3'/%3E%3Cpath d='M1172.8 96 C1210.0 95 1241.8 97 1279.0 96.3'/%3E%3Cpath d='M1262.3 56 C1297.2 55 1327.2 57 1362.1 56.3'/%3E%3C/g%3E%3C/g%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='.06' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M207.8 64 c-3.7 4.8 -6.8 7.2 -9.3 12.0'/%3E%3Cpath d='M448.0 30 c-2.2 4.8 -4.5 7.2 -5.4 12.0'/%3E%3Cpath d='M761.7 88 c0.1 4.8 -1.0 7.2 0.3 12.0'/%3E%3Cpath d='M1084.2 36 c2.4 4.8 2.4 7.2 6.1 12.0'/%3E%3Cpath d='M1438.3 74 c4.7 4.8 5.9 7.2 11.8 12.0'/%3E%3C/g%3E%3C/svg%3E"); } }
+html .duck-room {
+  background:
+    linear-gradient(var(--room-ink), var(--room-ink)) left bottom / 100% 2px no-repeat,
+    linear-gradient(var(--room-ink), var(--room-ink)) left bottom calc(var(--room-floor) + var(--room-skirt)) / 100% 2px no-repeat,
+    linear-gradient(var(--skirt), var(--skirt)) left bottom var(--room-floor) / 100% var(--room-skirt) no-repeat,
+    linear-gradient(var(--room-ink), var(--room-ink)) left bottom calc(var(--room-floor) - 2px) / 100% 2px no-repeat,
+    var(--planks-deep) center bottom / 100% var(--room-floor) no-repeat,
+    linear-gradient(to bottom, color-mix(in srgb, #000 7%, transparent), transparent 55%) left bottom / 100% var(--room-floor) no-repeat,
+    linear-gradient(var(--boards), var(--boards)) left bottom / 100% var(--room-floor) no-repeat,
+    var(--wallpaper) var(--paper-x, 0) 0,
+    var(--wall);
+}
+
+/* The hero room steps back: the wall, skirting and boards are the farthest things in the scene,
+   so they take the back pieces' brown line and quieter colours (a mix, not a fade). */
+html .duck-room {
+  --room-ink: #5B4A3E;
+  --boards: color-mix(in srgb, #E8B974 70%, #FFFDF6);
+  --skirt: color-mix(in srgb, #FFFDF6 62%, var(--wall));
+}
+:root[data-theme="dark"] .duck-room {
+  --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall));
+  --boards: color-mix(in srgb, #2B2535 72%, var(--wall));
+  --skirt: color-mix(in srgb, #39405C 70%, var(--wall));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .duck-room {
+    --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall));
+    --boards: color-mix(in srgb, #2B2535 72%, var(--wall));
+    --skirt: color-mix(in srgb, #39405C 70%, var(--wall));
+  }
+}
+
+/* The case-page headers step back the same way: the back pieces' brown line, a lighter floor,
+   a skirting board leaning toward the wall. */
+html :is(.case-intro .intro-sum, .case-hero, .post-hero) {
+  --room-ink: #5B4A3E;
+  --boards: color-mix(in srgb, #E8B974 70%, #FFFDF6);
+  --skirt: color-mix(in srgb, #FFFDF6 62%, var(--wall));
+  --planks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='86' viewBox='0 0 640 86'%3E%3Cg fill='none' stroke='%235B4A3E' stroke-linecap='round'%3E%3Cg stroke-opacity='.28' stroke-width='2.2'%3E%3Cpath d='M0 27 C60 25.5 120 28.5 200 26.8 S330 25 420 27.2 S560 28.4 640 26.6' stroke-dasharray='230 8 340 7'/%3E%3Cpath d='M0 56 C80 57.6 160 54.4 260 55.8 S420 57.4 500 55.2 S600 54.6 640 56' stroke-dasharray='170 8 380 7'/%3E%3C/g%3E%3Cg stroke-opacity='.2' stroke-width='2'%3E%3Cpath d='M180 30 C181.5 38 179 45 180.5 53'/%3E%3Cpath d='M470 3 C469 11 471 17 469.5 24'/%3E%3Cpath d='M70 59 C71.5 67 69 75 71 84'/%3E%3Cpath d='M560 30 C561 38 559 45 560.5 53'/%3E%3Cpath d='M340 59 C339 66 341.5 76 339.5 84'/%3E%3C/g%3E%3Cg stroke-opacity='.1' stroke-width='1.6'%3E%3Cpath d='M40 14 c10 -1.6 18 1.2 28 -0.4'/%3E%3Cpath d='M380 40 c8 1.2 14 -1 22 0.4'/%3E%3Cpath d='M230 70 c10 -1.6 18 1 26 -0.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+:root[data-theme="dark"] :is(.case-intro .intro-sum, .case-hero, .post-hero) {
+  --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall));
+  --boards: color-mix(in srgb, #2B2535 72%, var(--wall));
+  --skirt: color-mix(in srgb, #39405C 70%, var(--wall));
+  --planks: inherit;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.case-intro .intro-sum, .case-hero, .post-hero) {
+    --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall));
+    --boards: color-mix(in srgb, #2B2535 72%, var(--wall));
+    --skirt: color-mix(in srgb, #39405C 70%, var(--wall));
+    --planks: inherit;
+  }
+}
+
+/* The cabinet and umbrella sit back like the rest of the room: colour softened with distance,
+   as in the scene (less saturated and lower contrast; darker after dark). Not a fade. */
+html .room-props svg { filter: saturate(.75) contrast(.92) brightness(1.02); }
+:root[data-theme="dark"] .room-props svg { filter: saturate(.62) brightness(.8); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .room-props svg { filter: saturate(.62) brightness(.8); } }
+
+/* ---------- the intro as the practice's intake form, pinned to the wall ----------
+   Not a column of text beside a picture: a paper form that hangs in the room, filled in by hand.
+   The values stay real text (the name is still the h1); the field labels are the form's printing. */
+html .duck-room { --intake-paper: #FFFDF6; --intake-rule: color-mix(in srgb, #1E1A17 22%, transparent); --intake-edge: #1E1A17; }
+:root[data-theme="dark"] .duck-room { --intake-paper: #262B42; --intake-rule: color-mix(in srgb, #F6EEDD 20%, transparent); --intake-edge: #0E1020; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .duck-room { --intake-paper: #262B42; --intake-rule: color-mix(in srgb, #F6EEDD 20%, transparent); --intake-edge: #0E1020; }
+}
+html .duck-room .intake {
+  position: relative; max-width: 28rem; margin-top: 0.5rem;
+  padding: 1.35rem 1.6rem 1.5rem;
+  background: var(--intake-paper); color: var(--ink);
+  border: 2px solid var(--intake-edge); border-radius: 4px;
+  box-shadow: 5px 6px 0 rgb(30 26 23 / .12);
+  rotate: -1.2deg;
+}
+:root[data-theme="dark"] .duck-room .intake { box-shadow: 5px 6px 0 rgb(0 0 0 / .28); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .duck-room .intake { box-shadow: 5px 6px 0 rgb(0 0 0 / .28); } }
+/* the pin it hangs from */
+html .duck-room .intake::before {
+  content: ""; position: absolute; top: -10px; left: 50%; translate: -50% 0;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--mustard); border: 2px solid var(--intake-edge);
+  box-shadow: 2px 3px 0 rgb(30 26 23 / .18);
+}
+html .duck-room .intake-head {
+  display: flex; justify-content: space-between; gap: 1rem;
+  margin: 0 0 1rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--intake-edge);
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+}
+:root[data-theme="dark"] .duck-room .intake-head { border-bottom-color: var(--intake-rule); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .duck-room .intake-head { border-bottom-color: var(--intake-rule); } }
+html .duck-room .intake-k, html .duck-room .intake-facts dt {
+  display: block; font-family: "Shantell Sans", var(--font-sans); font-size: 0.92rem; font-weight: 500; line-height: 1.3; color: var(--ink-3);
+}
+html .duck-room .intake h1 {
+  margin: 0 0 0.9rem; padding-bottom: 0.2rem;
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem); line-height: 1.05;
+  border-bottom: 1.5px dashed var(--intake-rule);
+}
+html .duck-room .intake .claim {
+  margin: 0.1rem 0 0.9rem; padding-bottom: 0.7rem;
+  border-bottom: 1.5px dashed var(--intake-rule);
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem); line-height: 1.5; color: var(--ink);
+}
+html .duck-room .intake-facts { margin: 0; }
+html .duck-room .intake-facts > div {
+  display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); align-items: baseline; gap: 0.6rem;
+  padding: 0.4rem 0; border-bottom: 1.5px dashed var(--intake-rule);
+}
+html .duck-room .intake-facts dd { margin: 0; font-size: 0.92rem; color: var(--ink-2); }
+html .duck-room .intake .hero-actions { margin-top: 1.25rem; }
+@media (max-width: 860px) {
+  html .duck-room .intake { max-width: none; rotate: -0.6deg; padding: 1.2rem 1.2rem 1.3rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html .duck-room .intake { transition: rotate 300ms var(--ease); }
+  html .duck-room .intake:hover { rotate: -0.4deg; }
+}
+/* the cabinet stands a step further into the room, clear of the form */
+html .room-props { right: calc(100% - 136 * var(--u)); }

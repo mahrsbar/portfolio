@@ -15,15 +15,15 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Geist+Mono:wght@400..600&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
     />
-    <link rel="stylesheet" href="../css/style.css?v=20261031a" />
-    <link rel="stylesheet" href="../css/accents.css?v=20261027a" />
+    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -32,14 +32,14 @@
     </script>
     <style>
       .chapter { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
-      .chapter .num { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-text, var(--c)); margin-bottom: 0.4rem; display: block; }
-      .lesson { margin: 2.5rem 0; padding: 1.75rem 1.75rem 1.6rem; border-radius: var(--radius-l); background: var(--c-soft); border-left: 4px solid var(--c); }
-      .lesson-k { display: block; margin-bottom: 0.6rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .chapter .num { display: block; margin-bottom: 0.4rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
+      .lesson { margin: 2.5rem 0; padding: 1.4rem 0 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .lesson-k { display: block; margin-bottom: 0.5rem; font-size: 0.82rem; font-weight: 500; color: var(--ink-3); }
       .lesson .lesson-big { margin: 0 0 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
       .lesson p { margin: 0; color: var(--ink-2); }
       .mock-note { margin: 0.75rem 0 0; font-size: 0.8rem; color: var(--ink-3); }
-      .psych { display: block; margin: 2.5rem 0; padding: 1.25rem 1.4rem; border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
-      .psych-k { display: block; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-text); }
+      .psych { margin: 2.5rem 0; padding: 1.4rem 0 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .psych-k { display: block; margin-bottom: 0.35rem; font-family: "Shantell Sans", var(--font-sans); font-size: 1rem; font-weight: 500; color: var(--mustard-text); }
       .psych h3 { margin: 0.3rem 0 0.5rem; font-size: 1.1rem; }
       .psych p { margin: 0 0 0.6rem; color: var(--ink-2); }
       .psych small { color: var(--ink-3); }
@@ -150,8 +150,8 @@
     </header>
 
     <main id="main" class="hue-pink">
-      <section class="wrap case-intro">
-        <p class="eyebrow"><b>Fraud-investigation suite</b> · UX research + product design</p>
+      <section class="wrap case-intro" data-toy="tabs" data-prop="rolodex">
+        <p class="eyebrow"><span class="case-no">Case 03</span><b>Fraud-investigation suite</b> · UX research + product design</p>
         <h1>Four tabs to answer one question</h1>
         <p class="intro-sum">
           Analysts investigating a suspicious account bounced between a search tool, a map, a link graph and a
@@ -165,6 +165,8 @@
         </ul>
         <dl class="meta-line">
           <div><dt>Role</dt><dd>UX research, product design and the front-end build</dd></div>
+          <div><dt>When</dt><dd>2025</dd></div>
+          <div><dt>With</dt><dd>Internal and customer analysts in research sessions; product and engineering through three design rounds</dd></div>
         </dl>
       </section>
 
@@ -228,7 +230,7 @@
             </div>
           </div>
         </div>
-        <p class="mock-note">A recreated mockup with invented data. Company work: no real product UI or data.</p>
+        <p class="mock-note">A recreated mockup with invented data.</p>
       </section>
 
       <section class="wrap section">
@@ -272,9 +274,9 @@
 
           <aside class="psych" aria-label="Psychology note">
             <span class="psych-k">Psych note</span>
-            <h3>Working memory holds about four things</h3>
-            <p>Analysts were spending that capacity on bookkeeping: which tab, which search, which time range. Put the timeline on the screen and the four slots go back to the actual question.</p>
-            <small>Cowan, N. (2001). The magical number 4 in short-term memory. Behavioral and Brain Sciences, 24(1), 87–114.</small>
+            <h3>A little effort on screen, a lot of trust in memory</h3>
+            <p>When checking the screen costs even a little more effort than recalling, people go from memory, and memory is the less accurate of the two. Every tab switch made checking the costlier option. Put the timeline on one screen and checking becomes a glance.</p>
+            <small>Gray, W. D., &amp; Fu, W.-T. (2004). Soft constraints in interactive behavior: The case of ignoring perfect knowledge in-the-world for imperfect knowledge in-the-head. Cognitive Science, 28(3), 359–382.</small>
           </aside>
 
           <div class="chapter">
@@ -323,11 +325,14 @@
             </p>
           </div>
 
-          <h2>What I took from it</h2>
-          <ul>
-            <li><strong>Check the story before you design for it.</strong> The customer quote was right, but the sessions showed exactly where the tabs opened, and that decided the layout.</li>
-            <li><strong>Validate on paper.</strong> Lo-fi flows reviewed by real analysts saved at least one full redesign.</li>
-          </ul>
+          <h2>The outcome</h2>
+          <p>
+            The page shipped as the first pillar of a multi-year back-office strategy, with analytics events on every
+            card so the next iteration starts from usage instead of opinions. A year later the ask bar landed on the
+            structure it set up. I built it in the same codebase the rest of the team ships from, which is the
+            fastest feedback loop I know. The habit I kept: validate on paper. Lo-fi flows reviewed
+            by real analysts saved at least one full redesign.
+          </p>
 
         </div>
         </div>
@@ -337,7 +342,6 @@
     <footer class="footer">
       <div class="wrap">
         <span>© <span data-year>2026</span> Mahrs Aslam.</span>
-        <span>Company work: the product, data and screens are recreated mockups.</span>
       </div>
     </footer>
     <script>
@@ -399,7 +403,8 @@
         render();
       })();
     </script>
-    <script src="../js/main.js?v=20261026c"></script>
+    <script src="../js/main.js?v=20261112e"></script>
+    <script src="../js/toys.js?v=8" defer></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>
