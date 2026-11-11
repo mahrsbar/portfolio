@@ -528,14 +528,14 @@
       </linearGradient>
       <!-- the beam is wider than the scene at its foot; fade both sides so the
            frame never cuts it off with a hard edge -->
-      <linearGradient id="cone-fade-x" x1="670" y1="0" x2="830" y2="0" gradientUnits="userSpaceOnUse">
+      <linearGradient id="cone-fade-x" x1="555" y1="0" x2="735" y2="0" gradientUnits="userSpaceOnUse">
         <stop offset="0" stop-color="#000"/>
         <stop offset=".25" stop-color="#fff"/>
         <stop offset=".6" stop-color="#fff"/>
         <stop offset=".8" stop-color="#000"/>
       </linearGradient>
-      <mask id="cone-mask" maskUnits="userSpaceOnUse" x="660" y="160" width="180" height="270">
-        <rect x="660" y="160" width="180" height="270" fill="url(#cone-fade-x)"/>
+      <mask id="cone-mask" maskUnits="userSpaceOnUse" x="545" y="90" width="200" height="340">
+        <rect x="545" y="90" width="200" height="340" fill="url(#cone-fade-x)"/>
       </mask>
       <path id="tiny-heart" d="M0 0 c-4 -5 1 -9 5 -4 c4 -5 9 -1 5 4 l-5 5 z"/>
     </defs>
@@ -612,25 +612,34 @@
         <circle cx="677" cy="-146" r="1.6" fill="var(--line)"/>
       </g>
 
-      <!-- lamp, on the right beside the bookcase: click it to switch the lights (dark mode) on and off -->
+      <!-- an arc floor lamp: the base on the right, the arm curving over the duck's chair to a dome shade.
+           Click it to switch the lights (dark mode) on and off. -->
       <g class="lamp" id="lamp" transform="translate(-6 0)" tabindex="0" role="button" aria-label="Lamp: switch between light and dark mode">
         <g class="lamp-on">
-          <polygon class="lamp-light" points="722,172 778,172 830,420 670,420" fill="url(#cone)" mask="url(#cone-mask)"/>
+          <polygon class="lamp-light" points="647,97 705,111 735,420 555,420" fill="url(#cone)" mask="url(#cone-mask)"/>
           <g class="motes" fill="var(--glow)">
-            <circle class="mote anim" cx="740" cy="380" r="2.5"/>
-            <circle class="mote anim" cx="765" cy="400" r="2"/>
-            <circle class="mote anim" cx="720" cy="360" r="1.8"/>
-            <circle class="mote anim" cx="755" cy="330" r="2.2"/>
+            <circle class="mote anim" cx="640" cy="380" r="2.5"/>
+            <circle class="mote anim" cx="672" cy="400" r="2"/>
+            <circle class="mote anim" cx="615" cy="350" r="1.8"/>
+            <circle class="mote anim" cx="660" cy="310" r="2.2"/>
           </g>
         </g>
-        <line class="ink" x1="750" y1="172" x2="750" y2="414"/>
-        <ellipse class="ink" cx="750" cy="418" rx="24" ry="6" fill="var(--lamp-base)"/>
-        <path class="shade ink" d="M716 172 L784 172 L768 124 L732 124 Z" fill="var(--couch-hi)"/><path class="shine" d="M737 134 l-6 26" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
-        <path d="M724 150 L776 150" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="4 6" opacity=".5"/>
+        <!-- the pole: an ink tube in the base's colour, up and over in one arc -->
+        <path d="M750 410 V106 A44 44 0 0 0 706 62 H698 L685 77" fill="none" stroke="var(--line)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M750 410 V106 A44 44 0 0 0 706 62 H698 L685 77" fill="none" stroke="var(--lamp-base)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- the base: a low disc -->
+        <path class="ink" d="M722 412 V417 A28 6.5 0 0 0 778 417 V412" fill="var(--lamp-base)"/>
+        <ellipse class="ink" cx="750" cy="412" rx="28" ry="6.5" fill="var(--lamp-base)"/>
+        <!-- the shade: a dome tipped toward the chair, its bulb just showing -->
+        <g transform="translate(676 104) rotate(14)">
+          <path d="M-11 0 A11 8 0 0 0 11 0 Z" fill="var(--glow)" stroke="var(--line)" stroke-width="1.8"/>
+          <path class="shade ink" d="M-31 0 A31 30 0 0 1 31 0 Z" fill="var(--couch-hi)"/>
+          <path class="shine" d="M-20 -8 q2 -10 12 -16" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+        </g>
         <!-- pull cord: sways on its own, gets tugged on click -->
         <g class="cord anim">
-          <path d="M770 172 v24" stroke="var(--line)" stroke-width="1.5"/>
-          <circle cx="770" cy="199" r="4" fill="var(--wood)" stroke="var(--line)" stroke-width="1.5"/>
+          <path d="M696 109 v22" stroke="var(--line)" stroke-width="1.5"/>
+          <circle cx="696" cy="134" r="4" fill="var(--wood)" stroke="var(--line)" stroke-width="1.5"/>
         </g>
       </g>
 
