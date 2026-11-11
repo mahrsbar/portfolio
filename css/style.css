@@ -6302,6 +6302,3 @@ html:root body :is(.chapter .num, .vs-k, .tn-k, .block-k) {
 /* 3. A number in a list (plugins, findings): one yellow badge. */
 html .issues li b::before { background: var(--duck); color: var(--on-duck); }
 html:root body .psych h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
-
-/* where there's room, the cabinet stands on the wall left of the name (main.js places it) */
-html .room-props.on-left { right: auto; }
