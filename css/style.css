@@ -5198,7 +5198,7 @@ a { color: var(--ink); text-decoration-color: var(--duck); text-decoration-thick
 .nav { background: var(--bg); border-bottom: 2px solid transparent; }
 .nav.scrolled { border-bottom-color: var(--ink); }
 .brand { display: inline-flex; align-items: center; gap: 0.5rem; }
-.brand::before { content: ""; flex: none; width: 28px; height: 27px; background: url("../assets/duck-mark.svg") center / contain no-repeat; }
+.brand::before { content: ""; flex: none; width: 28px; height: 27px; background: url("../assets/duck-mark.svg?v=2") center / contain no-repeat; }
 .brand .wordmark .dot { color: var(--duck-dk); }
 .nav-links a { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: var(--ink-2); }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
@@ -5234,7 +5234,7 @@ html .lesson p:last-child { margin: 0; }
 
 /* the psych note: the duck's own note, with the duck beside it */
 html .psych { position: relative; display: block; margin: 2.75rem 0; padding: 1.35rem 1.4rem 1.25rem 5.4rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--card); }
-html .psych::before { content: ""; position: absolute; left: 1.05rem; top: 1.2rem; width: 56px; height: 54px; background: url("../assets/duck-mark.svg") center / contain no-repeat; }
+html .psych::before { content: ""; position: absolute; left: 1.05rem; top: 1.2rem; width: 56px; height: 54px; background: url("../assets/duck-mark.svg?v=2") center / contain no-repeat; }
 html .psych-k, html .psych .kicker { margin: 0 0 0.6rem; color: var(--ink); }
 html .psych p { color: var(--ink-2); }
 html .psych .src { color: var(--ink-3); }
@@ -5324,7 +5324,7 @@ html .sn-k { color: var(--ink); }
 /* the sign-off */
 .footer { border-top: 2px solid var(--ink); }
 .footer .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; }
-.footer .wrap::before { content: ""; flex: none; width: 22px; height: 21px; background: url("../assets/duck-mark.svg") center / contain no-repeat; }
+.footer .wrap::before { content: ""; flex: none; width: 22px; height: 21px; background: url("../assets/duck-mark.svg?v=2") center / contain no-repeat; }
 
 /* the lost page: the bug, on its own */
 .lost .lost-bug { display: block; width: 96px; height: auto; margin: 0 auto 1.5rem; }
