@@ -6371,6 +6371,6 @@ html :is(.case-intro .intro-sum, .case-hero, .post-hero) {
 
 /* The cabinet and umbrella sit back like the rest of the room: colour softened with distance,
    as in the scene (less saturated and lower contrast; darker after dark). Not a fade. */
-html .room-props svg { filter: saturate(.6) contrast(.84) brightness(1.04); }
+html .room-props svg { filter: saturate(.75) contrast(.92) brightness(1.02); }
 :root[data-theme="dark"] .room-props svg { filter: saturate(.62) brightness(.8); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .room-props svg { filter: saturate(.62) brightness(.8); } }

@@ -232,7 +232,7 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .far { --line: #0E1020; } }
   /* and the room's colour softens with distance, as air does it: less saturated, less contrast
      (darker after dark). Only the chairs and the two characters keep full strength. */
-  :root { --recede: saturate(.6) contrast(.84) brightness(1.04); --wall-shadow: drop-shadow(5px 6px 0 rgb(30 26 23 / .12)); }
+  :root { --recede: saturate(.75) contrast(.92) brightness(1.02); --wall-shadow: drop-shadow(5px 6px 0 rgb(30 26 23 / .12)); }
   :root[data-theme="dark"] { --recede: saturate(.62) brightness(.8); --wall-shadow: drop-shadow(5px 6px 0 rgb(0 0 0 / .28)); }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --recede: saturate(.62) brightness(.8); --wall-shadow: drop-shadow(5px 6px 0 rgb(0 0 0 / .28)); } }
   .far { filter: var(--recede); }
