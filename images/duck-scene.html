@@ -230,9 +230,16 @@
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --case: #4A4560; } }
   :root[data-theme="dark"] .far { --line: #0E1020; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .far { --line: #0E1020; } }
-  .far.window, .far.clock, .far.portrait, .diplomas, .far.bookcase { filter: drop-shadow(5px 6px 0 rgb(30 26 23 / .12)); }
-  :root[data-theme="dark"] :is(.far.window, .far.clock, .far.portrait, .diplomas, .far.bookcase) { filter: drop-shadow(5px 6px 0 rgb(0 0 0 / .28)); }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) :is(.far.window, .far.clock, .far.portrait, .diplomas, .far.bookcase) { filter: drop-shadow(5px 6px 0 rgb(0 0 0 / .28)); } }
+  /* and the room's colour softens with distance, as air does it: less saturated, less contrast
+     (darker after dark). Only the chairs and the two characters keep full strength. */
+  :root { --recede: saturate(.6) contrast(.84) brightness(1.04); --wall-shadow: drop-shadow(5px 6px 0 rgb(30 26 23 / .12)); }
+  :root[data-theme="dark"] { --recede: saturate(.62) brightness(.8); --wall-shadow: drop-shadow(5px 6px 0 rgb(0 0 0 / .28)); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --recede: saturate(.62) brightness(.8); --wall-shadow: drop-shadow(5px 6px 0 rgb(0 0 0 / .28)); } }
+  .far { filter: var(--recede); }
+  .far:is(.window, .clock, .portrait, .diplomas, .bookcase, .shelf) { filter: var(--recede) var(--wall-shadow); }
+  /* after dark the lamp is the light source: it keeps its glow */
+  :root[data-theme="dark"] .far.lamp { filter: none; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .far.lamp { filter: none; } }
 
   /* ---------- speech bubbles ---------- */
   .bubbles { position: absolute; inset: 0; pointer-events: none; }
@@ -615,7 +622,7 @@
 
       <!-- an arc floor lamp: the base on the right, the arm curving over the duck's chair to a dome shade.
            Click it to switch the lights (dark mode) on and off. -->
-      <g class="lamp" id="lamp" transform="translate(-6 0)" tabindex="0" role="button" aria-label="Lamp: switch between light and dark mode">
+      <g class="far lamp" id="lamp" transform="translate(-6 0)" tabindex="0" role="button" aria-label="Lamp: switch between light and dark mode">
         <g class="lamp-on">
           <polygon class="lamp-light" points="647,97 705,111 735,420 555,420" fill="url(#cone)" mask="url(#cone-mask)"/>
           <g class="motes" fill="var(--glow)">
@@ -662,7 +669,7 @@
       </g>
 
       <!-- diplomas: click to zoom in -->
-      <g class="diplomas" transform="translate(200 -116)">
+      <g class="far diplomas" transform="translate(200 -116)">
         <g class="diploma anim" data-degree="psych" tabindex="0" role="button" aria-label="B.A. in Psychology, University of Alberta. Click to zoom in.">
           <g transform="rotate(-2 152 82)">
             <rect class="ink" x="88" y="34" width="128" height="96" rx="4" fill="var(--wood)" stroke-width="2.25"/>

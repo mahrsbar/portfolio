@@ -6369,10 +6369,8 @@ html :is(.case-intro .intro-sum, .case-hero, .post-hero) {
   }
 }
 
-/* After dark the putty cabinet dims with the room, so it doesn't outshine the chairs */
-:root[data-theme="dark"] .room-props [fill="#B5A993"] { fill: #8A806C; }
-:root[data-theme="dark"] .room-props [fill="#D2C8B4"] { fill: #A59B87; }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .room-props [fill="#B5A993"] { fill: #8A806C; }
-  :root:not([data-theme="light"]) .room-props [fill="#D2C8B4"] { fill: #A59B87; }
-}
+/* The cabinet and umbrella sit back like the rest of the room: colour softened with distance,
+   as in the scene (less saturated and lower contrast; darker after dark). Not a fade. */
+html .room-props svg { filter: saturate(.6) contrast(.84) brightness(1.04); }
+:root[data-theme="dark"] .room-props svg { filter: saturate(.62) brightness(.8); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .room-props svg { filter: saturate(.62) brightness(.8); } }
