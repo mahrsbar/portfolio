@@ -6345,3 +6345,26 @@ html .duck-room {
     --skirt: color-mix(in srgb, #39405C 70%, var(--wall));
   }
 }
+
+/* The case-page headers step back the same way: the back pieces' brown line, a lighter floor,
+   a skirting board leaning toward the wall. */
+html :is(.case-intro .intro-sum, .case-hero, .post-hero) {
+  --room-ink: #5B4A3E;
+  --boards: color-mix(in srgb, #E8B974 70%, #FFFDF6);
+  --skirt: color-mix(in srgb, #FFFDF6 62%, var(--wall));
+  --planks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='86' viewBox='0 0 640 86'%3E%3Cg fill='none' stroke='%235B4A3E' stroke-linecap='round'%3E%3Cg stroke-opacity='.28' stroke-width='2.2'%3E%3Cpath d='M0 27 C60 25.5 120 28.5 200 26.8 S330 25 420 27.2 S560 28.4 640 26.6' stroke-dasharray='230 8 340 7'/%3E%3Cpath d='M0 56 C80 57.6 160 54.4 260 55.8 S420 57.4 500 55.2 S600 54.6 640 56' stroke-dasharray='170 8 380 7'/%3E%3C/g%3E%3Cg stroke-opacity='.2' stroke-width='2'%3E%3Cpath d='M180 30 C181.5 38 179 45 180.5 53'/%3E%3Cpath d='M470 3 C469 11 471 17 469.5 24'/%3E%3Cpath d='M70 59 C71.5 67 69 75 71 84'/%3E%3Cpath d='M560 30 C561 38 559 45 560.5 53'/%3E%3Cpath d='M340 59 C339 66 341.5 76 339.5 84'/%3E%3C/g%3E%3Cg stroke-opacity='.1' stroke-width='1.6'%3E%3Cpath d='M40 14 c10 -1.6 18 1.2 28 -0.4'/%3E%3Cpath d='M380 40 c8 1.2 14 -1 22 0.4'/%3E%3Cpath d='M230 70 c10 -1.6 18 1 26 -0.6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+:root[data-theme="dark"] :is(.case-intro .intro-sum, .case-hero, .post-hero) {
+  --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall));
+  --boards: color-mix(in srgb, #2B2535 72%, var(--wall));
+  --skirt: color-mix(in srgb, #39405C 70%, var(--wall));
+  --planks: inherit;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.case-intro .intro-sum, .case-hero, .post-hero) {
+    --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall));
+    --boards: color-mix(in srgb, #2B2535 72%, var(--wall));
+    --skirt: color-mix(in srgb, #39405C 70%, var(--wall));
+    --planks: inherit;
+  }
+}
