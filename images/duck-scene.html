@@ -544,9 +544,11 @@
       <!-- floor + rug -->
       <rect class="floor" x="-400" y="420" width="1600" height="116" fill="var(--floor)"/>
       <path class="floor ink" d="M10 420 C200 417 600 423 790 419" fill="none"/>
+      <g class="far rug">
       <!-- rug: sits under the furniture so the legs stand on it -->
       <ellipse class="ink" cx="400" cy="432" rx="360" ry="30" fill="var(--rug)"/>
       <ellipse cx="400" cy="432" rx="330" ry="20" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="6 9" opacity=".45"/>
+      </g>
 
 
       <!-- window in the middle of the back wall: the North Shore mountains, and it is raining -->
@@ -756,7 +758,7 @@
 
 
       <!-- a side table between the chairs, with a plant -->
-      <g class="side-table">
+      <g class="far side-table">
         <path class="ink" d="M380 344 L374 418 M420 344 L426 418" stroke="#5C3A22" stroke-width="5" fill="none"/>
         <rect class="ink" x="364" y="336" width="72" height="10" rx="4" fill="#5C3A22" stroke-width="2.4"/>
         <path class="ink" d="M388 336 L386 316 H414 L412 336 Z" fill="var(--couch-hi)" stroke-width="2.4"/>

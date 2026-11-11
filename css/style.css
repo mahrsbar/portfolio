@@ -6302,3 +6302,7 @@ html:root body :is(.chapter .num, .vs-k, .tn-k, .block-k) {
 /* 3. A number in a list (plugins, findings): one yellow badge. */
 html .issues li b::before { background: var(--duck); color: var(--on-duck); }
 html:root body .psych h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
+/* the umbrella stands back in the corner: a lighter, warmer line, as the room's back pieces have */
+html .room-props .rp-far { stroke: #5B4A3E; stroke-width: 2; }
+:root[data-theme="dark"] .room-props .rp-far { stroke: #0E1020; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .room-props .rp-far { stroke: #0E1020; } }
