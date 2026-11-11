@@ -127,6 +127,28 @@
     update();
   }
 
+  /* ---- The filing cabinet ----
+     It stands beside the scene by default. Where the wall left of the name is wide
+     enough, it moves there instead, so the room spreads across the whole width. */
+  function cabinet() {
+    var cab = document.querySelector(".room-props");
+    var fig = cab && cab.offsetParent;
+    var name = document.querySelector(".duck-room h1");
+    if (!cab || !fig || !name) return;
+    function place() {
+      cab.classList.remove("on-left");
+      cab.style.removeProperty("left");
+      var w = cab.offsetWidth, gutter = name.getBoundingClientRect().left;
+      if (!w || gutter < w + 40) return;
+      var x = (gutter - w) / 2 - fig.getBoundingClientRect().left;
+      cab.classList.add("on-left");
+      cab.style.left = Math.round(x) + "px";
+    }
+    place();
+    window.addEventListener("resize", place);
+    window.addEventListener("load", place);
+  }
+
   /* ---- The drawer ----
      The case files pile up as you scroll. Give every folder the height of the
      tallest, so the pile closes square with its tabs in one row. */
@@ -342,6 +364,7 @@
     markNav();
     menu();
     navEdge();
+    cabinet();
     drawer();
     stackTables();
     headingStroke();

@@ -683,11 +683,12 @@
         <rect class="ink" x="132" y="312" width="226" height="44" rx="18" fill="var(--couch)"/><rect class="cushion anim ink" x="140" y="288" width="212" height="32" rx="15" fill="var(--couch-hi)"/>
         
       </g>
+      <ellipse cx="240" cy="298" rx="40" ry="6" fill="var(--line)" opacity=".2"/>
       <g class="patient" id="patient" tabindex="0" role="button" aria-label="Start a session with the bug">
         <!-- sitting in its armchair, facing the duck -->
         <!-- a still target: the bug pops up on hover, and without this its feet would slide out from under the pointer -->
-        <rect class="hit" x="190" y="84" width="136" height="210" fill="transparent"/>
-        <g transform="translate(-6 -2) rotate(5 262 292)"><g class="pop">
+        <rect class="hit" x="170" y="110" width="126" height="190" fill="transparent"/>
+        <g transform="translate(-22 8) rotate(-7 262 300) translate(262 300) scale(.84) translate(-262 -300)"><g class="pop">
         <g class="torso anim">
           <!-- glossy domed shell, peeking out both sides -->
           <ellipse class="ink" cx="262" cy="240" rx="48" ry="42" fill="var(--bug)"/>
@@ -764,7 +765,8 @@
         </g>
         <!-- where the duck sits: a dip in the cushion -->
         
-        <g transform="translate(-50 -50)">
+        <ellipse cx="560" cy="294" rx="56" ry="6" fill="var(--line)" opacity=".2"/>
+        <g transform="translate(-50 -44)">
         <g class="duck anim" id="duck" tabindex="0" role="button" aria-label="Squeeze the rubber duck">
           <!-- feet tucked under, the way a duck sits: just the toes show below its body -->
           <g class="duck-toes">
@@ -827,7 +829,7 @@
   const isEmbed = document.documentElement.classList.contains('embed');
   const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 672 : 726;
   if (isEmbed) document.querySelector('.stage svg').setAttribute('viewBox', `0 ${VB_Y} ${VB_W} ${VB_H}`);
-  const PATIENT_AT = [256, 110], DUCK_AT = [528, 106];
+  const PATIENT_AT = [236, 138], DUCK_AT = [528, 106];
   const bubbles = document.getElementById('bubbles');
   const duck = document.getElementById('duck');
   const patient = document.getElementById('patient');
@@ -1079,7 +1081,7 @@
   // ...and only then the bug answers, in its own bubble: tap me! (tapping it, or the bug, starts the session)
   setTimeout(() => {
     if (i || busy) return;
-    isNarrow() ? say('tap me!', [168, 158], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
+    isNarrow() ? say('tap me!', [150, 184], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
   }, reduced ? 0 : 2000);
 })();
 </script>
