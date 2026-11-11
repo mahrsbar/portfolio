@@ -677,17 +677,17 @@
         <path class="ink" d="M322 352 H338 L346 418 H339 Z" fill="#5C3A22" stroke-width="2.6"/>
         <!-- the back, on the outer side, its inner face catching the light -->
         <path class="ink" d="M134 352 L122 214 C120 182 144 166 172 170 L214 176 C240 180 248 198 246 222 L238 340 Z" fill="var(--couch)"/>
-        <path d="M206 186 C226 190 234 204 232 222 L226 318" fill="none" stroke="var(--couch-hi)" stroke-width="10" stroke-linecap="round" opacity=".8"/>
+        <path class="ink" d="M152 336 L143 216 C142 196 156 187 173 189 L204 194 C222 197 229 210 228 226 L222 336 Z" fill="var(--couch-hi)" stroke-width="2.2"/>
         <path class="shine" d="M136 216 q2 -26 24 -32" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
         <!-- the seat, turned toward the other chair -->
-        <rect class="cushion anim ink" x="166" y="294" width="184" height="44" rx="18" fill="var(--couch-hi)"/>
-        <ellipse cx="256" cy="327" rx="50" ry="7" fill="var(--line)" opacity=".18"/>
+        <rect class="ink" x="132" y="312" width="226" height="44" rx="18" fill="var(--couch)"/><rect class="cushion anim ink" x="140" y="288" width="212" height="32" rx="15" fill="var(--couch-hi)"/>
+        
       </g>
       <g class="patient" id="patient" tabindex="0" role="button" aria-label="Start a session with the bug">
         <!-- sitting in its armchair, facing the duck -->
         <!-- a still target: the bug pops up on hover, and without this its feet would slide out from under the pointer -->
-        <rect class="hit" x="190" y="120" width="136" height="216" fill="transparent"/>
-        <g transform="translate(-6 34) rotate(5 262 292)"><g class="pop">
+        <rect class="hit" x="190" y="84" width="136" height="210" fill="transparent"/>
+        <g transform="translate(-6 -2) rotate(5 262 292)"><g class="pop">
         <g class="torso anim">
           <!-- glossy domed shell, peeking out both sides -->
           <ellipse class="ink" cx="262" cy="240" rx="48" ry="42" fill="var(--bug)"/>
@@ -733,8 +733,6 @@
         </g>
       </g></g>
       </g>
-      <!-- its near arm, in front of the bug -->
-      <path class="ink" d="M150 312 H338 C352 312 360 322 360 336 C360 352 350 362 336 362 H152 C136 362 128 352 128 336 C128 322 136 312 150 312 Z" fill="var(--couch)"/><path class="shine" d="M150 324 h40" fill="none" stroke="#FFFFFF" stroke-width="3.38" stroke-linecap="round"/>
 
 
       <!-- a side table between the chairs, with a plant -->
@@ -759,14 +757,14 @@
         <path class="ink" d="M322 352 H338 L346 418 H339 Z" fill="#5C3A22" stroke-width="2.6"/>
         <!-- the back, on the outer side, its inner face catching the light -->
         <path class="ink" d="M134 352 L122 214 C120 182 144 166 172 170 L214 176 C240 180 248 198 246 222 L238 340 Z" fill="var(--chair)"/>
-        <path d="M206 186 C226 190 234 204 232 222 L226 318" fill="none" stroke="var(--chair-hi)" stroke-width="10" stroke-linecap="round" opacity=".8"/>
+        <path class="ink" d="M152 336 L143 216 C142 196 156 187 173 189 L204 194 C222 197 229 210 228 226 L222 336 Z" fill="var(--chair-hi)" stroke-width="2.2"/>
         <path class="shine" d="M136 216 q2 -26 24 -32" fill="none" stroke="#FFFFFF" stroke-width="3.75" stroke-linecap="round"/>
         <!-- the seat, turned toward the other chair -->
-        <rect class="ink" x="166" y="294" width="184" height="44" rx="18" fill="var(--chair-hi)"/>
+        <rect class="ink" x="132" y="312" width="226" height="44" rx="18" fill="var(--chair)"/><rect class="ink" x="140" y="288" width="212" height="32" rx="15" fill="var(--chair-hi)"/>
         </g>
         <!-- where the duck sits: a dip in the cushion -->
-        <ellipse cx="560" cy="327" rx="54" ry="7" fill="var(--line)" opacity=".18"/>
-        <g transform="translate(-50 -4)">
+        
+        <g transform="translate(-50 -50)">
         <g class="duck anim" id="duck" tabindex="0" role="button" aria-label="Squeeze the rubber duck">
           <!-- feet tucked under, the way a duck sits: just the toes show below its body -->
           <g class="duck-toes">
@@ -806,8 +804,6 @@
           <path class="ink" d="M622 284 C636 266 666 268 670 288 C670 302 650 308 634 302 C626 298 620 292 622 284 Z" fill="var(--duck-dk)" stroke-width="2.25"/>
         </g>
         </g>
-        <!-- its near arm, in front of the duck -->
-        <g transform="translate(800 0) scale(-1 1)"><path class="ink" d="M150 312 H338 C352 312 360 322 360 336 C360 352 350 362 336 362 H152 C136 362 128 352 128 336 C128 322 136 312 150 312 Z" fill="var(--chair)"/><path class="shine" d="M150 324 h40" fill="none" stroke="#FFFFFF" stroke-width="3.38" stroke-linecap="round"/></g>
       </g>
 
       <!-- labels -->
@@ -831,7 +827,7 @@
   const isEmbed = document.documentElement.classList.contains('embed');
   const VB_W = 800, VB_Y = -190, VB_H = isEmbed ? 672 : 726;
   if (isEmbed) document.querySelector('.stage svg').setAttribute('viewBox', `0 ${VB_Y} ${VB_W} ${VB_H}`);
-  const PATIENT_AT = [256, 146], DUCK_AT = [528, 152];
+  const PATIENT_AT = [256, 110], DUCK_AT = [528, 106];
   const bubbles = document.getElementById('bubbles');
   const duck = document.getElementById('duck');
   const patient = document.getElementById('patient');
@@ -1007,7 +1003,7 @@
       const h = document.createElement('span');
       h.className = 'heart';
       h.textContent = '♥';
-      Object.assign(h.style, pct([540 + n * 22, 166]));
+      Object.assign(h.style, pct([540 + n * 22, 120]));
       h.style.setProperty('--dx', (n - 1) * 18 + 'px');
       h.style.animationDelay = n * 90 + 'ms';
       bubbles.appendChild(h);
@@ -1083,7 +1079,7 @@
   // ...and only then the bug answers, in its own bubble: tap me! (tapping it, or the bug, starts the session)
   setTimeout(() => {
     if (i || busy) return;
-    isNarrow() ? say('tap me!', [168, 194], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
+    isNarrow() ? say('tap me!', [168, 158], 'invite', '78%') : say('tap me!', PATIENT_AT, 'invite', '50%');
   }, reduced ? 0 : 2000);
 })();
 </script>
