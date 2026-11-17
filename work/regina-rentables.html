@@ -13,19 +13,18 @@
     <meta property="og:title" content="Regina's Recreational Rentables — Mahrs Aslam" />
     <meta property="og:description" content="A peer-to-peer sports equipment rental site for Regina, built in Django with a three-person team: competitive analysis, three user roles, admin approval, and an observer-pattern subscribe flow." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/regina-rentables.html" />
-    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. I build design systems and the AI features that run on them. A duck therapist with a clipboard sits across from a blue bug in a green room." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
-    />
-    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="icon" href="../assets/favicon.svg?v=8" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon-32.png?v=8" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=8" />
+    <link rel="preload" href="../assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../css/fonts.css?v=20261111" />
+    <link rel="stylesheet" href="../css/style.css?v=20261120g" />
     <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
@@ -48,7 +47,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -62,27 +61,27 @@
     </header>
 
     <main id="main" class="hue-pink">
-      <section class="wrap case-intro" data-prop="house">
-        <p class="eyebrow">Earlier work · University software project</p>
+      <section class="wrap case-intro">
+        <p class="eyebrow">Earlier work · University software&nbsp;project</p>
         <h1>Regina's Recreational Rentables</h1>
         <p class="intro-sum">
-          A sports-equipment rental site for Regina, built by three of us in a semester. Owners list
-          gear, renters search and filter, an admin approves every listing, and a subscribe button
-          emails you the moment something you want becomes available.
+          A&nbsp;sports-equipment rental site for Regina, built by three of us in a&nbsp;semester. Owners list
+          gear, renters search and filter, an&nbsp;admin approves every listing, and a&nbsp;subscribe button
+          emails you the moment something you want becomes&nbsp;available.
         </p>
         <ul class="highlights">
-          <li><b>3 people, one semester</b><span>Software engineering course</span></li>
-          <li><b>Admin-approved listings</b><span>Nothing goes live unreviewed</span></li>
-          <li><b>Availability alerts</b><span>Observer pattern emails subscribers</span></li>
+          <li><b>3 people, one semester</b><span>Software engineering&nbsp;course</span></li>
+          <li><b>Admin-approved listings</b><span>Nothing goes live&nbsp;unreviewed</span></li>
+          <li><b>Availability alerts</b><span>Observer pattern emails&nbsp;subscribers</span></li>
         </ul>
         <dl class="meta-line">
-          <div><dt>Role</dt><dd>Problem definition, feasibility study, front end, search and filter, acceptance testing, demo</dd></div>
-          <div><dt>Stack</dt><dd>Django (Model-View-Template), PostgreSQL, Bootstrap, deployed on DigitalOcean with Nginx and Gunicorn</dd></div>
+          <div><dt>Role</dt><dd>Problem definition, feasibility study, front end, search and filter, acceptance testing,&nbsp;demo</dd></div>
+          <div><dt>Stack</dt><dd>Django (Model-View-Template), PostgreSQL, Bootstrap, deployed on DigitalOcean with Nginx and&nbsp;Gunicorn</dd></div>
         </dl>
         <div class="tldr" aria-label="Summary">
-          <div><div class="k"><span class="tldr-icon warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg></span>Problem</div><p>Regina had no way to rent sports gear between neighbours.</p></div>
-          <div><div class="k"><span class="tldr-icon act" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l3 3"/></svg></span>What I did</div><p>Led the feasibility study and front end; designed search, filters and the subscribe flow; ran acceptance testing.</p></div>
-          <div><div class="k"><span class="tldr-icon win" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18 10l-4.3 1.4L12 16l-1.7-4.6L6 10l4.3-1.4z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>Outcome</div><p><strong>A working Django site with admin approval and availability emails, shaped decision by decision by the competitive study.</strong></p></div>
+          <div><div class="k"><span class="tldr-icon warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg></span>Problem</div><p>Regina had no way to rent sports gear between&nbsp;neighbours.</p></div>
+          <div><div class="k"><span class="tldr-icon act" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l3 3"/></svg></span>What I&nbsp;did</div><p>Led the feasibility study and front end; designed search, filters and the subscribe flow; ran acceptance&nbsp;testing.</p></div>
+          <div><div class="k"><span class="tldr-icon win" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18 10l-4.3 1.4L12 16l-1.7-4.6L6 10l4.3-1.4z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>Outcome</div><p><strong>A&nbsp;working Django site with admin approval and availability emails, shaped decision by decision by the competitive&nbsp;study.</strong></p></div>
         </div>
       </section>
 
@@ -118,8 +117,8 @@
           </div>
         </div>
         <div class="two-up" style="margin-top:1rem">
-          <div><img src="../images/rrr/hero.jpg" alt="Regina's Recreational Rentables home page: a full-width photo hero reading Rent Now with a search bar" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" /><span class="label">Home: one job, one search bar</span></div>
-          <div><img src="../images/rrr/search-filters.jpg" alt="Search results for bike with filters for availability, daily rate and location in a left sidebar" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" /><span class="label">Results with availability, rate, and zone filters</span></div>
+          <div><img width="1600" height="718" src="../images/rrr/hero.jpg" alt="Regina's Recreational Rentables home page: a full-width photo hero reading Rent Now with a search bar" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" /><span class="label">Home: one job, one search bar</span></div>
+          <div><img width="1600" height="717" src="../images/rrr/search-filters.jpg" alt="Search results for bike with filters for availability, daily rate and location in a left sidebar" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" /><span class="label">Results with availability, rate, and zone filters</span></div>
         </div>
         <span class="confidential">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/></svg>
@@ -128,12 +127,12 @@
         <aside class="stack">
           <div class="kicker">Built with<b>Tools and models</b></div>
           <div>
-            <ul class="chips"><li>Django · Python</li><li>PostgreSQL</li><li>Bootstrap</li><li>DigitalOcean · Nginx · Gunicorn</li><li>StarUML · Visual Paradigm</li><li>PageSpeed · Pingdom</li></ul>
+            <ul class="chips"><li>Django ·&nbsp;Python</li><li>PostgreSQL</li><li>Bootstrap</li><li>DigitalOcean · Nginx ·&nbsp;Gunicorn</li><li>StarUML · Visual&nbsp;Paradigm</li><li>PageSpeed ·&nbsp;Pingdom</li></ul>
             <ul>
-            <li><strong>Django</strong> Model-View-Template, with sub-apps for listings and accounts.</li>
-            <li><strong>PostgreSQL</strong> via Django migrations; <strong>pgAdmin</strong> for inspection.</li>
-            <li><strong>Bootstrap, jQuery, Lightbox, Owl Carousel</strong> on the front end; <strong>Nginx + Gunicorn</strong> on an Ubuntu droplet.</li>
-            <li><strong>StarUML and Visual Paradigm</strong> for use-case, class, activity, and deployment diagrams; <strong>Google PageSpeed</strong> for the time-efficiency tests.</li>
+            <li><strong>Django</strong> Model-View-Template, with sub-apps for listings and&nbsp;accounts.</li>
+            <li><strong>PostgreSQL</strong> via Django migrations; <strong>pgAdmin</strong> for&nbsp;inspection.</li>
+            <li><strong>Bootstrap, jQuery, Lightbox, Owl Carousel</strong> on the front end; <strong>Nginx + Gunicorn</strong> on an&nbsp;Ubuntu&nbsp;droplet.</li>
+            <li><strong>StarUML and Visual Paradigm</strong> for use-case, class, activity, and deployment diagrams; <strong>Google PageSpeed</strong> for the time-efficiency&nbsp;tests.</li>
             </ul>
           </div>
         </aside>
@@ -143,21 +142,21 @@
         <div class="case-body">
         <div class="prose">
           <h2>The problem</h2>
-          <p>The brief: owners list gear with photos, prices and availability; renters browse, filter and get in touch. Anyone can browse, registered users can list and contact, and an admin approves every listing before it goes live.</p>
-          <p>Staying local was deliberate. A city-sized marketplace can promise what a global one can't: every listing is nearby, payment happens in person, and a person approves what appears.</p>
+          <p>The brief: owners list gear with photos, prices and availability; renters browse, filter and get in touch. Anyone can browse, registered users can list and contact, and an&nbsp;admin approves every listing before it goes&nbsp;live.</p>
+          <p>Staying local was deliberate. A&nbsp;city-sized marketplace can promise what a&nbsp;global one can't: every listing is nearby, payment happens in person, and a&nbsp;person approves what&nbsp;appears.</p>
 
           <h2>Feasibility: what the existing options got wrong</h2>
-          <p>I led the competitive study against two established peer-rental services. It's the part I'm still proudest of: it turned "we're building a rental site" into specific decisions.</p>
+          <p>I&nbsp;led the competitive study against two established peer-rental services. It's the part I'm still proudest of: it turned "we're building a&nbsp;rental site" into specific&nbsp;decisions.</p>
           <div class="table-scroll">
             <table class="compare">
               <thead><tr><th>Dimension</th><th>Existing services</th><th>Our decision</th></tr></thead>
               <tbody>
-                <tr><td>Access</td><td>One was iPhone-only and required an account just to browse</td><td class="good">Browse without an account, on any device</td></tr>
+                <tr><td>Access</td><td>One was iPhone-only and required an&nbsp;account just to browse</td><td class="good">Browse without an&nbsp;account, on any device</td></tr>
                 <tr><td>Listings</td><td>One item per listing</td><td class="good">Multiple items per listing (several skate sizes in one post)</td></tr>
                 <tr><td>Interface</td><td>Overlapping images, dull palette, map-first navigation that added clutter</td><td class="good">Grid layout, minimal, core tasks visible on the home page</td></tr>
                 <tr><td>Robustness</td><td>Developer errors visible to users; passwords emailed in plain text; posters' addresses shown by default</td><td class="good">Validation on every form, sanitised input, approximate location only</td></tr>
                 <tr><td>Fees and payment</td><td>10 to 17.5% commission, card required</td><td class="good">No fee; the site connects people and stays out of the transaction</td></tr>
-                <tr><td>Follow-up</td><td>None</td><td class="good">Subscribe to an unavailable listing and get emailed when it frees up</td></tr>
+                <tr><td>Follow-up</td><td>None</td><td class="good">Subscribe to an&nbsp;unavailable listing and get emailed when it frees up</td></tr>
               </tbody>
             </table>
           </div>
@@ -167,16 +166,16 @@
             <div>
               <div class="kicker">Psych note</div>
               <h3>The Ovsiankina effect</h3>
-              <p>People tend to go back to a task that was interrupted. A kayak marked "unavailable" interrupts the renter, and the subscribe button gives them the way back when it frees up. (Its better-known cousin, that unfinished tasks are remembered better, mostly hasn't held up.)</p>
-              <span class="src">Ovsiankina, M. (1928). · Ghibellini, R., &amp; Meier, B. (2025). Interruption, recall and resumption: a meta-analysis of the Zeigarnik and Ovsiankina effects. Humanities and Social Sciences Communications, 12, 962.</span>
+              <p>People tend to go back to a&nbsp;task that was interrupted. A&nbsp;kayak marked "unavailable" interrupts the renter, and the subscribe button gives them the way back when it frees up. (Its better-known cousin, that unfinished tasks are remembered better, mostly hasn't held&nbsp;up.)</p>
+              <span class="src">Ovsiankina, M. (1928). · Ghibellini, R., &amp; Meier, B. (2025). Interruption, recall and resumption: a&nbsp;meta-analysis of the Zeigarnik and Ovsiankina effects. Humanities and Social Sciences Communications, 12, 962.</span>
             </div>
           </div>
 
           <h2>Architecture and patterns</h2>
-          <p>Django's Model-View-Template structure let three people work on separate sub-apps (listings, accounts) without stepping on each other, which mattered most with a semester deadline. We used two design patterns:</p>
+          <p>Django's Model-View-Template structure let three people work on separate sub-apps (listings, accounts) without stepping on each other, which mattered most with a&nbsp;semester deadline. We&nbsp;used two design&nbsp;patterns:</p>
           <ul>
-            <li><strong>Factory method for messages.</strong> Success, error and warning messages each have their own styling and copy; a creator class builds the right one from a context string, so every view speaks to users the same way.</li>
-            <li><strong>Observer for availability.</strong> A listing is the subject and its subscribers are observers. When the owner marks it available, every subscriber gets an email and the owner sees who was notified. The pattern, rather than a plain mail call, leaves room for a logging or analytics observer later.</li>
+            <li><strong>Factory method for messages.</strong> Success, error and warning messages each have their own styling and copy; a&nbsp;creator class builds the right one from a&nbsp;context string, so every view speaks to users the same&nbsp;way.</li>
+            <li><strong>Observer for availability.</strong> A&nbsp;listing is the subject and its subscribers are observers. When the owner marks it available, every subscriber gets an&nbsp;email and the owner sees who was notified. The&nbsp;pattern, rather than a&nbsp;plain mail call, leaves room for a&nbsp;logging or analytics observer&nbsp;later.</li>
           </ul>
           <div class="figure">
             <div class="frame">
@@ -185,35 +184,35 @@
                 <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 <div class="node hi"><b>Not satisfied? Filter</b><small>Availability today · daily rate · city zone</small></div>
                 <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                <div class="node"><b>Open a listing</b><small>Gallery, details, owner</small></div>
+                <div class="node"><b>Open a&nbsp;listing</b><small>Gallery, details, owner</small></div>
                 <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 <div class="node"><b>Request or subscribe</b><small>Email the owner, or wait for availability</small></div>
               </div>
             </div>
-            <figcaption>The "filter listings" use case, one of the three we modelled as UML activity diagrams. The loop back from "not satisfied" to the filter set is the whole point.</figcaption>
+            <figcaption>The "filter listings" use case, one of the three we modelled as UML activity diagrams. The&nbsp;loop back from "not satisfied" to the filter set is the whole&nbsp;point.</figcaption>
           </div>
 
           <div class="figure wide">
             <div class="two-up">
-              <div><img src="../images/rrr/use-cases.jpg" alt="UML use case diagram for the three user types" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" /><span class="label">Use cases for non-registered, registered, and admin users</span></div>
-              <div><img src="../images/rrr/class-diagram.jpg" alt="UML class diagram showing the Listing subject, User observer, and message factory" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" /><span class="label">Class diagram: Observer on Listing and User, Factory for messages</span></div>
+              <div><img width="1600" height="1062" src="../images/rrr/use-cases.jpg" alt="UML use case diagram for the three user types" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" /><span class="label">Use cases for non-registered, registered, and admin users</span></div>
+              <div><img width="1600" height="881" src="../images/rrr/class-diagram.jpg" alt="UML class diagram showing the Listing subject, User observer, and message factory" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" /><span class="label">Class diagram: Observer on Listing and User, Factory for messages</span></div>
             </div>
-            <figcaption>Modelled in Visual Paradigm and StarUML before implementation. Deployment: Nginx in front of Gunicorn on an Ubuntu droplet, PostgreSQL on a second server.</figcaption>
+            <figcaption>Modelled in Visual Paradigm and StarUML before implementation. Deployment: Nginx in front of Gunicorn on an&nbsp;Ubuntu droplet, PostgreSQL on a&nbsp;second server.</figcaption>
           </div>
           <div class="figure">
-            <img src="../images/rrr/my-listings.jpg" alt="My listings page showing a snowboard listing with price per day, location, availability, and Delete, Edit, and Mark unavailable actions" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" />
-            <figcaption>Owner view: every listing carries its price per day, zone, availability, and the three actions an owner needs. Marking a listing available is what triggers the subscriber emails.</figcaption>
+            <img width="1600" height="727" src="../images/rrr/my-listings.jpg" alt="My listings page showing a snowboard listing with price per day, location, availability, and Delete, Edit, and Mark unavailable actions" style="border-radius:var(--radius); border:1px solid var(--line)" loading="lazy" />
+            <figcaption>Owner view: every listing carries its price per day, zone, availability, and the three actions an&nbsp;owner needs. Marking a&nbsp;listing available is what triggers the subscriber&nbsp;emails.</figcaption>
           </div>
 
           <h2>Quality, tested</h2>
-          <p>We wrote the software qualities down before building (correctness, time efficiency, robustness, user friendliness), then tested against them: five functional cases, five robustness cases with bad input (short descriptions, wrong file types, duplicate usernames, non-admins on admin routes), and page-speed checks on the five most-used pages.</p>
-          <p>User friendliness came with a scenario: a renter who can't find the contact form gives up, and the owner loses a rental. That sentence decided where the request form sits on the listing page.</p>
+          <p>We wrote the software qualities down before building (correctness, time efficiency, robustness, user friendliness), then tested against them: five functional cases, five robustness cases with bad input (short descriptions, wrong file types, duplicate usernames, non-admins on admin routes), and page-speed checks on the five most-used&nbsp;pages.</p>
+          <p>User friendliness came with a&nbsp;scenario: a&nbsp;renter who can't find the contact form gives up, and the owner loses a&nbsp;rental. That sentence decided where the request form sits on the listing&nbsp;page.</p>
 
           <h2>What it taught me</h2>
           <ul>
-            <li><strong>The competitive study paid off.</strong> Every row in that table became a decision we could defend.</li>
-            <li><strong>Write the qualities as user scenarios.</strong> "Must be user friendly" is noise. "A renter who can't find the form gives up" is a requirement.</li>
-            <li><strong>Trust mattered more than features.</strong> Admin approval and no-fee, off-platform payment were what made a stranger-to-stranger marketplace feel safe in a small city.</li>
+            <li><strong>The competitive study paid off.</strong> Every row in that table became a&nbsp;decision we could&nbsp;defend.</li>
+            <li><strong>Write the qualities as user scenarios.</strong> "Must be user friendly" is noise. "A&nbsp;renter who can't find the form gives up" is a&nbsp;requirement.</li>
+            <li><strong>Trust mattered more than features.</strong> Admin approval and no-fee, off-platform payment were what made a&nbsp;stranger-to-stranger marketplace feel safe in a&nbsp;small city.</li>
           </ul>
         </div>
         </div>
@@ -227,10 +226,10 @@
 
     <footer class="footer">
       <div class="wrap">
-        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>© <span data-year>2026</span> Mahrs Aslam</span>
       </div>
     </footer>
-    <script src="../js/main.js?v=20261112e"></script>
+    <script src="../js/main.js?v=20261118a"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

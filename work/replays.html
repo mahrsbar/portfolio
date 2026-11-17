@@ -10,19 +10,18 @@
     <meta property="og:title" content="What three months of session replays said — Mahrs Aslam" />
     <meta property="og:description" content="Two research studies built on session replays, support history and shadowing: an access console that generated tickets, and a map that said 'no results' when there were results. Both turned into ranked fix lists engineering acted on." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/replays.html" />
-    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. I build design systems and the AI features that run on them. A duck therapist with a clipboard sits across from a blue bug in a green room." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
-    />
-    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="icon" href="../assets/favicon.svg?v=8" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon-32.png?v=8" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=8" />
+    <link rel="preload" href="../assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../css/fonts.css?v=20261111" />
+    <link rel="stylesheet" href="../css/style.css?v=20261120g" />
     <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
@@ -136,7 +135,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -150,24 +149,28 @@
     </header>
 
     <main id="main" class="hue-teal">
-      <section class="wrap case-intro" data-prop="tv">
-        <p class="eyebrow"><b>Fraud-investigation suite</b> · UX research</p>
-        <h1>What three months of session replays said</h1>
-        <p class="intro-sum">
-          Two studies built on data we already had: session replays, support history and a week shadowing the
-          people who answer the tickets. One found why an access console kept generating support requests. The
-          other found why a map said "no results" when there were results. Both ended as ranked fix lists. Press play to watch the pattern behind most of the tickets.
-        </p>
+      <!-- the case's title on a strip of the room's wall, ending on a ledge; the duck sits on it, legs over the edge -->
+      <section class="case-strip">
+        <div class="wrap cs-inner">
+          <p class="eyebrow"><b>Fraud-investigation&nbsp;suite</b></p>
+          <h1>What three months of session replays said</h1>
+        </div>
+        <img class="cs-duck" src="../images/room/duck-ledge.svg?v=2" alt="" width="214" height="240" />
+      </section>
+      <section class="wrap case-intro cs-after">
+        <div class="intro-card">
+        <!-- the results first, then three short labelled rows: the problem, what I did, my role -->
         <ul class="highlights">
-          <li><b>3 months of replays</b><span>Split by who the user was</span></li>
-          <li><b>6 friction themes</b><span>Behind a console revamp, now shipped</span></li>
-          <li><b>21 map failures</b><span>Ranked by severity; set the fix order</span></li>
+          <li><b>3 months of replays</b><span>Split by who the user&nbsp;was</span></li>
+          <li><b>6 friction themes</b><span>Behind a&nbsp;console revamp, now&nbsp;shipped</span></li>
+          <li><b>21 map failures</b><span>Ranked by severity; set the fix&nbsp;order</span></li>
         </ul>
-        <dl class="meta-line">
-          <div><dt>Role</dt><dd>Research lead and product designer; I built several of the front-end fixes myself</dd></div>
-          <div><dt>When</dt><dd>2026</dd></div>
-          <div><dt>With</dt><dd>The technical-support team I shadowed; product and the console's engineers, who took the fix list</dd></div>
+        <dl class="intro-rows">
+          <div><dt>The problem</dt><dd>An&nbsp;access console kept generating support requests, and a&nbsp;map said "no results" when there were&nbsp;results.</dd></div>
+          <div><dt>What I&nbsp;did</dt><dd>I&nbsp;ran two studies on data we already had: session replays, support history and a&nbsp;week shadowing the people who answer the tickets. Both ended as ranked fix lists. Press play to watch the pattern behind most of the&nbsp;tickets.</dd></div>
+          <div><dt>My role</dt><dd>Research lead and product designer; I&nbsp;built several of the front-end fixes&nbsp;myself</dd></div>
         </dl>
+        </div>
       </section>
 
       <section class="wrap">
@@ -214,9 +217,9 @@
             </div>
             <span class="rp-time" data-time>00:00</span>
           </div>
-          <div class="rp-sum" data-sum>Three loops, one dead end, one ticket. The search only looked at organisations, the error didn't link to the pending user, and nothing on the screen said so. This replay is one of six friction themes; the fix list is below.</div>
+          <div class="rp-sum" data-sum>Three loops, one dead end, one ticket. The&nbsp;search only looked at organisations, the error didn't link to the pending user, and nothing on the screen said so. This replay is one of six friction themes; the fix list is below.</div>
         </div>
-        <p class="mock-note">A recreated session with invented data.</p>
+        <p class="mock-note">A&nbsp;recreated session with invented&nbsp;data.</p>
       </section>
 
       <section class="wrap section">
@@ -225,15 +228,15 @@
 
           <h2>The method</h2>
           <p>
-            For a B2B admin tool with a few thousand sessions a quarter, session replays are the best research
-            instrument I have. The study design was the same both times, and the full method is written up in
+            For a&nbsp;B2B admin tool with a&nbsp;few thousand sessions a&nbsp;quarter, session replays are the best research
+            instrument I&nbsp;have. The&nbsp;study design was the same both times, and the full method is written up in
             <a href="../writing/session-replays-as-research.html">What session replays can't tell you</a>.
           </p>
           <ol class="steps">
-            <li><b>Segment before you watch.</b> Internal staff acting for customers and external admins use the same screens for different reasons. Averaging them hides both stories.</li>
-            <li><b>Hunt for loops.</b> Repeated clicks on one control, tab-switching after a search, a modal cancelled halfway. A console warning next to one turns "it felt slow" into a ticket.</li>
-            <li><b>Cross-reference support.</b> Six months of "can someone…" messages say what people gave up on before any replay started.</li>
-            <li><b>Shadow the people who get the tickets.</b> A week beside the support team gave me the why for a dozen patterns I'd only seen as clicks.</li>
+            <li><b>Segment before you watch.</b> Internal staff acting for customers and external admins use the same screens for different reasons. Averaging them hides both&nbsp;stories.</li>
+            <li><b>Hunt for loops.</b> Repeated clicks on one control, tab-switching after a&nbsp;search, a&nbsp;modal cancelled halfway. A&nbsp;console warning next to one turns "it felt slow" into a&nbsp;ticket.</li>
+            <li><b>Cross-reference support.</b> Six months of "can someone…" messages say what people gave up on before any replay&nbsp;started.</li>
+            <li><b>Shadow the people who get the tickets.</b> A&nbsp;week beside the support team gave me the why for a&nbsp;dozen patterns I'd only seen as&nbsp;clicks.</li>
           </ol>
 
           <div class="chapter">
@@ -241,43 +244,43 @@
             <h2>The access console</h2>
             <p>
               The console for managing users, roles and integrations was meant to let customer admins help
-              themselves. Leadership's question was whether that was actually happening and what was in the way.
+              themselves. Leadership's question was whether that was actually happening and what was in the&nbsp;way.
             </p>
             <p>
               The headline surprised people: self-service was already established. External admins were creating
-              users at roughly twice the rate of internal staff, consistently across the whole period. So the goal
-              wasn't to create self-service. It was to stop it failing, and it failed in very specific, repeatable ways.
+              users at roughly twice the rate of internal staff, consistently across the whole period. So&nbsp;the goal
+              wasn't to create self-service. It&nbsp;was to stop it failing, and it failed in very specific, repeatable&nbsp;ways.
             </p>
             <div class="table-scroll">
               <table class="compare">
-                <thead><tr><th>Friction</th><th>What replays showed</th><th>Why it became a ticket</th></tr></thead>
+                <thead><tr><th>Friction</th><th>What replays showed</th><th>Why it became a&nbsp;ticket</th></tr></thead>
                 <tbody>
-                  <tr><td>Search that lied</td><td>The bar promised "organisation, operator, user" but only matched organisation names, and only in the active tab. People typed an email, saw zero results and switched tabs frantically or gave up.</td><td>A false "no results" reads as "this user doesn't exist", so admins asked support to find them.</td></tr>
-                  <tr><td>Nested modals</td><td>Creating or assigning a user took two or three stacked modals, each with its own Save. Frequent cancels mid-flow.</td><td>Nobody was sure whether anything had saved.</td></tr>
-                  <tr><td>Dead-end errors</td><td>Creating a user who already existed (usually pending) returned "this value already exists", with no link to the record.</td><td>The next step was invisible, so the next step was a ticket.</td></tr>
+                  <tr><td>Search that lied</td><td>The bar promised "organisation, operator, user" but only matched organisation names, and only in the active tab. People typed an&nbsp;email, saw zero results and switched tabs frantically or gave up.</td><td>A&nbsp;false "no results" reads as "this user doesn't exist", so admins asked support to find them.</td></tr>
+                  <tr><td>Nested modals</td><td>Creating or assigning a&nbsp;user took two or three stacked modals, each with its own Save. Frequent cancels mid-flow.</td><td>Nobody was sure whether anything had saved.</td></tr>
+                  <tr><td>Dead-end errors</td><td>Creating a&nbsp;user who already existed (usually pending) returned "this value already exists", with no link to the record.</td><td>The next step was invisible, so the next step was a&nbsp;ticket.</td></tr>
                   <tr><td>Click-shadows</td><td>Rows, emails, role labels, breadcrumbs and product tags all looked clickable and did nothing.</td><td>Trained people to stop trying.</td></tr>
                   <tr><td>Missing affordance</td><td>The roles dropdown showed "select product first" as static text.</td><td>Nobody understood which control unlocked it.</td></tr>
-                  <tr><td>Domain errors</td><td>External admins blocked by "unauthorised domain", with no explanation of how domains get approved.</td><td>Without guidance it looked like a bug.</td></tr>
+                  <tr><td>Domain errors</td><td>External admins blocked by "unauthorised domain", with no explanation of how domains get approved.</td><td>Without guidance it looked like a&nbsp;bug.</td></tr>
                 </tbody>
               </table>
             </div>
             <p>
-              Support history added the requests the UI had no answer for at all: reassigning an organisation admin
-              who had left, viewing deactivated users, requesting a new email domain. Those were self-service
+              Support history added the requests the UI had no answer for at all: reassigning an&nbsp;organisation admin
+              who had left, viewing deactivated users, requesting a&nbsp;new email domain. Those were self-service
               failures so complete that nobody attempted them in the product any more, which is exactly why replays
-              alone would have missed them.
+              alone would have missed&nbsp;them.
             </p>
           </div>
 
 
-          <h3>From findings to a revamp</h3>
+          <h3>From findings to a&nbsp;revamp</h3>
           <p>
-            I grouped the actions into six themes and reviewed them with product to sort what was achievable, what
+            I&nbsp;grouped the actions into six themes and reviewed them with product to sort what was achievable, what
             was out of scope and what needed more investigation: search and discovery, workflow and interaction,
             error handling and guardrails, performance, support-to-product transitions, and support deflection.
-            Then I prototyped the fix, first in Figma Make for a better organisations page, then in Claude Design
-            when the scope grew into the full revamp. A clickable artefact changed the review conversations:
-            instead of debating a bullet point, the team tried the flow.
+            Then I&nbsp;prototyped the fix, first in Figma Make for a&nbsp;better organisations page, then in Claude Design
+            when the scope grew into the full revamp. A&nbsp;clickable artefact changed the review conversations:
+            instead of debating a&nbsp;bullet point, the team tried the&nbsp;flow.
           </p>
           <div class="figure wide">
             <div class="frame">
@@ -309,80 +312,84 @@
                 </div>
               </div>
             </div>
-            <figcaption>Three stacked Save buttons became one stepper with one clear end.</figcaption>
+            <figcaption>Three stacked Save buttons became one stepper with one clear&nbsp;end.</figcaption>
           </div>
           <p>
-            The revamp shipped: a flattened provisioning flow, bulk actions, a duplicate error that links to the
-            existing user, domain-approval guidance, two new table columns (who invited a pending user, and when),
-            clickable rows and a clearer roles control. I picked up front-end tickets myself along the way, including
-            ranking direct organisation matches first in search and removing a double search on the users page.
+            The revamp shipped: a&nbsp;flattened provisioning flow, bulk actions, a&nbsp;duplicate error that links to the
+            existing user, domain-approval guidance, two new table columns (who invited a&nbsp;pending user, and when),
+            clickable rows and a&nbsp;clearer roles control. I&nbsp;picked up front-end tickets myself along the way, including
+            ranking direct organisation matches first in search and removing a&nbsp;double search on the users&nbsp;page.
           </p>
 
           <div class="chapter">
             <span class="num">Study two</span>
             <h2>The map that said "no results"</h2>
             <p>
-              A year after the transaction map got a new version and more filters, a steady stream of complaints
-              arrived: "it says no results, but there's data." I audited the live map with replays and customer
+              A&nbsp;year after the transaction map got a&nbsp;new version and more filters, a&nbsp;steady stream of complaints
+              arrived: "it says no results, but there's data." I&nbsp;audited the live map with replays and customer
               feedback, logging every failure with its severity, the version it appeared in, and where the report
-              came from. Twenty-one in all.
+              came from. Twenty-one in&nbsp;all.
             </p>
             <p>
-              Most of the high-severity ones had a single root: <strong>panning and zooming quickly cancelled the
+              Most of the high-severity ones had a&nbsp;single root: <strong>panning and zooming quickly cancelled the
               in-flight request</strong>, the app didn't retry, and the interface rendered the cancellation as
-              "No results found". The data was there. Pins came back only after zooming out, refreshing, or
-              reapplying filters. In roughly one of every six sessions with active map use, the map was lying.
+              "No results found". The&nbsp;data was there. Pins came back only after zooming out, refreshing, or
+              reapplying filters. In&nbsp;roughly one of every six sessions with active map use, the map was&nbsp;lying.
             </p>
             <p>
-              The quieter failures compounded it: filters that persisted silently across searches, a "show all"
-              button that behaved as a toggle so people clicked it several times, a date picker with no
-              confirmation and a default range of fifteen minutes, and a polygon-drawing mode people entered by
-              accident and couldn't leave.
+              The quieter failures compounded it: filters that persisted silently across searches, a&nbsp;"show all"
+              button that behaved as a&nbsp;toggle so people clicked it several times, a&nbsp;date picker with no
+              confirmation and a&nbsp;default range of fifteen minutes, and a&nbsp;polygon-drawing mode people entered by
+              accident and couldn't&nbsp;leave.
             </p>
             <h3>Turning the audit into rules</h3>
             <div class="table-scroll">
               <table class="compare">
                 <thead><tr><th>Observed</th><th>Rule</th></tr></thead>
                 <tbody>
-                  <tr><td>Cancelled request shown as "no results"</td><td>A cancelled or pending request is a <strong>loading state</strong>, never an empty state. Empty means the server said empty.</td></tr>
-                  <tr><td>"No results" vanished too fast to read</td><td>An empty state is a signal, not a toast. Make it obvious and keep it on screen.</td></tr>
+                  <tr><td>Cancelled request shown as "no results"</td><td>A&nbsp;cancelled or pending request is a <strong>loading state</strong>, never an&nbsp;empty state. Empty means the server said empty.</td></tr>
+                  <tr><td>"No results" vanished too fast to read</td><td>An&nbsp;empty state is a&nbsp;signal, not a&nbsp;toast. Make it obvious and keep it on screen.</td></tr>
                   <tr><td>Stale filters, stale search</td><td>Anything that narrows results must be visible where the results are, with one control that clears everything.</td></tr>
-                  <tr><td>Default range too small</td><td>Default to twenty-four hours; cap at a year, with an explanation.</td></tr>
-                  <tr><td>Toggle confusion</td><td>"Show all" is an override that clears filters, not a mode.</td></tr>
-                  <tr><td>Accidental polygon mode</td><td>Delete removes a polygon; fewer apply-then-save steps.</td></tr>
+                  <tr><td>Default range too small</td><td>Default to twenty-four hours; cap at a&nbsp;year, with an&nbsp;explanation.</td></tr>
+                  <tr><td>Toggle confusion</td><td>"Show all" is an&nbsp;override that clears filters, not a&nbsp;mode.</td></tr>
+                  <tr><td>Accidental polygon mode</td><td>Delete removes a&nbsp;polygon; fewer apply-then-save steps.</td></tr>
                 </tbody>
               </table>
             </div>
             <p>
-              Each row became a ticket linked from the audit, a note that a fix was already in progress, or an
-              explicit "not a bug, but reconsider". Engineering fixed the request cancellation first, and the rules
-              shaped the interface work that followed.
+              Each row became a&nbsp;ticket linked from the audit, a&nbsp;note that a&nbsp;fix was already in progress, or an&nbsp;explicit "not a&nbsp;bug, but reconsider". Engineering fixed the request cancellation first, and the rules
+              shaped the interface work that&nbsp;followed.
             </p>
             <aside class="lesson" aria-label="The lesson">
               <span class="lesson-k">The lesson</span>
-              <p class="lesson-big">Empty and loading are different states.</p>
-              <p>A false "no results" is worse than a slow one, because people believe it.</p>
+              <p class="lesson-big">Empty and loading are different&nbsp;states.</p>
+              <p>A&nbsp;false "no results" is worse than a&nbsp;slow one, because people believe&nbsp;it.</p>
             </aside>
           </div>
 
           <h2>The outcome</h2>
           <p>
-            Study one became the console revamp, now shipped: a flattened provisioning flow, bulk actions, a
-            duplicate error that links to the existing user, domain-approval guidance, two new table columns (who
-            invited a pending user, and when), clickable rows and a clearer roles control. Study two's
+            Study one became the console revamp, now shipped: a&nbsp;flattened provisioning flow, bulk actions, a&nbsp;duplicate error that links to the existing user, domain-approval guidance, two new table columns (who
+            invited a&nbsp;pending user, and when), clickable rows and a&nbsp;clearer roles control. Study two's
             cancelled-request fix shipped first, and its rules shaped the map work that followed. Both ended as ranked
-            lists an engineer could act on without a designer in the room, which is what severity, version and
-            source are for.
+            lists an&nbsp;engineer could act on without a&nbsp;designer in the room, which is what severity, version and
+            source are&nbsp;for.
           </p>
 
-        </div>
+        
+            <h2>Project details</h2>
+            <dl class="meta-line meta-end">
+              <div><dt>When</dt><dd>2026</dd></div>
+              <div><dt>With</dt><dd>The technical-support team I&nbsp;shadowed; product and the console's engineers, who took the fix&nbsp;list</dd></div>
+            </dl>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="wrap">
-        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>© <span data-year>2026</span> Mahrs Aslam</span>
       </div>
     </footer>
     <script>
@@ -464,7 +471,7 @@
         }
       })();
     </script>
-    <script src="../js/main.js?v=20261112e"></script>
+    <script src="../js/main.js?v=20261118a"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

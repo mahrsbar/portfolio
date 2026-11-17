@@ -22,12 +22,30 @@
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
 
+  /* the whole page changes theme in the same frame: hover fades (120-200ms) would
+     otherwise leave buttons and badges a beat behind the page */
+  function switchTheme(change) {
+    root.classList.add("theme-switching");
+    change();
+    void getComputedStyle(document.body).color;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { root.classList.remove("theme-switching"); });
+    });
+  }
+  try {
+    var sys = window.matchMedia("(prefers-color-scheme: dark)");
+    var onSys = function () { if (!root.getAttribute("data-theme")) switchTheme(function () {}); };
+    if (sys.addEventListener) sys.addEventListener("change", onSys);
+  } catch (e) {
+    /* ignore */
+  }
+
   function bindToggle() {
     var btn = document.querySelector(".theme-toggle");
     if (!btn) return;
     btn.addEventListener("click", function () {
       var next = currentTheme() === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
+      switchTheme(function () { root.setAttribute("data-theme", next); });
       btn.setAttribute("aria-label", "Switch to " + (next === "dark" ? "light" : "dark") + " theme");
       try {
         localStorage.setItem(KEY, next);
@@ -108,7 +126,7 @@
     var header = document.querySelector("header.nav");
     if (!header) return;
     /* the bar keeps the wall's colour for as long as the wall is behind it */
-    var wall = document.querySelector(".duck-room, .case-intro .intro-sum, .case-hero, .post-hero");
+    var wall = document.querySelector(".case-strip, .case-intro .wall-hang") || document.querySelector(".duck-room, .case-intro .intro-sum, .case-hero, .post-hero");
     /* a marker at the top of the skirting board, where the wall actually ends (CSS places it) */
     var end = null;
     if (wall) {
@@ -335,6 +353,30 @@
     clearHash();
   }
   window.addEventListener("hashchange", clearHash);
+
+  /* ---- Same-page links ("See the work", Work in the bar, the contents list): one glide to the section,
+          stopping just under the bar, with no #hash written to the address. Before, the browser's own jump
+          wrote the hash and the script wiped it again while the glide was still running, and the glide ended
+          with the heading tucked against the bar. ---- */
+  function sectionLinks() {
+    document.addEventListener("click", function (e) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = decodeURIComponent(a.getAttribute("href").slice(1));
+      var target = id && document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      var bar = document.querySelector("header.nav");
+      var gap = parseFloat(getComputedStyle(target).scrollMarginTop) || (bar ? bar.offsetHeight : 0);
+      var top = target.getBoundingClientRect().top + window.scrollY - gap;
+      var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: Math.max(0, top), behavior: still ? "auto" : "smooth" });
+      // keyboard and screen-reader users land in the section too, not back at the button
+      if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    });
+  }
   window.addEventListener("load", landOnHash);
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -343,6 +385,7 @@
     menu();
     navEdge();
     drawer();
+    sectionLinks();
     stackTables();
     headingStroke();
     reveal();

@@ -6,31 +6,30 @@
     <title>Mahrs Aslam — UX Engineer</title>
     <meta
       name="description"
-      content="Mahrs Aslam, UX engineer in Vancouver, trained in psychology before computer science: user research, product design and front-end engineering, down to the design system."
+      content="UX engineer in Vancouver, BC, trained in psychology, then computer science. I build design systems and the AI features that run on them. Research comes first."
     />
     <meta name="author" content="Mahrs Aslam" />
     <meta property="og:title" content="Mahrs Aslam — UX Engineer" />
     <meta
       property="og:description"
-      content="UX engineer in Vancouver, trained in psychology before computer science. I build design systems and the AI features that run on them, with the research first."
+      content="UX engineer in Vancouver, BC, trained in psychology, then computer science. I build design systems and the AI features that run on them. Research comes first."
     />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Mahrs Aslam" />
-    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. I build design systems and the AI features that run on them. A duck therapist with a clipboard sits across from a blue bug in a green room." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
-    <link rel="icon" href="assets/favicon.svg?v=7" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;display=swap"
-    />
-    <link rel="stylesheet" href="css/style.css?v=20261112y" />
+    <meta name="twitter:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
+    <link rel="icon" href="assets/favicon.svg?v=8" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon-32.png?v=8" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=8" />
+    <link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="css/fonts.css?v=20261111" />
+    <link rel="stylesheet" href="css/style.css?v=20261120g" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -53,7 +52,6 @@
       }
     </script>
     <link rel="stylesheet" href="css/accents.css?v=20261112y" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500..800&amp;display=swap" />
     <style>
       /* hero: the duck scene stands on a floor that runs the full width of the page.
          --floor-h is set from the scene's real width by script; this is the fallback. */
@@ -156,9 +154,6 @@
       }
 
       /* The licence-application card shows only the "after" mockup, centred */
-      [data-observe="Licence applications"] .pcard-mock-ba { grid-template-columns: 1fr; padding: 5.5% 6% 0; }
-      [data-observe="Licence applications"] .pcard-mock-ba .pcard-mock-col:first-child,
-      [data-observe="Licence applications"] .pcard-mock-ba .ba-tag { display: none; }
 
       /* earlier work: two cards in one row on wide screens */
       @media (min-width: 900px) {
@@ -195,6 +190,122 @@
       @keyframes cv-scale-x { from { transform: scaleX(0); } to { transform: none; } }
       @keyframes cv-slide { from { transform: translateX(-404px); } to { transform: none; } }
       @keyframes cv-blink { 50% { opacity: 0; } }
+      /* Case 01: one colour change travels Figma → code → Storybook → four products. Primary elements carry the new
+         colour (the finished frame) and, while the cover plays, start from the old one; --d sets when each part changes,
+         and each window's outline flashes as it updates. */
+      .pcard.play .cv .pr { animation: cv-ds-fill var(--dur, 0.45s) ease-in-out var(--d, 0s) both; }
+      .pcard.play .cv .prl { animation: cv-ds-fill-l var(--dur, 0.45s) ease-in-out var(--d, 0s) both; }
+      .pcard.play .cv .prs { animation: cv-ds-stroke var(--dur, 0.45s) ease-in-out var(--d, 0s) both; }
+      .cv .cv-ds-old, .cv .cv-ds-mid, .cv .cv-ds-flash, .cv .cv-ds-click { opacity: 0; }
+      .pcard.play .cv .cv-ds-old { animation: cv-ds-out 0.05s var(--d, 0s) both; }
+      .pcard.play .cv .cv-ds-mid { animation: cv-ds-on var(--dur, 0.3s) var(--d, 0s); }
+      .pcard.play .cv .cv-ds-new { animation: cv-fade 0.2s var(--ease) var(--d, 0s) both; }
+      .pcard.play .cv .cv-ds-flash { animation: cv-ds-flash 0.7s var(--ease) var(--d, 0s) both; }
+      .cv .cv-ds-click { transform-box: fill-box; transform-origin: 50% 50%; }
+      .pcard.play .cv .cv-ds-click { animation: cv-ds-ripple 0.45s ease-out 0.5s both; }
+      .cv .cv-ds-drag { transform: translateX(18px); }
+      .pcard.play .cv .cv-ds-drag { animation: cv-ds-drag 0.9s ease-in-out 0.85s both; }
+      .pcard.play .cv .cv-ds-cur { animation: cv-ds-move 0.7s 0.1s both; }
+      .cv .cv-ds-press { opacity: 0; transform-box: fill-box; transform-origin: 50% 50%; }
+      .pcard.play .cv .cv-ds-press { animation: cv-ds-ripple 0.45s ease-out 0.77s both; }
+      .cv .cv-ds-hand { transform-box: fill-box; transform-origin: 50% 50%; }
+      .pcard.play .cv .cv-ds-hand { animation: cv-ds-hand 0.5s var(--ease) var(--d, 0s); }
+      @keyframes cv-ds-hand { 0%, 100% { transform: none; } 45% { transform: scale(1.3); } }
+      @keyframes cv-ds-fill { from { fill: #2F5BD6; } to { fill: #7C3AED; } }
+      @keyframes cv-ds-fill-l { from { fill: #DCE4FA; } to { fill: #EDE5FD; } }
+      @keyframes cv-ds-stroke { from { stroke: #2F5BD6; } to { stroke: #7C3AED; } }
+      @keyframes cv-ds-out { from { opacity: 1; } to { opacity: 0; } }
+      @keyframes cv-ds-on { from, to { opacity: 1; } }
+      @keyframes cv-ds-flash { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
+      @keyframes cv-ds-ripple { from { opacity: 0.9; transform: scale(0.3); } to { opacity: 0; transform: scale(1.7); } }
+      @keyframes cv-ds-drag { from { transform: none; } to { transform: translateX(18px); } }
+      @keyframes cv-ds-move {
+        0% { opacity: 0; transform: translate(-118px, 280px); animation-timing-function: ease-out; }
+        12% { opacity: 1; }
+        55%, 72% { transform: translate(-266px, -196px); animation-timing-function: ease-in-out; }
+        100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-drag { from { transform: none; } to { transform: translateX(21px); } }
+      @keyframes cv-ds-move {
+        0% { opacity: 0; transform: translate(-103px, 280px); animation-timing-function: ease-out; }
+        12% { opacity: 1; }
+        55%, 72% { transform: translate(-251px, -196px); animation-timing-function: ease-in-out; }
+        100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-drag { from { transform: none; } to { transform: translateX(21px); } }
+      @keyframes cv-ds-move {
+        0% { opacity: 0; transform: translate(-103px, 280px); animation-timing-function: ease-out; }
+        12% { opacity: 1; }
+        55%, 72% { transform: translate(-251px, -196px); animation-timing-function: ease-in-out; }
+        100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-drag { from { transform: none; } to { transform: translateX(21px); } }
+      @keyframes cv-ds-move {
+        0% { opacity: 0; transform: translate(-103px, 280px); animation-timing-function: ease-out; }
+        12% { opacity: 1; }
+        55%, 72% { transform: translate(-251px, -196px); animation-timing-function: ease-in-out; }
+        100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-drag { from { transform: none; } to { transform: translateX(21px); } }
+      @keyframes cv-ds-move {
+        0% { opacity: 0; transform: translate(-103px, 280px); animation-timing-function: ease-out; }
+        12% { opacity: 1; }
+        55%, 72% { transform: translate(-251px, -196px); animation-timing-function: ease-in-out; }
+        100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-drag { from { transform: none; } to { transform: translateX(21px); } }
+      @keyframes cv-ds-move {
+        0% { opacity: 0; transform: translate(-103px, 280px); animation-timing-function: ease-out; }
+        12% { opacity: 1; }
+        55%, 72% { transform: translate(-251px, -196px); animation-timing-function: ease-in-out; }
+        100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-move {
+        0% { opacity: 0; transform: translate(-122px, 280px); animation-timing-function: ease-out; }
+        10% { opacity: 1; }
+        27%, 35% { transform: translate(-270px, -196px); animation-timing-function: ease-in-out; }
+        49%, 51% { transform: translate(-21px, 0px); animation-timing-function: ease-in-out; }
+        100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-hue { from { transform: translateX(-21px); } to { transform: none; } }
+      @keyframes cv-ds-move {
+        0% { opacity: 0; transform: translate(-122px, 258px); animation-timing-function: ease-out; }
+        10% { opacity: 1; }
+        27%, 35% { transform: translate(-270px, -194px); animation-timing-function: ease-in-out; }
+        49%, 51% { transform: translate(-21px, 0px); animation-timing-function: ease-in-out; }
+        100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-hue { from { transform: translateX(-21px); } to { transform: none; } }
+      @keyframes cv-ds-move { 0% { opacity: 0; transform: translate(-122px, 258px); } 15% { opacity: 1; }
+        45%, 62% { transform: translate(-270px, -194px); } 100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-hue { from { transform: translateX(-21px); } to { transform: none; } }
+      @keyframes cv-ds-move { 0% { opacity: 0; transform: translate(-122px, 258px); } 15% { opacity: 1; }
+        45%, 62% { transform: translate(-270px, -194px); } 100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-hue { from { transform: translateX(-21px); } to { transform: none; } }
+      @keyframes cv-ds-move { 0% { opacity: 0; transform: translate(-122px, 258px); } 15% { opacity: 1; }
+        45%, 62% { transform: translate(-270px, -194px); } 100% { opacity: 1; transform: none; } }
+      @keyframes cv-ds-hue { from { transform: translateX(-21px); } to { transform: none; } }
+      /* Case 02: the question types, filters and pins appear, the insight rises and is clicked, the assistant slides in with steps and sources */
+      .cv .ab3-type, .cv .ab3-pop, .cv .ab3-click { transform-box: fill-box; transform-origin: 50% 50%; }
+      .cv .ab3-type { transform-origin: 100% 50%; transform: scaleX(0); }
+      .cv .ab3-click { opacity: 0; }
+      .pcard.play .cv .ab3-type { animation: ab2-type 0.8s steps(34) 0.2s both; }
+      .pcard.play .cv .ab3-in { animation: cv-fade 0.3s var(--ease) both; }
+      .pcard.play .cv .ab3-pop { animation: cv-pop 0.35s var(--ease) both; }
+      .pcard.play .cv .ab3-rise { animation: ab2-rise 0.45s var(--ease) both; }
+      .pcard.play .cv .ab3-cur { animation: ab2-cur 0.45s var(--ease) 2.1s both; }
+      .pcard.play .cv .ab3-click { animation: ab2-ripple 0.45s ease-out 2.5s both; }
+      .pcard.play .cv .ab3-slide { animation: ab3-slide 0.4s var(--ease) both; }
+      .cv .ab3-think { opacity: 0; }
+      .pcard.play .cv .ab3-think { animation: ab3-think 0.6s linear 2.9s both; }
+      @keyframes ab3-think { 0% { opacity: 0; } 20%, 80% { opacity: 1; } 100% { opacity: 0; } }
+      @keyframes ab2-type { from { transform: scaleX(1); } to { transform: scaleX(0); } }
+      @keyframes ab2-rise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+      @keyframes ab2-cur { from { opacity: 0; transform: translate(-120px, -160px); } 30% { opacity: 1; } to { opacity: 1; transform: none; } }
+      @keyframes ab2-ripple { from { opacity: 0.9; transform: scale(0.3); } to { opacity: 0; transform: scale(1.7); } }
+      @keyframes ab3-slide { from { transform: translateX(520px); } to { transform: none; } }
+      /* Case 03: each warning in the review is pressed and turns green, its step's badge flips to a tick, then the review is ready to generate */
+      .cv .oc-pop, .cv .oc-click { transform-box: fill-box; transform-origin: 50% 50%; }
+      .cv .oc-click, .cv .oc-a { opacity: 0; }
+      .pcard.play .cv .oc-pop { animation: cv-pop 0.35s var(--ease) both; }
+      .pcard.play .cv .oc-click { animation: ab2-ripple 0.45s ease-out forwards; }
+      .pcard.play .cv .oc-fix, .pcard.play .cv .oc-in { animation: cv-fade 0.3s var(--ease) both; }
+      .pcard.play .cv .oc-a { animation: oc-out 2.4s linear both; }
+      .pcard.play .cv .oc-rise { animation: ab2-rise 0.45s var(--ease) both; }
+      @keyframes oc-out { 0%, 96% { opacity: 1; } 100% { opacity: 0; } }
+      /* end Case 03 */
       @media (prefers-reduced-motion: reduce) { .cv * { animation: none !important; } }
       /* the half-width row: LoafMode's banner is 2:1, so its neighbour matches, cropped from the top */
       [data-observe="LoafMode"] .pcard-media,
@@ -342,7 +453,7 @@
             <!-- Writing hidden for now: <li><a href="writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="ask.html">Ask</a></li> -->
-            <li><a href="images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -362,24 +473,18 @@
           <div class="hero-grid">
 
             <div class="hero-copy">
-              <!-- the intro is the practice's intake form, pinned to the wall -->
-              <div class="intake">
-                <p class="intake-head" aria-hidden="true"><span>Intake form</span><span>Session 1</span></p>
-                <span class="intake-k" aria-hidden="true">Name</span>
-                <h1>Mahrs Aslam</h1>
-                <span class="intake-k">Presenting with</span>
-                <p class="claim">I build design systems and the AI features that run on them. The research comes first.</p>
-                <dl class="intake-facts">
-                  <div><dt>Role</dt><dd>UX Engineer in Vancouver, BC</dd></div>
-                  <div><dt>Training</dt><dd>B.A. Psychology, B.Sc. Computer Science</dd></div>
-                </dl>
-                <div class="hero-actions">
-                  <a class="btn btn-primary" href="#work">
-                    See the work
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" /></svg>
-                  </a>
-                  <a class="btn btn-ghost" href="about.html">About me</a>
-                </div>
+              <h1>Mahrs Aslam</h1>
+              <p class="claim">I&nbsp;build design systems and the AI features that run on them. Research comes&nbsp;first.</p>
+              <ul class="hero-facts">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>UX Engineer in Vancouver,&nbsp;BC</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 5l10 4.5-10 4.5L2 9.5z"/><path d="M6 11.6V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.4"/><path d="M22 9.5V15"/></svg><span>B.A. Psychology, B.Sc. Computer&nbsp;Science</span></li>
+              </ul>
+              <div class="hero-actions">
+                <a class="btn btn-primary" href="#work">
+                  See the work
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7" /></svg>
+                </a>
+                <a class="btn btn-ghost" href="about.html">About me</a>
               </div>
             </div>
 
@@ -391,7 +496,7 @@
                   <ellipse cx="71" cy="247" rx="70" ry="5" fill="#1E1A17" opacity=".16"/>
                   <ellipse cx="170" cy="247" rx="28" ry="4" fill="#1E1A17" opacity=".16"/>
                   <g class="rp-ink">
-                    <g class="rp-far">
+                    <g class="rp-far rp-umbrella">
                     <!-- umbrella in its stand, at the chairs' scale: a long umbrella of about 70 cm in a stand of about 40 -->
                     <!-- the stand's opening, behind the umbrella -->
                     <ellipse cx="170" cy="146" rx="25" ry="6" fill="#1E1A17"/>
@@ -408,7 +513,7 @@
                     </g>
                     <!-- the cabinet sits back by the wall: a putty-grey metal cabinet, so the two chairs keep the colour, the room's lighter back-of-room line.
                          About 70 cm tall at the chairs' scale: a two-drawer cabinet. -->
-                    <g class="rp-far">
+                    <g class="rp-far rp-cabinet">
                     <rect x="8" y="74" width="126" height="172" rx="8" fill="#B5A993"/>
                     <rect x="17" y="83" width="108" height="26" rx="3" fill="#3C322A"/>
                     <g transform="translate(0 -22)"><g class="rp-tabs">
@@ -451,7 +556,7 @@
               <figure class="split-fig duck-fig">
                 <!-- Interactive: tap the dev to start a session, squeeze the duck. It reports
                      both to this page so the session notes at the bottom can mention them. -->
-                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261112zm" width="800" height="746"
+                <iframe class="split-fig-anim" src="images/duck-scene.html?embed&amp;mix=0.15&amp;v=20261116b" width="800" height="746"
                         title="A developer on a therapist's couch talking to a rubber duck in glasses. Interactive." loading="eager"></iframe>
               </figure>
             </div>
@@ -473,318 +578,197 @@
 
             <!-- the four case files stand in one drawer: each folder files over the last as you scroll -->
             <div class="case-drawer">
-            <article class="pcard pcard-flagship hue-violet" data-prop="jars" data-observe="Design system" data-prose="the design system">
-              <p class="case-tabs"><b>Case 01</b><span aria-hidden="true">Case 02</span><span aria-hidden="true">Case 03</span><span aria-hidden="true">Case 04</span></p>
-              <!-- Layered cover: the Chip component set in Figma behind, the same Chip
-                   running in Storybook in front. -->
+            <article class="pcard pcard-flagship hue-violet" id="case-01" data-observe="Design system" data-prose="the design system">
+              <!-- Cover is a recreated mockup (company work, invented data), played once when it scrolls into view: someone changes
+                   color/primary in Figma, it's exported to code, every component in Storybook follows and a new version is published,
+                   then all four product apps pick it up, side by side. Only the primary colour moves; the status colours stay put. -->
               <div class="pcard-media-wrap">
-              <a class="pcard-media pcard-stack" href="work/design-system.html" tabindex="-1" aria-hidden="true">
-                <span class="win win-back">
-                  <span class="win-bar win-bar-dark"><i></i><i></i><i></i><b>Figma · Chips</b></span>
-                  <img src="images/covers/figma-chips-1000.webp" srcset="images/covers/figma-chips-1000.webp 1000w, images/covers/figma-chips.webp 1996w" sizes="(max-width: 760px) 78vw, 680px" width="1996" height="1121" alt="" loading="lazy" />
-                </span>
-                <span class="win win-front">
-                  <span class="win-bar"><i></i><i></i><i></i><b>Storybook · Chip</b></span>
-                  <img src="images/covers/storybook-chip-700.webp" srcset="images/covers/storybook-chip-700.webp 700w, images/covers/storybook-chip.webp 1316w" sizes="(max-width: 760px) 62vw, 500px" width="1316" height="1286" alt="" loading="lazy" />
-                </span>
+              <a class="pcard-media cover-frame" href="work/design-system.html" tabindex="-1" aria-hidden="true">
+<svg class="cv cv-ds" preserveAspectRatio="xMidYMin slice" viewBox="0 64 1600 936" width="1600" height="936" role="img" aria-label="A recreated mockup: the primary colour changes once in Figma's variables and is exported to code; every component in Storybook follows and a new version is published; then all four product apps pick it up, side by side" font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
+<defs><filter id="ds-shadow" x="-10%" y="-10%" width="120%" height="125%"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#1F3A63" flood-opacity=".16"/></filter><linearGradient id="ds-sv-w" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient><linearGradient id="ds-sv-k" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#000000" stop-opacity="0"/><stop offset="1" stop-color="#000000"/></linearGradient><linearGradient id="ds-hue" x1="0" x2="1"><stop offset="0" stop-color="#FF0000"/><stop offset=".17" stop-color="#FFFF00"/><stop offset=".33" stop-color="#00FF00"/><stop offset=".5" stop-color="#00FFFF"/><stop offset=".67" stop-color="#0000FF"/><stop offset=".83" stop-color="#FF00FF"/><stop offset="1" stop-color="#FF0000"/></linearGradient></defs>
+<g filter="url(#ds-shadow)"><rect x="80" y="150" width="400" height="700" rx="16" fill="#2C2C2C"/></g>
+<circle cx="112" cy="188" r="13" fill="#FFFFFF" fill-opacity="0.16"/><text x="112" y="193" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+<text x="136" y="194" font-size="19" font-weight="400" fill="#FFFFFF" fill-opacity=".88">Figma · Variables</text>
+<rect x="80" y="216" width="400" height="1.5" fill="#FFFFFF" fill-opacity=".12"/>
+<text x="108" y="256" font-size="15" font-weight="600" fill="#FFFFFF">Colour</text>
+<text x="452" y="256" font-size="13" font-weight="400" fill="#8C8C8C" text-anchor="end">Light</text>
+<rect x="94" y="280" width="372" height="42" rx="7" fill="#0D99FF" fill-opacity=".22" stroke="#0D99FF" stroke-width="1.5"/>
+<g style="--d:0.85s;--dur:0.90s"><rect class="pr" x="108" y="289" width="22" height="22" rx="5" fill="#7C3AED"/></g>
+<text x="142" y="306" font-size="14" font-weight="400" fill="#E5E5E5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">color/primary</text>
+<g style="--d:0.85s"><text x="452" y="306" font-size="13" font-weight="400" fill="#A0A0A0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-old">#2F5BD6</text></g>
+<g style="--d:0.85s;--dur:0.30s"><text x="452" y="306" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-mid">#4351E1</text></g>
+<g style="--d:1.15s;--dur:0.30s"><text x="452" y="306" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-mid">#5B47E6</text></g>
+<g style="--d:1.45s;--dur:0.30s"><text x="452" y="306" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-mid">#6E40EA</text></g>
+<g style="--d:1.75s"><text x="452" y="306" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-new">#7C3AED</text></g>
+<rect x="108" y="341" width="22" height="22" rx="5" fill="#1E9E5A"/>
+<text x="142" y="358" font-size="14" font-weight="400" fill="#E5E5E5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">color/success</text>
+<text x="452" y="358" font-size="13" font-weight="400" fill="#A0A0A0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">#1E9E5A</text>
+<rect x="108" y="393" width="22" height="22" rx="5" fill="#F08C2E"/>
+<text x="142" y="410" font-size="14" font-weight="400" fill="#E5E5E5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">color/warning</text>
+<text x="452" y="410" font-size="13" font-weight="400" fill="#A0A0A0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">#F08C2E</text>
+<rect x="108" y="445" width="22" height="22" rx="5" fill="#D93A3A"/>
+<text x="142" y="462" font-size="14" font-weight="400" fill="#E5E5E5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">color/danger</text>
+<text x="452" y="462" font-size="13" font-weight="400" fill="#A0A0A0" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">#D93A3A</text>
+<g style="--d:0.55s"><g class="cv-ds-new"><g filter="url(#ds-shadow)"><rect x="262" y="330" width="204" height="232" rx="10" fill="#1E1E1E" stroke="#444" stroke-width="1"/></g><g style="--d:0.85s;--dur:0.90s"><rect class="pr" x="278" y="346" width="172" height="130" rx="5" fill="#7C3AED"/></g><rect x="278" y="346" width="172" height="130" rx="5" fill="url(#ds-sv-w)"/><rect x="278" y="346" width="172" height="130" rx="5" fill="url(#ds-sv-k)"/><circle cx="419" cy="367" r="7" fill="none" stroke="#FFFFFF" stroke-width="2.5"/><rect x="278" y="490" width="172" height="12" rx="6" fill="url(#ds-hue)"/><rect x="278" y="516" width="172" height="30" rx="5" fill="#2C2C2C"/><text x="290" y="536" font-size="12" font-weight="400" fill="#8C8C8C">Hex</text><g style="--d:0.85s"><text x="332" y="536" font-size="13" font-weight="400" fill="#E5E5E5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-old">2F5BD6</text></g><g style="--d:0.85s;--dur:0.30s"><text x="332" y="536" font-size="13" font-weight="700" fill="#FFFFFF" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-mid">4351E1</text></g><g style="--d:1.15s;--dur:0.30s"><text x="332" y="536" font-size="13" font-weight="700" fill="#FFFFFF" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-mid">5B47E6</text></g><g style="--d:1.45s;--dur:0.30s"><text x="332" y="536" font-size="13" font-weight="700" fill="#FFFFFF" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-mid">6E40EA</text></g><g style="--d:1.75s"><text x="332" y="536" font-size="13" font-weight="700" fill="#FFFFFF" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" class="cv-ds-new">7C3AED</text></g></g></g>
+<rect x="80" y="600" width="400" height="1" fill="#FFFFFF" fill-opacity=".1"/><text x="108" y="636" font-size="13" font-weight="400" fill="#8C8C8C">Button</text>
+<g style="--d:0.85s;--dur:0.90s"><rect class="pr" x="108" y="656" width="200" height="48" rx="8" fill="#7C3AED"/><text x="208.0" y="686.12" font-size="17" font-weight="600" fill="#FFFFFF" text-anchor="middle">Save changes</text><rect class="prs" x="320" y="656" width="104" height="48" rx="8" fill="#FFFFFF" stroke-width="1.5" stroke="#7C3AED"/><text class="pr" x="372" y="686" font-size="17" font-weight="600" text-anchor="middle" fill="#7C3AED">Edit</text></g>
+<g style="--d:2.00s"><g class="cv-ds-new"><circle cx="120" cy="800" r="11" fill="#1E9E5A"/><path d="M115 800 l3.5 3.5 l6.5 -7" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="140" y="806" font-size="15" font-weight="400" fill="#FFFFFF" fill-opacity=".85">Exported to code</text></g></g>
+<circle class="cv-ds-click" cx="119" cy="300" r="18" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+<g class="cv-ds-drag"><g style="--d:0.55s"><circle class="cv-ds-new" cx="386" cy="496" r="9" fill="none" stroke="#FFFFFF" stroke-width="3"/></g><circle class="cv-ds-press" cx="386" cy="496" r="16" fill="none" stroke="#FFFFFF" stroke-width="2"/><path class="cv-ds-cur" d="M388 500 v30 l8 -8 l6 13 l6 -2.8 l-6 -12.6 h11 z" fill="#FFFFFF" stroke="#14161A" stroke-width="2" stroke-linejoin="round"/></g>
+<g filter="url(#ds-shadow)"><rect x="516" y="150" width="400" height="700" rx="16" fill="#FFFFFF"/></g>
+<path d="M516 166 a16 16 0 0 1 16 -16 h368 a16 16 0 0 1 16 16 v50 h-400 z" fill="#F3F4F6"/>
+<circle cx="548" cy="188" r="13" fill="#1A1F29" fill-opacity="1"/><text x="548" y="193" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+<text x="572" y="194" font-size="19" font-weight="400" fill="#1A1F29">Storybook</text>
+<g style="--d:2.90s"><g class="cv-ds-new"><rect x="754" y="172" width="146" height="30" rx="15" fill="#E8F5EC"/><circle cx="772" cy="187" r="8" fill="#1E9E5A"/><path d="M768.5 187 l2.5 2.5 l5 -5.5" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><text x="786" y="192" font-size="12.5" font-weight="700" fill="#1E7A3C">Published 2.1.0</text></g></g>
+<text x="548" y="268" font-size="26" font-weight="700" fill="#1A1F29">Button</text>
+<rect x="652" y="248" width="86" height="24" rx="12" fill="#EEF0F4"/><text x="695" y="265" font-size="12" font-weight="600" fill="#6B7280" text-anchor="middle">Theme only</text>
+<text x="548" y="298" font-size="14" font-weight="400" fill="#6B7280">MUI's own Button, styled from tokens.</text>
+<rect x="548" y="322" width="336" height="270" rx="10" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="1.5"/>
+<g style="--d:2.35s"><rect class="pr" x="576" y="352" width="280" height="56" rx="8" fill="#7C3AED"/><text x="716.0" y="386.84" font-size="19" font-weight="600" fill="#FFFFFF" text-anchor="middle">Save changes</text></g>
+<g style="--d:2.41s"><rect class="pr" x="576" y="432" width="86" height="40" rx="8" fill="#7C3AED"/><text x="619.0" y="457.4" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">Save</text><rect class="prs" x="674" y="432" width="86" height="40" rx="8" fill="#FFFFFF" stroke-width="1.5" stroke="#7C3AED"/><text class="pr" x="717" y="457" font-size="15" font-weight="600" text-anchor="middle" fill="#7C3AED">Edit</text><text class="pr" x="814" y="457" font-size="15" font-weight="600" text-anchor="middle" fill="#7C3AED">More</text></g>
+<g style="--d:2.47s"><text x="576" y="520" font-size="12" font-weight="600" fill="#6B7280">Sizes</text><rect class="pr" x="576" y="534" width="70" height="30" rx="8" fill="#7C3AED"/><text x="611.0" y="553.32" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Small</text><rect class="pr" x="658" y="530" width="92" height="38" rx="8" fill="#7C3AED"/><text x="704.0" y="554.04" font-size="14" font-weight="600" fill="#FFFFFF" text-anchor="middle">Medium</text><rect class="pr" x="762" y="526" width="94" height="46" rx="8" fill="#7C3AED"/><text x="809.0" y="554.76" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="middle">Large</text></g>
+<rect x="548" y="616" width="336" height="128" rx="10" fill="#15171E"/>
+<text x="568" y="656" font-size="15" font-weight="400" fill="#D7DCE8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">&lt;<tspan fill="#9ECBFF">Button</tspan> <tspan fill="#B392F0">variant</tspan>=<tspan fill="#9CDCFE">"contained"</tspan>&gt;</text>
+<text x="588" y="686" font-size="15" font-weight="400" fill="#D7DCE8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">Save changes</text>
+<text x="568" y="716" font-size="15" font-weight="400" fill="#D7DCE8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">&lt;/<tspan fill="#9ECBFF">Button</tspan>&gt;</text>
+<g style="--d:2.35s"><rect class="cv-ds-flash" x="513" y="147" width="406" height="706" rx="19" fill="none" stroke="#1A1F29" stroke-width="4"/></g>
+<rect x="944" y="150" width="586" height="700" rx="16" fill="#E9ECF1"/>
+<circle cx="976" cy="188" r="13" fill="#1A1F29" fill-opacity="1"/><text x="976" y="193" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+<text x="1000" y="194" font-size="19" font-weight="400" fill="#1A1F29">Four products</text>
+<g filter="url(#ds-shadow)"><rect x="958" y="228" width="272" height="298" rx="12" fill="#FFFFFF"/></g><path d="M958 240 a12 12 0 0 1 12 -12 h248 a12 12 0 0 1 12 12 v12 h-272 z" fill="#E9EBEF"/><circle cx="973" cy="240" r="3.6" fill="#C9CED6"/><circle cx="985" cy="240" r="3.6" fill="#C9CED6"/><circle cx="997" cy="240" r="3.6" fill="#C9CED6"/><g style="--d:3.15s"><circle class="pr" cx="987" cy="283" r="11" fill="#7C3AED"/></g><text x="1008" y="289" font-size="16" font-weight="700" fill="#1A1F29">Cases</text><text x="976" y="320" font-size="12" font-weight="400" fill="#6B7280">12 open cases</text><g style="--d:3.15s"><rect x="976" y="336" width="236" height="34" rx="7" fill="#F7F8FA"/><text x="988" y="358" font-size="12" font-weight="400" fill="#1A1F29">TX-48213</text><rect x="1126" y="343" width="74" height="20" rx="10" fill="#E8F5EC"/><text x="1163.0" y="356.6" font-size="10" font-weight="600" fill="#1E7A3C" text-anchor="middle">Approved</text><rect x="976" y="378" width="236" height="34" rx="7" fill="#F7F8FA"/><text x="988" y="400" font-size="12" font-weight="400" fill="#1A1F29">TX-48214</text><rect x="1126" y="385" width="74" height="20" rx="10" fill="#FFF1E5"/><text x="1163.0" y="398.6" font-size="10" font-weight="600" fill="#B54708" text-anchor="middle">Review</text></g><g style="--d:3.15s"><rect class="pr" x="976" y="466" width="236" height="42" rx="8" fill="#7C3AED"/><text x="1094.0" y="492.4" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">Assign case</text></g><g style="--d:3.15s"><rect class="cv-ds-flash" x="955" y="225" width="278" height="304" rx="15" fill="none" stroke="#1A1F29" stroke-width="4"/></g>
+<g filter="url(#ds-shadow)"><rect x="1244" y="228" width="272" height="298" rx="12" fill="#FFFFFF"/></g><path d="M1244 240 a12 12 0 0 1 12 -12 h248 a12 12 0 0 1 12 12 v12 h-272 z" fill="#E9EBEF"/><circle cx="1259" cy="240" r="3.6" fill="#C9CED6"/><circle cx="1271" cy="240" r="3.6" fill="#C9CED6"/><circle cx="1283" cy="240" r="3.6" fill="#C9CED6"/><g style="--d:3.45s"><path class="pr" d="M1273 272 l11 11 l-11 11 l-11 -11 z" fill="#7C3AED"/></g><text x="1294" y="289" font-size="16" font-weight="700" fill="#1A1F29">Investigations</text><text x="1262" y="320" font-size="12" font-weight="400" fill="#6B7280">7 sessions near Halifax</text><g style="--d:3.45s"><rect x="1262" y="336" width="236" height="76" rx="8" fill="#E6EDF3"/><path d="M1262 383.12 C1302 374.0 1352 393.0 1402 380.08 S1462 370.96 1498 377.8 V412 H1262 Z" fill="#D7E3CF"/><circle class="pr" cx="1333" cy="363" r="6" stroke="#FFFFFF" stroke-width="2" fill="#7C3AED"/><circle class="pr" cx="1368" cy="382" r="6" stroke="#FFFFFF" stroke-width="2" fill="#7C3AED"/><circle class="pr" cx="1392" cy="359" r="6" stroke="#FFFFFF" stroke-width="2" fill="#7C3AED"/><circle class="pr" cx="1422" cy="378" r="6" stroke="#FFFFFF" stroke-width="2" fill="#7C3AED"/><circle class="pr" cx="1456" cy="365" r="6" stroke="#FFFFFF" stroke-width="2" fill="#7C3AED"/></g><g style="--d:3.45s"><rect class="pr" x="1262" y="466" width="236" height="42" rx="8" fill="#7C3AED"/><text x="1380.0" y="492.4" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">Export report</text></g><g style="--d:3.45s"><rect class="cv-ds-flash" x="1241" y="225" width="278" height="304" rx="15" fill="none" stroke="#1A1F29" stroke-width="4"/></g>
+<g filter="url(#ds-shadow)"><rect x="958" y="540" width="272" height="298" rx="12" fill="#FFFFFF"/></g><path d="M958 552 a12 12 0 0 1 12 -12 h248 a12 12 0 0 1 12 12 v12 h-272 z" fill="#E9EBEF"/><circle cx="973" cy="552" r="3.6" fill="#C9CED6"/><circle cx="985" cy="552" r="3.6" fill="#C9CED6"/><circle cx="997" cy="552" r="3.6" fill="#C9CED6"/><g style="--d:3.75s"><path class="pr" d="M987 584 l10 5.5 v11 l-10 5.5 l-10 -5.5 v-11 z" fill="#7C3AED"/></g><text x="1008" y="601" font-size="16" font-weight="700" fill="#1A1F29">Verify</text><text x="976" y="632" font-size="12" font-weight="400" fill="#6B7280">Step 2 of 3</text><g style="--d:3.75s"><rect class="prl" x="976" y="648" width="236" height="76" rx="8" fill="#EDE5FD"/><circle cx="1012" cy="686" r="20" fill="#FFFFFF"/><circle cx="1012" cy="681" r="7.5" fill="#C9CED6"/><path d="M999 699 a13 11 0 0 1 26 0" fill="#C9CED6"/><text x="1046" y="680" font-size="13" font-weight="700" fill="#1A1F29">Passport</text><text x="1046" y="700" font-size="11" font-weight="400" fill="#6B7280">Front and back</text></g><g style="--d:3.75s"><rect class="pr" x="976" y="778" width="236" height="42" rx="8" fill="#7C3AED"/><text x="1094.0" y="804.4" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">Continue</text></g><g style="--d:3.75s"><rect class="cv-ds-flash" x="955" y="537" width="278" height="304" rx="15" fill="none" stroke="#1A1F29" stroke-width="4"/></g>
+<g filter="url(#ds-shadow)"><rect x="1244" y="540" width="272" height="298" rx="12" fill="#FFFFFF"/></g><path d="M1244 552 a12 12 0 0 1 12 -12 h248 a12 12 0 0 1 12 12 v12 h-272 z" fill="#E9EBEF"/><circle cx="1259" cy="552" r="3.6" fill="#C9CED6"/><circle cx="1271" cy="552" r="3.6" fill="#C9CED6"/><circle cx="1283" cy="552" r="3.6" fill="#C9CED6"/><g style="--d:4.05s"><rect class="pr" x="1262" y="584" width="22" height="22" rx="5" fill="#7C3AED"/></g><text x="1294" y="601" font-size="16" font-weight="700" fill="#1A1F29">Admin</text><text x="1262" y="632" font-size="12" font-weight="400" fill="#6B7280">Team · 8 members</text><g style="--d:4.05s"><circle cx="1278" cy="665" r="15" fill="#8B95A7"/><text x="1278" y="669" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">AK</text><text x="1304" y="670" font-size="13" font-weight="600" fill="#1A1F29">Aisha Khan</text><text x="1498" y="670" font-size="12" font-weight="400" fill="#6B7280" text-anchor="end">Owner</text><circle cx="1278" cy="707" r="15" fill="#1F3A63"/><text x="1278" y="711" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">JM</text><text x="1304" y="712" font-size="13" font-weight="600" fill="#1A1F29">Jon Mercer</text><text x="1498" y="712" font-size="12" font-weight="400" fill="#6B7280" text-anchor="end">Analyst</text></g><g style="--d:4.05s"><rect class="pr" x="1262" y="778" width="236" height="42" rx="8" fill="#7C3AED"/><text x="1380.0" y="804.4" font-size="15" font-weight="600" fill="#FFFFFF" text-anchor="middle">Invite user</text></g><g style="--d:4.05s"><rect class="cv-ds-flash" x="1241" y="537" width="278" height="304" rx="15" fill="none" stroke="#1A1F29" stroke-width="4"/></g>
+<g style="--d:2.15s"><g class="cv-ds-hand"><circle cx="498" cy="500" r="22" fill="#1A1F29" stroke="#FFFFFF" stroke-width="4"/><path d="M490 500 h16 m-6 -6 l6 6 l-6 6" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+<g style="--d:3.00s"><g class="cv-ds-hand"><circle cx="930" cy="500" r="22" fill="#1A1F29" stroke="#FFFFFF" stroke-width="4"/><path d="M922 500 h16 m-6 -6 l6 6 l-6 6" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></g>
+</svg>
               </a>
-              <p class="pcard-note r" style="--nx:66%" aria-hidden="true"><svg viewBox="0 0 22 26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24 C5 16 8 9 15 3"/><path d="M8.5 3.5 L15 3 L15.5 9.5"/></svg><span>the same Chip, in Figma and in Storybook</span></p>
               </div>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Design system</b> · Front end + AI tooling<span class="yr">2025–26</span></p>
-                <h3><a href="work/design-system.html">A design system four products run on</a></h3>
-                <p>Our component library looked perfect and only worked in Storybook. I cleaned up Figma with AI-built plugins and rebuilt it theme-first. It's now used by 4 products.</p>
+                <p class="file-label">Case&nbsp;01</p>
+                <p class="pcard-kicker">Front end and AI tooling,&nbsp;2025–26</p>
+                <h3><a href="work/design-system.html">Turning our Figma library into the design system four products ship&nbsp;with</a></h3>
+                <p>Developers treated our Figma library as a&nbsp;suggestion, so every screen took extra dev and QA rounds. I&nbsp;rebuilt it as an&nbsp;MUI theme and component library that AI agents build on from a&nbsp;rules&nbsp;file. Visual bugs dropped about&nbsp;90%.</p>
               </div>
             </article>
 
-            <article class="pcard pcard-flagship hue-coral" data-prop="map" data-observe="Ask bar" data-prose="the ask bar">
-              <p class="case-tabs"><span aria-hidden="true">Case 01</span><b>Case 02</b><span aria-hidden="true">Case 03</span><span aria-hidden="true">Case 04</span></p>
-              <!-- Cover is a recreated mockup (company work): the question and data are invented. -->
+            <article class="pcard pcard-flagship hue-coral" id="case-02" data-observe="Ask bar" data-prose="the ask bar">
+              <!-- Cover is a recreated mockup of the product (company work, invented data), played once when it scrolls into view: a question
+                   typed on the map sets the filters, an insight appears, and opening it slides in the assistant with its steps and sources. -->
               <div class="pcard-media-wrap">
               <a class="pcard-media cover-frame" href="work/ask-bar.html" tabindex="-1" aria-hidden="true">
-                <svg class="cv cv-ab" preserveAspectRatio="xMidYMin slice" viewBox="0 64 1600 936" width="1600" height="936" role="img" aria-label="A recreated mockup: an ask bar turning a question into filter chips above a map of Halifax" font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
-                <defs>
-                <clipPath id="ab-win"><rect x="150" y="100" width="1300" height="960" rx="18"/></clipPath>
-                <clipPath id="ab-mapclip"><rect x="340" y="340" width="960" height="736" rx="14"/></clipPath>
-                <filter id="ab-shadow" x="-10%" y="-10%" width="120%" height="125%">
-                <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#1F3A63" flood-opacity=".16"/>
-                </filter>
-                </defs>
-                <g filter="url(#ab-shadow)">
-                <rect x="150" y="100" width="1300" height="960" rx="18" fill="#FFFFFF"/>
-                </g>
-                <g clip-path="url(#ab-win)">
-                <rect x="150" y="100" width="1300" height="46" fill="#F3F4F6"/>
-                <circle cx="182" cy="123" r="7" fill="#D9DCE1"/>
-                <circle cx="206" cy="123" r="7" fill="#D9DCE1"/>
-                <circle cx="230" cy="123" r="7" fill="#D9DCE1"/>
-                <rect x="560" y="111" width="480" height="24" rx="12" fill="#E6E8EC"/>
-                <rect x="150" y="146" width="160" height="960" fill="#1F3A63"/>
-                <rect x="172" y="174" width="30" height="30" rx="8" fill="#2F5BD6"/>
-                <rect x="162" y="232" width="136" height="38" rx="9" fill="#FFFFFF" fill-opacity=".14"/>
-                <text x="174" y="257" font-size="16" font-weight="600" fill="#FFFFFF">Map</text>
-                <text x="174" y="305" font-size="16" fill="#FFFFFF" fill-opacity=".72">Transactions</text>
-                <text x="174" y="349" font-size="16" fill="#FFFFFF" fill-opacity=".72">Connections</text>
-                <text x="174" y="393" font-size="16" fill="#FFFFFF" fill-opacity=".72">Accounts</text>
-                <rect x="335" y="181" width="970" height="74" rx="19" fill="none" stroke="#DCE4F8" stroke-width="6"/>
-                <rect x="340" y="186" width="960" height="64" rx="14" fill="#FFFFFF" stroke="#2F5BD6" stroke-width="2"/>
-                <text x="366" y="227" font-size="20" fill="#E8553D">✦</text>
-                <text x="398" y="227" font-size="24" fill="#1A1F29">Failed transactions near Halifax last week<tspan class="cv-caret" fill="#2F5BD6" font-weight="300" dx="2">|</tspan></text>
-                <text x="1082" y="225" font-size="18" font-weight="500" fill="#4B5563">Examples</text>
-                <path d="M1166 214 L1172 220 L1178 214" fill="none" stroke="#4B5563" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <rect x="1196" y="196" width="94" height="44" rx="10" fill="#2F5BD6"/>
-                <text x="1243" y="225" font-size="19" font-weight="600" fill="#FFFFFF" text-anchor="middle">Ask</text>
-                <text x="344" y="306" font-size="17" fill="#8A93A2">From your question</text>
-                <g class="cv-chip">
-                <rect x="516" y="281" width="175" height="38" rx="9" fill="#EEF2FC" stroke="#D6DFF6" stroke-width="1.5"/>
-                <text x="531" y="306" font-size="18"><tspan fill="#5D6F95">Status: </tspan><tspan fill="#1F3A63" font-weight="600">Failed</tspan></text>
-                <text x="673" y="306" font-size="18" fill="#5D6F95" text-anchor="middle">×</text>
-                </g>
-                <g class="cv-chip">
-                <rect x="701" y="281" width="216" height="38" rx="9" fill="#EEF2FC" stroke="#D6DFF6" stroke-width="1.5"/>
-                <text x="716" y="306" font-size="18"><tspan fill="#5D6F95">Range: </tspan><tspan fill="#1F3A63" font-weight="600">Last 7 days</tspan></text>
-                <text x="899" y="306" font-size="18" fill="#5D6F95" text-anchor="middle">×</text>
-                </g>
-                <g class="cv-chip">
-                <rect x="927" y="281" width="171" height="38" rx="9" fill="#EEF2FC" stroke="#D6DFF6" stroke-width="1.5"/>
-                <text x="942" y="306" font-size="18"><tspan fill="#5D6F95">Place: </tspan><tspan fill="#1F3A63" font-weight="600">Halifax</tspan></text>
-                <text x="1079" y="306" font-size="18" fill="#5D6F95" text-anchor="middle">×</text>
-                </g>
-                <text class="cv-sum" x="1113" y="306" font-size="17" fill="#2F5BD6">Clear</text>
-                <g clip-path="url(#ab-mapclip)">
-                <rect x="340" y="340" width="960" height="736" fill="#DCE8F2"/>
-                <svg x="340" y="340" width="960" height="736" viewBox="498.618 120.451 14.737 11.298" preserveAspectRatio="xMidYMid slice">
-                <g fill="#F1F3EC" stroke="#B8C4CE" stroke-width="0.02"><path d="M486.70 140.50L486.70 106.50L497.57 106.50L497.07 106.72L497.40 106.79L497.61 106.66L497.98 106.61L497.96 106.50L498.26 106.50L498.34 106.78L498.31 106.94L498.12 107.01L498.06 107.20L498.09 107.76L498.41 107.61L499.18 107.62L499.35 107.76L500.25 107.66L500.74 107.90L500.89 108.05L500.85 108.17L500.98 108.34L501.14 108.30L501.26 108.13L501.46 108.41L501.78 108.17L502.24 108.17L503.53 108.69L503.66 108.85L503.52 109.00L503.03 109.13L502.79 109.40L501.59 109.38L501.53 109.40L501.48 109.63L501.39 109.67L501.75 110.09L501.99 109.95L502.72 110.20L502.96 110.38L502.99 110.64L503.28 110.75L503.42 111.11L503.75 111.15L504.05 111.32L503.76 111.53L503.91 111.58L504.24 111.47L504.39 111.53L504.38 111.77L504.50 111.63L504.46 111.26L504.67 111.38L504.92 111.25L505.64 111.17L506.01 111.24L506.23 111.46L505.70 111.39L506.09 111.73L505.42 111.81L505.47 111.89L505.74 111.86L506.09 112.00L506.18 111.86L506.61 112.00L507.28 111.84L507.49 111.94L506.98 112.24L506.66 112.33L506.42 112.28L506.60 112.52L507.08 112.76L507.13 112.59L507.30 112.41L507.30 112.63L507.73 112.35L507.78 112.21L507.83 112.34L507.67 112.54L507.68 112.63L508.29 112.37L508.65 112.41L508.52 112.10L508.26 111.94L508.41 111.89L510.69 112.35L511.42 112.28L511.27 112.39L510.84 112.41L511.03 112.56L511.36 112.58L511.71 112.83L511.22 113.13L510.74 113.26L510.59 113.58L510.89 113.36L510.98 113.45L510.89 113.87L511.19 113.44L511.54 113.72L511.61 113.58L511.43 113.44L511.49 113.20L511.85 113.09L512.19 113.17L512.34 113.37L512.47 113.42L512.82 113.37L512.59 113.85L512.70 113.92L512.86 113.86L513.11 113.57L513.63 113.27L513.56 113.17L513.48 113.20L513.07 113.45L513.25 113.21L514.28 112.96L515.76 111.92L516.27 111.37L516.81 111.11L516.91 111.28L516.74 111.49L516.75 111.70L516.98 112.62L516.94 112.96L517.06 113.07L518.25 113.77L518.42 113.78L518.72 113.58L518.83 113.65L518.67 113.66L518.68 113.73L518.88 113.86L518.95 113.61L519.09 113.55L519.19 113.27L519.31 113.16L519.78 113.09L520.43 113.67L520.64 114.19L520.86 114.47L521.58 114.94L521.58 115.32L521.50 115.47L520.76 115.87L520.62 115.91L520.61 115.79L520.51 115.82L520.22 116.08L519.85 116.25L520.00 116.45L522.29 116.46L523.27 116.67L523.46 116.86L523.47 117.28L523.38 117.29L523.29 117.08L523.00 117.00L523.14 117.28L522.93 117.45L522.86 117.64L522.70 117.62L522.76 117.76L522.41 117.87L522.27 117.82L522.18 117.62L522.41 117.28L522.09 117.36L521.99 117.58L522.02 117.97L521.76 117.47L521.40 117.61L521.40 117.49L521.29 117.46L520.78 117.83L520.68 118.10L520.86 118.10L520.51 118.36L519.24 118.53L518.94 118.49L518.74 118.25L518.68 118.43L518.40 118.25L518.29 118.31L518.55 118.51L518.74 118.79L518.49 118.85L518.74 119.13L518.35 119.09L518.28 118.93L517.91 118.99L517.91 119.20L517.53 118.99L517.42 119.01L517.52 119.20L517.18 119.20L517.35 119.44L517.33 119.54L517.03 119.47L517.02 119.66L516.92 119.69L516.65 119.47L516.60 119.75L516.36 119.64L516.16 119.89L516.12 119.68L515.83 119.89L516.36 120.09L516.27 120.15L515.97 120.09L515.67 120.27L515.12 120.25L514.88 120.44L514.54 120.41L514.39 120.48L514.28 120.71L514.22 120.63L514.02 120.80L513.79 120.78L513.74 120.91L513.79 121.05L513.41 120.90L513.25 121.05L513.36 121.19L513.10 121.31L513.02 121.67L512.88 121.59L512.82 120.99L512.60 121.37L512.46 121.44L512.29 121.32L512.19 121.60L512.43 121.94L512.28 122.00L512.10 121.67L511.95 121.73L511.90 121.63L511.51 121.94L511.56 122.07L511.33 121.98L510.49 122.15L510.51 122.39L510.35 122.48L510.55 122.70L510.32 122.82L510.23 122.83L510.08 122.62L510.01 122.76L509.61 122.60L509.19 122.89L509.09 122.63L509.09 122.29L508.99 122.22L508.78 122.34L508.70 122.22L508.70 122.37L509.02 122.89L508.70 123.25L508.67 122.82L508.44 122.71L508.39 122.16L508.27 122.09L508.22 122.15L508.24 122.65L508.12 123.11L507.98 122.94L508.02 122.70L507.89 122.79L507.82 123.08L507.60 123.19L507.59 122.97L507.44 122.63L507.33 122.89L507.44 123.11L507.13 123.57L507.10 123.73L506.37 123.57L506.18 123.45L506.38 123.32L506.30 123.18L506.17 123.17L505.89 123.32L506.14 123.52L506.18 123.66L506.01 124.04L505.51 123.76L504.64 122.87L504.44 122.83L504.59 123.24L504.96 123.36L505.13 123.65L505.26 124.07L505.25 124.50L505.42 124.82L505.41 124.97L505.24 125.27L505.02 125.36L504.97 125.31L505.02 125.16L504.90 125.13L504.64 125.59L504.57 125.50L504.68 125.30L504.46 125.25L504.16 125.32L504.05 125.44L503.96 125.25L503.91 125.30L503.75 125.19L503.71 124.95L503.51 125.32L503.39 125.10L503.57 124.68L503.37 124.89L503.22 124.76L503.13 124.81L503.18 124.95L502.94 125.01L502.75 125.02L502.54 124.89L502.45 124.66L502.46 124.46L502.60 124.07L502.45 123.79L502.62 123.66L502.65 123.58L502.54 123.52L502.82 123.20L502.83 123.04L502.57 123.25L501.58 123.66L501.61 124.13L501.79 124.29L501.97 124.89L501.75 124.77L501.51 125.23L501.36 125.25L501.21 125.13L501.21 124.62L501.14 124.45L500.90 124.20L500.65 124.20L500.55 124.29L500.56 124.48L500.44 124.63L499.89 124.34L499.98 124.55L499.90 124.57L499.92 124.97L499.74 125.23L499.93 125.30L499.54 125.44L499.67 125.71L499.64 125.85L500.10 125.85L500.22 125.91L500.01 125.99L499.84 126.19L500.20 126.20L500.56 126.33L500.43 126.39L499.59 126.33L499.59 126.39L499.67 126.50L499.64 126.67L499.82 126.76L499.98 126.74L499.84 126.60L499.91 126.57L500.18 126.67L500.00 127.01L500.37 127.01L500.02 127.41L499.65 127.16L499.59 127.08L499.69 127.01L499.01 126.60L499.21 126.87L499.51 127.04L499.50 127.28L499.04 127.66L498.94 128.01L498.67 128.18L498.53 128.59L498.16 128.38L498.09 128.52L497.76 128.41L497.80 128.52L497.66 128.59L498.13 128.70L498.19 128.83L498.08 129.20L497.97 129.31L497.84 129.21L497.46 129.41L496.98 129.41L497.06 129.54L497.31 129.65L497.37 129.86L497.33 130.02L497.12 130.10L496.78 130.42L496.28 130.46L496.19 130.69L496.05 130.71L496.41 131.05L496.49 131.26L496.29 131.26L496.30 131.47L496.11 131.70L495.87 131.33L495.58 131.19L495.76 131.53L495.81 131.88L495.64 131.95L495.33 131.33L495.21 131.26L495.45 131.94L495.34 132.25L495.09 132.42L494.70 131.68L494.86 132.42L494.86 132.73L494.73 132.88L494.67 132.76L494.60 132.79L494.55 132.97L494.43 132.89L494.46 132.55L494.36 132.42L494.07 133.25L493.91 133.11L494.01 132.73L493.97 132.49L493.83 132.84L493.71 132.90L493.29 131.94L493.29 132.16L493.17 132.24L493.39 132.81L493.20 133.27L492.93 133.25L492.66 133.04L492.76 132.56L492.69 132.35L492.56 132.42L492.49 132.63L492.38 132.56L492.61 133.30L492.57 133.83L492.44 133.96L492.53 134.13L492.56 134.55L492.35 134.21L492.13 134.35L491.74 134.00L492.05 134.61L492.13 134.96L492.03 135.00L491.94 134.55L491.79 134.40L491.75 134.65L491.55 134.76L491.64 135.06L491.62 135.29L491.11 134.68L491.12 134.44L490.97 134.26L490.39 134.82L490.32 134.98L489.89 134.91L489.76 134.69L489.81 134.53L489.75 134.23L489.65 134.13L489.71 134.41L489.64 134.48L489.47 134.32L489.52 133.31L489.47 133.11L489.40 133.09L489.27 133.45L489.37 133.66L489.32 133.94L489.21 133.68L489.18 132.91L488.98 132.49L488.88 131.94L488.83 131.94L488.88 132.29L488.77 132.30L488.54 131.81L488.35 131.74L488.40 131.94L488.11 132.20L487.93 131.46L487.88 131.90L488.16 132.63L488.05 132.94L487.97 132.97L488.02 132.71L487.87 132.76L487.86 133.00L487.80 133.04L487.70 132.98L487.69 132.63L487.61 132.54L487.51 132.59L487.48 132.84L487.38 132.71L487.34 132.28L487.04 132.56L486.96 131.90L487.12 131.52L487.00 131.50L486.85 131.74L486.85 131.48L486.70 131.40L486.70 131.05L486.85 130.68L486.75 130.24L486.85 129.97L486.70 129.48L486.70 128.11L486.90 127.69L487.10 126.57L487.23 126.26L487.57 125.93L487.67 125.63L488.14 125.11L488.98 124.43L489.03 124.27L488.97 124.13L488.31 124.17L486.70 125.92L486.70 125.57L487.91 124.20L488.69 123.69L489.42 123.04L489.63 123.43L489.62 123.89L490.08 123.79L490.56 123.34L490.72 123.04L490.77 123.11L491.18 122.63L491.94 122.22L491.81 122.19L490.62 122.91L490.19 123.04L489.73 123.32L489.61 123.17L489.86 122.73L491.74 121.45L492.16 121.05L493.34 120.45L493.70 120.07L495.94 118.60L497.00 118.08L498.43 117.71L499.11 117.28L499.25 116.98L499.09 116.80L498.53 116.66L498.67 116.59L499.71 116.90L499.78 117.17L499.56 117.52L499.45 118.03L499.55 118.15L499.52 118.29L499.30 118.51L499.45 118.74L499.45 118.92L499.60 118.94L499.74 118.58L499.89 118.51L500.47 118.92L500.97 119.50L500.95 120.16L501.09 119.97L501.29 120.02L501.20 119.70L501.33 119.41L501.08 119.27L500.75 118.86L500.64 118.51L500.87 118.41L500.87 118.14L501.23 117.84L502.31 117.49L502.71 117.24L503.28 117.20L503.40 117.11L503.45 116.89L503.74 116.89L503.91 117.00L504.05 116.74L505.02 116.78L505.41 116.66L505.55 116.71L505.80 117.08L505.86 116.75L506.05 116.55L506.57 116.39L506.35 116.28L505.38 116.22L504.92 116.05L503.35 116.05L503.11 116.15L502.82 116.47L502.68 116.41L502.69 116.19L502.49 116.01L501.95 116.10L501.68 116.05L501.78 115.98L501.58 115.87L501.30 115.85L500.10 116.08L499.84 115.98L499.82 116.18L499.59 116.11L499.30 116.33L498.96 116.19L498.80 116.00L497.97 115.84L497.29 116.11L497.05 116.39L497.12 116.74L496.97 116.75L496.68 117.00L496.61 117.02L496.61 116.70L496.23 116.52L495.70 116.53L495.47 116.74L495.43 116.49L495.48 116.17L495.67 115.70L496.01 115.43L496.39 115.29L496.15 115.16L497.46 114.41L497.48 114.14L498.00 113.85L498.62 113.24L498.81 113.17L499.01 112.90L498.94 112.61L499.23 112.44L499.37 112.19L499.35 112.08L499.89 111.73L499.97 111.84L499.96 111.95L499.70 112.23L499.69 112.55L499.90 112.38L500.18 112.35L500.07 112.21L499.89 112.21L500.10 111.95L500.09 111.58L499.59 111.11L499.46 111.24L499.64 111.32L499.64 111.39L499.44 111.53L499.08 112.09L498.76 112.27L498.65 112.72L498.41 112.79L498.19 112.68L498.45 112.34L498.58 111.83L498.29 111.53L498.29 110.98L498.17 111.16L498.00 111.14L497.59 110.46L497.25 110.09L497.20 109.64L497.07 109.38L496.75 109.10L496.64 109.13L497.02 109.50L497.12 109.67L497.07 110.01L497.40 110.47L497.55 110.55L497.71 110.98L498.00 111.39L497.91 111.74L497.27 112.48L497.51 112.76L497.17 112.76L497.04 113.11L496.89 113.27L496.59 113.86L496.50 113.87L496.26 113.63L495.65 113.72L495.38 113.92L495.01 114.41L493.67 114.90L491.30 116.35L491.12 116.70L490.60 116.84L490.04 117.15L489.65 117.56L489.37 117.35L488.69 117.86L488.03 117.76L487.62 117.15L486.94 116.87L487.67 116.30L487.89 116.01L487.91 115.60L487.83 115.36L487.49 115.77L487.23 116.46L487.04 116.39L486.70 116.50L486.73 117.03L487.00 117.21L487.40 117.26L487.48 117.42L487.08 117.63L486.91 117.82L486.90 117.97L486.70 118.12L486.70 140.50Z"/><path d="M523.47 106.50L523.47 110.03L523.15 110.25L522.54 110.42L522.42 110.51L522.37 110.70L523.19 110.59L523.47 110.16L523.47 110.87L523.34 111.01L522.76 111.05L522.95 111.11L522.63 111.32L522.56 111.46L523.38 111.23L523.34 111.11L523.47 111.14L523.47 111.67L523.39 111.79L523.17 111.77L522.53 112.21L522.31 112.55L522.47 112.48L522.46 112.72L522.22 112.92L522.68 113.09L523.47 112.60L523.47 113.92L523.09 113.86L523.19 113.92L523.14 114.05L522.85 114.09L522.65 114.27L522.15 114.43L522.02 114.41L522.15 114.35L522.16 114.21L521.80 114.07L521.79 113.92L521.67 114.18L521.55 114.15L521.30 114.33L521.35 114.52L521.25 114.52L520.89 114.34L520.69 113.89L520.13 113.18L519.90 111.89L519.74 111.65L519.80 111.11L519.56 110.67L519.61 110.49L519.56 110.08L519.36 109.78L519.43 109.60L519.90 109.26L520.01 108.55L520.54 108.06L521.27 107.54L521.83 106.50Z"/><path d="M514.76 106.50L514.26 106.50L514.13 106.59L513.68 106.50L513.74 106.76L513.84 106.87L513.47 106.94L513.36 106.87L513.59 107.16L513.60 107.29L513.43 107.34L512.86 107.20L512.67 107.28L513.19 107.55L513.21 107.76L513.10 107.84L512.55 107.82L512.11 107.61L512.05 107.72L512.56 107.98L512.67 108.17L511.95 107.89L512.14 108.10L511.90 108.17L512.43 108.30L512.36 108.72L512.82 108.79L512.79 108.65L512.53 108.51L512.75 108.47L512.91 108.65L512.98 108.92L512.96 109.20L512.85 109.37L512.46 109.43L512.14 109.67L512.58 109.82L512.96 109.75L512.75 110.10L512.33 110.28L511.03 110.29L510.88 110.49L510.20 110.22L509.87 109.95L510.01 109.82L509.69 109.68L509.58 109.47L509.91 109.47L509.76 109.28L509.14 109.38L508.90 109.33L509.30 109.23L509.70 108.99L509.92 108.70L510.06 108.64L509.98 108.44L509.86 108.43L509.49 108.72L509.42 108.55L509.46 108.34L509.62 108.23L509.49 108.07L509.29 107.95L509.19 108.03L509.29 108.17L509.14 108.21L508.29 107.84L508.60 107.54L508.65 107.34L508.80 107.34L508.85 107.13L509.26 106.95L509.38 106.80L508.81 106.98L508.43 107.27L508.17 107.62L507.73 107.28L507.88 107.72L507.47 107.95L507.20 107.95L507.20 108.03L507.78 108.05L507.88 107.82L508.07 107.94L508.08 108.17L507.30 108.58L506.20 108.17L506.08 108.03L505.89 108.03L505.65 107.76L505.33 107.89L505.11 107.77L504.96 107.84L504.68 107.76L504.21 107.43L504.07 107.10L503.57 106.80L503.42 106.56L503.57 106.59L503.53 106.50Z"/><path d="M523.47 115.15L523.23 115.39L523.09 115.29L523.24 115.06L522.80 114.96L522.52 114.73L522.47 114.51L523.04 114.23L523.47 114.19Z"/><path d="M490.66 135.72L490.53 135.78L490.58 135.65L490.54 135.55L490.34 135.37L490.68 135.17L490.61 134.92L490.70 134.86L491.02 134.89L490.66 135.72Z"/><path d="M512.42 111.71L512.60 111.72L512.57 111.86L512.26 112.01L511.92 111.96L512.13 111.76L512.42 111.71Z"/></g>
-                <g fill="#DCE8F2" stroke="#B8C4CE" stroke-width="0.015"><path d="M495.07 127.50L495.33 127.42L495.06 127.78L494.94 127.83L495.09 128.05L494.94 128.36L494.75 128.52L494.51 128.58L494.46 128.49L493.97 128.46L493.90 128.66L493.55 128.35L493.52 128.21L493.59 127.99L493.54 127.77L493.73 127.63L493.85 127.28L494.39 127.17L494.46 127.22L494.43 127.33L494.26 127.39L494.26 127.69L494.18 127.69L494.17 127.79L494.25 127.94L494.46 127.90L494.61 128.06L494.84 127.69L495.07 127.50Z"/><path d="M487.67 111.00L487.58 111.11L487.09 111.25L486.95 111.46L486.70 111.38L486.70 111.03L487.29 110.75L487.28 110.63L487.59 110.10L487.67 109.79L487.58 109.61L487.62 109.47L487.76 109.55L487.99 109.12L488.09 109.30L488.30 109.20L488.11 109.05L488.25 108.96L488.64 109.08L488.07 109.49L488.06 109.67L488.16 109.71L488.64 109.61L488.53 109.83L487.91 110.22L488.16 110.39L487.87 110.63L487.90 110.72L487.67 111.00Z"/></g>
-                <circle cx="505.087" cy="123.500" r="1.7" fill="#E8553D" fill-opacity=".1" stroke="#E8553D" stroke-width="0.05" stroke-dasharray="0.18 0.12"/>
-                <text x="507.037" y="122.500" font-size="0.42" font-weight="600" fill="#B8402F">Halifax</text>
-                <circle class="cv-pin" cx="505.440" cy="123.200" r="0.2" fill="#E8553D" stroke="#FFFFFF" stroke-width="0.06"/><circle class="cv-pin" cx="504.521" cy="123.000" r="0.2" fill="#1F6E5B" stroke="#FFFFFF" stroke-width="0.06" fill-opacity="0.35" stroke-opacity="0.35"/><circle class="cv-pin" cx="505.864" cy="123.900" r="0.2" fill="#E8553D" stroke="#FFFFFF" stroke-width="0.06"/><circle class="cv-pin" cx="504.874" cy="124.300" r="0.2" fill="#E8553D" stroke="#FFFFFF" stroke-width="0.06"/><circle class="cv-pin" cx="506.006" cy="122.900" r="0.2" fill="#1F6E5B" stroke="#FFFFFF" stroke-width="0.06" fill-opacity="0.35" stroke-opacity="0.35"/><circle class="cv-pin" cx="504.238" cy="123.800" r="0.2" fill="#1F6E5B" stroke="#FFFFFF" stroke-width="0.06" fill-opacity="0.35" stroke-opacity="0.35"/><circle class="cv-pin" cx="505.228" cy="122.600" r="0.2" fill="#E8553D" stroke="#FFFFFF" stroke-width="0.06"/><circle class="cv-pin" cx="506.218" cy="124.300" r="0.2" fill="#1F6E5B" stroke="#FFFFFF" stroke-width="0.06" fill-opacity="0.35" stroke-opacity="0.35"/><circle class="cv-pin" cx="504.662" cy="122.500" r="0.2" fill="#E8553D" stroke="#FFFFFF" stroke-width="0.06"/><circle class="cv-pin" cx="505.652" cy="122.400" r="0.2" fill="#1F6E5B" stroke="#FFFFFF" stroke-width="0.06" fill-opacity="0.35" stroke-opacity="0.35"/>
-                </svg>
-                <rect x="1238" y="362" width="40" height="80" rx="9" fill="#FFFFFF" stroke="#C9D0DA"/>
-                <text x="1258" y="393" font-size="22" fill="#6B7280" text-anchor="middle">+</text>
-                <text x="1258" y="431" font-size="22" fill="#6B7280" text-anchor="middle">−</text>
-                <rect x="360" y="362" width="160" height="34" rx="9" fill="#FFFFFF" stroke="#E6E8EC"/>
-                <circle cx="380" cy="379" r="6" fill="#1F6E5B"/><text x="392" y="385" font-size="15" fill="#4B5563">Pass</text>
-                <circle cx="444" cy="379" r="6" fill="#E8553D"/><text x="456" y="385" font-size="15" fill="#4B5563">Failed</text>
-                </g>
-                </g>
-                </svg>
+                <svg class="cv cv-ab" preserveAspectRatio="xMidYMin slice" viewBox="0 64 1600 936" width="1600" height="936" role="img" aria-label="A recreated mockup of the product: the question &quot;Failed checks in Halifax this week&quot; is typed into the ask bar on the map, the page sets Status, Range and Place in seconds, and an insight says most failed checks in Halifax came from one phone. Clicking it opens the assistant, which shows the two accounts on that phone, the steps it took and the three failed checks it is based on." font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
+<defs><filter id="ab3-shadow" x="-6%" y="-8%" width="112%" height="120%"><feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#1F3A63" flood-opacity=".14"/></filter></defs>
+<g filter="url(#ab3-shadow)"><rect x="70" y="98" width="1460" height="840" rx="20" fill="#FFFFFF"/></g>
+<clipPath id="ab3-win"><rect x="70" y="98" width="1460" height="840" rx="20"/></clipPath>
+<path d="M90 98 h68 v840 h-68 a20 20 0 0 1 -20 -20 v-800 a20 20 0 0 1 20 -20 z" fill="#1F3A63"/>
+<rect x="94" y="124" width="40" height="40" rx="10" fill="#2F5BD6"/><path d="M114 133 a8 8 0 0 1 8 8 c0 6 -8 13 -8 13 s-8 -7 -8 -13 a8 8 0 0 1 8 -8 z" fill="#FFFFFF"/>
+<rect x="88" y="194" width="52" height="42" rx="10" fill="#FFFFFF" fill-opacity="0.16"/><rect x="102" y="211" width="24" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.95"/>
+<rect x="88" y="252" width="52" height="42" rx="10" fill="#FFFFFF" fill-opacity="0"/><rect x="102" y="269" width="24" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.4"/>
+<rect x="88" y="310" width="52" height="42" rx="10" fill="#FFFFFF" fill-opacity="0"/><rect x="102" y="327" width="24" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.4"/>
+<rect x="88" y="368" width="52" height="42" rx="10" fill="#FFFFFF" fill-opacity="0"/><rect x="102" y="385" width="24" height="8" rx="4" fill="#FFFFFF" fill-opacity="0.4"/>
+<rect x="190" y="120" width="620" height="56" rx="14" fill="#FFFFFF" stroke="#2F5BD6" stroke-width="2.5"/><g transform="translate(206 134) scale(1.071)"><circle cx="14" cy="15" r="13" fill="#E8EEFB"/><line x1="14" y1="2.6" x2="14" y2="7.5" stroke="#2F5BD6" stroke-width="1.6" stroke-linecap="round"/><circle cx="14" cy="2.8" r="2" fill="#FFC93C"/><rect x="6.5" y="7.6" width="15" height="12.4" rx="5" fill="#2F5BD6"/><ellipse cx="11" cy="13.4" rx="1.5" ry="2" fill="#FFFFFF"/><ellipse cx="17" cy="13.4" rx="1.5" ry="2" fill="#FFFFFF"/><path d="M11.4 17 q2.6 1.7 5.2 0" stroke="#FFFFFF" stroke-width="1.3" fill="none" stroke-linecap="round"/></g><text x="250" y="156" font-size="21" font-weight="400" fill="#1A1F29">Failed checks in Halifax this week</text>
+<rect class="ab3-type" x="246" y="132" width="550" height="34" fill="#FFFFFF"/>
+<rect x="834" y="120" width="172" height="56" rx="14" fill="#EEF2FC" stroke="#D6DFF6" stroke-width="2"/><g transform="translate(852 134) scale(1.071)"><circle cx="14" cy="15" r="13" fill="#E8EEFB"/><line x1="14" y1="2.6" x2="14" y2="7.5" stroke="#2F5BD6" stroke-width="1.6" stroke-linecap="round"/><circle cx="14" cy="2.8" r="2" fill="#FFC93C"/><rect x="6.5" y="7.6" width="15" height="12.4" rx="5" fill="#2F5BD6"/><ellipse cx="11" cy="13.4" rx="1.5" ry="2" fill="#FFFFFF"/><ellipse cx="17" cy="13.4" rx="1.5" ry="2" fill="#FFFFFF"/><path d="M11.4 17 q2.6 1.7 5.2 0" stroke="#FFFFFF" stroke-width="1.3" fill="none" stroke-linecap="round"/></g><text x="892" y="156" font-size="20" font-weight="600" fill="#2F5BD6">Assistant</text>
+<rect x="158" y="198" width="1372" height="2" fill="#E6E8EC"/>
+<text x="190" y="248" font-size="28" font-weight="700" fill="#1A1F29">Map</text>
+<g class="ab3-pop" style="animation-delay:1.10s"><rect x="190" y="268" width="150" height="40" rx="10" fill="#EEF2FC" stroke="#D6DFF6" stroke-width="1.5"/><text x="204" y="294" font-size="17"><tspan fill="#5D6F95">Status </tspan><tspan fill="#1F3A63" font-weight="600">Failed</tspan></text></g>
+<g class="ab3-pop" style="animation-delay:1.20s"><rect x="352" y="268" width="196" height="40" rx="10" fill="#EEF2FC" stroke="#D6DFF6" stroke-width="1.5"/><text x="366" y="294" font-size="17"><tspan fill="#5D6F95">Range </tspan><tspan fill="#1F3A63" font-weight="600">Last 7 days</tspan></text></g>
+<g class="ab3-pop" style="animation-delay:1.30s"><rect x="560" y="268" width="160" height="40" rx="10" fill="#EEF2FC" stroke="#D6DFF6" stroke-width="1.5"/><text x="574" y="294" font-size="17"><tspan fill="#5D6F95">Place </tspan><tspan fill="#1F3A63" font-weight="600">Halifax</tspan></text></g>
+<clipPath id="ab3-map"><rect x="190" y="332" width="1316" height="582" rx="14"/></clipPath><rect x="190" y="332" width="1316" height="582" rx="14" fill="#DCE8F2"/><g clip-path="url(#ab3-map)"><g transform="translate(565 565) scale(62) translate(-505.0865301000001 -123.50000000000001)"><path d="M486.70 140.50L486.70 106.50L497.57 106.50L497.07 106.72L497.40 106.79L497.61 106.66L497.98 106.61L497.96 106.50L498.26 106.50L498.34 106.78L498.31 106.94L498.12 107.01L498.06 107.20L498.09 107.76L498.41 107.61L499.18 107.62L499.35 107.76L500.25 107.66L500.74 107.90L500.89 108.05L500.85 108.17L500.98 108.34L501.14 108.30L501.26 108.13L501.46 108.41L501.78 108.17L502.24 108.17L503.53 108.69L503.66 108.85L503.52 109.00L503.03 109.13L502.79 109.40L501.59 109.38L501.53 109.40L501.48 109.63L501.39 109.67L501.75 110.09L501.99 109.95L502.72 110.20L502.96 110.38L502.99 110.64L503.28 110.75L503.42 111.11L503.75 111.15L504.05 111.32L503.76 111.53L503.91 111.58L504.24 111.47L504.39 111.53L504.38 111.77L504.50 111.63L504.46 111.26L504.67 111.38L504.92 111.25L505.64 111.17L506.01 111.24L506.23 111.46L505.70 111.39L506.09 111.73L505.42 111.81L505.47 111.89L505.74 111.86L506.09 112.00L506.18 111.86L506.61 112.00L507.28 111.84L507.49 111.94L506.98 112.24L506.66 112.33L506.42 112.28L506.60 112.52L507.08 112.76L507.13 112.59L507.30 112.41L507.30 112.63L507.73 112.35L507.78 112.21L507.83 112.34L507.67 112.54L507.68 112.63L508.29 112.37L508.65 112.41L508.52 112.10L508.26 111.94L508.41 111.89L510.69 112.35L511.42 112.28L511.27 112.39L510.84 112.41L511.03 112.56L511.36 112.58L511.71 112.83L511.22 113.13L510.74 113.26L510.59 113.58L510.89 113.36L510.98 113.45L510.89 113.87L511.19 113.44L511.54 113.72L511.61 113.58L511.43 113.44L511.49 113.20L511.85 113.09L512.19 113.17L512.34 113.37L512.47 113.42L512.82 113.37L512.59 113.85L512.70 113.92L512.86 113.86L513.11 113.57L513.63 113.27L513.56 113.17L513.48 113.20L513.07 113.45L513.25 113.21L514.28 112.96L515.76 111.92L516.27 111.37L516.81 111.11L516.91 111.28L516.74 111.49L516.75 111.70L516.98 112.62L516.94 112.96L517.06 113.07L518.25 113.77L518.42 113.78L518.72 113.58L518.83 113.65L518.67 113.66L518.68 113.73L518.88 113.86L518.95 113.61L519.09 113.55L519.19 113.27L519.31 113.16L519.78 113.09L520.43 113.67L520.64 114.19L520.86 114.47L521.58 114.94L521.58 115.32L521.50 115.47L520.76 115.87L520.62 115.91L520.61 115.79L520.51 115.82L520.22 116.08L519.85 116.25L520.00 116.45L522.29 116.46L523.27 116.67L523.46 116.86L523.47 117.28L523.38 117.29L523.29 117.08L523.00 117.00L523.14 117.28L522.93 117.45L522.86 117.64L522.70 117.62L522.76 117.76L522.41 117.87L522.27 117.82L522.18 117.62L522.41 117.28L522.09 117.36L521.99 117.58L522.02 117.97L521.76 117.47L521.40 117.61L521.40 117.49L521.29 117.46L520.78 117.83L520.68 118.10L520.86 118.10L520.51 118.36L519.24 118.53L518.94 118.49L518.74 118.25L518.68 118.43L518.40 118.25L518.29 118.31L518.55 118.51L518.74 118.79L518.49 118.85L518.74 119.13L518.35 119.09L518.28 118.93L517.91 118.99L517.91 119.20L517.53 118.99L517.42 119.01L517.52 119.20L517.18 119.20L517.35 119.44L517.33 119.54L517.03 119.47L517.02 119.66L516.92 119.69L516.65 119.47L516.60 119.75L516.36 119.64L516.16 119.89L516.12 119.68L515.83 119.89L516.36 120.09L516.27 120.15L515.97 120.09L515.67 120.27L515.12 120.25L514.88 120.44L514.54 120.41L514.39 120.48L514.28 120.71L514.22 120.63L514.02 120.80L513.79 120.78L513.74 120.91L513.79 121.05L513.41 120.90L513.25 121.05L513.36 121.19L513.10 121.31L513.02 121.67L512.88 121.59L512.82 120.99L512.60 121.37L512.46 121.44L512.29 121.32L512.19 121.60L512.43 121.94L512.28 122.00L512.10 121.67L511.95 121.73L511.90 121.63L511.51 121.94L511.56 122.07L511.33 121.98L510.49 122.15L510.51 122.39L510.35 122.48L510.55 122.70L510.32 122.82L510.23 122.83L510.08 122.62L510.01 122.76L509.61 122.60L509.19 122.89L509.09 122.63L509.09 122.29L508.99 122.22L508.78 122.34L508.70 122.22L508.70 122.37L509.02 122.89L508.70 123.25L508.67 122.82L508.44 122.71L508.39 122.16L508.27 122.09L508.22 122.15L508.24 122.65L508.12 123.11L507.98 122.94L508.02 122.70L507.89 122.79L507.82 123.08L507.60 123.19L507.59 122.97L507.44 122.63L507.33 122.89L507.44 123.11L507.13 123.57L507.10 123.73L506.37 123.57L506.18 123.45L506.38 123.32L506.30 123.18L506.17 123.17L505.89 123.32L506.14 123.52L506.18 123.66L506.01 124.04L505.51 123.76L504.64 122.87L504.44 122.83L504.59 123.24L504.96 123.36L505.13 123.65L505.26 124.07L505.25 124.50L505.42 124.82L505.41 124.97L505.24 125.27L505.02 125.36L504.97 125.31L505.02 125.16L504.90 125.13L504.64 125.59L504.57 125.50L504.68 125.30L504.46 125.25L504.16 125.32L504.05 125.44L503.96 125.25L503.91 125.30L503.75 125.19L503.71 124.95L503.51 125.32L503.39 125.10L503.57 124.68L503.37 124.89L503.22 124.76L503.13 124.81L503.18 124.95L502.94 125.01L502.75 125.02L502.54 124.89L502.45 124.66L502.46 124.46L502.60 124.07L502.45 123.79L502.62 123.66L502.65 123.58L502.54 123.52L502.82 123.20L502.83 123.04L502.57 123.25L501.58 123.66L501.61 124.13L501.79 124.29L501.97 124.89L501.75 124.77L501.51 125.23L501.36 125.25L501.21 125.13L501.21 124.62L501.14 124.45L500.90 124.20L500.65 124.20L500.55 124.29L500.56 124.48L500.44 124.63L499.89 124.34L499.98 124.55L499.90 124.57L499.92 124.97L499.74 125.23L499.93 125.30L499.54 125.44L499.67 125.71L499.64 125.85L500.10 125.85L500.22 125.91L500.01 125.99L499.84 126.19L500.20 126.20L500.56 126.33L500.43 126.39L499.59 126.33L499.59 126.39L499.67 126.50L499.64 126.67L499.82 126.76L499.98 126.74L499.84 126.60L499.91 126.57L500.18 126.67L500.00 127.01L500.37 127.01L500.02 127.41L499.65 127.16L499.59 127.08L499.69 127.01L499.01 126.60L499.21 126.87L499.51 127.04L499.50 127.28L499.04 127.66L498.94 128.01L498.67 128.18L498.53 128.59L498.16 128.38L498.09 128.52L497.76 128.41L497.80 128.52L497.66 128.59L498.13 128.70L498.19 128.83L498.08 129.20L497.97 129.31L497.84 129.21L497.46 129.41L496.98 129.41L497.06 129.54L497.31 129.65L497.37 129.86L497.33 130.02L497.12 130.10L496.78 130.42L496.28 130.46L496.19 130.69L496.05 130.71L496.41 131.05L496.49 131.26L496.29 131.26L496.30 131.47L496.11 131.70L495.87 131.33L495.58 131.19L495.76 131.53L495.81 131.88L495.64 131.95L495.33 131.33L495.21 131.26L495.45 131.94L495.34 132.25L495.09 132.42L494.70 131.68L494.86 132.42L494.86 132.73L494.73 132.88L494.67 132.76L494.60 132.79L494.55 132.97L494.43 132.89L494.46 132.55L494.36 132.42L494.07 133.25L493.91 133.11L494.01 132.73L493.97 132.49L493.83 132.84L493.71 132.90L493.29 131.94L493.29 132.16L493.17 132.24L493.39 132.81L493.20 133.27L492.93 133.25L492.66 133.04L492.76 132.56L492.69 132.35L492.56 132.42L492.49 132.63L492.38 132.56L492.61 133.30L492.57 133.83L492.44 133.96L492.53 134.13L492.56 134.55L492.35 134.21L492.13 134.35L491.74 134.00L492.05 134.61L492.13 134.96L492.03 135.00L491.94 134.55L491.79 134.40L491.75 134.65L491.55 134.76L491.64 135.06L491.62 135.29L491.11 134.68L491.12 134.44L490.97 134.26L490.39 134.82L490.32 134.98L489.89 134.91L489.76 134.69L489.81 134.53L489.75 134.23L489.65 134.13L489.71 134.41L489.64 134.48L489.47 134.32L489.52 133.31L489.47 133.11L489.40 133.09L489.27 133.45L489.37 133.66L489.32 133.94L489.21 133.68L489.18 132.91L488.98 132.49L488.88 131.94L488.83 131.94L488.88 132.29L488.77 132.30L488.54 131.81L488.35 131.74L488.40 131.94L488.11 132.20L487.93 131.46L487.88 131.90L488.16 132.63L488.05 132.94L487.97 132.97L488.02 132.71L487.87 132.76L487.86 133.00L487.80 133.04L487.70 132.98L487.69 132.63L487.61 132.54L487.51 132.59L487.48 132.84L487.38 132.71L487.34 132.28L487.04 132.56L486.96 131.90L487.12 131.52L487.00 131.50L486.85 131.74L486.85 131.48L486.70 131.40L486.70 131.05L486.85 130.68L486.75 130.24L486.85 129.97L486.70 129.48L486.70 128.11L486.90 127.69L487.10 126.57L487.23 126.26L487.57 125.93L487.67 125.63L488.14 125.11L488.98 124.43L489.03 124.27L488.97 124.13L488.31 124.17L486.70 125.92L486.70 125.57L487.91 124.20L488.69 123.69L489.42 123.04L489.63 123.43L489.62 123.89L490.08 123.79L490.56 123.34L490.72 123.04L490.77 123.11L491.18 122.63L491.94 122.22L491.81 122.19L490.62 122.91L490.19 123.04L489.73 123.32L489.61 123.17L489.86 122.73L491.74 121.45L492.16 121.05L493.34 120.45L493.70 120.07L495.94 118.60L497.00 118.08L498.43 117.71L499.11 117.28L499.25 116.98L499.09 116.80L498.53 116.66L498.67 116.59L499.71 116.90L499.78 117.17L499.56 117.52L499.45 118.03L499.55 118.15L499.52 118.29L499.30 118.51L499.45 118.74L499.45 118.92L499.60 118.94L499.74 118.58L499.89 118.51L500.47 118.92L500.97 119.50L500.95 120.16L501.09 119.97L501.29 120.02L501.20 119.70L501.33 119.41L501.08 119.27L500.75 118.86L500.64 118.51L500.87 118.41L500.87 118.14L501.23 117.84L502.31 117.49L502.71 117.24L503.28 117.20L503.40 117.11L503.45 116.89L503.74 116.89L503.91 117.00L504.05 116.74L505.02 116.78L505.41 116.66L505.55 116.71L505.80 117.08L505.86 116.75L506.05 116.55L506.57 116.39L506.35 116.28L505.38 116.22L504.92 116.05L503.35 116.05L503.11 116.15L502.82 116.47L502.68 116.41L502.69 116.19L502.49 116.01L501.95 116.10L501.68 116.05L501.78 115.98L501.58 115.87L501.30 115.85L500.10 116.08L499.84 115.98L499.82 116.18L499.59 116.11L499.30 116.33L498.96 116.19L498.80 116.00L497.97 115.84L497.29 116.11L497.05 116.39L497.12 116.74L496.97 116.75L496.68 117.00L496.61 117.02L496.61 116.70L496.23 116.52L495.70 116.53L495.47 116.74L495.43 116.49L495.48 116.17L495.67 115.70L496.01 115.43L496.39 115.29L496.15 115.16L497.46 114.41L497.48 114.14L498.00 113.85L498.62 113.24L498.81 113.17L499.01 112.90L498.94 112.61L499.23 112.44L499.37 112.19L499.35 112.08L499.89 111.73L499.97 111.84L499.96 111.95L499.70 112.23L499.69 112.55L499.90 112.38L500.18 112.35L500.07 112.21L499.89 112.21L500.10 111.95L500.09 111.58L499.59 111.11L499.46 111.24L499.64 111.32L499.64 111.39L499.44 111.53L499.08 112.09L498.76 112.27L498.65 112.72L498.41 112.79L498.19 112.68L498.45 112.34L498.58 111.83L498.29 111.53L498.29 110.98L498.17 111.16L498.00 111.14L497.59 110.46L497.25 110.09L497.20 109.64L497.07 109.38L496.75 109.10L496.64 109.13L497.02 109.50L497.12 109.67L497.07 110.01L497.40 110.47L497.55 110.55L497.71 110.98L498.00 111.39L497.91 111.74L497.27 112.48L497.51 112.76L497.17 112.76L497.04 113.11L496.89 113.27L496.59 113.86L496.50 113.87L496.26 113.63L495.65 113.72L495.38 113.92L495.01 114.41L493.67 114.90L491.30 116.35L491.12 116.70L490.60 116.84L490.04 117.15L489.65 117.56L489.37 117.35L488.69 117.86L488.03 117.76L487.62 117.15L486.94 116.87L487.67 116.30L487.89 116.01L487.91 115.60L487.83 115.36L487.49 115.77L487.23 116.46L487.04 116.39L486.70 116.50L486.73 117.03L487.00 117.21L487.40 117.26L487.48 117.42L487.08 117.63L486.91 117.82L486.90 117.97L486.70 118.12L486.70 140.50Z" fill="#F1F3EC" stroke="#B8C4CE" stroke-width="1" vector-effect="non-scaling-stroke"/><path d="M523.47 106.50L523.47 110.03L523.15 110.25L522.54 110.42L522.42 110.51L522.37 110.70L523.19 110.59L523.47 110.16L523.47 110.87L523.34 111.01L522.76 111.05L522.95 111.11L522.63 111.32L522.56 111.46L523.38 111.23L523.34 111.11L523.47 111.14L523.47 111.67L523.39 111.79L523.17 111.77L522.53 112.21L522.31 112.55L522.47 112.48L522.46 112.72L522.22 112.92L522.68 113.09L523.47 112.60L523.47 113.92L523.09 113.86L523.19 113.92L523.14 114.05L522.85 114.09L522.65 114.27L522.15 114.43L522.02 114.41L522.15 114.35L522.16 114.21L521.80 114.07L521.79 113.92L521.67 114.18L521.55 114.15L521.30 114.33L521.35 114.52L521.25 114.52L520.89 114.34L520.69 113.89L520.13 113.18L519.90 111.89L519.74 111.65L519.80 111.11L519.56 110.67L519.61 110.49L519.56 110.08L519.36 109.78L519.43 109.60L519.90 109.26L520.01 108.55L520.54 108.06L521.27 107.54L521.83 106.50Z" fill="#F1F3EC" stroke="#B8C4CE" stroke-width="1" vector-effect="non-scaling-stroke"/><path d="M514.76 106.50L514.26 106.50L514.13 106.59L513.68 106.50L513.74 106.76L513.84 106.87L513.47 106.94L513.36 106.87L513.59 107.16L513.60 107.29L513.43 107.34L512.86 107.20L512.67 107.28L513.19 107.55L513.21 107.76L513.10 107.84L512.55 107.82L512.11 107.61L512.05 107.72L512.56 107.98L512.67 108.17L511.95 107.89L512.14 108.10L511.90 108.17L512.43 108.30L512.36 108.72L512.82 108.79L512.79 108.65L512.53 108.51L512.75 108.47L512.91 108.65L512.98 108.92L512.96 109.20L512.85 109.37L512.46 109.43L512.14 109.67L512.58 109.82L512.96 109.75L512.75 110.10L512.33 110.28L511.03 110.29L510.88 110.49L510.20 110.22L509.87 109.95L510.01 109.82L509.69 109.68L509.58 109.47L509.91 109.47L509.76 109.28L509.14 109.38L508.90 109.33L509.30 109.23L509.70 108.99L509.92 108.70L510.06 108.64L509.98 108.44L509.86 108.43L509.49 108.72L509.42 108.55L509.46 108.34L509.62 108.23L509.49 108.07L509.29 107.95L509.19 108.03L509.29 108.17L509.14 108.21L508.29 107.84L508.60 107.54L508.65 107.34L508.80 107.34L508.85 107.13L509.26 106.95L509.38 106.80L508.81 106.98L508.43 107.27L508.17 107.62L507.73 107.28L507.88 107.72L507.47 107.95L507.20 107.95L507.20 108.03L507.78 108.05L507.88 107.82L508.07 107.94L508.08 108.17L507.30 108.58L506.20 108.17L506.08 108.03L505.89 108.03L505.65 107.76L505.33 107.89L505.11 107.77L504.96 107.84L504.68 107.76L504.21 107.43L504.07 107.10L503.57 106.80L503.42 106.56L503.57 106.59L503.53 106.50Z" fill="#F1F3EC" stroke="#B8C4CE" stroke-width="1" vector-effect="non-scaling-stroke"/><path d="M523.47 115.15L523.23 115.39L523.09 115.29L523.24 115.06L522.80 114.96L522.52 114.73L522.47 114.51L523.04 114.23L523.47 114.19Z" fill="#F1F3EC" stroke="#B8C4CE" stroke-width="1" vector-effect="non-scaling-stroke"/><path d="M490.66 135.72L490.53 135.78L490.58 135.65L490.54 135.55L490.34 135.37L490.68 135.17L490.61 134.92L490.70 134.86L491.02 134.89L490.66 135.72Z" fill="#F1F3EC" stroke="#B8C4CE" stroke-width="1" vector-effect="non-scaling-stroke"/><path d="M512.42 111.71L512.60 111.72L512.57 111.86L512.26 112.01L511.92 111.96L512.13 111.76L512.42 111.71Z" fill="#F1F3EC" stroke="#B8C4CE" stroke-width="1" vector-effect="non-scaling-stroke"/><path d="M495.07 127.50L495.33 127.42L495.06 127.78L494.94 127.83L495.09 128.05L494.94 128.36L494.75 128.52L494.51 128.58L494.46 128.49L493.97 128.46L493.90 128.66L493.55 128.35L493.52 128.21L493.59 127.99L493.54 127.77L493.73 127.63L493.85 127.28L494.39 127.17L494.46 127.22L494.43 127.33L494.26 127.39L494.26 127.69L494.18 127.69L494.17 127.79L494.25 127.94L494.46 127.90L494.61 128.06L494.84 127.69L495.07 127.50Z" fill="#DCE8F2"/><path d="M487.67 111.00L487.58 111.11L487.09 111.25L486.95 111.46L486.70 111.38L486.70 111.03L487.29 110.75L487.28 110.63L487.59 110.10L487.67 109.79L487.58 109.61L487.62 109.47L487.76 109.55L487.99 109.12L488.09 109.30L488.30 109.20L488.11 109.05L488.25 108.96L488.64 109.08L488.07 109.49L488.06 109.67L488.16 109.71L488.64 109.61L488.53 109.83L487.91 110.22L488.16 110.39L487.87 110.63L487.90 110.72L487.67 111.00Z" fill="#DCE8F2"/></g></g>
+<g class="ab3-in" style="animation-delay:1.35s"><circle cx="565" cy="565" r="104" fill="#E8553D" fill-opacity=".08" stroke="#E8553D" stroke-width="2.5" stroke-dasharray="9 7"/><text x="565" y="445" font-size="24" font-weight="700" fill="#E8553D" text-anchor="middle">Halifax</text></g>
+<g class="ab3-pop" style="animation-delay:1.40s"><circle cx="531" cy="539" r="12" fill="#E8553D" stroke="#FFFFFF" stroke-width="3"/></g>
+<g class="ab3-pop" style="animation-delay:1.45s"><circle cx="585" cy="557" r="12" fill="#E8553D" stroke="#FFFFFF" stroke-width="3"/></g>
+<g class="ab3-pop" style="animation-delay:1.50s"><circle cx="553" cy="605" r="12" fill="#E8553D" stroke="#FFFFFF" stroke-width="3"/></g>
+<g class="ab3-pop" style="animation-delay:1.55s"><circle cx="611" cy="597" r="12" fill="#9AA3B5" stroke="#FFFFFF" stroke-width="3"/></g>
+<g class="ab3-pop" style="animation-delay:1.60s"><circle cx="511" cy="577" r="12" fill="#9AA3B5" stroke="#FFFFFF" stroke-width="3"/></g>
+<g class="ab3-pop" style="animation-delay:1.65s"><circle cx="597" cy="511" r="12" fill="#9AA3B5" stroke="#FFFFFF" stroke-width="3"/></g>
+<g class="ab3-pop" style="animation-delay:1.70s"><rect x="830" y="350" width="158" height="42" rx="21" fill="#E8F5EC"/><text x="909" y="378" font-size="18" font-weight="700" fill="#1E7A3C" text-anchor="middle">In seconds</text></g>
+<g class="ab3-rise" style="animation-delay:1.80s"><rect x="210" y="782" width="520" height="112" rx="18" fill="#1A1F29"/><g transform="translate(232 818) scale(1.429)"><circle cx="14" cy="15" r="13" fill="#E8EEFB"/><line x1="14" y1="2.6" x2="14" y2="7.5" stroke="#2F5BD6" stroke-width="1.6" stroke-linecap="round"/><circle cx="14" cy="2.8" r="2" fill="#FFC93C"/><rect x="6.5" y="7.6" width="15" height="12.4" rx="5" fill="#2F5BD6"/><ellipse cx="11" cy="13.4" rx="1.5" ry="2" fill="#FFFFFF"/><ellipse cx="17" cy="13.4" rx="1.5" ry="2" fill="#FFFFFF"/><path d="M11.4 17 q2.6 1.7 5.2 0" stroke="#FFFFFF" stroke-width="1.3" fill="none" stroke-linecap="round"/></g><text x="288" y="814" font-size="14" font-weight="700" fill="#C9CFD8" letter-spacing="1.2">SPOTTED SOMETHING</text><text x="288" y="842" font-size="20" font-weight="600" fill="#FFFFFF">Most failed checks in Halifax</text><text x="288" y="868" font-size="20" font-weight="600" fill="#FFFFFF">came from one phone.</text><path d="M690 862 h18 m-6 -6 l6 6 l-6 6" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+<circle class="ab3-click" cx="699" cy="862" r="22" fill="none" stroke="#FFFFFF" stroke-width="2.5"/>
+<path class="ab3-cur" d="M703 868 v34 l9 -9 l7 15 l7 -3.2 l-7 -14.6 h12.6 z" fill="#FFFFFF" stroke="#14161A" stroke-width="2.2" stroke-linejoin="round"/>
+<g clip-path="url(#ab3-win)"><g class="ab3-slide" style="animation-delay:2.65s"><rect x="1030" y="200" width="500" height="738" fill="#FFFFFF"/><rect x="1030" y="200" width="2" height="738" fill="#E6E8EC"/><g transform="translate(1062 226) scale(1.214)"><circle cx="14" cy="15" r="13" fill="#E8EEFB"/><line x1="14" y1="2.6" x2="14" y2="7.5" stroke="#2F5BD6" stroke-width="1.6" stroke-linecap="round"/><circle cx="14" cy="2.8" r="2" fill="#FFC93C"/><rect x="6.5" y="7.6" width="15" height="12.4" rx="5" fill="#2F5BD6"/><ellipse cx="11" cy="13.4" rx="1.5" ry="2" fill="#FFFFFF"/><ellipse cx="17" cy="13.4" rx="1.5" ry="2" fill="#FFFFFF"/><path d="M11.4 17 q2.6 1.7 5.2 0" stroke="#FFFFFF" stroke-width="1.3" fill="none" stroke-linecap="round"/></g><text x="1108" y="250" font-size="22" font-weight="700" fill="#1A1F29">Assistant</text><path d="M1484 236 l14 14 m0 -14 l-14 14" stroke="#6B7280" stroke-width="2.2" stroke-linecap="round"/><g class="ab3-think"><text x="1062" y="304" font-size="20" font-weight="400" fill="#6B7280">Thinking…</text></g><g class="ab3-in" style="animation-delay:3.45s"><text x="1062" y="304" font-size="23" font-weight="700" fill="#1A1F29">Most failed checks in Halifax</text><text x="1062" y="334" font-size="23" font-weight="700" fill="#1A1F29">came from one phone.</text></g><g class="ab3-in" style="animation-delay:3.55s"><rect x="1062" y="356" width="436" height="132" rx="14" fill="#F4F6FB"/><path d="M1138 412 H1422" stroke="#E8553D" stroke-width="3.5" stroke-dasharray="8 7"/><circle cx="1138" cy="412" r="26" fill="#E8553D" fill-opacity=".14"/><circle cx="1138" cy="412" r="14" fill="#E8553D" stroke="#FFFFFF" stroke-width="3"/><text x="1138" y="468" font-size="16" font-weight="600" fill="#1A1F29" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">user-maya</text><circle cx="1422" cy="412" r="26" fill="#E8553D" fill-opacity=".14"/><circle cx="1422" cy="412" r="14" fill="#E8553D" stroke="#FFFFFF" stroke-width="3"/><text x="1422" y="468" font-size="16" font-weight="600" fill="#1A1F29" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">user-leo</text><rect x="1260" y="392" width="40" height="40" rx="10" fill="#FFFFFF" stroke="#E8553D" stroke-width="3"/><rect x="1273" y="399" width="14" height="26" rx="3.5" fill="#E8553D"/><text x="1280" y="468" font-size="16" font-weight="600" fill="#1A1F29" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">phone-1</text></g><g class="ab3-in" style="animation-delay:3.65s"><text x="1062" y="526" font-size="14" font-weight="700" fill="#6B7280" letter-spacing="1.2">STEPS IT TOOK</text></g><g class="ab3-in" style="animation-delay:3.72s"><path d="M1064 555 l5 5 l10 -11" fill="none" stroke="#6B7280" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="1092" y="562" font-size="18" font-weight="400" fill="#4B5563">Found 4 failed checks in Halifax</text></g><g class="ab3-in" style="animation-delay:3.84s"><path d="M1064 591 l5 5 l10 -11" fill="none" stroke="#6B7280" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="1092" y="598" font-size="18" font-weight="400" fill="#4B5563">Matched 3 of them to phone-1</text></g><g class="ab3-in" style="animation-delay:3.96s"><path d="M1064 627 l5 5 l10 -11" fill="none" stroke="#6B7280" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><text x="1092" y="634" font-size="18" font-weight="400" fill="#4B5563">Found 2 accounts on phone-1</text></g><g class="ab3-in" style="animation-delay:4.15s"><path d="M1064 687 l6 6 l6 -6" fill="none" stroke="#6B7280" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="1088" y="698" font-size="17" font-weight="400" fill="#6B7280">Based on 3 failed checks</text><rect x="1062" y="714" width="436" height="184" rx="12" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="1.8"/><text x="1080" y="745" font-size="17" font-weight="400" fill="#4B5563">9:12 am</text><text x="1184" y="745" font-size="17" font-weight="600" fill="#1A1F29">Failed</text><text x="1266" y="745" font-size="17" font-weight="400" fill="#4B5563">Location check, Halifax</text><rect x="1062" y="762" width="436" height="1.5" fill="#E6E8EC"/><text x="1080" y="793" font-size="17" font-weight="400" fill="#4B5563">9:23 am</text><text x="1184" y="793" font-size="17" font-weight="600" fill="#1A1F29">Failed</text><text x="1266" y="793" font-size="17" font-weight="400" fill="#4B5563">Location, 400 km away</text><rect x="1062" y="810" width="436" height="1.5" fill="#E6E8EC"/><text x="1080" y="841" font-size="17" font-weight="400" fill="#4B5563">11:40 am</text><text x="1184" y="841" font-size="17" font-weight="600" fill="#1A1F29">Failed</text><text x="1266" y="841" font-size="17" font-weight="400" fill="#4B5563">Shared device, phone-1</text><rect x="1062" y="858" width="436" height="1.5" fill="#E6E8EC"/><text x="1080" y="886" font-size="17" font-weight="600" fill="#2F5BD6">Open all failed checks →</text></g></g></g>
+</svg>
               </a>
-              <p class="pcard-note" style="--nx:30%" aria-hidden="true"><svg viewBox="0 0 22 26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24 C5 16 8 9 15 3"/><path d="M8.5 3.5 L15 3 L15.5 9.5"/></svg><span>the answer is these filters</span></p>
               </div>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Fraud-investigation suite</b> · AI interaction design<span class="yr">2026</span></p>
-                <h3><a href="work/ask-bar.html">An ask bar that answers with filters</a></h3>
-                <p>An ask bar that turns an analyst's question into the page and filters the product already has, so a wrong answer is just a filter you can fix.</p>
+                <p class="file-label">Case&nbsp;02</p>
+                <p class="pcard-kicker">AI interaction design,&nbsp;2026</p>
+                <h3><a href="work/ask-bar.html">Moving our AI from a&nbsp;chat page onto the maps analysts work&nbsp;in</a></h3>
+                <p>Our AI lived on a&nbsp;separate chat page, so 9 in 10 analysts never opened it. I&nbsp;moved it onto the map, where one question opens the right view, sets its filters and flags what's worth a&nbsp;look, in&nbsp;seconds.</p>
               </div>
             </article>
 
-            <article class="pcard pcard-flagship hue-pink" data-prop="rolodex" data-observe="Unified user page" data-prose="the unified user page">
-              <p class="case-tabs"><span aria-hidden="true">Case 01</span><span aria-hidden="true">Case 02</span><b>Case 03</b><span aria-hidden="true">Case 04</span></p>
-              <!-- Cover is a recreated mockup (company work): identifiers are bars, not data. -->
+            <article class="pcard pcard-flagship hue-mustard" id="case-03" data-observe="Licence applications" data-prose="the licence application forms">
+              <!-- Cover is a recreated mockup of the product (company work, invented data), played once when it scrolls into view: the review's
+                   three warnings are fixed in turn, each step's badge turns green, and the review says it's ready to generate. -->
               <div class="pcard-media-wrap">
-              <a class="pcard-media cover-frame" href="work/unified-user-page.html" tabindex="-1" aria-hidden="true">
-                <svg class="cv cv-up" preserveAspectRatio="xMidYMin slice" viewBox="0 64 1600 936" width="1600" height="1000" role="img" aria-label="A recreated mockup of the user page: operator cards, a timeline, KPIs and a map" viewBox="0 0 1600 1000" font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
-                <defs>
-                <clipPath id="up-win"><rect x="150" y="100" width="1300" height="960" rx="18"/></clipPath>
-                <filter id="up-shadow" x="-10%" y="-10%" width="120%" height="125%">
-                <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#1F3A63" flood-opacity=".16"/>
-                </filter>
-                </defs>
-                <g filter="url(#up-shadow)">
-                <rect x="150" y="100" width="1300" height="960" rx="18" fill="#FFFFFF"/>
-                </g>
-                <g clip-path="url(#up-win)">
-                <rect x="150" y="100" width="1300" height="46" fill="#F3F4F6"/>
-                <circle cx="182" cy="123" r="7" fill="#D9DCE1"/>
-                <circle cx="206" cy="123" r="7" fill="#D9DCE1"/>
-                <circle cx="230" cy="123" r="7" fill="#D9DCE1"/>
-                <rect x="560" y="111" width="480" height="24" rx="12" fill="#E6E8EC"/>
-                <rect x="150" y="146" width="1300" height="60" fill="#FFFFFF"/>
-                <rect x="150" y="205" width="1300" height="1" fill="#E6E8EC"/>
-                <rect x="190" y="166" width="22" height="22" rx="5" fill="#1F3A63"/>
-                <rect x="226" y="164" width="300" height="26" rx="13" fill="#F3F4F6"/>
-                <text x="1410" y="182" font-size="15" fill="#6B7280" text-anchor="end">UTC −4</text>
-                <rect x="190" y="230" width="1220" height="44" rx="8" fill="#FCE9E4"/>
-                <text x="210" y="258" font-size="17" font-weight="600" fill="#B8402F">⚠ This user has a different status across several operators.</text>
-                <text x="1390" y="258" font-size="16" fill="#1A1F29" text-anchor="end">View history</text>
-                <circle cx="212" cy="316" r="18" fill="#D8E0EC"/>
-                <rect x="244" y="302" width="190" height="20" rx="5" fill="#1A1F29"/>
-                <rect x="450" y="306" width="110" height="12" rx="4" fill="#C9D0DA"/>
-                <rect x="576" y="306" width="110" height="12" rx="4" fill="#C9D0DA"/>
-                <rect x="1024" y="298" width="150" height="38" rx="19" fill="#FFFFFF" stroke="#C9D0DA" stroke-width="2"/>
-                <text x="1099" y="323" font-size="16" fill="#1A1F29" text-anchor="middle">All operators ▾</text>
-                <rect x="1190" y="298" width="104" height="38" rx="19" fill="#E8553D"/>
-                <text x="1242" y="323" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="middle">Block</text>
-                <rect x="1306" y="298" width="104" height="38" rx="19" fill="#DCEFEA"/>
-                <text x="1358" y="323" font-size="16" font-weight="600" fill="#1F6E5B" text-anchor="middle">Unblock</text>
-                <text x="192" y="382" font-size="17" font-weight="600" fill="#1A1F29">Summary</text>
-                <rect x="190" y="392" width="84" height="3" fill="#1A1F29"/>
-                <text x="304" y="382" font-size="17" fill="#8A93A2">Anti-fraud</text>
-                <rect x="150" y="394" width="1300" height="1" fill="#E6E8EC"/>
-                <g>
-                <rect x="190" y="420" width="392" height="96" rx="10" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2"/>
-                <rect x="190" y="420" width="4" height="96" fill="#E8553D"/>
-                <text x="212" y="452" font-size="16" font-weight="600" fill="#1A1F29">Operator 1</text>
-                <rect x="494" y="434" width="72" height="24" rx="12" fill="#E8553D"/>
-                <text x="530" y="451" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Blocked</text>
-                <rect x="212" y="470" width="150" height="10" rx="3" fill="#C9D0DA"/>
-                <rect x="212" y="490" width="220" height="10" rx="3" fill="#E1E5EB"/>
-                </g>
-                <g>
-                <rect x="604" y="420" width="392" height="96" rx="10" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2"/>
-                <rect x="604" y="420" width="4" height="96" fill="#E8553D"/>
-                <text x="626" y="452" font-size="16" font-weight="600" fill="#1A1F29">Operator 2</text>
-                <rect x="908" y="434" width="72" height="24" rx="12" fill="#E8553D"/>
-                <text x="944" y="451" font-size="13" font-weight="600" fill="#FFFFFF" text-anchor="middle">Blocked</text>
-                <rect x="626" y="470" width="150" height="10" rx="3" fill="#C9D0DA"/>
-                <rect x="626" y="490" width="190" height="10" rx="3" fill="#E1E5EB"/>
-                </g>
-                <g>
-                <rect x="1018" y="420" width="392" height="96" rx="10" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2"/>
-                <text x="1040" y="452" font-size="16" font-weight="600" fill="#1A1F29">Operator 3</text>
-                <rect x="1328" y="434" width="66" height="24" rx="12" fill="#DCEFEA"/>
-                <text x="1361" y="451" font-size="13" font-weight="600" fill="#1F6E5B" text-anchor="middle">Active</text>
-                <rect x="1040" y="470" width="150" height="10" rx="3" fill="#C9D0DA"/>
-                <rect x="1040" y="490" width="120" height="10" rx="3" fill="#E1E5EB"/>
-                </g>
-                <rect x="190" y="548" width="150" height="34" rx="17" fill="#FFFFFF" stroke="#C9D0DA" stroke-width="2"/>
-                <text x="265" y="571" font-size="15" fill="#1A1F29" text-anchor="middle">Date range ▾</text>
-                <text x="1410" y="571" font-size="15" fill="#8A93A2" text-anchor="end">the timeline drives every card below</text>
-                <g fill="#C9D0DA">
-                <rect x="190" y="660" width="40" height="24" rx="3"/><rect x="240" y="640" width="40" height="44" rx="3"/><rect x="290" y="652" width="40" height="32" rx="3"/>
-                <rect x="340" y="628" width="40" height="56" rx="3"/><rect x="390" y="648" width="40" height="36" rx="3"/><rect x="440" y="620" width="40" height="64" rx="3"/>
-                <rect x="490" y="656" width="40" height="28" rx="3"/><rect x="540" y="636" width="40" height="48" rx="3"/><rect x="590" y="650" width="40" height="34" rx="3"/>
-                <rect x="640" y="612" width="40" height="72" rx="3"/><rect x="690" y="654" width="40" height="30" rx="3"/><rect x="740" y="640" width="40" height="44" rx="3"/>
-                </g>
-                <g class="cv-hi" fill="#E8553D">
-                <rect x="790" y="596" width="40" height="88" rx="3"/><rect x="840" y="612" width="40" height="72" rx="3"/><rect x="890" y="580" width="40" height="104" rx="3"/>
-                <rect x="940" y="620" width="40" height="64" rx="3"/><rect x="990" y="604" width="40" height="80" rx="3"/>
-                </g>
-                <g fill="#C9D0DA">
-                <rect x="1040" y="650" width="40" height="34" rx="3"/><rect x="1090" y="660" width="40" height="24" rx="3"/><rect x="1140" y="644" width="40" height="40" rx="3"/>
-                <rect x="1190" y="656" width="40" height="28" rx="3"/><rect x="1240" y="662" width="40" height="22" rx="3"/><rect x="1290" y="648" width="40" height="36" rx="3"/><rect x="1340" y="664" width="40" height="20" rx="3"/>
-                </g>
-                <rect x="190" y="684" width="1220" height="2" fill="#E1E5EB"/>
-                <rect class="cv-sel" x="780" y="590" width="260" height="100" rx="6" fill="none" stroke="#E8553D" stroke-width="2" stroke-dasharray="6 6"/>
-                <g font-size="14" fill="#6B7280">
-                <rect x="190" y="716" width="290" height="92" rx="10" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2"/>
-                <text x="212" y="746">Total transactions</text>
-                <rect x="212" y="762" width="90" height="24" rx="4" fill="#1A1F29"/>
-                <rect x="500" y="716" width="290" height="92" rx="10" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2"/>
-                <text x="522" y="746">Failed rate</text>
-                <rect x="522" y="762" width="70" height="24" rx="4" fill="#1A1F29"/>
-                <rect class="cv-pill" x="604" y="764" width="34" height="20" rx="10" fill="#FCE9E4"/>
-                <text x="621" y="779" font-size="13" fill="#B8402F" text-anchor="middle">▼</text>
-                <rect x="810" y="716" width="290" height="92" rx="10" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2"/>
-                <text x="832" y="746">In residential areas</text>
-                <rect x="832" y="762" width="70" height="24" rx="4" fill="#1A1F29"/>
-                <rect class="cv-pill" x="914" y="764" width="34" height="20" rx="10" fill="#DCEFEA"/>
-                <text x="931" y="779" font-size="13" fill="#1F6E5B" text-anchor="middle">▲</text>
-                <rect x="1120" y="716" width="290" height="92" rx="10" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2"/>
-                <text x="1142" y="746">In stadiums</text>
-                <rect x="1142" y="762" width="70" height="24" rx="4" fill="#1A1F29"/>
-                <rect class="cv-pill" x="1224" y="764" width="34" height="20" rx="10" fill="#DCEFEA"/>
-                <text x="1241" y="779" font-size="13" fill="#1F6E5B" text-anchor="middle">▲</text>
-                </g>
-                <text x="192" y="856" font-size="17" font-weight="600" fill="#1A1F29">Transactions map</text>
-                <rect x="190" y="874" width="860" height="220" rx="12" fill="#EEF2F5"/>
-                <g fill="#E1E7EC">
-                <rect x="230" y="900" width="200" height="90" rx="8"/>
-                <rect x="520" y="920" width="260" height="70" rx="8"/>
-                <path d="M190 1040 C400 1000 600 1060 1050 1010 L1050 1094 L190 1094 Z"/>
-                </g>
-                <g fill="#E8553D">
-                <circle cx="380" cy="960" r="9"/><circle cx="640" cy="1000" r="9"/><circle cx="840" cy="940" r="9"/><circle cx="920" cy="1020" r="9"/>
-                </g>
-                <rect x="1070" y="874" width="340" height="220" rx="12" fill="#FFFFFF" stroke="#E6E8EC" stroke-width="2"/>
-                <text x="1092" y="906" font-size="15" font-weight="600" fill="#1A1F29">Transactions</text>
-                <text x="1210" y="906" font-size="15" fill="#8A93A2">Devices</text>
-                <rect x="1092" y="928" width="296" height="1" fill="#E6E8EC"/>
-                <rect x="1092" y="946" width="180" height="12" rx="4" fill="#1A1F29"/>
-                <rect x="1092" y="970" width="240" height="10" rx="3" fill="#E1E5EB"/>
-                <rect x="1092" y="990" width="200" height="10" rx="3" fill="#E1E5EB"/>
-                <rect x="1092" y="1010" width="260" height="10" rx="3" fill="#E1E5EB"/>
-                <rect x="1092" y="1030" width="150" height="10" rx="3" fill="#E1E5EB"/>
-                </g>
-                </svg>
+              <a class="pcard-media cover-frame" href="work/onecomply.html" tabindex="-1" aria-hidden="true">
+                <svg class="cv cv-oc" preserveAspectRatio="xMidYMin slice" viewBox="0 64 1600 936" width="1600" height="936" role="img" aria-label="A recreated mockup of the licence application at its Review step, inside the new sidebar of five areas. Three warnings name what's missing: two sections, a proof of address and the fingerprint date. Each is fixed in turn, its step in the list turns green, and the review says the application is ready to generate." font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
+<defs><filter id="oc-shadow" x="-6%" y="-8%" width="112%" height="120%"><feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#1A1F29" flood-opacity=".12"/></filter></defs>
+<g filter="url(#oc-shadow)"><rect x="70" y="98" width="1460" height="840" rx="20" fill="#FFFFFF"/></g>
+<path d="M90 98 h96 v840 h-96 a20 20 0 0 1 -20 -20 v-800 a20 20 0 0 1 20 -20 z" fill="#243A55"/>
+<path d="M128.0 139 l12 5 v9 c0 8 -5 13 -12 16 c-7 -3 -12 -8 -12 -16 v-9 z" fill="none" stroke="#C9D4E1" stroke-width="2.6" stroke-linejoin="round"/><text x="128" y="194" font-size="15" font-weight="500" fill="#C9D4E1" text-anchor="middle">Manage</text>
+<rect x="80" y="218" width="96" height="86" rx="12" fill="#36557A"/>
+<path d="M119.0 235 h12 l7 7 v19 h-19 z M124.0 249 h9 M124.0 255 h9" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><text x="128" y="290" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">Profiles</text>
+<rect x="116.0" y="332" width="24" height="24" rx="4" fill="none" stroke="#C9D4E1" stroke-width="2.6"/><path d="M123.0 350 v-5 M128.0 350 v-10 M133.0 350 v-7" stroke="#C9D4E1" stroke-width="2.6" stroke-linecap="round"/><text x="128" y="386" font-size="15" font-weight="500" fill="#C9D4E1" text-anchor="middle">Reports</text>
+<path d="M116.0 452 v-18 l10 -6 v24 M126.0 452 v-12 l12 4 v8 M114.0 452 h28" fill="none" stroke="#C9D4E1" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/><text x="128" y="482" font-size="15" font-weight="500" fill="#C9D4E1" text-anchor="middle">Organisation</text>
+<circle cx="128.0" cy="536" r="6" fill="none" stroke="#C9D4E1" stroke-width="2.6"/><circle cx="128.0" cy="536" r="12" fill="none" stroke="#C9D4E1" stroke-width="2.6" stroke-dasharray="5 4.4"/><text x="128" y="578" font-size="15" font-weight="500" fill="#C9D4E1" text-anchor="middle">Settings</text>
+<rect x="186" y="178" width="1344" height="2" fill="#E6E8EC"/><circle cx="218" cy="129" r="2.6" fill="#6B7280"/><circle cx="227" cy="129" r="2.6" fill="#6B7280"/><circle cx="236" cy="129" r="2.6" fill="#6B7280"/><circle cx="218" cy="138" r="2.6" fill="#6B7280"/><circle cx="227" cy="138" r="2.6" fill="#6B7280"/><circle cx="236" cy="138" r="2.6" fill="#6B7280"/><circle cx="218" cy="147" r="2.6" fill="#6B7280"/><circle cx="227" cy="147" r="2.6" fill="#6B7280"/><circle cx="236" cy="147" r="2.6" fill="#6B7280"/><text x="256" y="148" font-size="28" font-weight="700" fill="#1A1F29">Acme Inc.</text>
+<rect x="186" y="180" width="420" height="758" fill="#F6F6F3"/><rect x="606" y="180" width="2" height="758" fill="#E6E8EC"/>
+<rect x="218" y="214" width="52" height="52" rx="10" fill="#2BB0C6"/><text x="244" y="248" font-size="20" font-weight="700" fill="#FFFFFF" text-anchor="middle">JC</text><text x="288" y="236" font-size="25" font-weight="700" fill="#1A1F29">J. Chen</text><text x="288" y="264" font-size="21" font-weight="400" fill="#6B7280">Personal disclosure form</text>
+<text x="226" y="362" font-size="27" font-weight="500" fill="#1A1F29">Fill in your information</text>
+<circle cx="560" cy="352" r="17" fill="#D93F3F"/><text x="560" y="360" font-size="21" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+<g class="oc-pop" style="animation-delay:0.75s"><circle cx="560" cy="352" r="18" fill="#1F7A4D"/><path d="M553 352 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="226" y="446" font-size="27" font-weight="500" fill="#1A1F29">Attach documents</text>
+<circle cx="560" cy="436" r="17" fill="#D93F3F"/><text x="560" y="444" font-size="21" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+<g class="oc-pop" style="animation-delay:1.35s"><circle cx="560" cy="436" r="18" fill="#1F7A4D"/><path d="M553 436 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="226" y="530" font-size="27" font-weight="500" fill="#1A1F29">Get fingerprints</text>
+<circle cx="560" cy="520" r="17" fill="#D93F3F"/><text x="560" y="528" font-size="21" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+<g class="oc-pop" style="animation-delay:1.95s"><circle cx="560" cy="520" r="18" fill="#1F7A4D"/><path d="M553 520 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+<rect x="202" y="570" width="388" height="68" rx="12" fill="#FFFFFF" stroke="#1A1F29" stroke-width="2.5"/>
+<text x="226" y="614" font-size="27" font-weight="700" fill="#1A1F29">Review and finalise</text>
+<text x="226" y="698" font-size="27" font-weight="500" fill="#1A1F29">Sign</text>
+<circle cx="560" cy="688" r="15" fill="#FFFFFF" stroke="#B9BDC6" stroke-width="2.5"/>
+<text x="226" y="782" font-size="27" font-weight="500" fill="#1A1F29">Submit</text>
+<circle cx="560" cy="772" r="15" fill="#FFFFFF" stroke="#B9BDC6" stroke-width="2.5"/>
+<text x="662" y="262" font-size="42" font-weight="700" fill="#1A1F29">Review and finalise</text>
+<g class="oc-a"><circle cx="681" cy="320" r="19" fill="none" stroke="#D93F3F" stroke-width="3"/><text x="681" y="329" font-size="24" font-weight="800" fill="#D93F3F" text-anchor="middle">!</text><text x="716" y="318" font-size="25" font-weight="700" fill="#1A1F29">Warnings</text><text x="716" y="348" font-size="21" font-weight="400" fill="#6B7280">Each one links straight to its fix</text></g>
+<g class="oc-in" style="animation-delay:2.35s"><circle cx="681" cy="320" r="19" fill="#1F7A4D"/><path d="M674 320 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><text x="716" y="318" font-size="25" font-weight="700" fill="#1A1F29">No warnings</text><text x="716" y="348" font-size="21" font-weight="400" fill="#6B7280">Nothing is missing from this application</text></g>
+<rect x="662" y="382" width="812" height="96" rx="14" fill="#FFFFFF" stroke="#F0B4AE" stroke-width="2"/><rect x="662" y="382" width="6" height="96" rx="3" fill="#D93F3F"/>
+<text x="696" y="439" font-size="26" font-weight="400" fill="#1A1F29">2 sections left to fill in</text>
+<rect x="1214" y="403" width="236" height="54" rx="27" fill="#1A1F29"/><text x="1332" y="438" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">Finish sections</text>
+<circle class="oc-click" style="animation-delay:0.55s" cx="1332" cy="430" r="30" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+<g class="oc-fix" style="animation-delay:0.75s"><rect x="662" y="382" width="812" height="96" rx="14" fill="#EEF6F1" stroke="#BFDCCB" stroke-width="2"/><rect x="662" y="382" width="6" height="96" rx="3" fill="#1F7A4D"/><circle cx="714" cy="430" r="17" fill="#1F7A4D"/><path d="M707 430 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><text x="746" y="439" font-size="26" font-weight="600" fill="#1D4B33">All 30 sections complete</text></g>
+<rect x="662" y="498" width="812" height="96" rx="14" fill="#FFFFFF" stroke="#F0B4AE" stroke-width="2"/><rect x="662" y="498" width="6" height="96" rx="3" fill="#D93F3F"/>
+<text x="696" y="555" font-size="26" font-weight="400" fill="#1A1F29">Proof of address is missing</text>
+<rect x="1214" y="519" width="236" height="54" rx="27" fill="#1A1F29"/><text x="1332" y="554" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">Attach document</text>
+<circle class="oc-click" style="animation-delay:1.15s" cx="1332" cy="546" r="30" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+<g class="oc-fix" style="animation-delay:1.35s"><rect x="662" y="498" width="812" height="96" rx="14" fill="#EEF6F1" stroke="#BFDCCB" stroke-width="2"/><rect x="662" y="498" width="6" height="96" rx="3" fill="#1F7A4D"/><circle cx="714" cy="546" r="17" fill="#1F7A4D"/><path d="M707 546 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><text x="746" y="555" font-size="26" font-weight="600" fill="#1D4B33">Proof of address attached</text></g>
+<rect x="662" y="614" width="812" height="96" rx="14" fill="#FFFFFF" stroke="#F0B4AE" stroke-width="2"/><rect x="662" y="614" width="6" height="96" rx="3" fill="#D93F3F"/>
+<text x="696" y="671" font-size="26" font-weight="400" fill="#1A1F29">No fingerprint date yet</text>
+<rect x="1274" y="635" width="176" height="54" rx="27" fill="#1A1F29"/><text x="1362" y="670" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">Enter date</text>
+<circle class="oc-click" style="animation-delay:1.75s" cx="1362" cy="662" r="30" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+<g class="oc-fix" style="animation-delay:1.95s"><rect x="662" y="614" width="812" height="96" rx="14" fill="#EEF6F1" stroke="#BFDCCB" stroke-width="2"/><rect x="662" y="614" width="6" height="96" rx="3" fill="#1F7A4D"/><circle cx="714" cy="662" r="17" fill="#1F7A4D"/><path d="M707 662 l5 5 l9 -10" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><text x="746" y="671" font-size="26" font-weight="600" fill="#1D4B33">Fingerprinted on 4 March</text></g>
+<g class="oc-rise" style="animation-delay:2.55s"><rect x="662" y="736" width="812" height="112" rx="16" fill="#FFFFFF" stroke="#BFDCCB" stroke-width="2"/><text x="694" y="784" font-size="25" font-weight="700" fill="#1A1F29">We can’t find any errors.</text><text x="694" y="818" font-size="22" font-weight="400" fill="#6B7280">You’re ready to generate your application.</text><rect x="1224" y="765" width="226" height="54" rx="27" fill="#1A1F29"/><text x="1337" y="800" font-size="22" font-weight="700" fill="#FFFFFF" text-anchor="middle">Generate PDF</text></g>
+</svg>
               </a>
-              <p class="pcard-note" style="--nx:17%" aria-hidden="true"><svg viewBox="0 0 22 26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24 C5 16 8 9 15 3"/><path d="M8.5 3.5 L15 3 L15.5 9.5"/></svg><span>one date range drives every card</span></p>
               </div>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Fraud-investigation suite</b> · Research + product design<span class="yr">2025</span></p>
-                <h3><a href="work/unified-user-page.html">Four tabs to answer one question</a></h3>
-                <p>Analyst sessions and a journey map made the case for one page built around a timeline. I designed and built it, and it shipped as the first pillar of a multi-year strategy.</p>
-              </div>
-            </article>
-
-            <article class="pcard pcard-flagship hue-mustard mkset" data-prop="stamp" data-observe="Licence applications" data-prose="the licence application forms">
-              <p class="case-tabs"><span aria-hidden="true">Case 01</span><span aria-hidden="true">Case 02</span><span aria-hidden="true">Case 03</span><b>Case 04</b></p>
-              <!-- Cover is a recreated mockup (company work): no real product, branding or data. -->
-              <div class="pcard-media-wrap">
-              <a class="pcard-media pcard-mock pcard-mock-ba" href="work/onecomply.html" tabindex="-1" aria-hidden="true">
-                <span class="pcard-mock-col">
-                  <span class="ba-tag">Before</span>
-                  <span class="mk">
-                    <span class="mk-top"><i></i><i></i><i></i><b>Your application</b></span>
-                    <ol class="guide">
-                      <li>Read the welcome note and instructions</li>
-                      <li>Complete the disclosure sections, in any order</li>
-                      <li>Complete the jurisdiction's extra sections</li>
-                      <li class="tick"><span><span class="box"></span>Yes, I have attached all required documents</span></li>
-                      <li>Generate the application PDF</li>
-                      <li>Download it</li>
-                      <li>Book fingerprints and mail them in</li>
-                      <li>Get it notarised and upload the copy</li>
-                      <li>Print it and mail it to the regulator</li>
-                      <li>Mark it as submitted</li>
-                      <li>Create the licence record yourself</li>
-                    </ol>
-                  </span>
-                </span>
-                <span class="pcard-mock-col">
-                  <span class="ba-tag after">After</span>
-                  <span class="mk">
-                    <span class="mk-top"><i></i><i></i><i></i><b>Licence application</b></span>
-                    <span class="six lic-app">
-                      <span class="six-body">
-                        <span class="rail steps-rail">
-                          <span class="done">Fill in your information <em class="ok">✓&#xFE0E;</em></span>
-                          <span class="now">Attach documents <em class="count">1</em></span>
-                          <span>Get fingerprints <em class="count">2</em></span>
-                          <span>Review and finalise</span>
-                          <span>Sign</span>
-                          <span>Submit</span>
-                        </span>
-                        <span class="la-form">
-                          <span class="la-h">Attach documents</span>
-                          <span class="la-sub">Upload each one; we'll tell you if anything's missing.</span>
-                          <span class="la-doc ok"><i></i><span>Proof of identity</span><em>passport.pdf</em></span>
-                          <span class="la-doc ok"><i></i><span>Proof of address</span><em>utility-bill.pdf</em></span>
-                          <span class="la-doc todo"><i></i><span>Background disclosure</span><em class="la-up">Upload</em></span>
-                          <span class="la-next"><span class="la-btn ghost">Back</span><span class="la-btn">Save and continue</span></span>
-                        </span>
-                        <span class="ring-wrap">
-                          <span class="ring" style="--p: 66"><b>20 of 30<br />sections</b></span>
-                          <small>Saved as you go</small>
-                          <span class="la-assign"><b>Assigned by your manager</b>Due Friday</span>
-                        </span>
-                      </span>
-                    </span>
-                  </span>
-                </span>
-              </a>
-              <p class="pcard-note r" style="--nx:74%" aria-hidden="true"><svg viewBox="0 0 22 26" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24 C5 16 8 9 15 3"/><path d="M8.5 3.5 L15 3 L15.5 9.5"/></svg><span>eleven steps became six</span></p>
-              </div>
-              <div class="pcard-body">
-                <p class="pcard-kicker"><b>Licensing platform</b> · Product design<span class="yr">2023–25</span></p>
-                <h3><a href="work/onecomply.html">Eleven steps down to six</a></h3>
-                <p>A licence application people actually finish, with visible progress and tools for the managers who assign it.</p>
+                <p class="file-label">Case&nbsp;03</p>
+                <p class="pcard-kicker">Product design,&nbsp;2023–25</p>
+                <h3><a href="work/onecomply.html">Redesigning a&nbsp;26-page sidebar as five areas, and a&nbsp;licence application as six guided&nbsp;steps</a></h3>
+                <p>Our licensing platform mixed the company's work and each person's own file in one 26-page sidebar, and its application had nowhere to start. I&nbsp;split the sidebar by whose work it is and turned the application into six guided&nbsp;steps.</p>
               </div>
             </article>
             </div>
 
-            <article class="pcard hue-teal" data-prop="tv" data-observe="Replay studies" data-prose="the replay studies">
+            <!-- the two smaller projects get their own heading, so they don't read as stray case files -->
+            <div class="section-head more-head">
+              <div class="sh-row"><svg class="sh-ico" viewBox="0 0 32 36" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect class="i-paper" x="10" y="4" width="18" height="24" rx="2" transform="rotate(7 19 16)"/><rect class="i-paper" x="4" y="8" width="18" height="24" rx="2"/><path class="i-duck" d="M8 14h10M8 19h10M8 24h6"/></svg><h2>More work</h2></div>
+            </div>
+
+            <article class="pcard hue-teal" data-observe="Replay studies" data-prose="the replay studies">
               <!-- Cover is a recreated mockup (company work): no real session, user or data. -->
               <a class="pcard-media cover-frame" href="work/replays.html" tabindex="-1" aria-hidden="true">
                 <svg class="cv cv-rp" preserveAspectRatio="xMidYMin slice" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="A recreated session replay: a search that found nothing, the event log, and the scrubber" viewBox="0 0 1600 1000" font-family="'Instrument Sans', Inter, Helvetica, Arial, sans-serif">
@@ -913,12 +897,12 @@
                 </svg>
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Fraud-investigation suite</b> · UX research<span class="yr">2026</span></p>
+                <p class="pcard-kicker">UX research,&nbsp;2026</p>
                 <h3><a href="work/replays.html">What three months of session replays said</a></h3>
-                <p>Two replay studies: six friction themes behind a console revamp, and twenty-one map failures ranked so engineering knew what to fix first.</p>
+                <p>Two replay studies: six friction themes behind a&nbsp;console revamp, and twenty-one map failures ranked so engineering knew what to fix&nbsp;first.</p>
               </div>
             </article>
-            <article class="pcard hue-mustard" data-prop="loaf" data-observe="LoafMode" data-prose="LoafMode">
+            <article class="pcard hue-mustard" data-observe="LoafMode" data-prose="LoafMode">
               <div class="pcard-media-wrap">
                 <a class="pcard-media pcard-media-center pcard-media-2x1" href="work/loafmode.html" tabindex="-1" aria-hidden="true">
                   <img src="images/loafmode/card.webp" width="2000" height="1000" alt="" loading="lazy" />
@@ -929,9 +913,9 @@
                 </a>
               </div>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Personal project</b> · iOS app<span class="yr">2026</span></p>
-                <h3><a href="work/loafmode.html">A screen-time app without streaks</a></h3>
-                <p>A calm iPhone app for scrolling less, built on behaviour research instead of points and guilt. Made with Claude Code.</p>
+                <p class="pcard-kicker">Solo design and iOS build,&nbsp;2026</p>
+                <h3><a href="work/loafmode.html">A&nbsp;screen-time app without streaks</a></h3>
+                <p>A&nbsp;calm iPhone app for scrolling less, built on behaviour research instead of points and guilt. Made with Claude&nbsp;Code.</p>
               </div>
             </article>
 
@@ -949,24 +933,24 @@
             </div>
           </div>
           <div class="projects reveal">
-            <article class="pcard hue-coral" data-prop="tower">
+            <article class="pcard hue-coral">
               <a class="pcard-media cover-frame" href="remnant.html" tabindex="-1" aria-hidden="true">
                 <img src="images/covers/remnant.svg" width="1600" height="1000" alt="" loading="lazy" />
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>Remnant Labs</b> · Lead front end<span class="yr">2022</span></p>
-                <h3><a href="remnant.html">A game studio's website, rebuilt</a></h3>
-                <p>Research, prototypes and the Vue front end for a game studio. Traffic up 125%.</p>
+                <p class="pcard-kicker">Lead front end,&nbsp;2022</p>
+                <h3><a href="remnant.html">A&nbsp;game studio's website, rebuilt</a></h3>
+                <p>Research, prototypes and the Vue front end for a&nbsp;game studio. Traffic up&nbsp;125%.</p>
               </div>
             </article>
-            <article class="pcard hue-teal" data-prop="megaphone">
+            <article class="pcard hue-teal">
               <a class="pcard-media cover-frame" href="amplify.html" tabindex="-1" aria-hidden="true">
                 <img src="images/covers/amplify.svg" width="1600" height="1000" alt="" loading="lazy" />
               </a>
               <div class="pcard-body">
-                <p class="pcard-kicker"><b>ProgramEquity</b> · Technical lead<span class="yr">2021–22</span></p>
+                <p class="pcard-kicker">Technical lead,&nbsp;2021–22</p>
                 <h3><a href="amplify.html">Helping supporters write to their representatives</a></h3>
-                <p>Led a volunteer team building Amplify, an open-source advocacy tool.</p>
+                <p>Led a&nbsp;volunteer team building Amplify, an&nbsp;open-source advocacy&nbsp;tool.</p>
               </div>
             </article>
 
@@ -989,7 +973,7 @@
               <time datetime="2026-06">Jun 2026</time>
               <div>
                 <h3><a href="writing/session-replays-as-research.html">What session replays can't tell you</a></h3>
-                <p>How I run a replay study on a B2B admin tool, and the three ways replays have lied to me.</p>
+                <p>How I run a replay study on a B2B admin tool, and the three ways replays have lied to&nbsp;me.</p>
               </div>
               <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </article>
@@ -997,7 +981,7 @@
               <time datetime="2026-03">Mar 2026</time>
               <div>
                 <h3><a href="writing/scripts-vs-agents.html">I generated the same component library twice. The second one worked.</a></h3>
-                <p>Scripts built sixteen components and none of them worked. An agent with a rules file built fourteen that did. The difference was what the model could see.</p>
+                <p>Scripts built sixteen components and none of them worked. An agent with a rules file built fourteen that did. The difference was what the model could&nbsp;see.</p>
               </div>
               <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </article>
@@ -1005,7 +989,7 @@
               <time datetime="2026-02">Feb 2026</time>
               <div>
                 <h3><a href="writing/design-ai-first-output.html">Design the input: AI-readable JSON is just good JSON</a></h3>
-                <p>The properties that make a format good for a model are the ones that make it good for a script and a new teammate. With a before and after.</p>
+                <p>The properties that make a format good for a model are the ones that make it good for a script and a new teammate. With a before and&nbsp;after.</p>
               </div>
               <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </article>
@@ -1013,6 +997,7 @@
         </div>
       </section>
       -->
+
 
       <!-- ============ SESSION NOTES ============
            The duck took quiet notes while the visitor browsed. Everything is computed
@@ -1022,38 +1007,9 @@
           <div class="sn" aria-live="polite">
             <header class="sn-head">
               <div>
-                <p class="sn-k">Session notes</p>
+                <p class="sn-k">Session&nbsp;notes</p>
                 <h2>That's our time for today.</h2>
               </div>
-              <svg class="sn-duck" viewBox="500 138 210 222" role="img" aria-label="The duck from the hero, glasses on, writing on its clipboard">
-                <g class="snd-bob">
-                  <path d="M590 316 L586 340 C578 342 576 350 584 350 L604 350 C610 350 608 342 600 340 L598 316 Z M626 316 L624 340 C616 342 614 350 622 350 L642 350 C648 350 646 342 638 340 L634 316 Z" fill="#FF8A1F" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round"/>
-                  <path d="M670 270 C690 262 700 244 696 232 C708 248 704 276 684 290 Z" fill="#FFC93C" stroke="#1E1A17" stroke-width="3.5" stroke-linejoin="round"/>
-                  <ellipse cx="615" cy="288" rx="68" ry="42" fill="#FFC93C" stroke="#1E1A17" stroke-width="3.5"/>
-                  <g class="snd-head">
-                    <path d="M588 172 C582 160 588 150 597 155 C600 145 613 145 613 156 C613 164 606 170 600 174 Z" fill="#FFC93C" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round"/>
-                    <circle cx="585" cy="212" r="46" fill="#FFC93C" stroke="#1E1A17" stroke-width="3.5"/>
-                    <path d="M546 214 C532 208 518 214 518 224 C522 234 540 236 552 230 Z" fill="#FF8A1F" stroke="#1E1A17" stroke-width="3.5" stroke-linejoin="round"/>
-                    <path d="M522 225 C530 229 542 229 550 225" fill="none" stroke="#1E1A17" stroke-width="2.5" stroke-linecap="round"/>
-                    <ellipse cx="598" cy="232" rx="11" ry="6.5" fill="#FF8FA3" opacity=".75"/>
-                    <circle cx="569" cy="204" r="16" fill="#fff" fill-opacity=".22"/>
-                    <g class="snd-eye"><circle cx="569" cy="204" r="8.5" fill="#1E1A17"/><circle cx="572" cy="200" r="3" fill="#fff"/><circle cx="566" cy="208" r="1.5" fill="#fff"/></g>
-                    <circle cx="569" cy="204" r="16" fill="none" stroke="#1E1A17" stroke-width="3"/>
-                    <path d="M585 201 L620 194" stroke="#1E1A17" stroke-width="3" stroke-linecap="round"/>
-                  </g>
-                  <rect x="556" y="250" width="58" height="68" rx="5" fill="#C98A4B" stroke="#1E1A17" stroke-width="3.5"/>
-                  <rect x="563" y="259" width="44" height="53" rx="2" fill="#FFF9EC"/>
-                  <rect x="575" y="245" width="20" height="9" rx="3" fill="#B9B3C9" stroke="#1E1A17" stroke-width="2.5"/>
-                  <g class="snd-lines" fill="none" stroke="#1E1A17" stroke-width="2.5" stroke-linecap="round">
-                    <path pathLength="1" d="M568 270 c5 -3 9 3 14 0 s9 -3 14 0"/>
-                    <path pathLength="1" d="M568 280 c4 -3 8 3 12 0 s8 -3 12 0 s6 -2 8 0"/>
-                    <path pathLength="1" d="M568 290 c5 -3 9 3 14 0 s7 -2 10 0"/>
-                    <path pathLength="1" d="M568 300 c4 -3 8 3 12 0"/>
-                  </g>
-                  <g class="snd-pen"><path d="M604 304 L636 280" stroke="#1E1A17" stroke-width="5" stroke-linecap="round"/><path d="M604 304 L636 280" stroke="#E8553D" stroke-width="2.5" stroke-linecap="round"/></g>
-                  <path d="M622 284 C636 266 666 268 670 288 C670 302 650 308 634 302 C626 298 620 292 622 284 Z" fill="#F0A91B" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round"/>
-                </g>
-              </svg>
             </header>
 
             <div class="sn-body">
@@ -1061,25 +1017,26 @@
                 <h3 class="sn-k">Your visit</h3>
                 <div class="sn-stats">
                   <div><b id="sn-time">0:00</b><span>time on page</span></div>
-                  <div><b id="sn-projects">0 of 3</b><span>projects you paused on</span></div>
+                  <div><b id="sn-projects">0 of 6</b><span>projects you paused on</span></div>
                   <div class="sn-longest"><b id="sn-longest">–</b><span>your longest look</span></div>
                 </div>
               </div>
 
               <div class="sn-pad">
+                <!-- the duck sits on its notes' top edge, legs over, holding a calendar with the follow-up circled -->
+                <img class="sn-perch" src="images/room/duck-ledge-calendar.svg?v=2" alt="" width="214" height="240" />
                 <h3 class="sn-k">The duck's notes</h3>
                 <ol class="sn-list" id="sn-obs"></ol>
-                <p class="sn-fine">Limitations: sample size of one. You didn't know the duck was taking notes (sorry). Nothing was stored or sent, and it's gone when you close this tab.</p>
+                <p class="sn-fine">Nothing was stored or sent, and these notes are gone when you close this tab. Limitations: sample size of&nbsp;one.</p>
               </div>
             </div>
 
             <div class="sn-plan" id="contact">
-              <p class="sn-k">Next session</p>
               <p class="sn-plan-line">Let's book a <span class="sn-nowrap">follow-up.</span></p>
               <div class="hero-actions">
                 <a class="btn btn-primary" href="mailto:mahrs.aslam@gmail.com">Email</a>
                 <a class="btn btn-ghost" href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="btn btn-ghost" href="images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a>
+                <a class="btn btn-ghost" href="images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a>
               </div>
             </div>
           </div>
@@ -1097,12 +1054,13 @@
 
     <footer class="footer">
       <div class="wrap">
-        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>© <span data-year>2026</span> Mahrs Aslam</span>
       </div>
     </footer>
 
     <script>
-      // The recreated covers play once when a card first scrolls into view; hover replays them.
+      // The recreated covers play once when a card first scrolls into view, and finish in under five seconds
+      // (WCAG 2.2.2: motion that starts on its own and runs longer needs a pause control).
       (function () {
         if (matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
         var io = new IntersectionObserver(function (es) {
@@ -1110,13 +1068,13 @@
             if (!e.isIntersecting) return;
             io.unobserve(e.target);
             e.target.classList.add("play");
-            setTimeout(function () { e.target.classList.remove("play"); }, 4500);
+            setTimeout(function () { e.target.classList.remove("play"); }, 4950);
           });
         }, { threshold: 0.5 });
         document.querySelectorAll(".pcard .cv").forEach(function (c) { io.observe(c.closest(".pcard")); });
       })();
     </script>
-    <script src="js/main.js?v=20261112e"></script>
+    <script src="js/main.js?v=20261118a"></script>
 
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
     <script>
@@ -1274,7 +1232,7 @@
 
           if (talks) out.push("You started " + talks + (talks === 1 ? " session" : " sessions") + " with the bug. It feels heard.");
           if (squeezes) out.push("You squeezed the duck " + (squeezes === 1 ? "once" : squeezes === 2 ? "twice" : squeezes + " times") + ". It doesn't mind.");
-          if (!talks && !squeezes) out.push("You didn't tap the duck. Very professional.");
+          if (!talks && !squeezes) out.push("You didn't tap the duck. It was hoping you would.");
 
           var theme = document.documentElement.getAttribute("data-theme");
           var dark = theme ? theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;

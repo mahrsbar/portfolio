@@ -13,19 +13,18 @@
     <meta property="og:title" content="SMASH forum — Mahrs Aslam" />
     <meta property="og:description" content="A PHP and MySQL social forum built by a five-person student team: posts, votes, reposts, reporting, and an admin moderation flow. I owned requirements, use cases, software qualities, and the report." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/smash-forum.html" />
-    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. I build design systems and the AI features that run on them. A duck therapist with a clipboard sits across from a blue bug in a green room." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
-    />
-    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="icon" href="../assets/favicon.svg?v=8" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon-32.png?v=8" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=8" />
+    <link rel="preload" href="../assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../css/fonts.css?v=20261111" />
+    <link rel="stylesheet" href="../css/style.css?v=20261120g" />
     <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
@@ -51,7 +50,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -65,27 +64,27 @@
     </header>
 
     <main id="main" class="hue-mustard">
-      <section class="wrap case-intro" data-prop="arcade">
-        <p class="eyebrow">Earlier work · University software project</p>
-        <h1>SMASH: a forum with moderation built in</h1>
+      <section class="wrap case-intro">
+        <p class="eyebrow">Earlier work · University software&nbsp;project</p>
+        <h1>SMASH: a&nbsp;forum with moderation built in</h1>
         <p class="intro-sum">
-          A five-person team had one semester to build a social platform for posting and voting. We shipped
-          a PHP and MySQL forum whose admin can delete a post, ignore a report or ban the user. My part was
-          the thinking around the code: requirements, use cases, software qualities and the report.
+          A&nbsp;five-person team had one semester to build a&nbsp;social platform for posting and voting. We&nbsp;shipped
+          a&nbsp;PHP and MySQL forum whose admin can delete a&nbsp;post, ignore a&nbsp;report or ban the user. My&nbsp;part was
+          the thinking around the code: requirements, use cases, software qualities and the&nbsp;report.
         </p>
         <ul class="highlights">
-          <li><b>5 people, one semester</b><span>Software development course</span></li>
-          <li><b>Moderation built in</b><span>Report, delete, ignore or ban</span></li>
-          <li><b>10 software qualities</b><span>Defined and tested against</span></li>
+          <li><b>5 people, one semester</b><span>Software development&nbsp;course</span></li>
+          <li><b>Moderation built in</b><span>Report, delete, ignore or&nbsp;ban</span></li>
+          <li><b>10 software qualities</b><span>Defined and tested&nbsp;against</span></li>
         </ul>
         <dl class="meta-line">
-          <div><dt>Role</dt><dd>Requirements, use cases, software qualities, documentation and the report</dd></div>
-          <div><dt>Stack</dt><dd>PHP, MySQL, JavaScript with AJAX, HTML and CSS; three-tier architecture; deployed on the department's Unix host</dd></div>
+          <div><dt>Role</dt><dd>Requirements, use cases, software qualities, documentation and the&nbsp;report</dd></div>
+          <div><dt>Stack</dt><dd>PHP, MySQL, JavaScript with AJAX, HTML and CSS; three-tier architecture; deployed on the department's Unix&nbsp;host</dd></div>
         </dl>
         <div class="tldr" aria-label="Summary">
-          <div><div class="k"><span class="tldr-icon warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg></span>Problem</div><p>Build a small social platform that stays usable when people misbehave.</p></div>
-          <div><div class="k"><span class="tldr-icon act" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l3 3"/></svg></span>What I did</div><p>Wrote the requirements, use cases and ten software qualities, then turned them into the test plan and the report.</p></div>
-          <div><div class="k"><span class="tldr-icon win" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18 10l-4.3 1.4L12 16l-1.7-4.6L6 10l4.3-1.4z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>Outcome</div><p><strong>A working forum with posting, voting, reporting and admin moderation, tested on desktop and mobile.</strong></p></div>
+          <div><div class="k"><span class="tldr-icon warn" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5"/><circle cx="12" cy="16" r="0.6" fill="currentColor" stroke="none"/></svg></span>Problem</div><p>Build a&nbsp;small social platform that stays usable when people&nbsp;misbehave.</p></div>
+          <div><div class="k"><span class="tldr-icon act" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10-10a2.1 2.1 0 0 0-3-3L5 17v3z"/><path d="M13.5 6.5l3 3"/></svg></span>What I&nbsp;did</div><p>Wrote the requirements, use cases and ten software qualities, then turned them into the test plan and the&nbsp;report.</p></div>
+          <div><div class="k"><span class="tldr-icon win" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l1.7 4.6L18 10l-4.3 1.4L12 16l-1.7-4.6L6 10l4.3-1.4z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span>Outcome</div><p><strong>A&nbsp;working forum with posting, voting, reporting and admin moderation, tested on desktop and&nbsp;mobile.</strong></p></div>
         </div>
       </section>
 
@@ -93,11 +92,11 @@
         <aside class="stack">
           <div class="kicker">Built with<b>Tools and methods</b></div>
           <div>
-            <ul class="chips"><li>PHP · MySQL</li><li>JavaScript · AJAX</li><li>Three-tier architecture</li><li>Visual Paradigm · Creately</li><li>Use cases · software qualities</li><li>Correctness · robustness · performance tests</li></ul>
+            <ul class="chips"><li>PHP ·&nbsp;MySQL</li><li>JavaScript ·&nbsp;AJAX</li><li>Three-tier&nbsp;architecture</li><li>Visual Paradigm ·&nbsp;Creately</li><li>Use cases · software&nbsp;qualities</li><li>Correctness · robustness · performance&nbsp;tests</li></ul>
             <ul>
-              <li><strong>Three tiers</strong>: HTML, CSS and JavaScript up front; PHP for validation, sessions and paging; MySQL for users, posts and reports.</li>
-              <li><strong>AJAX</strong> refreshes the post list without a reload, so voting feels instant.</li>
-              <li><strong>Use-case and component diagrams</strong> in Visual Paradigm and Creately, drawn before any code.</li>
+              <li><strong>Three tiers</strong>: HTML, CSS and JavaScript up front; PHP for validation, sessions and paging; MySQL for users, posts and&nbsp;reports.</li>
+              <li><strong>AJAX</strong> refreshes the post list without a&nbsp;reload, so voting feels&nbsp;instant.</li>
+              <li><strong>Use-case and component diagrams</strong> in Visual Paradigm and Creately, drawn before any&nbsp;code.</li>
             </ul>
           </div>
         </aside>
@@ -107,29 +106,29 @@
         <div class="case-body">
         <div class="prose">
           <h2>The brief</h2>
-          <p>A customer wanted a social web app: accounts, profiles, posts and votes. That's easy to build in a semester and easy to break the moment someone decides to be unpleasant, so my requirements gave moderation the same weight as posting.</p>
+          <p>A&nbsp;customer wanted a&nbsp;social web app: accounts, profiles, posts and votes. That's easy to build in a&nbsp;semester and easy to break the moment someone decides to be unpleasant, so my requirements gave moderation the same weight as&nbsp;posting.</p>
 
           <h2>Use cases</h2>
           <ul>
-            <li><strong>Creating a post.</strong> Up to 250 characters, with a live counter; the post can't be submitted over the limit. Validated on the front end and the back end.</li>
-            <li><strong>Viewing posts.</strong> Twenty per page, newest first. Click a name to see that person's posts; reposts show both the reposter and the original author.</li>
-            <li><strong>Reporting a post.</strong> Any user can report a post; reports collect in the admin's profile.</li>
-            <li><strong>Moderating.</strong> The admin can delete the post, ignore the report or ban the user. A ban also deletes the post and blocks login until the person gets in touch.</li>
+            <li><strong>Creating a&nbsp;post.</strong> Up to 250 characters, with a&nbsp;live counter; the post can't be submitted over the limit. Validated on the front end and the back&nbsp;end.</li>
+            <li><strong>Viewing posts.</strong> Twenty per page, newest first. Click a&nbsp;name to see that person's posts; reposts show both the reposter and the original&nbsp;author.</li>
+            <li><strong>Reporting a&nbsp;post.</strong> Any user can report a&nbsp;post; reports collect in the admin's&nbsp;profile.</li>
+            <li><strong>Moderating.</strong> The admin can delete the post, ignore the report or ban the user. A&nbsp;ban also deletes the post and blocks login until the person gets in&nbsp;touch.</li>
           </ul>
           <div class="figure wide">
-            <img class="shot" src="../images/smash/components.jpg" alt="Component diagram: Login, Register, Post List, Post, Repost, Vote, Report, User Detail, Check Reports, Report Options, Block User, Manage Blocks" loading="lazy" />
-            <figcaption>The component map. The right-hand column is the moderation path: user detail, check reports, report options, block and manage blocks.</figcaption>
+            <img width="885" height="845" class="shot" src="../images/smash/components.jpg" alt="Component diagram: Login, Register, Post List, Post, Repost, Vote, Report, User Detail, Check Reports, Report Options, Block User, Manage Blocks" loading="lazy" />
+            <figcaption>The component map. The&nbsp;right-hand column is the moderation path: user detail, check reports, report options, block and manage&nbsp;blocks.</figcaption>
           </div>
 
           <h2>Software qualities, then tests to match</h2>
-          <p>I wrote ten qualities before most of the code, each defined for this product. Correctness meant every use case worked end to end; robustness meant validation on every form plus auto-logout; usability meant AJAX refresh, quick responses and familiar actions; portability meant responsive and every browser except Internet Explorer. The rest: efficiency, scalability, input validation, documentation, maintainability and user friendliness.</p>
-          <p>The test plan mirrored the list: correctness tests per use case, robustness tests with bad input, and performance tests with several users on the same post at once. No data collisions turned up.</p>
+          <p>I&nbsp;wrote ten qualities before most of the code, each defined for this product. Correctness meant every use case worked end to end; robustness meant validation on every form plus auto-logout; usability meant AJAX refresh, quick responses and familiar actions; portability meant responsive and every browser except Internet Explorer. The&nbsp;rest: efficiency, scalability, input validation, documentation, maintainability and user&nbsp;friendliness.</p>
+          <p>The test plan mirrored the list: correctness tests per use case, robustness tests with bad input, and performance tests with several users on the same post at once. No&nbsp;data collisions turned&nbsp;up.</p>
 
           <h2>What it taught me</h2>
           <ul>
-            <li><strong>Write the qualities down first.</strong> Ten definitions turned "make it good" into a test plan the whole team could run.</li>
-            <li><strong>The admin side needed as much design as posting.</strong> Moderation is what kept the forum usable.</li>
-            <li><strong>Writing it up was design work too.</strong> Making five people's work read as one system in a forty-page report was my first taste of what I now do every day.</li>
+            <li><strong>Write the qualities down first.</strong> Ten definitions turned "make it good" into a&nbsp;test plan the whole team could&nbsp;run.</li>
+            <li><strong>The admin side needed as much design as posting.</strong> Moderation is what kept the forum&nbsp;usable.</li>
+            <li><strong>Writing it up was design work too.</strong> Making five people's work read as one system in a&nbsp;forty-page report was my first taste of what I&nbsp;now do every&nbsp;day.</li>
           </ul>
         </div>
         </div>
@@ -143,10 +142,10 @@
 
     <footer class="footer">
       <div class="wrap">
-        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>© <span data-year>2026</span> Mahrs Aslam</span>
       </div>
     </footer>
-    <script src="../js/main.js?v=20261112e"></script>
+    <script src="../js/main.js?v=20261118a"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

@@ -3,29 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Screen-time apps gamify the habit they fix. I built one that doesn't. — Mahrs Aslam</title>
+    <title>A screen-time app without streaks — Mahrs Aslam</title>
     <meta
       name="description"
       content="LoafMode, a calm iPhone app for scrolling less, built with Claude Code and live on the App Store. Every feature comes from behaviour research instead of streaks, points and penalties."
     />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Mahrs Aslam" />
-    <meta property="og:title" content="Screen-time apps gamify the habit they fix. I built one that doesn't. — Mahrs Aslam" />
+    <meta property="og:title" content="A screen-time app without streaks — Mahrs Aslam" />
     <meta property="og:description" content="LoafMode, a calm iPhone app for scrolling less, built with Claude Code and live on the App Store. Every feature comes from behaviour research instead of streaks, points and penalties." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/loafmode.html" />
-    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. I build design systems and the AI features that run on them. A duck therapist with a clipboard sits across from a blue bug in a green room." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
-    />
-    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="icon" href="../assets/favicon.svg?v=8" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon-32.png?v=8" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=8" />
+    <link rel="preload" href="../assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../css/fonts.css?v=20261111" />
+    <link rel="stylesheet" href="../css/style.css?v=20261120g" />
     <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
@@ -88,7 +87,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -102,24 +101,26 @@
     </header>
 
     <main id="main" class="hue-mustard">
-      <section class="wrap case-intro" data-prop="loaf">
-        <div class="intro-text">
-          <p class="eyebrow"><b>LoafMode</b> · iOS app</p>
-          <h1>A screen-time app without streaks</h1>
-          <p class="intro-sum">
-            Every screen-time app I tried ran on streaks, points and penalties: the same reward loops as the apps
-            they block. LoafMode is a calm iPhone app for scrolling less, where every feature comes from behaviour research.
-          </p>
+      <!-- the case's title on a strip of the room's wall, ending on a ledge; the duck sits on it, legs over the edge -->
+      <section class="case-strip">
+        <div class="wrap cs-inner">
+          <p class="eyebrow"><b>LoafMode</b></p>
+          <h1>A&nbsp;screen-time app without streaks</h1>
+        </div>
+        <img class="cs-duck" src="../images/room/duck-ledge-phone.svg?v=2" alt="" width="214" height="240" />
+      </section>
+      <section class="wrap case-intro cs-after">
+        <div class="intro-text intro-card">
+          <!-- the results first, then three short labelled rows: the problem, what I did, my role -->
           <ul class="highlights">
-            <li><a class="hl-link" href="https://apps.apple.com/ca/app/loafmode-screen-time-blocker/id6819125630" target="_blank" rel="noopener"><b>Live on the App Store <span class="hl-arrow" aria-hidden="true">↗&#xFE0E;</span></b><span>Version 1.1, through Apple's review</span></a></li>
-            <li><b>Built solo with Claude Code</b><span>Research, design, iOS engineering, launch</span></li>
-            <li><b>Zero streaks or points</b><span>Every feature backed by a study</span></li>
+            <li><a class="hl-link" href="https://apps.apple.com/ca/app/loafmode-screen-time-blocker/id6819125630" target="_blank" rel="noopener"><b>Live on the App Store <span class="hl-arrow" aria-hidden="true">↗&#xFE0E;</span></b><span>Version 1.1, through Apple's&nbsp;review</span></a></li>
+            <li><b>Built solo with Claude Code</b><span>Research, design, iOS engineering,&nbsp;launch</span></li>
+            <li><b>Zero streaks or points</b><span>Every feature backed by a&nbsp;study</span></li>
           </ul>
-          <dl class="meta-line">
-            <div><dt>Role</dt><dd>Solo: research, design, iOS engineering and launch</dd></div>
-            <div><dt>Stack</dt><dd>Swift, SwiftUI, Screen Time API, WidgetKit, Live Activities</dd></div>
-            <div><dt>When</dt><dd>2026</dd></div>
-            <div><dt>With</dt><dd>Nobody. Research, design, code and the App Store submission were mine, with Claude Code</dd></div>
+          <dl class="intro-rows">
+            <div><dt>The problem</dt><dd>Every screen-time app I&nbsp;tried ran on streaks, points and penalties: the same reward loops as the apps they&nbsp;block.</dd></div>
+            <div><dt>What I&nbsp;did</dt><dd>I&nbsp;built LoafMode, a&nbsp;calm iPhone app for scrolling less, where every feature comes from behaviour&nbsp;research.</dd></div>
+            <div><dt>My role</dt><dd>Solo: research, design, iOS engineering and&nbsp;launch</dd></div>
           </dl>
         </div>
         <div class="intro-phones intro-phones-stagger">
@@ -135,25 +136,24 @@
 
           <h2>The problem</h2>
           <p>
-            I wanted an app to help me scroll less, and couldn't find one I liked. They all worked the same way:
-            streaks to protect, points to earn, a pet that gets sad when you slip. That's the same variable-reward
-            loop that makes social apps hard to put down, now pointed at your screen time. And the moment you miss a
-            day, the streak turns into guilt, and guilt turns into deleting the app.
+            I&nbsp;wanted an&nbsp;app to help me scroll less, and couldn't find one I&nbsp;liked. They all worked the same way:
+            streaks to protect, points to earn, a&nbsp;pet that gets sad when you slip. That's the same variable-reward
+            loop that makes social apps hard to put down, now pointed at your screen time. And&nbsp;the moment you miss a&nbsp;day, the streak turns into guilt, and guilt turns into deleting the&nbsp;app.
           </p>
           <p>
-            And yes, iPhones already have Screen Time. I used it: it works, but it's cold, there's no one keeping you
-            company, and getting past a limit takes a couple of taps on “Ignore Limit”. I also had reasons of my own:
-            I wanted to take an app all the way to the App Store, and to see how far Claude Code could go on art, not
-            just code.
+            And yes, iPhones already have Screen Time. I&nbsp;used it: it works, but it's cold, there's no one keeping you
+            company, and getting past a&nbsp;limit takes a&nbsp;couple of taps on “Ignore Limit”. I&nbsp;also had reasons of my own:
+            I&nbsp;wanted to take an&nbsp;app all the way to the App Store, and to see how far Claude Code could go on art, not
+            just&nbsp;code.
           </p>
 
           <div class="chapter">
             <span class="num">Step 1</span>
-            <h2>I built the gamified version first</h2>
+            <h2>I&nbsp;built the gamified version first</h2>
             <p>
               My first version, FocusBlock, did exactly what I'd criticised. Mochi the cat earned XP and treats when
-              you finished a session, there was a day streak, and peeking at a blocked app put Mochi in timeout.
-              It worked, and it felt wrong. Here's the same moment, opening a blocked app, in both versions:
+              you finished a&nbsp;session, there was a&nbsp;day streak, and peeking at a&nbsp;blocked app put Mochi in timeout.
+              It&nbsp;worked, and it felt wrong. Here's the same moment, opening a&nbsp;blocked app, in both&nbsp;versions:
             </p>
             <div class="thennow">
               <div class="tn">
@@ -161,21 +161,21 @@
                 <div class="tn-media tn-media-then">
                   <button class="zoom detail" type="button" data-full="../images/loafmode/focusblock-yarn.webp" aria-label="View larger: FocusBlock's block screen after a second peek: Uh oh, Mochi's yarn got taken away. That's 2 peeks. No playtime until you finish a focus session. A Back to work button."><img src="../images/loafmode/gam-2.webp" width="528" height="308" loading="lazy" alt="FocusBlock's block screen after a second peek: Uh oh, Mochi's yarn got taken away. That's 2 peeks. No playtime until you finish a focus session." /></button>
                 </div>
-                <p class="tn-quote">“Uh oh, Mochi's yarn got taken away.”</p>
-                <p class="tn-note">Every peek at a blocked app cost more: a treat, then the yarn, then timeout.</p>
+                <p class="tn-quote">“Uh oh, Mochi's yarn got taken&nbsp;away.”</p>
+                <p class="tn-note">Every peek at a&nbsp;blocked app cost more: a&nbsp;treat, then the yarn, then&nbsp;timeout.</p>
               </div>
               <div class="tn">
                 <span class="tn-k">Now · LoafMode</span>
                 <div class="tn-media">
                   <button class="zoom detail" data-full="../images/loafmode/block-screen.webp" type="button" aria-label="View larger: The block screen. Angus the cow peeks over a ledge: Angus noticed you looking. Instagram is paused until 8:55 PM, 25 minutes left. A Back to focus button."><img src="../images/loafmode/crop-block.webp" width="712" height="380" loading="lazy" alt="The block screen. Angus the cow peeks over a ledge: Angus noticed you looking. Instagram is paused until 8:55 PM, 25 minutes left. A Back to focus button." /></button>
                 </div>
-                <p class="tn-quote">“Angus noticed you looking.”</p>
-                <p class="tn-note">What you see when you open a paused app. No penalty, nothing to lose, and a way back to focus.</p>
+                <p class="tn-quote">“Angus noticed you&nbsp;looking.”</p>
+                <p class="tn-note">What you see when you open a&nbsp;paused app. No&nbsp;penalty, nothing to lose, and a&nbsp;way back to&nbsp;focus.</p>
               </div>
             </div>
             <p>
-              I was using guilt to keep people coming back. So before writing more code, I went to the research on what actually
-              changes phone habits, and rebuilt the app around it.
+              I&nbsp;was using guilt to keep people coming back. So&nbsp;before writing more code, I&nbsp;went to the research on what actually
+              changes phone habits, and rebuilt the app around&nbsp;it.
             </p>
           </div>
 
@@ -183,16 +183,16 @@
             <span class="num">Step 2</span>
             <h2>Every feature comes from the research</h2>
             <p>
-              The rule for LoafMode: nothing nice gets taken away on a bad day. No points, no streaks, no penalties.
+              The rule for LoafMode: nothing nice gets taken away on a&nbsp;bad day. No&nbsp;points, no streaks, no&nbsp;penalties.
             </p>
             <ol class="features">
               <li class="feature">
                 <div class="feature-media"><button class="zoom detail" type="button" aria-label="View larger: The app limit screen: Snapchat and Instagram (focus sessions use this list too), a dial set to 30 minutes a day, a heads-up toggle for 5 minutes left, and a Save button."><img src="../images/loafmode/app-limit.webp" width="660" height="1140" loading="lazy" alt="The app limit screen: Snapchat and Instagram (focus sessions use this list too), a dial set to 30 minutes a day, a heads-up toggle for 5 minutes left, and a Save button." /></button></div>
                 <div class="feature-text">
                   <span class="feature-n">01</span>
-                  <h3>A limit you set once</h3>
-                  <p>Most phone use starts in idle moments nobody planned, and deciding in advance works: if-then plans have a medium-to-large effect on reaching goals. So the daily limit is the main protection, and it needs nothing from you each day.</p>
-                  <p class="cite"><a href="https://faculty.washington.edu/alexisr/engagementDisengagement.pdf" target="_blank" rel="noopener">Tran et al., 2019</a> · <a href="https://doi.org/10.1016/S0065-2601(06)38002-1" target="_blank" rel="noopener">Gollwitzer &amp; Sheeran, 2006</a></p>
+                  <h3>A&nbsp;limit you set once</h3>
+                  <p>Most phone use starts in idle moments nobody planned, and deciding in advance works: if-then plans have a&nbsp;medium-to-large effect on reaching goals. So&nbsp;the daily limit is the main protection, and it needs nothing from you each&nbsp;day.</p>
+                  <p class="cite"><a href="https://faculty.washington.edu/alexisr/engagementDisengagement.pdf" target="_blank" rel="noopener">Tran et al., 2019</a> · <a href="https://doi.org/10.1016/S0065-2601(06)38002-1" target="_blank" rel="noopener">Gollwitzer &amp; Sheeran,&nbsp;2006</a></p>
                 </div>
               </li>
               <li class="feature">
@@ -200,26 +200,26 @@
                 <div class="feature-text">
                   <span class="feature-n">02</span>
                   <h3>Starting takes one tap</h3>
-                  <p>Habits form around whatever is easiest in the moment, so friction belongs on the habit you're breaking, not the one you're building. “Focus now” opens one short screen with your last time and apps already set, and the note is optional.</p>
-                  <p class="cite"><a href="https://doi.org/10.1146/annurev-psych-122414-033417" target="_blank" rel="noopener">Wood &amp; Rünger, 2016</a></p>
+                  <p>Habits form around whatever is easiest in the moment, so friction belongs on the habit you're breaking, not the one you're building. “Focus now” opens one short screen with your last time and apps already set, and the note is&nbsp;optional.</p>
+                  <p class="cite"><a href="https://doi.org/10.1146/annurev-psych-122414-033417" target="_blank" rel="noopener">Wood &amp; Rünger,&nbsp;2016</a></p>
                 </div>
               </li>
               <li class="feature">
                 <div class="feature-media"><button class="zoom detail" type="button" aria-label="View larger: Asking for more time: the horse companion above Give yourself more time? Your limit goes up to 10 min a day, starting now. A Save button counting down from 10, and a Never mind button."><img src="../images/loafmode/wait-sheet.webp" width="660" height="757" loading="lazy" alt="Asking for more time: the horse companion above Give yourself more time? Your limit goes up to 10 min a day, starting now. A Save button counting down from 10, and a Never mind button." /></button></div>
                 <div class="feature-text">
                   <span class="feature-n">03</span>
-                  <h3>A short wait before more time</h3>
-                  <p>In a field study of 280 people, a short pause before opening an app made them abandon about 1 in 3 attempts, and try to open those apps 37% less often. Anything that gives you more time today waits 10 seconds, with a big “Never mind”.</p>
-                  <p class="cite"><a href="https://doi.org/10.1073/pnas.2213114120" target="_blank" rel="noopener">Grüning et al., 2023</a></p>
+                  <h3>A&nbsp;short wait before more time</h3>
+                  <p>In a&nbsp;field study of 280 people, a&nbsp;short pause before opening an&nbsp;app made them abandon about 1 in 3 attempts, and try to open those apps 37% less often. Anything that gives you more time today waits 10 seconds, with a&nbsp;big “Never&nbsp;mind”.</p>
+                  <p class="cite"><a href="https://doi.org/10.1073/pnas.2213114120" target="_blank" rel="noopener">Grüning et al.,&nbsp;2023</a></p>
                 </div>
               </li>
               <li class="feature">
                 <div class="feature-media"><button class="zoom detail" type="button" aria-label="View larger: Asking to unpause: the horse companion above Unpause for 5 minutes? After 5 minutes of use, your apps pause again. An Unpause button counting down from 9, a Never mind button, and 3 unpauses left today."><img src="../images/loafmode/unpause-sheet.webp" width="660" height="736" loading="lazy" alt="Asking to unpause: the horse companion above Unpause for 5 minutes? After 5 minutes of use, your apps pause again. An Unpause button counting down from 9, a Never mind button, and 3 unpauses left today." /></button></div>
                 <div class="feature-text">
                   <span class="feature-n">04</span>
-                  <h3>A way out, not a lockout</h3>
-                  <p>Strict lockouts work, but they frustrate people. So there are up to three short unpauses a day, each behind the same short wait.</p>
-                  <p class="cite"><a href="https://doi.org/10.1145/3314403" target="_blank" rel="noopener">Kim et al., 2019</a></p>
+                  <h3>A&nbsp;way out, not a&nbsp;lockout</h3>
+                  <p>Strict lockouts work, but they frustrate people. So&nbsp;there are up to three short unpauses a&nbsp;day, each behind the same short&nbsp;wait.</p>
+                  <p class="cite"><a href="https://doi.org/10.1145/3314403" target="_blank" rel="noopener">Kim et al.,&nbsp;2019</a></p>
                 </div>
               </li>
               <li class="feature">
@@ -227,8 +227,8 @@
                 <div class="feature-text">
                   <span class="feature-n">05</span>
                   <h3>Surprises, never streaks</h3>
-                  <p>Rewards you expect for performing undermine your own motivation; unexpected ones don't. And missing one day doesn't derail a habit. So your companion now and then finds an accessory, nothing shows what's next, and nothing is ever lost.</p>
-                  <p class="cite"><a href="https://doi.org/10.1037/0033-2909.125.6.627" target="_blank" rel="noopener">Deci, Koestner &amp; Ryan, 1999</a> · <a href="https://doi.org/10.1002/ejsp.674" target="_blank" rel="noopener">Lally et al., 2010</a></p>
+                  <p>Rewards you expect for performing undermine your own motivation; unexpected ones don't. And&nbsp;missing one day doesn't derail a&nbsp;habit. So&nbsp;your companion now and then finds an&nbsp;accessory, nothing shows what's next, and nothing is ever&nbsp;lost.</p>
+                  <p class="cite"><a href="https://doi.org/10.1037/0033-2909.125.6.627" target="_blank" rel="noopener">Deci, Koestner &amp; Ryan, 1999</a> · <a href="https://doi.org/10.1002/ejsp.674" target="_blank" rel="noopener">Lally et al.,&nbsp;2010</a></p>
                 </div>
               </li>
               <li class="feature">
@@ -236,16 +236,16 @@
                 <div class="feature-text">
                   <span class="feature-n">06</span>
                   <h3>Minutes, not ticking seconds</h3>
-                  <p>Things that start moving grab your attention automatically, and length is easier to judge than angles. So time left shows in whole minutes, never ticking seconds, and progress fills a thin bar rather than a countdown ring.</p>
-                  <p class="cite"><a href="https://doi.org/10.1111/1467-9280.01458" target="_blank" rel="noopener">Abrams &amp; Christ, 2003</a> · <a href="https://doi.org/10.1080/01621459.1984.10478080" target="_blank" rel="noopener">Cleveland &amp; McGill, 1984</a></p>
+                  <p>Things that start moving grab your attention automatically, and length is easier to judge than angles. So&nbsp;time left shows in whole minutes, never ticking seconds, and progress fills a&nbsp;thin bar rather than a&nbsp;countdown&nbsp;ring.</p>
+                  <p class="cite"><a href="https://doi.org/10.1111/1467-9280.01458" target="_blank" rel="noopener">Abrams &amp; Christ, 2003</a> · <a href="https://doi.org/10.1080/01621459.1984.10478080" target="_blank" rel="noopener">Cleveland &amp; McGill,&nbsp;1984</a></p>
                 </div>
               </li>
             </ol>
 
             <aside class="lesson" aria-label="The lesson">
               <span class="lesson-k">The design rule</span>
-              <p class="lesson-big">An app that helps you use your phone less shouldn't want your attention either.</p>
-              <p>So it works offline, has no accounts and earns nothing from your time in it.</p>
+              <p class="lesson-big">An&nbsp;app that helps you use your phone less shouldn't want your attention&nbsp;either.</p>
+              <p>So it works offline, has no accounts and earns nothing from your time in&nbsp;it.</p>
             </aside>
 
 
@@ -255,20 +255,20 @@
             <span class="num">Step 3</span>
             <h2>Building it on Apple's Screen Time API</h2>
             <p>
-              To block apps on iOS you need five pieces that share data through an App Group: the app
-              itself, a monitor that enforces the limit and resets it at midnight even when the app is closed, the
-              block screen, an action that records each reach for a paused app, and the widgets, Lock Screen Live
-              Activity and Dynamic Island.
+              To block apps on iOS you need five pieces that share data through an&nbsp;App Group: the app
+              itself, a&nbsp;monitor that enforces the limit and resets it at midnight even when the app is closed, the
+              block screen, an&nbsp;action that records each reach for a&nbsp;paused app, and the widgets, Lock Screen Live
+              Activity and Dynamic&nbsp;Island.
             </p>
             <p>
-              The Simulator never actually blocks anything, so I added debug launch options that put the app into
-              any state on demand (a limit about to run out, a focus session in progress, the evening palette), and
-              commands that render the widgets, companions and App Store art straight from the code.
+              The Simulator never actually blocks anything, so I&nbsp;added debug launch options that put the app into
+              any state on demand (a&nbsp;limit about to run out, a&nbsp;focus session in progress, the evening palette), and
+              commands that render the widgets, companions and App Store art straight from the&nbsp;code.
             </p>
             <p>
-              The companions were my experiment in AI-made art. Instead of image files, I worked with Claude Code to
+              The companions were my experiment in AI-made art. Instead of image files, I&nbsp;worked with Claude Code to
               draw each animal in code, so they stay crisp at every size and can change expression: happy on the hill,
-              calm during a session, surprised on the block screen.
+              calm during a&nbsp;session, surprised on the block&nbsp;screen.
             </p>
           </div>
 
@@ -276,11 +276,10 @@
             <span class="num">Step 4</span>
             <h2>Shipping it</h2>
             <p>
-              Apps that block other apps need Apple's sign-off twice: a Family Controls distribution entitlement for
-              each of the four extensions, then App Review. Review came back asking for more information, so I sent a
-              screen recording of the full flow on a real iPhone and explained each permission, including what the
+              Apps that block other apps need Apple's sign-off twice: a&nbsp;Family Controls distribution entitlement for
+              each of the four extensions, then App Review. Review came back asking for more information, so I&nbsp;sent a&nbsp;screen recording of the full flow on a&nbsp;real iPhone and explained each permission, including what the
               app can't see. LoafMode is now on version 1.1. Claude Code sped up the build and drew the companions
-              with me. The decisions about what the app should and shouldn't do stayed mine.
+              with me. The&nbsp;decisions about what the app should and shouldn't do stayed&nbsp;mine.
             </p>
             <figure class="story">
               <div class="story-frame">
@@ -288,14 +287,21 @@
               </div>
               <figcaption>
                 <span class="block-k">The launch ad</span>
-                <p>To tell my friends about it, I made a three-frame Instagram story starring Mochi: screen time racing past eight hours, Mochi popping up to ask if you want to stop doomscrolling, then the time coming back down.</p>
-                <p>This is the real story running. Tap the left or right side to skip, like on Instagram.</p>
+                <p>To tell my friends about it, I&nbsp;made a&nbsp;three-frame Instagram story starring Mochi: screen time racing past eight hours, Mochi popping up to ask if you want to stop doomscrolling, then the time coming back&nbsp;down.</p>
+                <p>This is the real story running. Tap&nbsp;the left or right side to skip, like on&nbsp;Instagram.</p>
               </figcaption>
             </figure>
           </div>
 
 
-        </div>
+        
+            <h2>Project details</h2>
+            <dl class="meta-line meta-end">
+              <div><dt>Stack</dt><dd>Swift, SwiftUI, Screen Time API, WidgetKit, Live&nbsp;Activities</dd></div>
+              <div><dt>When</dt><dd>2026</dd></div>
+              <div><dt>With</dt><dd>Nobody. Research, design, code and the App Store submission were mine, with Claude&nbsp;Code</dd></div>
+            </dl>
+          </div>
         </div>
       </section>
     </main>
@@ -312,7 +318,7 @@
 
     <footer class="footer">
       <div class="wrap">
-        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>© <span data-year>2026</span> Mahrs Aslam</span>
       </div>
     </footer>
     <script>
@@ -346,7 +352,7 @@
         box.addEventListener("close", function () { shots[i].focus(); });
       })();
     </script>
-    <script src="../js/main.js?v=20261112e"></script>
+    <script src="../js/main.js?v=20261118a"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>
