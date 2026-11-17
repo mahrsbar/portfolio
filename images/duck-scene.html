@@ -3,10 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preload" href="../assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="../css/fonts.css?v=20261111" />
 <title>The Talking Cure</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@500..800&display=swap" rel="stylesheet">
 <style>
   :root {
     --paper: #F6EEDD;
@@ -479,6 +478,7 @@
     html:not(.motion-on) *, html:not(.motion-on) *::before, html:not(.motion-on) *::after { animation: none !important; transition: none !important; }
     .code, .scribble { stroke-dashoffset: 0; }
   }
+  html.offscreen *, html.offscreen *::before, html.offscreen *::after { animation-play-state: paused !important; }
 </style>
 <script>
   // ?style=ink|riso|pastel|soft|blueprint swaps the look of the same drawing (used by prototypes/styles.html)
@@ -1112,7 +1112,16 @@
   const tried = new Set();
   others.forEach(els => els.forEach(el => el.addEventListener('click', () => tried.add(els))));
   let turn = 0, inView = true;
-  if ('IntersectionObserver' in window) new IntersectionObserver(es => { inView = es[0].isIntersecting; }).observe(stage);
+  // once the room is scrolled out of view, its ambient motion (rain, clouds, lamp, leaves) stops, and picks up
+  // again on the way back, so nothing animates where nobody can see it
+  if ('IntersectionObserver' in window) new IntersectionObserver(es => {
+    inView = es[0].isIntersecting;
+    document.documentElement.classList.toggle('offscreen', !inView);
+    const art = document.querySelector('.stage svg');
+    if (!art) return;
+    if (!inView) art.pauseAnimations();
+    else if (!document.documentElement.classList.contains('paused')) art.unpauseAnimations();
+  }).observe(stage);
   setInterval(() => {
     if (busy || !inView || document.hidden || document.documentElement.classList.contains('paused') || stage.matches(':hover')) return;
     if (turn++ % 2 === 0) return peek([patient]);

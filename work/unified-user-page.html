@@ -10,19 +10,18 @@
     <meta property="og:title" content="Four tabs to answer one question — Mahrs Aslam" />
     <meta property="og:description" content="Fraud analysts bounced between four tools to answer one question. I ran the research, designed one page around a timeline, and built it." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/unified-user-page.html" />
-    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. I build design systems and the AI features that run on them. A duck therapist with a clipboard sits across from a blue bug in a green room." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
-    />
-    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="icon" href="../assets/favicon.svg?v=8" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon-32.png?v=8" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=8" />
+    <link rel="preload" href="../assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../css/fonts.css?v=20261111" />
+    <link rel="stylesheet" href="../css/style.css?v=20261120g" />
     <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
@@ -136,7 +135,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -150,31 +149,35 @@
     </header>
 
     <main id="main" class="hue-pink">
-      <section class="wrap case-intro" data-toy="tabs" data-prop="rolodex">
-        <p class="eyebrow"><span class="case-no">Case 03</span><b>Fraud-investigation suite</b> · UX research + product design</p>
-        <h1>Four tabs to answer one question</h1>
-        <p class="intro-sum">
-          Analysts investigating a suspicious account bounced between a search tool, a map, a link graph and a
-          log viewer, holding the timeline in their heads. I ran the research that made the case for one page,
-          designed it around a timeline, and built it. Drag the range below to see why the timeline is the spine.
-        </p>
+      <!-- the case's title on a strip of the room's wall, ending on a ledge; the duck sits on it, legs over the edge -->
+      <section class="case-strip">
+        <div class="wrap cs-inner">
+          <p class="eyebrow"><span class="case-no">Project</span><b>Fraud-investigation&nbsp;suite</b></p>
+          <h1>Four tabs to answer one question</h1>
+        </div>
+        <img class="cs-duck" src="../images/room/duck-ledge-glass.svg?v=2" alt="" width="214" height="240" />
+      </section>
+      <section class="wrap case-intro cs-after">
+        <div class="intro-card">
+        <!-- the results first, then three short labelled rows: the problem, what I did, my role -->
         <ul class="highlights">
-          <li><b>4 tools → 1 page</b><span>One time-anchored view, shipped</span></li>
-          <li><b>First pillar</b><span>Of a multi-year back-office strategy</span></li>
-          <li><b>Research first</b><span>Analyst sessions, journey map, personas</span></li>
+          <li><b>4 tools → 1 page</b><span>One time-anchored view,&nbsp;shipped</span></li>
+          <li><b>First pillar</b><span>Of a&nbsp;multi-year back-office&nbsp;strategy</span></li>
+          <li><b>Research first</b><span>Analyst sessions, journey map,&nbsp;personas</span></li>
         </ul>
-        <dl class="meta-line">
-          <div><dt>Role</dt><dd>UX research, product design and the front-end build</dd></div>
-          <div><dt>When</dt><dd>2025</dd></div>
-          <div><dt>With</dt><dd>Internal and customer analysts in research sessions; product and engineering through three design rounds</dd></div>
+        <dl class="intro-rows">
+          <div><dt>The problem</dt><dd>Analysts investigating a&nbsp;suspicious account bounced between a&nbsp;search tool, a&nbsp;map, a&nbsp;link graph and a&nbsp;log viewer, holding the timeline in their&nbsp;heads.</dd></div>
+          <div><dt>What I&nbsp;did</dt><dd>I&nbsp;ran the research that made the case for one page, designed it around a&nbsp;timeline, and built it. Drag the range below to see why the timeline is the&nbsp;spine.</dd></div>
+          <div><dt>My role</dt><dd>UX research, product design and the front-end&nbsp;build</dd></div>
         </dl>
+        </div>
       </section>
 
       <section class="wrap">
         <div class="up" data-up>
           <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>User page</b></div>
           <div class="up-body">
-            <div class="up-alert" aria-hidden="true">⚠&#xFE0E; This user has a different status across several operators.<u>View history</u></div>
+            <div class="up-alert" aria-hidden="true">⚠&#xFE0E; This user has a&nbsp;different status across several operators.<u>View history</u></div>
             <div class="up-head" aria-hidden="true">
               <span class="up-avatar"></span>
               <span class="up-id">USER-7F3A-••••</span>
@@ -230,7 +233,7 @@
             </div>
           </div>
         </div>
-        <p class="mock-note">A recreated mockup with invented data.</p>
+        <p class="mock-note">A&nbsp;recreated mockup with invented&nbsp;data.</p>
       </section>
 
       <section class="wrap section">
@@ -239,22 +242,22 @@
 
           <h2>The problem</h2>
           <p>
-            The suite was four powerful tools that didn't talk to each other: a search tool, a map, a link graph
-            and a log viewer. To answer "what did this account do last Tuesday?", an analyst opened all four,
+            The suite was four powerful tools that didn't talk to each other: a&nbsp;search tool, a&nbsp;map, a&nbsp;link graph
+            and a&nbsp;log viewer. To&nbsp;answer "what did this account do last Tuesday?", an&nbsp;analyst opened all four,
             searched the same identifier in each, and stitched the answer together in their head. Some details
-            only lived in the log viewer. Customer feedback said it plainly:
+            only lived in the log viewer. Customer feedback said it&nbsp;plainly:
           </p>
-          <p class="quote">"Time basis is very important. It's hard to see a timeline with the current tools."<small>Customer feedback, before the project</small></p>
-          <p>Before proposing anything, I checked that story properly.</p>
+          <p class="quote">"Time basis is very important. It's hard to see a&nbsp;timeline with the current tools."<small>Customer feedback, before the&nbsp;project</small></p>
+          <p>Before proposing anything, I&nbsp;checked that story&nbsp;properly.</p>
 
           <div class="chapter">
             <span class="num">Research</span>
             <h2>How analysts actually work</h2>
             <ol class="steps">
-              <li><b>Sessions with real analysts.</b> Internal and external fraud analysts walked me through live investigations: each step, where it hurt, and the moment they left our product for another tool.</li>
-              <li><b>A journey map across every product.</b> Not just the investigation tool but the case-management and identity products around it, checked with the teams who own them.</li>
-              <li><b>Personas and an ideal flow.</b> Lo-fi mockups built around four jobs, deliberately not limited by what the current products could do.</li>
-              <li><b>Validation before rendering.</b> Analysts and stakeholders reviewed the lo-fi flow before anything was drawn in high fidelity.</li>
+              <li><b>Sessions with real analysts.</b> Internal and external fraud analysts walked me through live investigations: each step, where it hurt, and the moment they left our product for another&nbsp;tool.</li>
+              <li><b>A&nbsp;journey map across every product.</b> Not just the investigation tool but the case-management and identity products around it, checked with the teams who own&nbsp;them.</li>
+              <li><b>Personas and an&nbsp;ideal flow.</b> Lo-fi mockups built around four jobs, deliberately not limited by what the current products could&nbsp;do.</li>
+              <li><b>Validation before rendering.</b> Analysts and stakeholders reviewed the lo-fi flow before anything was drawn in high&nbsp;fidelity.</li>
             </ol>
             <div class="figure wide">
               <div class="frame">
@@ -268,36 +271,36 @@
                   <div class="node"><b>Share findings</b><small>Case notes, exports</small></div>
                 </div>
               </div>
-              <figcaption>The four jobs the ideal flow was organised around. Almost all the tool-switching happened inside "investigate".</figcaption>
+              <figcaption>The four jobs the ideal flow was organised around. Almost all the tool-switching happened inside&nbsp;"investigate".</figcaption>
             </div>
           </div>
 
           <aside class="psych" aria-label="Psychology note">
             <span class="psych-k">Psych note</span>
-            <h3>A little effort on screen, a lot of trust in memory</h3>
-            <p>When checking the screen costs even a little more effort than recalling, people go from memory, and memory is the less accurate of the two. Every tab switch made checking the costlier option. Put the timeline on one screen and checking becomes a glance.</p>
-            <small>Gray, W. D., &amp; Fu, W.-T. (2004). Soft constraints in interactive behavior: The case of ignoring perfect knowledge in-the-world for imperfect knowledge in-the-head. Cognitive Science, 28(3), 359–382.</small>
+            <h3>A&nbsp;little effort on screen, a&nbsp;lot of trust in memory</h3>
+            <p>When checking the screen costs even a&nbsp;little more effort than recalling, people go from memory, and memory is the less accurate of the two. Every tab switch made checking the costlier option. Put&nbsp;the timeline on one screen and checking becomes a&nbsp;glance.</p>
+            <small>Gray, W. D., &amp; Fu, W.-T. (2004). Soft constraints in interactive behavior: The&nbsp;case of ignoring perfect knowledge in-the-world for imperfect knowledge in-the-head. Cognitive Science, 28(3), 359–382.</small>
           </aside>
 
           <div class="chapter">
             <span class="num">The proposal</span>
-            <h2>A timeline as the spine</h2>
+            <h2>A&nbsp;timeline as the spine</h2>
             <p>
-              One page with everything about a user (or a device) on it, so an investigation no longer means
-              opening tabs. The organising element is the <strong>timeline</strong>: every card hangs off it, and
+              One page with everything about a&nbsp;user (or a&nbsp;device) on it, so an&nbsp;investigation no longer means
+              opening tabs. The&nbsp;organising element is the <strong>timeline</strong>: every card hangs off it, and
               the time range you pick drives what every card shows. Change the range once and the map, the
-              KPIs, the transaction list and the analysis cards all follow.
+              KPIs, the transaction list and the analysis cards all&nbsp;follow.
             </p>
             <p>
-              The proposal became the first pillar of a multi-year "one back office" strategy, with AI tooling
-              and explainability to follow. So the page had to leave room for AI features that didn't exist
-              yet. The first of them, <a href="ask-bar.html">an ask bar that turns a question into filters</a>,
-              arrived a year later and landed on exactly the structure this page set up.
+              The proposal became the first pillar of a&nbsp;multi-year "one back office" strategy, with AI tooling
+              and explainability to follow. So&nbsp;the page had to leave room for AI features that didn't exist
+              yet. The&nbsp;first of them, <a href="ask-bar.html">an&nbsp;ask bar that turns a&nbsp;question into filters</a>,
+              arrived a&nbsp;year later and landed on exactly the structure this page set&nbsp;up.
             </p>
             <aside class="lesson" aria-label="The lesson">
               <span class="lesson-k">The lesson</span>
-              <p class="lesson-big">Find the organising element first.</p>
-              <p>Once the timeline was the spine, every other layout question got easier, and the features that came later had somewhere to go.</p>
+              <p class="lesson-big">Find the organising element&nbsp;first.</p>
+              <p>Once the timeline was the spine, every other layout question got easier, and the features that came later had somewhere to&nbsp;go.</p>
             </aside>
           </div>
 
@@ -305,43 +308,49 @@
             <span class="num">From V1 to MVP</span>
             <h2>Three rounds with the people who'd use it</h2>
             <ul>
-              <li><strong>V1</strong> of the investigation view, reviewed with analysts and product.</li>
-              <li><strong>Feedback round.</strong> Analysts found the first version ambiguous: it wasn't clear which cards the timeline applied to. I reworked the layout and hierarchy so the scope of the timeline is visible, not implied.</li>
-              <li><strong>MVP.</strong> A final annotated design using the <a href="design-system.html">component library</a>, which I then built.</li>
-              <li><strong>After launch.</strong> Fixes driven by observed confusion, and analytics events on every new card so the next iteration starts with usage data instead of opinions.</li>
+              <li><strong>V1</strong> of the investigation view, reviewed with analysts and&nbsp;product.</li>
+              <li><strong>Feedback round.</strong> Analysts found the first version ambiguous: it wasn't clear which cards the timeline applied to. I&nbsp;reworked the layout and hierarchy so the scope of the timeline is visible, not&nbsp;implied.</li>
+              <li><strong>MVP.</strong> A&nbsp;final annotated design using the <a href="design-system.html">component library</a>, which I&nbsp;then built.</li>
+              <li><strong>After launch.</strong> Fixes driven by observed confusion, and analytics events on every new card so the next iteration starts with usage data instead of&nbsp;opinions.</li>
             </ul>
           </div>
 
           <div class="chapter">
             <span class="num">Extending it</span>
-            <h2>New signals had a home</h2>
+            <h2>New signals had a&nbsp;home</h2>
             <p>
-              Once the page existed, new findings had an obvious place to appear. When a device-integrity feature
-              started detecting duplicate devices, I designed how that shows up on the page and in the link graph:
-              a toggle for the feature, a switch between clustered and unclustered views, duplicates collapsed into
-              one expandable node, and a copy-all action wherever a list of devices appears. I built the
-              interactions as a Figma Make prototype so engineers and stakeholders could try them instead of
-              reading about them.
+              Once the page existed, new findings had an&nbsp;obvious place to appear. When a&nbsp;device-integrity feature
+              started detecting duplicate devices, I&nbsp;designed how that shows up on the page and in the link graph:
+              a&nbsp;toggle for the feature, a&nbsp;switch between clustered and unclustered views, duplicates collapsed into
+              one expandable node, and a&nbsp;copy-all action wherever a&nbsp;list of devices appears. I&nbsp;built the
+              interactions as a&nbsp;Figma Make prototype so engineers and stakeholders could try them instead of
+              reading about&nbsp;them.
             </p>
           </div>
 
           <h2>The outcome</h2>
           <p>
-            The page shipped as the first pillar of a multi-year back-office strategy, with analytics events on every
-            card so the next iteration starts from usage instead of opinions. A year later the ask bar landed on the
-            structure it set up. I built it in the same codebase the rest of the team ships from, which is the
-            fastest feedback loop I know. The habit I kept: validate on paper. Lo-fi flows reviewed
-            by real analysts saved at least one full redesign.
+            The page shipped as the first pillar of a&nbsp;multi-year back-office strategy, with analytics events on every
+            card so the next iteration starts from usage instead of opinions. A&nbsp;year later the ask bar landed on the
+            structure it set up. I&nbsp;built it in the same codebase the rest of the team ships from, which is the
+            fastest feedback loop I&nbsp;know. The&nbsp;habit I&nbsp;kept: validate on paper. Lo-fi flows reviewed
+            by real analysts saved at least one full&nbsp;redesign.
           </p>
 
-        </div>
+        
+            <h2>Project details</h2>
+            <dl class="meta-line meta-end">
+              <div><dt>When</dt><dd>2025</dd></div>
+              <div><dt>With</dt><dd>Internal and customer analysts in research sessions; product and engineering through three design&nbsp;rounds</dd></div>
+            </dl>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="wrap">
-        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>© <span data-year>2026</span> Mahrs Aslam</span>
       </div>
     </footer>
     <script>
@@ -403,8 +412,7 @@
         render();
       })();
     </script>
-    <script src="../js/main.js?v=20261112e"></script>
-    <script src="../js/toys.js?v=8" defer></script>
+    <script src="../js/main.js?v=20261118a"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

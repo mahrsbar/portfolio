@@ -3,26 +3,25 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>An ask bar that answers with filters — Mahrs Aslam</title>
-    <meta name="description" content="A fraud-investigation demo with an AI designed around four moments of an investigation: ask a question and land on the filtered page, a launcher that has read the page before you do, an assistant that shows each step, and a plan for every way it can be wrong." />
+    <title>Moving our AI from a chat page onto the maps analysts work in — Mahrs Aslam</title>
+    <meta name="description" content="How I moved our fraud-investigation AI from a separate chat page onto the map: one question opens the right page, sets the filters and flags the strongest finding." />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Mahrs Aslam" />
-    <meta property="og:title" content="An ask bar that answers with filters — Mahrs Aslam" />
-    <meta property="og:description" content="A fraud-investigation demo with an AI designed around four moments of an investigation: ask a question and land on the filtered page, a launcher that has read the page before you do, an assistant that shows each step, and a plan for every way it can be wrong." />
+    <meta property="og:title" content="Moving our AI from a chat page onto the maps analysts work in — Mahrs Aslam" />
+    <meta property="og:description" content="How I moved our fraud-investigation AI from a separate chat page onto the map: one question opens the right page, sets the filters and flags the strongest finding." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/ask-bar.html" />
-    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. I build design systems and the AI features that run on them. A duck therapist with a clipboard sits across from a blue bug in a green room." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
-    />
-    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="icon" href="../assets/favicon.svg?v=8" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon-32.png?v=8" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=8" />
+    <link rel="preload" href="../assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../css/fonts.css?v=20261111" />
+    <link rel="stylesheet" href="../css/style.css?v=20261120g" />
     <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
@@ -62,7 +61,7 @@
 
       /* The ask-bar demo: the product itself, drawn light in both themes like the covers,
          with three callouts for what to notice. */
-      .askdemo, .loopfig { --ap-bg: #FFFFFF; --ap-sunk: #F3F4F6; --ap-line: #E6E8EC; --ap-ink: #1A1F29; --ap-ink2: #4B5563; --ap-ink3: #8A93A2; --ap-navy: #1F3A63; --ap-blue: #2F5BD6; --ap-ai: #E8553D; --ap-ai-soft: #FCE9E4; --ap-ai-text: #B8402F; --ap-ok: #1F6E5B; --ap-ok-soft: #DCEFEA;
+      .askdemo, .loopfig, .vs { --ap-bg: #FFFFFF; --ap-sunk: #F3F4F6; --ap-line: #E6E8EC; --ap-ink: #1A1F29; --ap-ink2: #4B5563; --ap-ink3: #8A93A2; --ap-navy: #1F3A63; --ap-blue: #2F5BD6; --ap-ai: #E8553D; --ap-ai-soft: #FCE9E4; --ap-ai-text: #B8402F; --ap-ok: #1F6E5B; --ap-ok-soft: #DCEFEA;
         padding: clamp(1rem, 3vw, 1.5rem); border: 1px solid var(--line); border-radius: var(--radius-l); background: var(--bg-elev); }
       /* suggestions: the product's own pattern, a panel under the bar when it has focus */
       .aa-suggest { position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 20; padding: 0.35rem; border: 1px solid var(--ap-line); border-radius: 14px; background: #fff; box-shadow: 0 12px 32px rgba(15,20,40,0.16); }
@@ -99,11 +98,6 @@
       .askdemo-input:focus { outline: none; }
       .askdemo-go { flex: none; height: 32px; padding: 0 0.95rem; border: 0; border-radius: 7px; background: var(--ap-blue); color: #fff; font: inherit; font-weight: 600; font-size: 0.78rem; cursor: pointer; transition: background 0.15s; }
       .askdemo-go:hover { background: #2649B5; }
-      .askdemo-ex { flex: none; display: inline-flex; align-items: center; gap: 0.3rem; height: 32px; padding: 0 0.6rem; border: 0; border-radius: 7px; background: none; color: var(--ap-ink2); font: inherit; font-size: 0.76rem; font-weight: 500; cursor: pointer; transition: background 0.15s, color 0.15s; }
-      .askdemo-ex:hover, .askdemo-ex[aria-expanded="true"] { background: var(--ap-sunk); color: var(--ap-ink); }
-      .askdemo-ex svg { width: 10px; height: 10px; transition: transform 0.15s; }
-      .askdemo-ex[aria-expanded="true"] svg { transform: rotate(180deg); }
-      .askdemo-ex:focus-visible { outline: 2px solid var(--ap-blue); outline-offset: 1px; }
       .askdemo-go:focus-visible { outline: 2px solid var(--ap-blue); outline-offset: 2px; }
       .askdemo-go:disabled { opacity: 0.6; cursor: wait; }
       .aa-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.5rem; min-height: 24px; padding: 0.6rem 0.9rem; }
@@ -216,9 +210,7 @@
         .aa-side { display: none; }
         .aa-banner { white-space: normal; text-align: center; }
         .aa-assist { width: 72%; }
-        .askdemo-ex span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-        .askdemo-ex { min-width: 40px; height: 36px; justify-content: center; }
-        .askdemo-input { font-size: 0.82rem; }
+            .askdemo-input { font-size: 0.82rem; }
         /* the question list scrolls inside the demo instead of running off its bottom edge */
         .aa-suggest { max-height: min(340px, 60vh); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
         .aa-suggest [role="option"] { min-height: 44px; padding: 0.55rem 0.6rem; font-size: 0.84rem; line-height: 1.3; }
@@ -269,6 +261,212 @@
       .vs-map .pin { stroke: #fff; stroke-width: 1.2; vector-effect: non-scaling-stroke; }
       .prose .vs-cap { margin: 0; font-size: 0.86rem; line-height: 1.45; color: var(--ink-2); }
       .vs-card.on .vs-cap { color: var(--ink); }
+      .vs-ui { min-height: 230px; }
+      .vs-chat { grid-template-columns: 34% minmax(0, 1fr); align-items: start; }
+      .vs-hist { display: grid; gap: 0.4rem; padding-right: 0.55rem; border-right: 1px solid var(--line); font-size: 0.72rem; color: var(--ink-3); }
+      .vs-hist b { color: var(--ink); font-weight: 600; }
+      .vs-thread { display: grid; gap: 0.5rem; }
+      .vs-launch { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.65rem; border-radius: 10px; background: #1F3A63; color: #FFFFFF; font-size: 0.74rem; line-height: 1.3; }
+      .vs-launch small { display: block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; color: #FFC93C; }
+      .vs-spark { color: #FFC93C; }
+      .vs-card.on .vs-k { color: var(--ink); }
+      html:root body main .case-intro.cs-after .intro-card .highlights.hl-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      @media (max-width: 700px) { html:root body main .case-intro.cs-after .intro-card .highlights.hl-2 { grid-template-columns: minmax(0, 1fr) !important; } }
+      .prose .vs { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding: 0; border: 0; border-radius: 0; background: none; }
+      .vs-card { grid-template-rows: auto auto auto; }
+      .vs-app { grid-template-columns: 112px minmax(0, 1fr); box-shadow: 0 6px 18px rgba(15, 20, 40, 0.1); }
+      .vs-app .aa-nav { white-space: nowrap; }
+      .vs-main { display: grid; gap: 0.6rem; align-content: start; min-width: 0; padding: 1rem 1.1rem 1.1rem; color: var(--ap-ink); }
+      .vs-app .vs-me { justify-self: end; max-width: 70%; padding: 0.5rem 0.8rem; border-radius: 12px 12px 3px 12px; background: var(--ap-sunk); color: var(--ap-ink); line-height: 1.45; }
+      .vs-app .vs-bot { max-width: 70%; padding: 0.6rem 0.85rem; border: 1px solid var(--ap-line); border-radius: 12px 12px 12px 3px; background: var(--ap-bg); color: var(--ap-ink); line-height: 1.45; }
+      .vs-app .vs-bot { position: relative; margin-left: 36px; }
+      .vs-app .vs-bot::before { content: ""; position: absolute; left: -36px; top: 2px; width: 28px; height: 28px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='15' r='13' fill='%23E8EEFB'/%3E%3Cline x1='14' y1='2.6' x2='14' y2='7.5' stroke='%232F5BD6' stroke-width='1.6' stroke-linecap='round'/%3E%3Ccircle cx='14' cy='2.8' r='2' fill='%23FFC93C'/%3E%3Crect x='6.5' y='7.6' width='15' height='12.4' rx='5' fill='%232F5BD6'/%3E%3Cellipse cx='11' cy='13.4' rx='1.5' ry='2' fill='%23FFFFFF'/%3E%3Cellipse cx='17' cy='13.4' rx='1.5' ry='2' fill='%23FFFFFF'/%3E%3Cpath d='M11.4 17 q2.6 1.7 5.2 0' stroke='%23FFFFFF' stroke-width='1.3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center / contain no-repeat; }
+      .vs-app .vs-bot.vs-wait { color: var(--ap-ink3) !important; }
+      .vs-app .vs-bar { margin: 0; border-color: var(--ap-blue); box-shadow: 0 0 0 3px rgba(47,91,214,0.14); color: var(--ap-ink); font-size: 0.88rem; }
+      .vs-app .askdemo-chip { animation: none; cursor: default; }
+      .vs-app .vs-chips { gap: 0.35rem; }
+      .vs-app .vs-map { height: 190px; }
+      @media (max-width: 640px) {
+        .vs-app { grid-template-columns: minmax(0, 1fr); }
+        .vs-app .aa-side { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem; padding: 0.5rem 0.6rem; }
+        .vs-app .aa-logo { margin: 0 0.3rem 0 0; }
+        .vs-main { padding: 0.8rem; }
+        .vs-app .vs-me, .vs-app .vs-bot { max-width: 92%; }
+        .vs-app .vs-map { height: 150px; }
+      }
+      .pin-n, .pins i { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--duck, #FFC93C); color: #1A1F29 !important; font-size: 0.68rem; font-weight: 700; font-style: normal; line-height: 1; text-decoration: none !important; }
+      .pin-n { z-index: 5; box-shadow: 0 0 0 2px #FFFFFF, 0 2px 6px rgba(15, 20, 40, 0.3); transition: transform 0.15s; }
+      .pin-n:hover { transform: scale(1.15); }
+      .pin-n:focus-visible { outline: 2px solid var(--ap-blue); outline-offset: 3px; }
+      .askdemo-bar .pin-n, .aa-lnch .pin-n { position: absolute; left: -9px; top: -9px; }
+      .aa-assist-head .pin-n { margin-left: auto; }
+      .aa-assist-head .ld-close { margin-left: auto; }
+      .aa-lnch { position: absolute; right: 12px; bottom: 12px; z-index: 3; max-width: min(310px, calc(100% - 24px)); }
+      .aa-lnch[hidden] { display: none; }
+      .askdemo .aa-body { height: 310px; }
+      .askdemo .aa-assist { overflow-y: auto; }
+      @media (max-width: 640px) { .askdemo .aa-body { height: 330px; } .aa-lnch .lnch-text { font-size: 0.72rem; } }
+      .aa-lnch .lnch { position: relative; right: auto; bottom: auto; max-width: none; padding: 0.5rem 0.7rem; gap: 0.55rem; }
+      .aa-steps li small { font-family: var(--font-mono); font-size: 0.64rem; }
+      .prose .pins { list-style: none; margin: 0.4rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+      .prose .pins li { margin: 0; padding: 0; }
+      .prose .pins a { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; align-items: start; text-decoration: none !important; color: var(--ink); }
+      .pins i { grid-row: 1 / span 2; margin-top: 1px; }
+      .pins b { font-size: 0.9rem; font-weight: 650; line-height: 1.3; }
+      .pins a:hover b { text-decoration: underline; text-underline-offset: 3px; }
+      .pins span { font-size: 0.82rem; line-height: 1.45; color: var(--ink-2); }
+      @media (max-width: 640px) { .prose .pins { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
+      /* every label in this case sits on the site's type scale: small text is --t-1, titles --t0 */
+      html:root body main .prose :is(.vs-k, .vs-cap, .pins span, .loopfig-legend, .loopfig-legend li) { font-size: var(--t-1) !important; }
+      html:root body main .prose .pins b { font-size: var(--t0) !important; font-weight: 600; }
+      .vs-typed { display: inline-block; white-space: nowrap; }
+      .vs.anim .va { opacity: 0; }
+      .vs.anim.play .va { animation: vs-in 0.4s ease both; animation-delay: var(--d, 0s); }
+      .vs.anim .vs-typed { clip-path: inset(0 100% 0 0); }
+      .vs.anim.play .vs-typed { animation: vs-type 0.9s steps(30) 0.3s both; }
+      .vs-main { position: relative; }
+      .vs-app .vs-premap, .vs-cursor { display: none; }
+      .vs.anim .vs-app .vs-premap { display: block; position: absolute; inset: 1rem 1.1rem; height: auto; z-index: 1; }
+      .vs.anim.play .vs-premap { animation: vs-out 0.3s ease 1.1s both; }
+      .vs.anim .nav-from { background: rgba(255,255,255,0.14); color: #fff; font-weight: 600; }
+      .vs.anim .nav-to { background: none; color: rgba(255,255,255,0.72); font-weight: 400; }
+      .vs.anim.play .nav-from { animation: vs-nav-off 0.2s ease 1.05s both; }
+      .vs.anim.play .nav-to { animation: vs-nav-on 0.2s ease 1.05s both; }
+      @media (min-width: 641px) {
+        .vs.anim .vs-cursor { display: block; position: absolute; z-index: 3; left: 0; top: 0; width: 14px; transform: translate(190px, 110px); }
+        .vs.anim.play .vs-cursor { animation: vs-cur 1.5s ease 0.25s both; }
+      }
+      @keyframes vs-out { to { opacity: 0; visibility: hidden; } }
+      @keyframes vs-nav-off { to { background: none; color: rgba(255,255,255,0.72); font-weight: 400; } }
+      @keyframes vs-nav-on { to { background: rgba(255,255,255,0.14); color: #fff; font-weight: 600; } }
+      @keyframes vs-cur { 0% { transform: translate(190px, 110px); opacity: 1; } 50%, 70% { transform: translate(-60px, 204px); opacity: 1; } 100% { transform: translate(-60px, 204px); opacity: 0; } }
+      .vs-card:not(.on) .vs-main { padding: 1.2rem clamp(1rem, 7%, 3.2rem) 1rem; }
+      .vs-compose { display: flex; align-items: center; justify-content: space-between; margin-top: 0.5rem; padding: 0.45rem 0.5rem 0.45rem 0.85rem; border: 1px solid #D3D8E0; border-radius: 10px; color: var(--ap-ink3); box-shadow: 0 1px 2px rgba(15,20,40,0.06); }
+      .vs-compose i { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 7px; background: var(--ap-blue); color: #fff; font-style: normal; font-size: 0.8rem; }
+      .vs.anim .vs-app .vs-premap { inset: 1.2rem clamp(1rem, 7%, 3.2rem) 1rem; }
+      .aa-logo { display: grid; place-items: center; }
+      .aa-logo::after { content: ""; width: 8px; height: 8px; border-radius: 50% 50% 50% 0; background: #FFFFFF; transform: rotate(-45deg) translate(1px, -1px); }
+      .aa-user .av { display: grid; place-items: center; background: var(--ap-navy); color: #fff; font-size: 0.66rem; font-weight: 700; }
+      .aa-user .bars-k { display: flex; justify-content: space-between; padding-top: 0.5rem; border-top: 1px solid var(--ap-line); font-size: 0.68rem; color: var(--ap-ink3); }
+      .aa-user .bars { padding-top: 0; border-top: 0; }
+      .aa-user .devs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; }
+      .aa-user .dev { padding: 0.4rem 0.6rem; border: 1px solid var(--ap-line); border-radius: 8px; font-size: 0.7rem; color: var(--ap-ink3); }
+      .aa-user .dev b { display: block; font-family: var(--font-mono); font-size: 0.74rem; color: var(--ap-ink); }
+      .aa-user .dev.shared { border-color: #F2C4BA; background: var(--ap-ai-soft); color: var(--ap-ai-text); }
+      .askdemo .aa-filters-k { display: inline; }
+      .aa-filters-k b { color: var(--ap-ai-text); font-weight: 600; }
+      .aa-filters.idle .aa-clear, .aa-filters.nochips .aa-clear { display: none; }
+      .aa-toprow { display: flex; align-items: center; gap: 0.5rem; margin: 0.8rem 0.9rem 0; }
+      .aa-toprow .askdemo-bar { flex: 1; min-width: 0; margin: 0; }
+      .aa-asst { position: relative; flex: none; }
+      .aa-asst .pin-n { position: absolute; right: -8px; top: -9px; }
+      .aa-asst-btn { display: inline-flex; align-items: center; gap: 0.4rem; height: 42px; padding: 0 0.85rem; border: 1px solid #D6DFF6; border-radius: 10px; background: #EEF2FC; color: var(--ap-blue); font: inherit; font-size: 0.8rem; cursor: pointer; transition: background 0.15s; }
+      .aa-asst-btn b { font-weight: 600; }
+      .aa-asst-btn:hover { background: #E4EBFB; }
+      .aa-asst-btn:focus-visible { outline: 2px solid var(--ap-blue); outline-offset: 2px; }
+      .aa-new { display: grid; gap: 0.4rem; }
+      .aa-new[hidden], .aa-q[hidden] { display: none; }
+      .aa-new > b { color: var(--ap-ink); font-size: 0.82rem; }
+      .aa-new > div { color: var(--ap-ink3); line-height: 1.45; }
+      .aa-new-k { margin-top: 0.4rem; font-size: 0.66rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ap-ink3); }
+      .aa-new button { padding: 0.45rem 0.6rem; border: 1px solid var(--ap-line); border-radius: 8px; background: var(--ap-bg); color: var(--ap-ink); font: inherit; font-size: 0.74rem; line-height: 1.35; text-align: left; cursor: pointer; }
+      .aa-new button::before { content: none; }
+      .aa-new button:hover { background: var(--ap-sunk); }
+      @media (max-width: 640px) { .aa-asst-btn b { display: none; } .aa-asst-btn { padding: 0 0.75rem; } .aa-main { grid-template-columns: minmax(0, 1fr); } .aa-toprow.aa-navbar { padding: 0.5rem 0.6rem; } .aa-top.aa-ptitle { margin: 0.7rem 0.6rem 0; } }
+      .askdemo .aa-main { grid-template-rows: auto auto auto minmax(0, 1fr); }
+      .aa-toprow.aa-navbar { margin: 0; padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--ap-line); background: var(--ap-bg); }
+      .aa-navbar .askdemo-bar { height: 38px; }
+      .aa-navbar .aa-asst-btn { height: 38px; }
+      .aa-top.aa-ptitle { height: auto; margin: 0.85rem 0.9rem 0; padding: 0; border: 0; background: none; }
+      .aa-top.aa-ptitle b { font-size: 1rem; font-weight: 650; }
+      .aa-top.aa-ptitle b::before { display: none; }
+      .askdemo .aa-filters { padding-top: 0.45rem; }
+      .askdemo .aa-assist { top: 0; }
+      .askdemo .aa-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.4rem; padding: 0.35rem 0.9rem 0.75rem; }
+      .askdemo .aa-filters .aa-filters-k { flex-basis: 100%; margin-bottom: 0.1rem; font-size: 0.72rem; }
+      .askdemo .aa-filters .askdemo-chips { display: contents; }
+      .askdemo .aa-filters .aa-clear { margin-left: 0.25rem; }
+      .aa-ptitle .aa-range { display: none; }
+      .askdemo, .vs, .drawer { --bot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='15' r='13' fill='%23E8EEFB'/%3E%3Cline x1='14' y1='2.6' x2='14' y2='7.5' stroke='%232F5BD6' stroke-width='1.6' stroke-linecap='round'/%3E%3Ccircle cx='14' cy='2.8' r='2' fill='%23FFC93C'/%3E%3Crect x='6.5' y='7.6' width='15' height='12.4' rx='5' fill='%232F5BD6'/%3E%3Cellipse cx='11' cy='13.4' rx='1.5' ry='2' fill='%23FFFFFF'/%3E%3Cellipse cx='17' cy='13.4' rx='1.5' ry='2' fill='%23FFFFFF'/%3E%3Cpath d='M11.4 17 q2.6 1.7 5.2 0' stroke='%23FFFFFF' stroke-width='1.3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); }
+      .bot-ic, .askdemo .askdemo-spark, .askdemo .lnch-mark, .aa-asst-btn > span[aria-hidden] { display: inline-block; flex: none; font-size: 0 !important; color: transparent; background: var(--bot) center / contain no-repeat !important; border-radius: 0; box-shadow: none; }
+      .askdemo .askdemo-spark { width: 22px; height: 22px; margin-right: 0.1rem; }
+      .askdemo .lnch .lnch-mark { width: 30px; height: 30px; }
+      .askdemo .aa-assist .lnch-mark { width: 24px; height: 24px; }
+      .aa-asst-btn > span[aria-hidden] { width: 22px; height: 22px; }
+      .bot-ic { width: 18px; height: 18px; margin-right: 0.35rem; vertical-align: -4px; }
+      .aa-suggest .ic.ai::after { content: ""; inset: 2px; background: var(--bot) center / contain no-repeat; }
+      .askdemo .aa-filters:not(.idle) .aa-filters-k { flex-basis: auto; display: inline-flex; align-items: center; gap: 0.35rem; margin: 0 0.1rem 0 0; color: var(--ap-ink3); }
+      .askdemo .aa-filters:not(.idle) .aa-filters-k .bot-ic { width: 22px; height: 22px; margin: 0; vertical-align: middle; }
+      .askdemo .lnch .lnch-go { align-self: flex-end; margin-bottom: 1px; }
+      .vs-head { display: grid; gap: 2px; }
+      html:root body main .prose .vs .vs-k { font-size: var(--t0) !important; font-weight: 600; color: var(--ink); }
+      .vs-card { grid-template-rows: auto auto auto; }
+      .drawer-head { display: flex; justify-content: flex-start; align-items: center; gap: 0.45rem; }
+      .drawer.chat { max-width: 520px; }
+      .prose .ch-me { justify-self: end; width: fit-content; max-width: 85%; margin: 0 0 0.9rem auto; padding: 0.55rem 0.85rem; border-radius: 12px; background: var(--bg-sunk); color: var(--ink); font-size: 0.9rem; }
+      .ch-row { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 0.7rem; align-items: start; min-height: 220px; }
+      .ch-row .ch-av { width: 28px; height: 28px; margin: 0; }
+      .prose .ch-think { margin: 0.25rem 0 0; color: var(--ink-3); font-size: 0.9rem; }
+      .prose .ch-steps { display: grid; gap: 0.45rem; margin: 0.2rem 0 0; padding: 0; list-style: none; }
+      .prose .ch-steps li { display: flex; gap: 0.55rem; margin: 0; padding: 0; font-size: 0.86rem; line-height: 1.35; color: var(--ink-3); }
+      .ch-steps li::before { content: "✓"; flex: none; width: 1rem; color: var(--ink-3); }
+      .ch-steps li small { display: block; font-size: 0.76rem; color: var(--ink-3); }
+      .prose .ch-steps li.run { color: var(--ink); }
+      .ch-steps li.run::before { content: ""; width: 12px; height: 12px; margin: 3px 2px 0; border: 2px solid #2F5BD6; border-right-color: transparent; border-radius: 50%; animation: ch-spin 0.8s linear infinite; }
+      @keyframes ch-spin { to { transform: rotate(360deg); } }
+      .prose .ch-ans { margin: 0.9rem 0 0; font-size: 0.92rem; line-height: 1.55; color: var(--ink); }
+      .ch-src { margin-top: 0.7rem; }
+      .ch-src summary { display: inline-flex; align-items: center; gap: 0.5rem; list-style: none; cursor: pointer; font-size: 0.82rem; color: var(--ink-3); }
+      .ch-src summary::-webkit-details-marker { display: none; }
+      .ch-src summary::before, .aa-assist.evid-mode .aa-steps-k::before { content: ""; flex: none; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-1px) rotate(-45deg); transition: transform 0.15s; }
+      .ch-src[open] summary::before { transform: translateY(-2px) rotate(45deg); }
+      .prose .ch-src table { width: 100%; margin: 0.5rem 0 0; border-collapse: collapse; border: 1px solid var(--line); border-radius: 10px; font-size: 0.82rem; }
+      .prose .ch-src tr:first-child td { border-top: 0; }
+      .prose .ch-src td { padding: 0.45rem 0.75rem; border-top: 1px solid var(--line); color: var(--ink-2); }
+      .prose .ch-src td:nth-child(2) { color: var(--ink); }
+      .ch-more { display: block; padding: 0.5rem 0.75rem; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 10px 10px; color: var(--link); font-size: 0.82rem; }
+      .ch-src table { border-radius: 0; }
+      @media (prefers-reduced-motion: reduce) { .ch-steps li.run::before { animation: none; } }
+      html:root body .prose .drawer .steps li { padding-left: 0; gap: 0.6rem; }
+      html:root body .prose .drawer .steps li::before { position: static; flex: none; width: 1rem; }
+      .aa-steps.evid li { display: block; }
+      .aa-navbar .askdemo-bar { padding-right: 0.8rem; border-color: rgba(47, 91, 214, 0.45); box-shadow: 0 0 0 3px rgba(47, 91, 214, 0.08); }
+      .aa-navbar .askdemo-bar:hover { border-color: var(--ap-blue); }
+      .askdemo .aa-filters:not(.idle):not(.nochips) .aa-filters-k { display: contents; }
+      .aa-top.aa-ptitle.switched { animation: none; }
+      .aa-steps li.run { color: var(--ap-ink); }
+      .aa-steps li.run small { visibility: hidden; }
+      .aa-steps li.run::before { content: ""; width: 10px; height: 10px; margin: 2px 2px 0; border: 2px solid var(--ap-blue); border-right-color: transparent; border-radius: 50%; animation: ch-spin 0.8s linear infinite; }
+      .aa-steps:not(.evid) li:not(.answer):not(.run)::before { color: var(--ap-ink3); font-weight: 400; }
+      .aa-steps:not(.evid) li:not(.answer):not(.run) { color: var(--ap-ink3); }
+      html:root body .askdemo .aa-steps { margin-left: 0; padding-left: 0; }
+      .aa-assist.evid-mode .aa-q { padding: 0; background: none; color: var(--ap-ink); font-size: 0.8rem; font-weight: 600; line-height: 1.45; }
+      .aa-assist.evid-mode .aa-steps-k { margin-top: 0.5rem; font-size: 0.7rem; font-weight: 500; letter-spacing: 0; text-transform: none; }
+      .aa-assist.evid-mode .aa-steps-k { display: inline-flex; align-items: center; gap: 0.45rem; }
+      .aa-assist.evid-mode .aa-steps-k::before { transform: translateY(-2px) rotate(45deg); }
+      .askdemo .aa-steps.evid { gap: 0; border: 1px solid var(--ap-line); border-radius: 8px; overflow: hidden; }
+      .askdemo .aa-steps.evid li { border: 0; border-top: 1px solid var(--ap-line); border-radius: 0; padding: 0.45rem 0.6rem; }
+      .askdemo .aa-steps.evid li:first-child { border-top: 0; }
+      .askdemo .aa-steps.evid li small::before { content: none; }
+      .askdemo .aa-steps.evid li small { color: var(--ap-ink3); }
+      html:root body main .prose .askdemo .aa-steps li { font-size: 0.74rem !important; line-height: 1.4; }
+      html:root body main .prose .askdemo .aa-steps li small { font-size: 0.64rem !important; }
+      .aa-steps-k { margin-top: 0.35rem; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ap-ink3); }
+      .aa-steps-k:empty { display: none; }
+      .aa-steps.evid { gap: 0.4rem; }
+      .aa-steps.evid li { padding: 0.5rem 0.65rem; border: 1px solid var(--ap-line); border-radius: 8px; background: var(--ap-bg); }
+      .aa-steps.evid li::before { content: none; }
+      .aa-steps.evid li small { margin-top: 0.2rem; }
+      .aa-steps.evid li small::before { content: "Source · "; font-family: var(--font-sans); color: var(--ap-ink3); }
+      .drawer-head .bot-ic { width: 24px; height: 24px; margin: 0; }
+      @keyframes vs-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+      @keyframes vs-type { to { clip-path: inset(0 0 0 0); } }
+      @keyframes vs-pin { from { opacity: 0; } }
+      @media (max-width: 640px) { .askdemo-input, .aa-main, .aa-stage { min-width: 0; } html .prose .askdemo { padding: 8px; } }
+      .prose .vs-wait { color: var(--ink-3) !important; font-style: italic; }
+      html:root body .prose .vs-ui :is(p, span, small) { font-size: 0.78rem !important; line-height: 1.45; }
+      html:root body .prose .vs-ui .vs-launch small { font-size: 0.6rem !important; }
+      @media (max-width: 640px) { .vs-chat { grid-template-columns: minmax(0, 1fr); } .vs-hist { display: none; } }
       @media (max-width: 640px) { .vs { grid-template-columns: minmax(0, 1fr); } .vs-ui { min-height: 0; } }
       /* Moment 3: how one question is answered, the product's pattern with its names removed */
       .loopfig { margin: 1.5rem 0 0; }
@@ -369,7 +567,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -383,213 +581,141 @@
     </header>
 
     <main id="main" class="hue-coral">
-      <section class="wrap case-intro" data-toy="ask" data-prop="map">
-        <p class="eyebrow"><span class="case-no">Case 02</span><b>Fraud-investigation suite</b> · AI interaction design</p>
-        <h1>An ask bar that answers with filters</h1>
-        <p class="intro-sum">
-          A customer-facing demo of a fraud-investigation tool, with AI designed into four moments of an
-          investigation: ask, land, dig deeper, and the moment it's wrong. Try the first one below.
-        </p>
-        <ul class="highlights">
-          <li><b>Reference demo</b><span>For a major prospect</span></li>
-          <li><b>2 patterns</b><span>On the product roadmap</span></li>
-          <li><b>Built solo</b><span>Front end, back end and the AI layer</span></li>
+      <!-- the case's title on a strip of the room's wall, ending on a ledge; the duck sits on it, legs over the edge -->
+      <section class="case-strip">
+        <div class="wrap cs-inner">
+          <p class="eyebrow"><span class="case-no">Case 02</span><b>Fraud-investigation&nbsp;suite</b></p>
+          <h1>Moving our AI from a&nbsp;chat page onto the maps analysts work&nbsp;in</h1>
+        </div>
+        <img class="cs-duck" src="../images/room/duck-ledge-8ball.svg?v=2" alt="" width="214" height="240" />
+      </section>
+      <section class="wrap case-intro cs-after">
+        <div class="intro-card">
+        <!-- the results first, then three short labelled rows: the problem, what I did, my role -->
+        <ul class="highlights hl-2">
+          <li><b>~6 min → seconds</b><span>To get from a&nbsp;question to the filtered map, and again for each&nbsp;follow-up</span></li>
+          <li><b>5 steps → 1</b><span>Ask on the map. The page, the filters and the first finding are set for&nbsp;you</span></li>
         </ul>
-        <dl class="meta-line">
-          <div><dt>Role</dt><dd>Designed and built it end to end. Claude Code wrote most of the code; I reviewed every change that touched data.</dd></div>
-          <div><dt>Stack</dt><dd>React, Cloudflare Workers, Claude API</dd></div>
-          <div><dt>When</dt><dd>2026</dd></div>
-          <div><dt>With</dt><dd>Sales and product, who asked for it; the data team, whose APIs it reads</dd></div>
+        <dl class="intro-rows">
+          <div><dt>The problem</dt><dd>Analysts work on a&nbsp;map of geolocation checks, a&nbsp;graph of shared devices and a&nbsp;table of transactions. Our AI lived on a&nbsp;separate chat page. Using it meant going back and forth between the chat and the map, so 9 in 10 never opened&nbsp;it.</dd></div>
+          <div><dt>What I&nbsp;did</dt><dd>I&nbsp;put the AI on the page. One question opens the right view with its filters set, the page flags the strongest finding when you land, and every answer shows its&nbsp;sources.</dd></div>
+          <div><dt>My role</dt><dd>I&nbsp;designed and built the first version alone, from the ask bar to the agent loop, and wrote its security design review. I&nbsp;now lead engineering on the assistant and co-lead the product's&nbsp;development.</dd></div>
         </dl>
+        </div>
       </section>
 
 
 
-      <section class="wrap intro-visual">
-        <div class="askdemo" data-askdemo>
+
+
+      <section class="wrap section">
+        <div class="case-body">
+        <div class="prose">
+
+          <h2>The problem</h2>
+          <p>
+            Text chat works for narrow lookups and support questions. In an&nbsp;investigation the evidence is on the map and the graph,
+            and a&nbsp;separate chat page turns it into paragraphs to read and check. Even when it draws a&nbsp;chart, you can't hide the passed
+            checks or zoom to one area without asking again. Over 90 days, the chat showed up in 0.3% of&nbsp;sessions.
+          </p>
+          <figure class="vs">
+            <figure class="vs-card">
+              <div class="vs-head"><span class="vs-k">Before: the AI is its own page</span><p class="vs-cap">Analysts read the reply, switched to the map and set it up by hand, again for every follow-up.</p></div>
+              <div class="askdemo-app vs-app">
+                <div class="aa-side" aria-hidden="true"><span class="aa-logo"></span><span class="aa-nav nav-from">Map</span><span class="aa-nav">Transactions</span><span class="aa-nav">Connections</span><span class="aa-nav">Accounts</span><span class="aa-nav on nav-to">AI chat</span></div>
+                <div class="vs-main">
+                  <div class="vs-map vs-premap" data-vs-map aria-hidden="true"></div>
+                  <svg class="vs-cursor" viewBox="0 0 16 20" aria-hidden="true"><path d="M1 1v15l4-4 3 7 3-1.4-3-6.6h6z" fill="#14161A" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg>
+                  <div class="vs-me va" style="--d:1.5s">Failed checks in Halifax this week</div>
+                  <div class="vs-bot va" style="--d:2.2s">4 checks failed in Halifax this week. 3 came from one phone, shared by two accounts. Most were location checks, from two places about 400&nbsp;km apart…</div>
+                  <div class="vs-me va" style="--d:3s">Hide the passed ones and zoom in</div>
+                  <div class="vs-bot vs-wait va" style="--d:3.7s">Drawing a&nbsp;new chart…</div>
+                  <div class="vs-compose" aria-hidden="true"><span>Ask a&nbsp;follow-up</span><i>↑</i></div>
+                </div>
+              </div>
+            </figure>
+            <div class="vs-card on">
+              <div class="vs-head"><span class="vs-k">Now: the AI is on the map</span><p class="vs-cap">This one works, so try&nbsp;it.</p></div>
+              <div class="askdemo" data-askdemo>
           <div class="askdemo-app" data-app>
             <div class="aa-side" aria-hidden="true">
               <span class="aa-logo"></span>
               <span class="aa-nav" data-nav="map">Map</span><span class="aa-nav" data-nav="transactions">Transactions</span><span class="aa-nav" data-nav="connections">Connections</span><span class="aa-nav" data-nav="user">Accounts</span>
             </div>
             <div class="aa-main">
+              <div class="aa-toprow aa-navbar">
               <form class="askdemo-bar" data-form>
+                <a class="pin-n" href="#ask" aria-label="1. The ask bar: read how it works">1</a>
                 <span class="askdemo-spark" aria-hidden="true">✦</span>
                 <label class="sr-only" for="ask-input">Ask anything</label>
-                <input class="askdemo-input" id="ask-input" data-input type="text" autocomplete="off" spellcheck="false" value="Failed transactions near Halifax last week"
+                <input class="askdemo-input" id="ask-input" data-input type="text" autocomplete="off" spellcheck="false" value=""
                        role="combobox" aria-expanded="false" aria-controls="ask-suggest" aria-autocomplete="list" placeholder="Ask anything about an account, a device or a place" />
-                <button class="askdemo-ex" type="button" data-examples aria-controls="ask-suggest" aria-expanded="false"><span>Examples</span><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                <button class="askdemo-go" type="submit" data-go>Ask</button>
+                <button class="askdemo-go sr-only" type="submit" data-go>Ask</button>
                 <div class="aa-suggest" id="ask-suggest" role="listbox" aria-label="Try asking" data-suggest hidden>
-                  <p class="aa-suggest-k">Try asking</p>
-                  <div role="option" id="sg-0" data-q="Failed transactions near Halifax last week" aria-selected="false"><i class="ic map"></i><span>Failed transactions near Halifax last week</span><small>Map</small></div>
-                  <div role="option" id="sg-1" data-q="Which accounts share a device with u-4471-ny?" aria-selected="false"><i class="ic graph"></i><span>Which accounts share a device with u-4471-ny?</span><small>Connections</small></div>
-                  <div role="option" id="sg-2" data-q="Show me u-4471-ny over the weekend" aria-selected="false"><i class="ic user"></i><span>Show me u-4471-ny over the weekend</span><small>Account</small></div>
+                  <p class="aa-suggest-k">Try&nbsp;asking</p>
+                  <div role="option" id="sg-0" data-q="Failed checks in Halifax this week" aria-selected="false"><i class="ic map"></i><span>Failed checks in Halifax this&nbsp;week</span><small>Map</small></div>
+                  <div role="option" id="sg-1" data-q="Which accounts share a device with user-maya?" aria-selected="false"><i class="ic graph"></i><span>Which accounts share a&nbsp;device with user-maya?</span><small>Connections</small></div>
+                  <div role="option" id="sg-2" data-q="Show me user-maya over the weekend" aria-selected="false"><i class="ic user"></i><span>Show me user-maya over the weekend</span><small>Account</small></div>
                   <div role="option" id="sg-3" data-q="Failed transactions in Toronto today" aria-selected="false"><i class="ic list"></i><span>Failed transactions in Toronto today</span><small>Transactions</small></div>
-                  <div role="option" id="sg-4" data-q="Why does u-4471-ny keep failing?" aria-selected="false"><i class="ic ai"></i><span>Why does u-4471-ny keep failing?</span><small>Assistant</small></div>
+                  <div role="option" id="sg-4" data-q="Why does user-maya keep failing?" aria-selected="false"><i class="ic ai"></i><span>Why does user-maya keep failing?</span><small>Assistant</small></div>
                   <div role="option" id="sg-5" data-q="Is anything weird going on?" aria-selected="false"><i class="ic map"></i><span>Is anything weird going on?</span><small>Map</small></div>
                 </div>
               </form>
+              <span class="aa-asst"><button type="button" class="aa-asst-btn" data-anewbtn aria-label="Open the assistant"><span aria-hidden="true">✦</span><b>Assistant</b></button><a class="pin-n" href="#wrong" aria-label="3. The assistant: read how it works">3</a></span>
+              </div>
+              <div class="aa-top aa-ptitle"><b data-page-name>Map</b><span class="aa-range" data-range></span></div>
               <div class="aa-filters" aria-live="polite">
                 <span class="aa-filters-k" data-fk>From your question</span>
                 <div class="askdemo-chips" data-chips></div>
-                <button type="button" class="aa-clear" data-clear>Clear</button>
+                <button type="button" class="aa-clear" data-clear>Clear all</button>
               </div>
               <div class="aa-stage">
-                <div class="aa-top"><b data-page-name>Map</b><span class="aa-range" data-range></span></div>
                 <div class="aa-body" data-body></div>
                 <div class="aa-assist" data-assist hidden>
-                  <div class="aa-assist-head"><span class="lnch-mark" aria-hidden="true">✦</span><b>Assistant</b><span class="synthetic">Synthetic data</span></div>
+                  <div class="aa-assist-head"><span class="lnch-mark" aria-hidden="true">✦</span><b>Assistant</b><button type="button" class="ld-close" data-aclose aria-label="Close the assistant">×</button></div>
                   <p class="aa-q" data-aq></p>
+                  <div class="aa-new" data-anew hidden>
+                    <b>Ask anything</b>
+                    <div>It looks things up as you, and shows each step as it&nbsp;runs.</div>
+                    <span class="aa-new-k">Try one of these</span>
+                    <button type="button" data-sq="page">Summarize what I'm looking at</button>
+                    <button type="button" data-sq="devices">Which devices are shared by the most accounts?</button>
+                    <button type="button" data-sq="fails">What drove failures this week?</button>
+                  </div>
+                  <span class="aa-steps-k" data-ak></span>
                   <ol class="aa-steps" data-asteps></ol>
+                </div>
+                <div class="aa-lnch" data-dlwrap>
+                  <button class="lnch" type="button" data-dl><span class="lnch-mark" aria-hidden="true">✦</span><span class="lnch-text"><small>Spotted something</small><span data-dlt></span></span><span class="lnch-go" aria-hidden="true">→</span></button>
+                  <a class="pin-n" href="#land" aria-label="2. The insight: read how it works">2</a>
                 </div>
               </div>
             </div>
           </div>
-          <details class="askdemo-json">
+          <details class="askdemo-json" hidden>
             <summary>The plan, as the model returned it</summary>
             <pre class="askdemo-plan" data-plan></pre>
           </details>
         </div>
-        <p class="mock-note">A recreated mockup with invented questions and data; a few keyword rules stand in for the model. Click the ask bar for example questions, or type your own; remove a chip and the page follows.</p>
-      </section>
-
-      <section class="wrap section">
-        <div class="case-body">
-        <div class="prose">
-
-          <h2>The brief</h2>
-          <p>
-            Sales and product asked for a demo for a prospective customer: something that felt like the real
-            investigation product, showed AI in the workflow, and ran with no credentials. Two things it could not
-            do: leak real data, or be a chatbot that is confidently wrong. Investigators want the right page, not a
-            paragraph, and one wrong answer poisons every answer after it.
-          </p>
-          <p>
-            So the AI went into the four moments an analyst already passes through:
-            <a href="#ask">ask</a>, <a href="#land">land</a>, <a href="#dig">dig deeper</a>, and
-            <a href="#wrong">when it's wrong</a>.
-          </p>
-
-          <div class="chapter">
-            <span class="num">Moment 1 of 4</span>
-            <h2 id="ask">Ask</h2>
-            <p class="dek">The question becomes the page. The analyst types what they want to see and gets the page, with the filters already set.</p>
-            <div class="vs">
-              <figure class="vs-card">
-                <figcaption class="vs-k">If it replied</figcaption>
-                <div class="vs-ui" aria-hidden="true">
-                  <p class="vs-me">Failed transactions near Halifax last week</p>
-                  <p class="vs-bot">Halifax had 4 failed transactions last week, all from one shared device.</p>
-                </div>
-                <p class="vs-cap">All of them? Which device? Checking means running the search yourself.</p>
-              </figure>
-              <figure class="vs-card on">
-                <figcaption class="vs-k">What the ask bar does</figcaption>
-                <div class="vs-ui" aria-hidden="true">
-                  <div class="vs-chips"><span class="vs-chip"><small>Status:</small>Failed<i>×</i></span><span class="vs-chip"><small>Range:</small>Last 7 days<i>×</i></span><span class="vs-chip"><small>Place:</small>Halifax<i>×</i></span></div>
-                  <div class="vs-map" data-vs-map></div>
-                </div>
-                <p class="vs-cap">Its reading is on screen as filters, over the real rows. A wrong one is a click to remove.</p>
-              </figure>
-            </div>
-            <p>
-              The ask bar never answers. The model returns one flat plan, enforced through structured outputs, and
-              the app applies it as the filters the product already has. Anything it can't infer comes back
-              <code>null</code>, so the page opens without that filter, never with a guessed one.
-            </p>
-            <p>
-              The plan also says what kind of question it was. A <em>navigate</em> question is answered by the page
-              itself. An <em>answer</em> question opens the page and the assistant together, with the question
-              already asked, so the page frames the evidence while the assistant answers.
-            </p>
-            <aside class="lesson" aria-label="The decision">
-              <span class="lesson-k">The decision</span>
-              <p class="lesson-big">The model returns filters, never an answer.</p>
-              <p>Its output is the product's own vocabulary. A wrong answer from a chatbot is a trust problem. A wrong filter is one click to remove.</p>
-            </aside>
-          </div>
-
-          <div class="chapter">
-            <span class="num">Moment 2 of 4</span>
-            <h2 id="land">Land</h2>
-            <p class="dek">The assistant has read the page before you. The launcher in the corner carries one line about what's on screen, and the line is the invitation.</p>
-            <div class="launcher-demo" data-launcher>
-              <div class="ld-page" aria-hidden="true">
-                <div class="ld-head"><b>Connections</b><span>Who shares devices, phones and addresses with whom.</span></div>
-                <div class="aa-graph ld-graph" id="aa-graph-launcher"><span class="legend"><span>Account</span><span class="d">Device</span><span class="s">Shared</span></span></div>
-              </div>
-              <button class="lnch" type="button" data-lnch aria-expanded="false" aria-controls="ld-panel">
-                <span class="lnch-mark" aria-hidden="true">✦</span>
-                <span class="lnch-text"><small>Spotted something</small>u-4471-ny and u-0298-mi share a device and a phone number.</span>
-                <span class="lnch-go" aria-hidden="true">→</span>
-              </button>
-              <div class="ld-panel" id="ld-panel" data-ld-panel hidden>
-                <div class="aa-assist-head"><span class="lnch-mark" aria-hidden="true">✦</span><b>Assistant</b><button type="button" class="ld-close" data-ld-close aria-label="Close">×</button></div>
-                <p class="ld-read"><b>u-4471-ny and u-0298-mi share a device and a phone number.</b></p>
-                <ol class="ld-beats">
-                  <li>Both accounts used d-31f0a9c2 in the last 30 days <small>TXN-3184, TXN-3191, TXN-3205</small></li>
-                  <li>Both registered +1 (313) 555-0142 <small>profile records</small></li>
-                  <li>u-0298-mi is blocked by one operator; u-4471-ny is not <small>status history</small></li>
-                </ol>
-                <div class="ld-follow"><span>Block both?</span><span>Who else used this device?</span></div>
-              </div>
-            </div>
-            <p class="mock-note">A recreated mockup with invented identifiers. Click the launcher.</p>
-            <p>
-              That line isn't generated. A small narrator computes it locally from the rows on screen: shared
-              devices, a failure rate, two checks too far apart to be the same person. Nothing is sent to a model,
-              and every claim cites the transactions behind it. It uses the map's own impossible-travel thresholds
-              and only the visible rows, so it never disagrees with the screen next to it.
-            </p>
-            <aside class="lesson" aria-label="The decision">
-              <span class="lesson-k">The decision</span>
-              <p class="lesson-big">A button that says "Assistant" gets ignored. A specific observation gets clicked.</p>
-              <p>A single truncated sentence looked like debug output. An eyebrow that carries the severity, two lines of text and an arrow made it something that asks to be opened.</p>
-            </aside>
-          </div>
-
-          <aside class="psych" aria-label="Psychology note">
-            <span class="psych-k">Psych note</span>
-            <h3>The cocktail party effect, measured</h3>
-            <p>
-              In a loud room you can follow one conversation and tune out the rest. The famous part, your own name
-              cutting through, is weaker than it sounds: in the tests, only about a third of people noticed it.
-            </p>
-            <p>
-              A fraud dataset is the loud room, and an important signal can't be trusted to stand out on its own. So
-              the launcher doesn't wait for it to: it puts the account and the one thing worth knowing about it where
-              the investigator is already looking.
-            </p>
-            <small>Cherry, 1953; Moray, 1959; Wood &amp; Cowan, 1995</small>
-          </aside>
-
-          <div class="chapter">
-            <span class="num">Moment 3 of 4</span>
-            <h2 id="dig">Dig deeper</h2>
-            <p class="dek">An assistant that shows its work. For questions a page can't answer, it works through the account with tools while you watch.</p>
-            <div class="drawer" data-drawer>
-              <div class="drawer-head"><b>Assistant</b><span class="synthetic">Synthetic demo data</span></div>
-              <p class="drawer-q">Why does this account keep failing?</p>
-              <ol class="steps">
-                <li><span>Pulled 30 days of transactions<small>212 transactions found</small></span></li>
-                <li><span>Summarised the failures<small>Most were location checks, from 2 places</small></span></li>
-                <li><span>Compared devices<small>2 devices, 1 shared with another account</small></span></li>
-                <li><span>Answer ready<small>Shared device + repeated location failures: worth a closer look</small></span></li>
+              <ol class="pins" aria-label="The three parts, and where each is explained">
+                <li><a href="#ask"><i>1</i><b>The ask bar</b><span>Click the bar and pick a&nbsp;question</span></a></li>
+                <li><a href="#land"><i>2</i><b>The insight</b><span>Open it to see what it found on this&nbsp;page</span></a></li>
+                <li><a href="#wrong"><i>3</i><b>The assistant</b><span>Open it from the top bar on any page to ask anything&nbsp;else</span></a></li>
               </ol>
-              <button class="drawer-replay" type="button" data-replay>Replay</button>
             </div>
-            <p class="mock-note">A recreated mockup with invented data.</p>
-            <p>
-              Each step and its one-line result appear as they happen, so you see how it got to the answer. It stops
-              after eight tool steps and says what it found. Every fact in the answer comes from a tool call to an
-              internal MCP server, made as the analyst, so it reaches only the records they are permitted to see. By default it sees only the invented records the pages
-              show. Reaching real data takes a deployment setup with a named security sign-off, not a switch.
-            </p>
-            <figure class="loopfig">
-              <figcaption class="vs-k">How one question is answered</figcaption>
+          </figure>
+
+          <div class="chapter step">
+            
+            <h2 id="ask">1. The ask&nbsp;bar</h2>
+            <p class="dek">One question opens the right page, already filtered. "Failed checks in Halifax this week" opens the map with Status, Range and Place set, and a&nbsp;wrong filter is a&nbsp;chip you remove in one&nbsp;click.</p>
+            <details class="more">
+              <summary><span class="more-label">How one question is answered</span><span class="more-hint">From the ask bar to the page, as a&nbsp;diagram</span></summary>
+              <div class="more-body">
+                <figure class="loopfig">
+              
               <div class="loopfig-scroll">
-<svg class="lf" viewBox="0 0 660 574" role="img" aria-label="How one question is answered. A question typed in the ask bar goes to a router, which asks the model for a plan and opens the page with filters. The page feeds what is on screen into the assistant drawer, which shows an On this page read worked out in the browser and sent nowhere, the question, the steps, the answer with every ID as a link, follow-ups and the input. Each question goes with the page to the agent loop, which asks the model what to look up, calls a tool on an internal MCP server as the analyst, read only, over data the analyst is permitted to see, and sends the results back, until the model writes the answer, in at most eight rounds. Steps and the answer come back to the drawer.">
+<svg class="lf" viewBox="0 0 660 574" role="img" aria-label="How one question is answered. A question typed in the ask bar goes to a router, which asks the model for a plan and opens the page with filters. The page feeds what is on screen into the assistant drawer, which shows an On this page read worked out in the browser and sent nowhere, the question, the steps, the answer with every ID as a link, follow-ups and the input. Each question goes with the page to the agent loop, which asks the model what to look up, calls a tool on an internal MCP server as the analyst, read only, over data the analyst is permitted to see, and sends the results back, until the model writes the answer, up to a fixed round limit. Steps and the answer come back to the drawer.">
   <defs>
     <marker id="lf-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
     <marker id="lf-ah-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah a" d="M0,0 L10,5 L0,10 z"/></marker>
@@ -650,7 +776,7 @@
   <text class="s fg" font-size="10.5" x="267" y="409">② calls that tool,</text><text class="s fg" font-size="10.5" x="267" y="423">on the MCP, as the analyst</text>
   <text class="s fg" font-size="10.5" x="267" y="443">③ sends the results</text><text class="s fg" font-size="10.5" x="267" y="457">back to the model</text>
   <text class="s" font-size="10.5" x="267" y="477">…until it writes</text><text class="s" font-size="10.5" x="267" y="491">the answer</text>
-  <rect class="badge" x="267" y="506" width="92" height="20" rx="10"/><text class="badge-t" font-size="10" text-anchor="middle" x="313" y="520">up to 8 rounds</text>
+  <rect class="badge" x="267" y="506" width="92" height="20" rx="10"/><text class="badge-t" font-size="10" text-anchor="middle" x="313" y="520">round limit</text>
   <path class="ar" d="M275,318 V176 H476" marker-end="url(#lf-ah)"/>
   <text class="lbl" font-size="10.5" x="283" y="168">what should I look up?</text>
   <path class="ar" d="M480,196 H388 V314" marker-end="url(#lf-ah)"/>
@@ -672,94 +798,90 @@
 </svg>
               </div>
               <ul class="loopfig-legend" aria-label="Legend">
-                <li><i class="l a"></i>Tool calls to the internal MCP server, as the analyst</li>
-                <li><i class="l g"></i>Reads and acts on the page</li>
-                <li><i class="bx"></i>The assistant’s own parts</li>
+                <li><i class="l a"></i>Tool calls to the internal MCP server, as the&nbsp;analyst</li>
+                <li><i class="l g"></i>Reads and acts on the&nbsp;page</li>
+                <li><i class="bx"></i>The assistant’s own&nbsp;parts</li>
               </ul>
             </figure>
-            <p class="mock-note">The shape of the system, redrawn without the product’s names.</p>
-            <aside class="lesson" aria-label="The decision">
-              <span class="lesson-k">The decision</span>
-              <p class="lesson-big">Show the steps. Bound the effort. Gate the data in the setup, not the prompt.</p>
-              <p>Watching the steps is how people learn when to trust it. A spinner teaches nothing.</p>
+              </div>
+            </details>
+          </div>
+
+          <div class="chapter step">
+            
+            <h2 id="land">2. The&nbsp;insight</h2>
+            <p class="dek">It flags the strongest finding on the page before you ask. Open it and every point lists the transactions it came&nbsp;from.</p>
+            <p>
+              The first insight was a&nbsp;status line that repeated a&nbsp;count the page already showed, so there was no reason to open it.
+              It now leads with something the page doesn't show, like a&nbsp;phone shared by two accounts, with a&nbsp;label for how serious it&nbsp;is.
+            </p>
+            <p>
+              The read behind it was first written by a&nbsp;model from the page's rows. I&nbsp;replaced it the same day with a&nbsp;narrator
+              that runs in the browser, with no model call, so no transaction data leaves the app. It&nbsp;uses the map's own
+              impossible-travel thresholds and only the rows on screen, so it can't disagree with the page next to&nbsp;it.
+            </p>
+
+          </div>
+
+          <div class="chapter step">
+            
+            <h2 id="wrong">3. The&nbsp;assistant</h2>
+            <p class="dek">It opens from the top bar on any page, for questions a&nbsp;page can't answer, and shows its sources and its&nbsp;limits.</p>
+            <p>
+              Before it could ship, I&nbsp;asked what every part does when the model gets it wrong. Three rules came out of it: a&nbsp;mistake
+              is one click to undo, it shows what it doesn't know, and hard limits are built in rather than left to the prompt. The security
+              design review was written from&nbsp;them.
+            </p>
+            <p>
+              It works through the account with tools while you watch. Every fact
+              comes from a&nbsp;tool call to an&nbsp;internal MCP server, made as the analyst: each call carries their verified email
+              and organisation, so the server limits the answer to the companies they can&nbsp;see.
+            </p>
+            <div class="drawer chat" data-drawer>
+              <div class="drawer-head"><i class="bot-ic" aria-hidden="true"></i><b>Assistant</b></div>
+              <p class="ch-me">Why does user-maya keep&nbsp;failing?</p>
+              <div class="ch-row">
+                <i class="bot-ic ch-av" aria-hidden="true"></i>
+                <div class="ch-body" data-chbody aria-live="polite"></div>
+              </div>
+              <button class="drawer-replay" type="button" data-replay>Replay</button>
+            </div>
+            <h3>What broke in testing, and what changed</h3>
+            <ul>
+              <li>The insight raised false alarms. It counted one account typed with different capitals as three accounts sharing a&nbsp;phone, and read a&nbsp;missing location as a&nbsp;5,000-mile trip. It now ignores capitals and blank locations, and only calls travel impossible when it passes the same distance and speed limits the map&nbsp;uses.</li>
+              <li>The assistant took the map away from you. If you zoomed in by hand and asked a&nbsp;follow-up, the answer reset the map to its own view. Your zoom now stays unless the question names a&nbsp;new&nbsp;place.</li>
+              <li>The assistant slowed itself down. Before answering, it looked up each of the analyst's companies one by one, even though the app already had their names. The app now sends those names with the question, and on the same 25 test questions answers got 25% faster.</li>
+            </ul>
+            <aside class="lesson" aria-label="The lesson">
+              <span class="lesson-k">The lesson</span>
+              <p class="lesson-big">When people work in maps and graphs, let the AI open the right one, set its filters and point to the finding that&nbsp;matters.</p>
+              <p>A&nbsp;reply in a&nbsp;chat has to be read, then checked against the data. On a&nbsp;filtered map with one finding and its sources, the analyst can check it at a&nbsp;glance.</p>
             </aside>
           </div>
 
-          <div class="chapter">
-            <span class="num">Moment 4 of 4</span>
-            <h2 id="wrong">When it's wrong</h2>
-            <p class="dek">Three rules decided what every surface does when it fails.</p>
-            <div class="rulecards">
-              <section class="rulecard r1">
-                <div class="rc-ui" aria-hidden="true">
-                  <span class="rc-chip"><small>Status:</small>Failed<i>×</i></span>
-                  <span class="rc-chip wrong"><small>Place:</small>Toronto<i>×</i><svg class="rc-cursor" viewBox="0 0 16 20"><path d="M1 1v15l4-4 3 7 3-1.4-3-6.6h6z" fill="#14161A" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg></span>
-                  <span class="rc-fixed">Place removed. The map zooms back out.</span>
-                </div>
-                <h3>Fixable</h3>
-                <p class="rc-def">A mistake is one click to undo.</p>
-                <ul>
-                  <li><span>Misreads the question</span><b>Every filter is a chip you can remove</b></li>
-                  <li><span>The read is off</span><b>Every claim cites the transactions behind it</b></li>
-                </ul>
-              </section>
-              <section class="rulecard r2">
-                <div class="rc-ui" aria-hidden="true">
-                  <div class="rc-note"><span><b>Showing a sample of 500 rows.</b> Totals are hidden until they're exact.</span><u>Get exact totals</u></div>
-                </div>
-                <h3>Honest</h3>
-                <p class="rc-def">Uncertainty is shown, not smoothed over.</p>
-                <ul>
-                  <li><span>Can't infer part of it</span><b>Leaves that filter off, and says so</b></li>
-                  <li><span>Points at an id it doesn't name</span><b>Says so. It never invents an identifier</b></li>
-                  <li><span>Only a sample loaded</span><b>No headline numbers; offers exact totals</b></li>
-                  <li><span>Still working</span><b>Each step appears as it runs</b></li>
-                  <li><span>Data is synthetic</span><b>A label on every page</b></li>
-                </ul>
-              </section>
-              <section class="rulecard r3">
-                <div class="rc-ui" aria-hidden="true">
-                  <ol class="rc-steps">
-                    <li>Compared devices<small>7/8</small></li>
-                    <li>Checked locations<small>8/8</small></li>
-                    <li class="stop">Stopped. Here's what I found.</li>
-                  </ol>
-                </div>
-                <h3>Bounded</h3>
-                <p class="rc-def">Hard limits live in the setup, not the prompt.</p>
-                <ul>
-                  <li><span>Could run on</span><b>Stops after eight steps</b></li>
-                  <li><span>Shouldn't see real data</span><b>Can't, unless a deployment is set up and signed off</b></li>
-                  <li><span>Other people's IDs on screen</span><b>Forgotten when the tab closes</b></li>
-                </ul>
-              </section>
-            </div>
-            <p>
-              The two patterns that moved into the roadmap are these rules applied: question-to-filters is
-              "fixable" made into a feature, and the gated assistant is "bounded" made into a setup.
-            </p>
-          </div>
-
           <h2>The outcome</h2>
+          <div class="stats">
+            <div class="stat"><b>12 weeks</b><span>from the first commit to production, security design review&nbsp;included</span></div>
+            <div class="stat"><b>1 → 6</b><span>from a&nbsp;solo build to the team that now ships it, with its own release pipeline and&nbsp;QA</span></div>
+          </div>
           <p>
-            Two of the demo's patterns went onto the product roadmap and have since been built into the product: the
-            question that becomes filters, and an assistant that can only reach what the analyst can. And every
-            place the demo had to deviate from the <a href="design-system.html">component library</a> became a
-            library ticket instead of a one-off override.
-          </p>
-          <p>
-            <strong>Design from the failure case.</strong> What happens when it's wrong shaped every surface more
-            than what happens when it's right.
+            Customer analysts use it today, and the next version of the investigation product is being built on top of&nbsp;it.
           </p>
 
-        </div>
+            <h2>Project details</h2>
+            <dl class="meta-line meta-end">
+              <div><dt>Stack</dt><dd>React, Node, Claude API, an&nbsp;internal MCP server, Cloud&nbsp;Run</dd></div>
+              <div><dt>When</dt><dd>August to November 2026</dd></div>
+              <div><dt>With</dt><dd>The designer who owns the assistant's design, and the engineers and QA who build on&nbsp;it</dd></div>
+            </dl>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">
       <div class="wrap">
-        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>© <span data-year>2026</span> Mahrs Aslam</span>
       </div>
     </footer>
     <script src="../js/na-map.js?v=20261027"></script>
@@ -802,12 +924,12 @@
       // with no account selected: the clusters worth a look, each a device shared by several accounts
       window.GRAPH_OVERVIEW = function () {
         var nodes = [
-          { id: "a", x: 92, y: 96, type: "device", label: "d-31f0a9c2", hi: true },
-          { id: "a1", x: 36, y: 46, type: "user", label: "u-4471-ny" }, { id: "a2", x: 30, y: 150, type: "user", label: "u-0298-mi" }, { id: "a3", x: 150, y: 168, type: "user", label: "u-5520-qc" },
-          { id: "b", x: 284, y: 82, type: "device", label: "d-9c07be11", hi: true },
-          { id: "b1", x: 226, y: 30, type: "user", label: "u-7710-tx" }, { id: "b2", x: 356, y: 36, type: "user", label: "u-3381-fl" },
-          { id: "c", x: 318, y: 196, type: "device", label: "d-6e2d4a90", hi: true },
-          { id: "c1", x: 250, y: 236, type: "user", label: "u-1152-on" }, { id: "c2", x: 390, y: 236, type: "user", label: "u-9034-bc" }
+          { id: "a", x: 92, y: 96, type: "device", label: "phone-1", hi: true },
+          { id: "a1", x: 36, y: 46, type: "user", label: "user-maya" }, { id: "a2", x: 30, y: 150, type: "user", label: "user-leo" }, { id: "a3", x: 150, y: 168, type: "user", label: "user-tess" },
+          { id: "b", x: 284, y: 82, type: "device", label: "phone-2", hi: true },
+          { id: "b1", x: 226, y: 30, type: "user", label: "user-ines" }, { id: "b2", x: 356, y: 36, type: "user", label: "user-jo" },
+          { id: "c", x: 318, y: 196, type: "device", label: "tablet-1", hi: true },
+          { id: "c1", x: 250, y: 236, type: "user", label: "user-omar" }, { id: "c2", x: 390, y: 236, type: "user", label: "user-sam" }
         ];
         var edges = [{ a: "a", b: "a1", hi: true }, { a: "a", b: "a2", hi: true }, { a: "a", b: "a3", hi: true }, { a: "b", b: "b1", hi: true }, { a: "b", b: "b2", hi: true }, { a: "c", b: "c1", hi: true }, { a: "c", b: "c2", hi: true }];
         return { w: 420, h: 268, nodes: nodes, edges: edges };
@@ -816,11 +938,11 @@
       // account that shares one of them
       window.GRAPH_CASE = function (withPhone) {
         var nodes = [
-          { id: "me", x: 210, y: 118, type: "user", label: "u-4471-ny", sub: "this account", focus: true },
-          { id: "d1", x: 96, y: 118, type: "device", label: "d-31f0a9c2", hi: true },
-          { id: "u2", x: 96, y: 226, type: "user", label: "u-0298-mi", hi: true },
-          { id: "d2", x: 324, y: 118, type: "device", label: "d-77be10d4" },
-          { id: "d3", x: 210, y: 36, type: "device", label: "d-0a4c9e21" }
+          { id: "me", x: 210, y: 118, type: "user", label: "user-maya", sub: "this account", focus: true },
+          { id: "d1", x: 96, y: 118, type: "device", label: "phone-1", hi: true },
+          { id: "u2", x: 96, y: 226, type: "user", label: "user-leo", hi: true },
+          { id: "d2", x: 324, y: 118, type: "device", label: "laptop-1" },
+          { id: "d3", x: 210, y: 36, type: "device", label: "phone-3" }
         ];
         var edges = [{ a: "me", b: "d1", hi: true }, { a: "d1", b: "u2", hi: true, label: "shared device" }, { a: "me", b: "d2" }, { a: "me", b: "d3" }];
         if (withPhone) {
@@ -838,7 +960,48 @@
         var form = $("[data-form]"), input = $("[data-input]"), go = $("[data-go]"), bar = $(".askdemo-bar");
         var chips = $("[data-chips]"), filters = $(".aa-filters"), fk = $("[data-fk]"), planEl = $("[data-plan]");
         var pageName = $("[data-page-name]"), rangeEl = $("[data-range]"), body = $("[data-body]");
-        var assist = $("[data-assist]"), aq = $("[data-aq]"), asteps = $("[data-asteps]");
+        var assist = $("[data-assist]"), aq = $("[data-aq]"), asteps = $("[data-asteps]"), ak = $("[data-ak]");
+        // the insight's read is evidence with sources; a question to the assistant shows the steps it took
+        // a step shows a spinner while it runs and its result once the next one starts
+        function finishSteps() { asteps.querySelectorAll("li.run").forEach(function (l) { l.classList.remove("run"); }); }
+        function pushStep(st) { finishSteps(); asteps.insertAdjacentHTML("beforeend", '<li class="run"><span>' + st[0] + '<small>' + st[1] + '</small></span></li>'); }
+        function listMode(m, n) { asteps.classList.toggle("evid", m === "evid"); assist.classList.toggle("evid-mode", m === "evid"); ak.textContent = m === "evid" ? "Based on " + (n || 3) + " records" : m === "steps" ? "Steps it took" : ""; }
+        // the launcher: one finding about the page on screen; opening it shows the read with its sources
+        var dl = $("[data-dl]"), dlWrap = $("[data-dlwrap]"), dlT = $("[data-dlt]");
+        function finding(p) {
+          var pg = (p && p.page) || "map";
+          if (pg === "connections") return ["user-maya and user-leo share phone-1 and a phone number.", [["Both accounts used phone-1 in the last 30 days", "TXN-3184, TXN-3191, TXN-3205"], ["Both registered +1 (313) 555-0142", "profile records"], ["Both are blocked: user-maya by 2 operators, user-leo by 1", "status history"]]];
+          if (pg === "user") return ["user-maya fails from 2 places about 400 km apart.", [["49% of checks failed in the last 30 days", "104 of 212 transactions"], ["Two failed checks 11 minutes apart, 400 km apart", "TXN-3191, TXN-3205"], ["One of the 2 devices is shared with user-leo", "phone-1"]]];
+          if (pg === "transactions") return ["3 of the failed checks used the same phone.", [["phone-1 appears on 3 failed checks", "TXN-3184, TXN-3191, TXN-3205"], ["2 accounts used that phone", "user-maya, user-leo"], ["All 3 were location checks", "check type"]]];
+          if (p && p.placeName) return ["Most failed checks in " + p.placeName + " came from one phone.", [["phone-1 was used for 3 of the failed checks", "TXN-3184, TXN-3191, TXN-3205"], ["2 accounts used that phone", "user-maya, user-leo"], ["Checks came from 2 places about 400 km apart", "location history"]]];
+          return ["Halifax has the most failed checks this week.", [["Failed checks there are up on last week", "last 7 days"], ["3 of them used one phone", "phone-1"], ["2 accounts used that phone", "user-maya, user-leo"]]];
+        }
+        dl.addEventListener("click", function () {
+          clearTimers();
+          var f = finding(current);
+          anew.hidden = true; aq.hidden = false; aq.textContent = f[0]; asteps.innerHTML = ""; listMode("evid"); assist.hidden = false; dlWrap.hidden = true;
+          at(30, function () { assist.classList.add("on"); });
+          f[1].forEach(function (b, i) { at(350 + i * 450, function () { asteps.insertAdjacentHTML("beforeend", "<li><span>" + b[0] + "<small>" + b[1] + "</small></span></li>"); }); });
+        });
+        // the top-bar button: a new chat on any page, with suggested questions
+        var anew = $("[data-anew]");
+        var CANNED = {
+          devices: [[["Ranked devices by number of accounts", "last 30 days"], ["Checked the top device", "phone-1, 2 accounts"], ["Compared their checks", "3 failed, 400 km apart"]], "phone-1 is shared by user-maya and user-leo."],
+          fails: [[["Pulled the failed checks", "last 7 days"], ["Grouped them by reason", "most were location checks"], ["Grouped them by place", "Halifax leads"]], "Location checks in Halifax, 3 of them from one phone."]
+        };
+        $("[data-anewbtn]").addEventListener("click", function () {
+          clearTimers(); aq.hidden = true; asteps.innerHTML = ""; listMode(""); anew.hidden = false; assist.hidden = false; dlWrap.hidden = true;
+          at(30, function () { assist.classList.add("on"); });
+        });
+        anew.addEventListener("click", function (e) {
+          var b = e.target.closest("[data-sq]"); if (!b) return;
+          clearTimers();
+          var k = b.getAttribute("data-sq"), f = k === "page" ? finding(current) : null, steps = f ? f[1] : CANNED[k][0], ans = f ? f[0] : CANNED[k][1];
+          anew.hidden = true; aq.hidden = false; aq.textContent = b.textContent; asteps.innerHTML = ""; listMode(f ? "evid" : "steps");
+          steps.forEach(function (st, i) { at(300 + i * 550, function () { pushStep(st); }); });
+          at(300 + steps.length * 550, function () { finishSteps(); asteps.insertAdjacentHTML("beforeend", '<li class="answer"><span>' + ans + '</span></li>'); });
+        });
+        $("[data-aclose]").addEventListener("click", function () { clearTimers(); assist.classList.remove("on"); assist.hidden = true; dlWrap.hidden = false; });
         var panel = $("[data-suggest]"), opts = Array.prototype.slice.call(root.querySelectorAll("[data-suggest] [role=option]")), active = -1;
         function visibleOpts() { return opts.filter(function (o) { return !o.hidden; }); }
         function setActive(i) {
@@ -852,7 +1015,7 @@
           var any = visibleOpts().length > 0;
           showPanel(any);
         }
-        function showPanel(on) { panel.hidden = !on; input.setAttribute("aria-expanded", on ? "true" : "false"); $("[data-examples]").setAttribute("aria-expanded", on ? "true" : "false"); setActive(-1); }
+        function showPanel(on) { panel.hidden = !on; input.setAttribute("aria-expanded", on ? "true" : "false"); setActive(-1); }
         function closePanel() { showPanel(false); }
         var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
         var timers = [];
@@ -863,7 +1026,7 @@
         function plan(q) {
           var t = q.toLowerCase(), p = { page: null, searchType: null, identifiers: [], from: null, to: null, status: null, placeName: null, intent: "navigate", note: null };
           // ids are only ever copied from the question, never invented: "this one" names nothing, so nothing is guessed
-          var idm = t.match(/\bu-\d{4}-[a-z]{2}\b/), ids = idm ? [idm[0]] : [];
+          var idm = t.match(/\buser-[a-z]+\b/), ids = idm ? [idm[0]] : [];
           var pointer = /\b(this|that) (one|account|user|device)\b|\b(these|them|who else)\b/.test(t);
           function named(page) { p.page = page; p.identifiers = ids; p.searchType = ids.length ? "user" : null; if (!ids.length && pointer) p.note = "No id was named, so none was guessed."; }
           if (/\b(why|how many|what drove|explain|should i)\b/.test(t)) { p.intent = "answer"; named("user"); }
@@ -876,7 +1039,7 @@
           if (/\bblocked\b/.test(t)) p.status = "blocked";
           if (/\bpass(ed)?\b/.test(t)) p.status = "pass";
           PLACES.forEach(function (pl) { if (t.indexOf(pl) >= 0) { p.placeName = cap(pl); if (!p.page) p.page = "map"; } });
-          if (/last week|past week|7 days/.test(t)) { p.from = "last 7 days"; }
+          if (/last week|past week|this week|7 days/.test(t)) { p.from = "last 7 days"; }
           else if (/weekend/.test(t)) { p.from = "Sat–Sun"; }
           else if (/today/.test(t)) { p.from = "today"; }
           else if (/yesterday/.test(t)) { p.from = "yesterday"; }
@@ -959,7 +1122,7 @@
           return '<div class="aa-graph" id="aa-graph-demo"><span class="lbl">2 accounts share a device' + (p.from ? ' · ' + p.from.toLowerCase() : '') + '</span><span class="legend"><span>Account</span><span class="d">Device</span><span class="s">Shared</span></span></div>';
         }
         var DAYS = [[31, 4], [44, 6], [38, 5], [52, 7], [40, 6], [61, 9], [29, 3], [88, 41], [76, 36], [102, 55], [64, 30], [36, 5], [28, 3], [42, 6]];
-        var ACCOUNTS = [["u-4471-ny", "Blocked · 2 operators", 49], ["u-0298-mi", "Blocked · 1 operator", 38], ["u-7710-tx", "Active", 6], ["u-1152-on", "Active", 4], ["u-9034-bc", "Active", 2]];
+        var ACCOUNTS = [["user-maya", "Blocked · 2 operators", 49], ["user-leo", "Blocked · 1 operator", 38], ["user-ines", "Active", 6], ["user-omar", "Active", 4], ["user-sam", "Active", 2]];
         function inRange(p, i) { return p.from === "Sat–Sun" ? (i === 5 || i === 6) : p.from === "today" ? i === 13 : p.from === "yesterday" ? i === 12 : p.from === "last 7 days" ? i >= 7 : true; }
         function userPage(p) {
           if (!p.identifiers.length) {
@@ -969,14 +1132,15 @@
           var onlyFailed = p.status === "failed";
           var bars = DAYS.map(function (d, i) { var inR = inRange(p, i), h = onlyFailed ? d[1] : d[0]; return '<i class="' + (inR ? "in" : "") + '" style="--h:' + Math.round(h / 102 * 100) + '"></i>'; }).join("");
           var tot = 0, fail = 0; DAYS.forEach(function (d, i) { if (inRange(p, i)) { tot += d[0]; fail += d[1]; } });
-          return '<div class="aa-user"><div class="hd"><span class="av"></span><span class="id">u-4471-ny</span><span class="tag">Blocked · 2 operators</span></div>' +
-            '<div class="bars">' + bars + '</div>' +
-            '<div class="kpis"><span><b>' + (onlyFailed ? fail : tot) + '</b>' + (onlyFailed ? 'failed transactions' : 'transactions') + '</span><span><b>' + Math.round(fail / tot * 100) + '%</b>failed</span><span><b>2</b>devices</span></div></div>';
+          return '<div class="aa-user"><div class="hd"><span class="av">M</span><span class="id">user-maya</span><span class="tag">Blocked · 2 operators</span></div>' +
+            '<div class="bars-k"><span>Checks per day</span><span>3–16 Mar</span></div><div class="bars">' + bars + '</div>' +
+            '<div class="kpis"><span><b>' + (onlyFailed ? fail : tot) + '</b>' + (onlyFailed ? 'failed transactions' : 'transactions') + '</span><span><b>' + Math.round(fail / tot * 100) + '%</b>failed</span><span><b>2</b>devices</span></div>' +
+            '<div class="devs"><span class="dev shared"><b>phone-1</b>shared with user-leo</span><span class="dev"><b>laptop-1</b>only this account</span></div></div>';
         }
         var TXNS = [[13, "Fail", "Halifax", "Location check"], [13, "Pass", "Toronto", "Device check"], [12, "Fail", "Halifax", "Location check"], [12, "Pass", "Halifax", "Location check"], [10, "Fail", "Halifax", "Device shared"], [9, "Fail", "Toronto", "Location check"], [8, "Pass", "Vancouver", "Location check"], [7, "Fail", "Halifax", "Boundary"], [5, "Pass", "Toronto", "Device check"], [2, "Pass", "Halifax", "Location check"]];
         function transactionsPage(p) {
           var rows = TXNS.filter(function (t) { return inRange(p, t[0]) && (!p.status || (p.status === "failed" ? t[1] === "Fail" : p.status === "pass" ? t[1] === "Pass" : true)) && (!p.placeName || t[2] === p.placeName); });
-          var body = rows.length ? rows.map(function (t) { return '<tr><td class="mono">TXN-' + (3100 + t[0] * 7) + '••</td><td>' + (16 + t[0]) + ' Mar</td><td>' + t[2] + '</td><td>' + (t[1] === "Fail" ? '<em>Failed</em>' : 'Pass') + '</td><td>' + t[3] + '</td></tr>'; }).join("") : '<tr><td colspan="5" class="none">No transactions match these filters.</td></tr>';
+          var body = rows.length ? rows.map(function (t) { return '<tr><td class="mono">TXN-' + (3100 + t[0] * 7) + '</td><td>' + (16 + t[0]) + ' Mar</td><td>' + t[2] + '</td><td>' + (t[1] === "Fail" ? '<em>Failed</em>' : 'Pass') + '</td><td>' + t[3] + '</td></tr>'; }).join("") : '<tr><td colspan="5" class="none">No transactions match these filters.</td></tr>';
           return '<div class="aa-list"><div class="aa-list-h">Transactions <small>' + rows.length + '</small></div><table class="aa-tbl"><thead><tr><th>ID</th><th>Date</th><th>Place</th><th>Status</th><th>Check</th></tr></thead><tbody>' + body + '</tbody></table></div>';
         }
 
@@ -990,24 +1154,25 @@
           chips.innerHTML = c.length ? c.map(function (x, i) {
             return '<button type="button" class="askdemo-chip" data-remove="' + x[0] + '" style="animation-delay:' + i * 90 + 'ms" title="Remove" aria-label="Remove ' + (K[x[0]] || x[0]) + ' filter"><span class="k">' + (K[x[0]] || x[0]) + '</span>' + (x[2] ? '<span class="mono">' + x[1] + '</span>' : x[1]) + '<i aria-hidden="true">×</i></button>';
           }).join("") : '';
-          filters.classList.remove("reading"); fk.textContent = "From your question";
-          filters.classList.toggle("empty", !c.length);
+          filters.classList.remove("reading", "empty"); filters.classList.toggle("idle", !!p.blank); filters.classList.toggle("nochips", !c.length);
           planEl.textContent = JSON.stringify(p, null, 2);
           var top = root.querySelector(".aa-top");
           top.classList.remove("switched"); void top.offsetWidth; top.classList.add("switched");
           pageName.textContent = { map: "Map", connections: "Connections", user: p.identifiers.length ? "Account" : "Accounts", transactions: "Transactions" }[p.page] || "Map";
+          fk.innerHTML = p.blank ? "Nothing asked yet. This is the map as it loads." : (c.length ? "<span class=\"sr-only\">Set by the AI from your question</span>" : "No filters set");
           root.querySelectorAll("[data-nav]").forEach(function (n) { n.classList.toggle("on", n.getAttribute("data-nav") === (p.page || "map")); });
           rangeEl.textContent = p.from ? "Range · " + p.from : "";
           body.innerHTML = p.page === "connections" ? graphPage(p) : p.page === "user" ? userPage(p) : p.page === "transactions" ? transactionsPage(p) : mapPage(p);
           var g = root.querySelector("#aa-graph-demo"); if (g) window.drawGraph(g, g.hasAttribute("data-overview") ? window.GRAPH_OVERVIEW() : window.GRAPH_CASE(false));
           if (root.querySelector("[data-mapsvg]")) flyTo(viewFor(p)); else lastView = null;
-          assist.classList.remove("on"); assist.hidden = true; asteps.innerHTML = "";
+          assist.classList.remove("on"); assist.hidden = true; asteps.innerHTML = ""; listMode(p.intent === "answer" ? "steps" : "");
+          dlT.textContent = finding(p)[0]; dlWrap.hidden = p.intent === "answer"; anew.hidden = true; aq.hidden = false;
           if (p.intent === "answer") {
             aq.textContent = input.value;
             assist.hidden = false;
             at(350, function () { assist.classList.add("on"); });
-            ANSWER.forEach(function (st, i) { at(900 + i * 650, function () { asteps.insertAdjacentHTML("beforeend", "<li><span>" + st[0] + "<small>" + st[1] + "</small></span></li>"); }); });
-            at(900 + ANSWER.length * 650, function () { asteps.insertAdjacentHTML("beforeend", '<li class="answer"><span>Shared device + repeated location failures: worth a closer look</span></li>'); });
+            ANSWER.forEach(function (st, i) { at(900 + i * 650, function () { pushStep(st); }); });
+            at(900 + ANSWER.length * 650, function () { finishSteps(); asteps.insertAdjacentHTML("beforeend", '<li class="answer"><span>Shared device + repeated location failures: worth a closer look</span></li>'); });
           }
         }
         var current = null;
@@ -1056,24 +1221,14 @@
           current.status = null; current.from = null; current.placeName = null; current.identifiers = []; current.searchType = null; current.intent = "navigate";
           clearTimers(); render(current);
         });
-        // the Examples button opens the same list as clicking into the bar
-        var exBtn = $("[data-examples]");
-        exBtn.addEventListener("mousedown", function (e) { e.preventDefault(); });
-        exBtn.addEventListener("click", function () {
-          stopDemo();
-          if (!panel.hidden) { closePanel(); return; }
-          input.focus({ preventScroll: true });
-          opts.forEach(function (o) { o.hidden = false; });
-          showPanel(true);
-        });
-        current = plan(input.value); render(current);
+        current = plan(""); current.page = "map"; current.blank = true; render(current);
 
         // the first time the demo is in view, it asks a second question itself, so it's clear the bar takes any question
         var demoTimers = [], demoDone = false;
         function stopDemo() { demoDone = true; demoTimers.forEach(clearTimeout); demoTimers = []; }
         function demo() {
           if (demoDone) return; demoDone = true;
-          var q = "Which accounts share a device with u-4471-ny?", i = 0;
+          var q = "Failed checks in Halifax this week", i = 0;
           input.value = ""; bar.classList.add("typing");
           (function type() {
             input.value = q.slice(0, ++i);
@@ -1085,7 +1240,7 @@
         if (!reduced && "IntersectionObserver" in window) {
           var seen = new IntersectionObserver(function (es) {
             if (!es[0].isIntersecting) return;
-            seen.disconnect(); demoTimers.push(setTimeout(demo, 1600));
+            seen.disconnect(); demoTimers.push(setTimeout(demo, 1400));
           }, { threshold: 0.6 });
           seen.observe(root.querySelector(".askdemo-app"));
         }
@@ -1101,6 +1256,19 @@
           '<g class="lake">' + d.lakes.map(function (q) { return '<path d="' + q + '"/>'; }).join("") + '</g>' +
           '<circle cx="' + c[0] + '" cy="' + c[1] + '" r="1.7" fill="rgba(232,85,61,0.12)" stroke="#E8553D" stroke-width="1.2" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>' +
           pins.map(function (o) { var p = pr(h[0] + o[0], h[1] + o[1]); return '<circle class="pin" cx="' + p[0] + '" cy="' + p[1] + '" r="0.24" fill="' + (o[2] ? "#E8553D" : "#1F6E5B") + '"' + (o[2] ? "" : ' opacity="0.3"') + '/>'; }).join("") + '</svg>';
+      })();
+      // The before/after plays once when it scrolls into view; reduced motion gets the finished frame
+      (function () {
+        var v = document.querySelector(".vs");
+        if (!v || !("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        v.classList.add("anim");
+        // watch the before mock itself, not the whole figure (which also holds the tall live demo),
+        // and start only once most of it is on screen
+        var target = v.querySelector(".vs-card:not(.on) .vs-app") || v;
+        var io = new IntersectionObserver(function (es) {
+          if (es[0].isIntersecting) { io.disconnect(); setTimeout(function () { v.classList.add("play"); }, 250); }
+        }, { threshold: 0.75 });
+        io.observe(target);
       })();
       // Moment 4: the Fixable card removes its wrong chip once, when the cards scroll into view
       (function () {
@@ -1120,20 +1288,44 @@
         d.querySelector("[data-ld-close]").addEventListener("click", close);
         d.addEventListener("keydown", function (e) { if (e.key === "Escape" && !p.hidden) close(); });
       })();
-      // The agent drawer: play the steps when it scrolls into view; Replay runs them again.
+      // The assistant answering one question: thinking, each step with a spinner until it's done,
+      // then the answer and the records it used. Plays when it scrolls into view; Replay runs it again.
       (function () {
-        var d = document.querySelector("[data-drawer]");
-        if (!d) return;
-        function play() { d.classList.remove("play"); void d.offsetWidth; d.classList.add("play"); }
+        var d = document.querySelector("[data-drawer]"); if (!d) return;
+        var body = d.querySelector("[data-chbody]"), timers = [];
+        var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var STEPS = [["Found the account", "user-maya"], ["Read 212 transactions", "last 30 days"], ["Checked the failed rules", "104 failed, most were location checks"], ["Compared devices", "2 devices, phone-1 shared with user-leo"]];
+        var ANSWER = '<p class="ch-ans">user-maya failed 104 of 212 checks this month, mostly from two places 400&nbsp;km apart. Their phone-1 is also used by user-leo.</p>' +
+          '<details class="ch-src"><summary>Based on 3 failed checks and 212 transactions</summary><table><tbody>' +
+          '<tr><td>9:12 am</td><td>Failed</td><td>Location check, Halifax</td></tr>' +
+          '<tr><td>9:23 am</td><td>Failed</td><td>Location check, 400&nbsp;km away</td></tr>' +
+          '<tr><td>11:40 am</td><td>Failed</td><td>Shared device, phone-1</td></tr>' +
+          '</tbody></table><span class="ch-more">Open all 212 transactions&nbsp;→</span></details>';
+        function stepsHtml(n, running) {
+          return '<ol class="ch-steps">' + STEPS.slice(0, n).map(function (st, i) {
+            var run = running && i === n - 1;
+            return '<li class="' + (run ? "run" : "done") + '"><span>' + st[0] + (run ? "…" : "") + '<small>' + (run ? "" : st[1]) + '</small></span></li>';
+          }).join("") + '</ol>';
+        }
+        function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+        function finalFrame() { body.innerHTML = stepsHtml(STEPS.length, false) + ANSWER; }
+        function play() {
+          timers.forEach(clearTimeout); timers = [];
+          if (reduced) { finalFrame(); return; }
+          body.innerHTML = '<p class="ch-think">Thinking…</p>';
+          STEPS.forEach(function (_, i) { at(700 + i * 750, function () { body.innerHTML = stepsHtml(i + 1, true); }); });
+          at(700 + STEPS.length * 750, function () { body.innerHTML = stepsHtml(STEPS.length, false); });
+          at(700 + STEPS.length * 750 + 450, finalFrame);
+        }
         d.querySelector("[data-replay]").addEventListener("click", play);
-        if ("IntersectionObserver" in window) {
-          var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { play(); io.disconnect(); } }, { threshold: 0.5 });
+        finalFrame();
+        if (!reduced && "IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); play(); } }, { threshold: 0.5 });
           io.observe(d);
-        } else { d.classList.add("play"); }
+        }
       })();
     </script>
-    <script src="../js/main.js?v=20261112e"></script>
-    <script src="../js/toys.js?v=8" defer></script>
+    <script src="../js/main.js?v=20261118a"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
   </body>
 </html>

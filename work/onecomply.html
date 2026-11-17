@@ -3,29 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Nobody finishes a form they can't see the end of — Mahrs Aslam</title>
+    <title>Redesigning a 26-page sidebar as five areas, and a licence application as six guided steps — Mahrs Aslam</title>
     <meta
       name="description"
-      content="Turning one endless licence application into six steps people finish, and turning a queue of column requests into custom fields, on a licensing-compliance platform."
+      content="A licensing platform's sidebar mixed the company's work with each person's own file, and its licence application had nowhere to start. The sidebar became five areas split by whose work it is, and the application became six guided steps."
     />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Mahrs Aslam" />
-    <meta property="og:title" content="Nobody finishes a form they can't see the end of — Mahrs Aslam" />
-    <meta property="og:description" content="Turning one endless licence application into six steps people finish, and turning a queue of column requests into custom fields, on a licensing-compliance platform." />
+    <meta property="og:title" content="Redesigning a 26-page sidebar as five areas, and a licence application as six guided steps — Mahrs Aslam" />
+    <meta property="og:description" content="A licensing platform's sidebar mixed the company's work with each person's own file, and its licence application had nowhere to start. The sidebar became five areas split by whose work it is, and the application became six guided steps." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/work/onecomply.html" />
-    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. I build design systems and the AI features that run on them. A duck therapist with a clipboard sits across from a blue bug in a green room." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="../assets/favicon.svg?v=7" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
-    />
-    <link rel="stylesheet" href="../css/style.css?v=20261112y" />
+    <link rel="icon" href="../assets/favicon.svg?v=8" type="image/svg+xml" />
+    <link rel="icon" href="../assets/favicon-32.png?v=8" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png?v=8" />
+    <link rel="preload" href="../assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../css/fonts.css?v=20261111" />
+    <link rel="stylesheet" href="../css/style.css?v=20261120g" />
     <link rel="stylesheet" href="../css/accents.css?v=20261112y" />
     <script>
       try {
@@ -41,22 +40,16 @@
       .lesson .lesson-big { margin: 0 0 0.85rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.45rem, 2.6vw, 1.9rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ink); text-wrap: balance; }
       .lesson p { margin: 0; color: var(--ink-2); }
       .mock-note { margin: 0.6rem 0 0; font-size: 0.8rem; color: var(--ink-3); }
-      .psych { margin: 2.5rem 0; padding: 1.4rem 0 1.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-      .psych-k { display: block; margin-bottom: 0.35rem; font-family: "Shantell Sans", var(--font-sans); font-size: 1rem; font-weight: 500; color: var(--mustard-text); }
-      .psych h3 { margin: 0.3rem 0 0.5rem; font-size: 1.1rem; }
-      .psych p { margin: 0 0 0.6rem; color: var(--ink-2); }
-      .psych small { color: var(--ink-3); }
 
       @media (max-width: 640px) {
         .mkset .ba { grid-template-columns: minmax(0, 1fr); }
       }
           /* Walkthrough */
-      .wt-wrap { margin-top: 1.25rem; }
       .mkset .wt-body { display: grid; grid-template-columns: 230px minmax(0, 1fr); min-height: 430px; }
       .mkset .wt-rail { display: grid; align-content: start; gap: 0.15rem; padding: 0.75rem; border-right: 1px solid var(--line); background: var(--bg-elev); }
       .mkset .wt-rail button { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; padding: 0.55rem 0.7rem; border: 0; border-radius: 8px; background: transparent; color: var(--ink-2); font: inherit; font-size: 0.85rem; text-align: left; cursor: pointer; }
       .mkset .wt-rail button:hover { background: var(--bg-sunk); color: var(--ink); }
-      .mkset .wt-rail button[aria-selected="true"] { background: var(--mustard-soft); color: var(--ink); font-weight: 600; }
+      .mkset .wt-rail button[aria-selected="true"] { background: var(--bg-sunk); color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 0 var(--ink); }
       .mkset .wt-rail button:focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }
       .mkset .wt-rail .count, .mkset .tree .count { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: #d93f3f; color: #fff; font-size: 0.66rem; font-style: normal; font-weight: 700; display: inline-grid; place-items: center; }
       .mkset .wt-panels { padding: 1.25rem 1.5rem; min-width: 0; }
@@ -76,12 +69,14 @@
       .mkset .b.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
       .mkset .b.ok { background: #1f7a4d; color: #fff; }
       .mkset .b.sm { padding: 0.3rem 0.7rem; font-size: 0.7rem; }
-      .mkset .wt-split { grid-template-columns: minmax(0, 1fr) 170px; gap: 1.25rem; max-width: none; }
+      .mkset .wt-split { grid-template-columns: minmax(0, 1fr) 160px; gap: 0.9rem 1.25rem; max-width: none; }
+      .mkset .wt-split > .wt-foot { grid-column: 1 / -1; }
       .mkset .wt-split > div:first-child { display: grid; gap: 0.6rem; align-content: start; }
       .mkset .wt-prog { display: grid; grid-template-columns: auto 1fr; column-gap: 0.6rem; align-items: center; }
       .mkset .wt-prog .ring { grid-row: span 2; }
       .mkset .wt-prog b { color: var(--ink); font-size: 0.95rem; }
       .mkset .wt-prog small { color: var(--ink-3); }
+      .mkset .wt .ring { --c: #1f7a4d; }
       .mkset .ring.sm { width: 40px; height: 40px; }
       .mkset .ring.sm::before { width: 28px; height: 28px; }
       .mkset .note { padding: 0.5rem 0.7rem; border-radius: 8px; background: var(--bg-sunk); font-size: 0.72rem; color: var(--ink-3); }
@@ -89,7 +84,7 @@
       .mkset .tree small { padding: 0.35rem 0.5rem; border: 1px solid var(--line); border-radius: 6px; color: var(--ink-3); margin-bottom: 0.3rem; }
       .mkset .tree b { margin-top: 0.35rem; color: var(--ink); font-size: 0.72rem; }
       .mkset .tree span { display: flex; justify-content: space-between; align-items: center; padding: 0.25rem 0.5rem; border-radius: 6px; }
-      .mkset .tree span.now { background: var(--mustard-soft); color: var(--ink); }
+      .mkset .tree span.now { background: var(--bg-sunk); color: var(--ink); font-weight: 600; }
       .mkset .tree span.bad { color: #b42318; }
       .mkset .tree span.done { color: #1f7a4d; }
       .mkset .slot { display: grid; gap: 0.25rem; }
@@ -108,65 +103,303 @@
       .mkset .next { padding: 0.75rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-elev); color: var(--ink); }
       .mkset .next b { display: block; margin-bottom: 0.2rem; }
       .mkset .next i { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem; }
-      .wt-cap { margin: 1.25rem 0 0; padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-2); max-width: 60ch; }
-      .wt-after { padding-top: 0.5rem; }
-      /* Overview dashboard */
-      .mkset .dash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.9rem; }
-      .mkset .w { display: grid; gap: 0.45rem; align-content: start; padding: 0.75rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-elev); font-size: 0.75rem; color: var(--ink-2); }
-      .mkset .w > b { display: flex; justify-content: space-between; color: var(--ink); font-size: 0.8rem; }
-      .mkset .w > b i { font-style: normal; color: var(--ink-3); }
-      .mkset .w > span { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
-      .mkset .w .tabs { justify-content: flex-start; gap: 0.6rem; border-bottom: 1px solid var(--line); padding-bottom: 0.3rem; }
-      .mkset .w .tabs u { text-decoration: none; color: var(--ink-3); font-size: 0.7rem; }
-      .mkset .w .tabs u.on { color: var(--ink); font-weight: 600; box-shadow: 0 2px 0 var(--ink); }
-      .mkset .w .late { font-style: normal; color: #b42318; font-size: 0.7rem; }
-      .mkset .w.nudge { background: var(--mustard-soft); border-color: transparent; }
-      .mkset .w.nudge .b { justify-self: start; }
-      .mkset em.chip { font-style: normal; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--teal-soft); color: var(--teal-text); font-size: 0.66rem; white-space: nowrap; }
-      .mkset em.chip.grey { background: var(--bg-sunk); color: var(--ink-3); }
-      .mkset em.chip.warn { background: var(--mustard-soft); color: var(--mustard-text); }
-      /* Navigation before / after */
-      .mkset .navwrap { display: grid; grid-template-columns: 58% 1fr; height: 260px; }
-      .mkset .navold { overflow: hidden; display: grid; align-content: start; gap: 0.15rem; padding: 0.7rem; background: #1f2433; position: relative; }
-      .mkset .navcontent { display: grid; align-content: start; gap: 0.6rem; padding: 1rem; }
-      .mkset .navcontent .bar { height: 10px; border-radius: 4px; background: var(--bg-sunk); }
-      .mkset .navcontent .bar.w60 { width: 60%; height: 14px; }
-      .mkset .navcontent .bar.w80 { width: 80%; }
-      .mkset .navold span { color: #c9cfdc; font-size: 0.7rem; padding: 0.15rem 0.4rem; }
-      .mkset .navold::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 60px; background: linear-gradient(transparent, #1f2433); }
-      .mkset .navnew { display: grid; grid-template-columns: 74px 1fr; height: 260px; }
-      .mkset .nrail { display: grid; align-content: start; gap: 0.3rem; padding: 0.6rem 0.4rem; background: #1f2433; }
-      .mkset .nrail span { color: #c9cfdc; font-size: 0.62rem; text-align: center; padding: 0.45rem 0.2rem; border-radius: 8px; }
-      .mkset .nrail span.on { background: rgba(255,255,255,0.14); color: #fff; }
-      .mkset .npanel { display: grid; align-content: start; gap: 0.15rem; padding: 0.7rem; font-size: 0.72rem; }
-      .mkset .npanel small { margin-top: 0.4rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
-      .mkset .npanel span { padding: 0.25rem 0.5rem; border-radius: 6px; }
-      .mkset .npanel span.on { background: var(--bg-sunk); color: var(--ink); font-weight: 600; }
-      /* Licence record */
-      .mkset .lic-body { display: grid; gap: 0.9rem; padding: 1rem; font-size: 0.75rem; }
-      .mkset .life { display: flex; justify-content: space-between; position: relative; padding: 0 0.5rem; }
-      .mkset .life::before { content: ""; position: absolute; left: 1rem; right: 1rem; top: 6px; height: 2px; background: var(--line-strong); }
-      .mkset .life .d { position: relative; display: grid; justify-items: center; gap: 0.35rem; padding-top: 0; color: var(--ink-3); font-size: 0.68rem; }
-      .mkset .life .d::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--bg-elev); border: 2px solid var(--line-strong); }
-      .mkset .life .d.on { color: var(--ink); font-weight: 600; }
-      .mkset .life .d.on::before { background: #1f7a4d; border-color: #1f7a4d; }
-      .mkset .hist { width: 100%; border-collapse: collapse; }
-      .mkset .hist th { text-align: left; font-weight: 500; color: var(--ink-3); font-size: 0.68rem; padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--line); }
-      .mkset .hist td { padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--line); color: var(--ink); }
-      .mkset .hist tr.cur td { background: var(--bg-elev); }
-      .mkset .toggle { display: flex; align-items: center; gap: 0.5rem; color: var(--ink-2); }
-      .mkset .sw { width: 28px; height: 16px; border-radius: 999px; background: var(--line-strong); position: relative; }
-      .mkset .sw.on { background: #1f7a4d; }
-      .mkset .sw::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: #fff; }
-      .mkset .sw.on::after { left: 14px; }
-      .mkset .dash, .mkset .lic { margin-top: 1.25rem; }
+      html:root body main .prose .wt-cap { margin: 1.25rem 0 0; padding-top: 0.9rem; border-top: 1px solid var(--line); font-size: var(--t-1); line-height: 1.5; color: var(--ink-3); }
+      /* What the old page never caught, in the same red as the new review's warnings */
+      /* Working controls inside the demos */
+      .mkset .wt [hidden] { display: none !important; }
+      .mkset button.drop, .mkset .f > button { display: block; width: 100%; padding: 0.55rem 0.7rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--bg-elev); font: inherit; font-size: inherit; color: var(--ink-2); cursor: pointer; }
+      .mkset button.drop { border-style: dashed; padding: 0.8rem; text-align: center; }
+      .mkset .f > button { text-align: left; }
+      .mkset button.drop:hover, .mkset .f > button:hover { border-color: var(--ink); color: var(--ink); }
+      .mkset button.drop:focus-visible, .mkset .f > button:focus-visible, .mkset button.old-done:focus-visible, .linklike:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+      .mkset .date.set { color: var(--ink) !important; }
+      .mkset .f.bad > button { border-color: #d93f3f; }
+      .mkset .f-err { font-size: 0.7rem; color: #b42318; }
+      .mkset .sec-h { font-size: 0.85rem; color: var(--ink); }
+      .mkset .wt-rail .count.ok, .mkset .count.ok { background: #1f7a4d; }
+      .mkset .rv, .mkset .sb { display: grid; gap: 0.6rem; }
+      .mkset .okbox { display: grid; gap: 0.2rem; padding: 0.75rem; border: 1px solid #bfdccb; border-radius: 10px; background: #eef6f1; color: #2f4a3b; }
+      .mkset .okbox b { color: #1d2733; font-size: 0.9rem; }
+      .mkset .err .b { flex: none; }
+      .linklike { padding: 0; border: 0; background: none; font: inherit; color: var(--ink); text-decoration: underline; cursor: pointer; }
+      .mkset button.old-done { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; }
+      .mkset .old-done[aria-pressed="true"] i { border-color: #1f9d7a; background: #1f9d7a; }
+      /* The new shell: a slim rail of five areas, a top bar, a panel that swaps between the area's links and an application's steps */
+      .mkset .sh-body { display: grid; grid-template-columns: 70px minmax(0, 1fr); min-height: 580px; }
+      .mkset .sh-rail { display: grid; align-content: start; gap: 0.35rem; padding: 0.7rem 0.4rem; background: #243a55; }
+      .mkset .sh-rail span { display: grid; justify-items: center; gap: 3px; padding: 0.5rem 0.1rem; border-radius: 8px; font-size: 0.58rem; text-align: center; color: #c9d4e1; }
+      .mkset .sh-rail svg { width: 16px; height: 16px; }
+      .mkset .sh-rail span.on { background: #36557a; color: #fff; font-weight: 600; }
+      .mkset .sh-right { display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+      .mkset .sh-top { display: flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1rem; border-bottom: 1px solid var(--line); background: var(--bg-elev); font-size: 0.68rem; color: var(--ink-2); }
+      .mkset .sh-org { display: inline-flex; align-items: center; gap: 0.5rem; margin-right: auto; font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+      .mkset .sh-org i { width: 11px; height: 11px; background: radial-gradient(circle, var(--ink-3) 1.2px, transparent 1.4px) 0 0 / 4px 4px; }
+      .mkset .sh-view { display: grid; grid-template-columns: 210px minmax(0, 1fr); min-width: 0; }
+      .mkset .sh-view[hidden], .mkset [data-sub][hidden] { display: none; }
+      .mkset .sh-panel { display: grid; align-content: start; gap: 2px; padding: 0.8rem 0.6rem; border-right: 1px solid var(--line); background: var(--bg-elev); }
+      .mkset .sh-panel > span, .mkset .sh-panel > button { display: block; padding: 0.42rem 0.55rem; border: 0; border-radius: 6px; background: transparent; font: inherit; font-size: 0.78rem; text-align: left; color: var(--ink-2); }
+      .mkset .sh-panel > button { cursor: pointer; }
+      .mkset .sh-panel .grp { color: var(--ink); font-weight: 600; }
+      .mkset .sh-panel .sub { margin-left: 0.7rem; padding-left: 0.7rem; border-left: 1px solid var(--line); border-radius: 0 6px 6px 0; font-size: 0.74rem; }
+      .mkset .sh-panel .sub.on { background: var(--bg-sunk); color: var(--ink); font-weight: 600; box-shadow: inset 2px 0 0 var(--ink); }
+      .mkset .sh-panel button:focus-visible, .mkset button.b:focus-visible, .mkset .ap-more summary:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+      .mkset .who-card { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; padding: 0.5rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+      .mkset .who-card i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 5px; background: #2bb0c6; color: #fff; font-size: 0.62rem; font-style: normal; font-weight: 700; }
+      .mkset .who-card span { display: grid; flex: 1; min-width: 0; }
+      .mkset .who-card b { font-size: 0.74rem; color: var(--ink); }
+      .mkset .who-card small { font-size: 0.62rem; color: var(--ink-3); }
+      .mkset .who-card em { font-style: normal; color: var(--ink-3); }
+      .mkset .fl-side .fl-back { padding: 0.2rem 0.55rem 0.5rem; font-size: 0.72rem; font-weight: 600; color: #2a64a8; }
+      .mkset .fl-app { margin: 0.3rem 0.55rem 0.6rem; font-size: 0.72rem; color: var(--ink-3); }
+      .mkset .fl-app b { display: block; font-size: 0.86rem; color: var(--ink); }
+      .mkset .fl-side .wt-rail { padding: 0; border: 0; background: none; }
+      .mkset [data-view] .wt-panels { min-width: 0; }
+      .mkset .ap-list { display: grid; align-content: start; padding: 1.6rem 2rem; font-size: 0.8rem; color: var(--ink-2); }
+      .mkset .ap-title { justify-self: center; font-size: 1.15rem; font-weight: 600; color: var(--ink); }
+      .mkset .ap-sub { max-width: 440px; margin: 0.4rem auto 1rem; text-align: center; line-height: 1.5; }
+      .mkset .ap-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+      .mkset .ap-new { align-items: center; }
+      .mkset .ap-new > b { font-size: 0.88rem; color: var(--ink); }
+      .mkset .ap-name { display: grid; gap: 0.15rem; min-width: 0; }
+      .mkset .ap-name b { font-size: 0.88rem; color: var(--ink); }
+      .mkset .ap-name small { font-size: 0.74rem; color: var(--ink-3); }
+      .mkset .ap-name u { justify-self: start; margin-top: 0.2rem; font-size: 0.74rem; text-decoration: none; color: #2a64a8; }
+      .mkset .ap-more { padding: 0.75rem 0 0; }
+      .mkset .ap-more summary { cursor: pointer; font-size: 0.78rem; font-weight: 600; color: var(--ink); }
+      .mkset .ap-more p { margin: 0.5rem 0 0; line-height: 1.5; }
+      .mkset .ap-more .ap-row { border-bottom: 0; padding-bottom: 0; }
+      .mkset button.b { border: 0; font-family: inherit; cursor: pointer; }
+      .mkset button.b.ghost { border: 1px solid var(--line-strong); }
+      .mkset .rv-head { display: flex; align-items: center; gap: 0.6rem; padding-bottom: 0.4rem; }
+      .mkset .rv-head i { display: grid; place-items: center; width: 22px; height: 22px; border: 2px solid #d93f3f; border-radius: 50%; color: #d93f3f; font-size: 0.7rem; font-style: normal; font-weight: 700; }
+      .mkset .rv-head span { display: grid; }
+      .mkset .rv-head b { color: var(--ink); font-size: 0.85rem; }
+      .mkset .rv-head small { color: var(--ink-3); font-size: 0.72rem; }
+      /* The sidebar's iterations, side by side */
+      /* Two intro tiles share the row, as in Case 02 */
+      html:root body main .case-intro.cs-after .intro-card .highlights.hl-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      @media (max-width: 700px) { html:root body main .case-intro.cs-after .intro-card .highlights.hl-2 { grid-template-columns: minmax(0, 1fr) !important; } }
+      /* What can be clicked in the demo: live controls get hover states, the parts outside the demo are faded,
+         attached files read as chips rather than fields, and the first Continue is marked until the first click */
+      .mkset .wt .sh-rail span:not(.on), .mkset .wt .sh-panel > .inert { opacity: 0.45; }
+      .mkset button.b:not(.ghost):not(.text):not(:disabled):hover { background: #3a3f48; }
+      :root[data-theme="dark"] .mkset button.b:not(.ghost):not(.text):not(:disabled):hover { background: #d9dadd; }
+      @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mkset button.b:not(.ghost):not(.text):not(:disabled):hover { background: #d9dadd; } }
+      .mkset button.b.ghost:not(:disabled):hover, .mkset .sh-panel > button:hover { background: var(--bg-sunk); }
+      .mkset .fl-side .fl-back:hover, .mkset details summary:hover { text-decoration: underline; }
+      .mkset .file { align-items: center; border: 0; background: var(--bg-sunk); }
+      .mkset .file::before { content: ""; flex: none; width: 12px; height: 14px; margin-right: 0.5rem; border: 1.5px solid var(--ink-3); border-radius: 2px; }
+      .mkset .file { justify-content: flex-start; }
+      .mkset .file i { margin-left: auto; }
+      .mkset .b.hint { position: relative; animation: wt-hint 1.6s ease-out 0.6s 3; }
+      .fx { position: relative; }
+      .wt-anno { position: absolute; z-index: 2; display: flex; align-items: flex-start; gap: 2px; color: var(--ink); pointer-events: none; transition: opacity 0.25s; }
+      .wt-anno[hidden] { display: none; }
+      .wt-anno.gone { opacity: 0; }
+      .wt-anno svg { flex: none; width: 40px; height: 26px; }
+      .wt-anno span { display: inline-flex; align-items: center; gap: 0.25rem; margin-top: -0.5rem; font-family: var(--font-display); font-size: 0.92rem; font-weight: 600; white-space: nowrap; transform: rotate(-4deg); }
+      .wt-anno img { width: 20px; height: 19px; }
+      @media (prefers-reduced-motion: reduce) { .wt-anno { transition: none; } }
+      @keyframes wt-hint { 0% { box-shadow: 0 0 0 0 rgb(255 201 60 / 0.9); } 100% { box-shadow: 0 0 0 12px rgb(255 201 60 / 0); } }
+      @media (prefers-reduced-motion: reduce) { .mkset .b.hint { animation: none; } }
+
+      /* Fill in's sections live under the step in the sidebar, and show only while that step is open */
+      .mkset .wt-fill { max-width: 520px; }
+      .mkset .wt-fill > .wt-foot { margin-top: 0.6rem; }
+      .mkset .wt-secs { display: grid; gap: 1px; margin: 0.3rem 0 0.6rem 1rem; padding-left: 0.45rem; border-left: 2px solid var(--line); }
+      .mkset #wt-t1[aria-selected="false"] + .wt-secs { display: none; }
+      .mkset .wt-secs .tree-g { display: flex; justify-content: space-between; gap: 0.4rem; margin-top: 0.55rem; padding: 0 0.5rem 0.15rem; font-size: 0.66rem; font-weight: 600; color: var(--ink-3); }
+      .mkset .wt-secs .tree-g:first-child { margin-top: 0.1rem; }
+      .mkset .wt-secs .tree-g i { flex: none; font-style: normal; font-weight: 500; }
+      .mkset .wt-secs button { position: relative; display: flex; justify-content: space-between; align-items: center; width: 100%; margin-left: 0.35rem; width: calc(100% - 0.35rem); padding: 0.3rem 0.5rem 0.3rem 1.55rem; border: 0; border-radius: 6px; background: none; font: inherit; font-size: 0.74rem; text-align: left; color: var(--ink-2); cursor: pointer; }
+      .mkset .wt-secs button::before { content: ""; position: absolute; left: 0.55rem; top: 50%; width: 8px; height: 8px; margin-top: -5px; border: 1.5px solid #9aa1ab; border-radius: 50%; }
+      .mkset .wt-secs button.done::before { content: "✓"; width: auto; height: auto; margin-top: -0.55em; border: 0; color: #1f7a4d; font-size: 0.72rem; font-weight: 700; line-height: 1; }
+      .mkset .wt-secs button.now::before { border-color: var(--ink); background: var(--ink); }
+      .mkset .wt-secs button.now.done::before { content: "✓"; background: none; }
+      .mkset .wt-secs button:hover { background: var(--bg-sunk); color: var(--ink); }
+      .mkset .wt-secs button.now { background: var(--bg-sunk); color: var(--ink); font-weight: 600; }
+      .mkset .wt-secs button i { font-style: normal; color: #8a5a00; }
+      .mkset .wt-secs button:focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }
+
+      /* The demo's controls: one footer per step (back on the left, actions on the right), real fields, a working section list */
+      .mkset .fi-main { display: grid; gap: 0.6rem; align-content: start; }
+      .mkset .wt-foot { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.35rem; padding-top: 0.8rem; border-top: 1px solid var(--line); }
+      .mkset .wt-foot-r { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0.4rem; }
+      .mkset .wt-foot-r > span { display: contents; }
+      .mkset button.b.text { padding-inline: 0; background: none; color: var(--ink-2); }
+      .mkset button.b.text:hover:not(:disabled) { color: var(--ink); text-decoration: underline; }
+      .mkset button.b:disabled { opacity: 0.4; cursor: not-allowed; }
+      .mkset button.b.ghost.done { border-color: #1f7a4d; background: #eef6f1; color: #1f7a4d; }
+      .mkset .f input, .mkset .f select, .mkset .f textarea, .mkset .tree-q { width: 100%; padding: 0.5rem 0.65rem; border: 1px solid var(--line-strong); border-radius: 8px; background: var(--bg-elev); font: inherit; font-size: 0.8rem; color: var(--ink); }
+      .mkset .f textarea { resize: vertical; }
+      .mkset :is(.f input, .f select, .f textarea, .tree-q, .tree button, .b-link, .help summary, .check input):focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }
+      .mkset .f2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+      .mkset .sec-h { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
+      .mkset .sec-h b { font-size: 0.85rem; color: var(--ink); }
+      .mkset .flag-tag { padding: 0.1rem 0.45rem; border-radius: 999px; background: #fdf0d5; color: #8a5a00; font-size: 0.66rem; font-style: normal; font-weight: 600; }
+      .mkset .fi-extra { display: flex; flex-wrap: wrap; gap: 1rem; }
+      .mkset .b-link { padding: 0; border: 0; background: none; font: inherit; font-size: 0.74rem; font-weight: 600; color: #2a64a8; cursor: pointer; }
+      .mkset .b-link:hover { text-decoration: underline; }
+      .mkset .b-link[aria-pressed="true"] { color: #8a5a00; }
+      .mkset .tree-q { margin-bottom: 0.3rem; padding: 0.35rem 0.5rem; font-size: 0.72rem; }
+      .mkset .tree button { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 0.3rem 0.5rem; border: 0; border-radius: 6px; background: none; font: inherit; font-size: 0.72rem; text-align: left; color: var(--ink-2); cursor: pointer; }
+      .mkset .tree button:hover { background: var(--bg-sunk); }
+      .mkset .tree button.now { background: var(--bg-sunk); color: var(--ink); font-weight: 600; }
+      .mkset .tree button.done { color: #1f7a4d; }
+      .mkset .tree button i { font-style: normal; }
+      .mkset .tree button[hidden] { display: none; }
+      .mkset .tree .tree-g { display: flex; justify-content: space-between; gap: 0.4rem; margin-top: 0.35rem; padding: 0 0.5rem; font-size: 0.72rem; font-weight: 600; color: var(--ink); }
+      .mkset .tree .tree-g i { flex: none; font-style: normal; font-weight: 500; color: var(--ink-3); }
+      .mkset .tree .tree-none { color: var(--ink-3); }
+      .mkset details.help summary { cursor: pointer; font-weight: 600; }
+      .mkset details.help p { margin: 0.35rem 0 0; font-size: 0.74rem; color: var(--ink-2); }
+      .mkset .check { font-size: 0.78rem; color: var(--ink); cursor: pointer; }
+      .mkset .check input { width: 14px; height: 14px; margin: 0; accent-color: var(--ink); }
+      /* The note under the demo explains the screen; it sits outside the sheet so it doesn't read as product UI */
+      .fx-foot { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+      html:root body main .prose .fx-live { margin: 0; font-size: var(--t-1); line-height: 1.5; color: var(--ink-3); }
+      .fx-foot .linklike { flex: none; font-size: var(--t-1); }
+      .fx-foot .linklike[hidden] { display: none; }
+
+      /* The customer's points: one row each, what they said beside what it became */
+      .qx { margin: 1.25rem 0 1.5rem; border-top: 1px solid var(--line); }
+      .qx-row { display: grid; grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1.15fr); gap: 0.75rem; align-items: baseline; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+      .qx-head { padding: 0.6rem 0; }
+      html:root body main .prose .qx-head span { font-size: var(--t-1); font-weight: 600; color: var(--ink-3); }
+      html:root body main .prose .qx q { font-size: var(--t1); font-weight: 600; line-height: 1.3; color: var(--ink); quotes: "\201C" "\201D"; }
+      html:root body main .prose .qx-row > span[role="cell"] { font-size: var(--t0); line-height: 1.5; color: var(--ink-2); }
+      .qx-to { color: var(--ink-3); }
+      .prose .pipeline.ds-flow .node small { color: var(--ink-2); }
+      @media (max-width: 760px) {
+        .qx-row { grid-template-columns: minmax(0, 1fr); gap: 0.35rem; }
+        .qx-head, .qx-to { display: none; }
+      }
+
+      /* Figure blocks, as in Case 02: a rule, a bold label, one grey line, then the sheet */
+      .fx { display: grid; gap: 0.75rem; margin: 1.5rem 0 2.25rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+      .fx-head { display: grid; gap: 2px; }
+      html:root body main .prose .fx-k { font-size: var(--t0); font-weight: 600; line-height: 1.35; color: var(--ink); }
+      html:root body main .prose .fx-cap { margin: 0; font-size: var(--t-1); line-height: 1.45; color: var(--ink-3); }
+      .fx > .figure, .fx > .mk { margin: 0 !important; }
+      html:root body main .prose .fx > .fx-reset { margin: 0; }
+      .fx-reset[hidden] { display: none; }
+
+      /* Chapter 1: the same thing, looked for in the old sidebar and the new one. Both sidebars work. */
+      .fd-tasks { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 0.75rem; margin-bottom: 1.5rem; }
+      .fd-tk { margin-right: 0.15rem; font-size: var(--t-1); font-weight: 600; color: var(--ink); }
+      .fd-opt { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.42rem 0.85rem 0.42rem 0.65rem; border: 1.5px solid var(--line-strong); border-radius: 999px; background: var(--bg-elev); font-size: var(--t-1); font-weight: 600; color: var(--ink); cursor: pointer; transition: background-color 0.15s, border-color 0.15s; }
+      .fd-opt:hover { background: var(--bg-sunk); }
+      .fd-opt input { display: grid; place-items: center; flex: none; width: 15px; height: 15px; margin: 0; border: 1.5px solid currentColor; border-radius: 50%; background: transparent; appearance: none; -webkit-appearance: none; cursor: pointer; }
+      .fd-opt input:checked::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+      .fd-opt:has(input:checked) { border-color: #1A1F29; background: #FFC93C; color: #1A1F29; }
+      .fd-opt:has(input:focus-visible) { outline: 2px solid var(--link); outline-offset: 2px; }
+      .fd button:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+      .fd-sheet { border-radius: 6px; background: var(--sheet); box-shadow: var(--paper-shadow); overflow: hidden; }
+      .fd-sheet > .fd-tasks { margin: 0; padding: 0.75rem 1.1rem; border-bottom: 1px solid var(--line); background: var(--bg-sunk); }
+      .fd-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .fd-col { display: grid; gap: 0.35rem; align-content: start; padding: 1rem 1.1rem 1.1rem; }
+      .fd-col + .fd-col { border-left: 1px solid var(--line); }
+      html:root body main .prose .fd-h { margin: 0; font-size: var(--t-1); font-weight: 600; color: var(--ink-3); }
+      html:root body main .prose .fd-r { min-height: 2.9em; margin: 0 0 0.45rem; font-size: 0.94rem; font-weight: 600; line-height: 1.45; color: var(--ink); }
+      .fd-old { display: grid; align-content: start; gap: 0; padding: 0.5rem 0.45rem; border-radius: 6px; background: #243a55; font-size: 0.7rem; line-height: 1.22; color: #e6ecf3; }
+      .fd-old .grp { display: flex; justify-content: space-between; align-items: center; margin-top: 0.2rem; padding: 0.1rem 0.35rem; border: 0; border-radius: 3px; background: none; font: inherit; font-weight: 600; text-align: left; color: #fff; cursor: pointer; }
+      .fd-old .grp:first-child { margin-top: 0; }
+      .fd-old .grp:hover, .fd-rail button:hover { background: rgba(255, 255, 255, 0.1); }
+      .fd-old .grp::after { content: ""; width: 5px; height: 5px; margin: 2px 2px 0 0.5rem; border-top: 1.5px solid currentColor; border-left: 1.5px solid currentColor; transform: rotate(45deg); }
+      .fd-old .grp[aria-expanded="false"]::after { margin-top: -3px; transform: rotate(225deg); }
+      .fd-old .rows { display: grid; align-content: start; gap: 0; }
+      .fd-panel [data-panel] { display: grid; align-content: start; gap: 1px; }
+      .fd-old .rows[hidden], .fd-panel [data-panel][hidden] { display: none; }
+      .fd-old .row { display: flex; align-items: center; gap: 0.4rem; padding: 0.08rem 0.35rem 0.08rem 1.25rem; border-radius: 3px; }
+      .fd-old .row.top { padding-left: 0.6rem; }
+      .fd-old .row::before { content: ""; flex: none; width: 5px; height: 5px; border: 1.2px solid currentColor; border-radius: 50%; opacity: 0.8; }
+      .fd-old .who { display: flex; justify-content: space-between; align-items: center; margin: 0.4rem 0 0.15rem; padding: 0.3rem 0.45rem; border: 0; border-radius: 5px; background: #2f4a6b; font: inherit; font-weight: 600; text-align: left; color: #fff; cursor: pointer; }
+      .fd-old .who:hover { background: #3a5a80; }
+      .fd-old .who::after { content: "⇅"; font-weight: 400; opacity: 0.8; }
+      .fd-old small { margin: 0.35rem 0.35rem 0.1rem; font-size: 0.56rem; letter-spacing: 0.08em; text-transform: uppercase; color: #c3cfdd; }
+      .fd-new { display: grid; grid-template-columns: 66px minmax(0, 1fr); min-height: 300px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+      .fd-rail { display: grid; align-content: start; gap: 4px; padding: 0.5rem 0.3rem; background: #243a55; }
+      .fd-rail button { display: grid; justify-items: center; gap: 3px; padding: 0.45rem 0.1rem; border: 0; border-radius: 6px; background: none; font: inherit; font-size: 0.54rem; text-align: center; color: #c9d4e1; cursor: pointer; }
+      .fd-rail button.on { background: #36557a; color: #fff; font-weight: 600; }
+      .fd-rail svg { width: 15px; height: 15px; }
+      .fd-panel { padding: 0.55rem 0.45rem; background: var(--sheet); font-size: 0.74rem; line-height: 1.35; }
+      .fd-panel .row { padding: 0.24rem 0.5rem; border-radius: 4px; color: var(--ink-2); }
+      .mkset .fd-panel .who-card { width: 100%; margin-bottom: 0.4rem; font: inherit; text-align: left; cursor: pointer; }
+      .fd .fd-old .hit, .fd .fd-panel .hit, .mkset .fd-panel .who-card.hit { background: #FFC93C; border-color: #FFC93C; color: #1A1F29; font-weight: 600; }
+      .mkset .fd-panel .who-card.hit :is(b, small, em) { color: #1A1F29; }
+      .fd .flash { animation: fd-flash 0.8s ease-out; }
+      @keyframes fd-flash { 0% { box-shadow: inset 0 0 0 2px #fff, 0 0 0 2px #FFC93C; } 100% { box-shadow: inset 0 0 0 2px transparent, 0 0 0 2px transparent; } }
+      @media (prefers-reduced-motion: reduce) { .fd .flash { animation: none; } }
+      /* Chapter 2: before and after side by side, in the same frame as chapter 1. Each row pairs an old tick box with the review's warning for the same gap. */
+      .rx { --fixed: #1f7a4d; }
+      .rx [hidden] { display: none !important; }
+      .rx-sheet { border-radius: 6px; background: var(--sheet); box-shadow: var(--paper-shadow); overflow: hidden; font-size: 0.78rem; line-height: 1.4; color: var(--ink); }
+      html:root body main .prose .rx-app { margin: 0; padding: 0.75rem 1.1rem; border-bottom: 1px solid var(--line); background: var(--bg-sunk); font-size: var(--t-1); }
+      .rx-who { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.55rem; color: var(--ink-3); }
+      .rx-who i { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 5px; background: #2bb0c6; color: #fff; font-size: 0.6rem; font-style: normal; font-weight: 700; }
+      .rx-who b { color: var(--ink); white-space: nowrap; }
+      .rx-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+      html:root body main .prose .rx-h { margin: 0; padding: 1rem 1.1rem 0.35rem; font-size: var(--t-1); font-weight: 600; color: var(--ink-3); }
+      .rx-l, .rx-r { display: flex; align-items: center; padding: 0.35rem 1.1rem; }
+      .rx-hr, .rx-r { border-left: 1px solid var(--line); }
+      .rx-end { padding-bottom: 1.1rem; }
+      .rx-l > *, .rx-r > * { flex: 1; min-height: 2.6rem; }
+      .mkset .rx .old-step { padding: 0.45rem 0.7rem; }
+      .mkset .rx .old-done i { position: relative; border-color: #1f9d7a; background: #1f9d7a; }
+      .mkset .rx .old-done i::after { content: ""; position: absolute; left: 3px; top: 1px; width: 3px; height: 6px; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+      .mkset .rx .old-done { color: #1f7a4d; font-weight: 600; }
+      .rx-none { display: flex; align-items: center; padding: 0 0.7rem; border: 1.5px dashed #c5ccd5; border-radius: 4px; background: #fff; color: #6b7480; }
+      .mkset .rx .err { flex-wrap: wrap; row-gap: 0.4rem; padding-block: 0.45rem; }
+      .rx-ok { display: flex; align-items: center; padding: 0 0.75rem; border: 1px solid #bfdccb; border-left: 3px solid #1f7a4d; border-radius: 8px; background: #eef6f1; color: #1d4b33; font-weight: 600; }
+      .mkset .rx .rv-head { padding: 0; }
+      .mkset .rx .rv-head.clear i { border-color: #1f7a4d; color: #1f7a4d; }
+      .mkset .rx .okbox { display: grid; }
+      .rx-ok:focus, .rx .okbox:focus { outline: 2px solid var(--link); outline-offset: 2px; }
+      @media (max-width: 760px) {
+        .rx-grid { grid-template-columns: minmax(0, 1fr); }
+        .rx-h { display: none; }
+        .rx-hr, .rx-r { border-left: 0; }
+        .rx-l, .rx-r { flex-direction: column; align-items: stretch; gap: 0.3rem; padding-inline: 0.85rem; }
+        .rx-l { padding-top: 1rem; }
+        .rx-l + .rx-r { padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
+        .rx-r.rx-end { border-bottom: 0; }
+        .rx [data-l]::before { content: attr(data-l); font-size: 0.72rem; font-weight: 600; color: var(--ink-3); }
+        .rx-l > *, .rx-r > * { flex: none; }
+        html:root body main .prose .rx-app { padding-inline: 0.85rem; }
+      }
+
+      /* Before / after labels, and the old overview */
+      .ba-k { margin: 0 0 0.7rem; font-size: var(--t0); font-weight: 600; line-height: 1.35; color: var(--ink); }
+      .mkset .old-done i { width: 12px; height: 12px; border: 1.5px solid #8a96a3; border-radius: 50%; }
+      .mkset .old-info { padding: 0.6rem 0.8rem; border-radius: 4px; background: #e8f1fb; color: #2f5b8a; font-size: 0.72rem; }
+      .mkset .old-step { display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; padding: 0.6rem 0.8rem; border-radius: 4px; background: #f3f5f8; color: #1d2733; }
+      .mkset .old-done { display: inline-flex; align-items: center; gap: 0.4rem; color: #4b5563; white-space: nowrap; }
       @media (max-width: 760px) {
         .mkset .wt-body { grid-template-columns: minmax(0, 1fr); }
+        .fd-pair { grid-template-columns: minmax(0, 1fr); }
+        .fd-col + .fd-col { border-left: 0; border-top: 1px solid var(--line); }
+        .fd-sheet > .fd-tasks, .fd-col { padding-inline: 0.85rem; }
+        .fd-new { min-height: 0; }
+          .mkset .sh-body { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+        .mkset .sh-rail { display: flex; padding: 0.4rem; }
+        .mkset .sh-rail span { flex: 1; }
+        .mkset .sh-view { grid-template-columns: minmax(0, 1fr); }
+        .mkset .wt-rail .wt-secs { display: none !important; }
+        .mkset .wt-foot { flex-direction: column-reverse; align-items: stretch; }
+        .mkset .wt-foot-r { justify-content: stretch; }
+        .mkset .wt-foot-r .b, .mkset .wt-foot-r [data-rv-actions] .b { flex: 1 1 auto; text-align: center; }
+        .mkset .wt-foot > .b.text { align-self: center; }
+        .mkset .wt-split { grid-template-columns: minmax(0, 1fr); }
+        .mkset .sh-panel { display: flex; flex-wrap: nowrap; overflow-x: auto; align-items: center; border-right: 0; border-bottom: 1px solid var(--line); }
+        .mkset .sh-panel > span, .mkset .sh-panel > button { white-space: nowrap; }
+        .mkset .sh-panel .who-card, .mkset .sh-panel .grp, .mkset .fl-app { display: none; }
+        .mkset .sh-panel .sub { margin-left: 0; border-left: 0; }
+        .mkset .fl-side { display: grid; overflow: visible; }
+        .mkset .ap-list { padding: 1.1rem 1rem; }
         .mkset .wt-rail { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--line); }
-        .mkset .wt-split, .mkset .dash-grid { grid-template-columns: minmax(0, 1fr); }
+        .mkset .wt-split { grid-template-columns: minmax(0, 1fr); }
         .mkset .wt-panels { padding: 1rem; }
         .mkset .err { flex-direction: column; align-items: flex-start; }
-        .mkset .hist { font-size: 0.68rem; }
       }
     </style>
   </head>
@@ -183,7 +416,7 @@
             <!-- Writing hidden for now: <li><a href="../writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="../about.html">About</a></li>
             <!-- Ask hidden for now: <li><a href="../ask.html">Ask</a></li> -->
-            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="../images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -197,317 +430,320 @@
     </header>
 
     <main id="main" class="hue-mustard mkset">
-      <section class="wrap case-intro" data-toy="stairs" data-prop="stamp">
-        <p class="eyebrow"><span class="case-no">Case 04</span><b>Licensing platform</b> · Product design + front end</p>
-        <h1>Eleven steps down to six</h1>
-        <p class="intro-sum">
-          On a licensing-compliance platform, applying for a licence was an eleven-step guide page that ended with
-          printing, notarising, mailing and creating your own licence record. I redesigned it as six steps with
-          visible progress, and gave the managers who assign those applications one place to track them.
-        </p>
-        <ul class="highlights">
-          <li><b>11 steps → 6</b><span>Each one finishable on its own</span></li>
-          <li><b>Shipped</b><span>Application flow and manager tools</span></li>
-          <li><b>Two years</b><span>Designed by me; parts built by me</span></li>
-        </ul>
-        <dl class="meta-line">
-          <div><dt>Role</dt><dd>Front-end developer on a small team, designing and building the product</dd></div>
-          <div><dt>When</dt><dd>2023 to 2025</dd></div>
-          <div><dt>With</dt><dd>A small product team: one product manager and the engineers I built alongside</dd></div>
-        </dl>
+      <!-- the case's title on a strip of the room's wall, ending on a ledge; the duck sits on it, legs over the edge -->
+      <section class="case-strip">
+        <div class="wrap cs-inner">
+          <p class="eyebrow"><span class="case-no">Case 03</span><b>Licensing&nbsp;platform</b></p>
+          <h1>Redesigning a&nbsp;26-page sidebar as five areas, and a&nbsp;licence application as six guided&nbsp;steps</h1>
+        </div>
+        <img class="cs-duck" src="../images/room/duck-ledge-stamp.svg?v=2" alt="" width="214" height="240" />
       </section>
-
+      <section class="wrap case-intro cs-after">
+        <div class="intro-card">
+        <!-- the results first, then three short labelled rows: the problem, what I did, my role -->
+        <ul class="highlights hl-2">
+          <li><b>26 pages → 5 areas</b><span>Split by whose work it is, so applicants see only their&nbsp;own</span></li>
+          <li><b>4 tick boxes → 6&nbsp;steps</b><span>Each one guided, with a&nbsp;review that lists what's&nbsp;missing</span></li>
+        </ul>
+        <dl class="intro-rows">
+          <div><dt>The problem</dt><dd>A&nbsp;26-page sidebar mixed the company's pages with each person's. The&nbsp;application gave people nowhere to start: they generated the PDF first, ticked off four steps themselves, and did the paper parts outside the&nbsp;product.</dd></div>
+          <div><dt>What I&nbsp;did</dt><dd>I&nbsp;redesigned both flows. The&nbsp;sidebar became five areas split by whose work each page is, and each application became six steps, paper tasks included, that end in a&nbsp;review of what's&nbsp;missing.</dd></div>
+          <div><dt>My role</dt><dd>Front-end developer on a&nbsp;small product team. I&nbsp;ran the research and designed both flows, from the first wireframes to the spec the engineers built&nbsp;from.</dd></div>
+        </dl>
+        </div>
+      </section>
       <section class="wrap section">
         <div class="case-body">
         <div class="prose">
 
-          <h2>The problem</h2>
+          <h2>Who was applying</h2>
           <p>
-            Licensing in regulated industries means long applications, notarised documents, fingerprints and renewals.
-            The people filling them in were often seasonal staff, assigned a form by a manager or left to complete it on
-            their own. The old flow was one long guide page, and my notes from the time sum up what went wrong: no
-            validation, no sense of what was complete, and a platform that was "too open", where nothing was required.
+            Often seasonal staff, assigned an application by a&nbsp;licensing manager and given about two weeks to finish it. Many were
+            nervous about typing their most sensitive information into a&nbsp;portal. I&nbsp;audited the product page by page and sat in
+            on a&nbsp;session with a&nbsp;customer's licensing team, and two things kept getting in people's way: the sidebar, and the
+            application&nbsp;itself.
           </p>
+
+          <div class="chapter step">
+            <h2>1. The&nbsp;sidebar</h2>
+            <p class="dek">
+              The&nbsp;old sidebar put the company's licensing work and one person's own file in the same column, with related pages
+              spread across groups. I&nbsp;cut or merged what didn't need its own page and split the rest by whose work it is, as
+              a&nbsp;rail of five areas with a&nbsp;panel for each. An&nbsp;applicant now sees only Profiles, and a&nbsp;manager filling
+              in someone's application always has that person's name above&nbsp;it.
+            </p>
+          <div class="fx">
+          <div class="fx-head"><span class="fx-k">The same three things, looked for in the old sidebar and the new&nbsp;one</span><p class="fx-cap">Choose what to find, and both sidebars highlight where it lives. Both work too: open the old groups, switch areas, or click the old person&nbsp;switcher.</p></div>
+          <figure class="figure fd" data-fd>
+            <div class="fd-sheet">
+            <div class="fd-tasks" role="radiogroup" aria-labelledby="fd-tk">
+              <span class="fd-tk" id="fd-tk">Show where to find</span>
+              <label class="fd-opt"><input type="radio" name="fd-task" value="apps" data-task checked /><span>J. Chen's applications</span></label>
+              <label class="fd-opt"><input type="radio" name="fd-task" value="agency" data-task /><span>A&nbsp;licensing agency's contacts</span></label>
+              <label class="fd-opt"><input type="radio" name="fd-task" value="users" data-task /><span>Who can log in</span></label>
+            </div>
+            <div class="fd-pair">
+              <div class="fd-col">
+                <p class="fd-h">Before: 26 pages in one&nbsp;sidebar</p>
+                <p class="fd-r" data-ro aria-live="polite">A&nbsp;switcher under 22 company pages, then Applications below&nbsp;it.</p>
+                <div class="fd-old" aria-label="The old sidebar, with the pages for the chosen thing highlighted. Its person switcher changes only the four links under it."><button type="button" class="grp" aria-expanded="true" data-grp="lc">Licence control</button><div class="rows" data-rows="lc"><span class="row top" data-k="dash">Dashboard</span><span class="row top" data-k="prog">Application progress</span><span class="row top" data-k="appm">Application manager</span><span class="row top" data-k="cal">Calendar</span><span class="row top" data-k="task">Task manager</span><span class="row top" data-k="emp">Employees</span><span class="row top" data-k="bus">Businesses</span><span class="row top" data-k="prod">Product tracking</span><span class="row top" data-k="con">Contracts</span><span class="row top" data-k="jur">Jurisdictional contacts</span></div><button type="button" class="grp" aria-expanded="true" data-grp="rep">Reports</button><div class="rows" data-rows="rep"><span class="row" data-k="lic">Licences</span><span class="row" data-k="term">Employee termination</span></div><button type="button" class="grp" aria-expanded="true" data-grp="org">Manage organisation</button><div class="rows" data-rows="org"><span class="row" data-k="agen">Licensing agencies</span><span class="row" data-k="ltyp">Licence types</span><span class="row" data-k="dept">Departments</span><span class="row" data-k="loc">Locations</span></div><button type="button" class="grp" aria-expanded="true" data-grp="imp">Import</button><div class="rows" data-rows="imp"><span class="row" data-k="i-emp">Employees</span><span class="row" data-k="i-usr">Users</span></div><button type="button" class="grp" aria-expanded="true" data-grp="man">Manage</button><div class="rows" data-rows="man"><span class="row" data-k="m-usr">Users</span><span class="row" data-k="m-col">Collaborators</span><span class="row" data-k="m-org">Organisation</span><span class="row" data-k="m-int">Integrations</span></div><button type="button" class="who" data-who="old" data-k="who">J. Chen · Key person</button><small>General</small><div class="rows" data-rows="gen"><span class="row top" data-k="g-ov">Overview</span><span class="row top" data-k="g-doc">Documents</span><span class="row top" data-k="g-apps">Applications</span><span class="row top" data-k="g-fp">Fingerprints</span></div></div>
+              </div>
+              <div class="fd-col">
+                <p class="fd-h">After: 5 areas, by whose work it&nbsp;is</p>
+                <p class="fd-r" data-rn aria-live="polite">Profiles › Applications, with the person at the&nbsp;top.</p>
+                <div class="fd-new" aria-label="The new sidebar: a rail of five areas, and a panel of links for the area picked, with the page for the chosen thing highlighted."><div class="fd-rail"><button type="button" data-area="manage" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l5 2v4c0 3.2-2.2 5.6-5 6.9C5.2 13.1 3 10.7 3 7.5v-4z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5.8 8l1.6 1.6L10.5 6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Manage</button><button type="button" data-area="profiles" class="on" aria-pressed="true"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M6 8h4.5M6 10.5h4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Profiles</button><button type="button" data-area="reports" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 11V8M8 11V5M10.5 11V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Reports</button><button type="button" data-area="org" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 14V4.5l5-2.5v12M7.5 14V7l6 2v5M1.5 14h13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M4.5 6.5h1M4.5 9h1M4.5 11.5h1M10 10.5h1.5M10 12.5h1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Organisation</button><button type="button" data-area="settings" aria-pressed="false"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8v2M8 12.2v2M1.8 8h2M12.2 8h2M3.6 3.6l1.4 1.4M11 11l1.4 1.4M3.6 12.4L5 11M11 5l1.4-1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Settings</button></div><div class="fd-panel"><div data-panel="manage" hidden><span class="row">Home</span><span class="row">Application manager</span><span class="row">Calendar</span><span class="row">Task manager</span><span class="row">Customers</span><span class="row">Employees</span><span class="row">Businesses</span><span class="row">Product tracking</span><span class="row">Contracts</span></div><div data-panel="profiles"><button type="button" class="who-card" data-who="new" data-k="p-who"><i>JC</i><span><b>J. Chen</b><small>Key personnel</small></span><em>⇅</em></button><span class="row">Overview</span><span class="row" data-k="p-apps">Applications</span><span class="row">Disclosure</span><span class="row">Documents</span></div><div data-panel="reports" hidden><span class="row">Licences</span><span class="row">Employee termination</span></div><div data-panel="org" hidden><span class="row" data-k="o-agen">Licensing agencies</span><span class="row">Departments</span><span class="row">Positions</span></div><div data-panel="settings" hidden><span class="row" data-k="s-usr">Users</span><span class="row">Organisation</span><span class="row">Settings</span></div></div></div>
+              </div>
+            </div>
+            </div>
+          </figure>
+          </div>
+          </div>
+
+          <div class="chapter step">
+            <h2>2. The&nbsp;application</h2>
+            <p class="dek">
+              The&nbsp;old page opened on the last PDF you generated, with four steps under it that people ticked off themselves.
+              Nothing checked those boxes, and nothing said where to begin or what was left. I&nbsp;rebuilt it as a&nbsp;page of
+              your applications with six steps inside each one, ending in a&nbsp;review that names what's&nbsp;missing.
+            </p>
+          <div class="fx">
+          <div class="fx-head"><span class="fx-k">What each old tick box let through, and what the new review says&nbsp;instead</span><p class="fx-cap">The same unfinished application in both. This one works: fix a&nbsp;gap and its old tick doesn't change, because the old boxes were ticked by&nbsp;hand.</p></div>
+          <figure class="figure rx" data-rx aria-label="J. Chen's personal disclosure form, with three things missing. Before: every old step is ticked Complete. After: the new review names each gap with a button to its fix.">
+            <div class="rx-sheet">
+              <p class="rx-app"><span class="rx-who"><i>JC</i><b>J. Chen</b>Personal disclosure form, with three things&nbsp;missing</span></p>
+              <div class="rx-grid"><p class="rx-h">Before: the old page, ticked by&nbsp;hand</p><p class="rx-h rx-hr">After: the new review, before anything is&nbsp;generated</p><div class="rx-l" data-l="Before"><span class="old-step"><span>›&nbsp; Download and review your generated application</span><span class="old-done"><i></i>Complete</span></span></div><div class="rx-r" data-l="After" data-row="0"><span class="err">You have 2 sections left in Fill in your information.<button type="button" class="b sm" data-fix="0">Complete remaining sections</button></span><span class="rx-ok" tabindex="-1" hidden>✓&nbsp; All 30 sections complete</span></div><div class="rx-l" data-l="Before"><span class="old-step"><span>›&nbsp; Include all required attachments</span><span class="old-done"><i></i>Complete</span></span></div><div class="rx-r" data-l="After" data-row="1"><span class="err">You are missing 1 required document.<button type="button" class="b sm" data-fix="1">Attach missing document</button></span><span class="rx-ok" tabindex="-1" hidden>✓&nbsp; Proof of address attached</span></div><div class="rx-l" data-l="Before"><span class="rx-none">No step for fingerprints. They had their own page in the&nbsp;sidebar.</span></div><div class="rx-r" data-l="After" data-row="2"><span class="err">You haven't entered the date you were fingerprinted.<button type="button" class="b sm" data-fix="2">Enter fingerprint date</button></span><span class="rx-ok" tabindex="-1" hidden>✓&nbsp; Fingerprinted on 4&nbsp;March</span></div><div class="rx-l rx-end" data-l="Before"><span class="old-step"><span>›&nbsp; Mark your application as submitted</span><span class="old-done"><i></i>Complete</span></span></div><div class="rx-r rx-end" data-l="After"><span class="rv-head" data-rx-head><i>!</i><span><b>Warnings</b><small data-rx-count aria-live="polite">3 items need your attention</small></span></span><span class="okbox" data-rx-ok tabindex="-1" hidden><b>We can't find any errors on your application.</b>You're ready to generate&nbsp;it.</span></div></div>
+            </div>
+          </figure>
+          <p class="mock-note fx-reset" hidden><button type="button" class="linklike" data-rx-reset>Start over</button></p>
+          </div>
+          <div class="fx">
+          <div class="fx-head"><span class="fx-k">Where every application now starts, and the six steps inside&nbsp;it</span><p class="fx-cap">This one works too. Start with Continue on the first application. Everything at full strength responds, and the faded parts of the product sit outside this&nbsp;demo.</p></div>
+          <div class="wt-anno" aria-hidden="true" hidden><svg viewBox="0 0 40 26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M38 5 C 28 1, 14 4, 5 17"/><path d="M5 17 L 6 8.5 M5 17 L 13.5 15.5"/></svg><span><img src="../assets/duck-mark.svg" alt="" />start here!</span></div>
+          <div class="mk wt">
+            <div class="sh-body">
+              <div class="sh-rail" aria-hidden="true"><span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l5 2v4c0 3.2-2.2 5.6-5 6.9C5.2 13.1 3 10.7 3 7.5v-4z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5.8 8l1.6 1.6L10.5 6.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Manage</span><span class="on"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M6 8h4.5M6 10.5h4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Profiles</span><span><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M5.5 11V8M8 11V5M10.5 11V7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Reports</span><span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 14V4.5l5-2.5v12M7.5 14V7l6 2v5M1.5 14h13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M4.5 6.5h1M4.5 9h1M4.5 11.5h1M10 10.5h1.5M10 12.5h1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Organisation</span><span><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 1.8v2M8 12.2v2M1.8 8h2M12.2 8h2M3.6 3.6l1.4 1.4M11 11l1.4 1.4M3.6 12.4L5 11M11 5l1.4-1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Settings</span></div>
+              <div class="sh-right">
+                <div class="sh-top" aria-hidden="true"><span class="sh-org"><i></i>Acme Inc.</span></div>
+                <div class="sh-view" data-view="list">
+                  <div class="sh-panel">
+                    <div class="who-card" aria-hidden="true"><i>JC</i><span><b>J. Chen</b><small>Key personnel</small></span></div>
+                    <span class="inert" aria-hidden="true">Overview</span>
+                    <span class="grp" aria-hidden="true">Applications</span>
+                    <button type="button" class="sub on" data-sub-go="all">View all applications</button>
+                    <button type="button" class="sub" data-sub-go="start">Start a&nbsp;new application</button>
+                    <span class="inert" aria-hidden="true">Disclosure</span>
+                    <span class="inert" aria-hidden="true">Documents</span>
+                  </div>
+                  <div class="ap-list" data-sub="all" data-cap="All applications is where every application now starts: what's assigned to you, where each one is, and when it's due.">
+                    <b class="ap-title">All applications</b>
+                    <p class="ap-sub">Your home base for starting new applications, picking up the ones in progress and finding the ones you've&nbsp;submitted.</p>
+                    <div class="ap-row" data-row="Personal disclosure form"><span class="ap-name"><b>Personal disclosure form</b><small data-status>Status: In progress</small><small>Last updated: 12 March</small></span><button type="button" class="b hint" data-open="0" data-name="Personal disclosure form">Continue</button></div>
+                    <div class="ap-row" data-row="Renewal: State B"><span class="ap-name"><b>Renewal: State B</b><small data-status>Status: Not started</small><small>Due: 24 March</small></span><button type="button" class="b" data-open="0" data-name="Renewal: State B">Continue</button></div>
+                    <div class="ap-row ap-new"><b>Start a&nbsp;new application</b><button type="button" class="b ghost" data-sub-go="start">Continue</button></div>
+                    <details class="ap-more"><summary>Your submitted applications</summary><div class="ap-row"><span class="ap-name"><b>Key person licence</b><small>Submitted 4 March 2024</small></span></div></details>
+                    <details class="ap-more"><summary>Help with applications</summary><p>If you don't see the application you need, ask your manager. They can request it from the application&nbsp;library.</p></details>
+                  </div>
+                  <div class="wt-panels" data-sub="start" data-cap="A new application starts with four choices, each narrowing the next, because the regulator and the licence type decide which questions appear." hidden>
+                    <div class="wt-screen">
+                      <b class="wt-h">To get started, select the following</b>
+                    <label class="f"><small>Licensing agency</small><select><option>State Licensing Agency</option><option>State B Licensing Board</option></select></label>
+                    <label class="f"><small>Licence type</small><select><option>Key person licence</option><option>Employee licence</option></select></label>
+                    <label class="f"><small>Business entity</small><select><option>Acme Inc.</option></select></label>
+                    <label class="f"><small>Application</small><select data-start-app><option>Personal disclosure form</option><option>Renewal: State B</option></select></label>
+                    <details class="help"><summary>What if I&nbsp;don't see the application&nbsp;name?</summary><p>Ask your manager. They can request it from the application&nbsp;library.</p></details>
+                    <div class="wt-foot"><span></span><span class="wt-foot-r"><button type="button" class="b" data-open="0" data-start>Continue</button></span></div>
+                  </div>
+                  </div>
+                </div>
+                <div class="sh-view" data-view="flow" hidden>
+                  <div class="sh-panel fl-side">
+                    <button type="button" class="fl-back" data-shview>‹ Back to Applications</button>
+                    <div class="who-card" aria-hidden="true"><i>JC</i><span><b>J. Chen</b><small>Key personnel</small></span></div>
+                    <p class="fl-app">Application:<b data-appname>Personal disclosure form</b></p>
+              <div class="wt-rail" role="tablist" aria-label="Application steps" aria-orientation="vertical">
+                <button type="button" role="tab" id="wt-t1" aria-controls="wt-p1" aria-selected="false" tabindex="-1">Fill in your information <em class="count" data-badge="0">2</em></button>
+                <div class="wt-secs" role="group" aria-label="Sections in Fill in your information"><span class="tree-g">Personal information <i data-tree-count>3/5</i></span><button type="button" data-tree="0">Personal details</button><button type="button" data-tree="1">Passport</button><button type="button" data-tree="2">Citizenship</button><button type="button" data-tree="3">Education</button><button type="button" data-tree="4">Residential history</button><span class="tree-g">Relatives <i>12/12</i></span><span class="tree-g">More sections <i>13/13</i></span></div>
+                <button type="button" role="tab" id="wt-t2" aria-controls="wt-p2" aria-selected="false" tabindex="-1">Attach documents <em class="count" data-badge="1">1</em></button>
+                <button type="button" role="tab" id="wt-t3" aria-controls="wt-p3" aria-selected="false" tabindex="-1">Get fingerprints <em class="count" data-badge="2">1</em></button>
+                <button type="button" role="tab" id="wt-t4" aria-controls="wt-p4" aria-selected="true">Review and finalise <em class="count ok" data-badge="3" hidden>✓</em></button>
+                <button type="button" role="tab" id="wt-t5" aria-controls="wt-p5" aria-selected="false" tabindex="-1">Sign <em class="count ok" data-badge="4" hidden>✓</em></button>
+                <button type="button" role="tab" id="wt-t6" aria-controls="wt-p6" aria-selected="false" tabindex="-1">Submit <em class="count ok" data-badge="5" hidden>✓</em></button>
+              </div>
+                  </div>
+              <div class="wt-panels">
+
+                <div class="wt-panel" role="tabpanel" id="wt-p1" aria-labelledby="wt-t1" data-cap="Fill in your information opens its sections under the step in the sidebar, with what's done and what's left. Each section ends with Mark as complete, and anyone can leave a note or a flag for their manager." hidden>
+                  <div class="wt-screen wt-fill">
+                    <div class="fi-main">
+                      <span class="wt-prog"><span class="ring sm" data-ring style="--p: 93"></span><b>Fill in your information</b><small data-secs>28 of 30 sections complete</small></span>
+                      <span class="sec-h"><b data-sec-name>Personal details</b><em class="flag-tag" data-flag-tag hidden>⚑ Flagged for your manager</em></span>
+                      <label class="f"><small data-fl="0">Full name</small><input type="text" data-fv="0" /></label>
+                      <label class="f"><small data-fl="1">Phone number</small><input type="text" data-fv="1" /></label>
+                      <label class="f"><small data-fl="2">Date and place of birth</small><input type="text" data-fv="2" /></label>
+                      <span class="fi-extra"><button type="button" class="b-link" data-act="note" aria-expanded="false">Add a&nbsp;note</button><button type="button" class="b-link" data-act="flag" aria-pressed="false">Flag for my manager</button></span>
+                      <label class="f" data-note hidden><small>Note for your manager</small><textarea rows="2" data-note-in placeholder="For example, my passport is being renewed"></textarea></label>
+                    </div>
+                    <div class="wt-foot"><button type="button" class="b text" data-act="prev">‹ Previous section</button><span class="wt-foot-r"><button type="button" class="b ghost" data-act="sec" aria-pressed="false">Mark as complete</button><button type="button" class="b" data-act="next" data-next-label>Continue to Passport ›</button></span></div>
+                  </div>
+                </div>
+
+                <div class="wt-panel" role="tabpanel" id="wt-p2" aria-labelledby="wt-t2" data-cap="Attach documents has one row per required document, where the old page had a tick box. A file can be uploaded or picked from documents already on record." hidden>
+                  <div class="wt-screen">
+                    <b class="wt-h">Attach required documents</b>
+                    <span class="slot"><small>Photograph *</small><span class="file">Photograph.jpeg <i>3 MB</i></span></span>
+                    <span class="slot"><small>Proof of address *</small><button type="button" class="drop" data-act="doc">Drag and drop or browse files · max 2&nbsp;GB<i>You can also select from your documents</i></button><span class="file" data-file="doc" hidden>Proof-of-address.pdf <i>1 MB</i></span></span>
+                    <span class="slot"><small>Additional documents (optional)</small><button type="button" class="drop small" data-act="extra">Add a&nbsp;document</button><span class="file" data-file="extra" hidden>Reference-letter.pdf <i>480 KB</i></span></span>
+                    <div class="wt-foot"><button type="button" class="b text" data-goto="0">‹ Fill in your information</button><span class="wt-foot-r"><button type="button" class="b" data-goto="2">Continue to fingerprints ›</button></span></div>
+                  </div>
+                </div>
+
+                <div class="wt-panel" role="tabpanel" id="wt-p3" aria-labelledby="wt-t3" data-cap="Fingerprinting happens away from the screen, so this step explains how to book it and keeps the date it happened." hidden>
+                  <div class="wt-screen">
+                    <b class="wt-h">Get fingerprints</b>
+                    <details class="help"><summary>Help with fingerprints</summary><p>Book an appointment with a&nbsp;fingerprinting provider. Some regulators need the card mailed&nbsp;in.</p></details>
+                    <span class="f" data-fpf><small>Date you were fingerprinted</small><button type="button" class="date" data-act="fp">Pick a&nbsp;date</button></span>
+                    <span class="f-err" data-fp-err hidden>Pick the date you were fingerprinted first.</span>
+                    <label class="f"><small>Record number (optional)</small><input type="text" placeholder="For example, FP-20431" /></label>
+                    <div class="wt-foot"><button type="button" class="b text" data-goto="1">‹ Attach documents</button><span class="wt-foot-r"><button type="button" class="b ghost" data-act="fpdone" aria-pressed="false">Mark as complete</button><button type="button" class="b" data-goto="3">Continue to review ›</button></span></div>
+                  </div>
+                </div>
+
+                <div class="wt-panel" role="tabpanel" id="wt-p4" aria-labelledby="wt-t4" data-cap="Review and finalise writes each problem plainly, with a button that goes straight to the fix. With none left, the application can be generated.">
+                  <div class="wt-screen">
+                    <b class="wt-h">Review and finalise</b>
+                    <div class="rv" data-rv aria-live="polite">
+                      <span class="rv-head"><i>!</i><span><b>Warnings</b><small>3 items need your attention</small></span></span>
+                      <span class="err">You have 2 sections left in Fill in your information.<button type="button" class="b sm" data-goto="0">Complete remaining sections</button></span>
+                      <span class="err">You are missing 1 required document.<button type="button" class="b sm" data-goto="1">Attach missing document</button></span>
+                      <span class="err">You haven't entered the date you were fingerprinted.<button type="button" class="b sm" data-goto="2">Enter fingerprint date</button></span>
+                    </div>
+                    <div class="wt-foot"><button type="button" class="b text" data-goto="2">‹ Get fingerprints</button><span class="wt-foot-r"><span data-rv-actions></span></span></div>
+                  </div>
+                </div>
+
+                <div class="wt-panel" role="tabpanel" id="wt-p5" aria-labelledby="wt-t5" data-cap="Signing and notarising happen on paper, so this step says when they're needed and keeps the signed and notarised copies." hidden>
+                  <div class="wt-screen">
+                    <b class="wt-h">Sign your application</b>
+                    <span class="err" data-need-gen hidden>Generate your application first, so this is the latest version.<button type="button" class="b sm" data-goto="3">Go to Review and finalise</button></span>
+                    <span class="help">Some jurisdictions need a&nbsp;wet-ink signature or a&nbsp;notary. If&nbsp;yours does, attach the signed copy below.</span>
+                    <span class="slot"><small>Signed application (if required)</small><button type="button" class="drop" data-act="signed">Attach signed application</button><span class="file" data-file="signed" hidden>Signed-application.pdf <i>2 MB</i></span></span>
+                    <span class="slot"><small>Notarised copy (if required)</small><button type="button" class="drop" data-act="notar">Attach notarised application</button><span class="file" data-file="notar" hidden>Notarised-copy.pdf <i>2 MB</i></span></span>
+                    <span class="f"><small>Notary appointment date</small><button type="button" class="date" data-act="ndate">Pick a&nbsp;date</button></span>
+                    <div class="wt-foot"><button type="button" class="b text" data-goto="3">‹ Review and finalise</button><span class="wt-foot-r"><button type="button" class="b" data-goto="5">Continue to Submit ›</button></span></div>
+                  </div>
+                </div>
+
+                <div class="wt-panel" role="tabpanel" id="wt-p6" aria-labelledby="wt-t6" data-cap="Marking it submitted tells the manager and creates the pending licence record, which applicants used to make by hand." hidden>
+                  <div class="wt-screen">
+                    <b class="wt-h">Submit</b>
+                    <div class="sb" data-sb-form>
+                      <span class="err" data-need-gen hidden>Generate your application first, so this is the latest version.<button type="button" class="b sm" data-goto="3">Go to Review and finalise</button></span>
+                      <span class="help">Methods vary by regulator. Follow the instructions in your application.</span>
+                      <span class="f2"><label class="f"><small>Submitted by</small><select data-sb-how><option>Mail, tracked</option><option>Regulator's portal</option><option>In person</option></select></label><label class="f"><small>Submission date</small><input type="text" value="12 March" data-sb-date /></label></span>
+                      <label class="check"><input type="checkbox" checked data-sb-tell />Tell my manager it's been submitted</label>
+                      <div class="wt-foot"><button type="button" class="b text" data-goto="4">‹ Sign</button><span class="wt-foot-r"><button type="button" class="b" data-act="submit">Mark as submitted</button></span></div>
+                    </div>
+                    <div class="sb" data-sb-done aria-live="polite" hidden>
+                      <span class="okbox"><b data-sb-title>Submitted on 12 March</b><span data-sb-told>Your manager has been told.</span></span>
+                      <span class="next"><b>Pending licence record created</b>Upload your licence there once you receive&nbsp;it.</span>
+                      <div class="wt-foot"><span></span><span class="wt-foot-r"><button type="button" class="b ghost" data-shview>Back to Applications</button></span></div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fx-foot"><p class="fx-live" aria-live="polite" data-live>All applications is where every application now starts: what's assigned to you, where each one is, and when it's due.</p><button type="button" class="linklike" data-reset hidden>Start over</button></div>
+          </div>
+          </div>
+
+          <div class="chapter">
+            <h2>How I&nbsp;worked, and what I&nbsp;found</h2>
+            <p>
+              The&nbsp;application flow didn't reach final screens until its prototype had been checked against what a&nbsp;customer's
+              licensing team told&nbsp;me.
+            </p>
+            <figure class="figure wide">
+              <div class="frame">
+                <div class="pipeline ds-flow" style="margin:0">
+                  <div class="node"><b>Audit</b><small>Six pages, 29 issues, from two buttons for one PDF to no word on keeping people's data&nbsp;safe.</small></div>
+                  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  <div class="node"><b>Sit in</b><small>A&nbsp;customer's licensing team walked me through it. Then a&nbsp;persona per user&nbsp;type.</small></div>
+                  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  <div class="node"><b>Study</b><small>GOV.UK's task list, Wealthsimple's one action per screen, and research on showing&nbsp;progress.</small></div>
+                  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                  <div class="node"><b>Prototype</b><small>Checked against the customer's notes, then a&nbsp;spec per phase and a&nbsp;WCAG&nbsp;A&nbsp;check.</small></div>
+                </div>
+              </div>
+            </figure>
+            <h3>What the customer's licensing team&nbsp;said</h3>
+            <div class="qx" role="table" aria-label="What the customer's licensing team said, and what each point became">
+              <div class="qx-row qx-head" role="row"><span role="columnheader">What they said</span><span aria-hidden="true"></span><span role="columnheader">What it became</span></div>
+              <div class="qx-row" role="row"><q role="cell">Tell me what I&nbsp;missed.</q><span class="qx-to" aria-hidden="true">→</span><span role="cell">A&nbsp;review step where each warning links straight to its&nbsp;fix.</span></div>
+              <div class="qx-row" role="row"><q role="cell">We want progress bars to see that completion is&nbsp;near.</q><span class="qx-to" aria-hidden="true">→</span><span role="cell">A&nbsp;count on every step. People speed up when they can see the end, the goal-gradient&nbsp;effect.</span></div>
+              <div class="qx-row" role="row"><q role="cell">People just let their profiles&nbsp;sit.</q><span class="qx-to" aria-hidden="true">→</span><span role="cell">A&nbsp;Submit step that marks the application done and tells the&nbsp;manager.</span></div>
+            </div>
+            <details class="more">
+              <summary><span class="more-label">Every finding, and what it&nbsp;became</span></summary>
+              <div class="more-body">
+                <p>
+                  The&nbsp;audit also turned up no sense of how long an application would take, a&nbsp;"request application" button people
+                  read as an email, and tasks with no next&nbsp;step.
+                </p>
+    <div class="table-scroll">
+                  <table class="compare">
+                    <thead>
+                      <tr><th>What I&nbsp;found</th><th>Where</th><th>What it became</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>Nothing showed how long an application took or what was&nbsp;left</td><td>My audit</td><td>A&nbsp;rail of steps with a&nbsp;count of what's left in&nbsp;each</td></tr>
+                      <tr><td>Staff left their profiles unfinished because they didn't know they had to mark them ready for&nbsp;review</td><td>Customer session</td><td>A&nbsp;Submit step that marks it done and tells the&nbsp;manager</td></tr>
+                      <tr><td>"Tell me what I&nbsp;missed." Regulators always flag gaps in employment history, so the product should flag them as people&nbsp;go</td><td>Customer session</td><td>A&nbsp;review list that names each gap, with a&nbsp;button to the&nbsp;fix</td></tr>
+                      <tr><td>Fingerprinting changes by state: some cards are mailed to the applicant first, some people end up at a&nbsp;sheriff's office, and cards expire after six&nbsp;months</td><td>Customer session</td><td>A&nbsp;fingerprint step with its own guidance and a&nbsp;date</td></tr>
+                      <tr><td>The application should be complete before the notary, with a&nbsp;final check&nbsp;after</td><td>Customer session</td><td>Sign comes after review and keeps the signed&nbsp;copy</td></tr>
+                      <tr><td>A&nbsp;task list shows each section's status and lets people say it's done, an error summary links straight to each problem, and answers are checked before&nbsp;submitting</td><td>GOV.UK Design System</td><td>Section statuses, Mark as complete, and a&nbsp;review page where each warning links to its&nbsp;fix</td></tr>
+                      <tr><td>Plain, friendly copy that says what each page is for, one clear next action, and progress you can see as you&nbsp;go</td><td>Wealthsimple</td><td>A&nbsp;home page that says what it's for, Continue on every application, and a&nbsp;count of sections&nbsp;complete</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p><small>Goal-gradient effect: Hull, 1932; Kivetz, Urminsky &amp; Zheng,&nbsp;2006.</small></p>
+              </div>
+            </details>
+          </div>
+
+          <h3>What I&nbsp;got wrong, and what held&nbsp;up</h3>
           <ul>
-            <li><strong>No visible end.</strong> Sections could be done in any order, with nothing showing what was left.</li>
-            <li><strong>An honour system.</strong> Documents were confirmed with a single tick box: "Yes, I have attached all required documents."</li>
-            <li><strong>No submit button.</strong> Submission happened outside the product, so people weren't sure when they were finished.</li>
-            <li><strong>Instructions in three places:</strong> a cover letter on the PDF, a welcome note and some accordions.</li>
+            <li>I&nbsp;put the details before the documents. An&nbsp;engineer found forms that ask why a&nbsp;document is missing, an answer that lives in the details, so the two had to be done together. The&nbsp;team merged those steps, and I&nbsp;should have mapped what each field depended on before fixing the&nbsp;order.</li>
+            <li>I&nbsp;left review to the applicant. The&nbsp;customer session had said licensing teams check an application before the notary, and I&nbsp;only gave the manager a&nbsp;heads-up at the end. The&nbsp;shipped version adds a&nbsp;reviewer who can send it back for&nbsp;corrections.</li>
+            <li>I&nbsp;designed an overview page long before the team could build it. By&nbsp;then the product had moved on and it never shipped, though the product manager passed its spec to the next designer as an example of how to set out states for&nbsp;engineers.</li>
           </ul>
           <p>
-            And much of the process isn't software at all: wet-ink signatures, notaries, fingerprints taken at an
-            appointment and mailed in, regulators with their own portals, and renewals that work differently in every
-            jurisdiction. The redesign had to guide people through the paper parts too.
+            The&nbsp;structure held up. The&nbsp;new sidebar, the Applications page and the steps inside each application all shipped, with
+            the six steps grouped into four and the paper tasks still in their own&nbsp;places.
           </p>
 
-          <div class="chapter">
-            <span class="num">The application flow</span>
-            <h2>Six steps, each one you can finish</h2>
-            <p>
-              Over eighteen months I rebuilt the flow around what people actually had to do, in order. A rail of steps
-              stays on screen with a count of what's left in each, so the end is always visible. Click through it:
-            </p>
-          </div>
-        </div>
-        </div>
-      </section>
-
-      <section class="wrap wt-wrap">
-        <div class="mk wt">
-          <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Licence application</b></div>
-          <div class="wt-body">
-            <div class="wt-rail" role="tablist" aria-label="Application steps" aria-orientation="vertical">
-              <button type="button" role="tab" id="wt-t0" aria-controls="wt-p0" aria-selected="true">Start</button>
-              <button type="button" role="tab" id="wt-t1" aria-controls="wt-p1" aria-selected="false" tabindex="-1">Fill in your information <em class="count">9</em></button>
-              <button type="button" role="tab" id="wt-t2" aria-controls="wt-p2" aria-selected="false" tabindex="-1">Attach documents <em class="count">1</em></button>
-              <button type="button" role="tab" id="wt-t3" aria-controls="wt-p3" aria-selected="false" tabindex="-1">Get fingerprints <em class="count">2</em></button>
-              <button type="button" role="tab" id="wt-t4" aria-controls="wt-p4" aria-selected="false" tabindex="-1">Review and finalise</button>
-              <button type="button" role="tab" id="wt-t5" aria-controls="wt-p5" aria-selected="false" tabindex="-1">Sign</button>
-              <button type="button" role="tab" id="wt-t6" aria-controls="wt-p6" aria-selected="false" tabindex="-1">Submit</button>
-            </div>
-            <div class="wt-panels">
-
-              <div class="wt-panel" role="tabpanel" id="wt-p0" aria-labelledby="wt-t0">
-                <div class="wt-screen" aria-hidden="true">
-                  <b class="wt-h">To get started, select the following</b>
-                  <span class="sel"><small>Licensing agency</small>State Licensing Agency</span>
-                  <span class="sel"><small>Licence type</small>Key person licence</span>
-                  <span class="sel"><small>Business entity</small>Acme Inc.</span>
-                  <span class="sel"><small>Application</small>Personal disclosure form</span>
-                  <span class="wt-link">What if I don't see the application name?</span>
-                  <span class="wt-actions"><span class="b ghost">Preview the blank form</span><span class="b">Continue</span></span>
-                </div>
-                <p class="wt-cap"><strong>Start.</strong> Four cascading choices, each narrowing the next, because the jurisdiction decides which questions even appear. You can preview the blank form before committing to it.</p>
-              </div>
-
-              <div class="wt-panel" role="tabpanel" id="wt-p1" aria-labelledby="wt-t1" hidden>
-                <div class="wt-screen wt-split" aria-hidden="true">
-                  <div>
-                    <span class="wt-prog"><span class="ring sm" style="--p: 40"></span><b>Fill in your information</b><small>12 / 30 sections complete</small></span>
-                    <span class="f"><small>Full name</small><span></span></span>
-                    <span class="f"><small>Phone number</small><span></span></span>
-                    <span class="f"><small>Date and place of birth</small><span></span></span>
-                    <span class="wt-actions"><span class="b ok">Mark as complete</span></span>
-                    <span class="wt-actions"><span class="b ghost">‹ Previous section</span><span class="b">Continue to Passport ›</span></span>
-                    <span class="note">Notes · Add flag</span>
-                  </div>
-                  <div class="tree">
-                    <small>Search sections</small>
-                    <b>Personal information</b>
-                    <span class="now">Personal details</span>
-                    <span class="bad">Passport <em class="count">1</em></span>
-                    <span class="done">Citizenship ✓</span>
-                    <span>Education</span>
-                    <span>Residential history</span>
-                    <b>Relatives</b>
-                    <b>Additional sections</b>
-                  </div>
-                </div>
-                <p class="wt-cap"><strong>Fill in.</strong> A searchable section tree shows what's done, what's flagged and what has errors. Each section ends with "Mark as complete" and a button that names the next section, and anyone can leave a note or flag for a manager.</p>
-              </div>
-
-              <div class="wt-panel" role="tabpanel" id="wt-p2" aria-labelledby="wt-t2" hidden>
-                <div class="wt-screen" aria-hidden="true">
-                  <b class="wt-h">Attach required documents</b>
-                  <span class="slot"><small>Photograph *</small><span class="file">Photograph.jpeg <i>3 MB</i></span></span>
-                  <span class="slot"><small>Proof of address *</small><span class="drop">Drag and drop or browse files · max 2 GB<i>You can also select from your documents</i></span></span>
-                  <span class="slot"><small>Additional documents</small><span class="drop small">Optional</span></span>
-                  <span class="wt-actions"><span class="b">Continue</span></span>
-                </div>
-                <p class="wt-cap"><strong>Attach documents.</strong> The honour-system tick box became one slot per required document. You can upload or reuse a file already on record, and uploads live inside the section they belong to, so the fields that go with each document get filled in too.</p>
-              </div>
-
-              <div class="wt-panel" role="tabpanel" id="wt-p3" aria-labelledby="wt-t3" hidden>
-                <div class="wt-screen" aria-hidden="true">
-                  <b class="wt-h">Get fingerprints</b>
-                  <span class="help">Help with fingerprints ▾<i>Book an appointment with a fingerprinting provider. Some regulators need the card mailed in.</i></span>
-                  <span class="f"><small>Date you were fingerprinted</small><span class="date">Pick a date</span></span>
-                  <span class="f"><small>Record number (optional)</small><span></span></span>
-                  <span class="wt-actions"><span class="b ok">Mark as complete</span><span class="b">Continue</span></span>
-                </div>
-                <p class="wt-cap"><strong>Get fingerprints.</strong> A real-world appointment gets its own step, its own guidance and a place to record that it happened, instead of an info box people skipped.</p>
-              </div>
-
-              <div class="wt-panel" role="tabpanel" id="wt-p4" aria-labelledby="wt-t4" hidden>
-                <div class="wt-screen" aria-hidden="true">
-                  <b class="wt-h">Review and finalise</b>
-                  <span class="err">You have 9 sections remaining under Fill in your information.<span class="b sm">Complete remaining sections</span></span>
-                  <span class="err">It looks like you haven't entered your fingerprint details yet.<span class="b sm">Enter fingerprint details</span></span>
-                  <span class="err">You are missing 2 required documents.<span class="b sm">Attach missing documents</span></span>
-                  <span class="gen"><span>If you make updates, generate a new PDF so you have the latest version.<i>Last generated on 12 March</i></span><span class="b ghost">Preview</span><span class="b">Generate PDF</span></span>
-                </div>
-                <p class="wt-cap"><strong>Review and finalise.</strong> Every problem is written in plain language with a button that goes straight to the fix. When none are left: "We can't find any errors on your application. You're ready to generate it."</p>
-              </div>
-
-              <div class="wt-panel" role="tabpanel" id="wt-p5" aria-labelledby="wt-t5" hidden>
-                <div class="wt-screen" aria-hidden="true">
-                  <b class="wt-h">Sign your application</b>
-                  <span class="help">Some jurisdictions need a wet-ink signature or a notary. If yours does, attach the signed copy below.</span>
-                  <span class="slot"><small>Signed application (if required)</small><span class="drop">Attach signed application</span></span>
-                  <span class="slot"><small>Notarised copy (if required)</small><span class="drop">Attach notarised application</span></span>
-                  <span class="f"><small>Notary appointment date</small><span class="date">Pick a date</span></span>
-                </div>
-                <p class="wt-cap"><strong>Sign.</strong> Signatures and notaries happen away from the screen, so the step explains when they're needed and gives the paper copies a home.</p>
-              </div>
-
-              <div class="wt-panel" role="tabpanel" id="wt-p6" aria-labelledby="wt-t6" hidden>
-                <div class="wt-screen" aria-hidden="true">
-                  <b class="wt-h">Submit</b>
-                  <span class="help">Submission methods vary by jurisdiction. Follow the instructions in your application.</span>
-                  <span class="f"><small>Submission date</small><span class="date">12 March</span></span>
-                  <span class="wt-actions"><span class="b ok">✓ Mark application as complete</span></span>
-                  <span class="check"><span class="box on"></span>Tell my manager it's ready for review</span>
-                  <span class="next"><b>Next step</b>We've created a pending licence record for you. Upload your licence there once you receive it.<i><span class="box"></span>Don't create a pending licence record</i></span>
-                </div>
-                <p class="wt-cap"><strong>Submit.</strong> The product finally has an end: mark it complete, notify your manager, and the pending licence record is created for you, with an opt-out, instead of being a last chore people forgot.</p>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <p class="mock-note">Click the steps, or use the arrow keys.</p>
-      </section>
-
-      <section class="wrap section wt-after">
-        <div class="case-body">
-        <div class="prose">
-
-          <aside class="psych" aria-label="Psychology note">
-            <span class="psych-k">Psych note</span>
-            <h3>The goal-gradient effect</h3>
-            <p>People speed up as a goal gets closer, if they can see how close it is. The step counts, the section ring and a review list that counts down to zero all show it.</p>
-            <small>Hull, 1932; Kivetz, Urminsky &amp; Zheng, 2006</small>
-          </aside>
-
-          <div class="chapter">
-            <span class="num">The home page</span>
-            <h2>An overview that knows where you are</h2>
-            <p>
-              There was no landing page that answered "what do I need to do?". I designed one around three moments:
-              a brand-new user, someone with an application in progress, and someone who's been granted a licence.
-              It's built from widgets people can resize, remove and add back, and every empty state says what will
-              appear there.
-            </p>
-          </div>
-          <div class="mk dash" aria-label="Mockup of the overview: widgets for active applications, tasks with an overdue tab, licences needing attention, and a reminder to check your information">
-            <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Overview</b></div>
-            <div class="dash-grid" aria-hidden="true">
-              <div class="w"><b>Active applications <i>⋯</i></b><span>State A application <em class="chip">In progress</em></span><span>State B renewal <em class="chip grey">Not started</em></span></div>
-              <div class="w"><b>Tasks <i>⋯</i></b><span class="tabs"><u>Upcoming</u><u class="on">Overdue (3)</u><u>Completed</u></span><span>Upload proof of address <em class="late">2 days late</em></span><span>Book fingerprints <em class="late">Overdue</em></span></div>
-              <div class="w"><b>Licences <i>⋯</i></b><span class="tabs"><u class="on">Expires soon</u><u>Needs renewal</u><u>Pending</u></span><span>Key person licence <em class="chip warn">Expires in 21 days</em></span></div>
-              <div class="w nudge"><b>Notes <i>⋯</i></b><span>It's been 6 months. Is your information up to date?</span><span class="b sm ghost">Review my details</span></div>
-            </div>
-          </div>
-
-          <div class="chapter">
-            <span class="num">Navigation</span>
-            <h2>Thirty links became three places</h2>
-            <p>
-              The sidebar grew from 2023 to 2024 until it held around thirty links: licensing, reports, organisation
-              settings, imports and a person switcher, all in one column. I split the product into three areas,
-              Licensing, Disclosure and Settings, on a slim rail, with a lighter panel of grouped links for whichever
-              area you're in.
-            </p>
-          </div>
-          <div class="ba">
-            <div>
-              <span class="ba-tag">Before</span>
-              <div class="mk" aria-label="Mockup of the old navigation: one dark sidebar with around thirty links">
-                <div class="navwrap" aria-hidden="true"><div class="navold">
-                  <span>Dashboard</span><span>Application manager</span><span>Calendar</span><span>Task manager</span><span>Licences</span><span>Businesses</span><span>Contracts</span><span>Customers</span><span>Products</span><span>Product tracking</span><span>Vendors</span><span>Reports</span><span>Positions</span><span>Import</span><span>Digital submission</span><span>Documents</span><span>…</span>
-                </div><div class="navcontent"><span class="bar w60"></span><span class="bar"></span><span class="bar"></span><span class="bar w80"></span></div></div>
-              </div>
-            </div>
-            <div>
-              <span class="ba-tag after">After</span>
-              <div class="mk" aria-label="Mockup of the new navigation: a slim rail with Licensing, Disclosure and Settings, and a panel of grouped links">
-                <div class="navnew" aria-hidden="true">
-                  <div class="nrail"><span class="on">Licensing</span><span>Disclosure</span><span>Settings</span></div>
-                  <div class="npanel"><small>General</small><span class="on">Overview</span><span>Licences</span><span>Tasks</span><small>Reports</small><span>Expiring licences</span><small>Organisation</small><span>Businesses</span><span>People</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="chapter">
-            <span class="num">The model underneath</span>
-            <h2>Licences first, applications second</h2>
-            <p>
-              The old product was organised around applications, but people think in licences. One licence can need
-              several applications, and one application can produce several licences. So submitting now creates the
-              pending licence record automatically, and the licence record itself got a full rethink: a status
-              history instead of one overwritten field, a "renewal in progress" switch that pauses reminders, and an
-              explicit "no expiry date" option that warns you there'll be no notifications.
-            </p>
-          </div>
-          <div class="mk lic" aria-label="Mockup of the licence record: a lifecycle line from started to granted, and a status history table with one current row">
-            <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Licence record</b></div>
-            <div class="lic-body" aria-hidden="true">
-              <div class="life"><span class="d">Started</span><span class="d">Submitted</span><span class="d">Resubmitted</span><span class="d on">Granted</span></div>
-              <table class="hist">
-                <thead><tr><th>Status</th><th>From</th><th>Expiry</th><th>Reason</th><th>Current</th></tr></thead>
-                <tbody>
-                  <tr class="cur"><td><em class="chip">Granted</em></td><td>12 Mar 2024</td><td>30 Jun 2026</td><td>—</td><td>✓</td></tr>
-                  <tr><td><em class="chip grey">Pending</em></td><td>2 Jan 2024</td><td>—</td><td>Awaiting decision</td><td></td></tr>
-                </tbody>
-              </table>
-              <span class="toggle"><span class="sw on"></span>Renewal in progress · reminders paused</span>
-            </div>
-          </div>
-          <p>
-            I planned the work in phases so each one shipped on its own: navigation first, then this application flow,
-            then assignments for managers, an application manager organised by licence, and finally application
-            packages built from each regulator's requirements.
-          </p>
-
-          <div class="chapter">
-            <span class="num">The manager's side</span>
-            <h2>Assigning applications, and tracking them</h2>
-            <p>
-              Most applicants didn't start on their own: a licensing manager assigned them. I designed that hand-off as
-              one step: pick who the application is for, choose the application, and optionally create a task and email
-              the applicants from a template, all in the same dialog. Each assignment then shows up in the task table,
-              where the manager tracks every applicant's progress through the steps above.
-            </p>
-            <p>
-              Every client tracked that progress differently: one needed a notary date, another a fingerprint status,
-              another linked licences, and each request arrived as a new column. Instead of adding them one by one, I
-              designed a field builder in settings. Default fields can be switched on or off, and clients add their own
-              as text, date, number, status or person.
-            </p>
-            <div class="mk" aria-label="Mockup of the manager's table: one row per assigned application, with applicant, due date, status and two fields the client added, one row being edited inline and an overdue date in red">
-              <div class="mk-top" aria-hidden="true"><i></i><i></i><i></i><b>Assigned applications</b></div>
-              <div class="mk-scroll" aria-hidden="true">
-                <table class="tasks">
-                  <thead><tr><th>Application</th><th>Applicant</th><th>Due</th><th>Status</th><th class="custom">Notary date</th><th class="custom">Fingerprints</th></tr></thead>
-                  <tbody>
-                    <tr><td>Renewal: State A</td><td>A. Patel</td><td class="late">Overdue</td><td><span class="chip">In progress</span></td><td>—</td><td>Booked</td></tr>
-                    <tr class="editing"><td>Personal disclosure: State B</td><td>J. Chen</td><td>Next week</td><td><span class="chip">Waiting</span></td><td><span class="edit">Pick a date</span></td><td>Not started</td></tr>
-                    <tr><td>Key person licence: State C</td><td>R. Diaz</td><td>This month</td><td><span class="chip">Done</span></td><td>Signed</td><td>—</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="tasks-foot" aria-hidden="true"><span>✦ Fields this client added themselves</span><b>Manage fields</b></div>
-            </div>
-            <p>
-              Columns can be pinned, reordered or hidden, cells edit in place, and the first screen groups what's
-              overdue and due this week, so a manager's first question, "who's stuck?", has an answer. I built the beta
-              fixes myself, along with the guided tour that introduced the new table, and tracked every tour step so we
-              knew whether people finished it.
-            </p>
-            <aside class="lesson" aria-label="The lesson">
+          <aside class="lesson" aria-label="The lesson">
               <span class="lesson-k">The lesson</span>
-              <p class="lesson-big">A queue of feature requests is often one missing setting.</p>
+              <p class="lesson-big">When part of a&nbsp;task happens away from the screen, give it a&nbsp;step anyway, with what to do and a&nbsp;place to record that it's&nbsp;done.</p>
+              <p>The&nbsp;applicant can then see what's left, and their manager can see it's done without&nbsp;asking.</p>
             </aside>
-          </div>
 
           <h2>The outcome</h2>
           <p>
-            The application flow and the manager's tools shipped over two years, in phases that each stood on their
-            own. The rule I kept from it: write the rule before the screen. The access model and the licence
-            lifecycle were diagrams and sentences before they were UI.
+            An&nbsp;applicant with an assigned application now opens it from a&nbsp;page of their own, sees its status and due date, and
+            is told what's missing before anything is generated. A&nbsp;manager filling in someone else's application can always see
+            whose it&nbsp;is.
           </p>
 
+            <h2>Project details</h2>
+            <dl class="meta-line meta-end">
+              <div><dt>Tools</dt><dd>Figma for wireframes, prototypes and hand-off, Google Analytics, an&nbsp;accessibility checker, and Jira for running the&nbsp;work</dd></div>
+              <div><dt>When</dt><dd>2023 to&nbsp;2025</dd></div>
+              <div><dt>With</dt><dd>A&nbsp;product manager and the engineers who built both&nbsp;flows</dd></div>
+            </dl>
         </div>
         </div>
       </section>
@@ -515,11 +751,10 @@
 
     <footer class="footer">
       <div class="wrap">
-        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>© <span data-year>2026</span> Mahrs Aslam</span>
       </div>
     </footer>
-    <script src="../js/main.js?v=20261112e"></script>
-    <script src="../js/toys.js?v=8" defer></script>
+    <script src="../js/main.js?v=20261118a"></script>
     <!-- Search hidden for now: <script src="../js/navigator.js?v=20261015"></script> -->
     <script>
       // Walkthrough tabs: click or use arrow keys (up/down, left/right) to move between steps.
@@ -534,6 +769,7 @@
             t.tabIndex = on ? 0 : -1;
             document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
           });
+          if (list.scrollWidth > list.clientWidth) list.scrollLeft = tab.offsetLeft - 16;
           if (focus) tab.focus();
         }
         list.addEventListener("click", function (e) {
@@ -549,6 +785,273 @@
           e.preventDefault();
           select(tabs[(i + n + tabs.length) % tabs.length], true);
         });
+      })();
+    </script>
+    <script>
+      function bringBack(el) {
+        var top = el.getBoundingClientRect().top;
+        if (top < 80 || top > window.innerHeight * 0.6) window.scrollTo({ top: top + window.scrollY - 96, behavior: "smooth" });
+      }
+
+      // Chapter 2's figure: each fix button clears its gap in the new review. The old page's ticks never change.
+      (function () {
+        var fx = document.querySelector("[data-rx]");
+        if (!fx) return;
+        var done = [false, false, false];
+        var reset = document.querySelector("[data-rx-reset]");
+        var head = fx.querySelector("[data-rx-head]"), count = fx.querySelector("[data-rx-count]"), ok = fx.querySelector("[data-rx-ok]");
+        function render() {
+          var n = done.filter(function (d) { return !d; }).length;
+          done.forEach(function (d, i) {
+            var r = fx.querySelector('[data-row="' + i + '"]');
+            r.querySelector(".err").hidden = d; r.querySelector(".rx-ok").hidden = !d;
+          });
+          count.textContent = n + (n === 1 ? " item needs" : " items need") + " your attention";
+          head.hidden = !n; ok.hidden = !!n;
+          return n;
+        }
+        fx.addEventListener("click", function (e) {
+          var b = e.target.closest("[data-fix]");
+          if (!b) return;
+          done[+b.getAttribute("data-fix")] = true; reset.parentNode.hidden = false;
+          render();
+          var next = fx.querySelector(".err:not([hidden]) [data-fix]");
+          (next || ok).focus({ preventScroll: true });
+        });
+        reset.addEventListener("click", function () {
+          done = [false, false, false]; render(); reset.parentNode.hidden = true;
+          bringBack(fx); fx.querySelector("[data-fix]").focus({ preventScroll: true });
+        });
+        render();
+      })();
+
+      // The demo: the Applications page, the start page, and an application whose six steps keep real state.
+      // Every control works. Sections can be completed, flagged and noted; finishing them, attaching the document and
+      // entering the fingerprint date clear the review; then it can be generated, signed and submitted.
+      // The note under the sheet explains whichever screen is showing.
+      (function () {
+        var wt = document.querySelector(".mk.wt");
+        if (!wt) return;
+        var $ = function (q) { return wt.querySelector(q); }, $$ = function (q) { return Array.prototype.slice.call(wt.querySelectorAll(q)); };
+        var list = $('[data-view="list"]'), flow = $('[data-view="flow"]'), nameEl = $("[data-appname]");
+        var tabs = $$('.wt-rail [role="tab"]');
+        var fx = wt.closest(".fx"), live = fx.querySelector("[data-live]"), reset = fx.querySelector("[data-reset]");
+        var SECS = [
+          { name: "Personal details", f: [["Full name", "J. Chen"], ["Phone number", "902 555 0142"], ["Date and place of birth", "14 May 1990, Halifax"]] },
+          { name: "Passport", f: [["Passport number", "P1234567"], ["Country of issue", "Canada"], ["Expiry date", "30 June 2031"]] },
+          { name: "Citizenship", f: [["Country of citizenship", "Canada"], ["Citizen since", "Birth"], ["Other citizenships", "None"]] },
+          { name: "Education", f: [["Highest level completed", "Bachelor's degree"], ["Institution", "Dalhousie University"], ["Year completed", "2012"]] },
+          { name: "Residential history", f: [["Current address", "12 Spring Street, Halifax"], ["Lived there since", "June 2019"], ["Previous address", "40 Quinpool Road, Halifax"]] }
+        ];
+        var apps = {}, cur = "Personal disclosure form";
+        function fresh() {
+          return { done: [false, false, true, true, true], flag: [false, false, false, false, false], note: ["", "", "", "", ""], noteOpen: false,
+            vals: SECS.map(function (x) { return x.f.map(function (f) { return f[1]; }); }), sec: 0,
+            doc: false, extra: false, fp: false, fpDone: false, fpErr: false, gen: false, signed: false, notar: false, ndate: false, sub: false, touched: false };
+        }
+        function st() { return apps[cur] || (apps[cur] = fresh()); }
+        function left(a) { return a.done.filter(function (d) { return !d; }).length; }
+        function badge(i, n, done) {
+          var b = $('[data-badge="' + i + '"]');
+          b.hidden = !n && !done; b.textContent = n ? n : "✓"; b.classList.toggle("ok", !n);
+        }
+        function goto(i) { tabs[i].click(); tabs[i].focus({ preventScroll: true }); }
+        function sub(which) {
+          $$("[data-sub]").forEach(function (el) { el.hidden = el.getAttribute("data-sub") !== which; });
+          $$(".sub[data-sub-go]").forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-sub-go") === which); });
+        }
+        function press(btn, on, yes, no) { btn.setAttribute("aria-pressed", on ? "true" : "false"); btn.classList.toggle("done", on); btn.textContent = on ? yes : no; }
+        function warn(text, label, to) { return '<span class="err">' + text + '<button type="button" class="b sm" data-goto="' + to + '">' + label + "</button></span>"; }
+        function caption() {
+          var el;
+          if (!list.hidden) {
+            el = $("[data-sub]:not([hidden])");
+          } else {
+            var t = $('.wt-rail [aria-selected="true"]');
+            el = document.getElementById(t.getAttribute("aria-controls"));
+          }
+          live.textContent = el.getAttribute("data-cap");
+        }
+        function render() {
+          var a = st(), n = left(a), sec = SECS[a.sec], doneN = 5 - n;
+          badge(0, n, true); badge(1, a.doc ? 0 : 1, true); badge(2, a.fpDone ? 0 : 1, true);
+          badge(3, 0, a.gen); badge(4, 0, a.signed || a.notar); badge(5, 0, a.sub);
+          // fill in
+          $("[data-ring]").style.setProperty("--p", Math.round((25 + doneN) / 30 * 100));
+          $("[data-secs]").textContent = (25 + doneN) + " of 30 sections complete";
+          $("[data-sec-name]").textContent = sec.name;
+          sec.f.forEach(function (f, k) { $('[data-fl="' + k + '"]').textContent = f[0]; var inp = $('[data-fv="' + k + '"]'); if (inp.value !== a.vals[a.sec][k]) inp.value = a.vals[a.sec][k]; });
+          $("[data-flag-tag]").hidden = !a.flag[a.sec];
+          press($('[data-act="flag"]'), a.flag[a.sec], "⚑ Flagged", "Flag for my manager");
+          var noteBtn = $('[data-act="note"]'), note = $("[data-note]"), noteIn = $("[data-note-in]");
+          note.hidden = !(a.noteOpen || a.note[a.sec]); noteBtn.setAttribute("aria-expanded", note.hidden ? "false" : "true");
+          noteBtn.textContent = note.hidden ? "Add a note" : "Hide note"; if (noteIn.value !== a.note[a.sec]) noteIn.value = a.note[a.sec];
+          press($('[data-act="sec"]'), a.done[a.sec], "✓ Completed", "Mark as complete");
+          $('[data-act="prev"]').disabled = a.sec === 0;
+          $("[data-next-label]").textContent = "Continue to " + (a.sec < 4 ? SECS[a.sec + 1].name : "documents") + " ›";
+          $$("[data-tree]").forEach(function (t, k) {
+            t.className = (k === a.sec ? "now " : "") + (a.done[k] ? "done" : "");
+            t.innerHTML = SECS[k].name + "<i>" + (a.flag[k] ? "⚑" : "") + "</i>";
+            t.setAttribute("aria-current", k === a.sec ? "true" : "false");
+          });
+          $("[data-tree-count]").textContent = doneN + "/5";
+          // attach
+          ["doc", "extra"].forEach(function (k) { $('[data-act="' + k + '"]').hidden = a[k]; $('[data-file="' + k + '"]').hidden = !a[k]; });
+          // fingerprints
+          var fpB = $('[data-act="fp"]');
+          fpB.textContent = a.fp ? "4 March" : "Pick a date"; fpB.classList.toggle("set", a.fp);
+          $("[data-fpf]").classList.toggle("bad", a.fpErr); $("[data-fp-err]").hidden = !a.fpErr;
+          press($('[data-act="fpdone"]'), a.fpDone, "✓ Completed", "Mark as complete");
+          // review
+          var w = [];
+          if (n) w.push(warn("You have " + n + (n === 1 ? " section" : " sections") + " left in Fill in your information.", "Complete remaining sections", 0));
+          if (!a.doc) w.push(warn("You are missing 1 required document.", "Attach missing document", 1));
+          if (!a.fpDone) w.push(warn("You haven't entered the date you were fingerprinted.", "Enter fingerprint date", 2));
+          $("[data-rv]").innerHTML = w.length
+            ? '<span class="rv-head"><i>!</i><span><b>Warnings</b><small>' + w.length + (w.length === 1 ? " item needs" : " items need") + " your attention</small></span></span>" + w.join("")
+            : '<span class="okbox"><b>We can’t find any errors on your application.</b>' + (a.gen ? "Generated just now. If you change anything, generate it again so the PDF is up to date." : "You’re ready to generate it.") + "</span>";
+          $("[data-rv-actions]").innerHTML = w.length ? "" : a.gen
+            ? '<button type="button" class="b ghost" data-act="gen">Generate again</button><button type="button" class="b" data-goto="4">Continue to Sign ›</button>'
+            : '<button type="button" class="b" data-act="gen">Generate PDF</button>';
+          // sign and submit
+          $$("[data-need-gen]").forEach(function (el) { el.hidden = a.gen; });
+          ["signed", "notar"].forEach(function (k) { $('[data-act="' + k + '"]').hidden = a[k]; $('[data-file="' + k + '"]').hidden = !a[k]; });
+          var nd = $('[data-act="ndate"]'); nd.textContent = a.ndate ? "10 March" : "Pick a date"; nd.classList.toggle("set", a.ndate);
+          $('[data-act="submit"]').disabled = !a.gen;
+          $("[data-sb-form]").hidden = a.sub; $("[data-sb-done]").hidden = !a.sub;
+          if (a.sub) {
+            $("[data-sb-title]").textContent = "Submitted on " + ($("[data-sb-date]").value || "12 March");
+            $("[data-sb-told]").textContent = $("[data-sb-tell]").checked ? "Your manager has been told." : "Your manager hasn't been told yet.";
+          }
+          // the list
+          $$("[data-row]").forEach(function (row) {
+            var r = apps[row.getAttribute("data-row")], s = row.querySelector("[data-status]"), b = row.querySelector("[data-open]");
+            var first = row.getAttribute("data-row") === "Personal disclosure form";
+            s.textContent = "Status: " + (r && r.sub ? "Submitted" : first || (r && r.touched) ? "In progress" : "Not started");
+            b.textContent = r && r.sub ? "View" : "Continue";
+          });
+        }
+        var acts = {
+          sec: function (a) { a.done[a.sec] = !a.done[a.sec]; },
+          next: function (a) { if (a.sec < 4) { a.sec++; a.noteOpen = false; } else goto(1); },
+          prev: function (a) { if (a.sec > 0) { a.sec--; a.noteOpen = false; } },
+          flag: function (a) { a.flag[a.sec] = !a.flag[a.sec]; },
+          note: function (a) { var open = $("[data-note]").hidden; a.noteOpen = open; if (!open) a.note[a.sec] = ""; },
+          doc: function (a) { a.doc = true; },
+          extra: function (a) { a.extra = true; },
+          fp: function (a) { a.fp = true; a.fpErr = false; },
+          fpdone: function (a) { if (!a.fp) { a.fpErr = true; return; } a.fpDone = !a.fpDone; },
+          gen: function (a) { a.gen = true; },
+          signed: function (a) { a.signed = true; },
+          notar: function (a) { a.notar = true; },
+          ndate: function (a) { a.ndate = true; },
+          submit: function (a) { if (a.gen) a.sub = true; }
+        };
+        function open(name) {
+          cur = name; nameEl.textContent = cur;
+          list.hidden = true; flow.hidden = false; render();
+          var a = st(), first = left(a) ? 0 : !a.doc ? 1 : !a.fpDone ? 2 : !a.gen ? 3 : a.sub ? 5 : 4;
+          if (left(a)) a.sec = a.done.indexOf(false);
+          render(); goto(first);
+        }
+        wt.addEventListener("click", function (e) {
+          var t;
+          if (e.target.closest("button, select, input")) { reset.hidden = false; var h = $(".b.hint"); if (h) h.classList.remove("hint"); if (!anno.hidden) { anno.classList.add("gone"); setTimeout(function () { anno.hidden = true; }, 260); } }
+          if ((t = e.target.closest("[data-tree]"))) { var a0 = st(); a0.sec = +t.getAttribute("data-tree"); a0.noteOpen = false; render(); return; }
+          if ((t = e.target.closest("[data-act]"))) { var a = st(); a.touched = true; acts[t.getAttribute("data-act")](a); render(); return; }
+          if ((t = e.target.closest("[data-goto]"))) { goto(+t.getAttribute("data-goto")); return; }
+          if ((t = e.target.closest("[data-start]"))) { open($("[data-start-app]").value); return; }
+          if ((t = e.target.closest("[data-open]"))) { open(t.getAttribute("data-name")); return; }
+          if ((t = e.target.closest("[data-sub-go]"))) { flow.hidden = true; list.hidden = false; sub(t.getAttribute("data-sub-go")); return; }
+          if (e.target.closest("[data-shview]")) {
+            flow.hidden = true; list.hidden = false; sub("all");
+            $(".ap-row [data-open]").focus({ preventScroll: true });
+          }
+        });
+        wt.addEventListener("click", caption);
+        wt.addEventListener("keyup", caption);
+        wt.addEventListener("input", function (e) {
+          var a = st(), t = e.target;
+          if (t.hasAttribute("data-fv")) a.vals[a.sec][+t.getAttribute("data-fv")] = t.value;
+          if (t.hasAttribute("data-note-in")) a.note[a.sec] = t.value;
+          reset.hidden = false;
+        });
+        reset.addEventListener("click", function () {
+          apps = {}; cur = "Personal disclosure form"; nameEl.textContent = cur;
+          $("[data-sb-tell]").checked = true; $("[data-sb-date]").value = "12 March"; $("[data-sb-how]").selectedIndex = 0;
+          render(); tabs[3].click();
+          flow.hidden = true; list.hidden = false; sub("all"); reset.hidden = true; caption();
+          bringBack(wt); $(".ap-row [data-open]").focus({ preventScroll: true });
+        });
+        var anno = fx.querySelector(".wt-anno");
+        function placeAnno() {
+          var btn = $(".b.hint");
+          if (!btn || anno.classList.contains("gone")) { anno.hidden = true; return; }
+          var toc = document.querySelector(".toc"), b = btn.getBoundingClientRect(), f = fx.getBoundingClientRect(), w = wt.getBoundingClientRect();
+          var room = (toc && toc.offsetParent ? toc.getBoundingClientRect().left : window.innerWidth) - w.right;
+          anno.hidden = room < 120 || list.hidden;
+          if (anno.hidden) return;
+          anno.style.left = (b.right + 4 - f.left) + "px";
+          anno.style.top = (b.top + b.height / 2 - f.top - 17) + "px";
+          var limit = (toc && toc.offsetParent ? toc.getBoundingClientRect().left : window.innerWidth) - 8;
+          if (anno.getBoundingClientRect().right > limit) anno.hidden = true;
+        }
+        window.addEventListener("resize", placeAnno);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(placeAnno);
+        placeAnno();
+        render(); caption();
+        var rail = $(".wt-rail"), on = $('.wt-rail [aria-selected="true"]');
+        if (rail.scrollWidth > rail.clientWidth) rail.scrollLeft = on.offsetLeft - 16;
+      })();
+
+    </script>
+    <script>
+      // Chapter 1: three things to look for. Picking one highlights where it lived in the old sidebar and where it lives now.
+      // Both sidebars work: the old switcher changes only the four links under it; the new rail swaps the panel.
+      (function () {
+        var fd = document.querySelector("[data-fd]");
+        if (!fd) return;
+        var TASKS = {"apps": {"old": ["who", "g-apps"], "area": "profiles", "new": ["p-who", "p-apps"], "ro": "A&nbsp;switcher under 22 company pages, then Applications below&nbsp;it.", "rn": "Profiles \u203a Applications, with the person at the&nbsp;top."}, "agency": {"old": ["jur", "agen", "ltyp"], "area": "org", "new": ["o-agen"], "ro": "Three pages, split across two&nbsp;groups.", "rn": "Organisation \u203a Licensing agencies. Contacts are&nbsp;inside."}, "users": {"old": ["i-usr", "m-usr", "m-col"], "area": "settings", "new": ["s-usr"], "ro": "Three pages, under Import and under&nbsp;Manage.", "rn": "Settings \u203a Users, with importing on the same&nbsp;page."}};
+        var PEOPLE = [["J. Chen", "Key person", "JC"], ["A. Patel", "Employee", "AP"], ["R. Diaz", "Key person", "RD"]];
+        var $$ = function (q) { return Array.prototype.slice.call(fd.querySelectorAll(q)); };
+        var ro = fd.querySelector("[data-ro]"), rn = fd.querySelector("[data-rn]"), who = { old: 0, "new": 0 }, cur = "apps";
+        function flash(els) { els.forEach(function (el) { el.classList.remove("flash"); el.getBoundingClientRect(); el.classList.add("flash"); }); }
+        function area(name) {
+          $$("[data-area]").forEach(function (b) { var on = b.getAttribute("data-area") === name; b.classList.toggle("on", on); b.setAttribute("aria-pressed", on ? "true" : "false"); });
+          $$("[data-panel]").forEach(function (p) { p.hidden = p.getAttribute("data-panel") !== name; });
+        }
+        function task(key) {
+          var t = TASKS[key]; cur = key;
+          $$("[data-task]").forEach(function (b) { b.checked = b.value === key; });
+          $$(".hit").forEach(function (el) { el.classList.remove("hit"); });
+          $$(".grp").forEach(function (g) { g.setAttribute("aria-expanded", "true"); fd.querySelector('[data-rows="' + g.getAttribute("data-grp") + '"]').hidden = false; });
+          area(t.area);
+          t.old.concat(t["new"]).forEach(function (k) { fd.querySelector('[data-k="' + k + '"]').classList.add("hit"); });
+          ro.innerHTML = t.ro; rn.innerHTML = t.rn;
+        }
+        fd.addEventListener("change", function (e) {
+          if (e.target.matches("[data-task]")) { task(e.target.value); flash($$(".hit")); }
+        });
+        fd.addEventListener("click", function (e) {
+          var b;
+          if ((b = e.target.closest("[data-area]"))) { area(b.getAttribute("data-area")); return; }
+          if ((b = e.target.closest(".grp"))) {
+            var open = b.getAttribute("aria-expanded") !== "true";
+            b.setAttribute("aria-expanded", open ? "true" : "false");
+            fd.querySelector('[data-rows="' + b.getAttribute("data-grp") + '"]').hidden = !open; return;
+          }
+          if ((b = e.target.closest("[data-who]"))) {
+            var side = b.getAttribute("data-who"), p = PEOPLE[(who[side] = (who[side] + 1) % PEOPLE.length)];
+            if (side === "old") { b.textContent = p[0] + " \u00b7 " + p[1]; flash($$('[data-rows="gen"] .row')); }
+            else { b.querySelector("i").textContent = p[2]; b.querySelector("b").textContent = p[0]; b.querySelector("small").textContent = p[1] === "Employee" ? "Employee" : "Key personnel"; flash($$('[data-panel="profiles"] .row')); }
+            fd.querySelector('[data-task="apps"]').textContent = p[0] + "'s applications";
+            who.old = who["new"] = who[side];
+            var o = fd.querySelector('[data-who="old"]'), n = fd.querySelector('[data-who="new"]');
+            o.textContent = p[0] + " \u00b7 " + p[1];
+            n.querySelector("i").textContent = p[2]; n.querySelector("b").textContent = p[0]; n.querySelector("small").textContent = p[1] === "Employee" ? "Employee" : "Key personnel";
+          }
+        });
+        task("apps");
       })();
     </script>
   </body>

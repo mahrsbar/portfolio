@@ -5198,7 +5198,7 @@ a { color: var(--ink); text-decoration-color: var(--duck); text-decoration-thick
 .nav { background: var(--bg); border-bottom: 2px solid transparent; }
 .nav.scrolled { border-bottom-color: var(--ink); }
 .brand { display: inline-flex; align-items: center; gap: 0.5rem; }
-.brand::before { content: ""; flex: none; width: 28px; height: 27px; background: url("../assets/duck-mark.svg?v=4") center / contain no-repeat; }
+.brand::before { content: ""; flex: none; width: 28px; height: 27px; background: url("../assets/duck-mark.svg?v=7") center / contain no-repeat; }
 .brand .wordmark .dot { color: var(--duck-dk); }
 .nav-links a { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: var(--ink-2); }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
@@ -5234,7 +5234,7 @@ html .lesson p:last-child { margin: 0; }
 
 /* the psych note: the duck's own note, with the duck beside it */
 html .psych { position: relative; display: block; margin: 2.75rem 0; padding: 1.35rem 1.4rem 1.25rem 5.4rem; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--card); }
-html .psych::before { content: ""; position: absolute; left: 1.05rem; top: 1.2rem; width: 56px; height: 54px; background: url("../assets/duck-mark.svg?v=4") center / contain no-repeat; }
+html .psych::before { content: ""; position: absolute; left: 1.05rem; top: 1.2rem; width: 56px; height: 54px; background: url("../assets/duck-mark.svg?v=7") center / contain no-repeat; }
 html .psych-k, html .psych .kicker { margin: 0 0 0.6rem; color: var(--ink); }
 html .psych p { color: var(--ink-2); }
 html .psych .src { color: var(--ink-3); }
@@ -5324,7 +5324,7 @@ html .sn-k { color: var(--ink); }
 /* the sign-off */
 .footer { border-top: 2px solid var(--ink); }
 .footer .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; }
-.footer .wrap::before { content: ""; flex: none; width: 22px; height: 21px; background: url("../assets/duck-mark.svg?v=4") center / contain no-repeat; }
+.footer .wrap::before { content: ""; flex: none; width: 22px; height: 21px; background: url("../assets/duck-mark.svg?v=7") center / contain no-repeat; }
 
 /* the lost page: the bug, on its own */
 .lost .lost-bug { display: block; width: 96px; height: auto; margin: 0 auto 1.5rem; }
@@ -5664,7 +5664,6 @@ html .eyebrow .case-no {
     html .pcard:hover .pcard-mock .mk { transform: scale(1.02); }
     html .pcard:hover .pcard-note svg { animation: note-nudge 520ms var(--ease); }
 
-    html .btn[href^="#"]:hover svg { translate: 0 2px; }
     html .post-row:hover .arrow { translate: 4px 0; }
     html .theme-toggle:hover svg { rotate: 18deg; }
     html .brand:hover::before { rotate: -12deg; }
@@ -6375,7 +6374,7 @@ html .room-props svg { filter: saturate(.75) contrast(.92) brightness(1.02); }
 :root[data-theme="dark"] .room-props svg { filter: saturate(.62) brightness(.8); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .room-props svg { filter: saturate(.62) brightness(.8); } }
 
-/* ---------- the intro as the practice's intake form, pinned to the wall ----------
+/* ---------- the intro as the practitioner's card, pinned to the wall ----------
    Not a column of text beside a picture: a paper form that hangs in the room, filled in by hand.
    The values stay real text (the name is still the h1); the field labels are the form's printing. */
 html .duck-room { --intake-paper: #FFFDF6; --intake-rule: color-mix(in srgb, #1E1A17 22%, transparent); --intake-edge: #1E1A17; }
@@ -6403,7 +6402,7 @@ html .duck-room .intake::before {
 html .duck-room .intake-head {
   display: flex; justify-content: space-between; gap: 1rem;
   margin: 0 0 1rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--intake-edge);
-  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  font-family: "Shantell Sans", var(--font-sans); font-size: 0.92rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink-2);
 }
 :root[data-theme="dark"] .duck-room .intake-head { border-bottom-color: var(--intake-rule); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .duck-room .intake-head { border-bottom-color: var(--intake-rule); } }
@@ -6436,3 +6435,1133 @@ html .duck-room .intake .hero-actions { margin-top: 1.25rem; }
 }
 /* the cabinet stands a step further into the room, clear of the form */
 html .room-props { right: calc(100% - 136 * var(--u)); }
+
+/* the practitioner's card, tuned: even padding and row rhythm, no orphaned words, the claim carries
+   more weight than the labels, the card keeps clear of the cabinet, and the primary button is the one yellow */
+html .duck-room .intake { max-width: 22.5rem; margin-top: -1rem; padding: 1.5rem 1.6rem 1.5rem; }
+html .duck-room .intake-head { margin-bottom: 0.9rem; padding-bottom: 0.55rem; }
+html .duck-room .intake h1 { margin: 0.1rem 0 0.75rem; padding-bottom: 0.45rem; font-size: clamp(2rem, 3.3vw, 2.8rem); }
+html .duck-room .intake .claim {
+  margin: 0.2rem 0 0.75rem; padding-bottom: 0.75rem;
+  font-size: clamp(1.15rem, 1.5vw, 1.3rem); font-weight: 500; line-height: 1.4; color: var(--ink);
+  text-wrap: balance;
+}
+html .duck-room .intake-facts > div { padding: 0.5rem 0; }
+html .duck-room .intake-facts dd { text-wrap: balance; }
+html .duck-room .intake .hero-actions { margin-top: 1.2rem; }
+html .duck-room .btn-primary { border-color: #1E1A17; background: var(--duck, #FFC93C); color: #1E1A17; }
+html .duck-room .btn-primary:hover { background: var(--duck-dk, #F0A91B); color: #1E1A17; }
+@media (max-width: 860px) {
+  html .duck-room .intake { max-width: none; margin-top: 0.5rem; padding: 1.2rem 1.2rem 1.3rem; }
+}
+/* the card leans the other way, so its lower corner swings away from the cabinet */
+html .duck-room .intake { rotate: 1.2deg; }
+@media (max-width: 860px) { html .duck-room .intake { rotate: 0.6deg; } }
+@media (prefers-reduced-motion: no-preference) { html .duck-room .intake:hover { rotate: 0.4deg; } }
+/* one tab per folder, at its own step along the top edge, the way real folders are cut. The other
+   three keep their space but are not drawn, so stacked folders line their tabs up into one row
+   and nothing that is not a control looks like one. */
+html .projects .case-tabs > span { visibility: hidden; }
+
+/* sections arrive quickly: a short, small rise instead of a slow fade */
+.reveal { transform: translateY(6px); transition: opacity 0.22s var(--ease), transform 0.22s var(--ease); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+/* ---------- the case files stand in a row, not a pile ----------
+   Stacking hid the earlier files and made scrolling back a guess. Each folder keeps its tab at its own step. */
+@media (min-width: 920px) and (min-height: 740px) {
+  html body .projects .case-drawer > .pcard.pcard-flagship { position: relative; top: auto; min-height: 0; }
+  html body .projects .case-drawer { --drawer-step: 0rem; }
+}
+/* props stay on the four case files only; the smaller cards go without */
+html body .projects .pcard:not(.pcard-flagship)[data-prop]::after { display: none; }
+/* every cover on the same paper: no colour per project */
+html:root body .projects .pcard .pcard-media.pcard-media,
+html:root body .projects .pcard .pcard-mock, html:root body .projects .pcard .pcard-media-tint, html:root body .projects .pcard .pcard-media-wrap { background: var(--bg-sunk); }
+/* the kicker: family, role, year as three parts, not a dotted string */
+html .pcard-kicker { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.1rem 0.7rem; }
+html .pcard-kicker .k-role { color: var(--ink-3); }
+html .pcard-kicker .yr { margin-left: auto; }
+html .pcard-kicker .yr::before { content: none; }
+
+/* ---------- the hero: words on the wall ----------
+   One scene. The room runs the full width; the furniture keeps the right; the name, the claim and a
+   line of facts are lettered on the wall at the left, at the characters' scale, and the floor runs
+   under all of it. No card, no empty wall above the room. */
+html .duck-room .split-inner { padding-top: clamp(1.5rem, 3vw, 2.5rem); padding-bottom: 0; }
+@media (min-width: 861px) {
+  html .duck-room .hero-grid { grid-template-columns: minmax(0, 1fr) clamp(360px, 46vw, 620px); gap: clamp(1.5rem, 3vw, 3rem); align-items: end; }
+  html .duck-room .hero-copy { align-self: center; padding-bottom: calc(var(--room-floor) + var(--room-skirt) + 1.5rem); }
+}
+html .duck-room .hero-copy { max-width: 34rem; }
+html .duck-room .hero-copy h1 { margin: 0; font-size: clamp(2.4rem, 4.4vw, 3.9rem); line-height: 1.02; letter-spacing: -0.005em; }
+html .duck-room .hero-copy .claim { margin: 0.9rem 0 0; max-width: 30ch; font-size: clamp(1.15rem, 1.6vw, 1.45rem); font-weight: 500; line-height: 1.35; color: var(--ink); text-wrap: balance; }
+html .duck-room .hero-copy .hero-facts { margin: 0.8rem 0 0; max-width: 36ch; font-size: clamp(0.95rem, 1.1vw, 1.05rem); color: var(--ink-2); }
+html .duck-room .hero-copy .hero-actions { margin-top: 1.3rem; }
+html .duck-room .hero-figure { width: auto; margin: 0; }
+html .duck-room .split-fig { max-width: none; margin: 0; }
+html .duck-room .btn-primary { border-color: #1E1A17; background: var(--duck, #FFC93C); color: #1E1A17; }
+html .duck-room .btn-primary:hover { background: var(--duck-dk, #F0A91B); color: #1E1A17; }
+@media (max-width: 860px) {
+  html .duck-room .hero-figure { order: 0; }
+  html .duck-room .hero-copy h1 { font-size: clamp(2.2rem, 9vw, 2.8rem); }
+}
+
+/* ---------- the words belong to the wall ----------
+   A chair rail runs the length of the wall, behind the chairs and the cabinet, so the lettering and the
+   furniture share one wall. The name and the claim are painted on it: the wallpaper's stripes show
+   through the paint, and the lettering takes the room's ink rather than page black. */
+@media (min-width: 861px) {
+  html .duck-room { position: relative; --rail-at: calc(var(--room-floor) + var(--room-skirt) + 118 * var(--u)); }
+  html .duck-room::after {
+    content: ""; position: absolute; left: 0; right: 0; bottom: var(--rail-at); height: 9px; z-index: 0; pointer-events: none;
+    border-top: 2px solid var(--room-ink); border-bottom: 2px solid var(--room-ink);
+    background: color-mix(in srgb, var(--skirt) 70%, var(--wall));
+  }
+  html .duck-room .split-inner { position: relative; z-index: 1; }
+  html .duck-room .hero-copy { padding-bottom: calc(var(--rail-at) + 1.75rem); }
+}
+html .duck-room .hero-copy h1 { color: color-mix(in srgb, #1E1A17 82%, var(--room-ink)); mix-blend-mode: multiply; }
+html .duck-room .hero-copy .claim { color: color-mix(in srgb, #1E1A17 78%, var(--room-ink)); mix-blend-mode: multiply; }
+:root[data-theme="dark"] .duck-room .hero-copy :is(h1, .claim) { color: #F6EEDD; mix-blend-mode: normal; opacity: 0.94; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .duck-room .hero-copy :is(h1, .claim) { color: #F6EEDD; mix-blend-mode: normal; opacity: 0.94; } }
+
+/* ---------- the hero lettering is plain ink on the wall ----------
+   No carving or bevel: the name, the claim and the facts are printed in the room's ink, so they read as type. */
+html .duck-room .hero-copy :is(h1, .claim, .hero-facts) { filter: none; text-shadow: none; mix-blend-mode: normal; }
+html .duck-room .hero-copy :is(h1, .claim) { color: #1E1A17; }
+html .duck-room .hero-copy .hero-facts { color: color-mix(in srgb, #1E1A17 78%, var(--wall, #CFE6DD)); }
+
+/* the chair rail, as a moulding rather than two lines: a rounded wooden cap that catches the light on top,
+   a flat face, a shadowed lip underneath, the room's ink outline, and the soft shadow it casts on the wall */
+@media (min-width: 861px) {
+  html .duck-room::after {
+    height: 14px; border-top: 2px solid var(--room-ink); border-bottom: 2px solid var(--room-ink); border-radius: 2px;
+    background:
+      linear-gradient(to bottom,
+        color-mix(in srgb, #FFFFFF 55%, var(--boards)) 0 3px,
+        var(--boards) 3px 9px,
+        color-mix(in srgb, var(--room-ink) 22%, var(--boards)) 9px 10px,
+        color-mix(in srgb, var(--room-ink) 12%, var(--boards)) 10px 100%);
+    box-shadow: 0 5px 0 -1px color-mix(in srgb, var(--room-ink) 14%, transparent);
+  }
+}
+/* no chair rail: the wall runs plain from the lettering down to the floor */
+html .duck-room::after { content: none !important; }
+/* the cabinet and umbrella stand further along the wall, clear of the bug's chair */
+html .room-props { right: calc(100% - 66 * var(--u)); }
+/* after dark the lettering is plain cream, like the rest of the night room */
+:root[data-theme="dark"] .duck-room .hero-copy :is(h1, .claim, .hero-facts) { filter: none; }
+:root[data-theme="dark"] .duck-room .hero-copy :is(h1, .claim) { color: #F6EEDD; }
+:root[data-theme="dark"] .duck-room .hero-copy .hero-facts { color: #C9CCDA; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .duck-room .hero-copy :is(h1, .claim, .hero-facts) { filter: none; }
+  :root:not([data-theme="light"]) .duck-room .hero-copy :is(h1, .claim) { color: #F6EEDD; }
+  :root:not([data-theme="light"]) .duck-room .hero-copy .hero-facts { color: #C9CCDA; }
+}
+
+/* the case tabs are a real row again: the open file's tab in yellow, the other three are links to those files,
+   in paper, so any folder takes you to any other. Nothing in the row pretends to be a button it isn't. */
+html .projects .case-tabs { pointer-events: auto; user-select: auto; cursor: auto; z-index: 3; }
+html .projects .case-tabs > a {
+  box-sizing: border-box; height: calc(var(--tab-h) - 6px); padding: 0.2rem 0.95rem 0;
+  border: var(--frame-w) solid color-mix(in srgb, var(--frame) 35%, var(--bg)); border-bottom: 0; border-radius: 9px 9px 0 0;
+  background: color-mix(in srgb, var(--ink) 6%, var(--bg)); color: color-mix(in srgb, var(--ink) 62%, var(--bg));
+  font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; line-height: 1.45; white-space: nowrap; text-decoration: none;
+  transition: height 150ms var(--ease), background-color 150ms var(--ease), color 150ms var(--ease);
+}
+html .projects .case-tabs > a:hover { height: var(--tab-h); background: color-mix(in srgb, var(--duck) 35%, var(--bg)); color: var(--ink); border-color: var(--frame); }
+html .projects .case-tabs > a:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+html .projects .case-drawer > .pcard.pcard-flagship { scroll-margin-top: calc(64px + var(--tab-h) + 1rem); }
+@media (max-width: 560px) {
+  html .projects .case-tabs > a { padding: 0.2rem 0.55rem 0; font-size: 0.8rem; }
+}
+
+/* ---------- the page under the room is warm paper, not white ----------
+   The room still ends at its ink line; the page beneath is the same world, a shade of the scene's paper.
+   Folders, panels and cards stay white, so they lift off it the way paper does on a desk. */
+:root:not([data-theme="dark"]) { --bg: #FDFBF6; --bg-sunk: #F5F1E8; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="dark"]) { --bg: #14161D; --bg-sunk: #101218; } }
+
+/* a cover that is already a picture with its own paper doesn't sit in a second panel: the image is the frame */
+/* one frame, drawn by the box: the box clips the picture to the same corner its border turns on, so the corner
+   is one clean curve (before, the picture drew a 6px border inside an 8px clip and the corner looked heavy) */
+html .case-cover:has(> img:only-child) { padding: 0; background: none; box-shadow: none; overflow: hidden;
+  border: 2px solid var(--frame, #1E1A17); border-radius: var(--radius); }
+html .case-cover:has(> img:only-child) > img { display: block; width: 100%; height: auto; border: 0; border-radius: 0; }
+
+/* case pages: no floorboards or skirting. With nothing standing in the room, the wall simply ends on one ink line */
+html :is(.case-intro, .case-hero, .post-hero) { --room-floor: 0px; --room-skirt: 0px; --band-drop: 1.75rem; }
+/* the wall ends on one ink line: just the wallpaper and the wall colour, no skirting or boards */
+html .case-intro .intro-sum::before, html :is(.case-hero, .post-hero)::before {
+  background: var(--wallpaper) var(--paper-x, 0) 0, var(--wall) !important; border-bottom: 2px solid var(--room-ink, #1E1A17);
+}
+html .case-intro .intro-sum::after, html :is(.case-hero, .post-hero)::after { content: none !important; }
+
+/* ---------- a case's cover hangs on the wall with its title ----------
+   The wall runs down behind the title, the summary and the cover, and ends on its ink line just below the cover.
+   The facts and the role lines follow on the page. */
+html .case-intro:has(.wall-hang) .intro-sum::before, html .case-intro:has(.wall-hang) .intro-sum::after { content: none !important; }
+html body .case-intro:has(.wall-hang) .intro-sum + .wall-hang { margin-top: 1.75rem !important; }
+html .wall-hang { position: relative; }
+html .wall-hang::before {
+  content: ""; position: absolute; z-index: -1; left: -100vw; right: -100vw; top: -100vh; bottom: -2.25rem; pointer-events: none;
+  background: var(--wallpaper) var(--paper-x, 0) 0, var(--wall); border-bottom: 2px solid var(--room-ink, #1E1A17);
+}
+html .wall-hang > .wall-end { bottom: -2.25rem; }
+html .wall-hang .case-cover { margin: 0; }
+html body .case-intro .wall-hang + * { margin-top: calc(2.25rem + 2.5rem) !important; }
+
+/* ---------- case pages: the title on a strip of wall, ending on a ledge ----------
+   The case's own wall (its colour and stripes, as before) holds the tab and the title, and ends on a wooden ledge.
+   The duck sits on the ledge at the right with its legs over the edge, swinging them; below, the case starts on
+   the page. The strip is the only room on the page, so the duck has one fixed place and nothing floats. */
+html .case-strip { --ledge-ink: #1E1A17; --ledge: color-mix(in srgb, #E8B974 80%, #FFFDF6); --ledge-lip: color-mix(in srgb, #FFFFFF 50%, #E8B974);
+  position: relative; z-index: 2; padding: clamp(2.2rem, 4.5vw, 3.4rem) 0 calc(clamp(1.8rem, 3.5vw, 2.6rem) + 18px);
+  background:
+    linear-gradient(var(--ledge-ink), var(--ledge-ink)) left bottom / 100% 2px no-repeat,
+    linear-gradient(var(--ledge-ink), var(--ledge-ink)) left bottom 16px / 100% 2px no-repeat,
+    linear-gradient(var(--ledge-lip), var(--ledge-lip)) left bottom 13px / 100% 3px no-repeat,
+    linear-gradient(var(--ledge), var(--ledge)) left bottom / 100% 18px no-repeat,
+    var(--wallpaper) var(--paper-x, 0) 0, var(--wall); }
+/* after dark the ledge takes the homepage floor's night colours: boards in the wall's shade, a soft lip, a dark edge */
+:root[data-theme="dark"] .case-strip { --ledge-ink: color-mix(in srgb, #0D0F16 65%, var(--wall)); --ledge: color-mix(in srgb, #2B2535 72%, var(--wall)); --ledge-lip: color-mix(in srgb, #39405C 70%, var(--wall)); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .case-strip { --ledge-ink: color-mix(in srgb, #0D0F16 65%, var(--wall)); --ledge: color-mix(in srgb, #2B2535 72%, var(--wall)); --ledge-lip: color-mix(in srgb, #39405C 70%, var(--wall)); } }
+html .case-strip .cs-inner { position: relative; padding-right: 220px; }
+html .case-strip .eyebrow { margin: 0; }
+html .case-strip h1 { margin: 0.6rem 0 0; max-width: 22ch; }
+html .case-strip .cs-duck { position: absolute; z-index: 3; right: max(1rem, calc(50% - 560px)); height: 168px; width: auto;
+  bottom: calc(18px - (378 - 326) / 240 * 168px); pointer-events: none; }
+/* the case below starts on the page */
+html .case-intro.cs-after { padding-top: clamp(2.2rem, 4vw, 3rem); }
+html .case-intro.cs-after .intro-sum { margin-top: 0; padding-right: max(0px, 100% - 62ch); }
+html .case-intro.cs-after .intro-sum::before, html .case-intro.cs-after .intro-sum::after { content: none !important; }
+html body .case-intro.cs-after .intro-sum + * { margin-top: 1.75rem !important; }
+html .case-intro.cs-after .intro-sum { --ink-2: var(--ink-2); }
+html .case-strip > .wall-end { bottom: 0; }
+@media (max-width: 700px) {
+  html .case-strip .cs-inner { padding-right: 0; }
+  html .case-strip { padding-bottom: calc(1.6rem + 18px + 92px); }
+  html .case-strip .cs-duck { height: 128px; right: 1rem; bottom: calc(18px - (378 - 326) / 240 * 128px); }
+}
+
+/* ---------- each case folder carries a typed label on its top edge ----------
+   One label per folder, "Case 01", typed on a white sticker and pressed onto the folder's top edge,
+   a touch crooked. It replaces the row of tabs: the folders already follow one another down the page. */
+html .projects .case-drawer { --tab-h: 0.75rem; }
+html .projects .case-drawer > .pcard.pcard-flagship + .pcard-flagship { margin-top: 3.25rem; }
+html .projects .file-label {
+  position: absolute; z-index: 3; left: 1.75rem; top: 0; margin: 0; transform: translateY(-55%) rotate(-1.5deg);
+  padding: 0.3rem 0.75rem 0.25rem; border: var(--frame-w) solid var(--frame); border-radius: 3px;
+  background: #FFFDF6; color: #1E1A17; box-shadow: 2px 2px 0 var(--frame);
+  font-family: "Courier New", Courier, ui-monospace, monospace; font-size: 0.95rem; font-weight: 700; line-height: 1.2;
+  letter-spacing: 0.02em; white-space: nowrap;
+}
+/* after dark the sticker is the night paper, with light type, like the rest of the folder */
+html body .projects .pcard-flagship .file-label { background: #FFFDF6; color: #1E1A17; }
+:root[data-theme="dark"] body .projects .pcard-flagship .file-label { background: #2A2D3A; color: #F6EEDD; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) body .projects .pcard-flagship .file-label { background: #2A2D3A; color: #F6EEDD; } }
+html .projects .pcard-flagship:nth-child(even) > .file-label { transform: translateY(-55%) rotate(1deg); }
+@media (max-width: 560px) { html .projects .file-label { left: 1rem; font-size: 0.8rem; } }
+
+/* a section that a same-page link moves focus to doesn't draw a focus ring around itself */
+[tabindex="-1"]:focus { outline: none; }
+
+/* no yellow marker on a card's title when you hover the card: the title takes a plain underline instead */
+html .pcard:hover h3 a, html .pcard:focus-within h3 a, html .pcard h3 a:hover {
+  background: none; color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px;
+}
+
+/* only the cabinet (and the tissues and tea on it) opens the case files: the umbrella, its stand and the floor
+   shadows sit inside the same link but no longer catch the pointer */
+html .room-props, html .room-props svg { pointer-events: none; }
+html .room-props .rp-cabinet { pointer-events: visiblePainted; cursor: pointer; }
+
+/* ---------- one frame per case ----------
+   The case folders lose their own box: no white card, outline or padding around the cover and the text, so the
+   cover's ink frame is the only frame (before, a framed cover sat on a tinted panel inside a framed card).
+   The "Case 01" label sits just above each case, where the folder's edge was. */
+html .projects .case-drawer { padding-top: 2.6rem; }
+html .projects .case-drawer > .pcard.pcard-flagship { background: none; border: 0; border-radius: 0; padding: 0; box-shadow: none; }
+html .projects .case-drawer > .pcard.pcard-flagship + .pcard-flagship { margin-top: 7rem; }
+html .projects .case-drawer > .pcard.pcard-flagship .file-label { left: 0; transform: translateY(calc(-100% - 0.75rem)) rotate(-1.5deg); }
+html .projects .case-drawer > .pcard.pcard-flagship:nth-child(even) > .file-label { transform: translateY(calc(-100% - 0.75rem)) rotate(1deg); }
+
+/* ---------- recessed panels take the room's wall, not beige ----------
+   Behind the covers and in the callouts, the light theme's sunk panels are a pale wash of the hero's green wall
+   instead of a darker beige, so they read as a piece of the room. Dark theme is unchanged. */
+/* a neutral light grey: the product mockups paint their own panels with it, so it must not carry a colour */
+:root:not([data-theme="dark"]) { --bg-sunk: #F2F2EF; }
+/* when the case stacks (phone), the text starts a step below its cover */
+html .projects .case-drawer > .pcard.pcard-flagship { row-gap: 1.1rem; }
+
+/* ---------- case pages: one type system, one surface ----------
+   From the portfolio research: the handwriting face only for short labels near the drawings, one accent on few
+   surfaces, at most one of each effect on a page, and rules, spacing and type instead of containers.
+   Type: Shantell Sans for headings (h1, h2, h3), the one pull quote ("The lesson") and the case labels. Everything
+   inside the text is Instrument Sans; monospace only marks a name, with no chip around it.
+   Surfaces: anything set apart sits on the pale wall wash, with no outline and the covers' 6px corner. Ink frames
+   stay on what you can click or compare: the stat strip, the tabs. Yellow stays on
+   the buttons and the open line in the contents. */
+html main :is(.highlights b, .stat b, .meta-line dt) { font-family: var(--font-sans); letter-spacing: 0; }
+html main .highlights b { font-weight: 650; }
+html main .meta-line dt { font-weight: 600; }
+html main :not(pre) > code { background: none; border: 0; padding: 0; border-radius: 0; font-size: 0.92em; color: var(--ink); }
+html main .plugin-no { background: none; border: 1.5px solid var(--frame); color: var(--ink); box-shadow: none; }
+/* two kinds of box instead of three: my own cards keep the ink outline; exhibits (tab panels, demos, diagrams,
+   code) sit on the pale wall wash with no frame; the aside under a plugin is a plain line, no box */
+html:root body main .plugin-head .plugin-why, html:root body main .plugin-why { background: none; border: 0; padding: 0; border-radius: 0; color: var(--ink-2); }
+html:root body main :is(.prose, .wrap, section) :is(.type-panel, .step-panel, .loopfig, .drawer, .launcher-demo, .rc-ui, .ba-code) {
+  background: var(--sheet); border: 0; border-radius: 6px; box-shadow: var(--paper-shadow); }
+html:root body main :is(.type-tablist, .type-tablist.steps) { border-radius: 6px; }
+html:root body main :is(.type-tablist, .type-tablist.steps) button { border-radius: 4px; }
+
+/* ---------- the work sits on white paper, lifted off the page ----------
+   Covers, screenshots, demos and diagrams are white sheets with one soft shadow and no outline, the way a printed
+   page sits on a desk. The shadow is used for these and nothing else (a shadow on every card is its own tell);
+   my own cards, the tabs and the buttons keep the comic's ink outline. After dark the sheet is the raised night
+   colour with a faint light edge, since a shadow doesn't show on a dark page. */
+:root { --sheet: #FFFFFF; --paper-shadow: 0 1px 2px rgb(30 26 23 / 0.07), 0 12px 28px -16px rgb(30 26 23 / 0.32); }
+:root[data-theme="dark"] { --sheet: var(--bg-elev); --paper-shadow: 0 0 0 1px rgb(255 255 255 / 0.09), 0 12px 28px -16px rgb(0 0 0 / 0.6); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --sheet: var(--bg-elev); --paper-shadow: 0 0 0 1px rgb(255 255 255 / 0.09), 0 12px 28px -16px rgb(0 0 0 / 0.6); } }
+html:root body .projects .pcard .pcard-media-wrap { background: var(--sheet); border: 0; border-radius: 6px; box-shadow: var(--paper-shadow); overflow: hidden; }
+html:root body .projects .pcard .pcard-media-wrap > .pcard-media,
+html:root body .projects .pcard .pcard-media-wrap > :is(.pcard-mock, .pcard-media-tint, .cover-frame) { background: var(--sheet); border: 0; border-radius: 0; box-shadow: none; }
+html:root body main .case-cover { background: var(--sheet); border: 0; border-radius: 6px; box-shadow: var(--paper-shadow); overflow: hidden; }
+
+/* the "Case 01" label sits in the text column, as its first line, instead of over the cover */
+html .projects .case-drawer { padding-top: 0.5rem; }
+html .projects .case-drawer > .pcard.pcard-flagship .pcard-body > .file-label {
+  position: static; display: inline-block; align-self: flex-start; margin: 0 0 0.9rem; transform: rotate(-1.5deg); }
+html .projects .case-drawer > .pcard.pcard-flagship:nth-child(even) .pcard-body > .file-label { transform: rotate(1deg); }
+html .projects .case-drawer > .pcard.pcard-flagship + .pcard-flagship { margin-top: 5rem; }
+
+/* no hand-drawn stroke under every heading: one effect repeated on every title is a template move. The headings
+   carry themselves in Shantell Sans; the homepage section icons and the case labels already mark the sections. */
+html .prose h2, html .section-head h2 { background: none; padding-bottom: 0; }
+
+/* ---------- the footer is the room's floor ----------
+   Every page ends on floorboards instead of a white strip: the footer is a band of the room's boards with its
+   ink line on top, and the copyright sits on it in ink. On the homepage the session-notes wall comes down to its
+   skirting board and the footer is the floor under it, so the room closes the page the way it opened it. */
+html .footer {
+  padding: 0; border-top: 2px solid var(--room-ink, #1E1A17); color: #1E1A17; font-size: 0.9rem;
+  background: var(--planks) left top / auto 100% repeat-x, var(--boards);
+}
+html .footer .wrap { min-height: 76px; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 0.5rem 0.75rem; }
+html .footer a { color: inherit; }
+html #session-notes { --room-floor: 0px; padding-bottom: calc(clamp(3rem, 6vw, 4.75rem) + 11px); }
+html body:has(#session-notes) .footer { border-top: 0; }
+:root[data-theme="dark"] .footer { color: #F6EEDD; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .footer { color: #F6EEDD; } }
+
+/* homepage covers sit on the pale wash of the room's wall (white stays on the case pages) */
+html .projects { --sheet: #EEF6F2; }
+:root[data-theme="dark"] .projects { --sheet: var(--bg-elev); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects { --sheet: var(--bg-elev); } }
+
+/* where one case ends and the next starts: a faint rule across the column, the way a file divider
+   separates folders. Spacing and a rule instead of a box around each case. */
+html .projects .case-drawer > .pcard.pcard-flagship + .pcard-flagship {
+  margin-top: 3.75rem; padding-top: 3.75rem; border-top: 1.5px solid color-mix(in srgb, var(--ink) 20%, transparent); }
+
+/* in one column (tablet and phone) the label leads the case, above its cover, so each case starts with its number */
+@media (max-width: 919px) {
+  html .projects .case-drawer > .pcard.pcard-flagship { display: flex; flex-direction: column; row-gap: 0; }
+  html .projects .case-drawer > .pcard.pcard-flagship .pcard-body { display: contents; }
+  html .projects .case-drawer > .pcard.pcard-flagship .pcard-body > .file-label { order: -1; align-self: flex-start; }
+  html .projects .case-drawer > .pcard.pcard-flagship .pcard-media-wrap { order: 0; margin-bottom: 1.1rem; }
+  html .projects .case-drawer > .pcard.pcard-flagship .pcard-body > :not(.file-label) { order: 1; }
+}
+
+/* ---------- session notes: a small card the duck sits on ----------
+   About half the size it was: a narrower card, a smaller title, the three numbers on one line with no table
+   rules, the notes in one column, and the follow-up line on the same row as its buttons. The duck sits on the
+   card's top edge with its legs over, the way it sits on the ledge on every case page, holding a calendar. */
+html #session-notes { padding-top: clamp(4.5rem, 8vw, 6rem); }
+html #session-notes .sn { max-width: 720px; margin-inline: auto; padding: 1.5rem 1.6rem 1.4rem; }
+html #session-notes .sn-perch { position: absolute; z-index: 2; right: 1.75rem; height: 116px; width: auto; pointer-events: none;
+  top: calc(-1 * (326 - 138) / 240 * 116px); }
+html #session-notes .sn-head { padding-right: 120px; }
+html #session-notes .sn-head h2 { font-size: clamp(1.35rem, 2vw, 1.6rem); }
+html #session-notes .sn-body { display: block; margin-top: 1.1rem; }
+html #session-notes .sn-data .sn-k { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+html #session-notes .sn-stats { display: flex; flex-wrap: wrap; gap: 0.4rem 2rem; }
+html #session-notes .sn-stats > div { display: flex; flex-direction: column; gap: 0.1rem; padding: 0; border: 0; }
+html #session-notes .sn-stats b { order: 0; text-align: left; font-size: 1.05rem; }
+html #session-notes .sn-stats span { order: 1; font-size: 0.8rem; }
+html #session-notes .sn-pad { margin-top: 1.1rem; }
+html #session-notes .sn-list li { padding-top: 0.45rem; padding-bottom: 0.45rem; font-size: 0.92rem; }
+html #session-notes .sn-fine { margin-top: 0.6rem; font-size: 0.76rem; }
+html #session-notes .sn-plan { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.25rem; margin-top: 1.1rem; padding-top: 1rem; }
+html #session-notes .sn-plan-line { font-size: 1.2rem; letter-spacing: 0; }
+html #session-notes .sn-plan .hero-actions { margin: 0; gap: 0.5rem; }
+html #session-notes .sn-plan .btn { padding: 0.45rem 0.85rem; font-size: 0.9rem; }
+@media (max-width: 560px) {
+  html #session-notes .sn-perch { height: 92px; right: 1rem; top: calc(-1 * (326 - 138) / 240 * 92px); }
+  html #session-notes .sn-head { padding-right: 84px; }
+}
+
+/* the footer's floor is the hero's floor: the same light boards, brown seams and plank size, and the copyright
+   in a heavier ink with a halo of board colour so the seams don't run through the letters */
+html .footer {
+  --room-ink: #5B4A3E; --boards: color-mix(in srgb, #E8B974 70%, #FFFDF6);
+  border-top-color: var(--room-ink);
+  background: var(--planks) left top / auto 105px repeat-x, var(--boards);
+}
+html .footer .wrap { min-height: 84px; font-weight: 500; font-size: var(--t-1); }
+html .footer .wrap > * { text-shadow: 0 0 4px var(--boards), 0 0 8px var(--boards); }
+:root[data-theme="dark"] .footer { --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall)); --boards: color-mix(in srgb, #2B2535 72%, var(--wall)); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .footer { --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall)); --boards: color-mix(in srgb, #2B2535 72%, var(--wall)); } }
+
+/* ==========================================================================================================
+   Case pages: the whole system, after a full audit of all six pages
+   The product mockups keep their own look (they show the products). Everything else on a case page follows
+   these rules, and nothing else:
+   1. Type. Shantell Sans for the page title, the section titles (h2), the one pull quote and the case labels.
+      Everything else is Instrument Sans: subheads (h3) at 1.15rem semibold, body, captions, labels.
+   2. Labels ("The lesson", "Why it matters", the role and stack terms) are small semibold grey text. No chips.
+   3. Numbers are plain grey numerals before the line they number. No discs, no rings, no yellow.
+   4. Lists of findings are lists with a rule between items, not a grid of cards.
+   5. My own cards (the decision, the psychology note, the stat strip, the contents) keep the ink outline.
+   6. Exhibits (covers, mockups, demos, diagrams, panels, quoted files) are white sheets with the soft shadow.
+   7. Tabs are words with an ink underline under the open one, on a hairline.
+   ========================================================================================================== */
+/* 1 */
+html:root body main :is(.prose, .chapter, .case-intro, .plugin, .plugins) h3,
+html:root body main .plugin-head h3 {
+  font-family: var(--font-sans); font-weight: 650; font-size: 1.15rem; line-height: 1.3; letter-spacing: 0; }
+/* 2 */
+html:root body main :is(.lesson-k, .psych-k, .psych .kicker, .k, .block-k, .vs-k, .meta-line dt, .highlights b) {
+  font-family: var(--font-sans); letter-spacing: 0; text-transform: none; }
+html:root body main :is(.lesson-k, .psych-k, .psych .kicker, .block-k, .vs-k), html:root body main .chapter > .k, html:root body main .prose > .k {
+  padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-size: 0.82rem; font-weight: 600; color: var(--ink-3); }
+html:root body main .meta-line dt { font-weight: 600; }
+/* 3 */
+html:root body main .plugin-no { width: auto; height: auto; min-width: 0; border: 0; border-radius: 0; background: none; box-shadow: none;
+  font-family: var(--font-sans); font-weight: 600; font-size: 1rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+html:root body main .issues li b::before { content: counter(issue); width: auto; height: auto; border-radius: 0; background: none; color: var(--ink-3);
+  font-family: var(--font-sans); font-weight: 600; font-size: 1rem; font-variant-numeric: tabular-nums; }
+/* 4 */
+html:root body main .issues { gap: 0 2.5rem; }
+html:root body main .issues li { padding: 1rem 0 1.1rem; border: 0; border-top: 1px solid var(--line); border-radius: 0; background: none; box-shadow: none; }
+html:root body main .issues li b { font-family: var(--font-sans); font-weight: 650; font-size: 1.05rem; }
+/* 6 */
+html:root body main :is(.prose, .chapter, section) :is(.fails, .askdemo, .up, .rp, .mk, .vs-ui, .wire, .tree, .story-wrap) {
+  background: var(--sheet); border: 0; border-radius: 6px; box-shadow: var(--paper-shadow); }
+/* 7 */
+html:root body main :is(.type-tablist, .type-tablist.steps) {
+  display: inline-flex; gap: 1.4rem; width: auto; max-width: 100%; padding: 0; margin: 0 0 1rem;
+  border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; box-shadow: none; }
+html:root body main :is(.type-tablist, .type-tablist.steps) button {
+  height: auto; padding: 0.3rem 0 0.45rem; margin-bottom: -1px; border: 0; border-bottom: 2px solid transparent; border-radius: 0;
+  background: none; box-shadow: none; color: var(--ink-3); font-family: var(--font-sans); font-weight: 600; font-size: 0.95rem; }
+html:root body main :is(.type-tablist, .type-tablist.steps) button:hover:not([aria-selected="true"]) { background: none; color: var(--ink); }
+html:root body main :is(.type-tablist, .type-tablist.steps) button[aria-selected="true"] { background: none; color: var(--ink); border-bottom-color: var(--ink); }
+/* 2, continued: the card labels sit inside their cards as the first line, not on the border */
+html:root body main :is(.lesson-k, .psych-k, .psych .kicker) { position: static; transform: none; display: block; margin: 0 0 0.45rem; }
+/* 6, continued: the flow diagrams' frame is a sheet too */
+html:root body main :is(.prose, .chapter, section) .frame { background: var(--sheet); border: 0; border-radius: 6px; box-shadow: var(--paper-shadow); }
+/* captions, citations and notes under an exhibit: one size */
+html:root body main :is(.mock-note, .cite, .panel-cap, figcaption, .caption) { font-size: 0.875rem; }
+
+/* ---------- session notes: the end of the session, on the wall ----------
+   The page closes the way it opens: words on the room's wall at the left (the title, what your visit looked
+   like, the follow-up and its buttons), and at the right the duck's notes on a sheet of paper pinned to the
+   wall, with the duck sitting on the sheet's top edge holding its calendar. No card around any of it. */
+html #session-notes .sn {
+  max-width: none; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 400px); column-gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+html #session-notes .sn::before { display: none; }
+html #session-notes .sn-body { display: contents; }
+html #session-notes .sn-head { grid-column: 1; grid-row: 1; padding-right: 0; }
+html #session-notes .sn-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); color: #1E1A17; }
+html #session-notes .sn-data { grid-column: 1; grid-row: 2; margin-top: 1.25rem; }
+html #session-notes .sn-stats b { color: #1E1A17; }
+html #session-notes .sn-stats span { color: var(--on-wall-2, #2E3A35); }
+html #session-notes .sn-plan { grid-column: 1; grid-row: 3; margin-top: 1.75rem; padding-top: 0; border-top: 0; }
+html #session-notes .sn-plan-line { font-size: 1.35rem; color: #1E1A17; }
+html #session-notes .sn-pad {
+  grid-column: 2; grid-row: 1 / span 3; position: relative; margin: 0; padding: 1.25rem 1.3rem 1rem;
+  background: var(--sheet); border-radius: 3px; box-shadow: var(--paper-shadow); rotate: 1.2deg; }
+/* the pin that holds the sheet to the wall */
+html #session-notes .sn-pad::after {
+  content: ""; position: absolute; top: 9px; left: 50%; width: 12px; height: 12px; translate: -50% 0; border-radius: 50%;
+  background: #E8553D; border: 2px solid #1E1A17; }
+html #session-notes .sn-pad > .sn-perch { right: 0.75rem; }
+:root[data-theme="dark"] #session-notes .sn-head h2, :root[data-theme="dark"] #session-notes .sn-stats b, :root[data-theme="dark"] #session-notes .sn-plan-line { color: #F6EEDD; }
+:root[data-theme="dark"] #session-notes .sn-stats span { color: #C9CCDA; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #session-notes .sn-head h2, :root:not([data-theme="light"]) #session-notes .sn-stats b, :root:not([data-theme="light"]) #session-notes .sn-plan-line { color: #F6EEDD; }
+  :root:not([data-theme="light"]) #session-notes .sn-stats span { color: #C9CCDA; }
+}
+@media (max-width: 760px) {
+  html #session-notes .sn { grid-template-columns: minmax(0, 1fr); }
+  html #session-notes .sn-pad { grid-column: 1; grid-row: 3; margin-top: 6.5rem; }
+  html #session-notes .sn-plan { grid-row: 4; }
+}
+/* the smaller cards' covers (more work, earlier work) are the same sheet as the case covers: no ink outline */
+html:root body main .projects .pcard > :is(.pcard-media, .pcard-media.cover-frame, .pcard-media.pcard-stack, .pcard-media.pcard-mock) { border: 0; border-radius: 6px; background: var(--sheet); box-shadow: var(--paper-shadow); overflow: hidden; }
+html:root body main .projects .pcard .pcard-media-wrap:has(> .app-badge) { border: 0; border-radius: 6px; }
+/* the buttons on the session-notes wall are the hero's: the white ones are white */
+html #session-notes .btn-ghost { background: var(--wall-paper, #FFFFFF); }
+html #session-notes .btn-ghost:hover { background: color-mix(in srgb, var(--ink) 8%, var(--wall-paper, #FFFFFF)); }
+
+/* the footer is exactly one plank tall, the hero floor's size, with the copyright in the middle board, so no seam
+   runs through the letters (the seams sit about a third and two thirds of the way down each plank) */
+html .footer { padding: 14px 0 16px; }
+html .footer .wrap { min-height: 28px; }
+html .footer .wrap > * { text-shadow: none; }
+
+/* the session-notes wall starts on an ink line, the way the hero's wall ends on one */
+html #session-notes { border-top: 2px solid var(--room-ink, #1E1A17); }
+/* its label is the plain small eyebrow the case pages use, not a yellow chip */
+html #session-notes .sn-head .sn-k { display: block; padding: 0; background: none; box-shadow: none; border: 0;
+  font-family: var(--font-sans); font-weight: 600; font-size: 0.85rem; color: var(--on-wall-2, #2E3A35); }
+:root[data-theme="dark"] #session-notes .sn-head .sn-k { color: #C9CCDA; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) #session-notes .sn-head .sn-k { color: #C9CCDA; } }
+
+/* "More work": a section heading inside the case-files section, across both columns */
+html .projects .more-head { grid-column: 1 / -1; margin: 1.5rem 0 0; padding-top: 3.5rem; border-top: 1.5px solid color-mix(in srgb, var(--ink) 20%, transparent); }
+html .projects .more-head h2 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); }
+
+/* ---------- one size for running text, no stray bold, a quieter pull quote ----------
+   Paragraphs and list text in the body of a page are one size. Bold stays only where it works as a heading
+   (the lead line of a list item); inside a paragraph, words aren't bolded. "The lesson" and "The decision" lose
+   their box and drop well below the section titles, so a section title is always the biggest thing in its
+   section; a hairline above sets them apart. */
+html:root body main :is(.prose, .chapter) > p,
+html:root body main :is(.prose, .chapter) > :is(ul, ol):not(.steps) > li,
+html:root body main .issues li,
+html:root body main .plugin p:not(.plugin-why) { font-size: 1.0625rem; line-height: 1.65; }
+html:root body main :is(.prose, .chapter, .case-intro, .lesson, .psych) > p :is(b, strong) { font-weight: inherit; color: inherit; }
+html:root body main .lesson, html body .chapter > .lesson:last-child, html body .lesson + .chapter > .lesson {
+  border: 0; border-top: 1px solid var(--line); border-radius: 0; background: none; box-shadow: none; padding: 1.25rem 0 0; margin: 2.25rem 0; }
+html:root body main .lesson .lesson-big { font-size: clamp(1.25rem, 1.8vw, 1.45rem); line-height: 1.3; margin: 0 0 0.6rem; }
+/* bullet lists read as plain sentences: no bold lead-in on each item (the six findings keep their lead line,
+   which works as that item's heading) */
+html:root body main .prose > ul > li > :is(strong, b):first-child { font-weight: inherit; color: inherit; }
+/* About: the intro paragraph under the ledge, at the case summaries' size */
+html .case-intro.cs-after > .lead { margin: 0; max-width: 62ch; font-size: 1.125rem; }
+/* About sidebar: subheads like every other subhead, labels like every other label, and the toolbox as plain
+   comma-separated lines instead of a wall of outlined chips */
+html:root body main .clipboard h3 { font-family: var(--font-sans); font-weight: 650; font-size: 1.15rem; letter-spacing: 0; }
+html:root body main .clipboard h4 { margin: 1rem 0 0.25rem; font-family: var(--font-sans); font-weight: 600; font-size: 0.82rem; letter-spacing: 0; color: var(--ink-3); }
+html:root body main .skill-tags { display: block; margin: 0; padding: 0; list-style: none; font-size: 0.95rem; line-height: 1.6; color: var(--ink-2); }
+html:root body main .skill-tags li { display: inline; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; font-size: inherit; font-weight: 400; }
+html:root body main .skill-tags li:not(:last-child)::after { content: ", "; }
+
+/* a mockup's window is the product's own white, wherever it sits: the green is only the backdrop around a
+   homepage cover, never inside the picture */
+html .projects .pcard .mk, html .projects .pcard .pcard-mock .mk { background: #FFFFFF; }
+:root[data-theme="dark"] .projects .pcard .mk { background: var(--bg-elev); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .projects .pcard .mk { background: var(--bg-elev); } }
+
+/* ---------- three title sizes for the whole site ----------
+   Your name on the homepage is the biggest thing on the site. A page title (About, every case) is a step down,
+   and a section title a step below that: about 62, 48 and 34px on a laptop. */
+html .case-strip h1 { font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.08; max-width: 24ch; }
+
+/* ---------- the hero: your name and one text style ----------
+   The claim and the facts line were two styles (a bigger medium-weight line and a smaller grey one). They are now
+   one: the same size, weight and ink, as two short paragraphs. */
+html .duck-room .hero-copy :is(.claim, .hero-facts) {
+  max-width: 34ch; font-size: clamp(1.1rem, 1.45vw, 1.3rem); font-weight: 400; line-height: 1.45; letter-spacing: 0; color: #1E1A17; }
+html .duck-room .hero-copy .hero-facts { margin-top: 0.5rem; }
+:root[data-theme="dark"] .duck-room .hero-copy :is(.claim, .hero-facts) { color: #F6EEDD; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .duck-room .hero-copy :is(.claim, .hero-facts) { color: #F6EEDD; } }
+
+/* ---------- case pages: fewer text styles inside a section ----------
+   A section is now: a title (Shantell), paragraphs (one size), subheads (one style), small text for captions.
+   - The number, the name and the "for type" phrase of a plugin are one subhead, one style.
+   - The note under a plugin, the lead line under a section title, and the explanations inside the panels are
+     ordinary paragraphs at the body size.
+   - The eyebrow over each section title ("Step 1", "Moment 1 of 4", "The proposal") is no longer shown; the
+     contents list carries the order. Screen readers still read it. */
+html:root body main .plugin-head h3 :is(.plugin-no, .plugin-for) {
+  margin: 0; padding: 0; font: inherit; color: inherit; letter-spacing: inherit; background: none; border: 0; width: auto; height: auto; }
+html:root body main .plugin-head h3 .plugin-no { margin-right: 0.45em; }
+html:root body main .plugin-head h3 .plugin-for { margin-left: 0.3em; }
+html:root body main .plugin-head h3 { display: block; }
+html:root body main :is(.plugin-why, .dek, .panel-lead, .panel-note) { font-size: 1.0625rem; line-height: 1.65; color: var(--ink-2); font-weight: 400; }
+html:root body main .chapter > .num, html:root body main .prose > .num {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+html:root body main :is(.plugin-why, .dek, .panel-lead, .panel-note) :is(b, strong) { font-weight: inherit; color: inherit; }
+
+/* the facts under the claim: the claim's own font, weight and ink, a size smaller, each line led by its icon
+   (a pin for where, a cap for the training) */
+html .duck-room .hero-copy .hero-facts {
+  display: grid; gap: 0.4rem; margin: 1rem 0 0; padding: 0; list-style: none; max-width: none;
+  font-size: clamp(0.98rem, 1.15vw, 1.08rem); font-weight: 400; line-height: 1.4; color: #1E1A17; }
+html .duck-room .hero-copy .hero-facts li { display: flex; align-items: center; gap: 0.55rem; }
+html .duck-room .hero-copy .hero-facts svg { flex: none; width: 1.1em; height: 1.1em; }
+:root[data-theme="dark"] .duck-room .hero-copy .hero-facts { color: #F6EEDD; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .duck-room .hero-copy .hero-facts { color: #F6EEDD; } }
+
+/* ==========================================================================================================
+   One set of interaction states for the whole site
+   Built up over many passes, the site had 154 hover rules, 38 hover transforms, 14 hover animations and focus
+   rings in three colours. One rule per kind of control now; nothing moves on hover except the scene's own
+   objects (the cabinet drawer, the duck, the lamp), whose movement is the point.
+   ========================================================================================================== */
+/* cards: hovering underlines the title (set earlier); the card, its cover and its picture stay still, and the
+   cover's animation plays once when it scrolls in, not again on every hover */
+html:root body .pcard:is(:hover, :focus-within),
+html:root body .pcard:is(:hover, :focus-within) :is(.pcard-media img, .pcard-stack .win-front, .pcard-stack .win img, .pcard-mock .mk, .pcard-note svg) {
+  transform: none !important; translate: none !important; scale: none !important; }
+html:root body .pcard:not(.play):is(:hover, :focus-within) .cv * { animation: none !important; }
+/* small decorative motions on hover are gone */
+html:root body :is(.post-row:hover .arrow, .theme-toggle:hover svg, .btn:hover svg, .brand:hover::before, .zoom:hover, .zoom:focus-visible) {
+  transform: none !important; translate: none !important; rotate: none !important; scale: none !important; }
+
+/* buttons: hover darkens the fill a step; a click presses it down 1px */
+html:root body :is(.btn, .theme-toggle) { transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease; }
+html:root body :is(.btn, .theme-toggle):hover { transform: none; scale: none; box-shadow: none; }
+html:root body :is(.btn, .theme-toggle):active { scale: none !important; translate: 0 1px; }
+html:root body .btn-primary:hover { background: var(--duck-dk, #F0A91B); }
+html:root body :is(.btn-ghost, .theme-toggle):hover { background: color-mix(in srgb, var(--ink) 7%, var(--wall-paper, var(--bg-elev))); }
+
+/* text links: an ink underline at rest that thickens on hover; no colour change, no highlight */
+html:root body :is(main, .footer) :is(p, li, dd, td, figcaption, small, .timeline span) a:not(.btn, .hl-link, .toc a, .nav-links a, .brand) {
+  color: inherit; background: none; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
+html:root body :is(main, .footer) :is(p, li, dd, td, figcaption, small, .timeline span) a:not(.btn, .hl-link, .toc a, .nav-links a, .brand):hover {
+  color: inherit; background: none; text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+
+/* the bar's links and the contents list: an underline on hover; the current one keeps its own marker */
+html:root body .nav-links a:hover { background: none; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+html:root body .toc a:hover:not(.on) { background: none; color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* keyboard focus: one 2px ink ring, everywhere (a case file's ring goes round the whole card, since the card is the link) */
+html:root body :is(a, button, summary, input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid var(--ink) !important; outline-offset: 3px !important; box-shadow: none !important; }
+html:root body .pcard h3 a:focus-visible { outline: none !important; }
+html:root body .pcard:has(h3 a:focus-visible) { outline: 2px solid var(--ink) !important; outline-offset: 6px !important; }
+
+/* ==========================================================================================================
+   Scales: type, corners, spacing
+   Type is one modular scale: a 17px body and a ratio of 1.25 (a major third), the range the typography
+   references recommend for content sites. Every size on the site is a step on it; titles drop one step on phones.
+   Corners are two radii: 4px for small things you click or read (buttons, tags, labels, the pinned note), 8px
+   for anything that holds content (covers, cards, panels). Circles stay circles.
+   Spacing steps by 8px, with 4px for small gaps.
+   ========================================================================================================== */
+:root {
+  --t-1: 0.85rem;    /* 13.6px  small: captions, kickers, labels, fine print, the footer */
+  --t0: 1.0625rem;   /* 17px    body, lists, links, buttons, the bar */
+  --t1: 1.328rem;    /* 21.25px lead lines, subheads */
+  --t2: 1.66rem;     /* 26.6px  card titles, the pull quote */
+  --t3: 2.075rem;    /* 33.2px  section titles */
+  --t4: 2.594rem;    /* 41.5px  page titles */
+  --t6: 4.05rem;     /* 64.8px  your name */
+  --radius: 8px; --radius-s: 4px;
+}
+/* titles */
+html .duck-room .hero-copy h1 { font-size: clamp(2.594rem, 5vw, var(--t6)); }
+html .case-strip h1 { font-size: clamp(var(--t3), 3.6vw, var(--t4)); }
+html body main :is(.section-head h2, .prose h2, .chapter h2, .chapter > h2), html .projects .more-head h2, html #session-notes .sn-head h2 { font-size: clamp(var(--t2), 2.6vw, var(--t3)); }
+html body main .pcard h3 { font-size: clamp(var(--t1), 1.9vw, var(--t2)); }
+html:root body main .lesson .lesson-big { font-size: clamp(var(--t1), 1.9vw, var(--t2)); }
+/* lead lines and subheads */
+html .duck-room .hero-copy .claim, html .case-intro .intro-sum, html .case-intro.cs-after > .lead, html #session-notes .sn-plan-line,
+html:root body main :is(.prose, .chapter, .case-intro, .plugin, .plugins) h3, html:root body main .plugin-head h3, html:root body main .clipboard h3 { font-size: var(--t1); }
+/* body */
+html body, html .duck-room .hero-copy .hero-facts, html:root body main :is(.prose, .chapter) > p, html:root body main .issues li,
+html:root body main :is(.plugin-why, .dek, .panel-lead, .panel-note), html .btn, html .nav-links a, html .pcard .pcard-body > p { font-size: var(--t0); }
+/* small */
+html :is(.pcard-kicker, .eyebrow, .file-label, .footer, figcaption, .mock-note, .cite, .panel-cap, .caption, .sn-fine, .timeline time, .lesson-k, .psych-k, .meta-line dt, .meta-line dd, .sn-stats span, .clipboard h4, .toc .k, .toc a, .highlights span),
+html:root body main :is(.mock-note, .cite, .panel-cap, figcaption, .caption) { font-size: var(--t-1); }
+
+/* corners */
+html :is(.btn, .file-label, .skip, .case-no, .tag, .chip, kbd) { border-radius: var(--radius-s); }
+html:root body :is(.btn, .theme-toggle.square) { border-radius: var(--radius-s); }
+html #session-notes .sn-pad { border-radius: var(--radius-s); }
+html:root body main :is(.pcard-media-wrap, .case-cover, .psych, .clipboard, .highlights, .toc, .stats, .type-panel, .step-panel, .loopfig, .drawer, .launcher-demo, .rc-ui, .ba-code, .fails, .askdemo, .up, .rp, .mk, .vs-ui, .wire, .tree, .frame),
+html:root body main .projects .pcard > :is(.pcard-media, .pcard-media.cover-frame, .pcard-media.pcard-stack, .pcard-media.pcard-mock) { border-radius: var(--radius); }
+html .pcard .app-badge { border-radius: var(--radius); }
+/* a window inside a cover sits well inside its sheet, so its corner is the small one */
+html .pcard .win { border-radius: var(--radius-s); }
+
+/* spacing, on the 8px steps: the hero stack is 16px between lines and 32px before the buttons (the buttons are a
+   separate group, the action, so they get a bigger gap); a case's text column is 12px label to kicker, 8px kicker
+   to title, 8px title to summary */
+html .duck-room .hero-copy .claim { margin-top: 16px; }
+html .duck-room .hero-copy .hero-facts { margin-top: 16px; gap: 8px; }
+html .duck-room .hero-copy .hero-actions { margin-top: 32px; gap: 12px; }
+html .btn { padding: 12px 20px; gap: 8px; }
+html .projects .case-drawer > .pcard.pcard-flagship .pcard-body > .file-label { margin-bottom: 12px; }
+html body main .pcard .pcard-kicker { margin-bottom: 8px; }
+html body main .pcard h3 { margin: 0 0 8px; }
+html #session-notes .sn-plan .hero-actions { gap: 12px; }
+/* the stragglers the first pass missed, each put on its step */
+html:root body :is(.file-label, .sn-fine, .sn-stats span, .lesson-k, .psych-k, .clipboard h4, details > summary, .rulecards li) { font-size: var(--t-1) !important; }
+html:root body :is(.pcard .pcard-body > p, .sn-stats b, .sn-plan .btn, .psych > p, .timeline span, .timeline a, .skill-tags, .skill-tags li, .issues li b, .type-tablist button, .rulecards .rc-def) { font-size: var(--t0) !important; }
+html:root body .rulecards li :is(b, span) { font-size: inherit !important; }
+html:root body .highlights b { font-size: var(--t1) !important; }
+html:root body .stats .stat b { font-size: var(--t3) !important; }
+html:root body .pcard h3 a { font-size: inherit !important; }
+html:root body .pcard h3 { font-size: clamp(var(--t1), 1.9vw, var(--t2)) !important; }
+html:root body :is(.feature-n, .block-k, :is(.prose, .chapter, .case-intro) > :is(p, ul, ol, li) small) { font-size: var(--t-1) !important; }
+html:root body .hl-arrow { font-size: inherit !important; }
+html:root body .projects .pcard .pcard-media-wrap { border-radius: var(--radius) !important; }
+html:root body .file-label { border-radius: var(--radius-s) !important; }
+
+/* ==========================================================================================================
+   Text colours: two levels
+   Following Material's emphasis levels (high and medium) and the advice to keep text levels as few as possible:
+   one ink for titles, body and links, and one grey for secondary text (kickers, captions, labels, dates, fine
+   print). The slightly lighter body ink is merged into the main ink. On the green wall the secondary text keeps
+   its darker green-grey, since the page grey would fall under 4.5:1 there. The bar's links are plain ink on every
+   case wall instead of a tint per case.
+   ========================================================================================================== */
+:root, :root[data-theme="dark"] { --ink-2: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ink-2: var(--ink); } }
+html body header.nav :is(.nav-links a, .brand, .wordmark) { color: var(--ink); }
+
+/* ---------- line length and wrapping ----------
+   Body text runs about 50 to 75 characters a line (Baymard, Bringhurst). Paragraphs avoid a lone last word,
+   and titles balance their lines. */
+html:root body main :is(.prose, .chapter) > p, html:root body main .case-intro :is(.intro-sum, .lead), html .duck-room .hero-copy .claim { max-width: 66ch; }
+html:root body main .case-intro .intro-sum { padding-right: 0; }
+html:root body main :is(p, li) { text-wrap: pretty; }
+html:root body :is(h1, h2, h3) { text-wrap: balance; }
+
+/* ---------- the contents list: one marker for the current section ----------
+   The open line keeps its yellow and nothing else (it was yellow and semibold); hover is the plain underline. */
+html:root body .toc a.on { font-weight: inherit; border-radius: var(--radius-s); }
+
+/* ---------- homepage case files ----------
+   - The label keeps its sticker but drops the typewriter face, so the card uses the site's two families only.
+   - The kicker is one style: small grey text throughout (the project name was bold ink, the rest grey).
+   - The title's hover underline goes when the pointer leaves: it no longer stays on after a click. A keyboard
+     user tabbing to the card still gets it, with the focus ring. */
+html:root body .file-label { font-family: var(--font-sans) !important; font-weight: 600; letter-spacing: 0.01em; }
+html:root body .pcard .pcard-kicker b { font-weight: inherit; color: inherit; }
+html:root body .pcard .pcard-kicker { color: var(--ink-3); }
+html:root body .pcard:focus-within:not(:hover) h3 a { text-decoration: none; }
+html:root body .pcard:has(h3 a:focus-visible) h3 a { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+
+/* ---------- a plugin subhead: one space between the parts, not a doubled gap ---------- */
+html:root body main .plugin-head h3 .plugin-for { margin-left: 0; }
+html:root body main .plugin-head h3 .plugin-no { margin-right: 0.4em; }
+html:root body main .case-intro :is(.intro-sum, .lead), html:root body main :is(.prose, .chapter) > p { max-width: 32em !important; }
+html:root body .pcard .pcard-body > :is(.file-label, .pcard-kicker) { font-size: var(--t-1) !important; }
+html:root body .pcard .pcard-kicker :is(b, span) { font-weight: 400 !important; color: var(--ink-3); }
+
+/* the line above a case title is one short phrase, the role and the year ("Research and product design, 2025"):
+   the role is what a reviewer wants first, the year shows it's recent, and the product name repeated what the
+   title and summary already say. One line, no right-aligned year to wrap. */
+html:root body .pcard .pcard-kicker { display: block; margin: 0 0 8px; font-size: var(--t-1) !important; font-weight: 400; color: var(--ink-3); }
+
+/* ==========================================================================================================
+   Audit fixes
+   ========================================================================================================== */
+/* images keep their shape: width and height attributes reserve the space while loading (no layout jump), and
+   height follows the width when the image is scaled down */
+img { height: auto; }
+
+/* the label over a case title sits on a coloured wall; small text there needs a darker ink to reach 4.5:1 */
+html .case-strip .eyebrow { color: #3D3833; }
+:root[data-theme="dark"] .case-strip .eyebrow { color: #D9D6CF; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .case-strip .eyebrow { color: #D9D6CF; } }
+
+/* mockup text a reviewer could read as a design choice, brought up to 4.5:1 (3:1 for icons) */
+html .la-btn:not(.ghost) { color: #1E1A17; }
+html :is(.mkset, .pcard-mock) em.count { background: #C93434; }
+html :is(.up-chip.block, .up-tag.bad) { background: #C7432C; border-color: #C7432C; }
+html .up em { color: #C7432C; }
+html .mkset em.chip, html .ba-tag.after { color: #19665B; }
+html :is(.aa-range, .aa-filters-k) { color: var(--ap-ink2, #4B5563); }
+html .lnch-mark { color: #FFFFFF; }
+:root[data-theme="dark"] :is(.mkset .w .late, .mkset .tasks .late, .mkset td.late) { color: #FF9C8F; }
+:root[data-theme="dark"] :is(.up-chip.unblock, .up-tag.ok) { color: #7FD4B8; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.mkset .w .late, .mkset .tasks .late, .mkset td.late) { color: #FF9C8F; }
+  :root:not([data-theme="light"]) :is(.up-chip.unblock, .up-tag.ok) { color: #7FD4B8; }
+}
+
+/* the demo's small text buttons get a 24px target, the WCAG 2.2 minimum */
+html :is(.aa-clear, .ld-close, .drawer-replay) { display: inline-flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; }
+
+/* reduced motion: a site-wide net under the per-animation guards, so nothing loops or slides for someone who
+   has asked their system for less motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+/* the last mockup contrast fixes, scoped to the mockups (they're stronger than the mockups' own rules) */
+html :is(.mk, .mkset, .pcard-mock) .count { background: #C93434 !important; }
+html .ba-tag.after { color: #19665B !important; }
+:root[data-theme="dark"] .ba-tag.after, :root[data-theme="dark"] .mkset em.chip { color: #7FD4B8 !important; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) :is(.ba-tag.after, .mkset em.chip) { color: #7FD4B8 !important; } }
+html :is(.up-list, .up) li em { color: #C7432C !important; }
+html .synthetic { color: var(--ap-ink2, #4B5563) !important; }
+html .launcher-demo .ld-head span { color: var(--ap-ink2, #4B5563) !important; }
+/* the launcher demo is a product screenshot in the product's own light colours: it stays light after dark */
+:root[data-theme="dark"] .launcher-demo { background: #FFFFFF !important; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .launcher-demo { background: #FFFFFF !important; } }
+/* the ask-bar demos are screenshots of the product in its own light colours, so after dark they stay light,
+   the way a screenshot would, instead of a dark sheet behind dark product text */
+:root[data-theme="dark"] :is(.askdemo, .loopfig, .launcher-demo) {
+  color-scheme: light; --bg: #FFFFFF; --bg-elev: #FFFFFF; --bg-sunk: #F2F2EF; --sheet: #FFFFFF;
+  --ink: #1E1A17; --ink-2: #1E1A17; --ink-3: #5F5A54; --line: rgb(30 26 23 / 0.14); --line-strong: rgb(30 26 23 / 0.28);
+  background: #FFFFFF !important; color: #1E1A17; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.askdemo, .loopfig, .launcher-demo) {
+    color-scheme: light; --bg: #FFFFFF; --bg-elev: #FFFFFF; --bg-sunk: #F2F2EF; --sheet: #FFFFFF;
+    --ink: #1E1A17; --ink-2: #1E1A17; --ink-3: #5F5A54; --line: rgb(30 26 23 / 0.14); --line-strong: rgb(30 26 23 / 0.28);
+    background: #FFFFFF !important; color: #1E1A17; }
+}
+html :is(.up-chip.unblock, .up-tag.ok) { color: #155A4A !important; }
+:root[data-theme="dark"] :is(.up-chip.unblock, .up-tag.ok) { color: #7FD4B8 !important; }
+:root[data-theme="dark"] :is(.up-list, .up) li em { color: #FF9C8F !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) :is(.up-chip.unblock, .up-tag.ok) { color: #7FD4B8 !important; }
+  :root:not([data-theme="light"]) :is(.up-list, .up) li em { color: #FF9C8F !important; }
+}
+html .mkset .w em:not(.late):not(.chip):not(.count):not(.ok) { color: #5F5A54; }
+/* the demos' own small grey (product palette) is one step darker, so its small text reaches 4.5:1 */
+html :is(.askdemo, .loopfig, .launcher-demo, .drawer) { --ap-ink3: #5F6878; }
+:root[data-theme="dark"] .drawer .synthetic { color: #C9CCDA !important; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .drawer .synthetic { color: #C9CCDA !important; } }
+
+/* homepage covers sit on white, like the covers on the case pages (the pale green backdrop is gone) */
+html .projects { --sheet: #FFFFFF; }
+
+/* ---------- case intro: summary and facts side by side, the stat strip full width under them ----------
+   The summary keeps its reading width (about 70 characters a line); the space beside it holds the project facts
+   (role, stack, when, with) as small labelled rows instead of a box under the stats. The stat strip below runs
+   the full width, so the block reads as one unit. One column on tablets and phones. */
+@media (min-width: 960px) {
+  html:root body main :is(.case-intro.cs-after, .case-intro.cs-after > .intro-text) {
+    display: grid; grid-template-columns: minmax(0, 32em) minmax(0, 1fr); column-gap: 64px; row-gap: 32px; align-items: start; }
+  html:root body main .case-intro.cs-after:has(> .intro-text) { display: block; }
+  html:root body main .case-intro.cs-after .intro-sum { grid-column: 1; grid-row: 1; margin: 0; }
+  html:root body main .case-intro.cs-after .meta-line { grid-column: 2; grid-row: 1; }
+  html:root body main .case-intro.cs-after .highlights { grid-column: 1 / -1; grid-row: 2; margin: 0 !important; }
+}
+html:root body main .case-intro.cs-after .meta-line {
+  margin: 0; padding: 0; border: 0 !important; border-radius: 0; background: none; box-shadow: none;
+  display: grid; gap: 12px; font-size: var(--t-1); }
+html:root body main .case-intro.cs-after .meta-line > div { display: grid; grid-template-columns: 4.5em minmax(0, 1fr); gap: 0 12px; padding: 0; border: 0; }
+html:root body main .case-intro.cs-after .meta-line dt { color: var(--ink-3); font-weight: 600; font-size: var(--t-1) !important; }
+html:root body main .case-intro.cs-after .meta-line dd { margin: 0; color: var(--ink); font-size: var(--t-1) !important; }
+html:root body main .case-intro.cs-after .highlights { border-radius: var(--radius) !important; border-bottom-width: var(--frame-w, 1.5px) !important; }
+@media (max-width: 959px) {
+  html:root body main .case-intro.cs-after .meta-line { margin-top: 24px; }
+}
+html:root body main .case-intro.cs-after .meta-line { grid-template-columns: minmax(0, 1fr) !important; grid-auto-flow: row !important; align-content: start; }
+html:root body main .case-intro.cs-after .meta-line > div { display: grid !important; grid-column: auto !important; grid-row: auto !important; width: auto !important; }
+
+/* link hover changes only the underline's colour (45% ink to full ink), never its thickness or the background:
+   a thicker line on hover made the text look like it jumped */
+html:root body :is(main, .footer) :is(p, li, dd, td, figcaption, small, .timeline span) a:not(.btn, .hl-link, .toc a, .nav-links a, .brand):hover {
+  text-decoration-thickness: 1px; background: none; box-decoration-break: slice; -webkit-box-decoration-break: slice; }
+html:root body .nav-links a:hover { text-decoration-thickness: 1px; }
+
+/* graph labels in the ask-bar demo get a white halo, so the lines behind them don't run through the letters */
+html .aa-graph .g-label { paint-order: stroke fill; stroke: #FFFFFF; stroke-width: 5px; stroke-linejoin: round; }
+
+/* ---------- the case intro is the summary, the role and the results ----------
+   The first screen of a case carries what reviewers look for first (the claim, the role, the result): the
+   summary, one Role line under it, and the stat strip. Stack, When and With move to "Project details" at the end
+   of the case. One column, the summary at its reading width, the stat strip full width. */
+@media (min-width: 960px) {
+  html:root body main :is(.case-intro.cs-after, .case-intro.cs-after > .intro-text) { display: block !important; }
+}
+html:root body main .case-intro.cs-after .intro-sum { margin: 0; }
+html:root body main .case-intro.cs-after .meta-line { margin: 16px 0 0; display: block; max-width: 32em; }
+html:root body main .case-intro.cs-after .meta-line > div { display: flex !important; gap: 12px; }
+html:root body main .case-intro.cs-after .meta-line dt { flex: none; }
+html:root body main .case-intro.cs-after .highlights { margin: 32px 0 0 !important; }
+/* project details at the end: the same small labelled rows */
+html:root body main .meta-line.meta-end { display: grid; gap: 12px; margin: 0; padding: 0; border: 0; background: none; font-size: var(--t-1); }
+html:root body main .meta-line.meta-end > div { display: grid; grid-template-columns: 4.5em minmax(0, 1fr); gap: 0 12px; border: 0; padding: 0; }
+html:root body main .meta-line.meta-end dt { color: var(--ink-3); font-weight: 600; }
+html:root body main .meta-line.meta-end dd { margin: 0; color: var(--ink); }
+html:root body main .case-intro.cs-after:not(:has(> .intro-text)), html:root body main .case-intro.cs-after > .intro-text { display: flex !important; flex-direction: column; align-items: stretch; }
+html:root body main .case-intro.cs-after:has(> .intro-text) { display: block !important; }
+html:root body main .case-intro.cs-after .intro-sum { order: 0; }
+html:root body main .case-intro.cs-after .meta-line { order: 1; }
+html:root body main .case-intro.cs-after .highlights { order: 2; border: var(--frame-w, 1.5px) solid var(--frame, #1E1A17) !important; border-radius: var(--radius) !important; }
+
+/* ---------- the case intro is one card ----------
+   The summary, the Role line and the three results sit in one ink-outlined card: the text at the top at its
+   reading width, the results as the card's bottom row under a hairline. */
+html:root body main .case-intro.cs-after .intro-card {
+  display: flex !important; flex-direction: column; align-items: stretch;
+  border: var(--frame-w, 1.5px) solid var(--frame, #1E1A17); border-radius: var(--radius); background: var(--sheet, #FFFFFF);
+  padding: 32px 32px 0; overflow: hidden; }
+html:root body main .case-intro.cs-after:has(> .intro-card) { display: block !important; }
+html:root body main .case-intro.cs-after .intro-card .meta-line { margin: 16px 0 0; }
+html:root body main .case-intro.cs-after .intro-card .highlights {
+  margin: 32px -32px 0 !important; border: 0 !important; border-top: 1px solid var(--line) !important; border-radius: 0 !important;
+  background: none !important; box-shadow: none !important; }
+:root[data-theme="dark"] .case-intro.cs-after .intro-card { background: var(--bg-elev); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .case-intro.cs-after .intro-card { background: var(--bg-elev); } }
+@media (max-width: 700px) {
+  html:root body main .case-intro.cs-after .intro-card { padding: 20px 20px 0; }
+  html:root body main .case-intro.cs-after .intro-card .highlights { margin: 24px -20px 0 !important; }
+}
+
+/* ==========================================================================================================
+   The user-page mockup, as the product
+   It's the same fraud-investigation suite as the ask-bar demo, so it takes that demo's product palette instead of
+   the portfolio's cream: white surfaces, neutral grey lines, blue for what you've selected, red only for risk.
+   The dashed selection box becomes a tinted band with two handle lines; the red stripe down the side of two cards
+   goes (the status tag already says "Blocked"); numbers get the weight. It stays light after dark, like a
+   screenshot of the product.
+   ========================================================================================================== */
+html .up {
+  --up-line: #E4E7EC; --up-ink: #1A1F29; --up-ink2: #4B5563; --up-ink3: #667085; --up-bar: #D5DAE1;
+  --up-hi: #D4442A; --up-hi-soft: #FDECEA; --up-ok: #157347; --up-ok-soft: #E7F4EC; --up-acc: #2F5BD6; --up-acc-soft: rgb(47 91 214 / 0.08);
+  --bg: #FFFFFF; --bg-elev: #FFFFFF; --bg-sunk: #F5F6F8; --line: #E4E7EC; --line-strong: #CBD2DB; --ink: #1A1F29; --ink-2: #4B5563; --ink-3: #667085;
+  color-scheme: light; background: #FFFFFF !important; color: var(--up-ink); }
+html .up .mk-top { background: #F5F6F8; border-bottom: 1px solid var(--up-line); }
+html .up .mk-top i { background: #CBD2DB; }
+html .up-body { gap: 16px; }
+html .up-alert { border: 1px solid #F6C9C1; background: var(--up-hi-soft); color: #7A2414; font-weight: 600; border-radius: 6px; }
+html .up-alert u { color: var(--up-acc); }
+html .up-avatar { background: #CBD2DB; }
+html .up-chip { border-color: #CBD2DB; color: var(--up-ink); border-radius: 6px; }
+html .up-chip.block { background: var(--up-hi) !important; border-color: var(--up-hi) !important; color: #FFFFFF; }
+html .up-chip.unblock { background: #FFFFFF !important; border: 1px solid #A7D3BB !important; color: var(--up-ok) !important; }
+html .up-op, html .up-kpi, html .up-list { background: #FFFFFF; border: 1px solid var(--up-line); border-radius: 8px; box-shadow: 0 1px 2px rgb(16 24 40 / 0.04); }
+html .up-op.warn { border-left: 1px solid var(--up-line); }
+html .up-tag { border-radius: 4px; }
+html .up-tag.bad { background: var(--up-hi-soft) !important; color: #B0301A !important; }
+html .up-tag.ok { background: var(--up-ok-soft) !important; color: var(--up-ok) !important; }
+html .up-tl { border-top: 0; padding-top: 0; }
+html .up-hint { color: var(--up-ink3); font-weight: 400; }
+/* the timeline: grey bars, the selected days in blue on a tinted band, two solid handle lines */
+html .up-bars i { background: var(--up-bar); opacity: 1; border-radius: 2px 2px 0 0; }
+html .up-bars i.in { background: var(--up-acc); }
+html .up-sel { border: 0; border-left: 2px solid var(--up-acc); border-right: 2px solid var(--up-acc); border-radius: 0; background: var(--up-acc-soft); top: 0; }
+html .up-axis { background: var(--up-line); }
+html .up-range input::-webkit-slider-thumb { background: #FFFFFF; border: 2px solid var(--up-acc); box-shadow: 0 1px 3px rgb(16 24 40 / 0.2); }
+html .up-range input::-moz-range-thumb { background: #FFFFFF; border: 2px solid var(--up-acc); box-shadow: 0 1px 3px rgb(16 24 40 / 0.2); }
+/* numbers carry the cards */
+html .up-kpi small { color: var(--up-ink3); }
+html .up-kpi b { font-size: 1.5rem; font-weight: 650; letter-spacing: -0.01em; }
+html .up-kpi em.flat { background: #F2F4F7; color: var(--up-ink3); }
+html .up-map { background: #EEF1F4; }
+html .up-map .land { background: #E1E5EA; opacity: 1; }
+html .up-map .road { background: #FFFFFF; }
+html .up-pin { background: var(--up-hi); box-shadow: 0 0 0 2px #FFFFFF; }
+html .up-list li { border-top: 1px solid var(--up-line); }
+/* the results line up with the summary above them */
+html:root body main .case-intro.cs-after .intro-card .highlights > li { padding: 20px 16px !important; }
+@media (max-width: 700px) { html:root body main .case-intro.cs-after .intro-card .highlights > li { padding: 16px 4px !important; } }
+
+/* ==========================================================================================================
+   The case intro card, built for a 30-second read
+   Reviewers skim: they read the top, then run down the left edge (NN/g's F-pattern), and they want the problem,
+   your role and the outcome before anything else. So the card leads with the three results across the top, then
+   three short rows whose labels sit down the left edge: The problem, What I did, My role. Each row is one or two
+   sentences at body size, capped at a comfortable line length.
+   ========================================================================================================== */
+html:root body main .case-intro.cs-after .intro-card { padding: 0; }
+html:root body main .case-intro.cs-after .intro-card .highlights {
+  order: 0; margin: 0 !important; border: 0 !important; border-bottom: 1px solid var(--line) !important; }
+html:root body main .case-intro.cs-after .intro-card .highlights > li { padding: 24px 32px !important; }
+html:root body main .case-intro.cs-after .intro-card .intro-rows {
+  order: 1; margin: 0; padding: 28px 32px 32px; display: grid; gap: 20px; }
+html:root body main .intro-rows > div { display: grid; grid-template-columns: 7.5rem minmax(0, 34em); column-gap: 24px; align-items: baseline; }
+html:root body main .intro-rows dt { font-size: var(--t-1); font-weight: 600; color: var(--ink-3); }
+html:root body main .intro-rows dd { margin: 0; font-size: var(--t0); line-height: 1.55; color: var(--ink); text-wrap: pretty; }
+@media (max-width: 700px) {
+  html:root body main .case-intro.cs-after .intro-card .highlights > li { padding: 16px 20px !important; }
+  html:root body main .case-intro.cs-after .intro-card .intro-rows { padding: 20px; gap: 16px; }
+  html:root body main .intro-rows > div { grid-template-columns: minmax(0, 1fr); row-gap: 4px; }
+}
+html:root body main .case-intro.cs-after .intro-card .highlights { padding: 0 !important; }
+html:root body main .case-intro.cs-after .intro-card { gap: 0 !important; }
+
+/* ==========================================================================================================
+   The licence-application mockup (Case 04 cover), as the product
+   Two columns instead of three: a top bar carries the progress (step, a thin bar, "saved") and the manager's
+   assignment, then a numbered step list sits beside the form. OneComply's own teal instead of the portfolio's
+   yellow, neutral greys and white, and it stays light after dark like a screenshot of the product.
+   ========================================================================================================== */
+html .la2 {
+  --la-acc: #0F766E; --la-acc-soft: #E6F4F2; --la-ink: #1A1F29; --la-ink2: #4B5563; --la-ink3: #667085; --la-line: #E4E7EC; --la-risk: #C2412D;
+  display: flex !important; flex-direction: column; background: #FFFFFF; color: var(--la-ink); font-family: var(--font-sans); }
+html .projects .pcard .mk:has(.la2) { background: #FFFFFF !important; }
+html .la2-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--la-line); font-size: 0.62rem; color: var(--la-ink2); }
+html .la2-progress { display: flex; align-items: center; gap: 8px; min-width: 0; }
+html .la2-progress b { color: var(--la-ink); font-weight: 650; white-space: nowrap; }
+html .la2-bar { position: relative; width: 96px; height: 6px; border-radius: 3px; background: var(--la-line); overflow: hidden; flex: none; }
+html .la2-bar i { position: absolute; inset: 0 34% 0 0; background: var(--la-acc); border-radius: 3px; }
+html .la2-progress small { font-size: inherit; color: var(--la-ink3); white-space: nowrap; }
+html .la2-assign { padding: 2px 7px; border-radius: 4px; background: #F2F4F7; white-space: nowrap; }
+html .la2-assign b { font-weight: 600; color: var(--la-ink); }
+html .la2-body { display: grid; grid-template-columns: 36% minmax(0, 1fr); min-height: 0; }
+html .la2-steps { display: grid; gap: 2px; align-content: start; padding: 12px 10px; border-right: 1px solid var(--la-line); }
+html .la2-steps > span { display: flex; align-items: center; gap: 8px; padding: 5px 6px; border-radius: 6px; font-size: 0.66rem; color: var(--la-ink3); }
+html .la2-steps > span i { flex: none; display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #CBD2DB; font-style: normal; font-size: 0.56rem; font-weight: 650; color: var(--la-ink3); background: #FFFFFF; }
+html .la2-steps > span.done { color: var(--la-ink2); }
+html .la2-steps > span.done i { background: var(--la-acc); border-color: var(--la-acc); color: #FFFFFF; }
+html .la2-steps > span.now { background: var(--la-acc-soft); color: var(--la-ink); font-weight: 600; }
+html .la2-steps > span.now i { border-color: var(--la-acc); color: var(--la-acc); }
+html .la2-form { display: flex; flex-direction: column; gap: 7px; padding: 12px 14px; min-width: 0; }
+html .la2 .la-h { font-size: 0.82rem; font-weight: 650; color: var(--la-ink); }
+html .la2 .la-sub { font-size: 0.62rem; color: var(--la-ink3); margin-bottom: 2px; }
+html .la2 .la-doc { border: 1px solid var(--la-line); border-radius: 6px; background: #FFFFFF; font-size: 0.66rem; color: var(--la-ink); }
+html .la2 .la-doc.ok i { background: var(--la-acc); box-shadow: inset 0 0 0 4px var(--la-acc-soft); }
+html .la2 .la-doc.todo { border: 1px solid #F3C4BB; background: #FFF7F5; }
+html .la2 .la-doc.todo i { border: 2px solid var(--la-risk); background: #FFFFFF; }
+html .la2 .la-doc em { color: var(--la-ink3) !important; }
+html .la2 .la-doc em.la-up { background: #FFFFFF !important; color: var(--la-acc) !important; border: 1px solid var(--la-acc); }
+html .la2 .la-next { display: flex; justify-content: flex-end; gap: 6px; margin-top: 4px; }
+html .la2 .la-btn { border-radius: 6px; font-size: 0.62rem; }
+html .la2 .la-btn:not(.ghost) { background: var(--la-acc) !important; color: #FFFFFF !important; }
+html .la2 .la-btn.ghost { background: #FFFFFF; border: 1px solid #CBD2DB; color: var(--la-ink); }
+@container (max-width: 440px) {
+  html .la2-top { flex-wrap: wrap; }
+  html .la2-assign { display: none; }
+}
+
+/* ==========================================================================================================
+   Vertical rhythm, on the 8px steps
+   Measured on every page: section titles sat 42 to 94px above their content (a 40px heading margin plus a
+   52px top margin left on the smaller cards from when props stood on them), section padding ran 8, 40, 76, 87
+   and 96px, and card padding used 22.4 and 25.6px. One rhythm now:
+   - sections: 80px above and below; 64px for the first section after a case's intro
+   - a homepage section title to its cards: 24px; a title inside a case to its text: 16px (as before)
+   - between rows of cards: 48px; between cases: the divider with 56px either side (as before)
+   - cards: 24px inside (the contents list 24 / 20px, the psychology note keeps room for its icon at the left)
+   ========================================================================================================== */
+html body main .section { padding-top: 80px; padding-bottom: 80px; }
+html body main :is(.case-intro, .intro-visual, .wt-wrap) + .section { padding-top: 64px; }
+html body main .section-head { margin-bottom: 24px !important; }
+html body main .projects > .pcard:not(.pcard-flagship) { margin-top: 0 !important; }
+html body main .projects { row-gap: 48px; }
+html body main .projects .case-drawer { padding-top: 0 !important; margin-bottom: 0; }
+html body main .projects .more-head { margin: 8px 0 -24px !important; padding-top: 56px; }
+html:root body main .toc { padding: 24px 20px 20px; }
+html:root body main .psych { padding: 24px 24px 24px 88px; }
+html:root body main .clipboard { padding: 32px 24px 24px; }
+html:root body main .lesson { padding-top: 24px !important; }
+html #session-notes .sn-pad { padding: 24px 24px 20px; }
+
+/* the contents list: hover is a light grey row in the same shape as the yellow "you are here" row, not an
+   underline, and the current row doesn't change on hover */
+html:root body .toc a { border-radius: var(--radius-s); text-decoration: none !important; }
+html:root body .toc a:hover:not(.on) { background: color-mix(in srgb, var(--ink) 6%, transparent) !important; color: var(--ink); text-decoration: none !important; }
+html:root body .toc a.on:hover { background: var(--duck-soft, #FFF1C4); }
+
+/* every hover underline is the same quiet line: 1px, part-tinted, never full black or thick */
+html:root body .pcard:hover h3 a, html:root body .pcard h3 a:hover, html:root body .pcard:has(h3 a:focus-visible) h3 a {
+  text-decoration: underline !important; text-decoration-thickness: 1px !important; text-underline-offset: 6px !important;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent) !important; }
+html:root body .nav-links a:hover { text-decoration-thickness: 1px !important; text-underline-offset: 6px; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent) !important; }
+html:root body :is(main, .footer) :is(p, li, dd, td, figcaption, small, .timeline span) a:not(.btn, .hl-link, .toc a, .nav-links a, .brand):hover {
+  text-decoration-color: color-mix(in srgb, currentColor 70%, transparent) !important; text-decoration-thickness: 1px !important; }
+
+/* theme change: everything switches in one frame (the lamp's glow on the homepage keeps its slow fade) */
+html.theme-switching *, html.theme-switching *::after, html.theme-switching *:not(.duck-fig)::before { transition: none !important; }
+
+/* the footer is the hero's floor: the same boards drawn in perspective toward the wall, the same faint seams
+   and the same shade under the ink line, in both themes (the flat plank pattern read as a brick wall) */
+html .footer { --planks-deep: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 120' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='120'%3E%3Cstop offset='0' stop-color='%235B4A3E' stop-opacity='.08'/%3E%3Cstop offset='1' stop-color='%235B4A3E' stop-opacity='.3'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke='url%28%23f%29' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke-width='1.5'%3E%3Cpath d='M10.4 0 C-39.9 40 -89.6 80 -140.0 120' stroke-dasharray='54 6 83 4' stroke-dashoffset='53'/%3E%3Cpath d='M111.2 0 C69.2 40 23.6 80 -20.0 120' stroke-dasharray='67 5 53 4' stroke-dashoffset='7'/%3E%3Cpath d='M212.0 0 C174.7 40 137.7 80 100.0 120' stroke-dasharray='61 7 65 5' stroke-dashoffset='34'/%3E%3Cpath d='M312.8 0 C280.6 40 251.0 80 220.0 120' stroke-dasharray='44 5 50 6' stroke-dashoffset='13'/%3E%3Cpath d='M413.6 0 C389.6 40 365.7 80 340.0 120' stroke-dasharray='64 6 61 5' stroke-dashoffset='10'/%3E%3Cpath d='M514.4 0 C494.6 40 477.3 80 460.0 120' stroke-dasharray='42 5 89 6' stroke-dashoffset='28'/%3E%3Cpath d='M615.2 0 C601.8 40 593.0 80 580.0 120' stroke-dasharray='46 5 50 4' stroke-dashoffset='13'/%3E%3Cpath d='M716.0 0 C711.4 40 703.5 80 700.0 120' stroke-dasharray='51 5 60 5' stroke-dashoffset='20'/%3E%3Cpath d='M816.8 0 C819.8 40 820.8 80 820.0 120' stroke-dasharray='50 5 61 6' stroke-dashoffset='12'/%3E%3Cpath d='M917.6 0 C925.7 40 933.0 80 940.0 120' stroke-dasharray='62 6 51 5' stroke-dashoffset='26'/%3E%3Cpath d='M1018.4 0 C1030.9 40 1044.2 80 1060.0 120' stroke-dasharray='48 5 66 4' stroke-dashoffset='21'/%3E%3Cpath d='M1119.2 0 C1139.6 40 1158.0 80 1180.0 120' stroke-dasharray='57 4 88 6' stroke-dashoffset='45'/%3E%3Cpath d='M1220.0 0 C1245.4 40 1272.3 80 1300.0 120' stroke-dasharray='59 4 69 5' stroke-dashoffset='52'/%3E%3Cpath d='M1320.8 0 C1352.0 40 1386.8 80 1420.0 120' stroke-dasharray='57 7 70 4' stroke-dashoffset='30'/%3E%3Cpath d='M1421.6 0 C1460.8 40 1501.9 80 1540.0 120' stroke-dasharray='68 5 53 5' stroke-dashoffset='60'/%3E%3Cpath d='M1522.4 0 C1568.3 40 1614.7 80 1660.0 120' stroke-dasharray='39 6 75 4' stroke-dashoffset='35'/%3E%3Cpath d='M1623.2 0 C1675.5 40 1728.4 80 1780.0 120' stroke-dasharray='64 6 74 6' stroke-dashoffset='53'/%3E%3C/g%3E%3Cg stroke-width='1.3'%3E%3Cpath d='M484.0 78 C520.2 77 551.2 79 587.3 78.3'/%3E%3Cpath d='M822.9 40 C856.9 39 886.0 41 920.1 40.3'/%3E%3Cpath d='M1172.8 96 C1210.0 95 1241.8 97 1279.0 96.3'/%3E%3Cpath d='M1262.3 56 C1297.2 55 1327.2 57 1362.1 56.3'/%3E%3C/g%3E%3C/g%3E%3Cg fill='none' stroke='%235B4A3E' stroke-opacity='.14' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M207.8 64 c-3.7 4.8 -6.8 7.2 -9.3 12.0'/%3E%3Cpath d='M448.0 30 c-2.2 4.8 -4.5 7.2 -5.4 12.0'/%3E%3Cpath d='M761.7 88 c0.1 4.8 -1.0 7.2 0.3 12.0'/%3E%3Cpath d='M1084.2 36 c2.4 4.8 2.4 7.2 6.1 12.0'/%3E%3Cpath d='M1438.3 74 c4.7 4.8 5.9 7.2 11.8 12.0'/%3E%3C/g%3E%3C/svg%3E"); }
+:root[data-theme="dark"] .footer { --planks-deep: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 120' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='120'%3E%3Cstop offset='0' stop-color='%23FFFFFF' stop-opacity='.06'/%3E%3Cstop offset='1' stop-color='%23FFFFFF' stop-opacity='.22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke='url%28%23f%29' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke-width='1.5'%3E%3Cpath d='M10.4 0 C-39.9 40 -89.6 80 -140.0 120' stroke-dasharray='54 6 83 4' stroke-dashoffset='53'/%3E%3Cpath d='M111.2 0 C69.2 40 23.6 80 -20.0 120' stroke-dasharray='67 5 53 4' stroke-dashoffset='7'/%3E%3Cpath d='M212.0 0 C174.7 40 137.7 80 100.0 120' stroke-dasharray='61 7 65 5' stroke-dashoffset='34'/%3E%3Cpath d='M312.8 0 C280.6 40 251.0 80 220.0 120' stroke-dasharray='44 5 50 6' stroke-dashoffset='13'/%3E%3Cpath d='M413.6 0 C389.6 40 365.7 80 340.0 120' stroke-dasharray='64 6 61 5' stroke-dashoffset='10'/%3E%3Cpath d='M514.4 0 C494.6 40 477.3 80 460.0 120' stroke-dasharray='42 5 89 6' stroke-dashoffset='28'/%3E%3Cpath d='M615.2 0 C601.8 40 593.0 80 580.0 120' stroke-dasharray='46 5 50 4' stroke-dashoffset='13'/%3E%3Cpath d='M716.0 0 C711.4 40 703.5 80 700.0 120' stroke-dasharray='51 5 60 5' stroke-dashoffset='20'/%3E%3Cpath d='M816.8 0 C819.8 40 820.8 80 820.0 120' stroke-dasharray='50 5 61 6' stroke-dashoffset='12'/%3E%3Cpath d='M917.6 0 C925.7 40 933.0 80 940.0 120' stroke-dasharray='62 6 51 5' stroke-dashoffset='26'/%3E%3Cpath d='M1018.4 0 C1030.9 40 1044.2 80 1060.0 120' stroke-dasharray='48 5 66 4' stroke-dashoffset='21'/%3E%3Cpath d='M1119.2 0 C1139.6 40 1158.0 80 1180.0 120' stroke-dasharray='57 4 88 6' stroke-dashoffset='45'/%3E%3Cpath d='M1220.0 0 C1245.4 40 1272.3 80 1300.0 120' stroke-dasharray='59 4 69 5' stroke-dashoffset='52'/%3E%3Cpath d='M1320.8 0 C1352.0 40 1386.8 80 1420.0 120' stroke-dasharray='57 7 70 4' stroke-dashoffset='30'/%3E%3Cpath d='M1421.6 0 C1460.8 40 1501.9 80 1540.0 120' stroke-dasharray='68 5 53 5' stroke-dashoffset='60'/%3E%3Cpath d='M1522.4 0 C1568.3 40 1614.7 80 1660.0 120' stroke-dasharray='39 6 75 4' stroke-dashoffset='35'/%3E%3Cpath d='M1623.2 0 C1675.5 40 1728.4 80 1780.0 120' stroke-dasharray='64 6 74 6' stroke-dashoffset='53'/%3E%3C/g%3E%3Cg stroke-width='1.3'%3E%3Cpath d='M484.0 78 C520.2 77 551.2 79 587.3 78.3'/%3E%3Cpath d='M822.9 40 C856.9 39 886.0 41 920.1 40.3'/%3E%3Cpath d='M1172.8 96 C1210.0 95 1241.8 97 1279.0 96.3'/%3E%3Cpath d='M1262.3 56 C1297.2 55 1327.2 57 1362.1 56.3'/%3E%3C/g%3E%3C/g%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='.06' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M207.8 64 c-3.7 4.8 -6.8 7.2 -9.3 12.0'/%3E%3Cpath d='M448.0 30 c-2.2 4.8 -4.5 7.2 -5.4 12.0'/%3E%3Cpath d='M761.7 88 c0.1 4.8 -1.0 7.2 0.3 12.0'/%3E%3Cpath d='M1084.2 36 c2.4 4.8 2.4 7.2 6.1 12.0'/%3E%3Cpath d='M1438.3 74 c4.7 4.8 5.9 7.2 11.8 12.0'/%3E%3C/g%3E%3C/svg%3E"); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .footer { --planks-deep: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 120' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='120'%3E%3Cstop offset='0' stop-color='%23FFFFFF' stop-opacity='.06'/%3E%3Cstop offset='1' stop-color='%23FFFFFF' stop-opacity='.22'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='none' stroke='url%28%23f%29' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke-width='1.5'%3E%3Cpath d='M10.4 0 C-39.9 40 -89.6 80 -140.0 120' stroke-dasharray='54 6 83 4' stroke-dashoffset='53'/%3E%3Cpath d='M111.2 0 C69.2 40 23.6 80 -20.0 120' stroke-dasharray='67 5 53 4' stroke-dashoffset='7'/%3E%3Cpath d='M212.0 0 C174.7 40 137.7 80 100.0 120' stroke-dasharray='61 7 65 5' stroke-dashoffset='34'/%3E%3Cpath d='M312.8 0 C280.6 40 251.0 80 220.0 120' stroke-dasharray='44 5 50 6' stroke-dashoffset='13'/%3E%3Cpath d='M413.6 0 C389.6 40 365.7 80 340.0 120' stroke-dasharray='64 6 61 5' stroke-dashoffset='10'/%3E%3Cpath d='M514.4 0 C494.6 40 477.3 80 460.0 120' stroke-dasharray='42 5 89 6' stroke-dashoffset='28'/%3E%3Cpath d='M615.2 0 C601.8 40 593.0 80 580.0 120' stroke-dasharray='46 5 50 4' stroke-dashoffset='13'/%3E%3Cpath d='M716.0 0 C711.4 40 703.5 80 700.0 120' stroke-dasharray='51 5 60 5' stroke-dashoffset='20'/%3E%3Cpath d='M816.8 0 C819.8 40 820.8 80 820.0 120' stroke-dasharray='50 5 61 6' stroke-dashoffset='12'/%3E%3Cpath d='M917.6 0 C925.7 40 933.0 80 940.0 120' stroke-dasharray='62 6 51 5' stroke-dashoffset='26'/%3E%3Cpath d='M1018.4 0 C1030.9 40 1044.2 80 1060.0 120' stroke-dasharray='48 5 66 4' stroke-dashoffset='21'/%3E%3Cpath d='M1119.2 0 C1139.6 40 1158.0 80 1180.0 120' stroke-dasharray='57 4 88 6' stroke-dashoffset='45'/%3E%3Cpath d='M1220.0 0 C1245.4 40 1272.3 80 1300.0 120' stroke-dasharray='59 4 69 5' stroke-dashoffset='52'/%3E%3Cpath d='M1320.8 0 C1352.0 40 1386.8 80 1420.0 120' stroke-dasharray='57 7 70 4' stroke-dashoffset='30'/%3E%3Cpath d='M1421.6 0 C1460.8 40 1501.9 80 1540.0 120' stroke-dasharray='68 5 53 5' stroke-dashoffset='60'/%3E%3Cpath d='M1522.4 0 C1568.3 40 1614.7 80 1660.0 120' stroke-dasharray='39 6 75 4' stroke-dashoffset='35'/%3E%3Cpath d='M1623.2 0 C1675.5 40 1728.4 80 1780.0 120' stroke-dasharray='64 6 74 6' stroke-dashoffset='53'/%3E%3C/g%3E%3Cg stroke-width='1.3'%3E%3Cpath d='M484.0 78 C520.2 77 551.2 79 587.3 78.3'/%3E%3Cpath d='M822.9 40 C856.9 39 886.0 41 920.1 40.3'/%3E%3Cpath d='M1172.8 96 C1210.0 95 1241.8 97 1279.0 96.3'/%3E%3Cpath d='M1262.3 56 C1297.2 55 1327.2 57 1362.1 56.3'/%3E%3C/g%3E%3C/g%3E%3Cg fill='none' stroke='%23FFFFFF' stroke-opacity='.06' stroke-width='1.1' stroke-linecap='round'%3E%3Cpath d='M207.8 64 c-3.7 4.8 -6.8 7.2 -9.3 12.0'/%3E%3Cpath d='M448.0 30 c-2.2 4.8 -4.5 7.2 -5.4 12.0'/%3E%3Cpath d='M761.7 88 c0.1 4.8 -1.0 7.2 0.3 12.0'/%3E%3Cpath d='M1084.2 36 c2.4 4.8 2.4 7.2 6.1 12.0'/%3E%3Cpath d='M1438.3 74 c4.7 4.8 5.9 7.2 11.8 12.0'/%3E%3C/g%3E%3C/svg%3E"); } }
+html body .footer {
+  border-top: 2px solid var(--room-ink);
+  background:
+    var(--planks-deep) center bottom / 100% 100% no-repeat,
+    linear-gradient(to bottom, color-mix(in srgb, #000 7%, transparent), transparent 55%),
+    var(--boards);
+}
+
+/* the session-notes wall ends on the hero's skirting: the same pale board leaning toward the wall and the
+   same brown lines, so the room looks the same at the top and the bottom of the page */
+html #session-notes {
+  --room-ink: #5B4A3E;
+  --skirt: color-mix(in srgb, #FFFDF6 62%, var(--wall));
+}
+:root[data-theme="dark"] #session-notes {
+  --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall));
+  --skirt: color-mix(in srgb, #39405C 70%, var(--wall));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #session-notes {
+    --room-ink: color-mix(in srgb, #0D0F16 65%, var(--wall));
+    --skirt: color-mix(in srgb, #39405C 70%, var(--wall));
+  }
+}
+/* the footer is just the floor and the copyright: the logo duck is already in the bar on every page */
+html body .footer .wrap::before { content: none; }
+
+/* the copyright is written in the floor's own brown, like the seams it sits between (5.5:1 on the boards);
+   after dark it keeps its cream */
+html body .footer { color: #5B4A3E; }
+
+/* Case 01 cover: the result leads. The package's Storybook is the large window in front; the Figma file it came
+   from sits small and faded behind, so the cover reads Figma library → package at a glance. */
+html .pcard-stack .win-back { left: 5%; top: 20%; width: 46%; opacity: 0.8; filter: grayscale(0.45); }
+html .pcard-stack .win-front { right: 5%; left: auto; top: 9%; width: 60%; }
+@media (max-width: 760px) {
+  /* on phones the Figma window's title bar shows above the Storybook window, so both names can be read */
+  html .pcard-stack .win-back { width: 62%; top: 8%; }
+  html .pcard-stack .win-front { width: 74%; top: 24%; }
+}
+
+/* ---------- case pages: "more" dropdowns ----------
+   Detail a reviewer may want, folded under a labelled row so the main story stays short (progressive disclosure,
+   NN/g). One hairline row per dropdown: the label in ink, a short hint in grey saying what's inside, a chevron.
+   The hover is the contents list's grey row; focus uses the site's one ring. */
+html:root body .prose details.more { margin: 1.5rem 0 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+html:root body .prose details.more + details.more { margin-top: 0; border-top: 0; }
+html:root body .prose details.more > summary { position: relative; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.75rem;
+  padding: 16px 44px 16px 8px; list-style: none; cursor: pointer; border-radius: var(--radius-s); font-size: var(--t0) !important; line-height: 1.4; }
+html:root body .prose details.more > summary::-webkit-details-marker { display: none; }
+html:root body .prose details.more > summary:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+html:root body .prose details.more > summary::after { content: ""; position: absolute; right: 16px; top: 50%; width: 8px; height: 8px;
+  border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: translateY(-75%) rotate(45deg); transition: transform 150ms var(--ease); }
+html:root body .prose details.more[open] > summary::after { transform: translateY(-25%) rotate(-135deg); }
+html:root body .prose details.more .more-label { font-weight: 600; color: var(--ink); }
+html:root body .prose details.more .more-hint { font-size: var(--t-1); color: var(--ink-3); }
+html:root body .prose details.more .more-body { padding: 8px 0 24px; }
+html:root body .prose details.more .more-body > :first-child { margin-top: 0; }
+html:root body .prose details.more .more-body > :last-child { margin-bottom: 0; }
+html:root body .prose details.more .more-list { margin: 0 0 1rem; padding-left: 1.2rem; }
+html:root body .prose details.more .more-list li + li { margin-top: 0.5rem; }
+/* a dropdown that ends a chapter leaves its bottom line to the chapter's own divider, so there's one line, not two */
+/* Case 01: the finished library as the outcome's picture, on its own white sheet like the other exhibits */
+html:root body .prose figure.ds-today img { display: block; width: 100%; height: auto; border: 0; border-radius: 6px; background: var(--sheet); box-shadow: var(--paper-shadow); }
+
+
+/* Case 01, how a component gets in: equal boxes, read left to right, no highlighted step */
+html:root body .prose .pipeline.ds-flow { align-items: stretch; }
+html:root body .prose .pipeline.ds-flow .arrow { align-self: center; }
+html:root body .prose .pipeline.ds-flow .node { justify-content: flex-start; }
+html:root body .prose .pipeline.ds-flow { flex-wrap: nowrap; }
+html:root body .prose .pipeline.ds-flow .node { min-width: 0; }
+@media (max-width: 1100px) {
+  html:root body .prose .pipeline.ds-flow { flex-direction: column; align-items: stretch; }
+  html:root body .prose .pipeline.ds-flow .arrow { transform: rotate(90deg); }
+}
+/* the flow is my own explanation, not an exhibit: no white sheet behind it, so it isn't a card holding cards.
+   The four steps sit on the page as cards in the same white as the stats. */
+html:root body main .prose figure .frame:has(> .ds-flow) { padding: 0; background: none; box-shadow: none; border: 0; }
+html:root body .prose .pipeline.ds-flow .node { background: var(--bg-elev); border: 1.5px solid var(--line-strong, var(--line)); border-radius: var(--radius); padding: 16px; gap: 6px; }
+html:root body .prose .pipeline.ds-flow .node b { font-size: var(--t0); }
+html:root body .prose .pipeline.ds-flow .node small { font-size: var(--t-1); line-height: 1.45; }
+
+/* inline code reads as code: smaller monospace on a faint ink tint with a small radius, everywhere on the site.
+   Monospace glyphs are wider than the text face, so at 0.92em with no tint it looked louder than the sentence. */
+html:root body main :not(pre) > code { font-size: 0.82em; padding: 0.12em 0.4em; border-radius: var(--radius-s);
+  background: color-mix(in srgb, var(--ink) 7%, transparent); color: var(--ink); white-space: nowrap; }
+
+/* Text fills its column: no narrower measure inside an already-centred page (Nov 2026) */
+html:root body main :is(.prose, .chapter) > :is(p, .dek, .mock-note),
+html:root body main .prose :is(.dek, .mock-note, li, .lesson p),
+html:root body main .case-intro :is(.intro-sum, .lead),
+html:root body main .intro-rows, html:root body main .intro-rows dd { max-width: none !important; }
+@media (min-width: 701px) { html:root body main .intro-rows > div { grid-template-columns: 7.5rem minmax(0, 1fr); } }
+
+/* In-body stat tiles use the same headline style as the intro tiles: one stat style site-wide (Nov 2026) */
+html:root body main .stats .stat b { font-size: var(--t1) !important; font-weight: 700 !important; line-height: 1.25 !important; }
+
+/* Dropdowns show their label only: no bold label + grey hint pair (Nov 2026) */
+html:root body .more-hint { display: none !important; }

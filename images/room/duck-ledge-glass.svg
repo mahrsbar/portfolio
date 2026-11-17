@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="500 138 214 240">
+<!-- the duck from the homepage, sitting on the ledge with its legs over the edge, holding the case's object in its wings -->
+<style>
+  .leg { transform-box: view-box; }
+  .leg-l { transform-origin: 582px 320px; }
+  .leg-r { transform-origin: 616px 320px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .leg-l { animation: kick 3.2s ease-in-out infinite; }
+    .leg-r { animation: kick 3.2s ease-in-out -1.6s infinite; }
+    @keyframes kick { 0%, 100% { transform: rotate(6deg); } 50% { transform: rotate(-14deg); } }
+  }
+</style>
+<g stroke="#1E1A17" stroke-linejoin="round" stroke-linecap="round">
+  <!-- legs over the edge of the ledge, each ending in a webbed foot -->
+  <g class="leg leg-l"><path d="M582 318 C580 332 578 344 579 356" fill="none" stroke="#1E1A17" stroke-width="10"/><path d="M582 318 C580 332 578 344 579 356" fill="none" stroke="#FF8A1F" stroke-width="5"/><path d="M579 354 L565 365 Q562 371 568 371 Q570 375 575 372 Q578 376 582 372 Q587 373 586 367 L583 354 Z" fill="#FF8A1F" stroke="#1E1A17" stroke-width="2.6"/><path d="M580 358 L571 369 M581 359 L578 371" fill="none" stroke="#C95F10" stroke-width="1.6"/></g>
+  <g class="leg leg-r"><path d="M616 318 C615 333 614 345 617 358" fill="none" stroke="#1E1A17" stroke-width="10"/><path d="M616 318 C615 333 614 345 617 358" fill="none" stroke="#FF8A1F" stroke-width="5"/><path d="M617 356 L603 367 Q600 373 606 373 Q608 377 613 374 Q616 378 620 374 Q625 375 624 369 L621 356 Z" fill="#FF8A1F" stroke="#1E1A17" stroke-width="2.6"/><path d="M618 360 L609 371 M619 361 L616 373" fill="none" stroke="#C95F10" stroke-width="1.6"/></g>
+  <!-- tail -->
+  <path d="M670 270 C690 262 700 244 696 232 C708 248 704 276 684 290 Z" fill="#FFC93C" stroke-width="3.5"/>
+  <!-- body, flat where it sits -->
+  <path d="M547 300 C547 262 580 246 615 246 C650 246 683 262 683 300 C683 318 676 326 664 326 H566 C554 326 547 318 547 300 Z" fill="#FFC93C" stroke-width="3.5"/>
+  <!-- head -->
+  <path d="M588 172 C582 160 588 150 597 155 C600 145 613 145 613 156 C613 164 606 170 600 174 Z" fill="#FFC93C" stroke-width="3"/>
+  <circle cx="585" cy="212" r="46" fill="#FFC93C" stroke-width="3.5"/>
+  <path d="M546 214 C532 208 518 214 518 224 C522 234 540 236 552 230 Z" fill="#FF8A1F" stroke-width="3.5"/>
+  <path d="M522 225 C530 229 542 229 550 225" fill="none" stroke-width="2.5"/>
+  <ellipse cx="598" cy="232" rx="11" ry="6.5" fill="#FF8FA3" stroke="none" opacity=".75"/>
+  <circle cx="569" cy="204" r="16" fill="#fff" fill-opacity=".22" stroke="none"/>
+  <circle cx="569" cy="205" r="7" fill="#1E1A17" stroke="none"/><circle cx="571.6" cy="202.4" r="2" fill="#fff" stroke="none"/>
+  <circle cx="569" cy="204" r="16" fill="none" stroke-width="3"/>
+  <!-- a raised brow over the glasses, as in the hero -->
+  <path d="M557 181.5 C562 176.5 572 176 579 179.5" fill="none" stroke-width="3"/>
+  <path d="M585 201 L620 194" fill="none" stroke-width="3"/>
+  <!-- a magnifying glass, held up -->
+  <path d="M600 300 L624 330" fill="none" stroke-width="12"/><path d="M600 300 L624 330" fill="none" stroke="#C98A4B" stroke-width="6.5"/><circle cx="582" cy="276" r="27" fill="#D9EEF0" fill-opacity=".85" stroke-width="7"/><circle cx="582" cy="276" r="27" fill="none" stroke="#C9CFD8" stroke-width="3"/><path d="M566 266 q5 -9 15 -11" fill="none" stroke="#FFFFFF" stroke-width="3.5"/>
+  <!-- wing tips holding it -->
+  <path d="M606 310 C612 298 630 300 632 312 C634 324 622 330 612 326 C604 322 602 316 606 310 Z" fill="#F0A91B" stroke="#1E1A17" stroke-width="3" stroke-linejoin="round"/>
+</g>
+</svg>

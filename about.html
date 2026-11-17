@@ -13,19 +13,18 @@
     <meta property="og:title" content="About — Mahrs Aslam" />
     <meta property="og:description" content="UX engineer in Vancouver, trained in psychology before computer science. I research how people work, shape the product, and build it, down to the design system." />
     <meta property="og:url" content="https://mahrsbar.github.io/portfolio/about.html" />
-    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261026" />
+    <meta property="og:image" content="https://mahrsbar.github.io/portfolio/assets/og.png?v=20261117" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. A rubber duck therapist in glasses takes notes while a blue beetle talks on the couch." />
+    <meta property="og:image:alt" content="Mahrs Aslam, UX Engineer. I build design systems and the AI features that run on them. A duck therapist with a clipboard sits across from a blue bug in a green room." />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="assets/favicon.svg?v=7" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&amp;family=Shantell+Sans:wght@500..800&amp;display=swap"
-    />
-    <link rel="stylesheet" href="css/style.css?v=20261112y" />
+    <link rel="icon" href="assets/favicon.svg?v=8" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon-32.png?v=8" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=8" />
+    <link rel="preload" href="assets/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/fonts/shantell-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="css/fonts.css?v=20261111" />
+    <link rel="stylesheet" href="css/style.css?v=20261120g" />
     <script>
       try {
         var t = localStorage.getItem("mahrs-theme");
@@ -47,7 +46,7 @@
             <!-- Writing hidden for now: <li><a href="writing/index.html" data-section="/writing/">Writing</a></li> -->
             <li><a href="about.html" aria-current="page">About</a></li>
             <!-- Ask hidden for now: <li><a href="ask.html">Ask</a></li> -->
-            <li><a href="images/Mahrs_Aslam_Resume.pdf?v=2026" target="_blank" rel="noopener">Resume</a></li>
+            <li><a href="images/Mahrs_Aslam_Resume.pdf?v=20261117" target="_blank" rel="noopener">Resume</a></li>
             <li><a href="https://www.linkedin.com/in/mahrs-aslam" target="_blank" rel="noopener">LinkedIn</a></li>
             <li>
               <button class="theme-toggle" type="button" aria-label="Switch theme">
@@ -61,33 +60,39 @@
     </header>
 
     <main id="main">
-      <section class="wrap case-hero" data-prop="plant">
-        <p class="eyebrow" data-no-read-time>About</p>
-         <h1>I research how people work, then design and build the product.</h1>
+      <!-- the page's title on a strip of the room's wall, ending on a ledge; the duck sits on it, legs over, holding a diploma -->
+      <section class="case-strip">
+        <div class="wrap cs-inner">
+          <p class="eyebrow" data-no-read-time>About</p>
+          <h1>I&nbsp;research how people work, then design and build the product.</h1>
+        </div>
+        <img class="cs-duck" src="images/room/duck-ledge-diploma.svg?v=2" alt="" width="214" height="240" />
+      </section>
+      <section class="wrap case-intro cs-after">
         <p class="lead">
-          I'm a UX engineer in Vancouver with 7 years of building software, trained in psychology before
-          computer science. At GeoComply I work on fraud-investigation tools: I find out how analysts
-          actually work, shape what the product should become, and build it.
+          I'm a&nbsp;UX engineer in Vancouver with 7 years of building software, trained in psychology before
+          computer science. At&nbsp;GeoComply I&nbsp;work on fraud-investigation tools: I&nbsp;find out how analysts
+          actually work, shape what the product should become, and build&nbsp;it.
         </p>
       </section>
 
        <section class="wrap section" style="border-top:0; padding-top:0">
         <div class="about-grid">
           <div class="prose">
-            <h2 style="margin-top:0">How I work</h2>
+            <h2 style="margin-top:0">How I&nbsp;work</h2>
             <ul>
-              <li><strong>Research decides what gets built.</strong> Session replays, support tickets, shadowing, analyst interviews. That's how a four-tool investigation workflow became <a href="work/unified-user-page.html">one user page</a>, and how <a href="work/replays.html">a ranked audit of 21 map failures</a> set engineering's fix order.</li>
-              <li><strong>Then I build it.</strong> I prototype the real thing instead of handing off a spec, and I ship it in React and TypeScript.</li>
-              <li><strong>Then I make the next one faster.</strong> I took our <a href="work/design-system.html">design system</a> from Figma-only to a React library used by four products, with four Figma plugins and an agent pipeline that cut design-to-code from days to about ten minutes.</li>
+              <li><strong>Research decides what gets built.</strong> Session replays, support tickets, shadowing, analyst interviews. That's how a&nbsp;four-tool investigation workflow became <a href="work/unified-user-page.html">one user page</a>, and how <a href="work/replays.html">a&nbsp;ranked audit of 21 map failures</a> set engineering's fix&nbsp;order.</li>
+              <li><strong>Then I&nbsp;build it.</strong> I&nbsp;prototype the real thing instead of handing off a&nbsp;spec, and I&nbsp;ship it in React and&nbsp;TypeScript.</li>
+              <li><strong>Then I&nbsp;make the next one faster.</strong> I&nbsp;took our <a href="work/design-system.html">design system</a> from Figma-only to a&nbsp;React library used by four products, with four Figma plugins and an&nbsp;agent pipeline that cut design-to-code from days to about ten&nbsp;minutes.</li>
             </ul>
 
             <h2>AI, in the product and in the workflow</h2>
-            <p>I designed and built <a href="work/ask-bar.html">an investigation assistant</a> (React, Cloudflare Workers, Claude API) that turns an analyst's question into filters. Analysts answer for every decision they make, so the assistant shows its work as filters they can see and edit, not an answer they have to trust. It's now a major prospect's reference demo, and two of its patterns are on the product roadmap.</p>
-            <p>Day to day I build with Claude Code and Cursor, with Figma and MUI connected so the agent reads the real design and docs instead of guessing. What to build, anything that touches customer data, and whether it's right stay with me. Every mistake an agent makes becomes a rule or a test. I wrote up <a href="writing/figma-to-claude.html">the five ways I get a Figma design in front of Claude</a>, and what each one loses.</p>
+            <p>I&nbsp;designed and built <a href="work/ask-bar.html">an&nbsp;investigation assistant</a> (React, Cloudflare Workers, Claude API) that turns an&nbsp;analyst's question into filters. Analysts answer for every decision they make, so the assistant shows its work as filters they can see and edit, not an&nbsp;answer they have to trust. It reached production twelve weeks after the first commit, customer analysts use it today, and I&nbsp;now lead engineering on the six-person team that ships&nbsp;it.</p>
+            <p>Day to day I&nbsp;build with Claude Code and Cursor, with Figma and MUI connected so the agent reads the real design and docs instead of guessing. What to build, anything that touches customer data, and whether it's right stay with me. Every mistake an&nbsp;agent makes becomes a&nbsp;rule or a&nbsp;test. I&nbsp;wrote up <a href="writing/figma-to-claude.html">the five ways I&nbsp;get a&nbsp;Figma design in front of Claude</a>, and what each one&nbsp;loses.</p>
 
             <aside class="psych" aria-label="Why the psychology matters">
               <span class="psych-k">Why the psychology matters</span>
-              <p>It's why I look at behaviour before opinions, and it gives me names for what goes wrong: cognitive load, automation bias, a false "no results" that's worse than a slow one. Most of my design decisions come down to making the next step obvious and the system's state impossible to misread.</p>
+              <p>It's why I&nbsp;look at behaviour before opinions, and it gives me names for what goes wrong: cognitive load, automation bias, a&nbsp;false "no results" that's worse than a&nbsp;slow one. Most of my design decisions come down to making the next step obvious and the system's state impossible to&nbsp;misread.</p>
             </aside>
           </div>
 
@@ -97,36 +102,36 @@
               <li>
                 <time>Jan 2025 – Present</time>
                 <b>UX Engineer II, GeoComply</b>
-                <span>Led discovery and design across the fraud-investigation suite: the <a href="work/unified-user-page.html">unified user page</a>, <a href="work/ask-bar.html">an AI investigation assistant</a>, and the <a href="work/design-system.html">design system</a>, now a React and MUI library used by 4 products.</span>
+                <span>Led discovery and design across the fraud-investigation suite: the <a href="work/unified-user-page.html">unified user page</a>, <a href="work/ask-bar.html">an&nbsp;AI investigation assistant</a>, and the <a href="work/design-system.html">design system</a>, now an&nbsp;MUI theme and component library used by 4&nbsp;products.</span>
               </li>
               <li>
                 <time>Mar 2023 – Jan 2025</time>
                 <b>Front-end Developer, OneComply (GeoComply)</b>
-                <span>Redesigned the <a href="work/onecomply.html">licence application</a> from 11 steps to 6, rebuilt the task manager around custom fields, and cut navigation from 30 links to 3 areas.</span>
+                <span>Redesigned the navigation and the <a href="work/onecomply.html">licence application</a> flow, cutting a&nbsp;26-page sidebar to 5&nbsp;areas and the application into six guided steps, and designed custom fields for the task&nbsp;manager.</span>
               </li>
               <li>
                 <time>Mar 2022 – Jan 2023</time>
                 <b>Lead Front-end Developer, Remnant Labs</b>
-                <span>Led the website redesign, from research to launch; Vue, Firebase, GSAP. Web traffic up 125%.</span>
+                <span>Led the website redesign, from research to launch; Vue, Firebase, GSAP. Web&nbsp;traffic up&nbsp;125%.</span>
               </li>
               <li>
                 <time>Jul 2021 – Mar 2022</time>
                 <b>Full-stack Developer and Technical Lead, ProgramEquity (formerly ProgramEarth)</b>
-                <span>Led a volunteer team building <a href="amplify.html">Amplify</a>, an open-source civic-engagement platform; Vue, Node, Google Civic API. Codespaces onboarding grew contributors 50%.</span>
+                <span>Led a&nbsp;volunteer team building <a href="amplify.html">Amplify</a>, an&nbsp;open-source civic-engagement platform; Vue, Node, Google Civic API. Codespaces onboarding grew contributors&nbsp;50%.</span>
               </li>
               <li>
                 <time>Jul 2019 – Jun 2021</time>
                 <b>Front-end, then Full-stack Developer, We Know Training</b>
-                <span>Accessibility-first eLearning courses for 10+ clients (engagement up 30%, completion up 40%), then full stack on the learning platform: AngularJS, Rails, GraphQL.</span>
+                <span>Accessibility-first eLearning courses for 10+ clients (engagement up 30%, completion up 40%), then full stack on the learning platform: AngularJS, Rails,&nbsp;GraphQL.</span>
               </li>
               <li>
                 <time>2017 – 2019</time>
                 <b>B.Sc. Computer Science, University of Regina</b>
-                <span>Software engineering and HCI coursework: <a href="work/regina-rentables.html">a Django rental marketplace</a>, <a href="work/craigslist-redesign.html">a Craigslist redesign</a>, <a href="work/smash-forum.html">a PHP/MySQL forum app with moderation</a>.</span>
+                <span>Software engineering and HCI coursework: <a href="work/regina-rentables.html">a&nbsp;Django rental marketplace</a>, <a href="work/craigslist-redesign.html">a&nbsp;Craigslist redesign</a>, <a href="work/smash-forum.html">a&nbsp;PHP/MySQL forum app with moderation</a>.</span>
               </li>
               <li>
                 <time>2013 – 2016</time>
-                <b>B.A. Psychology, University of Alberta</b>
+                <b>B.A. Psychology, University of&nbsp;Alberta</b>
               </li>
             </ul>
 
@@ -134,23 +139,23 @@
             <div class="skills">
               <div>
                 <h4>Research</h4>
-                <ul class="skill-tags"><li>User interviews</li><li>Shadowing</li><li>Session replays</li><li>Support-ticket analysis</li><li>Journey maps</li><li>Personas</li><li>Analytics</li></ul>
+                <ul class="skill-tags"><li>User&nbsp;interviews</li><li>Shadowing</li><li>Session&nbsp;replays</li><li>Support-ticket&nbsp;analysis</li><li>Journey&nbsp;maps</li><li>Personas</li><li>Analytics</li></ul>
               </div>
               <div>
                 <h4>Front-end</h4>
-                <ul class="skill-tags"><li>TypeScript</li><li>React</li><li>MUI</li><li>Vue</li><li>HTML/CSS</li><li>Storybook</li><li>Playwright</li><li>Accessibility (WCAG)</li><li>SwiftUI</li></ul>
+                <ul class="skill-tags"><li>TypeScript</li><li>React</li><li>MUI</li><li>Vue</li><li>HTML/CSS</li><li>Storybook</li><li>Playwright</li><li>Accessibility&nbsp;(WCAG)</li><li>SwiftUI</li></ul>
               </div>
               <div>
                 <h4>Design systems</h4>
-                <ul class="skill-tags"><li>Figma variables</li><li>Figma plugin API</li><li>Figma Make</li><li>Design tokens</li><li>MUI theming</li><li>Component architecture</li></ul>
+                <ul class="skill-tags"><li>Figma&nbsp;variables</li><li>Figma plugin&nbsp;API</li><li>Figma&nbsp;Make</li><li>Design&nbsp;tokens</li><li>MUI&nbsp;theming</li><li>Component&nbsp;architecture</li></ul>
               </div>
               <div>
                 <h4>AI</h4>
-                <ul class="skill-tags"><li>Claude API (Anthropic SDK)</li><li>LLM prototyping</li><li>Prompt design</li><li>MCP</li><li>Claude Code</li><li>Cursor</li></ul>
+                <ul class="skill-tags"><li>Claude API (Anthropic&nbsp;SDK)</li><li>LLM&nbsp;prototyping</li><li>Prompt&nbsp;design</li><li>MCP</li><li>Claude&nbsp;Code</li><li>Cursor</li></ul>
               </div>
               <div>
                 <h4>Platform</h4>
-                <ul class="skill-tags"><li>Cloudflare Workers</li><li>Node</li><li>Rails</li><li>GraphQL</li><li>PostgreSQL</li><li>GitHub Actions</li></ul>
+                <ul class="skill-tags"><li>Cloudflare&nbsp;Workers</li><li>Node</li><li>Rails</li><li>GraphQL</li><li>PostgreSQL</li><li>GitHub&nbsp;Actions</li></ul>
               </div>
             </div>
           </aside>
@@ -161,10 +166,10 @@
 
     <footer class="footer">
       <div class="wrap">
-        <span>© <span data-year>2026</span> Mahrs Aslam.</span>
+        <span>© <span data-year>2026</span> Mahrs Aslam</span>
       </div>
     </footer>
-    <script src="js/main.js?v=20261112e"></script>
+    <script src="js/main.js?v=20261118a"></script>
     <!-- Search hidden for now: <script src="js/navigator.js?v=20261015"></script> -->
   </body>
 </html>
